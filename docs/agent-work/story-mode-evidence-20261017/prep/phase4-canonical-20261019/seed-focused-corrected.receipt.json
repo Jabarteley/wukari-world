@@ -1,0 +1,30 @@
+{
+  "name": "seed-focused-corrected",
+  "command": [
+    "node",
+    "--experimental-strip-types",
+    "scripts/agent-slot.ts",
+    "heavy",
+    "--wait-ms",
+    "0",
+    "--",
+    "node",
+    "--experimental-strip-types",
+    "--test",
+    "--test-concurrency=1",
+    "scripts/scene-factory/layout.test.ts",
+    "scripts/scene-factory/build.test.ts"
+  ],
+  "pid": 20303,
+  "exitCode": 0,
+  "timeout": false,
+  "seconds": 1.4412677080836147,
+  "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/seed-focused-corrected.log",
+  "logSha256": "de8651d06caf569c3042302a3a9daeaf86d6f374def699779d4811d1f249a90c",
+  "limits": {
+    "oldSpaceMiB": 512,
+    "semiSpaceMiB": 16,
+    "GOMAXPROCS": 2,
+    "externalTimeoutSeconds": 280
+  }
+}

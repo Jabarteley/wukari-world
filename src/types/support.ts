@@ -14,7 +14,8 @@ import type { AdKind } from './civic.ts'
 
 // ---- problem reports (a player about the game) ---------------------------------------------------
 
-export type SupportCategory = 'money' | 'stuck' | 'messages' | 'people' | 'bug' | 'other'
+/** `idea`: an idea or feedback (anything someone loves, misses or wants), filed like a report so the team reads every one. */
+export type SupportCategory = 'idea' | 'money' | 'stuck' | 'messages' | 'people' | 'bug' | 'other'
 /** received → reviewing → resolved | dismissed, set by an operator. */
 export type SupportStatus = 'received' | 'reviewing' | 'resolved' | 'dismissed'
 
@@ -333,7 +334,7 @@ export type { PlayerReportReceipt }
 
 // ---- runtime key lists (protocol.test.ts) --------------------------------------------------------
 
-export const SUPPORT_CATEGORIES = ['money', 'stuck', 'messages', 'people', 'bug', 'other'] as const satisfies readonly SupportCategory[]
+export const SUPPORT_CATEGORIES = ['idea', 'money', 'stuck', 'messages', 'people', 'bug', 'other'] as const satisfies readonly SupportCategory[]
 export const SUPPORT_STATUSES = ['received', 'reviewing', 'resolved', 'dismissed'] as const satisfies readonly SupportStatus[]
 export const FILE_REPORT_RESPONSE_KEYS = ['code', 'ok', 'receipt', 'serverTime'] as const satisfies readonly (keyof Extract<FileReportResponse, { ok: true }> | keyof ApiEnvelope)[]
 export const SUPPORT_RECEIPT_KEYS = ['at', 'category', 'cityId', 'id', 'note', 'status', 'text', 'updatedAt'] as const satisfies readonly (keyof SupportReceipt)[]

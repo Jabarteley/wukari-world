@@ -192,7 +192,7 @@ onMounted(() => { void growth.load(); void loadOlderLives() })
     <LinkButton v-if="growth.channel.value" :href="growth.channel.value" block>Follow Allworld on WhatsApp</LinkButton>
     <p class="settings-note">The game never contacts you unless you ask. News always arrives in Phone → Messages → Updates.</p>
     <div class="ui-rows">
-      <button type="button" class="ui-row" @click="shell.open('support')"><span class="ui-row-icon" aria-hidden="true"><GameIcon inline name="support" /></span><span class="ui-row-body"><b>Report a problem</b><small>File a report and get a receipt</small></span><span class="ui-row-end"><GameIcon inline name="chevron" /></span></button>
+      <button type="button" class="ui-row" @click="shell.open('support', { category: 'idea' })"><span class="ui-row-icon" aria-hidden="true"><GameIcon inline name="support" /></span><span class="ui-row-body"><b>Feedback and help</b><small>Send an idea or report a problem; you get a receipt</small></span><span class="ui-row-end"><GameIcon inline name="chevron" /></span></button>
     </div>
     <h3 class="ui-section">About</h3>
     <div class="ui-rows">

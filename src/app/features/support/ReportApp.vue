@@ -60,12 +60,12 @@ async function send(): Promise<void> {
 
 <template>
   <div class="report">
-    <HeroCard label="Report a problem" figure="Tell us what went wrong" class="report-hero">
-      You get a receipt number at once. No e-mail needed.
+    <HeroCard label="Feedback and help" figure="Tell us anything" class="report-hero">
+      An idea, something you love or miss, or something that went wrong: the team reads every one. You get a receipt number at once. No e-mail needed.
     </HeroCard>
 
     <form class="report-form" novalidate @submit.prevent="send">
-      <label>What kind of problem?
+      <label>What is it about?
         <select v-model="draft.category" name="category" :disabled="offline || sending">
           <option v-for="(label, id) in CATEGORY_LABELS" :key="id" :value="id">{{ label }}</option>
         </select>

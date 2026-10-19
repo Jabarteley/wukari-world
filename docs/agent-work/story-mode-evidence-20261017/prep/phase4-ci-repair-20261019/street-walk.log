@@ -1,0 +1,12 @@
+✔ offers the existing estate-gate walk for a current Roots city with mapped chapter venues (0.627375ms)
+✔ keeps locked, unmapped, disabled, free-roam, and other-city states on the ordinary scene flow (0.090041ms)
+✔ returns through the exact mapped doorway only for the matching accepted city and venue journey (0.08625ms)
+✔ recognises only a current accepted walk and explains public-store refusal conditions (0.103667ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 65.6005

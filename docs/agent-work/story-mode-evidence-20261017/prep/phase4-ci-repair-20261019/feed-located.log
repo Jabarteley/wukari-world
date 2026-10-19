@@ -1,0 +1,11 @@
+SUPERVISED_PID=86925
+✔ location badge: a city and the network's word, shown on the profile and posts, removable, gone after 90 days; adults only (141.324166ms)
+✔ locals only: a community of a real place admits people whose badge is in its city, state or country (51.300958ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 894.449583

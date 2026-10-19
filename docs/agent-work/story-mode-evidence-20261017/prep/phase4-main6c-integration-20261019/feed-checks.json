@@ -1,0 +1,65 @@
+{
+  "schema": "phase4-feed-merge-check-receipt-v1",
+  "sourcePins": "/private/tmp/story-phase4-feed-merge-check-20261019-9mEgOvno/source-pins.json",
+  "sourcePinsSha256": "8b7b2be7598557f1648a8ba468f4b95bff5fb795cb69ac94ebb68e059b601bc6",
+  "before": {
+    "expectedHead": "8d0c2b29a63934410d84905f176f188af8fb9c91",
+    "actual": {
+      "head": "8d0c2b29a63934410d84905f176f188af8fb9c91",
+      "files": {
+        "server/feed/service.ts": "41a3a685ec5273ba28158ab299b5db2dfdab32944fdadcea8434958166554460",
+        "server/feed.test.ts": "e01c0968974423eb9feebf5c9b0b5403afd914cf5024a50129fa84c8c9ecd31e",
+        "server/feed-located.test.ts": "38ace116e0d32fb5a7ded07cb5bf853c86499a6c194c6fe4f86f1c967c7c1dc5",
+        "server/test-fixture.ts": "d376084667d9978e37a0d07d1d374c190c153cc368759a16bda38833dd0199a9"
+      },
+      "changed": [],
+      "missing": []
+    },
+    "pass": true
+  },
+  "after": {
+    "expectedHead": "8d0c2b29a63934410d84905f176f188af8fb9c91",
+    "actual": {
+      "head": "8d0c2b29a63934410d84905f176f188af8fb9c91",
+      "files": {
+        "server/feed/service.ts": "41a3a685ec5273ba28158ab299b5db2dfdab32944fdadcea8434958166554460",
+        "server/feed.test.ts": "e01c0968974423eb9feebf5c9b0b5403afd914cf5024a50129fa84c8c9ecd31e",
+        "server/feed-located.test.ts": "38ace116e0d32fb5a7ded07cb5bf853c86499a6c194c6fe4f86f1c967c7c1dc5",
+        "server/test-fixture.ts": "d376084667d9978e37a0d07d1d374c190c153cc368759a16bda38833dd0199a9"
+      },
+      "changed": [],
+      "missing": []
+    },
+    "pass": true
+  },
+  "units": [
+    {
+      "name": "feed",
+      "started": "2026-10-19T04:29:43Z",
+      "ended": "2026-10-19T04:29:45Z",
+      "exitCode": 0,
+      "elapsedMs": 1619.115,
+      "tests": 17,
+      "pass": 17,
+      "fail": 0,
+      "cancelled": 0,
+      "log": "/private/tmp/story-phase4-feed-merge-check-20261019-9mEgOvno/feed.log",
+      "logSha256": "af7905e98ff5d88bde05955738b10043edf7b42be9f2c64c05678eb77221942c"
+    },
+    {
+      "name": "feed-located",
+      "started": "2026-10-19T04:29:45Z",
+      "ended": "2026-10-19T04:29:46Z",
+      "exitCode": 0,
+      "elapsedMs": 1126.29,
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "cancelled": 0,
+      "log": "/private/tmp/story-phase4-feed-merge-check-20261019-9mEgOvno/feed-located.log",
+      "logSha256": "e885d82a35b4cc6b5e4b92142b4342e7d4f0ef2a22772d6e4dcb77ac0d5dbe1a"
+    }
+  ],
+  "sequenceComplete": true,
+  "slotCleanup": "see final status captured by parent/worker"
+}

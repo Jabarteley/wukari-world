@@ -8,7 +8,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import type { Object3D, Scene } from 'three';
 import { extractCityBrief } from '../../../scripts/scene-factory/facts.ts';
 import type { CityBriefV1 } from '../../../scripts/scene-factory/facts.ts';
-import { draftVenueRecipe, venueForRecipe } from '../../../scripts/scene-factory/layout.ts';
+import { draftVenueRecipe, factoryRecipeSky, venueForRecipe } from '../../../scripts/scene-factory/layout.ts';
 import { screenText } from '../../../server/moderation/text.ts';
 import { cityContent, playableCityIds } from '../../game/cities/registry.ts';
 import { createHostLights } from '../../venue-world.ts';
@@ -125,7 +125,8 @@ export async function auditHosts(kitManifestPath: string, selected?: readonly st
         const metadata: RecipeRuntimeMetadata = { schema: 'allworld-recipe-runtime', version: 1, city, region: region.id, recipeSha256: '0'.repeat(64), recipeBytes: 0,
           targetVenueIds: brief.targetVenueIds, assets: { kit: ref }, hostScenery: Object.fromEntries(brief.targetVenueIds.map(id => [id, { triangles: 0, meshes: 5 + outerWitness.calibration.total.meshes, lights: 3 }])) };
         for (const venue of brief.venues.filter(v => representatives.has(v.id))) {
-          const recipe = draftVenueRecipe(venue, { brief, assets: { kit: measured }, screenText, hostScenery: metadata.hostScenery });
+          const core = draftVenueRecipe(venue, { brief, assets: { kit: measured }, screenText, hostScenery: metadata.hostScenery });
+          const recipe = { ...core, version: 2, sky: factoryRecipeSky(core.mood), surfaceStyle: 'physical-atlas-v1' };
           const value = validateRecipe(recipe, { city, venue: venueForRecipe(venue), assets: { kit: measured }, screenText, hostScenery: metadata.hostScenery[venue.id]! });
           const def = compileRecipe(value, prepared, metadata), create = def.runtime!.createHost;
           def.runtime!.createHost = Object.assign((...args: Parameters<typeof create>) => {
@@ -167,7 +168,7 @@ export async function auditHosts(kitManifestPath: string, selected?: readonly st
         } finally { outer.dispose(); kit.dispose(); lights.dispose(); }
       }
     }
-    for (const path of ['src/scene/recipe/measure-host-kits.ts', 'src/scene/recipe/pack.ts', 'scripts/scene-factory/assets.ts', 'scripts/assets/glb.ts', 'scripts/assets/prepare.ts', 'node_modules/meshoptimizer/package.json', 'src/scene/recipe/calibrated-host.ts', 'src/scene/recipe/measure-host.ts', 'src/scene/recipe/measure-host-state.ts', 'src/scene/recipe/compile.ts', 'src/scene/recipe/runtime-host.ts', 'src/scene/recipe/contract.ts', 'src/scene/recipe/prepare.ts', 'src/scene/venue-scenes.ts', 'src/scene/build.ts', 'src/scene/kit.ts', 'src/scene/movement.ts', 'src/scene/walk-grid.ts', 'src/scene/lighting.ts', 'src/scene/body/render-cost.ts', 'src/scene/props.ts', 'src/tables/places.ts', 'src/venue-world.ts', 'src/tables/city-places.ts', 'src/tables/derive.ts', 'scripts/scene-factory/layout.ts', 'scripts/scene-factory/regions.json']) {
+    for (const path of ['src/scene/recipe/measure-host-kits.ts', 'src/scene/recipe/pack.ts', 'scripts/scene-factory/assets.ts', 'scripts/assets/glb.ts', 'scripts/assets/prepare.ts', 'node_modules/meshoptimizer/package.json', 'src/scene/recipe/calibrated-host.ts', 'src/scene/recipe/measure-host.ts', 'src/scene/recipe/measure-host-state.ts', 'src/scene/recipe/compile.ts', 'src/scene/recipe/runtime-host.ts', 'src/scene/recipe/sky.ts', 'src/scene/recipe/surface-material.ts', 'src/scene/types.ts', 'src/scene/recipe/contract.ts', 'src/scene/recipe/prepare.ts', 'src/scene/venue-scenes.ts', 'src/scene/build.ts', 'src/scene/kit.ts', 'src/scene/movement.ts', 'src/scene/walk-grid.ts', 'src/scene/lighting.ts', 'src/scene/body/render-cost.ts', 'src/scene/props.ts', 'src/tables/places.ts', 'src/venue-world.ts', 'src/tables/city-places.ts', 'src/tables/derive.ts', 'scripts/scene-factory/layout.ts', 'scripts/scene-factory/layout-seeds.ts', 'scripts/scene-factory/regions.json']) {
       try { pins.set(path, hash(await readFile(new URL(path, root)))); } catch (error) { failures.push({ city: '*', error: `source pin ${path}: ${error}` }); }
     }
     const global = maximum(rows.map(row => row.maximum));

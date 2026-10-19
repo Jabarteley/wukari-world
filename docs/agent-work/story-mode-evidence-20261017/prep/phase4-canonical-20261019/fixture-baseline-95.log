@@ -1,0 +1,74 @@
+ADMISSION_DIAGNOSTIC {"placed":12,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":127,"budget":{"triangles":17000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":11,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":117,"budget":{"triangles":17000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":10,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":107,"budget":{"triangles":17000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":9,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":97,"budget":{"triangles":17000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":8,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":87,"budget":{"triangles":17000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":7,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":77,"budget":{"triangles":17000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":6,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":67,"budget":{"triangles":17000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":5,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":57,"budget":{"triangles":17000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":4,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":47,"budget":{"triangles":17000,"drawCalls":60}}
+✖ factory crowd positions survive the normal host marker-clearance path unchanged (416.176ms)
+ADMISSION_DIAGNOSTIC {"placed":12,"mandatory":0,"cost":{"triangles":3022,"meshes":6,"drawCalls":10},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":127,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":11,"mandatory":0,"cost":{"triangles":3022,"meshes":6,"drawCalls":10},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":117,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":10,"mandatory":0,"cost":{"triangles":3022,"meshes":6,"drawCalls":10},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":107,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":9,"mandatory":0,"cost":{"triangles":3022,"meshes":6,"drawCalls":10},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":97,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":8,"mandatory":0,"cost":{"triangles":3022,"meshes":6,"drawCalls":10},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":87,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":7,"mandatory":0,"cost":{"triangles":3022,"meshes":6,"drawCalls":10},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":77,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":6,"mandatory":0,"cost":{"triangles":3022,"meshes":6,"drawCalls":10},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":67,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":5,"mandatory":0,"cost":{"triangles":3022,"meshes":6,"drawCalls":10},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":57,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":4,"mandatory":0,"cost":{"triangles":3022,"meshes":6,"drawCalls":10},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":47,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":3,"mandatory":0,"cost":{"triangles":3022,"meshes":6,"drawCalls":10},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":37,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":12,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":127,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":11,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":117,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":10,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":107,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":9,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":97,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":8,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":87,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":7,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":77,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":6,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":67,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":5,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":57,"budget":{"triangles":15000,"drawCalls":60}}
+ADMISSION_DIAGNOSTIC {"placed":4,"mandatory":0,"cost":{"triangles":356,"meshes":3,"drawCalls":4},"reservation":{"triangles":2690,"drawCalls":8},"characterCalls":47,"budget":{"triangles":15000,"drawCalls":60}}
+✖ normal city loading waits for real geometry preparation and mounts complete recipe synchronously with twelve native actors (365.912417ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8017.016709
+
+✖ failing tests:
+
+test at scripts/scene-factory/layout-host.test.ts:39:1
+✖ factory crowd positions survive the normal host marker-clearance path unchanged (416.176ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  4 !== 12
+  
+      at TestContext.<anonymous> (file:///Users/anthonyakpan/work/joinallworld-story/scripts/scene-factory/layout-host.test.ts:97:10)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 12,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at src/scene/recipe/runtime.test.ts:46:1
+✖ normal city loading waits for real geometry preparation and mounts complete recipe synchronously with twelve native actors (365.912417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  4 !== 12
+  
+      at TestContext.<anonymous> (file:///Users/anthonyakpan/work/joinallworld-story/src/scene/recipe/runtime.test.ts:74:12)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 12,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

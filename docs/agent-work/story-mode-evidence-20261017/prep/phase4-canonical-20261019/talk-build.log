@@ -1,0 +1,5 @@
+
+> joinallworld@0.1.0 talk:build
+> node --experimental-strip-types scripts/talk-factory/world.ts build
+
+{"command":"build","planned":286,"written":0,"deleted":0,"unchanged":286,"manifestSha256":"eaee988afe4237a0ccc92a0ef5e71316c7b1c941d46fbcb50b6efd0ba37577b0","cities":284,"banks":13726,"bytes":108488574,"maxCityBytes":628584,"externalSpendUsd":0}

@@ -7,6 +7,7 @@ import { METRES_TO_SCENE } from './contract.ts';
 import type { PreparedCityAssets } from './prepare.ts';
 import { recipeRuntimeHost } from './runtime-host.ts';
 import { recipeCameraFit } from './camera-fit.ts';
+import { recipeSkyTint } from './sky.ts';
 
 export function compileRecipe(value: ValidatedRecipe, prepared: PreparedCityAssets, metadata: RecipeRuntimeMetadata): SceneDef {
   const { recipe } = value;
@@ -25,6 +26,7 @@ export function compileRecipe(value: ValidatedRecipe, prepared: PreparedCityAsse
   const start = Math.max(1, ...[recipe.camera.landscape, recipe.camera.portrait]
     .map(([x, y, z]) => Math.hypot(x, y - 0.7, z) / 13));
   return {
+    ...(value.sky ? { skyTint: recipeSkyTint(value.sky) } : {}),
     mood: recipe.mood, accent: recipe.palette.accent, camera: { ...recipe.camera, start, fit: recipeCameraFit(value) },
     walk: { bounds, entrance: [recipe.entrance[0], recipe.entrance[1]], open: false, block: value.walk.block },
     runtime: { createHost: recipeRuntimeHost(value, prepared, reservation), reservation, bounds, support: [{ rect: bounds, y: 0 }], entranceYaw: recipe.entrance[2],

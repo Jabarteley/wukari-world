@@ -1,0 +1,1995 @@
+{
+  "cities": 284,
+  "allRetainedSemanticMatch": true,
+  "artDataSha256": "f15a9b3b2df16caec194bd72bdd68512b0825156f18044aece3b971407b34acf",
+  "rows": [
+    {
+      "city": "abakaliki",
+      "manifestSha256": "a2e69757fc70094b04f9b3c7c325f2ee59c8f60a62e525bcc15f6052d82d8511",
+      "kind": "retained-v1",
+      "contentSha256": "61d0e2a974153d8471df5c663759d924612c7b8f7be00f969a849078fea592d0",
+      "seedSha256": "7c5f14427a45103c7a4b32d58d5cc50e4b7b8f1ec6f07fb447d4c37184813db0"
+    },
+    {
+      "city": "abeokuta",
+      "manifestSha256": "4665816e93a636dd07667ee5e438592b060d24a482d1442bd5729cc443c87af0",
+      "kind": "retained-v1",
+      "contentSha256": "a5f450f2ec481362c74672204cf5b8de57bd725f3fbd1268fd8bc289ea096509",
+      "seedSha256": "17850affd0a17c5776d8a135f0ccf5da937152ba0fbfa25eae909ddbc80f0717"
+    },
+    {
+      "city": "abidjan",
+      "manifestSha256": "81d7a441ebe7d58f08ca80016449d72a38372ee658835098dc70cc335c5e517b",
+      "kind": "retained-v1",
+      "contentSha256": "e101738f8ff96efbd3b2db7db4c135fed6de3938425977fda9bcb00b7291608d",
+      "seedSha256": "6db4003b6436d064e337601d7f0769eaf4d7749eaadb22fda336a76a5d832f72"
+    },
+    {
+      "city": "abuja",
+      "manifestSha256": "633d8ddb9676a103d06f53d6506a0158c47df0630ba76d0a7898ff79846f8326",
+      "kind": "retained-v1",
+      "contentSha256": "fc26f2479b9e0eb57f0b0f76978e8feab0ad9f3ac4cdda1da6dcb4382829bce1",
+      "seedSha256": "16db9b4bf92d756dc20ba8a7b41b433c2474463abd8a9b2ac25e1dc20abc0900"
+    },
+    {
+      "city": "accra",
+      "manifestSha256": "baf824ef069ab2a224e74dafa26128ccff9b72638ec588d665151a97e7f9b836",
+      "kind": "retained-v1",
+      "contentSha256": "d0a561b71ee75dc1f247f2dcee305b1eadcad4a84bd2329fb379b7c6c81fb874",
+      "seedSha256": "9ea5a116e7e5855d9635617980a245e72f149c55d8b2aa525fd2e5f6b7400ef8"
+    },
+    {
+      "city": "adamstown",
+      "manifestSha256": "ddc4ef647650f8388f6b8f51013408840f5d31a5f34c46b109ef46da26cfbcea",
+      "kind": "retained-v1",
+      "contentSha256": "62a8dfd8f95dae3b818f409e9050c201fd04c6abcf16599a0af8c11775e73ab6",
+      "seedSha256": "cace848d0fce424e53129f2df7c337d3cc4e5318c74abc06068c1c5506e562a6"
+    },
+    {
+      "city": "addis-ababa",
+      "manifestSha256": "ded7cedc3abd6696a671d652b5656b0e2a6ffc90892868884a1e2f2887870381",
+      "kind": "retained-v1",
+      "contentSha256": "6c8cfd382ad33b29c5859fff3a656c9f1caeda15e7aea03d5ef5296476905471",
+      "seedSha256": "2e233e52f5590bcb8b4fd7e8d5eaac60ee3b6160ad53bb4387f80f59addd0a05"
+    },
+    {
+      "city": "ado-ekiti",
+      "manifestSha256": "da6e46f3ff5fa7701e91cd26985d815764910c472c068388cc49bbdb28485c90",
+      "kind": "retained-v1",
+      "contentSha256": "5d418d950accc9935782c24c44ffeacaddd828114fb03e9f337d5310e4274efd",
+      "seedSha256": "53140c84f0d25ec3d52756b1a2f5897b11bb9ffb1018f8ef2013d3e0b2499ca2"
+    },
+    {
+      "city": "akure",
+      "manifestSha256": "78e9756341b34062efa38c45bdf27bf214810bd0ef8e881e4f474af74720f440",
+      "kind": "retained-v1",
+      "contentSha256": "9e763b2c9ef8f42e07004c84333a59f914bf4f17d50663534c6b28c7e73187a1",
+      "seedSha256": "dc29690bf3edcc659f3cf96bb9cad6e9af2674b852e3a8f55698a13d5229c945"
+    },
+    {
+      "city": "algiers",
+      "manifestSha256": "ffd333bb574d12621c37feb0454df5c56924274159f2d25f508912f5f1ea80f6",
+      "kind": "retained-v1",
+      "contentSha256": "53adbd7afccd5f43951fe1954fe657cafd60f688793b9519cc5b5b250cefcdd3",
+      "seedSha256": "b43f6b35ab8aa665081740b74587725cd1331ea495b6ee810763707241c33aa8"
+    },
+    {
+      "city": "almaty",
+      "manifestSha256": "c9867658be46ab580c84498f59e52a60a3cbc00477e2d2752dad291ce79ac97a",
+      "kind": "retained-v1",
+      "contentSha256": "c3c875c142e45fa59db2361e4c46528f81e3ad0c4fa2fcde09cd868649b0acfa",
+      "seedSha256": "721936142a1545e10611543a7f6a62de836dcc38140ce15d0db2ba72d6eed11b"
+    },
+    {
+      "city": "alofi",
+      "manifestSha256": "790d68ebe75c1d786edc2246818a3972786d525301b289c86217b589a063fe6e",
+      "kind": "retained-v1",
+      "contentSha256": "d42bc0a9fc0b3891b959a1ced8f39dfffae8572482dcf091f23970892be9a707",
+      "seedSha256": "68ea63818b833c54a2b80e2c43c02d346b166996e1b05f2e970816ae2d087a58"
+    },
+    {
+      "city": "amman",
+      "manifestSha256": "77c147141f7102c9f214771f972c7cc24e7bbb8f874fe54b994cc2254c1bbe18",
+      "kind": "retained-v1",
+      "contentSha256": "3df164a2767c2b86dcf1235690f4a4c119ea029b2bc483a8d0842dc20c557cc0",
+      "seedSha256": "80b1227c665712ea3085aa599349d9ad167a4952f150ad707452a9f68eee6dcf"
+    },
+    {
+      "city": "amsterdam",
+      "manifestSha256": "50046bca3016d9b5030817ec96f458fffa6278319a4b230c9d660d9242c46eea",
+      "kind": "retained-v1",
+      "contentSha256": "fd51aeca981c4cacd1dec32f200191742c3185ad7b7e4f6a0edd17dd93d5000e",
+      "seedSha256": "5d6e15db4b831546227e1a816d048cb2ab2157dfd82575c93655c39e9a6b23b5"
+    },
+    {
+      "city": "andorra-la-vella",
+      "manifestSha256": "94a14fc62b395fe7ae5804e8356b60bb1cf32219396a23eba35782457ca6477a",
+      "kind": "retained-v1",
+      "contentSha256": "90e7a22ad49bcbae54e05126c01b4c9fa47885074ab6b1bee23b8de4d7f1799d",
+      "seedSha256": "3fdc4061ab9eb01ce74a4af26b2be63e77f33b19fae48cb82d56bfbc83010109"
+    },
+    {
+      "city": "antananarivo",
+      "manifestSha256": "85bca3bae5a9046c4ed7c5d8c808880d1df5f424703aaddd73c76874af641350",
+      "kind": "retained-v1",
+      "contentSha256": "fedb88782f069b9e50bc41f2735afeab636d1e2f6c873ffd3daf4eb03a76fe04",
+      "seedSha256": "d1686590143885dcb8212d2b0663e83f679501d45b6af72be99cfcd814551064"
+    },
+    {
+      "city": "apia",
+      "manifestSha256": "ed56a2feb53148c5b5e049e7b8d46e6fdd8af18557a44441a79b881ef85e392a",
+      "kind": "retained-v1",
+      "contentSha256": "4938eb8db7961faaeb4eedca924c97a2c4903f5019c5da5b9c8898adcba0fd5f",
+      "seedSha256": "8b47d00462f10e3833d576d5213b7f65a716a1b4514207f1966b48a2269a0003"
+    },
+    {
+      "city": "asaba",
+      "manifestSha256": "6eff396611d4f6ec6b0e11614ce752df6ea4b1a5b80aa90d85b541b4edd5cf65",
+      "kind": "retained-v1",
+      "contentSha256": "aaed02b6d4ca3196af5160c2dd1dcd4beac0e445897646e3ccec58ff209eaa85",
+      "seedSha256": "1306c92ef43e0c1e6690361d5952a1dbb941fcc5ce28104edb5b940ea4494bbe"
+    },
+    {
+      "city": "ashgabat",
+      "manifestSha256": "e288b51b4f9c5a1a4aa62888f9930f87834d08b46c543b3ebde01fd4c1cc92a5",
+      "kind": "retained-v1",
+      "contentSha256": "4d44435062ff339ec2f0b30ecbed062653b478dca54d34980963f05a0dd1d439",
+      "seedSha256": "7212a22866ca7e6436c89d9d503ce46e2b6d66f120181353b18afc3fb7b91198"
+    },
+    {
+      "city": "ashmore",
+      "manifestSha256": "e3e5d4bb2237687b71fe0ba517d2413c240490b6197db02df84f8bcc6002cf64",
+      "kind": "retained-v1",
+      "contentSha256": "408331a4f71f9c30d0005b30d18d35bcd05f91d068f6ec225cbc335626a1c53d",
+      "seedSha256": "6345f2098ce3f62acd7a1f94f1090cd67fa020c2ca124d0d3bd9cc5a026961fa"
+    },
+    {
+      "city": "asmara",
+      "manifestSha256": "9544893d60c2b5c065d4552adac5eb80c9fb62bd37d0b7c27d243f4c98ee93f9",
+      "kind": "retained-v1",
+      "contentSha256": "41479f275c734c24b475dd7b213518d17209a78e9e0f78389c76de2a26e7cd21",
+      "seedSha256": "c89ae4397ccfa3c53fc6370c20e1908c61058c965971971f24dade020e8a14e0"
+    },
+    {
+      "city": "asuncion",
+      "manifestSha256": "eaa07c8adfb2623c5f7573e3fa03d40f1a9cb4da48df0e79f7ce406539468a6b",
+      "kind": "retained-v1",
+      "contentSha256": "ff8d401a278140e9d75cd26e549a2478b248113044f2e2d1d7786ad2eea735f8",
+      "seedSha256": "953961ca8e0e008e118fd63247bae164c0389e0f0bc1aed90538e545dd78b769"
+    },
+    {
+      "city": "athens",
+      "manifestSha256": "6c35f6ffa2c3f5486d02c3168d7ed268202fd6838daf98562c4bac5a533cbea9",
+      "kind": "retained-v1",
+      "contentSha256": "70b224658612b907631a7560baaf90585a8831594233cb48be37f6a459312150",
+      "seedSha256": "90dc9eb57fae83723b4a698de2b94913b2282d6b62635429c16c3a5734d6c86c"
+    },
+    {
+      "city": "auckland",
+      "manifestSha256": "c068119478b7fee1d187ec81daf5db6f330130ec26a17ddd547cf86ca0e3cc23",
+      "kind": "retained-v1",
+      "contentSha256": "2143e45328d212c5bc9a669ceab8c9c64c650f88db838c3f7245f26b0b2021a3",
+      "seedSha256": "4ed45ae81a64bef9656f9734c9d4547a6c497b4109061a25cbeb160d7a641c90"
+    },
+    {
+      "city": "avarua",
+      "manifestSha256": "67573c6b0d949797fd380fe58255ed986d3db6b998d425b446c9db908fbf7105",
+      "kind": "retained-v1",
+      "contentSha256": "5dd3285f09522ededa46663d0c78a4c0f2865b4e922bfa9a71c065fd819a96aa",
+      "seedSha256": "46fb3259896e7dacb8280f0455cfd9eed2c139a8d639644953a847ea0b456f82"
+    },
+    {
+      "city": "awka",
+      "manifestSha256": "0f8f2a527e73f9e9057185c3da886360dd215074484e16fe7c0d3d09770ceb19",
+      "kind": "retained-v1",
+      "contentSha256": "e63acd46c47d9ce9e95a196c0d9f3ef241df624ddb01be6f10acc116bb46c9ba",
+      "seedSha256": "e3ad865daa0b8c998b462e834f055a5139ad4e6d5b3deac941fc66e3fd89a376"
+    },
+    {
+      "city": "baghdad",
+      "manifestSha256": "4a41df04d59c58bd561dc6575348b2af0945ff1f88ca97f3f528cdcfb8c6e2ea",
+      "kind": "retained-v1",
+      "contentSha256": "01dbd7abc59ffa4ac75e596622c69fcab5e9701acf00b7e70785f9c070bcecb9",
+      "seedSha256": "81bbf619095a018d8b1f939c8a74f0a51c1bba4c72ee50bc990ed91f001d7c3e"
+    },
+    {
+      "city": "baku",
+      "manifestSha256": "24964f3be109fa01e5a9b600afa057bc6595a913088de71b54e9098a2b6d3a09",
+      "kind": "retained-v1",
+      "contentSha256": "dc1d84a306417618b5515510deee14da47db1c8fc8665853d23b7fc7e6b9c2c6",
+      "seedSha256": "8f87ab0482c2d50285c1c731a3be97f21ea355c7742c647accadca01a1f512a9"
+    },
+    {
+      "city": "bamako",
+      "manifestSha256": "5ff8b71f6406b973c6aec8c8b45660772edbeac3d1fa81cc9fb09e372c53d582",
+      "kind": "retained-v1",
+      "contentSha256": "8d4d87d24dea4879dfe8e7a2b043ed33baa0da704680d1c04ac979996cf65bad",
+      "seedSha256": "1c693bcd91b121f3c46dadc28291dd273d7e4fc6a89b12bd6c48474a0cafbbc9"
+    },
+    {
+      "city": "bangkok",
+      "manifestSha256": "a3f387c79b31666afa2eed8f353befc5525197b460da8aadec4af6e7861bc1a3",
+      "kind": "retained-v1",
+      "contentSha256": "9d46c120ee700544384d9979ccc0b30550e2829d5e629b56068b80a10c96791b",
+      "seedSha256": "950fe32ad2f5620c102a4be1d9fd4e6bfa8cdb56eca1bf8eda916b4de77a4b07"
+    },
+    {
+      "city": "bangui",
+      "manifestSha256": "721ec786b38052caa292dd11d28c900d8e925665191af7f0bd2cf980ae4c841d",
+      "kind": "retained-v1",
+      "contentSha256": "2ccca3cc3aead5ba700cdab7ddc85ababb43abd3b1e2771a7ef127422982262b",
+      "seedSha256": "3482a7cc5611e314a5182bd99798f582bd76e53ff5273dbcf5c827c8e6e9a8d3"
+    },
+    {
+      "city": "basseterre",
+      "manifestSha256": "cae86fb216ac87dbc22ba30e3d49c53fd5cfff929f48d639df8d46409860f282",
+      "kind": "retained-v1",
+      "contentSha256": "b08af5965d94934107e8ba4344091cadd47746c34872867e29df84b4a87809e3",
+      "seedSha256": "51f93899b09420197913e752e2d5af52418b8ad09944d135e25c6e6c934ee19f"
+    },
+    {
+      "city": "bauchi",
+      "manifestSha256": "5bafd259d8eefb846abf1fd5797aafac891c44938fd7769c558a0d4a476abaa7",
+      "kind": "retained-v1",
+      "contentSha256": "8274063541593aecf6809916b36d6d5c1ac043fada820ad7b70994ea9be774c9",
+      "seedSha256": "0196b6c12502d965225ecb65e5e6aab1f1e469ca688ba776f339de439eceea50"
+    },
+    {
+      "city": "beirut",
+      "manifestSha256": "6d946f7575b51e481a969a0252e653a53ba6360b115f96ff82e491adf84ba69e",
+      "kind": "retained-v1",
+      "contentSha256": "3828e2aac5cc542c11bc9452764e12288f7d1b468eb13152139d0738f2833dbf",
+      "seedSha256": "773b8c5c90720cfe3c88519174443864de6248ab7404f49b56400ccbcf46fbea"
+    },
+    {
+      "city": "belgrade",
+      "manifestSha256": "8eb7e9dcc9fd13587b6946e5472c3de4fe754b8488e13af2741736b1dc0bf147",
+      "kind": "retained-v1",
+      "contentSha256": "b7a6b82787cbb7d705d28d9320205194b5cba9e8f0ccff2d11050d898cda130e",
+      "seedSha256": "f10131b73ba6dbc71d36e6598d0e04f0913151c3f524b7614f04bfd8bdafb9c1"
+    },
+    {
+      "city": "belize-city",
+      "manifestSha256": "849e174587a5223edaaa481d56ab606e0ee60a19989ce5f9fa352343e9cd6c8a",
+      "kind": "retained-v1",
+      "contentSha256": "2dd4e755b0c3ee86135162ef6ff3d8b2ad336ac63460911c48d75a6bf4f1f9f0",
+      "seedSha256": "c48c2e5b5ddb6192cc42b6d36377da092dadca6d4ca5dc87202dda912ae556b8"
+    },
+    {
+      "city": "benin-city",
+      "manifestSha256": "4eb0c93034fa512385a386513ab454b0f127ec1d99740668dd991e14c71730f1",
+      "kind": "retained-v1",
+      "contentSha256": "b3efb28643831e293424408118b29d8e35c06a3e4b0e75576e16fd693c0bad13",
+      "seedSha256": "a8b4154bc26b28be8e0688ef89c49825282c310673968603b837c4f56a62fdb3"
+    },
+    {
+      "city": "berlin",
+      "manifestSha256": "dfc838ab8d56bcc5636fbdd766654c35c76afe2dbe4f7502d670ef883b7a0a75",
+      "kind": "retained-v1",
+      "contentSha256": "1348f0335ffef56ec5bdeae72e217015c8ea0d63958aeb6451e3c5a0ff953251",
+      "seedSha256": "44e9b3b383b91ded75feaaa5e60c3ad60c841ba433d26432a0dd1e04519c30b4"
+    },
+    {
+      "city": "birnin-kebbi",
+      "manifestSha256": "8f35a1b3ae781269a303857b88ff0b1bc6fc19e09de98401bbcfddb68ec1b551",
+      "kind": "retained-v1",
+      "contentSha256": "f5bf196268c0d1b35c1d132517cc0f494063eaca0859fa580ea7a3f1e11e3910",
+      "seedSha256": "0611a2dd6be603c077bb29d06684c92f94f2dfbaa09d71411f1eb352fe8408c8"
+    },
+    {
+      "city": "bishkek",
+      "manifestSha256": "2e14442b256bcaaa8e65c3adc70f73b131d2775e0fbfd58714aff6bed34e8041",
+      "kind": "retained-v1",
+      "contentSha256": "c1e488b9b44f65496e138074662ad64dce9281a0eb93e81226818843dbb39bed",
+      "seedSha256": "1f08f82990044e6cc08e4ee95cda445a31335a782366b13978479d2a062dffeb"
+    },
+    {
+      "city": "bissau",
+      "manifestSha256": "b8b49679d130a83deac543e9c553c6b32d8cfe5fb8df04802879de7d87e53dfd",
+      "kind": "retained-v1",
+      "contentSha256": "2ae9746a2582898ba5d751897da4af289e05fc9c17344bd10a6c8ae1cbd869ad",
+      "seedSha256": "d06ead7a4f54914266f08a6ef23d2d0162c8d6a8d7edb8597de4508fe3db6296"
+    },
+    {
+      "city": "bogota",
+      "manifestSha256": "364b27be760c9f051164bcab3cf12537937b1dbca2d30974fdb9af2be23a9a2a",
+      "kind": "retained-v1",
+      "contentSha256": "282d93da35775e28bd6481663ff63e68791e878f09595559bfbed44347c37266",
+      "seedSha256": "1fb88bca5ed7fa8a191ca535e965cf5cf94df7f0d8c27c5cae0ae8e3c4938f71"
+    },
+    {
+      "city": "brades",
+      "manifestSha256": "323800ec74544747235a7d097f2e94437d53f0ca5a699322e2511f2134ba8a51",
+      "kind": "retained-v1",
+      "contentSha256": "247d3fb643883a3ed2ec303eaa25e0f581d62120add00c3fa96b4e8df95f37af",
+      "seedSha256": "05c274cf9224160bdfcda23766c20075086bb9e4d414c87e7f5bda83a5cef0de"
+    },
+    {
+      "city": "brasilia",
+      "manifestSha256": "596f062bf1010da40b49b67dbb97734924b041b1991ee3bce5bdd1e5202e4a48",
+      "kind": "retained-v1",
+      "contentSha256": "23580af9fb1e89b59cfbec481ec0ac51fa7ddaf8a4c35e809b93efb59443d5cb",
+      "seedSha256": "acc4c5791dd93f991ad96ab0ecd6e563c0bc20b48fd168e0c77ef506c693cb86"
+    },
+    {
+      "city": "bratislava",
+      "manifestSha256": "80ecb878a6d130d4ff3dac9afed93a6480194d05544d929eeb129b99b520a05b",
+      "kind": "retained-v1",
+      "contentSha256": "84a0f41ddbff06cc9ad090852fe28085f3dca1301ad2e9596c24c785fbf4ae84",
+      "seedSha256": "d8adb0876118fa73f2f9c98289e9722853a4f0cf90b1c34106bdf42e5176326a"
+    },
+    {
+      "city": "brazzaville",
+      "manifestSha256": "6ae0281c661f5cce75e63dad42927df2614e882f51c84cacc8822f4fdd7654b8",
+      "kind": "retained-v1",
+      "contentSha256": "e76bf0b21da7ae558d39dca788bc5a64f209ecbbb96b2df710755a91f7013973",
+      "seedSha256": "0745da20f56440c8afbc402f31cb7a4ff3df933d2fed24add7eedc5cda8db65f"
+    },
+    {
+      "city": "bridgetown",
+      "manifestSha256": "ef2dd07dd88ac4da103386af1aebd4c51555ae6722fad0d74e74b3c6b8d7104f",
+      "kind": "retained-v1",
+      "contentSha256": "0f02eb7795fe3ce2d2364872e7e1c5ace30e600e2e6878c7e6cf5d0973c0418d",
+      "seedSha256": "53e0eac23ef2d4ce875b37b5357065f8c14490a51d1c85bd8c93231b5d4a313b"
+    },
+    {
+      "city": "brussels",
+      "manifestSha256": "edaabfe08e907a425b2fb834da4055200fc689faceb55c6b7b1aa5640cc55f2f",
+      "kind": "retained-v1",
+      "contentSha256": "dd8ad365b812b5db8817e9b3b2491e6b96b570589c71c3949ad68fefb7e2c36e",
+      "seedSha256": "903c46e99b192cf06c91b3c9a316bb47b00f85b16affdcf5704e590dbc19c301"
+    },
+    {
+      "city": "bsb",
+      "manifestSha256": "4b5ead580def75adcef592a579e6654d909df04c807e1273358f05da304e7132",
+      "kind": "retained-v1",
+      "contentSha256": "b95d92b25fe34179e16c6516d90a8744cfd8ef39cf85073a982f24a7d0601141",
+      "seedSha256": "aba6ddc36bb57f6584f7d14c91d079e31615da06ec14db94a3d686c2e5f289fb"
+    },
+    {
+      "city": "bucharest",
+      "manifestSha256": "85c30c66c81c5f55f3becdadecf82510d7433cb9d10359fc4aaa97274b4d4a0b",
+      "kind": "retained-v1",
+      "contentSha256": "922afb85caa91bd42c4240819c4aa7c8c1c0e7a9a2aae9fd08e91c636f8044a6",
+      "seedSha256": "3e94287afcc435257f0a310f069bbfb1c37c6fbba76f20073c8665ebb67413d7"
+    },
+    {
+      "city": "budapest",
+      "manifestSha256": "082c020fe85b133c6db65b28012f809b7b820d9201b81f799ce35f5ff7f0fccf",
+      "kind": "retained-v1",
+      "contentSha256": "2465794ca6141668e1b26c781e3829635e1d71a1f4ad44598ba71bad9da1f007",
+      "seedSha256": "8be15725ffb9f2aebbd0ad389b9df222a83d5c0ff6603fa173aac5f030ad974e"
+    },
+    {
+      "city": "buenos-aires",
+      "manifestSha256": "0922738c7573c7a7880d0dad2be28bce345e0fb78b7bb01e1c0e25d7d32a400a",
+      "kind": "retained-v1",
+      "contentSha256": "77d033fcc51ca794cd5534371f00d97579d69205275fea27605f8090438c6d9c",
+      "seedSha256": "064ab0d0c86183f2426730e5afdce4c9948526db493c588239f8fe5dbf5751fc"
+    },
+    {
+      "city": "bujumbura",
+      "manifestSha256": "bf8cb37964553396c46968ebbbe1794946d13bf70fddda696634908398b4094f",
+      "kind": "retained-v1",
+      "contentSha256": "d3e67d17b32695ccf98838ed0fe62cb2d2f286011c38b7652c23b8fe5a1f656c",
+      "seedSha256": "d6f90b78083995125ec141df5a003bf4df0b8edfd6f61bfb0ca76091bd1374d9"
+    },
+    {
+      "city": "cairo",
+      "manifestSha256": "8f57ff165d668058a10d62f45d65de9b38a6b11e0317cef177d3b797cb501895",
+      "kind": "retained-v1",
+      "contentSha256": "c244bbd9db354f862aa63ff4d0e26c4c73e6582aad315c631c4f06aa234782f5",
+      "seedSha256": "c2c7e6c92b86cd4fe34d278467fed9244b3cad5510d718e6078676d277cc0fa1"
+    },
+    {
+      "city": "calabar",
+      "manifestSha256": "b1ddcfc73aadfa1a2d091b876f8f78e69728d97de0fbd6ae2fcb0172820f1f6f",
+      "kind": "retained-v1",
+      "contentSha256": "4a9f878d968f66347f14c1dc46d87cfb2becf67db9981ad3c3a4cd9ef2709f90",
+      "seedSha256": "bc7ffb2cca68c9df2e1b48c88f1e99346943d6f5de681f288a6b5a30709d8b48"
+    },
+    {
+      "city": "cape-town",
+      "manifestSha256": "e8fb791fc561261466c468eaf3b5590b29908cb95b5065d896bbc69fed3f8bf1",
+      "kind": "retained-v1",
+      "contentSha256": "5b286530dfeee36b3708cacd060626c61f2786ac2d5373e79599d817295b7cfe",
+      "seedSha256": "54fcb141983cdf16e275f9cc4ba0d1a726d82f65bcd19e3514d208deefccb81a"
+    },
+    {
+      "city": "caracas",
+      "manifestSha256": "b35fa0c77482c24033deb3c9bee5f2098f13dbe2d47cd0dfb6f2ea73ef2bf53e",
+      "kind": "retained-v1",
+      "contentSha256": "ede98cc8594a302e14405b1c212c9fe27e6b6c24e20780aef5390a7d41a5f611",
+      "seedSha256": "323758066b8a6ff90123ca2af2af1e9aa30112852293fd61ebe5e75920e4da99"
+    },
+    {
+      "city": "castries",
+      "manifestSha256": "516dd4466a96ea4973dc90e0347c9330a89b3ab2bbdf09096bf0a94603a65239",
+      "kind": "retained-v1",
+      "contentSha256": "ccc9b2f22841d180517b6ce2dac23caaedf4cc286f78189580a4bda23b2251ca",
+      "seedSha256": "d0001837cd1a0fc349ac141c4a7c30b05f86ee984c49b4cb9e4c71a5a8a06910"
+    },
+    {
+      "city": "chagos",
+      "manifestSha256": "4dd09b17e2e9a28aa5aa4050c34a31652e89d2487f1e4a4622ca5f784c8f4d23",
+      "kind": "retained-v1",
+      "contentSha256": "fc638c597d393fa97c9c5334af41fe894d7e791f1ec971e572b756d550e42193",
+      "seedSha256": "8b89b2584e8e57e95dafa8fb87faefad6225ffbc8b11cb974d4d8dbc8197b374"
+    },
+    {
+      "city": "charlotte-amalie",
+      "manifestSha256": "f4016c34c009121792fc75e8ec635c20941e402a9a6d02f6be47a7e782ad0e5a",
+      "kind": "retained-v1",
+      "contentSha256": "ff82dd50609c60ca7b352ac8bad0ac781527fb81adabdb53b7d506f9fa7daf1e",
+      "seedSha256": "262764c99617effe50f80b7a268f51ec96d14b4b6a9b9da815fcb512f5359937"
+    },
+    {
+      "city": "chisinau",
+      "manifestSha256": "58234d082d1a04585eceedca51969224c9407a0e5cb148848df748ffd7241c97",
+      "kind": "retained-v1",
+      "contentSha256": "826ce0bfcd3d12afbd233179635abc5bdc17d21bbc62c8c7a43dcb45c10d45a1",
+      "seedSha256": "a906c325d057e0017118d76d6d6223c0278cd218fd69a897bdf589983637e250"
+    },
+    {
+      "city": "cockburn-town",
+      "manifestSha256": "cbfe2903dd2464f5fe58ef2b3b6a31de855c7796d32abe061cc681ff2ba5355a",
+      "kind": "retained-v1",
+      "contentSha256": "15e890c36420dc07528ac9ae43f76116ca86ac843015b7cec6c8e6773449da56",
+      "seedSha256": "2bc37ed4268cf12e7be1b82f9ebc2ad49054fe6333b3c1c80ba3475ebac6b69b"
+    },
+    {
+      "city": "colombo",
+      "manifestSha256": "99441570fdb4ff1fc83ee1a71f75ec646b0f80b1b3d6aca183c95b7458f5f2f3",
+      "kind": "retained-v1",
+      "contentSha256": "99fb2e5126d5976dba349765b57b9707cc6cb5665de1eed3c1cabfe955936052",
+      "seedSha256": "73927f6da52aeaad8b94aa95844c7ab82bc69f54674152f3f8d601b73c159e4d"
+    },
+    {
+      "city": "conakry",
+      "manifestSha256": "a48ff3c8804a217cdf867cf159e714ef9ad6bb469756f9867f40d995547d5ab5",
+      "kind": "retained-v1",
+      "contentSha256": "21e39cbe6fc1ace0f060ac5d768e18bc32276cacde1faed715d700142fac5808",
+      "seedSha256": "31f7456cebafb2d71308b961479b087de2ab94d8a669334f441022c630e4e66e"
+    },
+    {
+      "city": "copenhagen",
+      "manifestSha256": "f124c53ebb9e9d2fa205e41fdca99a97b860a67d63e83319d701ab9aa9b25f06",
+      "kind": "retained-v1",
+      "contentSha256": "570ba202011bffc70898f2db51a3ba248938814ec73bb5941352ffcc938c7d01",
+      "seedSha256": "a4359bcd8ad1a69558aef930b7c1f0d0875440ad831d4490926db6e8deb29802"
+    },
+    {
+      "city": "cotonou",
+      "manifestSha256": "e14a51edd4a107abf4285af185704770bbc9511e590c9d73ad473474f74a89f9",
+      "kind": "retained-v1",
+      "contentSha256": "da4fef2f565005d3e4ecb55792378e2fdc68b3287b249f975a602c1afafe9d85",
+      "seedSha256": "814e1fc3e02a6aa9f8e0f91df5853af0edf2e4a689cac0fc38ec1d56f14e3bd3"
+    },
+    {
+      "city": "cove",
+      "manifestSha256": "217f9c56773b086276400f7c930fbc98fffa9483a3be281f75da1132ce65a974",
+      "kind": "retained-v1",
+      "contentSha256": "98ba213b0f13879a659887a4c7a54aa694d2323285fc814820830d4b031e7383",
+      "seedSha256": "6dfd2f052f6a1feedf61307d7ef6965c21e13d44ca068046ee5142254d5ed9ee"
+    },
+    {
+      "city": "dakar",
+      "manifestSha256": "86bd1f3c546fa602a7281698f5c25f954d72003bf93e4bfcb95763f0b95f6876",
+      "kind": "retained-v1",
+      "contentSha256": "76dcca364f349f7c2e3d0edc527e29b8f60b6285ca11a8a495061df7a5336ab3",
+      "seedSha256": "fe0f6cc44df112a2c56ada1f193d9def9e2bd9315f1c31ae772e5221dffff7d2"
+    },
+    {
+      "city": "damascus",
+      "manifestSha256": "71c604c568d1747b7e1bd00c6b2c0001adc634d780db3698a7f2f4d8dc34d534",
+      "kind": "retained-v1",
+      "contentSha256": "6dab525563d661dc9f33ca6592d7bfb7e827380398dd79325cbc2a6f8b992985",
+      "seedSha256": "41e70976feb6f88e4b798a87862e630e06f3426b6aac1fa28b153f31c44a7803"
+    },
+    {
+      "city": "damaturu",
+      "manifestSha256": "a4264f227bb8d65701bfdc4be9ac9d11a322a4f942a022cc9afa650116d203c8",
+      "kind": "retained-v1",
+      "contentSha256": "bc549781cfc9f470fcde1fa7187573804a1d0e27a3c67766a75442ac14c565b8",
+      "seedSha256": "97f36ac2361c8cbdd0be586bb1dbed2024623976e76f5f1361b59348100a47fc"
+    },
+    {
+      "city": "dar-es-salaam",
+      "manifestSha256": "4104b54314ea0b83db5d914645603fdf301c2605e6f8ca9138670c8025011414",
+      "kind": "retained-v1",
+      "contentSha256": "e7597717595abdd55561039eff3bcb2cb13ed48fa363aadcaff3325af8403df0",
+      "seedSha256": "8984d6282b5e244348a7aac73e23f852cc6e7b7d4586d4f9a40799d2de1eec59"
+    },
+    {
+      "city": "delhi",
+      "manifestSha256": "c8461af6b49ff204d1754e59ab73dc25bf4e01866a1beade24295ee22fe221f3",
+      "kind": "retained-v1",
+      "contentSha256": "4643bad6bdf76f7164c2cc39d83dd5f6ead2c04a66a9f019b1d51a2e2bc3e512",
+      "seedSha256": "056b77867ee5c1980f4c62fe6b44e001a32dcf23383c94eeaaaf5a34f9cdb62f"
+    },
+    {
+      "city": "dhaka",
+      "manifestSha256": "135f52d84c0f3a331d2b2c0d097d3b3d923ebe3c159265bf0b11d0adadead3a8",
+      "kind": "retained-v1",
+      "contentSha256": "426810429552c08a847936a3beb30ff7d8fb0455459bcf9765e54bafc5d71910",
+      "seedSha256": "17b53956c9b9c52b4e335daed92f5fc7cda9c4b333b4a208e3e0ad47947d4ee6"
+    },
+    {
+      "city": "dili",
+      "manifestSha256": "592e015f90eb2a9ddaeba829b4c8a7d68f17f9673bd75c48242a57a36c28cf7b",
+      "kind": "retained-v1",
+      "contentSha256": "1765781b3cc5b599c4ba41098205416ae6adf936b26a212a58ce16a2bf7c1668",
+      "seedSha256": "36e7f0c5d922008f6e1f6ace480dcb09348c63ab04bee85067d4d126bc49e1a4"
+    },
+    {
+      "city": "djibouti",
+      "manifestSha256": "5a15dc9557fa3599f4c5461a5b4aa6a192812a180d166acbec5ba90ff71f9284",
+      "kind": "retained-v1",
+      "contentSha256": "b4a5248fdc3d71c99284707f155e86f27d4a42f46a87e5cdc8a9669ed25ad249",
+      "seedSha256": "294e49fecae94bf74d9cfcb8b2f54587eebbb591ccf1c5ab640522d1bcbeacf8"
+    },
+    {
+      "city": "doha",
+      "manifestSha256": "533face219ca6c08ebaa9b75a7990e87634101d6d793ca46627e57158c22b07b",
+      "kind": "retained-v1",
+      "contentSha256": "88d171e0f27edf8a2ea5d5ef90950413999d7679ac8b60d6428699b8ecb0e773",
+      "seedSha256": "e5617e646ae2da88a237b73b35ede3e9e46f158f97e65a4aaeb740069258a739"
+    },
+    {
+      "city": "douglas",
+      "manifestSha256": "c65d2d0f608e00d6916664bede344de2174dbd619c0de10b3a04e1cb6450d7b8",
+      "kind": "retained-v1",
+      "contentSha256": "2e0fde3b4821f2c84381d731723112663b0470930fd8bdb7f09995b1317f4977",
+      "seedSha256": "642cf31e2751d768d5e304e0499ff8c37bd77fabeffdc635d4eac795dfa44707"
+    },
+    {
+      "city": "dubai",
+      "manifestSha256": "f23de66a18e9dd7051a368998197e5aece88c5bac6054627c2bbe036a5357c06",
+      "kind": "retained-v1",
+      "contentSha256": "d03ae87678ba1533be383dd361a27663bad61f2c268bdd5f5f5a2277d83c3bfe",
+      "seedSha256": "f3477e63e1ff5fcad61e078a9dff8be1088dbd6bc3f5428548d4a46ec1c83d2b"
+    },
+    {
+      "city": "dublin",
+      "manifestSha256": "01f7bc9ddcec1501e5e2c3ff0b805162f691505f92d6a807a5180d5bc5f568fe",
+      "kind": "retained-v1",
+      "contentSha256": "0bcb70cd6f1a1b97d282a30485c96467a452b65fd18ae3216cc7117f9abb1525",
+      "seedSha256": "7db3e8e769cd9088dc447cec59e722615937aa09438246ef24d264661df1550b"
+    },
+    {
+      "city": "dushanbe",
+      "manifestSha256": "ac83fae38b02f19489948dedadf728bde2ec52ecfe5ec8ff9c1e0b86e765e687",
+      "kind": "retained-v1",
+      "contentSha256": "913b80b5086e769df0179bbe12936c52d5aa4f2dff563c72921a9b2382210aba",
+      "seedSha256": "e61b6f123f6239e6c9876feba478ba0f91b60b21ac6ba45af14426ce40e96580"
+    },
+    {
+      "city": "dutse",
+      "manifestSha256": "f00157d7b92957088207e2fd26e3e30331a244fb72a3058da691c2f4c73c32c7",
+      "kind": "retained-v1",
+      "contentSha256": "eb2416ede5d441721042f58ad08f52d537f539147101ffe6dc3521878bc0267b",
+      "seedSha256": "7b2e5fcd58d9f358e103ffbf99d9846a575bd02c4bd1a6384b871d7551f4a3a2"
+    },
+    {
+      "city": "enugu",
+      "manifestSha256": "44365a001210eca1a995182fd329d512d0dfa947e473f747b31918b55df950a4",
+      "kind": "retained-v1",
+      "contentSha256": "ff08d158310588960cd06e3647669e8afe7284d95b809c39f20f98bcc2848000",
+      "seedSha256": "fc8758b6d383d4c83672be7fcca29e337d9d0af40a5f7d7996efc9d4a1490bac"
+    },
+    {
+      "city": "flying-fish-cove",
+      "manifestSha256": "5e58886c31aac0462c0b7aa6a5312583e6d2a7bf7dc3c50ac42a0813201436cd",
+      "kind": "retained-v1",
+      "contentSha256": "ae26c4c8aa6a21805a8f4fa5f83b60a2e7376be5506b7af1fb03a26e0345acd4",
+      "seedSha256": "c3edcc43d0125de99c869248278df6ac9623c895af9d9529ef56a4e025a89abc"
+    },
+    {
+      "city": "freetown",
+      "manifestSha256": "b49838fc724801becd5fa5aa5929a0b993b8540f541ea3e06284264b273231c6",
+      "kind": "retained-v1",
+      "contentSha256": "6be37f01916aa6bb123ac3b95178e8f7115fd0bccb77cc8144e761a0f6f8395b",
+      "seedSha256": "54000cde0cc5bbd3e8b3270f8294a72fc2dc89dcfc41121754217d6df3d9501e"
+    },
+    {
+      "city": "funafuti",
+      "manifestSha256": "23dbf1508d228e641972dc62dbc681d99b33d6a7fb2542b55b8d1f20478327b7",
+      "kind": "retained-v1",
+      "contentSha256": "34e0e3e7076d54664290de5ec16f07c078de0ff980c6c240304fc26e369d1e1d",
+      "seedSha256": "8b70d821a60aba30ed94a5303de44facfede6bf4ccdf51c87f544f4653e865da"
+    },
+    {
+      "city": "gaborone",
+      "manifestSha256": "f06a8b2c26bd31f07f9571c1cb30ce0504b552a8cfb287c539dc817a9cd78763",
+      "kind": "retained-v1",
+      "contentSha256": "fe89541fed7986c9d61aa1e2812376d1042518f46694b3e07cc445464f12c5f6",
+      "seedSha256": "819f8a4607fda7df0567147badf35a99ab106d1e7189b8c9e339789254bbafc8"
+    },
+    {
+      "city": "garapan",
+      "manifestSha256": "1b9ca1ad6933460c01ce76ae266e64ebc488045e95d1e8505c8d10dbd2528512",
+      "kind": "retained-v1",
+      "contentSha256": "e32ad6344ee7b99b47c4439a8cbc887aaf5a0e7d0831453644761817b9aa6257",
+      "seedSha256": "fd84e72b07289ec905ff2341a219b101ff8514d2fdf361c06b27c8ca55339413"
+    },
+    {
+      "city": "george-town",
+      "manifestSha256": "00f009ff5f7160f3b9ed6b8eacefc748c943c481b321a8eb0b28393edf7580a5",
+      "kind": "retained-v1",
+      "contentSha256": "67cb7773a20b267d700befa8f67526cf7d891e4ec8e0222ba6f957635a6560d7",
+      "seedSha256": "f0f8bede9088e6d69dfb7fe1047f0efeb0e696985947cc827a3abae4f7d160a0"
+    },
+    {
+      "city": "georgetown",
+      "manifestSha256": "24fcaff9f1b2da7cb822e164136598b14bcd8fc42180d7db15ffce10af65c8fa",
+      "kind": "retained-v1",
+      "contentSha256": "55504c768edf637172a99e7d60c96dffd5ab06ae147e6f4916bd88fc70f40fc5",
+      "seedSha256": "90c2e52bf26ded28aa10ccea97217eea8abc38bf90d44ac52a1ba7a6c11379b3"
+    },
+    {
+      "city": "gombe",
+      "manifestSha256": "e9a3cf5b1d4287865d97b8709b33149c8849b1c2e669c05670b9484afd0f2bf4",
+      "kind": "retained-v1",
+      "contentSha256": "22dfaeebdc0f5ce7f84a700fff077e0d67eb49e67e3137913924662089b120ad",
+      "seedSha256": "ab12384e23b619d9e1450b5674ad0d865ba2fa20fbc3686484b55870bafa87ec"
+    },
+    {
+      "city": "grytviken",
+      "manifestSha256": "8a6d0b3eed508d841dffa4dddb0ffe549050fae0120bd9dce40c008bfaf8558f",
+      "kind": "retained-v1",
+      "contentSha256": "e1aefcf77a320f833be17d751eae0acc9750022b6f1bd6f329732f4883a338eb",
+      "seedSha256": "2df1b3949bf82cbebba88e37213318da8230a9c92233b88c7963cdbf2d317eeb"
+    },
+    {
+      "city": "guatemala-city",
+      "manifestSha256": "be78ee172b06b7d618b99b078b5638ee93f302a80303d3dc1782b11bf4307761",
+      "kind": "retained-v1",
+      "contentSha256": "20ab69eda31ae258b8a7b49f5fd46053cc59b2c1eae27add5fc5bbe76a35fecc",
+      "seedSha256": "b4c57fa765814faf80865e4b1f7934a1a751d3c8c7bac7aefe14702d9b89c7b1"
+    },
+    {
+      "city": "gusau",
+      "manifestSha256": "704757f30b7764917e531630b9ab8870e19267583ff850095e1ebe470cd028cb",
+      "kind": "retained-v1",
+      "contentSha256": "65d00b4f9983bebb3c664d5f8aab2db98cc6ce5bc79b357758a58f7e455ea7d9",
+      "seedSha256": "7a818977479b10c2c0b021c41e36929ee27d26d67320a789256859b9b50daed9"
+    },
+    {
+      "city": "gustavia",
+      "manifestSha256": "96903f0031cac799a205d66dec8b0fa21539f25cffcabb40d6c042e6a6d20105",
+      "kind": "retained-v1",
+      "contentSha256": "cd982b830607edb8b19f03cfdec7655bf9d2907db920b7bd7616baf658266c9c",
+      "seedSha256": "fad801707a3b6d0749afbdafff41391aed948f34a290b16d2821c6d049810dbf"
+    },
+    {
+      "city": "hagatna",
+      "manifestSha256": "2aa63e089f35f75ed3ae526029aa42892b1e5a552e0b45845ac3d72db5f63905",
+      "kind": "retained-v1",
+      "contentSha256": "62cce996193e867525dd4c6d654c4a65cac26ec10755dd411ddd155eb772f92a",
+      "seedSha256": "0de6119d91cebef1d633488ddb9e2ac64413012c238a172d42b159be527bfac2"
+    },
+    {
+      "city": "hamilton",
+      "manifestSha256": "b1ad9847a1918592352cc1501c4f6542e7a9565a98bc4bee4a0114eaa3935034",
+      "kind": "retained-v1",
+      "contentSha256": "bf01d5a85567f8031b73d6185f124c5784deae4baea7c42b4d4ba21bace8c4a3",
+      "seedSha256": "4c04a84736f86b02934f56a37db38984547b89b57684e261bdf25a4c91df87a9"
+    },
+    {
+      "city": "harare",
+      "manifestSha256": "a08431738e28510330764e4f70e9884be250a05e5daee2fc4bc91749d1a5b6d0",
+      "kind": "retained-v1",
+      "contentSha256": "143e07f620e43d0ef5db373c5587153ca55c778cbeb2ea37a3f2fe8b7e664ea5",
+      "seedSha256": "5aa4a4a7d44655d9668804c307ea9550687969d483c0d7e21c380fdec544eb2a"
+    },
+    {
+      "city": "hargeisa",
+      "manifestSha256": "d3cf6b7de7c625561c4f75417f7f7f2dcbe964510c68f35bb8b4708d6930499e",
+      "kind": "retained-v1",
+      "contentSha256": "69738d40cfa641edff909a38f1516123cf1e88fa73c29d3b4f5ec03e96efb417",
+      "seedSha256": "bba97c2eaa2b4fe4bfa26bcec88e0959a13504fbe59d61216563666d10cec620"
+    },
+    {
+      "city": "havana",
+      "manifestSha256": "74c30f104a4938d062c5ed7605aac33d2ea7e976a2943844bb1378c980f4642a",
+      "kind": "retained-v1",
+      "contentSha256": "b42c5aebef43f76859aa112d53da2e267b4909795d8dbf9c2fa5916f4cf7f7bc",
+      "seedSha256": "00e3c030eba6952eadb39aae570381586af18810729de22ac8d6f8f98599e541"
+    },
+    {
+      "city": "helsinki",
+      "manifestSha256": "947038a0153729a73caae3e4c9cec008f03158a0381bad1838bcce5426e15a24",
+      "kind": "retained-v1",
+      "contentSha256": "e36e77bf496ee8bd43270dee0a5b8fb9a28908e3d478dc907938964e73c3489e",
+      "seedSha256": "9bbb20022971d2afc198abaaeb1ed5e04fa3d7bdda4e306a9538366ea7a8b513"
+    },
+    {
+      "city": "ho-chi-minh-city",
+      "manifestSha256": "226881a65ae6166515aaba4d3ce1aec71688ed2b28674c413b801cec68a28ad0",
+      "kind": "retained-v1",
+      "contentSha256": "a8bdfb426c5052ce05e48d35d0ff276ff802fce8aa5e4687e8bc6314f5d8f5ac",
+      "seedSha256": "6f431dfd9321152836d25afc3f552f0b6590d70e06d5e9b145d789919c6e6447"
+    },
+    {
+      "city": "hong-kong",
+      "manifestSha256": "bfca1b8faed86f02802d6013328efcea93d1824576dec48a414f910f350fe375",
+      "kind": "retained-v1",
+      "contentSha256": "d1e29d1eec9ef48bd12068803c480b4a676d2a82fb7c4df5d231cb9e432ddfdd",
+      "seedSha256": "5da464d9237b02c6e3d65e742b6b404382207a392a8997d268ba6c350fe2ca4e"
+    },
+    {
+      "city": "honiara",
+      "manifestSha256": "e1728adcd7151596155cb5ad50b6c01a858624a87df4ecfcd0ab4d4ff049c0f2",
+      "kind": "retained-v1",
+      "contentSha256": "891aedee2dd93152bd618842e160ae77317a70a02c2d98cc15378590707b59df",
+      "seedSha256": "98c9e6f2e5797ee12076d73f58c030c5445fd6aefeecf484cae96b2d86c0a28c"
+    },
+    {
+      "city": "ibadan",
+      "manifestSha256": "be7c46c8297a4a5b6b30c7799e227ae4b21c88ecfc66be5d53c6b5538fb7be7e",
+      "kind": "retained-v1",
+      "contentSha256": "d4b1ae2b08ecfa216b69275e771c1fa3eda90c9fa1cdc50c724faa4fcacf6093",
+      "seedSha256": "dd821c978d744746d9837dbd8e9ee5313d87e2103e3fd331d59b7167c9862881"
+    },
+    {
+      "city": "ijebu-ode",
+      "manifestSha256": "47b9fb28551aaa731d95c27597ab921e64ad067346ab3f95dc3ea0eb33586393",
+      "kind": "retained-v1",
+      "contentSha256": "1b09b6e270dd7fcaab42ec775384361e5c22bfa1a3c7944c1ec1ca1db33b78d3",
+      "seedSha256": "41cd64fe796c1983750eae985a0a5152bc69336b2ebb109e75f5fb20ecd9c117"
+    },
+    {
+      "city": "ilorin",
+      "manifestSha256": "d6d9e1a215d396fa5f569c77fd09547a3abc7c840c983e051595406acb9a0584",
+      "kind": "retained-v1",
+      "contentSha256": "7532e87bcecbff893571d9a405ce6ffc5b7887b429a04d3a42bea5a4610bce80",
+      "seedSha256": "d760b9869f8c141f6c4891f0b84a3fad4f2f6e80aa79f51c16bd7713160d764e"
+    },
+    {
+      "city": "istanbul",
+      "manifestSha256": "48792c40d7b281f4796231cba2b9e0e538a99defbaf9dd2d56116d0c8ce7cf9e",
+      "kind": "retained-v1",
+      "contentSha256": "3dcf5bc3f097ad7e647aa8678058bcf0512938d50b536f67762667635a87e564",
+      "seedSha256": "a44cfad4914b18d513b783851b9af5d515a02e1f555e6b9a5cbea7e65a7e9af4"
+    },
+    {
+      "city": "jakarta",
+      "manifestSha256": "5fe6beafe5e619b166a3e1d8dacb1df8a2d6c17d4570d357ccdade0d135641bb",
+      "kind": "retained-v1",
+      "contentSha256": "d9df0f2bb7aee1e9be3284e77f3c4938ed81f7de0147d5fc0d45979eefaecd52",
+      "seedSha256": "ed0d1b5d7d203786a2b1aca722977f094c3aca4de04be91b74972605500f1a17"
+    },
+    {
+      "city": "jalingo",
+      "manifestSha256": "7b5493c8a37eec6b782946fdf29cd09dc38883926d0766cd10b67c91bd380a23",
+      "kind": "retained-v1",
+      "contentSha256": "ada983c87f707fdda4c65e38c37c2f28e08a469a1e30d23700b570cf9be3f944",
+      "seedSha256": "114abcea5bd98cee30baa36b7a392c7f0b20baa9832e9b6adcb0f6b08fa1722a"
+    },
+    {
+      "city": "jamestown",
+      "manifestSha256": "a49941a9271de796fb9810787c901d6e9a363b29fa1b573b098f257e9cc43c96",
+      "kind": "retained-v1",
+      "contentSha256": "6d6ea670c2dff07154699d2ed7596ffa0c57de798978597cb09a37772cdb54a3",
+      "seedSha256": "062fa83c58fe678393ad0587576cfa2b259cd813f211e9330228f597add32e8f"
+    },
+    {
+      "city": "jos",
+      "manifestSha256": "70746b047af28ab73df3ccb328dd251125e6841efeb115d81ffe26ff26f484f3",
+      "kind": "retained-v1",
+      "contentSha256": "19a3d6b10c71b258249ea08c5da281f7e8d31697be20633b42b6c910312d1a34",
+      "seedSha256": "973407db03426e55e373007213b945cc6a56b9dbe1dac7e7a6741e614f662898"
+    },
+    {
+      "city": "juba",
+      "manifestSha256": "7c59b1e288eab423e31f561a622f9210b5bcb79dd6c1c78336e7e0f1ca164154",
+      "kind": "retained-v1",
+      "contentSha256": "24c41bfcb1921c90855d600433ead310e38a322b3bffcb9605b05757ce49fc78",
+      "seedSha256": "5d874394ce60e7d00f78162a058b5af0f2f5c40ac1c993b075a8ca4480e491e0"
+    },
+    {
+      "city": "kabul",
+      "manifestSha256": "b9c2c0915f5eb31db8646b52dfd88190fb25e03b6412ddb2a7b89d3599da47c6",
+      "kind": "retained-v1",
+      "contentSha256": "940a906bcc93e982eba61d724cddcdbc1c04ce4aedb5a28b009c170a907aee21",
+      "seedSha256": "a40ce63f7140e3a1dd87a670cdacebcd2ee595c196becc375befbe496d7c779e"
+    },
+    {
+      "city": "kaduna",
+      "manifestSha256": "facce7107e957a209c5a17dbb6b46ec9d92eed33c6a1693c55191db33c26e854",
+      "kind": "retained-v1",
+      "contentSha256": "3410f0e37b800329c8241575e51237e48255d9123c0dd10577b8476f3b2eac82",
+      "seedSha256": "2dd6017b227d974a3890b3b03f995d36d79725680ec25d9b8d9637b2eccb6827"
+    },
+    {
+      "city": "kampala",
+      "manifestSha256": "3d2bec158cadde5f31ed4dbd1e137d0e0b943948a8eb37cea922829b418bfdfd",
+      "kind": "retained-v1",
+      "contentSha256": "022600676b3c62ee70532ae39a05200e496edca7629efe0e3baeb3bfa5401690",
+      "seedSha256": "a38339e154fe5d25c5dcc1eb69135c78e24166680ed4fa06cc2e0d6f022bc79e"
+    },
+    {
+      "city": "kano",
+      "manifestSha256": "c893da4b97ae9d547f04fd8301c8cc104befae5d0b663974f11a7095d525d086",
+      "kind": "retained-v1",
+      "contentSha256": "a43042624694345de7c79edc794584b1a1516ca8e149743aac63af1c58ef079f",
+      "seedSha256": "3f9cd663878f9d6e3ae2436d516ef45b47b4c6440175d5f7381ab1fdd0201843"
+    },
+    {
+      "city": "kathmandu",
+      "manifestSha256": "430214e1a9f1f10e43ebfd740251eeaa93fbba7a95365e5b7c03e7f819ecbbb7",
+      "kind": "retained-v1",
+      "contentSha256": "d727e326e0526479ccb5ae32e4ead89f3d1dc6f00190fb41a2ea235f9fd217e9",
+      "seedSha256": "7d28c7be47a0bed0e413ee508b540da969401912efd1981cdc28dae36a70d052"
+    },
+    {
+      "city": "katsina",
+      "manifestSha256": "b29210297521c970e41c48a2d89fb97c825fb0cad0ef404bfdd269c8cc73f3e6",
+      "kind": "retained-v1",
+      "contentSha256": "ff5756c93e586acb621a15815878591d59d733258e5d76d16ce6760bb864cfb2",
+      "seedSha256": "60565525967c7e9f7579a8efdee0182274906b4b39ad8237ed60819b4c2dca17"
+    },
+    {
+      "city": "khartoum",
+      "manifestSha256": "d37eb8369ba6b0cff167ea3e714cab450741389658ee13d0692e86149e6f047a",
+      "kind": "retained-v1",
+      "contentSha256": "2b76f1bc62104b31c9a4bd04fa3ed06a849b8a570e6660fddea1c6ff3232d679",
+      "seedSha256": "8e17d5e2e58128ab3eea021abf353bbff4ff528d222229f3837b3db6b815955a"
+    },
+    {
+      "city": "kigali",
+      "manifestSha256": "ae6a008b21d5071b4281cffd215361c5467ecb41c5dec187bba35556dde490f9",
+      "kind": "retained-v1",
+      "contentSha256": "849cdc7c1e6855eb849090e88dc01c3e0b447cd5c99ea0b665ef78fab1ae5956",
+      "seedSha256": "0df4e26725e4ef4f2ca75d9f765aa2e4044f8a7df70de164ae9f534489200c07"
+    },
+    {
+      "city": "kingston-nf",
+      "manifestSha256": "57ffa8942bb8666583dc339c2e40dc782fe7c72ad6b7abdf0b672b04daa3ec53",
+      "kind": "retained-v1",
+      "contentSha256": "af685fe07c832c00ee2a3f0d20ed59a8eab675e8cd0dfff2f2bd1e1b9fbc4d55",
+      "seedSha256": "9ef8916c2e68ae15462b3fba828b35ba823c1b0ffaed5b8c9629aecc9ace971a"
+    },
+    {
+      "city": "kingston",
+      "manifestSha256": "7c94ae1228a6108352aa2958222d3ffd5c4f8d1033ca0b18216d63d1e87bcd2e",
+      "kind": "retained-v1",
+      "contentSha256": "260090ae603af11dee8d3ea44a34c65bcb2e7719b69d1ffd2c0a2c8be8fc6768",
+      "seedSha256": "faccfcb5c2d9cd1414a100ef422134231fd04d6fb6f2b5e82ba7309ccf44ae85"
+    },
+    {
+      "city": "kingstown",
+      "manifestSha256": "f6d4c654b25dba4118f2f28a7d7b23bf7a77d7ca00d3109baa6c10ddfea57c10",
+      "kind": "retained-v1",
+      "contentSha256": "35b5a8fe3e743e8af1d79424ecd4521ec09b6d551e3ea710ba2a913510a67646",
+      "seedSha256": "546162ed55094ce95c49dcf4f0fd85023847d8927afad5a6066bf3c892511475"
+    },
+    {
+      "city": "kinshasa",
+      "manifestSha256": "c30e8865b3e27a9acb19b245485740c73c08f5de95b65ea53f6bc9baacb58884",
+      "kind": "retained-v1",
+      "contentSha256": "8f52ee0d243e6aadb947e7665112de9027c3454ef45b785443f64d45728ff944",
+      "seedSha256": "80e608b569ca6007e3cd774812ca1e2c0344808d255dedae7e949506aa753865"
+    },
+    {
+      "city": "koror",
+      "manifestSha256": "bc51f7625afc7277013030b201bd6a33779bea0195f6aecb8844f1e055ecb4bd",
+      "kind": "retained-v1",
+      "contentSha256": "330f55dd00608d86ea812c28849eca7404a66137ba7a78b0cb4d2eaa5d866bd8",
+      "seedSha256": "943a2c4543473c7ed20dc95c04828e41c123d1b32189b2d5b5784ccfc77a3ed0"
+    },
+    {
+      "city": "kuala-lumpur",
+      "manifestSha256": "a8098cb386b6eeb58559749e399818ce394f0d17110924e161ce1914150a68a6",
+      "kind": "retained-v1",
+      "contentSha256": "ad47aa31144eac278d65630aac577ad2ce967d88f21ccb5df4fd33d61f7b707d",
+      "seedSha256": "96612e34503ebc1d82a7895df85c364cf75b21b84ab4871521c8d92d2f6db3c5"
+    },
+    {
+      "city": "kuwait-city",
+      "manifestSha256": "851325c833c0572f3fe9ca10577923851f5a6737bcb53b74d15c328661f492a8",
+      "kind": "retained-v1",
+      "contentSha256": "f3e17481c007ddd293bd68d281943233414484dbabe72d0f8aecf9c54d38d1f5",
+      "seedSha256": "9796f024fd258b181247fd53cb7538831cfb181d69b7e02b8a225e916a51d8f7"
+    },
+    {
+      "city": "kyiv",
+      "manifestSha256": "28534577586e5b907eb6b3df9ccf157aa5f71aa56c01bf6a090566334a86600a",
+      "kind": "retained-v1",
+      "contentSha256": "ab5bcc495ec939ad240acbad91d2d1cfc1c082325575deb6c8004bf1f673e33d",
+      "seedSha256": "5edebd8610714527b7aa749184f9cbc34cdf6b0f288de4d259b54eee1d800c65"
+    },
+    {
+      "city": "kyrenia",
+      "manifestSha256": "64c4fdf56804d9c5a19b14666b576fa0ac9ca8b9671a144b0a1a4d6e7820a979",
+      "kind": "retained-v1",
+      "contentSha256": "fae310369c2ca1310f8d48061724ca4ca45413fe9b0bf14c255e92d3ec51f370",
+      "seedSha256": "da342119b41c0d20d40c547f2bdc944edfcdc2ecb4c243d70c92f8a8ffb1fd51"
+    },
+    {
+      "city": "la-paz",
+      "manifestSha256": "32ba16883d18b4ac3045ae20b75827dbc776925ca0f7305117b3314bfe00437a",
+      "kind": "retained-v1",
+      "contentSha256": "5d363bff89054a38d28c82598e6b5c26c36ec084e08484ac38a3e9060215920e",
+      "seedSha256": "f952395803796331752309fa654e713fda21414f10ab759ed0c81167f57bfce6"
+    },
+    {
+      "city": "laayoune",
+      "manifestSha256": "f3182174c41c2622a614c5bb52470c67ac7045fbcd1d23b4e2a8ae675066015d",
+      "kind": "retained-v1",
+      "contentSha256": "00c603e023e7ba985e9a1b21e77d78f02cc7d2cdca5cf666adb08c75b686d8b2",
+      "seedSha256": "5ca4918bd0562ea4952a7c3eb168072a4785830369dacba4b77e4eeccfa23da6"
+    },
+    {
+      "city": "lafia",
+      "manifestSha256": "420bf978bfee20c6fc4fab116794f03c417fb0ce90bf7141cd0028e9510db1e7",
+      "kind": "retained-v1",
+      "contentSha256": "776aaa6790b783f4a88d8ab0c74c9745f47506ab035bfeeb3342a56cd490d9da",
+      "seedSha256": "9b80e6a69fe18689a09ce9a8ac27db75b6d8e04b0415eb09ca14e560d77fdd62"
+    },
+    {
+      "city": "lagos",
+      "manifestSha256": "5565a59425876eba5d734bf55a38f2d5702992e811d2d19fd756643927d16c23",
+      "kind": "retained-v1",
+      "contentSha256": "bdd212f52719ba1088e85f7de6068995733ee79f332945dcbf1dd3c52ed0f257",
+      "seedSha256": "d30dbd7c027f0ae21d9bf270fee5c162c7a13a9b9412d5e0ceca03a058d7664a"
+    },
+    {
+      "city": "lahore",
+      "manifestSha256": "2e906904d4b3c4c085dcbef71b2bc6d3475c857974f86e5ac26fa85dee40cc26",
+      "kind": "retained-v1",
+      "contentSha256": "511c0b895af662ba65a6d765719a60a78f1cbf9fca9171f510ed4876c874b70a",
+      "seedSha256": "8db93b747c5ba0eb8ad8ce7e585a723944b1ffb632527de2168ecf9357c3c4ce"
+    },
+    {
+      "city": "larnaca",
+      "manifestSha256": "22fcd3c60243696e7c514826551c3cfc33867bb951ec05e08e98255edab98c90",
+      "kind": "retained-v1",
+      "contentSha256": "17291e6abf0f249a49c64564d105aebc946087cd6d5a4250e654d67cc68bb982",
+      "seedSha256": "e1c7d79762f49f21d37f5427e6ba3ef4cff79a4dc3e672216c10ed56ee3807d2"
+    },
+    {
+      "city": "libreville",
+      "manifestSha256": "3fb8c8fc8149448092f79fd9eeb1d2ba35fcd75e879dd4351522918ca46ef2af",
+      "kind": "retained-v1",
+      "contentSha256": "16494d47b93c80c7de9a5a5fe8e9dd08611160671d91240b66b6b1fd648652af",
+      "seedSha256": "daaf1a104241491307c1d7733b4ca05051b5ff84d58936e3ba7e8ba4266e269f"
+    },
+    {
+      "city": "lilongwe",
+      "manifestSha256": "14232c1bc83c2c4e30f27bc5ebd501ceb23178c21dfaedf878a562c9370e7d2a",
+      "kind": "retained-v1",
+      "contentSha256": "9757d5868beac5ceb5e5f37ab58672647e47e38958c9faaa2518b57d7dea8a0a",
+      "seedSha256": "e8c46127dd475b26dbcb1624a72d98e472ed387db20fb43b227c65d3d3910052"
+    },
+    {
+      "city": "lima",
+      "manifestSha256": "4c83641eac97efedb8d913c9d1d7e78da184d6dd3b50061c8acef1e5f8b66c66",
+      "kind": "retained-v1",
+      "contentSha256": "c3eb8d047287da378f58270bf1a872177f60e54c8cf64db758a11f593535dd52",
+      "seedSha256": "f7ee9c944d5915652f2927529c1ef5062859972745b6e22f8f257d335850d385"
+    },
+    {
+      "city": "lisbon",
+      "manifestSha256": "55afe4942a8a798b796b28ad12b95b99c27d511a506a65174d1ab919c91a8e29",
+      "kind": "retained-v1",
+      "contentSha256": "00b40fd3de2b715efa41f9c4fa4175b6608ee00c7e65f41691dd06a0af71cfc3",
+      "seedSha256": "8c4cd7841e2a7debd3fb10b43a41066963003396f5377db044d1d56f61df349b"
+    },
+    {
+      "city": "ljubljana",
+      "manifestSha256": "d84321a789b46a82edb529c6ce1ef3b579405206f3471386c1a4d79a87830027",
+      "kind": "retained-v1",
+      "contentSha256": "4773560c2a61218026ba65f5f3bc6a8f39755386738cf8eb4a7b9cf021224a05",
+      "seedSha256": "99285c635de1291070ffcd1a67a8a7f2343def1099f51036db714440f2087338"
+    },
+    {
+      "city": "lokoja",
+      "manifestSha256": "505cef3730c88f00be7463c09035fb200e9d4dc84116ef252d4f50c61c9c683f",
+      "kind": "retained-v1",
+      "contentSha256": "d6de88cce3d33069c1a87a9c66f9c98134181d9cc9d941b8e8a1fb3982c2cea8",
+      "seedSha256": "de2b8827dc6b603162c704cb0d0e7aa30abbfa2056f41186e1e0388a884a14fc"
+    },
+    {
+      "city": "lome",
+      "manifestSha256": "97699a476ff2299fd0a6a37a8f672a4e32ede2f9d6616106ad2677ba0ed011ad",
+      "kind": "retained-v1",
+      "contentSha256": "fd17cbe3e85833c91de60fd270dee6f2796743ce64a9ddbf22a5e5f48508243b",
+      "seedSha256": "6b6c732fd50ae074c5191a0186c2059e7989227498ef7d422c49988ba0b6fe37"
+    },
+    {
+      "city": "london",
+      "manifestSha256": "a86f7de0de340c799f8705da281bde489ae2a0612c62f6131c3ee795cd21557a",
+      "kind": "retained-v1",
+      "contentSha256": "b564a4ef80f4ee78e8066e6e05c3fffb82bdc0fb731ba22900e3b7aebb2e25e2",
+      "seedSha256": "148f71f32099c3597f1c8e29a65876c02a634494d2d3ffd485500727a0c02ed1"
+    },
+    {
+      "city": "luanda",
+      "manifestSha256": "7a4d9f02429673b1a412ae31319935aabdacc5ee7dde3861ba655211966530a2",
+      "kind": "retained-v1",
+      "contentSha256": "6cc221f300f9912f2d6595dc87c20f77b36c23afa76836a2e54cb1baabfc9e6d",
+      "seedSha256": "f6344eabdff44b9dc51964b43dfb12fc033b917b6c34c847cbcd30348db4f429"
+    },
+    {
+      "city": "lusaka",
+      "manifestSha256": "30248b7a7a7d8f5c8f1fe3c1a8d3309736b040d83cff408cefd5478ed5bbeddd",
+      "kind": "retained-v1",
+      "contentSha256": "aeb14d21f99b309cbe5ab590ee22f668eb76df6c0421cf324232d6cea9c6cbf6",
+      "seedSha256": "eeb9928a0325c4d889b453eaf3fffc604192e29d4b56148cfd30370ce6c9fec4"
+    },
+    {
+      "city": "luxembourg",
+      "manifestSha256": "4dfd73cae7c108cbc101a1ee0d6670a1393a58096f1c59a9c43b2bc2129608d6",
+      "kind": "retained-v1",
+      "contentSha256": "dcc27457ca5f846d67fbce8b1c03990aed033707ac45d372c314c1193978ce3a",
+      "seedSha256": "eed6e09f47cea2d0e80d549eedebc38916dbab51e148b4922d444d78ab54c028"
+    },
+    {
+      "city": "macau",
+      "manifestSha256": "16ad71e64674d17d7021f67a469766d03d7e4e0d328421c158540d77862b9884",
+      "kind": "retained-v1",
+      "contentSha256": "39378afc15b83f29dbe79490a77665c2a4b378d61c8446865e622297189e0f1d",
+      "seedSha256": "b3a5d96adf076a5325e394cac0945b4b571fc70af6b0b6047f859173a8ce4af2"
+    },
+    {
+      "city": "madrid",
+      "manifestSha256": "fb1b063d6e47ed6a15c328ffcbb5a1c30085e2ac4cf2bb72a5b0451e8e937bd2",
+      "kind": "retained-v1",
+      "contentSha256": "b5d93dee7baa961a655ef963c6d09382f2003ede4d56a15d39ddc8b35f11c49a",
+      "seedSha256": "4e91d10fb7eec9d42bbbbe76c99b9019c198ffa7df201b1760ca412f6d129244"
+    },
+    {
+      "city": "maiduguri",
+      "manifestSha256": "1b2c6b118183ec017c4240abc52802043346175a06793effa1228f48e178d881",
+      "kind": "retained-v1",
+      "contentSha256": "e44f14442e030addaed4f6d34af83d8962250b53c5b437e618b934e88eaa40c2",
+      "seedSha256": "ea54d71e2fdf872e304f7d05d1084c4c6c60a1e396f6b471e76fcc76027ed460"
+    },
+    {
+      "city": "majuro",
+      "manifestSha256": "a8feede864cfcdb995ffcff220cc6342b759934dbacbe2e48e1f2ed01ad9a7a1",
+      "kind": "retained-v1",
+      "contentSha256": "5f99236c95ab08d9e7d0c49c393580de249e034407686de1e5306cf62cd3c308",
+      "seedSha256": "eec05c8ad46a6549e6efa648ff18f1ce586ac5a94c866ba6252b278b5b6f6268"
+    },
+    {
+      "city": "makurdi",
+      "manifestSha256": "11a1172e7b60e91aa0361d178dfc3626a7b22fe8bfe0d9bb09798eb6890cebdc",
+      "kind": "retained-v1",
+      "contentSha256": "d0dcdd9cbcd8bd4235a2b8ff5269534e387affc77db2f997d20096030ab28881",
+      "seedSha256": "4bdc2fb846e78d5ede1a827030c46cce3189daef9f5a4430a28490eaabc48b29"
+    },
+    {
+      "city": "malabo",
+      "manifestSha256": "823a5bfa0e6e64f99d29c7610535a8a0c5623ff576f108af427e92d7a317a061",
+      "kind": "retained-v1",
+      "contentSha256": "caca8138c669d027dfca33f96c53d96d7e404f77f20cb7b32ec34cd0383d447f",
+      "seedSha256": "957121981062df4b8217d06ee700e37b90c2af8e3b0b8a743f87aea5d88487d8"
+    },
+    {
+      "city": "male",
+      "manifestSha256": "22a9995dcdcb3ec1cfd59923d4cde35a7aca0925ddf3a615ca198c9af006d80d",
+      "kind": "retained-v1",
+      "contentSha256": "303af320f9c9fc46f31a292de6d329642898bf60bbf7376db4580a620c83125a",
+      "seedSha256": "56414b65b5eafc9d8147bd14858b8cd6de99cfa3ccbbf7311a12e5f7e9cb7f29"
+    },
+    {
+      "city": "managua",
+      "manifestSha256": "366244706561adb4fac2d753ae251577197b3682862d761bb426c9a40ad45a50",
+      "kind": "retained-v1",
+      "contentSha256": "b9d079582bcd040fdb5255fefa2908a0d26146366dbb05b4b496a095977ef602",
+      "seedSha256": "a6ba68117cb184f12d52f7fb6068a172883a6b8ce557869d898d8c6149cc6922"
+    },
+    {
+      "city": "manama",
+      "manifestSha256": "7912fa9c6a04d9db01b1bcc78c235eab32279f2ce5bf60e0644c9ca65ec292a4",
+      "kind": "retained-v1",
+      "contentSha256": "a59198c1a2fa26f5bb365fd9d4bd0449e440c7f86df8b3507e61854f63ebb7ae",
+      "seedSha256": "5fa2b83b011468ab75cede94610e3cae324fede74e8f2ea8bbdcfce4b7f79363"
+    },
+    {
+      "city": "manila",
+      "manifestSha256": "01973fd0b091016fc6f1bc30dfd9a06c70faecdc24ec2f47aae2c3604862eaef",
+      "kind": "retained-v1",
+      "contentSha256": "7dcde045a3d5c76713e668387244c92d3dc0c8d2cb878a95a3d6e4b4bb602ccd",
+      "seedSha256": "e73f6dfaccfa78e5e604fc9fa9233d596487fc0e4475c53a51509443188430bb"
+    },
+    {
+      "city": "maputo",
+      "manifestSha256": "b1982db107dbf101d9a15d546cfcf48f6a7acf81c1825f83532b44c60c42b373",
+      "kind": "retained-v1",
+      "contentSha256": "2e19569ccbb3cfc209caccd131b422488b295a7b3852d13dd3d784f4bbb5f728",
+      "seedSha256": "db0ef2f29e78b1a4e26cf622f8b9212124d39eec04944f0e899d73ffed44d3c2"
+    },
+    {
+      "city": "mariehamn",
+      "manifestSha256": "e169d8214549a229c35f833ff0eab8926fbb54bc6a6e85cbff9b25cba6e55b03",
+      "kind": "retained-v1",
+      "contentSha256": "5433cbf5915c8cc8ecd13b8d3ac4a9f549c7837a897bbad040ac39040598da68",
+      "seedSha256": "553c7435e965ea4a7018997948c1c9c7d6ca62af6409c478110ecbab24d8cfc1"
+    },
+    {
+      "city": "marigot",
+      "manifestSha256": "2bceed67e963981d9ebbacaba254b39e1611f1bb4f9df3309c908fffd3605459",
+      "kind": "retained-v1",
+      "contentSha256": "c7bfd8b77cde84b759d3097f1479582ae2da855af108fa126e81f4dc606c2c17",
+      "seedSha256": "5460fa0367aa7178cde8b2768deca100ab99ab3585bfdefe5ac3ca5813aa3aa6"
+    },
+    {
+      "city": "maseru",
+      "manifestSha256": "28ec56eadbb9b6410b822e1ce4f08f7bff7ae137643817d03f4de06df6bd6196",
+      "kind": "retained-v1",
+      "contentSha256": "6d5b477c7e3428ba1f8741db74cbb35db0490cb3df48fe7cdb5b9369c1d2d088",
+      "seedSha256": "0f7c061832ca52c85d4fea6212fced20ab248dbb8f3f2bbd42c4a157bb199342"
+    },
+    {
+      "city": "mata-utu",
+      "manifestSha256": "63c874f9704b9175d93c88ea906f919bf7fe87c39818cc4bb14eca6df55af315",
+      "kind": "retained-v1",
+      "contentSha256": "f9fd8aa99b92c5dc6d4fa01b0ab59ceefec2f55c9e8d476939fbd1a5f3755710",
+      "seedSha256": "10d31a001808f37c70ee9b5558295c5d4e4e34b90ff531d63d62ae9ff4b75b39"
+    },
+    {
+      "city": "mbabane",
+      "manifestSha256": "953205755d42584f4e73df82c77f941182be08981aecf9993f27732180f9a377",
+      "kind": "retained-v1",
+      "contentSha256": "cb537d60d42832514270eb2f832eacd0dfac2875742ef822992e8f3c03f35b16",
+      "seedSha256": "98d570134ffced5c797dddca68277f0b8c1c68f084153ea660b393abcf839d9c"
+    },
+    {
+      "city": "mexico-city",
+      "manifestSha256": "28f7a31d6e2c34d205cfef66bfac1f5e3a96b20b9162803556293eb2b9cf8f87",
+      "kind": "retained-v1",
+      "contentSha256": "7cecc90ef5c31c67822917ed253b7bac24c1f559905db29b017ba95cfbbfbd19",
+      "seedSha256": "42171fc03758abaf55cb3076d2bbdc757c9195ff5e7aa5fd03b4e3b4ef7ef753"
+    },
+    {
+      "city": "minna",
+      "manifestSha256": "69d3bd8498f411c02f06ac480f2174da85d5909fba663d971fa9af6b6c8ebdad",
+      "kind": "retained-v1",
+      "contentSha256": "5ce3ab6ce3e4e555cc4d25d943d3403b22ffd331f136ee0540d4374c05486555",
+      "seedSha256": "709f82e028a707bc987746a26e0b99218fefb53eff5de96e4912af23f8609e10"
+    },
+    {
+      "city": "minsk",
+      "manifestSha256": "25c37a2b7b4866e360adae7c25193182302853e3102ddff32159bada5ef7c9a6",
+      "kind": "retained-v1",
+      "contentSha256": "2befabbb0f972beb85472f7e828a7a4bb1fafb5ff55fb8c67f9592778aa42c1e",
+      "seedSha256": "ebdec58b117ecb0b045d659d3789a94462c551eca5358286a699d85df2499b42"
+    },
+    {
+      "city": "mogadishu",
+      "manifestSha256": "63eb3c5bea56edb46366a176b066c7ddeef330a6f1fadca72a0eb2df123446cd",
+      "kind": "retained-v1",
+      "contentSha256": "e58450ce7c52f4b8638189e0ffeda4a0ba0081d5fe357143dee6c00252e77b1e",
+      "seedSha256": "aae31466074e365a399b4745bebc8529290a0ab55a71daffcdb0c5f6615d2c5e"
+    },
+    {
+      "city": "monaco",
+      "manifestSha256": "8d67a4ca871ed57feccb931933dd507d06c5863bb5d8d8dc9dec7f856f05e239",
+      "kind": "retained-v1",
+      "contentSha256": "dcead45bcf4d1d8b7bbfeb498bb2b2578db452998e7ebcffdc69d7e6890f6003",
+      "seedSha256": "375e85a906a2e4ebe4fd28641fd5e1ac29bdb82699addc32815a3cac8c941857"
+    },
+    {
+      "city": "monrovia",
+      "manifestSha256": "f81c06f8dd067c3c603027d3b86be18493cd16ec29d34e8c17ec685d3314bdd2",
+      "kind": "retained-v1",
+      "contentSha256": "66fa116a935b987dd6db32e77ea7e31ce96596b73084305bb998eb646928fdee",
+      "seedSha256": "fc65b3b60b96926d35ebdcf6f21f19727dc0aebc69416f67084dea254b5684b3"
+    },
+    {
+      "city": "montevideo",
+      "manifestSha256": "bf37a86dcb7281647787d3af38047c0e3e01b8017680c6df1a04e7f90f538461",
+      "kind": "retained-v1",
+      "contentSha256": "73447611bc9b44879b954e69a869176c31f63e032b466e6df7f59eb845a90e75",
+      "seedSha256": "351e040ca723b9cb885f2a6d78e8da2d179b86576e9d10b0a5a2650c34e9513d"
+    },
+    {
+      "city": "moroni",
+      "manifestSha256": "15dd46305a1d675794c0e62340eb004cbb8e3e6632c6e6faae1522418f9f8081",
+      "kind": "retained-v1",
+      "contentSha256": "6f8bfe55afe77369e446ec7cdbc4b16194be03c971f9f4ddd5fa9bd7abba3092",
+      "seedSha256": "7f683ca52703ec34631f5c18d0e910035217f7b0238c20697a89d508f9dcc898"
+    },
+    {
+      "city": "moscow",
+      "manifestSha256": "517fa93b812f89842cdea5b3410f5c55e7e3ff1036d7d954a4695b67c6d7cb14",
+      "kind": "retained-v1",
+      "contentSha256": "90cad04d684ec2c2c9d3ba322fa15c455e9cf1264d71007b50fb9f50915bd12e",
+      "seedSha256": "38fad05657b1760ee4a24f32ad72226fa43a5ec73d9a180ca5126916db811b5b"
+    },
+    {
+      "city": "muscat",
+      "manifestSha256": "c175eaa8c23c95b6fa10f678f78a1cb3220e8569013a2122bbe89f8a6ae7b11e",
+      "kind": "retained-v1",
+      "contentSha256": "a0cd672734a286bf02d946a4dc4c8e79df3e7605d92e0ba35820e43f807d6e5d",
+      "seedSha256": "6c12a7f0604b5dea54863c3c0ca36c6aae5629775d560fc7524d14cb82f3db9f"
+    },
+    {
+      "city": "nairobi",
+      "manifestSha256": "5d411fcb54f317e3c50c24482e0a3d62817047c3efca5b6aa17e5f98b8ac4ee6",
+      "kind": "retained-v1",
+      "contentSha256": "0bb7ca39ee7b2e1755baabdd71c348974e6e8c75aed255ffc184a42fb637d3ea",
+      "seedSha256": "bf90881883277055173cea4574612c5ae2ae34b1e3f9e91814419bc7664ad961"
+    },
+    {
+      "city": "nassau",
+      "manifestSha256": "a92a82cccf4460c4b839ffe8e97aad84822bdbd6a33937ef29e84493bf47090a",
+      "kind": "retained-v1",
+      "contentSha256": "95279508308d0b1d8290403960d4382dac8d1f74cb7c19b39aee871318bd5412",
+      "seedSha256": "e6905f89624cc2576e6d18eccde4edf1ee5d867f10b9c46a5f56ad403b7f0d61"
+    },
+    {
+      "city": "ndjamena",
+      "manifestSha256": "1d40f76147f7de7c81459a80c2e76bb35052fdc30f16bd969ee282b40c50d3a5",
+      "kind": "retained-v1",
+      "contentSha256": "bff6de344c03a58aad6e31af887d11102a25e8131bdd8b3cd74406fe6d915cf2",
+      "seedSha256": "cdd268bc6d066debf14af507d2b12a25d77c669371ccb4190f64f2f402903280"
+    },
+    {
+      "city": "new-york",
+      "manifestSha256": "ccfbe1dc74869ab2f827615f883fae3505822b7dc7f91042f8ad1b0db283fca3",
+      "kind": "retained-v1",
+      "contentSha256": "b208f256390d6ce644d66bc4566eab2bb5e017d44cc8191ba41cd2fb5484479b",
+      "seedSha256": "42476fdb1568b5602691ce7eb475f98e6f4b3a30e10337abbebb05088d15eb0a"
+    },
+    {
+      "city": "niamey",
+      "manifestSha256": "93126145cbaffd39f69e36c31c379375deb27ee237749275c6563c1ddeba39df",
+      "kind": "retained-v1",
+      "contentSha256": "e5ff6bcb592f51d1384e9d0fc945630f76292d908e2abcd9d4ecad5d72aa6405",
+      "seedSha256": "e40923c8cbcb1132d4c9433808d2d626ad877d328d33a6fa5cc945c9cf9492af"
+    },
+    {
+      "city": "nouakchott",
+      "manifestSha256": "8a63bad3b16da06689590b24471dff53113a20a4980d20022472c5a9e29c80c3",
+      "kind": "retained-v1",
+      "contentSha256": "b9b7e7f620347bab0f394b646e29198047000a3b1b48ec271349f08a3d33d6db",
+      "seedSha256": "e839df0ea25dbb9dd3de46425543603b6b400d2d9bda5c3c626057328779043f"
+    },
+    {
+      "city": "noumea",
+      "manifestSha256": "f443b4c3c4932ffd07ad8be1ea4c4acb429ddde1484f1572a41bc71f1bec7a88",
+      "kind": "retained-v1",
+      "contentSha256": "08ecbcf0a22ae1d9dd7c922cd668038fd283282455930db637a360dc54687795",
+      "seedSha256": "65ec97ef4dd0499527da0a50d133a04f01686045fcd0fda708fa1609513f7e01"
+    },
+    {
+      "city": "nukualofa",
+      "manifestSha256": "6c83f8e292fd71cdc02e675fedf1148fe6622889df2b57178e1b2c11096bc272",
+      "kind": "retained-v1",
+      "contentSha256": "a0e2890a5f2e4cbcfd018f2adf3c7df0ab7edf7b8863cc0040467ac235ff9083",
+      "seedSha256": "be48fa3abca7d3450bd45fa708125c856a0fbcc151020727e8aa0de3a0ac0765"
+    },
+    {
+      "city": "nuuk",
+      "manifestSha256": "0db9af26bcb38064dd82a574abdd4e8da2c3486f81b25bcffab6c79cded4aa11",
+      "kind": "retained-v1",
+      "contentSha256": "cfbb84d99b1a64a45ecf999dd7721af2c591935a5e3b3120824f29938425f4c6",
+      "seedSha256": "e6c022a62b24f9b0384e3240d3d69b0156feae9eaa0d7efb3e36f517cab2c5b4"
+    },
+    {
+      "city": "oranjestad",
+      "manifestSha256": "9caff40f63c68a707ffc4d446eba7336fc059a705a1116fe448c4ec036397d8d",
+      "kind": "retained-v1",
+      "contentSha256": "a5c8d68e3fcfff312218cf632cc6a4e2d04f0621c63b50910cbd0a37928ee4c4",
+      "seedSha256": "b57a744c4d30d6adb569dd47e08ff210dd02914e62859f597ee753bc38e27863"
+    },
+    {
+      "city": "oslo",
+      "manifestSha256": "73a7bbfb8977355cf8601eeee592de060ffc9f8a321b62bd37656e5f34886f5a",
+      "kind": "retained-v1",
+      "contentSha256": "d06ada27306b63f270e6fd0b2c783b9b21d64d1e167d281724280ed7fdbabe45",
+      "seedSha256": "9f4ddb86b94ef100151c3128646ceee2ab8914dad4be4754ba21727db2dfd55f"
+    },
+    {
+      "city": "osogbo",
+      "manifestSha256": "741c358bbf8332c6ea54974eaecbe723d4ff878932fbd892e5f1037b2055c244",
+      "kind": "retained-v1",
+      "contentSha256": "6338ff52ba7ed059f190a401530eee89e6954b002ac18f67b6e8359ca04a61b9",
+      "seedSha256": "53ab0472178dbf20e293261d1c358f7b1fa1363c9dcaec70a85f37c240a7e095"
+    },
+    {
+      "city": "ota",
+      "manifestSha256": "c37576640ddec9b88344a7d659d9bac7e3e6a2eb9eee60f29ed6b38a879730eb",
+      "kind": "retained-v1",
+      "contentSha256": "16565fa82b2b05052d8cb943b0417fdd3ea498c94ea44826ad97f96fa24d3be9",
+      "seedSha256": "fe1d8fa27d5c79fc5619e5fa6683e394add053c112b128fedc46baf548696d73"
+    },
+    {
+      "city": "ouagadougou",
+      "manifestSha256": "7d1f2216e6fadd9d4311e30d7f819f840e7f39bcd2bd21e3fa0f65289ad05aa7",
+      "kind": "retained-v1",
+      "contentSha256": "45480fd02c4968ea10eaee1887e3a82fdb2c4952c2bad7bedf38438ce09a0a5b",
+      "seedSha256": "eee59ef5aa4c711ada6de5d9814fcbf4360f2c5709d2c939509363da665d3a9b"
+    },
+    {
+      "city": "owerri",
+      "manifestSha256": "2ee0908be9e33d9e0d78e3b49f4036c96230375c2e996a0bd6ea723a9faede34",
+      "kind": "retained-v1",
+      "contentSha256": "9228fd84cb8a8d06b4593ba8dc74071147d41f44274d20a52248dd73803068a1",
+      "seedSha256": "d8b6ffdae51db1ce4cfbf8b1ffbb63338ebb2e3d306b4fb31fa8b8f2f1d01620"
+    },
+    {
+      "city": "pago-pago",
+      "manifestSha256": "335153d0c414db64fd6c3f0082c4644e81f2fbdabc83b448a25a5a02eac3cd26",
+      "kind": "retained-v1",
+      "contentSha256": "9085b263a288b418b2d8517d34faa45892ce1af08547d9f7c3275305944fe03d",
+      "seedSha256": "72aa44272a9d0119537447f26caecff9b98a5d812b892a17190eb26c0177d358"
+    },
+    {
+      "city": "palikir",
+      "manifestSha256": "800f111678ddb852c4134adf9d7548d5c782189d2d3049cc21b900dedd154086",
+      "kind": "retained-v1",
+      "contentSha256": "0d0354012df9942e829f2957e728a85f0263b7ea14b3fdb0187fa1700f7f9b64",
+      "seedSha256": "c2c155e5ede5c8019c235e077041b0dacc85d56c53328963e4da52f3194a0543"
+    },
+    {
+      "city": "panama-city",
+      "manifestSha256": "d66407bc4635d9603a3d07718853ee12393e49586d4adfd554d3669dac0e2e87",
+      "kind": "retained-v1",
+      "contentSha256": "4177f79486e1c29ab4f152983ab2d9d3035fdbbc74cf54e100ae51fd29ed484f",
+      "seedSha256": "8118db8ab76edc6c2b3582ed4b08456844cab2309b95d8bd7ebd7da84045e305"
+    },
+    {
+      "city": "papeete",
+      "manifestSha256": "130b6bcb852f2f19d620b4d59e9b1e79cf08dce5e3f5e73c1a859f6596c22a02",
+      "kind": "retained-v1",
+      "contentSha256": "c6209085f03c242bd13705cdc00aafff7c23ba6d669870bfa34aba7cbc7365ea",
+      "seedSha256": "3089aea872b98fb805bf17aa3e9c856ac10750774030302d620e684b478b525d"
+    },
+    {
+      "city": "paramaribo",
+      "manifestSha256": "ab174d6d2b8fc17036bbccd8c38b05aac4a34b1916d3b2584d4a7c06b7db942a",
+      "kind": "retained-v1",
+      "contentSha256": "d6484c6fa23013dddfa406f828065dd33c7ddc4a5b0cee9914698e7e0a14c31d",
+      "seedSha256": "6f00270208dec92fcab485cb1d621b9209c180583acc6091ef210c35740cb32b"
+    },
+    {
+      "city": "paris",
+      "manifestSha256": "7c9a9aaabecb5a490587ae62a84567f3b5ef6882e332ddc8b3bf898a9ff500f0",
+      "kind": "retained-v1",
+      "contentSha256": "dc6377f68c3cd8802634b4fe5f0132480de6dfc619d0ce3a383db36fb3a4bf05",
+      "seedSha256": "4fdb45d61ceb8b564732ccd30df08e45467501e9b32364269e578a3703b996d1"
+    },
+    {
+      "city": "philipsburg",
+      "manifestSha256": "05274444599a375d8dda9a0e0c7b3503ddcd667e5ffbbc0f99e5dd02f7edd91a",
+      "kind": "retained-v1",
+      "contentSha256": "48152e18ea0a04e902bef33a87a02b53bc019f7c09cb5328bb1e42475a084593",
+      "seedSha256": "14c90059082ce8c6fcbb0739298239c9789d67b748d91f07e97ec2ff168ce0f1"
+    },
+    {
+      "city": "phnom-penh",
+      "manifestSha256": "7df903209264f0b393582342a277c44e7a1f47247929ba0367fc1a2f4cac71e4",
+      "kind": "retained-v1",
+      "contentSha256": "c01ee548d932f0c4ba6bb50d260fd601ef1e10ef7757165f15eef3730dbddbe7",
+      "seedSha256": "3a3501e52401e50b6efda99890d631ddc2e26c73a1ada47086eda985c45c8175"
+    },
+    {
+      "city": "podgorica",
+      "manifestSha256": "24f26ac7dc8b08dc5284b5ba1ff14ced2d548a264abd9db78fc6c2dae5a32de3",
+      "kind": "retained-v1",
+      "contentSha256": "75efe548e3e477c86993ee98df7a94ed85ccba4fffe06d4c672251a3da9c047c",
+      "seedSha256": "a7c2df0e7499776fb3dbd922fd98e26e8bb260108cd85a9145060637d11c5c80"
+    },
+    {
+      "city": "port-au-prince",
+      "manifestSha256": "d8226aa1b6ae75d0e9bdfae7686ed4ffb0b768276cd369cb041151e90f89c019",
+      "kind": "retained-v1",
+      "contentSha256": "96791dc7414b53d76052e312c2522b3a5a35d4a3f52dfaabf1b7fd7c7360134b",
+      "seedSha256": "05908630285f6e6d6369588e807b8a962e5ea34f2e20ff7cbfde7fb710d66ff9"
+    },
+    {
+      "city": "port-aux-francais",
+      "manifestSha256": "a2c34b4c519f74e9ed75f5495e18e5c64e0e57b95ae883802f4a7384654277cc",
+      "kind": "retained-v1",
+      "contentSha256": "e0876071fdcc8bcc7402382f846db5c9cba84e4343ace183f1a67d4226042ac5",
+      "seedSha256": "ab451564ace6f094af919e8a0e70dfe44cc73afb2606e9afcfc8d51481be8631"
+    },
+    {
+      "city": "port-harcourt",
+      "manifestSha256": "46431dfd23a2d2858a07c7e30cd365bec10f59faa86bd6ac41112921d2825b5b",
+      "kind": "retained-v1",
+      "contentSha256": "fb5d9677a4d7f2504536c8d128fe091924e343243e7be04730696e5ba1d5d8a4",
+      "seedSha256": "76b764d3c9bdf0f612ce261db01198b21bb2b6f551f7518395aabeb2a0c2a036"
+    },
+    {
+      "city": "port-louis",
+      "manifestSha256": "2756dc185f75318782bcc5460804071b6805e996b017721c17e8ebfcfeaf2c15",
+      "kind": "retained-v1",
+      "contentSha256": "869172a56a491ca5059b995d6bf285b34c1491a2f559a9bcc1db42a0e1f9ea6f",
+      "seedSha256": "04ab28dc0f8358cdb235326d3aceefb8157faa0aaf311017fa2ab35aa4a043b8"
+    },
+    {
+      "city": "port-moresby",
+      "manifestSha256": "1893019c9a9c73dcc6790737cc9a1f27c9a5c16f44092afdfe99bf262c613cec",
+      "kind": "retained-v1",
+      "contentSha256": "bf10c90079a7e68c35a9ac10f6cf8a7a7f27d25d60fc393b982c4d539f8a744d",
+      "seedSha256": "c8cdf63a37b3fc418e4993bc60bedb829fc1590ecafa8ee9b76d81fbb047d871"
+    },
+    {
+      "city": "port-of-spain",
+      "manifestSha256": "409a8ffef91850cc30861c69b4c0b50bab126a7cdc850fd6e06f83247801b07e",
+      "kind": "retained-v1",
+      "contentSha256": "10959040bd644be07bd03da993ce38a77ba1d587e69c8d5c79695495ddd8ebae",
+      "seedSha256": "0d025f09cc54bd500ec6590aed5f228e0b21e4e083060619553bf052844f5a94"
+    },
+    {
+      "city": "port-vila",
+      "manifestSha256": "5e8bb6e5bd35b843767ccea2a2d37b51a52d1d4e4e9b16f3ceeeca17fd4ba979",
+      "kind": "retained-v1",
+      "contentSha256": "1147740d7912c8c6e06451c50eadc036395c8d48ac975ef727c4fe7b5a936882",
+      "seedSha256": "c789529ee5d8cbd0e1857d76256881bdd8b17f85ec30f58e00f4b0a93761a06e"
+    },
+    {
+      "city": "prague",
+      "manifestSha256": "43165837e7bdcdeace55bbf639c3a5343519a350f275e6ff3eca01b9e5571295",
+      "kind": "retained-v1",
+      "contentSha256": "c78136d88e39d48c0b5712e1c7426c964ccf044c393289089c76027009e47f09",
+      "seedSha256": "6f04868ab26915eafa65c34c2de2ed5a74693a9003d7765ad9dbb5440fd16c4f"
+    },
+    {
+      "city": "praia",
+      "manifestSha256": "ae2e4f3eb2d257db842f180ed42fa61413faf5f2ccf07e7d1f71d87ec7ac29b7",
+      "kind": "retained-v1",
+      "contentSha256": "1928901710c36b214fdc72ea1d7d9e02460469dc32c292c780af483a3e8f158c",
+      "seedSha256": "413afb75aa7132572d0fff5a50a0c1cd1eb36ff48fb599c026c9e575f81c376e"
+    },
+    {
+      "city": "pristina",
+      "manifestSha256": "5085613556e93aeb8955a9c10d5da69f1bb8635aa1ab72d773fbca1e88ae8c00",
+      "kind": "retained-v1",
+      "contentSha256": "541bd40099ae1163901207c049be38962c2647cf2476f15cd061fa454b1fccfa",
+      "seedSha256": "4cdda4ec8726bc962da73889433e7d9c6f6dee8d362aeb66ba1065e942aa5e66"
+    },
+    {
+      "city": "pyongyang",
+      "manifestSha256": "e4bef18a13a811e5afebb154c5eed1c60fc1b3c3f37017751b86db5e68d14206",
+      "kind": "retained-v1",
+      "contentSha256": "31107f5466414239c0080fe763319fb708bc8fd0204fb26bdfb4823b89dcde4f",
+      "seedSha256": "68e4443c14f95a181de1968ed608d32036b39111d0a8adb24fadc4620bf3567a"
+    },
+    {
+      "city": "quito",
+      "manifestSha256": "0109ea306f750dcb33ed75e9812ef1e535e935eef55cc0a30a9a266ae5a8f8d7",
+      "kind": "retained-v1",
+      "contentSha256": "721f3939ad504d03a7c6ce7f7ce858c81ac825001fb1b3b7556d9aefdc5dd54c",
+      "seedSha256": "f5757e29ef7588588c3ad88530d63f2eecec644aa504a45c87d0dd3fd03dbb7d"
+    },
+    {
+      "city": "rabat",
+      "manifestSha256": "7c8462c9e54b70dd08103f821c17f58383cec59cc15e69288df2123f5f951998",
+      "kind": "retained-v1",
+      "contentSha256": "d3dfe2205c75ac9225a14b3b43f00ab61262ffea03320e922e0b5e65caa1846e",
+      "seedSha256": "72892f72fa87fbd16f5bc88f60132c30939a526f4fa4d1f619e722ca8db531eb"
+    },
+    {
+      "city": "ramallah",
+      "manifestSha256": "0021fcf33a7b2e8b0cf61338483bf5a97318f7a546177ac2566627faae1eb80a",
+      "kind": "retained-v1",
+      "contentSha256": "32f135d164be538e6c2d81b4f07b81f4756a71cbd305cac8ced26f5db4752887",
+      "seedSha256": "4812b64c48b3494820ae6095da9d28a984a747687338b01920c1b18b640bd5b7"
+    },
+    {
+      "city": "reykjavik",
+      "manifestSha256": "b095f4c1d1a25b5e0f71c658cedf72e8e8285aecc96ff61a880a4a54c4bf146b",
+      "kind": "retained-v1",
+      "contentSha256": "96578f431fbdfb3b3144e9c29b97383b95a1393f6a793977764183b7fd3e4656",
+      "seedSha256": "6dbeaba3fb31abfd753593b53325c65a3298b46d723cb74d35e95374d046e8bc"
+    },
+    {
+      "city": "riga",
+      "manifestSha256": "5e06d80a6faa28bc93b8934d6649341440d28afa17497e7be70d2dc04d2474cc",
+      "kind": "retained-v1",
+      "contentSha256": "668d50cbcded1a639bf4c6a9d28ed12d60243f96ee1194c03722e313ef907938",
+      "seedSha256": "1aba44a902613cc33a740f0e0ca482c81420c295ed1763de304a7ec345d1ed34"
+    },
+    {
+      "city": "riyadh",
+      "manifestSha256": "052b46c00ae39c3349f31d2c680b4adba08756a1ebff3cee819be71b417ef483",
+      "kind": "retained-v1",
+      "contentSha256": "2d74170ed02b4abdbc1349818abfaafadb7b22f0d6eaaf3befae45b34b08aebc",
+      "seedSha256": "760a4959fb93742132c01ab0cf8dbf62a856025a7755f4c4cb6e68954e5de9fe"
+    },
+    {
+      "city": "road-town",
+      "manifestSha256": "f75dd0d32bf6bd49de8015607cbfc359d4f6070eeaebc0d1660fad15ee776dfb",
+      "kind": "retained-v1",
+      "contentSha256": "212601df94115bfceff52e5f4864f83a9b38c7ebe82afeea958b4a3a772cbf4b",
+      "seedSha256": "6deb72ddee1a8de5bf4908cb13632c4a5eecd7c2070086ad08c7bd4950047895"
+    },
+    {
+      "city": "rome",
+      "manifestSha256": "758724305d33b80a9a7fd74b971d541f11aa95685582b64e2626cfb34862e907",
+      "kind": "retained-v1",
+      "contentSha256": "792f04405131d1cbc553df64ba649af383bd3fbaf5d9acc02f96384a9ba830bc",
+      "seedSha256": "3dff03d913d8cc568f4dc3ad49bbbd62c90c2c5d965a1e923d57add5db6d11ad"
+    },
+    {
+      "city": "roseau",
+      "manifestSha256": "e6d230f9457a06495850ccad3cf5e21e1528c73624a0c2a182c9dc826d3ddac7",
+      "kind": "retained-v1",
+      "contentSha256": "2b8161e0d552352677d1b591f8b35b79c543832953b0b5cc2db15081a6e5aee6",
+      "seedSha256": "73eadb06bc2af5c3712d603f08449228a021f5ae66249249c675e411d977d51f"
+    },
+    {
+      "city": "sagamu",
+      "manifestSha256": "9708bb67eef6b4bc080cc10b2edcab19bbded45f0c2a633e6897911cdd774de8",
+      "kind": "retained-v1",
+      "contentSha256": "fe8f88bbe2aabedb5c131f234c80ce563b2916370ef56124fed87032dc4414ac",
+      "seedSha256": "a4d07cd6531b542faa0807dfed020db5bfc18dbd88096d56adc91952824e89fe"
+    },
+    {
+      "city": "saint-pierre",
+      "manifestSha256": "0b711529284c89f3de7ccb75aa74496ec82c268501c1de1b8ea42b8fe9d4e30a",
+      "kind": "retained-v1",
+      "contentSha256": "74c414962c56d1b5b3a1106945c47f31aee4fe882b19fb3bbefedf27c601a0f9",
+      "seedSha256": "9edc50aa072a92991af96e235c2a1e711ec185f7cf3725afd049c4cc43f2b4a1"
+    },
+    {
+      "city": "san-jose",
+      "manifestSha256": "df6da26774f073e4396224939c1131046189755b47703f0b9170903f5ddbab6e",
+      "kind": "retained-v1",
+      "contentSha256": "d0737a8a4a16b870f3f0690096cf5e6e7719fa5e575222974477748421806c56",
+      "seedSha256": "10f654e3575983fa8393d15978b14f87eca17259aef15acc900b602571275724"
+    },
+    {
+      "city": "san-juan",
+      "manifestSha256": "1d9cb1dbb75ccaefd2230882e3051b1fec453eee0f3c6ed6d480c357f140983a",
+      "kind": "retained-v1",
+      "contentSha256": "d3e9aff6c2780416d0d40e01f19d643e5e81a021c44d074502d94a88ad733e42",
+      "seedSha256": "601960721987523f4c1fab508cf90d55a45cb710f90152bbe36bbe472103f075"
+    },
+    {
+      "city": "san-marino",
+      "manifestSha256": "56cec94036509f4c9eddcbb3d0797abe077963c3c31f11c2620a2aec35ace093",
+      "kind": "retained-v1",
+      "contentSha256": "2ea76611e1b4d5975589aeda4393ef7ff33870b45a9ecbb58927aeebc29305e4",
+      "seedSha256": "745dbfddb819d6fb2926e1c519e118cd126da0d2615437962bb870c56e7178d6"
+    },
+    {
+      "city": "san-salvador",
+      "manifestSha256": "0edc2e085c9fcbda2ef452d79d22cfedb9128473e6701db4ac99fe15c7312f60",
+      "kind": "retained-v1",
+      "contentSha256": "694a0bb0420b3853152d1797d97e96eb916ab334ff0f539b98d8459417a43cf5",
+      "seedSha256": "9e1dd800c992a535e43b0399712020999752adc5a93b81f328910a554bb64881"
+    },
+    {
+      "city": "sanaa",
+      "manifestSha256": "fbb738b9c37f77b9c53e45eb4071188af2aac7f43cf5b0209b45ba6ce8512e03",
+      "kind": "retained-v1",
+      "contentSha256": "4e249d2e9849c8ca5ab30c1749fd1bdbdb8aed0bd6f8a2f52366a99ab647ca85",
+      "seedSha256": "1a6ebcf33506fd06ea4b1eb8f411ef9e53d49063610d288720e2db3b11ff402c"
+    },
+    {
+      "city": "santiago",
+      "manifestSha256": "dd735b7ff4a860c87b6ef7cbe94a4e99a5c225101ba64297b66293925c2cef3b",
+      "kind": "retained-v1",
+      "contentSha256": "36e98eeecdaf26d893c7efe7938a40684bdfa3b9d06ee22366492462669650d2",
+      "seedSha256": "7df788394083349385a1cf05ca06716b3925e9e0e8f792fe708e641aedcb20ea"
+    },
+    {
+      "city": "santo-domingo",
+      "manifestSha256": "b8939642fd8cc77fb95d017703a2ffbba901a5598a77f3ebf82546d3a8fd09c1",
+      "kind": "retained-v1",
+      "contentSha256": "b524466b41b34b2266f37bf2fdfd2d63e5429a2ce996396a56f24614a8468cae",
+      "seedSha256": "cefb093b760e1be3554cc97311b625e384d999674ff73b7bd44c677c2a577baa"
+    },
+    {
+      "city": "sao-paulo",
+      "manifestSha256": "6fef2d734ad3a723a4848df2c035b0ceca5b457dc127fb131688fd211a2da3ce",
+      "kind": "retained-v1",
+      "contentSha256": "6b6d59ceb96675ebdbee08d9ddf340f972d2f75948010f8ab1a5e51a76883763",
+      "seedSha256": "ab6e9d0c1727af59b7a5b6b38ca1045a624168ccfc0797dc94674307047478c5"
+    },
+    {
+      "city": "sao-tome",
+      "manifestSha256": "f33e289247416e411c09f65b396594742911e7f222ae3e6fd2e6268f2812df41",
+      "kind": "retained-v1",
+      "contentSha256": "878a8fdd6d6f27915fa9179bf8352838e7bd8cc63a0ae162f36fe31fc0571328",
+      "seedSha256": "802f3abe69c3cf5ea568208c8f9bc1e993319eccf0ebb85acf174abae09e1c3d"
+    },
+    {
+      "city": "sarajevo",
+      "manifestSha256": "ca54c1afb80ce6c09c7133e01abf34bd6a5c7663a49b895e6378e68e12383c13",
+      "kind": "retained-v1",
+      "contentSha256": "8b256f5760204db592eb5d1fe728423e6f82fd9744b91f92a28ccc65108d8117",
+      "seedSha256": "a6351c1cb1e85715a561999c0973cf2a3bf7252ecfed9a5dbd1c8c71fa852112"
+    },
+    {
+      "city": "seoul",
+      "manifestSha256": "a10ea6e786a435f9ad1b21d48e244ee7ed85d5e22c71d76e75522ad9ee5169a6",
+      "kind": "retained-v1",
+      "contentSha256": "136a88b3848a4be2f5c76a70e5d51d727f9ec537c03d8b15c7bf8d8760e8f7d5",
+      "seedSha256": "1090c4427fdd7550570c49bc9cd82ce042a7298282e4b725bf1f0ba0775071e6"
+    },
+    {
+      "city": "serekunda",
+      "manifestSha256": "ee5e679893c4021115a023d664f04a895b98cb7b64dfd2d7643eef07be54e2ee",
+      "kind": "retained-v1",
+      "contentSha256": "9050cdcb537c263dfee66b49959debbc346eadb7abd339c3a204cd02c4a791be",
+      "seedSha256": "ce84c26e7649251b14b942560562628361ee71d3ada41d9430b6e37a27574247"
+    },
+    {
+      "city": "shanghai",
+      "manifestSha256": "66ca62832ed1724a6927883c00ac423233855f6a5b1a4013f6ade7acc403fbfb",
+      "kind": "retained-v1",
+      "contentSha256": "d5b84f494240b98c8e3110ad463caac59539bd5e62d5b010a64abe2945532793",
+      "seedSha256": "79ce68d6c7f83766335ca2969451764ec03bbbb85d0577369e4ccd06855b0652"
+    },
+    {
+      "city": "siachen",
+      "manifestSha256": "5a03722b570b037043848c5efbd98c7db66ec0a4323a23006d712a436e043e0e",
+      "kind": "retained-v1",
+      "contentSha256": "0813db246bc38032dab3ba68d973d8b3852cde5ca961fee57f59ddf46035cb7c",
+      "seedSha256": "bea953092326a6bbf54e067f42cb9ec13070fd43e2c409591f9f51867acbb652"
+    },
+    {
+      "city": "singapore",
+      "manifestSha256": "ee1b3dd40c8212de694786fb68d8655ff8e4e8f35d60f6e3bb91ff451ec0e80f",
+      "kind": "retained-v1",
+      "contentSha256": "61de63ff344c0c7ec3a1d2dc823a56a01ddbc68908de26fdddbf8a1378ef913e",
+      "seedSha256": "25a6040ca14e1e4053aa6cb9984dac7f78402382f9871573dc2192d763417c73"
+    },
+    {
+      "city": "skopje",
+      "manifestSha256": "e2dad854f7dddec0457f5da006b2c5b9c177217c18d95fb7703064c394b8502d",
+      "kind": "retained-v1",
+      "contentSha256": "9f35648152800c7bebf8ac57d388a928252249eb0402883854223f4e664d0c51",
+      "seedSha256": "c67b4752d3e3b04f53523a0cd52506dc43adab71aff3a653c6d90c7d129e5e9f"
+    },
+    {
+      "city": "sofia",
+      "manifestSha256": "c1569f964b6c9b6ed191df6b699ad7d940c5d6d2e0052db4254b94de90081985",
+      "kind": "retained-v1",
+      "contentSha256": "a5a8729db5b7f430a27bdb6c9fc91a5a0b215eba1fa7d0b9977d11b144ba0591",
+      "seedSha256": "3e85d32070930b2c82d834a1d7c6262fdc0a2f712b5db167ec40eb4ee0cd124c"
+    },
+    {
+      "city": "sokoto",
+      "manifestSha256": "0f4a3c1494bca64a4a811caa6ac87f393567e803c77778e8ffde4e73a4dc9621",
+      "kind": "retained-v1",
+      "contentSha256": "d83d70ea74b9549922c526bea8291d0d4140baa1823b67ebfe7f6727ca0be53b",
+      "seedSha256": "dfb3cadb3715833f5ee0c4bb42be104b85028da52bf991dc320387291a311586"
+    },
+    {
+      "city": "st-georges",
+      "manifestSha256": "b57792ee4fef5e70fcd63e0f1f5ebd5a3c60437cec52a8a6c9a39c22e0f0cf48",
+      "kind": "retained-v1",
+      "contentSha256": "541405d20945f10ccea6279538e4a945dfb74d4a6c412ce204cc30a0c9a2eb28",
+      "seedSha256": "96e7b6807f146733427df1e29c0519d8bea3ee347dfca67257b6dfedfdd43a0d"
+    },
+    {
+      "city": "st-helier",
+      "manifestSha256": "f3874817a756884e58c002eccfd5522cbf0eae4047e69e7144dbae112b22ea10",
+      "kind": "retained-v1",
+      "contentSha256": "b6b7b3f6d9c94d23e527251fa41f098449d443b0965f28a39007c1141d434875",
+      "seedSha256": "033da8fdcfee1de023229fb377a17d901149fc0d9be31158a00e279922160202"
+    },
+    {
+      "city": "st-johns",
+      "manifestSha256": "faedd2440c8c3065659020135abf525c1bd62ff770224d89d5258e5a634c19ef",
+      "kind": "retained-v1",
+      "contentSha256": "e142db10c7b5024dcff314556c47e789c3160044567c69be1864128bbb29be13",
+      "seedSha256": "3f0c1c37c5b2a124e9b705d92d1fb67eec3cf52e4be0f405990735b5b2257d0f"
+    },
+    {
+      "city": "st-peter-port",
+      "manifestSha256": "9c8e687a72b144b44ccb9da2a75c790807f9133847cb9d5ce014ece875aade60",
+      "kind": "retained-v1",
+      "contentSha256": "0ca37f1930cb99d55761d2efbedd068bb5d44c4d8863b7cb9da38fa1757823ed",
+      "seedSha256": "1be0149047382beb229bed4c9bb7f8e3b087607d7a3a32e7fcb1c295368fd5fb"
+    },
+    {
+      "city": "stanley",
+      "manifestSha256": "00acfa382966ec4ed2d63820e93808573ebe78d984be6932b04e4a520c9eb7ed",
+      "kind": "retained-v1",
+      "contentSha256": "d0423089d3051c8b9f7dc091e0360a8d53209545e9164e7b84556321defccbeb",
+      "seedSha256": "d7da354f8c21ec0abd7f45ee1e9e61e91fcf6feced3f8d62c778e9077ee376ba"
+    },
+    {
+      "city": "stockholm",
+      "manifestSha256": "3276b0fa5f0c65a9c039c7374ca6e3c82e74e1126c97ee8b25edd5a1bcdffbfb",
+      "kind": "retained-v1",
+      "contentSha256": "75ba60d9e32743543ea1d1012e8e55787e2d427dfc15a67cc31bc5a021d165b0",
+      "seedSha256": "4138714c4db03eab2d4119400ea557717268a6c3d9b3127995fffe2c7285c584"
+    },
+    {
+      "city": "suva",
+      "manifestSha256": "87c029fce5899caa18e9a17b4c292733accf22ea28e90adc06827694707b6437",
+      "kind": "retained-v1",
+      "contentSha256": "55cb23f8bf965d05bd45bf3adff98d97317a59124cb7d8113d3de611503e8cf7",
+      "seedSha256": "0f45b42fecd091bb3c19de33a92e3e9f7df0352956b7c4fa1e962808ace8325b"
+    },
+    {
+      "city": "sydney",
+      "manifestSha256": "abfc42586850f11d8bbad338994c964b5e3ee4961aedb7becbaf8a31d0340251",
+      "kind": "retained-v1",
+      "contentSha256": "16495aac27dc850be3ccecfcdf3b37491903277e5c59fdd72ee384988e9de146",
+      "seedSha256": "d8dbaaaf665ba4a719bcaaebce7b8cdab594b58ceaaff3fcb5cd071d9bb8c14d"
+    },
+    {
+      "city": "taipei",
+      "manifestSha256": "5afdfddb5686491f417e8f700581bbad15406131af82a4142d78a2d97ae1d4bf",
+      "kind": "retained-v1",
+      "contentSha256": "1c81e5c9beada1d04d51b010bc624560124a1e68fcbb76dffa477c3559d73e95",
+      "seedSha256": "96daf79cfe761560d67f01053a231eaf824ad9393c3b99d97742921902198760"
+    },
+    {
+      "city": "tallinn",
+      "manifestSha256": "67b1e5f3269433214760a384dd47d1501a0f296a8dc3df6688af6a9bfe64e237",
+      "kind": "retained-v1",
+      "contentSha256": "f60e4036c5addf6dacafc4f0fd2ff4f95dc561e862f01f6293da9e415a3b1500",
+      "seedSha256": "fc583a69124c11eb980a25a42cc13fdb313d06e5216b63dba7cef29a3b27672d"
+    },
+    {
+      "city": "tarawa",
+      "manifestSha256": "59a69296443f00b2097468ec71c6f57d6e9336da745f62011c92fc9e3478bf95",
+      "kind": "retained-v1",
+      "contentSha256": "688a6c2d9241d41098d143429e0ee62e6c9200e301da4ba64b48db2030cf6282",
+      "seedSha256": "72e36def102a04527b5ce5a2d70ab6103841c0f5e4380985b80b492f321649ca"
+    },
+    {
+      "city": "tashkent",
+      "manifestSha256": "f0cb5998ef6faf5b4be15e12699ae9942bc64124cc381fe2f8505a0a8668ad32",
+      "kind": "retained-v1",
+      "contentSha256": "1ef57fd6fbed9bb764542e286d984894e73a4cfc14e8621288121b75302594ae",
+      "seedSha256": "3f3650428348d78c5b0b354d9f76b3a0cdca4d10e6d64c76d29e54435bfef898"
+    },
+    {
+      "city": "tbilisi",
+      "manifestSha256": "e0110e5733659048dfe6f30cfde1b743a8d435914c0935d143e7bf1dab8806c5",
+      "kind": "retained-v1",
+      "contentSha256": "a867baf23179c626822cefbf6908fcc737e6e9cc8cfe0306b641bdff643a3407",
+      "seedSha256": "b1b5065192ab1f5388768e6e873ab7c33c8f01475d8629428bb8cf1a6314cfae"
+    },
+    {
+      "city": "tegucigalpa",
+      "manifestSha256": "8e3e208cdc1be8b6ceed710f84f737cf99aeec365a653dd40aaa36d117233f6c",
+      "kind": "retained-v1",
+      "contentSha256": "6c52166f36ca66140a1bf5eed92c784e51bdc88976078810628af09b2023dcba",
+      "seedSha256": "07bf5371af84a38f718c6f19a9dc8ba74a89029ac322e06a848f0acf1983fd50"
+    },
+    {
+      "city": "tehran",
+      "manifestSha256": "1a841e7a593bbe56c1babeea7a3dd3b76ae4535138da0ef69bf1058d4637663f",
+      "kind": "retained-v1",
+      "contentSha256": "4e2823191b8dd1d00a495e0140a3580f1be3956f4f333e6a1ff60da3bf0fc3b3",
+      "seedSha256": "1df7ca36580416c3b3e1225da17ae779939b7cf96028d605a025e03288c53e94"
+    },
+    {
+      "city": "tel-aviv-yafo",
+      "manifestSha256": "1c4dc53d0c739d6c64b9a4538da8a31ec47f73911e95280f3d5fab2c8d3bc774",
+      "kind": "retained-v1",
+      "contentSha256": "5b90a3b435bf875f1a446907ad5a8459640e2c984c170a31131bbff2eec7df08",
+      "seedSha256": "83a97fcf875a01d40453bc9599a05aa870f3d1dadd7dde90df4f82835a6946ec"
+    },
+    {
+      "city": "the-valley",
+      "manifestSha256": "31006c5bd539f67b7e70e017c4feb348210bb6ca262b0764330023c5e37218be",
+      "kind": "retained-v1",
+      "contentSha256": "1349174feb763a1b637333122146036d38119dfe528f9077b342f73b21fe9cca",
+      "seedSha256": "6721c8fa144589857912a511a2abaee8ae60ed36930c9633625ffa7ff55a03e9"
+    },
+    {
+      "city": "thimphu",
+      "manifestSha256": "4b6641860dcd9093ccd1b14f1bd5601a93a627bb50f5834b1972d8b17f37f08f",
+      "kind": "retained-v1",
+      "contentSha256": "2cd02e5b97170f23da213261f1be00e41acb369f2891805e83b6052b74740840",
+      "seedSha256": "12537b981d5a12c8f4fc2f63b3696b0c499599d8629b623f9f5744d5933ed1a1"
+    },
+    {
+      "city": "tirana",
+      "manifestSha256": "295e7f646a05c60eed3896ec4f5fdf0de1fcaff333aace20ffab76d757f96724",
+      "kind": "retained-v1",
+      "contentSha256": "99153bd23a2351f3b05e82f5c65fb8c26ac8dc3e3a4a86cc8a25eacadaf307d8",
+      "seedSha256": "1ae229fd2dc929fcdce56c71edbee2cd64d6c089460d7aa585b35b699557076b"
+    },
+    {
+      "city": "tokyo",
+      "manifestSha256": "fb31a31e77d2c4343833e1c856b630c6aa0d7721ee2b9069a2698694f4072bdb",
+      "kind": "retained-v1",
+      "contentSha256": "28f5a07f47e8c2172b02e42ff43f8215a505b378414d264198e4cd9ee4f5fc73",
+      "seedSha256": "101ce3d5592e016b257aebf670e75689181b628631a882c56309d84332c055e3"
+    },
+    {
+      "city": "toronto",
+      "manifestSha256": "628fbb3c8c4a6666296f05fbb5e4faeed5857a80572dd321ff539b76ba241b60",
+      "kind": "retained-v1",
+      "contentSha256": "cd35126016de8b09bf4d324fcee50672e188fc7243e16da6de244c182896b7ee",
+      "seedSha256": "71c01a7d92d7e2898f07a46a4b71da0918f9b9d06af12b20a34a9c1dee1d3cb9"
+    },
+    {
+      "city": "torshavn",
+      "manifestSha256": "27dad44352f853e1aa17a6820ad06f753c0db66ba0f8c0fac29344417ff9f053",
+      "kind": "retained-v1",
+      "contentSha256": "ce7efc3599cba3c0cba49e8a1a7df50637afa5876292d6bbc20f00dc005066a2",
+      "seedSha256": "632dfd7b44c7271afb2750d1961c176986b92066a802bb31515ab69e28488d09"
+    },
+    {
+      "city": "tripoli",
+      "manifestSha256": "b71b49a97d24957590a1894abf66e3c834e1dda6b46bc38cdeb61e778577fcb6",
+      "kind": "retained-v1",
+      "contentSha256": "709debd78f5ccf626df03dbbd139182b948abf77b29daf3ae70b984b3f77ba6f",
+      "seedSha256": "8cd15f1432bef2deb952184caf73379fd2d2201ac8aa4f39f3aa68c9d897e850"
+    },
+    {
+      "city": "tunis",
+      "manifestSha256": "6464dfeb1b23bb9a71adeb9a9b2b8ef570a53edc508aba6c86ada4723675a2e4",
+      "kind": "retained-v1",
+      "contentSha256": "7d8b31f99a7a33ca836542a3250106ccf823bb13bb59fec651a8a665e7a43280",
+      "seedSha256": "5cf66230768dd8621b8b1130b710030cd0ec71925d37cbf29f1148d5750fc854"
+    },
+    {
+      "city": "ulaanbaatar",
+      "manifestSha256": "fb25b6c1bb6ccefc296ddbc2dc6a33bec2dded8424c7739d6484b8ab4bc15064",
+      "kind": "retained-v1",
+      "contentSha256": "03c98ff6f31fb4b5c206128134e9bf04e797b5c53ea5e81b974bede2c9c456cf",
+      "seedSha256": "8c7b5ae15b6ab39041ce862428d3749f0096c745a7346a6c7808a775b62450e1"
+    },
+    {
+      "city": "umuahia",
+      "manifestSha256": "970d82f017c8d0015a16250fb203879da26f5ad24bf120e6d8543585ef08bf92",
+      "kind": "retained-v1",
+      "contentSha256": "0ddf65c0e8275103a32d033500dbfaa1d38c8009680b424e554841ddb05e94d1",
+      "seedSha256": "69cfcd266460f769148a3ae9e6cfb169c8dafe5c00887518aa2024242ebc1697"
+    },
+    {
+      "city": "uyo",
+      "manifestSha256": "81d8604df3391ecda943d51371beda71a8906743c161ec6baeeb05718956b3d1",
+      "kind": "retained-v1",
+      "contentSha256": "70b6654769adc1ab109f55cee81871a43c74126fb75a16763fa1dda0d000402e",
+      "seedSha256": "506d7fb5bee28f33e57b051b9b3c00250eb41db51494b859a37f776bc0e781c1"
+    },
+    {
+      "city": "vaduz",
+      "manifestSha256": "ee2fef2d736f5865af5f94ce676efeb3be1353de053593eacfe4d991e15725d6",
+      "kind": "retained-v1",
+      "contentSha256": "0fd82eaac4c12c335217b6a7ee4cdcddf18e13be8676432db6c0b8a4cf223cd4",
+      "seedSha256": "944fb529aa3217fe042afc9ca7f591837b281817227fc7887e76d5b5bf455a31"
+    },
+    {
+      "city": "valletta",
+      "manifestSha256": "c486537a2aab613c5d704306de21d6c24f7760073c47994c1186efafdd304288",
+      "kind": "retained-v1",
+      "contentSha256": "9b2ce269cebf1c482346f0dfba085a2e9ae6a73ecdec0c2fc832d1aa37c9c782",
+      "seedSha256": "6eb86bbce59a26d92df112aa9902d1d6451cbd81ede3f8b49016720ff8bc824c"
+    },
+    {
+      "city": "vatican-city",
+      "manifestSha256": "e141e46021aefd2b401c1fd641c959d7b1e143373420f43b5d18c2c5ef596dda",
+      "kind": "retained-v1",
+      "contentSha256": "cf55be804682d808ea0a12c42caa6ae5a37d900c94e1007060ef3fec78a9701c",
+      "seedSha256": "c23262273e5052597eb278cbafbd6c013c2e2bc84fb3023ca8e7fe74a90aad4c"
+    },
+    {
+      "city": "victoria",
+      "manifestSha256": "0ed9058c09b6ec5ba1464bb56ab5f607e34c935d287342abfc1673831976f32f",
+      "kind": "retained-v1",
+      "contentSha256": "8ff3c9e5e998306d39d6c160b1011cfdc080f669b8ee5aff380ae7e43ba40577",
+      "seedSha256": "4f127b9c85cc4537afe4b8743aa868de50919b72d62c4c63095a86e9aa381d4f"
+    },
+    {
+      "city": "vienna",
+      "manifestSha256": "91856290561caa55eed49ac2789cf7d6a4b1a9b1db42939b8718e70424f4c769",
+      "kind": "retained-v1",
+      "contentSha256": "578285f557c8c35bbef0cb0f140240ec8004c0b71906cf31bf2e76f33a58bd37",
+      "seedSha256": "863a6ce040ef178931e75583732f12b9cb2e133fee83e0a38e44afc5f2e51626"
+    },
+    {
+      "city": "vientiane",
+      "manifestSha256": "0f7a3d65380692c9a5dd6db6631a79512969a6fde37f4a65f70379cdf48c55fc",
+      "kind": "retained-v1",
+      "contentSha256": "3616b8d34ecd9c115a8e8f2fc6ffb151a0980951ded69a15fa4957f8c12ebc48",
+      "seedSha256": "894c03513b1bff3144c49494f659b69ca246575da50f22cd2104524343d94acd"
+    },
+    {
+      "city": "villa-las-estrellas",
+      "manifestSha256": "6f5cbc46b5ed58f25d1cf0becceb961e13c03c18de01617ba12576edbb619db1",
+      "kind": "retained-v1",
+      "contentSha256": "1e103ee75e58216ca5661b25850d4c66c6aaeab78a036719323560acbef454fa",
+      "seedSha256": "48ad66fbd4cf10e58ef8f51a6c32fadcfa2efb269510ae2880e6592902dba007"
+    },
+    {
+      "city": "vilnius",
+      "manifestSha256": "0c7d2d32eb07ca1f873b78387623b29df3e560f7d7f9c3e486cd006c3cee6a50",
+      "kind": "retained-v1",
+      "contentSha256": "9e72ca779d60fa7cbaadbcb111135a096589c48f39f5f90339a66ee849ee38f4",
+      "seedSha256": "fa762857b515f5533fbb653791979b67a62cc08bebc7aab22fc8ed8a3e604cb8"
+    },
+    {
+      "city": "warsaw",
+      "manifestSha256": "128e16df902caaa88371438973f9af9fbfd12e1fba573844d70e1aaa7a1aab48",
+      "kind": "retained-v1",
+      "contentSha256": "4b012cef1847174cd1476bb892e22e59fdd9a0a6eb677051e6fb11160025a034",
+      "seedSha256": "f3a2c96b5690bae932931a7b152221da3a0d6194b510bdb2fc761f50914bbd55"
+    },
+    {
+      "city": "wellington",
+      "manifestSha256": "36487f43e9006efbbfac6631470867ddd68c968a9d2188deff3460da0c76cd5e",
+      "kind": "retained-v1",
+      "contentSha256": "e52ff497135676fe38ad7a01960be09eef18d0922b1e9b28c89788969c02e8a7",
+      "seedSha256": "4bb15a46adaaaffc49c66ad8f4a898555fe8e38d7a8024cf30a72d21c0227801"
+    },
+    {
+      "city": "west-island",
+      "manifestSha256": "3163da070ff437176ecfc187762f525a9cef7917c9bad0f893f4ab0265146a39",
+      "kind": "retained-v1",
+      "contentSha256": "ac725c7ce0e949f65b9397d0750fa5e3bd903d68c006572da7d3de684266583b",
+      "seedSha256": "6e10fb570853e1ac621ec0a7b3e213da2253b4242eb909bc944ff2a4f613d1c1"
+    },
+    {
+      "city": "willemstad",
+      "manifestSha256": "66c5f48be6200cdb4a23460daff964860066a537d4fd64049cafa7752b0f1e58",
+      "kind": "retained-v1",
+      "contentSha256": "3317f56a9958f951da962f73861708e9d874eaff002beb1c70a190d6febc0aba",
+      "seedSha256": "e7cc90c6483f838598cb0356e49928077b1661f84b839f7b044b424029d8b968"
+    },
+    {
+      "city": "windhoek",
+      "manifestSha256": "d4bfd2f7eb9a87de4669c1100c0bb49ad33310ed4f585031aaa81fd410cb44db",
+      "kind": "retained-v1",
+      "contentSha256": "b005207b91403b9fd61e7c1412bfc947cdf37bd9f60a0bd87b4369be19a8485a",
+      "seedSha256": "2b87949ac7ea564985f0d08d9ecd88ee626942a8d8b5b0d8f939681cd1a9e4a1"
+    },
+    {
+      "city": "yangon",
+      "manifestSha256": "2b4b35219eb49e35a386703c1b88c77a664e2ff34f989f74a459aba5e08ec1fc",
+      "kind": "retained-v1",
+      "contentSha256": "74d03ec43235ed1dfc6754fc3cb6bb3f18c6060953705a2bf87f1b6c8c5245e3",
+      "seedSha256": "bd4b03e2fc2ce64ebd680f79462e8ac56c0d503f28185c7ee2865afe978f74f1"
+    },
+    {
+      "city": "yaounde",
+      "manifestSha256": "fa3dee3cddbcafbd162a99b219dc7d87a613fca5668a720576f563e481d89456",
+      "kind": "retained-v1",
+      "contentSha256": "2edb9bf03bba6ead2f7d6f6f4474886c12112d85cead260a32e36ae459f85d8e",
+      "seedSha256": "6c11591c802a812f0e20c73a370fe8376a754b52fb33d97248ab140b6960def8"
+    },
+    {
+      "city": "yaren",
+      "manifestSha256": "c7bec2c4a5b715c2860cc57ad0295a7350ec75a9959ed873f0daa91a945e8c7a",
+      "kind": "retained-v1",
+      "contentSha256": "45e5e02e8cdac80a576c5eb710dc0cc69ad462ab20ddc08d82befca5db06c3d7",
+      "seedSha256": "281aac89a56fe1e4d42f47c8a42c800e9bd156955aa9e268c68ebfc94b716f0e"
+    },
+    {
+      "city": "yenagoa",
+      "manifestSha256": "8873a5bcfd2031f06118ba86435c50ac976196ce652c32b0952ebff2d23d98ef",
+      "kind": "retained-v1",
+      "contentSha256": "ae093f175a83f1cbd131d2291c3de3455221065e2eedf84dd6e6946b53493600",
+      "seedSha256": "23054cfcaa6fcd7a992228e018bc057df37f1079a55faacf43a18caeb3deee2f"
+    },
+    {
+      "city": "yerevan",
+      "manifestSha256": "78aa1fcab6129a501ac604c95f7399ae442e0f2be1e424aa7548b548568e4ab1",
+      "kind": "retained-v1",
+      "contentSha256": "99a3f33bb226307d437dbabccc000c1e01aa92bade4be49d27a4c3ce10e7f5a0",
+      "seedSha256": "94091a5c9f22fa15ae8f3011b3f0849d47d7fe8f3edcbf21a5a95f26c3d0ba98"
+    },
+    {
+      "city": "yola",
+      "manifestSha256": "20b997c9ccd2f6d77d9531e7003f24ce4fb463f15b2fd55f2f6c8e4ead6c7b24",
+      "kind": "retained-v1",
+      "contentSha256": "ea5bf25d53f052e674e46465018c0e077b8878f74dc2db5c04d0499ab8109474",
+      "seedSha256": "d67a1e2d20674cbb88aabf7e53c295a383c8a09fbadd0d593faeceed80eadcf7"
+    },
+    {
+      "city": "zagreb",
+      "manifestSha256": "fe518d673b6fdc0b18e846d0251b783db0f47255eeca23854147e3693ae117ec",
+      "kind": "retained-v1",
+      "contentSha256": "db7286f176d4b2d133ba59ad8233d2b1ffcec76ad35d33fdf7ca54ffce4a95b8",
+      "seedSha256": "1df5f8d83c74fdc048988b2b17009333d7d22fb685ecf13aaa3766d8d7624529"
+    },
+    {
+      "city": "zurich",
+      "manifestSha256": "338b0697e96d355d71aa8784aab0777d1fdce867d9ac685d2ecfab7a341b33e6",
+      "kind": "retained-v1",
+      "contentSha256": "291499ff6e92045c21de3bc402177353a5dcc837d8a03023e8e4866f0de4beb5",
+      "seedSha256": "7a721108679c06194bcf792d916a74c46637f44759dcd2d11fbdf4fa2101ac36"
+    }
+  ]
+}

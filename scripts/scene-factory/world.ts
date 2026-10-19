@@ -19,6 +19,7 @@ const WORLD_SOURCES = [
   'scripts/scene-factory/build.ts',
   'scripts/scene-factory/facts.ts',
   'scripts/scene-factory/layout.ts',
+  'scripts/scene-factory/layout-seeds.ts',
   'scripts/scene-factory/assets.ts',
   'src/scene/recipe/contract.ts',
   'src/scene/recipe/pack.ts',

@@ -1,0 +1,53 @@
+{
+  "scope": "Preserve original local evidence and hashes; stored log.txt avoids ignored logs, JSON patch preserves meaningful trailing context bytes without trailing-whitespace lines in Git. Original artifacts unchanged.",
+  "files": [
+    {
+      "original": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-disposal-repair-20261019/surface-focused.log",
+      "stored": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-disposal-repair-20261019/surface-focused.log.txt",
+      "sha256": "2a0078a4a47ba077b2c7f1e4015a86fc04e781387d3b07d33748d89a3062f1d8",
+      "encoding": "byte-identical"
+    },
+    {
+      "original": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-disposal-repair-20261019/city-scenes-caller.log",
+      "stored": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-disposal-repair-20261019/city-scenes-caller.log.txt",
+      "sha256": "2797c8273bf6f5710aa62db3a032f60817c1c8c3832b5dfee9c96c571dcbf106",
+      "encoding": "byte-identical"
+    },
+    {
+      "original": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-disposal-repair-20261019/talk-check.log",
+      "stored": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-disposal-repair-20261019/talk-check.log.txt",
+      "sha256": "c21543cbbe0954f9167ee6b76cafc81075adcf7ff38964d82a19bc44ff940e2c",
+      "encoding": "byte-identical"
+    },
+    {
+      "original": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-disposal-repair-20261019/scenes-check.log",
+      "stored": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-disposal-repair-20261019/scenes-check.log.txt",
+      "sha256": "e5e9d276a806fc73a17756c2743425dadf3d3dd9646249328da55d36b6d5c18c",
+      "encoding": "byte-identical"
+    },
+    {
+      "original": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-disposal-repair-20261019/scenes-build.log",
+      "stored": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-disposal-repair-20261019/scenes-build.log.txt",
+      "sha256": "78baaae492811177f583a88768074a8d339781292d85a4122983b1458b1fff42",
+      "encoding": "byte-identical"
+    },
+    {
+      "original": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-main6c-integration-20261019/feed-located.log",
+      "stored": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-main6c-integration-20261019/feed-located.log.txt",
+      "sha256": "e885d82a35b4cc6b5e4b92142b4342e7d4f0ef2a22772d6e4dcb77ac0d5dbe1a",
+      "encoding": "byte-identical"
+    },
+    {
+      "original": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-main6c-integration-20261019/feed.log",
+      "stored": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-main6c-integration-20261019/feed.log.txt",
+      "sha256": "af7905e98ff5d88bde05955738b10043edf7b42be9f2c64c05678eb77221942c",
+      "encoding": "byte-identical"
+    },
+    {
+      "original": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-disposal-repair-20261019/surface-disposal.patch.txt",
+      "stored": "docs/agent-work/story-mode-evidence-20261017/prep/phase4-disposal-repair-20261019/surface-disposal-patch.json",
+      "sha256": "a3eeff82f3b62a916352e05c3d0ef3dee19accd827aa9f3465c3c1618c6268a7",
+      "encoding": "JSON UTF-8 string"
+    }
+  ]
+}

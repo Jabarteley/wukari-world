@@ -1,0 +1,120 @@
+import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
+import { readFile, readdir } from 'node:fs/promises'
+import { join } from 'node:path'
+import test from 'node:test'
+import { fixture } from '/Users/anthonyakpan/work/joinallworld-story/server/test-fixture.ts'
+import { lagosTime } from '/Users/anthonyakpan/work/joinallworld-story/src/game/clock.ts'
+
+const concat = (...parts: Uint8Array[]): Uint8Array => {
+  const out = new Uint8Array(parts.reduce((size, part) => size + part.length, 0))
+  let offset = 0
+  for (const part of parts) { out.set(part, offset); offset += part.length }
+  return out
+}
+const ascii = (value: string): Uint8Array => new TextEncoder().encode(value)
+const le32 = (value: number): Uint8Array => Uint8Array.of(value & 255, (value >>> 8) & 255, (value >>> 16) & 255, (value >>> 24) & 255)
+const riff = (tag: string, data: Uint8Array): Uint8Array => concat(ascii(tag), le32(data.length), data, data.length & 1 ? Uint8Array.of(0) : new Uint8Array())
+function syntheticWebp(width: number, height: number): Uint8Array {
+  const frame = concat(Uint8Array.of(0, 0, 0, 0x9d, 0x01, 0x2a), Uint8Array.of(width & 255, (width >>> 8) & 255, height & 255, (height >>> 8) & 255), Uint8Array.of(1, 2, 3, 4))
+  const body = concat(ascii('WEBP'), riff('VP8 ', frame))
+  return concat(ascii('RIFF'), le32(body.length), body)
+}
+
+test('locals-only badge refusal preserves pending cover, then confirmed Lagos attaches it once', { timeout: 25_000 }, async (t) => {
+  const f = await fixture(t, {
+    env: { FEED_MEDIA: 'on', FEED_PUBLIC_MEDIA: 'on' },
+    worldFeed: false,
+    fetch: async () => { throw new Error('outbound network is disabled in this probe') },
+  })
+  assert.match(f.base, /^http:\/\/127\.0\.0\.1:\d+$/)
+  const author = await f.device('Cover Probe')
+  assert.equal((await f.request('/api/life?city=lagos', null, author.cookie)).status, 200)
+  assert.equal((await f.request('/api/growth/hello', { cityId: 'lagos' }, author.cookie)).status, 200)
+  assert.equal((await f.request('/api/growth/consent', { cityId: 'lagos', age: 'adult' }, author.cookie)).status, 200)
+  assert.equal((await f.request('/api/social/me', undefined, author.cookie)).status, 200)
+
+  const uploadBytes = syntheticWebp(64, 48)
+  const upload = await fetch(`${f.base}/api/feed/media?use=post`, {
+    method: 'POST', headers: { Cookie: author.cookie, 'Content-Type': 'image/webp' }, body: uploadBytes,
+  })
+  const uploaded = await upload.json() as Record<string, any>
+  assert.equal(upload.status, 200, JSON.stringify(uploaded))
+  assert.equal(uploaded.ok, true, JSON.stringify(uploaded))
+  assert.equal(uploaded.media?.type, 'webp')
+  const hash = String(uploaded.media.hash)
+  const modelPath = join(f.dir, 'space-models', `${hash}.glb`)
+  const storedBytes = new Uint8Array(await readFile(modelPath))
+  assert.equal(createHash('sha256').update(storedBytes).digest('hex'), hash)
+
+  const state = async () => f.server.store.read((db) => {
+    const root = db as Record<string, any>
+    const feed = root.feed ?? {}
+    const person = feed.authors?.[author.id] ?? {}
+    const day = String(lagosTime(f.now()).day)
+    return {
+      pending: structuredClone(person.media ?? []),
+      authorCrews: [...(person.crews ?? [])],
+      dayCrews: person.day?.crews ?? 0,
+      crewIds: Object.keys(feed.crews ?? {}).sort(),
+      lagosCommunityIds: [...(feed.cities?.lagos?.communities ?? [])],
+      sequence: feed.seq ?? 0,
+      crewMadeToday: root.growth?.metrics?.days?.[day]?.['crew.made'] ?? 0,
+    }
+  })
+  const beforeRefusal = await state()
+  assert.equal(beforeRefusal.pending.length, 1)
+  assert.equal(beforeRefusal.pending[0]?.hash, hash)
+  assert.equal(beforeRefusal.pending[0]?.use, 'post')
+  const exactPendingItem = structuredClone(beforeRefusal.pending[0])
+  const createBody = { name: 'Lagos Cover Probe', kind: 'city', city: 'lagos', open: true, locals: 'city', cover: hash }
+  const refusalResponse = await f.request('/api/feed/crews', createBody, author.cookie)
+  const refusal = await refusalResponse.json() as Record<string, any>
+  assert.equal(refusalResponse.status, 200, JSON.stringify(refusal))
+  assert.equal(refusal.code, 'badge_needed', JSON.stringify(refusal))
+  const afterRefusal = await state()
+  assert.deepEqual(afterRefusal.pending, beforeRefusal.pending, 'the exact pending WebP record remains unchanged')
+  assert.deepEqual(afterRefusal.pending[0], exactPendingItem)
+  assert.deepEqual(new Uint8Array(await readFile(modelPath)), storedBytes, 'file-backed media bytes remain unchanged')
+  assert.deepEqual(afterRefusal.authorCrews, beforeRefusal.authorCrews)
+  assert.deepEqual(afterRefusal.crewIds, beforeRefusal.crewIds)
+  assert.deepEqual(afterRefusal.lagosCommunityIds, beforeRefusal.lagosCommunityIds)
+  assert.equal(afterRefusal.dayCrews, beforeRefusal.dayCrews, 'daily crew count does not advance on refusal')
+  assert.equal(afterRefusal.crewMadeToday, beforeRefusal.crewMadeToday, 'global crew-made daily metric does not advance on refusal')
+  assert.equal(afterRefusal.sequence, beforeRefusal.sequence)
+
+  const locatedResponse = await f.request('/api/feed/located', { city: 'lagos' }, author.cookie)
+  const located = await locatedResponse.json() as Record<string, any>
+  assert.equal(locatedResponse.status, 200, JSON.stringify(located))
+  assert.equal(located.profile?.located?.city, 'lagos', JSON.stringify(located))
+  const beforeSuccess = await state()
+  assert.deepEqual(beforeSuccess.pending, beforeRefusal.pending, 'badge confirmation keeps the same pending cover before retry')
+  const successResponse = await f.request('/api/feed/crews', createBody, author.cookie)
+  const success = await successResponse.json() as Record<string, any>
+  assert.equal(successResponse.status, 200, JSON.stringify(success))
+  assert.equal(success.ok, true, JSON.stringify(success))
+  assert.equal(success.crew?.cover, hash, 'the successful community response exposes the same cover hash')
+
+  const committed = await f.server.store.read((db) => {
+    const root = db as Record<string, any>
+    const feed = root.feed
+    const coverCrews = Object.values(feed.crews).filter((crew: any) => crew.cover === hash)
+    const person = feed.authors[author.id]
+    const day = String(lagosTime(f.now()).day)
+    return {
+      crew: structuredClone(feed.crews[success.crew.id]),
+      coverCrewCount: coverCrews.length,
+      pendingCoverItems: (person.media ?? []).filter((item: any) => item.hash === hash).length,
+      dayCrews: person.day?.crews ?? 0,
+      crewMadeToday: root.growth?.metrics?.days?.[day]?.['crew.made'] ?? 0,
+    }
+  })
+  assert.equal(committed.crew.cover, hash)
+  assert.equal(committed.coverCrewCount, 1, 'the same cover is attached to exactly one community')
+  assert.equal(committed.pendingCoverItems, 0, 'successful attachment consumes the pending item once')
+  assert.equal(committed.dayCrews, beforeSuccess.dayCrews + 1)
+  assert.equal(committed.crewMadeToday, beforeSuccess.crewMadeToday + 1)
+  assert.deepEqual(new Uint8Array(await readFile(modelPath)), storedBytes, 'the backing media store still contains the same bytes')
+  assert.deepEqual((await readdir(join(f.dir, 'space-models'))).sort(), [`${hash}.glb`], 'one exact uploaded file remains in the real store')
+  console.log(`COVER_PROBE_WITNESS ${JSON.stringify({ pid: process.pid, base: f.base, authorId: author.id, mediaHash: hash, uploadedBytes: uploadBytes.length, refusedCode: refusal.code, attachedCoverCount: committed.coverCrewCount })}`)
+})

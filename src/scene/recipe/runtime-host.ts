@@ -7,6 +7,7 @@ import type { PreparedCityAssets } from './prepare.ts';
 import { preparedCacheFor } from './cache.ts';
 import { createRecipeSigns } from './signs.ts';
 import { requireRecipe } from './pack.ts';
+import { recipeSurfaceOwner } from './surface-material.ts';
 
 type Owner = NonNullable<Awaited<ReturnType<typeof createRuntimeHost>>>;
 type HostArguments = Parameters<typeof createRuntimeHost>;
@@ -17,14 +18,15 @@ export function recipeRuntimeHost(value: ValidatedRecipe, prepared: PreparedCity
     const { THREE } = kit;
     const spent = options.cost(true), budget = options.budget();
     requireRecipe(spent.triangles + reservation.triangles <= budget.triangles && spent.drawCalls + reservation.drawCalls <= budget.drawCalls, 'complete recipe exceeds host budget');
-    const layer = createModelLayer(kit, preparedCacheFor(kit, prepared));
+    const surfaces = value.surfaceStyle === 'physical-atlas-v1' ? recipeSurfaceOwner(kit, value.recipe) : undefined;
+    const layer = createModelLayer(kit, preparedCacheFor(kit, prepared), surfaces ? { decorate: surfaces.decorate } : {});
     const root = new THREE.Group(); root.name = `recipe:${value.recipe.venue}`;
     let signs: ReturnType<typeof createRecipeSigns> = null, disposed = false, checking = false, registered = false;
     let placement: RuntimePlacement | null = null;
     let forget: (() => boolean) | undefined;
     const current = () => !disposed && options.current();
     function dispose() {
-      if (disposed) return; disposed = true; layer.dispose(); signs?.dispose(); root.removeFromParent(); root.clear(); placement = null; forget?.();
+      if (disposed) return; disposed = true; surfaces?.dispose(); layer.dispose(); signs?.dispose(); root.removeFromParent(); root.clear(); placement = null; forget?.();
     }
     function fail(message: string): never {
       group.userData.runtimeError = message; group.userData.runtimeStatus = 'error'; dispose(); throw new Error(message);
@@ -62,6 +64,8 @@ export function recipeRuntimeHost(value: ValidatedRecipe, prepared: PreparedCity
     try {
       for (const p of value.placements) layer.add({ near: `${p.assetSha256}:${p.node}`, x: p.x, z: p.z, ry: p.ry, scale: p.scale, mode: 'merge' });
       layer.build();
+      surfaces?.merged(layer.group, value, prepared);
+      surfaces?.fallback(options.fallback);
       const stats = layer.stats();
       requireRecipe(stats.placements === value.placements.length && stats.dropped === 0 && stats.standIns === 0 && stats.triangles === value.placements.reduce((sum, p) => sum + p.triangles, 0), 'incomplete prepared recipe geometry');
       root.add(layer.group); signs = createRecipeSigns(kit, value.recipe); if (signs) root.add(signs.mesh);

@@ -1,0 +1,568 @@
+{
+  "schema": "phase4-corrected-canonical-handoff-v1",
+  "checkout": "/Users/anthonyakpan/work/joinallworld-story",
+  "head": "b4d7099eb88921f1920dc5b23db1f0d2ea91834f",
+  "sourceStable": true,
+  "sourceWritesComplete": true,
+  "canonicalClosureAccepted": true,
+  "contentPreservationAccepted": true,
+  "allTestsGreen": false,
+  "inventory": {
+    "head": "b4d7099eb88921f1920dc5b23db1f0d2ea91834f",
+    "ownedSources": 24,
+    "changedPaths": 1732,
+    "generatedChanged": 1707,
+    "generatedOutputs": 1722,
+    "hostSourcePins": 1227,
+    "allPinsCurrent": true,
+    "v2Recipes": 6423,
+    "retainedSeedCities": 284,
+    "parentOwnedDocsExcluded": [
+      "docs/SCENE-FACTORY.md",
+      "docs/STORY-MODE.md"
+    ],
+    "sourceWritesComplete": true
+  },
+  "canonical": {
+    "hostSha256": "5742db9112195280e44739ea6a266984011f05105fcf50cbcb5fa76075497f2e",
+    "worldSha256": "7faae56354bc14a9e2fbc6d8f8c34da73abf54178270be5f022c7bcb38cf6123",
+    "talkSha256": "eaee988afe4237a0ccc92a0ef5e71316c7b1c941d46fbcb50b6efd0ba37577b0"
+  },
+  "evidence": {
+    "seed-migration.json": "cbc96841c92ff029e235ab2840073102fbebfe8367746ff3af2b932e15a472b0",
+    "final-seed-selections.json": "0912f2826ad4f90819d6edf97a7c8dc118a3254918095db2f0a1b44f58f9c8bf",
+    "content-after.json": "c7668e97cc2da804620443923b3e6242c4d0929cea59631e5fcaae74ec071e67",
+    "content-comparison.json": "37c9d3a21c84346d2100d55c8ca62bf1641d930edf7b78e6fbb23bdf99d56199",
+    "bank-provenance-leaf-changes.json": "7f7e94c63b703999e85890b561bdb4d35258c7c6f1e5e8c6361e0cb1b45b881e",
+    "host-adoption.json": "93f689b5f27bbde99534e3084ef7955b2fbb68f8e3910f414c5c5e1adec9c4e9",
+    "host-audit.json": "bff3dfda35daba0f3adc64d8285cdde7adea9c6c5853a86246f62ea881c16b2c",
+    "final-inventory.json": "87f8c2b85992e030eb390baf9f6d464d1f9c25b8f00a8729b7008d10f5776c41",
+    "final-changed-path-allowlist.json": "694060961eef11cf598023018679cbda14d35fbb3c9c91cef8ca82fc7a842005",
+    "final-source-generated-pins.json": "8fd1f09d34e7107eba372003112e5fcd51bbf24b60744eff6fb43a6d371f6703",
+    "final-owned-source.patch": "f83545a56af80e58e78ca42a527a6bea4a84ba0f4ab089b6936b84658b44643f",
+    "fixture-baseline-diagnosis.json": "53451ac6eda127f9aefdd4bb89351718f259b6b67ee6bb6a5480803ee2f74db9",
+    "resources-final.json": "970abf13668810095f8953dd1e180e5d16f38bd17472b2aab1abe45cda198cd0"
+  },
+  "commands": [
+    {
+      "name": "content-capture",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "python3",
+        "/private/tmp/story-phase4-transition-baseline-20261019/capture-content.py",
+        "/Users/anthonyakpan/work/joinallworld-story",
+        "/tmp/phase4-seed-correction-20261019-lg52i_y_/content-after.json"
+      ],
+      "pid": 39165,
+      "exitCode": 0,
+      "timeout": false,
+      "seconds": 1.5415402501821518,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/content-capture.log",
+      "logSha256": "a52f69e13aeec3250583e8bafe2f5e3704da26dad8da34eb7710cbd1a0608f33",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "content-compare",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "python3",
+        "/tmp/phase4-seed-correction-20261019-lg52i_y_/compare-content.py"
+      ],
+      "pid": 39779,
+      "exitCode": 0,
+      "timeout": false,
+      "seconds": 14.940055415965617,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/content-compare.log",
+      "logSha256": "c5defac463d14256b9102eaccba434b15f45444bcd4813978a299586c8de9e81",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "final-inventory-correct-schema",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "python3",
+        "/tmp/phase4-seed-correction-20261019-lg52i_y_/final-inventory-r2.py"
+      ],
+      "pid": 44825,
+      "exitCode": 0,
+      "timeout": false,
+      "seconds": 1.1026416250970215,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/final-inventory-correct-schema.log",
+      "logSha256": "8dc6e89dca07352497d88de1300b1606dfe1965b346252725903b41993174aa9",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "final-inventory",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "python3",
+        "/tmp/phase4-seed-correction-20261019-lg52i_y_/final-inventory.py"
+      ],
+      "pid": 43031,
+      "exitCode": 1,
+      "timeout": false,
+      "seconds": 0.20227916701696813,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/final-inventory.log",
+      "logSha256": "954fba805d7472a443594275bd61007ed67695dec3f66a76adadb8baba7c33cc",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "fixture-baseline-95",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "env",
+        "PHASE4_BASELINE=95",
+        "node",
+        "--experimental-strip-types",
+        "--import",
+        "/tmp/phase4-seed-correction-20261019-lg52i_y_/admission-hook.mjs",
+        "--test",
+        "--test-concurrency=1",
+        "--test-name-pattern",
+        "factory crowd positions|normal city loading",
+        "scripts/scene-factory/layout-host.test.ts",
+        "src/scene/recipe/runtime.test.ts"
+      ],
+      "pid": 45671,
+      "exitCode": 1,
+      "timeout": false,
+      "seconds": 8.126275833928958,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/fixture-baseline-95.log",
+      "logSha256": "f68573da8869f01738efad8ad987e765a6a32868802e2ec6693962e7d8c00d46",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "fixture-final",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "node",
+        "--experimental-strip-types",
+        "--import",
+        "/tmp/phase4-seed-correction-20261019-lg52i_y_/admission-hook.mjs",
+        "--test",
+        "--test-concurrency=1",
+        "src/scene/recipe/runtime.test.ts",
+        "src/scene/recipe/prepare.test.ts",
+        "scripts/scene-factory/layout-host.test.ts",
+        "src/scene/recipe/sample/native-reference.test.ts"
+      ],
+      "pid": 43812,
+      "exitCode": 1,
+      "timeout": false,
+      "seconds": 2.5378212078940123,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/fixture-final.log",
+      "logSha256": "29566bee4e8bbb69bd691df45f8b541fb3d3fc5d74a9147465c0f151b269df1e",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "host-audit",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "node",
+        "--experimental-strip-types",
+        "src/scene/recipe/measure-host.ts",
+        "--kits",
+        "scripts/scene-factory/kit-inputs.json",
+        "/tmp/phase4-seed-correction-20261019-lg52i_y_/host-audit.json",
+        "all",
+        "/tmp/phase4-seed-correction-20261019-lg52i_y_/host-scenery.json"
+      ],
+      "pid": 20913,
+      "exitCode": 0,
+      "timeout": false,
+      "seconds": 12.87484279111959,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/host-audit.log",
+      "logSha256": "db1e5719f0605c5d393ebe515fbb5fdeb081194653fb3b4afce3588d28ded4ca",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "legacy-fixture-correction",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "node",
+        "--experimental-strip-types",
+        "--test",
+        "--test-concurrency=1",
+        "src/scene/recipe/runtime.test.ts",
+        "src/scene/recipe/prepare.test.ts",
+        "scripts/scene-factory/layout-host.test.ts",
+        "src/scene/recipe/sample/native-reference.test.ts"
+      ],
+      "pid": 15804,
+      "exitCode": 1,
+      "timeout": false,
+      "seconds": 3.1251141249667853,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/legacy-fixture-correction.log",
+      "logSha256": "452a6d9bf84a6ab26b46778410fd3b7011d52936a8427a1d13a9d6d337aed5e6",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "scenes-build",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "npm",
+        "run",
+        "scenes:build"
+      ],
+      "pid": 21734,
+      "exitCode": 0,
+      "timeout": false,
+      "seconds": 41.45755649986677,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/scenes-build.log",
+      "logSha256": "c8e760a4505a9aacd516537dac63423dd88faa0dbabff083f24e60b8781458ea",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "scenes-check",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "npm",
+        "run",
+        "scenes:check"
+      ],
+      "pid": 23083,
+      "exitCode": 0,
+      "timeout": false,
+      "seconds": 35.06451950012706,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/scenes-check.log",
+      "logSha256": "cae0c1749b5f3a209b036a6f74ce056f1f85c0ef339cd4b7d238b630cedc66c0",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "seal-diagnosis",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "python3",
+        "/tmp/phase4-seed-correction-20261019-lg52i_y_/seal-diagnosis.py"
+      ],
+      "pid": 51310,
+      "exitCode": 0,
+      "timeout": false,
+      "seconds": 4.872269540792331,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/seal-diagnosis.log",
+      "logSha256": "bbaf9ea9c748cfc473796832d156a156e57ef81573a5a1d37fc07b2b7f8b2937",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "seed-extraction",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "python3",
+        "/tmp/phase4-seed-correction-20261019-lg52i_y_/extract-seeds.py",
+        "/Users/anthonyakpan/work/joinallworld-story",
+        "/Users/anthonyakpan/work/joinallworld-story/scripts/scene-factory/layout-seeds.ts",
+        "/tmp/phase4-seed-correction-20261019-lg52i_y_/seed-migration.json"
+      ],
+      "pid": 18622,
+      "exitCode": 0,
+      "timeout": false,
+      "seconds": 5.112271707970649,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/seed-extraction.log",
+      "logSha256": "a1889a795b59d5979cea4c943e8bdf0cb611f4c98885d66b55833350441018bd",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "seed-focused-corrected",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "node",
+        "--experimental-strip-types",
+        "--test",
+        "--test-concurrency=1",
+        "scripts/scene-factory/layout.test.ts",
+        "scripts/scene-factory/build.test.ts"
+      ],
+      "pid": 20303,
+      "exitCode": 0,
+      "timeout": false,
+      "seconds": 1.4412677080836147,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/seed-focused-corrected.log",
+      "logSha256": "de8651d06caf569c3042302a3a9daeaf86d6f374def699779d4811d1f249a90c",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "seed-focused",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "node",
+        "--experimental-strip-types",
+        "--test",
+        "--test-concurrency=1",
+        "scripts/scene-factory/layout.test.ts",
+        "scripts/scene-factory/build.test.ts"
+      ],
+      "pid": 19544,
+      "exitCode": 1,
+      "timeout": false,
+      "seconds": 1.555663000093773,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/seed-focused.log",
+      "logSha256": "c1826362476b8a07c01ae2f01b3361b5b27802a8fe7d83e14eacb8447be182cf",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "talk-build",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "npm",
+        "run",
+        "talk:build"
+      ],
+      "pid": 24025,
+      "exitCode": 0,
+      "timeout": false,
+      "seconds": 69.71508183400147,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/talk-build.log",
+      "logSha256": "70d7b4551eed1710605a46b3a0a84fb9c45dc2043a8b4ec6aa0b89cb775019e1",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "talk-check-correct-command",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "npm",
+        "run",
+        "talk:check"
+      ],
+      "pid": 34002,
+      "exitCode": 0,
+      "timeout": false,
+      "seconds": 72.08049762505107,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/talk-check-correct-command.log",
+      "logSha256": "c21543cbbe0954f9167ee6b76cafc81075adcf7ff38964d82a19bc44ff940e2c",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    },
+    {
+      "name": "talk-check",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "node",
+        "--experimental-strip-types",
+        "scripts/talk-banks/build.ts",
+        "--check"
+      ],
+      "pid": 32692,
+      "exitCode": 1,
+      "timeout": false,
+      "seconds": 0.14837395795620978,
+      "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/talk-check.log",
+      "logSha256": "f035d1eff9f1b69323cfc38979e29aa1c5da580ecd11303cefc79c37a53128ec",
+      "limits": {
+        "oldSpaceMiB": 512,
+        "semiSpaceMiB": 16,
+        "GOMAXPROCS": 2,
+        "externalTimeoutSeconds": 280
+      }
+    }
+  ],
+  "fixtureStatus": {
+    "current": "8/10; two 4!==12 failures",
+    "exact95Baseline": "same two failures;270 loaded repository source modules pinned,7 differing source overlays",
+    "cause": "optional actor draw admission: at5 actors69>60, at4 actors59<=60; no policy/assertion/source edits",
+    "scope": "CPU with current pinned installed dependencies and exact95 source/legacy fixtures, not hosted95 browser replay"
+  },
+  "priorEvidence": {
+    "directory": "/tmp/phase4-actual-integration-20261019-ewj8ib0h",
+    "preservedFailedOutputs": 1425,
+    "actualInitialFocused": "71/71 before seed correction; affected seed tests41/41 afterward",
+    "failedTemporaryCommands": "wrong Talk script path and first inventory list/dict assumption retained; corrected commands pass"
+  },
+  "remaining": [
+    "Hosted exact-source TypeScript/CI/download budgets and full-city gates owned by parent",
+    "LaneA actualV2 vs derivedV1 same-host shader/sky/GPU/resource proof",
+    "LaneB matched Phase3/Phase4 actualgame fourcities320/390, controls and cold readiness",
+    "LaneC normal earned Ibadan Roots street gate/door/return journey",
+    "Legacy optional crowd assertions remain unchanged failing baseline; no full fixture-suite pass claimed",
+    "No physical-phone or perceptual-realism acceptance inferred from CPU checks"
+  ],
+  "excludedOwnership": [
+    "root-owned docs/STORY-MODE.md",
+    "root-owned docs/SCENE-FACTORY.md",
+    "other agent records",
+    "feed service",
+    "protected admission files beyond exact previously approved sky hook",
+    "Git/CI/release/browser launch"
+  ],
+  "resourcesFree": true
+}

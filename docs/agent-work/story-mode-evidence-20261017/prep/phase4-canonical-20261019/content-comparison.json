@@ -1,0 +1,2344 @@
+{
+  "schema": "phase4-preservation-comparison-v2",
+  "contentPreservationAccepted": true,
+  "scope": "recipe core, asset bytes, bank content and independently classified provenance only; runtime/visual acceptance separate",
+  "recipesEqualExcludingOnlyVersionSkySurfaceStyle": true,
+  "recipes": 6423,
+  "assetBytesEqual": true,
+  "assets": 298,
+  "banksSemanticFieldsExactAgainst95AndBefore": true,
+  "banks": 13726,
+  "cities": 284,
+  "fullBankObjectsEqual": false,
+  "changedEvidenceFields": {
+    "city.source": 13726,
+    "facts[1].source": 13154,
+    "facts[2].source": 13154,
+    "facts[3].source": 2902,
+    "venue.source": 13150,
+    "facts[4].source": 1764,
+    "facts[5].source": 624,
+    "facts[6].source": 366,
+    "facts[7].source": 18,
+    "facts[8].source": 18,
+    "facts[9].source": 16,
+    "facts[10].source": 12,
+    "facts[11].source": 12,
+    "facts[12].source": 12,
+    "facts[13].source": 12,
+    "facts[14].source": 12,
+    "facts[15].source": 12,
+    "facts[16].source": 12,
+    "facts[17].source": 12,
+    "facts[18].source": 12,
+    "facts[19].source": 12,
+    "facts[20].source": 12,
+    "facts[21].source": 12,
+    "facts[22].source": 12,
+    "facts[23].source": 12,
+    "facts[24].source": 12,
+    "facts[25].source": 12,
+    "facts[26].source": 12,
+    "facts[27].source": 12,
+    "facts[28].source": 12,
+    "facts[29].source": 12,
+    "facts[30].source": 12,
+    "facts[31].source": 12,
+    "facts[32].source": 12,
+    "facts[33].source": 12,
+    "facts[34].source": 12,
+    "facts[35].source": 12,
+    "facts[36].source": 12,
+    "facts[37].source": 12,
+    "facts[38].source": 12,
+    "facts[39].source": 12,
+    "facts[40].source": 12,
+    "facts[41].source": 12,
+    "facts[42].source": 12,
+    "facts[43].source": 12,
+    "facts[44].source": 12,
+    "facts[45].source": 12,
+    "facts[46].source": 12
+  },
+  "changedEvidenceLeafCount": 59336,
+  "unexpectedChanges": [],
+  "cityRows": [
+    {
+      "city": "abakaliki",
+      "banks": 30,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 152,
+      "oldBriefInputDigest": "7c5f14427a45103c7a4b32d58d5cc50e4b7b8f1ec6f07fb447d4c37184813db0",
+      "newBriefInputDigest": "9831fa71f86bd1557c5e21982cfd9d332ad881e7217292f7acaf34458f8d8eac"
+    },
+    {
+      "city": "abeokuta",
+      "banks": 34,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 160,
+      "oldBriefInputDigest": "17850affd0a17c5776d8a135f0ccf5da937152ba0fbfa25eae909ddbc80f0717",
+      "newBriefInputDigest": "6eee81f7ff2970f429c93f282ced05da4733d4608212d6b43a0844ffbab38863"
+    },
+    {
+      "city": "abidjan",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "6db4003b6436d064e337601d7f0769eaf4d7749eaadb22fda336a76a5d832f72",
+      "newBriefInputDigest": "a1b1a69455b63947ce71f1f44ee0721595aa8049c8f351d05ba35a10ce4585c4"
+    },
+    {
+      "city": "abuja",
+      "banks": 58,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 290,
+      "oldBriefInputDigest": "16db9b4bf92d756dc20ba8a7b41b433c2474463abd8a9b2ac25e1dc20abc0900",
+      "newBriefInputDigest": "5988445df90c62ed61a7d4c27dbeac04842b1ad87620bc71a0d600fe0f2e66dd"
+    },
+    {
+      "city": "accra",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "9ea5a116e7e5855d9635617980a245e72f149c55d8b2aa525fd2e5f6b7400ef8",
+      "newBriefInputDigest": "184b3a60a117de0ab68cc84385ad26c82ae393b0572a10de89fc43e260924ecf"
+    },
+    {
+      "city": "adamstown",
+      "banks": 30,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 129,
+      "oldBriefInputDigest": "cace848d0fce424e53129f2df7c337d3cc4e5318c74abc06068c1c5506e562a6",
+      "newBriefInputDigest": "78cedd2c8bbf57c1d726705321600fb51347af42574ab2580d028b8ff5352740"
+    },
+    {
+      "city": "addis-ababa",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "2e233e52f5590bcb8b4fd7e8d5eaac60ee3b6160ad53bb4387f80f59addd0a05",
+      "newBriefInputDigest": "96a39838a2fc66e1ecdb1e03ef624a065dd736fc794c883e3903e2643600e99e"
+    },
+    {
+      "city": "ado-ekiti",
+      "banks": 28,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 142,
+      "oldBriefInputDigest": "53140c84f0d25ec3d52756b1a2f5897b11bb9ffb1018f8ef2013d3e0b2499ca2",
+      "newBriefInputDigest": "18f48558b6933fb4db407491a0d22f7fdfda1161852e702b536bc4ed1897861d"
+    },
+    {
+      "city": "akure",
+      "banks": 32,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 162,
+      "oldBriefInputDigest": "dc29690bf3edcc659f3cf96bb9cad6e9af2674b852e3a8f55698a13d5229c945",
+      "newBriefInputDigest": "98d7f277df1315abe4b04999dd9a54d6eb1d6be79b8c0d9435be8eb6a316b319"
+    },
+    {
+      "city": "algiers",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "b43f6b35ab8aa665081740b74587725cd1331ea495b6ee810763707241c33aa8",
+      "newBriefInputDigest": "a2bfdd8a6b50c76ca6054528043bdbb8b25f29c5833a29d063c3397aceff257e"
+    },
+    {
+      "city": "almaty",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "721936142a1545e10611543a7f6a62de836dcc38140ce15d0db2ba72d6eed11b",
+      "newBriefInputDigest": "9ea94ab01047925c5a6da5737e370ceba4523b301967cdf3f93dad2229f92e50"
+    },
+    {
+      "city": "alofi",
+      "banks": 44,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 185,
+      "oldBriefInputDigest": "68ea63818b833c54a2b80e2c43c02d346b166996e1b05f2e970816ae2d087a58",
+      "newBriefInputDigest": "e1fda15f6fd88d17f879e64a2830b84fcd9a68c8a4a441690d8614009c47ca1a"
+    },
+    {
+      "city": "amman",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "80b1227c665712ea3085aa599349d9ad167a4952f150ad707452a9f68eee6dcf",
+      "newBriefInputDigest": "6c79b64f9bb7c81a56648d5a6bc8843e7c509613978f687eb161872457f81536"
+    },
+    {
+      "city": "amsterdam",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "5d6e15db4b831546227e1a816d048cb2ab2157dfd82575c93655c39e9a6b23b5",
+      "newBriefInputDigest": "078fa6d4732506d745b8329927eae3bd0be85affae0484ceaa692d049fef88ad"
+    },
+    {
+      "city": "andorra-la-vella",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "3fdc4061ab9eb01ce74a4af26b2be63e77f33b19fae48cb82d56bfbc83010109",
+      "newBriefInputDigest": "d04fc40b1f06b0fa857721592efbc542f519f4285cb7d1d9dc12e2a7fe51e12e"
+    },
+    {
+      "city": "antananarivo",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "d1686590143885dcb8212d2b0663e83f679501d45b6af72be99cfcd814551064",
+      "newBriefInputDigest": "50b1d4360e8802c4ff3bc17856fb78b531308e957ed19a9f14a4b3c23f449b33"
+    },
+    {
+      "city": "apia",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "8b47d00462f10e3833d576d5213b7f65a716a1b4514207f1966b48a2269a0003",
+      "newBriefInputDigest": "45f06a32865dbcf2d0d81e83935324cd6fd94c9c146b96548f88310fd1888305"
+    },
+    {
+      "city": "asaba",
+      "banks": 26,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 132,
+      "oldBriefInputDigest": "1306c92ef43e0c1e6690361d5952a1dbb941fcc5ce28104edb5b940ea4494bbe",
+      "newBriefInputDigest": "372d256fb1fd450400476943c50b3a8c0cff55eee41be50758bf5449d6e6f779"
+    },
+    {
+      "city": "ashgabat",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "7212a22866ca7e6436c89d9d503ce46e2b6d66f120181353b18afc3fb7b91198",
+      "newBriefInputDigest": "ea776e08c708b8f2489ed095193c1dd801f4ba8a4011b4dade8bdd50a7a5cef4"
+    },
+    {
+      "city": "ashmore",
+      "banks": 22,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 97,
+      "oldBriefInputDigest": "6345f2098ce3f62acd7a1f94f1090cd67fa020c2ca124d0d3bd9cc5a026961fa",
+      "newBriefInputDigest": "e817ef64feaf74f5b2d636d5639c62e6c33f883ae020dde79eb9c736aed238f6"
+    },
+    {
+      "city": "asmara",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "c89ae4397ccfa3c53fc6370c20e1908c61058c965971971f24dade020e8a14e0",
+      "newBriefInputDigest": "e0f0053644c12983cb292f4bd90d4b4f3edda9af16cc36b30b4cebb0bd4c4103"
+    },
+    {
+      "city": "asuncion",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "953961ca8e0e008e118fd63247bae164c0389e0f0bc1aed90538e545dd78b769",
+      "newBriefInputDigest": "225c5fdae1e2074fe9b1cd8a3955a62f09b2d16cecd2c9c72f528a53943c0ecd"
+    },
+    {
+      "city": "athens",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "90dc9eb57fae83723b4a698de2b94913b2282d6b62635429c16c3a5734d6c86c",
+      "newBriefInputDigest": "87029a4d9c10afe16d584766ee6b961d28fd87b56b10f12065fdb93b79132e39"
+    },
+    {
+      "city": "auckland",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "4ed45ae81a64bef9656f9734c9d4547a6c497b4109061a25cbeb160d7a641c90",
+      "newBriefInputDigest": "146bf74eb5abb454f5ac101ff0042482e414ac4b45b864063cd3cbc22359fd8e"
+    },
+    {
+      "city": "avarua",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "46fb3259896e7dacb8280f0455cfd9eed2c139a8d639644953a847ea0b456f82",
+      "newBriefInputDigest": "3b067b25a5e5b6b792fc1ec7d3a99997d895cec1ca1021aed06f2e989070924d"
+    },
+    {
+      "city": "awka",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 242,
+      "oldBriefInputDigest": "e3ad865daa0b8c998b462e834f055a5139ad4e6d5b3deac941fc66e3fd89a376",
+      "newBriefInputDigest": "66d4f519822f959347d36925703cd029d46a4f6ebdae50041f1b208e1a96104b"
+    },
+    {
+      "city": "baghdad",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "81bbf619095a018d8b1f939c8a74f0a51c1bba4c72ee50bc990ed91f001d7c3e",
+      "newBriefInputDigest": "d529b695ea023738e1032b2ca2b31fa8d2e50356177a0a8bfbab33351eee3e76"
+    },
+    {
+      "city": "baku",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "8f87ab0482c2d50285c1c731a3be97f21ea355c7742c647accadca01a1f512a9",
+      "newBriefInputDigest": "394c8ed218eb2cf541a27195351d563859e85efcc779fa6b13cc8e29054ef3f4"
+    },
+    {
+      "city": "bamako",
+      "banks": 44,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 185,
+      "oldBriefInputDigest": "1c693bcd91b121f3c46dadc28291dd273d7e4fc6a89b12bd6c48474a0cafbbc9",
+      "newBriefInputDigest": "559e202516402591619584c511d3a08591820672eeda8dc9c9228ec33bd0d44f"
+    },
+    {
+      "city": "bangkok",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "950fe32ad2f5620c102a4be1d9fd4e6bfa8cdb56eca1bf8eda916b4de77a4b07",
+      "newBriefInputDigest": "915622e434736d7cae1041bd655f0c6a70b96117733cca37e546f7c8b22bfc27"
+    },
+    {
+      "city": "bangui",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "3482a7cc5611e314a5182bd99798f582bd76e53ff5273dbcf5c827c8e6e9a8d3",
+      "newBriefInputDigest": "68211ac243022b0a8a1e94b26c84859a55955f0c34cab0cf6702ac9aa2bb8d97"
+    },
+    {
+      "city": "basseterre",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "51f93899b09420197913e752e2d5af52418b8ad09944d135e25c6e6c934ee19f",
+      "newBriefInputDigest": "b279ab0840fee43da3f317a736262e78afb8440a44efdb04fb27f770fbfa4f44"
+    },
+    {
+      "city": "bauchi",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 262,
+      "oldBriefInputDigest": "0196b6c12502d965225ecb65e5e6aab1f1e469ca688ba776f339de439eceea50",
+      "newBriefInputDigest": "5ffe1b813ec4e226f2639f8cf167f997bb97b95d4d3cf2fee2957294825e1ef4"
+    },
+    {
+      "city": "beirut",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "773b8c5c90720cfe3c88519174443864de6248ab7404f49b56400ccbcf46fbea",
+      "newBriefInputDigest": "588d4727443075da02cd2d1e4c77cdc2f0223ae17a4321e0b1a6a2d3dc245822"
+    },
+    {
+      "city": "belgrade",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "f10131b73ba6dbc71d36e6598d0e04f0913151c3f524b7614f04bfd8bdafb9c1",
+      "newBriefInputDigest": "8871b766db9a1a142489d538361d3da3768c12b013a766064bec6264ecf92375"
+    },
+    {
+      "city": "belize-city",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "c48c2e5b5ddb6192cc42b6d36377da092dadca6d4ca5dc87202dda912ae556b8",
+      "newBriefInputDigest": "e1912d7a92e2d0289e2498d6fb325bc90fbab8638f70f92c1db53d1b812fff18"
+    },
+    {
+      "city": "benin-city",
+      "banks": 42,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 212,
+      "oldBriefInputDigest": "a8b4154bc26b28be8e0688ef89c49825282c310673968603b837c4f56a62fdb3",
+      "newBriefInputDigest": "32dffea5423b8ad46ece3258df34f8405f4a2f007c9aa5979743b691153920d7"
+    },
+    {
+      "city": "berlin",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "44e9b3b383b91ded75feaaa5e60c3ad60c841ba433d26432a0dd1e04519c30b4",
+      "newBriefInputDigest": "7defd66d874b0738cbe6a6f31688cac18917fc292a6df80a47b1cf695a32a2ee"
+    },
+    {
+      "city": "birnin-kebbi",
+      "banks": 36,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 182,
+      "oldBriefInputDigest": "0611a2dd6be603c077bb29d06684c92f94f2dfbaa09d71411f1eb352fe8408c8",
+      "newBriefInputDigest": "af5b0ce3d8baf5688b887bb4a82c2c2566a6d3fa40e6a41f1f0109b5a2be669f"
+    },
+    {
+      "city": "bishkek",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "1f08f82990044e6cc08e4ee95cda445a31335a782366b13978479d2a062dffeb",
+      "newBriefInputDigest": "39fcab21cded4795cabd06c7d039bd82ebcf449fa2198d20f069127c65713093"
+    },
+    {
+      "city": "bissau",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "d06ead7a4f54914266f08a6ef23d2d0162c8d6a8d7edb8597de4508fe3db6296",
+      "newBriefInputDigest": "d84267b93b9794e002d6c40b6b084f45e1b31cac70ef41eabe58cfc492a5b4fc"
+    },
+    {
+      "city": "bogota",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "1fb88bca5ed7fa8a191ca535e965cf5cf94df7f0d8c27c5cae0ae8e3c4938f71",
+      "newBriefInputDigest": "d1467a21e3aead792338701370d19e4912769d24e8ae883312deea924aa1a0ab"
+    },
+    {
+      "city": "brades",
+      "banks": 42,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 177,
+      "oldBriefInputDigest": "05c274cf9224160bdfcda23766c20075086bb9e4d414c87e7f5bda83a5cef0de",
+      "newBriefInputDigest": "07b8033788d72b116bab64841f66e1738284e49a27c7cec64cb18ddfe10710b0"
+    },
+    {
+      "city": "brasilia",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "acc4c5791dd93f991ad96ab0ecd6e563c0bc20b48fd168e0c77ef506c693cb86",
+      "newBriefInputDigest": "bd6a03f846f097a63a7c97aad9fee5732f1761d4839a538749c9ea83d2de711c"
+    },
+    {
+      "city": "bratislava",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "d8adb0876118fa73f2f9c98289e9722853a4f0cf90b1c34106bdf42e5176326a",
+      "newBriefInputDigest": "ae75aae9f403ac173bc9812b930d9757ebe5485cd04cef9dddb2dcb35ee5c1c8"
+    },
+    {
+      "city": "brazzaville",
+      "banks": 56,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 233,
+      "oldBriefInputDigest": "0745da20f56440c8afbc402f31cb7a4ff3df933d2fed24add7eedc5cda8db65f",
+      "newBriefInputDigest": "58479a14c9480bb67e107bd5c46de15de8c62dd00ce525c98a4880c902bf8673"
+    },
+    {
+      "city": "bridgetown",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "53e0eac23ef2d4ce875b37b5357065f8c14490a51d1c85bd8c93231b5d4a313b",
+      "newBriefInputDigest": "69268277970badd3238319fac83e2f4f52514307a11a99f1617d98da1632ad00"
+    },
+    {
+      "city": "brussels",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "903c46e99b192cf06c91b3c9a316bb47b00f85b16affdcf5704e590dbc19c301",
+      "newBriefInputDigest": "0e4c9d84f874c89842c293ade719e7d51915de70bcbc1fe3cbb4a2aa18a61705"
+    },
+    {
+      "city": "bsb",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "aba6ddc36bb57f6584f7d14c91d079e31615da06ec14db94a3d686c2e5f289fb",
+      "newBriefInputDigest": "b4651614b2bf900b93ca10dc5010f3d7e6ee54d554cf48aac028f23594a0288e"
+    },
+    {
+      "city": "bucharest",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "3e94287afcc435257f0a310f069bbfb1c37c6fbba76f20073c8665ebb67413d7",
+      "newBriefInputDigest": "bb4be22ccb1307d14f1f33c4bbed85a4601ce76f60556b707d7948a44ff469ef"
+    },
+    {
+      "city": "budapest",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "8be15725ffb9f2aebbd0ad389b9df222a83d5c0ff6603fa173aac5f030ad974e",
+      "newBriefInputDigest": "3797fa2b0392a0245cbc630c10d01036f4ecf4a28dfccb7c81985ad718eb523c"
+    },
+    {
+      "city": "buenos-aires",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "064ab0d0c86183f2426730e5afdce4c9948526db493c588239f8fe5dbf5751fc",
+      "newBriefInputDigest": "4b1bd0c82cebe915071e4354259bf07235acce272a63f62fe7c4d704e4f2d497"
+    },
+    {
+      "city": "bujumbura",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "d6f90b78083995125ec141df5a003bf4df0b8edfd6f61bfb0ca76091bd1374d9",
+      "newBriefInputDigest": "91520e9c49dc29fcf262f880999edfec2a58f63517e11554b2475d41be3da150"
+    },
+    {
+      "city": "cairo",
+      "banks": 54,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 225,
+      "oldBriefInputDigest": "c2c7e6c92b86cd4fe34d278467fed9244b3cad5510d718e6078676d277cc0fa1",
+      "newBriefInputDigest": "bc684639e00ac1b5327c95316abf1fafc13a23221eda87060c0747dc385b6513"
+    },
+    {
+      "city": "calabar",
+      "banks": 36,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 182,
+      "oldBriefInputDigest": "bc7ffb2cca68c9df2e1b48c88f1e99346943d6f5de681f288a6b5a30709d8b48",
+      "newBriefInputDigest": "756074d571ec95bc1f5a235df1c63e9130281e090ae557b45f37ae6d6e6179fc"
+    },
+    {
+      "city": "cape-town",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "54fcb141983cdf16e275f9cc4ba0d1a726d82f65bcd19e3514d208deefccb81a",
+      "newBriefInputDigest": "0d97d8e834fc80c088c3edea5dcddf0d5b1b90eec8e0ea4645eddd85dd4bc207"
+    },
+    {
+      "city": "caracas",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "323758066b8a6ff90123ca2af2af1e9aa30112852293fd61ebe5e75920e4da99",
+      "newBriefInputDigest": "d7725fdbb0028a6230c37ffc39a901bd8b9852d1843986c45fe3a94cae4aeb0c"
+    },
+    {
+      "city": "castries",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "d0001837cd1a0fc349ac141c4a7c30b05f86ee984c49b4cb9e4c71a5a8a06910",
+      "newBriefInputDigest": "0a6f393c9028ba2cfc9eee5cf3a0e265c1d9795a5692d333457065bd9df7027e"
+    },
+    {
+      "city": "chagos",
+      "banks": 24,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 105,
+      "oldBriefInputDigest": "8b89b2584e8e57e95dafa8fb87faefad6225ffbc8b11cb974d4d8dbc8197b374",
+      "newBriefInputDigest": "3d5589a1108acd0a47344d088d02042c19a695adec87bc83be8b98524ebc8f95"
+    },
+    {
+      "city": "charlotte-amalie",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "262764c99617effe50f80b7a268f51ec96d14b4b6a9b9da815fcb512f5359937",
+      "newBriefInputDigest": "e71e7f6b8442fdb1a71d81a48ae0d3dbe69338387aaa803a47f86e4118d4f748"
+    },
+    {
+      "city": "chisinau",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "a906c325d057e0017118d76d6d6223c0278cd218fd69a897bdf589983637e250",
+      "newBriefInputDigest": "582e1b1dcba3332257d2b8131a48b18417ac29d9d089efeafb4148c1573f3d82"
+    },
+    {
+      "city": "cockburn-town",
+      "banks": 34,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 145,
+      "oldBriefInputDigest": "2bc37ed4268cf12e7be1b82f9ebc2ad49054fe6333b3c1c80ba3475ebac6b69b",
+      "newBriefInputDigest": "c0cc03c9e64d482af0991f5179989668f961e8ff060e338c33a41445eebcc147"
+    },
+    {
+      "city": "colombo",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "73927f6da52aeaad8b94aa95844c7ab82bc69f54674152f3f8d601b73c159e4d",
+      "newBriefInputDigest": "eb8fe9f0f7ad223be2d40612cf42f0f5152794366ed2044b1494393c5da2efe7"
+    },
+    {
+      "city": "conakry",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "31f7456cebafb2d71308b961479b087de2ab94d8a669334f441022c630e4e66e",
+      "newBriefInputDigest": "088c1923aca53d2d9dc8527d93a55b91cfc3df44f5e6816d0e87321dc240baad"
+    },
+    {
+      "city": "copenhagen",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "a4359bcd8ad1a69558aef930b7c1f0d0875440ad831d4490926db6e8deb29802",
+      "newBriefInputDigest": "435fa8745e7391bb67d244914cf98456954bcbb96df8c4034b9a403478c5bbaa"
+    },
+    {
+      "city": "cotonou",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "814e1fc3e02a6aa9f8e0f91df5853af0edf2e4a689cac0fc38ec1d56f14e3bd3",
+      "newBriefInputDigest": "cd11aa003f1c5daf5c0068c325887257ee728bf317e26c83dc86ca878b91eaee"
+    },
+    {
+      "city": "cove",
+      "banks": 22,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 97,
+      "oldBriefInputDigest": "6dfd2f052f6a1feedf61307d7ef6965c21e13d44ca068046ee5142254d5ed9ee",
+      "newBriefInputDigest": "4250cf7c393af6a612bd3a26739771a5746ebfb8fb59738e8898454e750a2a3c"
+    },
+    {
+      "city": "dakar",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "fe0f6cc44df112a2c56ada1f193d9def9e2bd9315f1c31ae772e5221dffff7d2",
+      "newBriefInputDigest": "71dfc4bdb451a3ef5725b76bcd2e00bd519eca674e4b77bea7ae5c6d6a423d77"
+    },
+    {
+      "city": "damascus",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "41e70976feb6f88e4b798a87862e630e06f3426b6aac1fa28b153f31c44a7803",
+      "newBriefInputDigest": "56610e42d1693699ef2be9bcf778064dd50d1a1a87a003c13f16972fa315ae4a"
+    },
+    {
+      "city": "damaturu",
+      "banks": 28,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 142,
+      "oldBriefInputDigest": "97f36ac2361c8cbdd0be586bb1dbed2024623976e76f5f1361b59348100a47fc",
+      "newBriefInputDigest": "88640d936d747de622779866936372c13060469063d50e4592524b28b7f46d65"
+    },
+    {
+      "city": "dar-es-salaam",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "8984d6282b5e244348a7aac73e23f852cc6e7b7d4586d4f9a40799d2de1eec59",
+      "newBriefInputDigest": "90aa4084874e807fed03f0adcd3ec4ed741bf0f783a6319af17f31f10b9335b9"
+    },
+    {
+      "city": "delhi",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "056b77867ee5c1980f4c62fe6b44e001a32dcf23383c94eeaaaf5a34f9cdb62f",
+      "newBriefInputDigest": "fda1a7985215068635e1e9ac98a2e3b64f708750c50f407131d6102d985bfc49"
+    },
+    {
+      "city": "dhaka",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "17b53956c9b9c52b4e335daed92f5fc7cda9c4b333b4a208e3e0ad47947d4ee6",
+      "newBriefInputDigest": "d94b7d670756645ad8ea96e944a2e813bc6000d1b5a7f54b96a7d5745abd54df"
+    },
+    {
+      "city": "dili",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "36e7f0c5d922008f6e1f6ace480dcb09348c63ab04bee85067d4d126bc49e1a4",
+      "newBriefInputDigest": "02601693b7cb745ffd31804fc4c0c4bfd8e8b1f7f4cfcb5339e449b7d57ba275"
+    },
+    {
+      "city": "djibouti",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "294e49fecae94bf74d9cfcb8b2f54587eebbb591ccf1c5ab640522d1bcbeacf8",
+      "newBriefInputDigest": "757922e60ab1833ad0b608728305e0baabd8f1b662ffcb195e0804816e140841"
+    },
+    {
+      "city": "doha",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "e5617e646ae2da88a237b73b35ede3e9e46f158f97e65a4aaeb740069258a739",
+      "newBriefInputDigest": "b9f3055569d6f586d2581374a87f729a754bacc7f1e51d70ef53a9b4e0f3a0d8"
+    },
+    {
+      "city": "douglas",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "642cf31e2751d768d5e304e0499ff8c37bd77fabeffdc635d4eac795dfa44707",
+      "newBriefInputDigest": "2fdb1e7697c65447382a8b9da0250d70828383ff87bf0797acfb77d98ca1ff00"
+    },
+    {
+      "city": "dubai",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "f3477e63e1ff5fcad61e078a9dff8be1088dbd6bc3f5428548d4a46ec1c83d2b",
+      "newBriefInputDigest": "3681a3cb32b8f89bc2010ae0dd55881e4b6da59ba6d99d96df1f08c9e0fab1d4"
+    },
+    {
+      "city": "dublin",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "7db3e8e769cd9088dc447cec59e722615937aa09438246ef24d264661df1550b",
+      "newBriefInputDigest": "49c170b16de3f53920fe3e7dc5736d935ba427400e74f206c26005bde3c460cd"
+    },
+    {
+      "city": "dushanbe",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "e61b6f123f6239e6c9876feba478ba0f91b60b21ac6ba45af14426ce40e96580",
+      "newBriefInputDigest": "a06321f243aa3af4c97266e5f063e91041fb76d65050552ccccfb2bafcf137ce"
+    },
+    {
+      "city": "dutse",
+      "banks": 36,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 182,
+      "oldBriefInputDigest": "7b2e5fcd58d9f358e103ffbf99d9846a575bd02c4bd1a6384b871d7551f4a3a2",
+      "newBriefInputDigest": "62b5fd72f97a1d97e6d5abaea07f0f6d3022d8b322c8515429828efaa9ddd283"
+    },
+    {
+      "city": "enugu",
+      "banks": 42,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 212,
+      "oldBriefInputDigest": "fc8758b6d383d4c83672be7fcca29e337d9d0af40a5f7d7996efc9d4a1490bac",
+      "newBriefInputDigest": "3da5726fa11576909edf61ff9a4491176d6aac891861abf7778d9414951fac73"
+    },
+    {
+      "city": "flying-fish-cove",
+      "banks": 40,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 169,
+      "oldBriefInputDigest": "c3edcc43d0125de99c869248278df6ac9623c895af9d9529ef56a4e025a89abc",
+      "newBriefInputDigest": "8347067d7f734171364d8308f2b5981f64835eb0ab2b1551da025a58cb10dc98"
+    },
+    {
+      "city": "freetown",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "54000cde0cc5bbd3e8b3270f8294a72fc2dc89dcfc41121754217d6df3d9501e",
+      "newBriefInputDigest": "3d28bb44b30330d2756bb9b132c4810750a189e28738263449b1e539919d9407"
+    },
+    {
+      "city": "funafuti",
+      "banks": 34,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 145,
+      "oldBriefInputDigest": "8b70d821a60aba30ed94a5303de44facfede6bf4ccdf51c87f544f4653e865da",
+      "newBriefInputDigest": "5a48642527986ea80d7da32a0e5152262a57a8e80851c1127f653816339105be"
+    },
+    {
+      "city": "gaborone",
+      "banks": 46,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 193,
+      "oldBriefInputDigest": "819f8a4607fda7df0567147badf35a99ab106d1e7189b8c9e339789254bbafc8",
+      "newBriefInputDigest": "e56b240fdcdec5cea4717399cd91b7a7b55849ee146e7e1081d05eefee9e3026"
+    },
+    {
+      "city": "garapan",
+      "banks": 50,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 209,
+      "oldBriefInputDigest": "fd84e72b07289ec905ff2341a219b101ff8514d2fdf361c06b27c8ca55339413",
+      "newBriefInputDigest": "55d2824ee3e5d1c78f8e59d213fec1fa66065835a99b4daac10a4b200005698a"
+    },
+    {
+      "city": "george-town",
+      "banks": 44,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 185,
+      "oldBriefInputDigest": "f0f8bede9088e6d69dfb7fe1047f0efeb0e696985947cc827a3abae4f7d160a0",
+      "newBriefInputDigest": "a6a1160b8adfa58d8670cdfcbfd6691db804908ea2caeb5c3a231e142521ef17"
+    },
+    {
+      "city": "georgetown",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "90c2e52bf26ded28aa10ccea97217eea8abc38bf90d44ac52a1ba7a6c11379b3",
+      "newBriefInputDigest": "5da7056ddb420b4c9bd7c16635f1c897e79b58efbdc1b0e13b67d835a09c0a3e"
+    },
+    {
+      "city": "gombe",
+      "banks": 42,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 212,
+      "oldBriefInputDigest": "ab12384e23b619d9e1450b5674ad0d865ba2fa20fbc3686484b55870bafa87ec",
+      "newBriefInputDigest": "4a02022c8806b0f8815f96e93239de7af8cf0f19fd890f50963c5ac1907f2d24"
+    },
+    {
+      "city": "grytviken",
+      "banks": 28,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 121,
+      "oldBriefInputDigest": "2df1b3949bf82cbebba88e37213318da8230a9c92233b88c7963cdbf2d317eeb",
+      "newBriefInputDigest": "0744e0c1c0bfd08d9ace3de29b7d13336aacd60755ebddb1d749c9cc8aebf069"
+    },
+    {
+      "city": "guatemala-city",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "b4c57fa765814faf80865e4b1f7934a1a751d3c8c7bac7aefe14702d9b89c7b1",
+      "newBriefInputDigest": "5f2764a73db97da98c23e20436cd2596a16cffbd2e7d3ea9a13984395947f620"
+    },
+    {
+      "city": "gusau",
+      "banks": 32,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 162,
+      "oldBriefInputDigest": "7a818977479b10c2c0b021c41e36929ee27d26d67320a789256859b9b50daed9",
+      "newBriefInputDigest": "381e851d886fec49a3dbe30fe1d02d3f2ed16739d3d0dd7b7ea27941f5faf9be"
+    },
+    {
+      "city": "gustavia",
+      "banks": 44,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 185,
+      "oldBriefInputDigest": "fad801707a3b6d0749afbdafff41391aed948f34a290b16d2821c6d049810dbf",
+      "newBriefInputDigest": "ebdd172f8b96b4ecf6fe7cdc2a24af56712929ebd15174bbf7efb37959b73b8f"
+    },
+    {
+      "city": "hagatna",
+      "banks": 54,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 225,
+      "oldBriefInputDigest": "0de6119d91cebef1d633488ddb9e2ac64413012c238a172d42b159be527bfac2",
+      "newBriefInputDigest": "1a1dc7a1d7928529e9f7107b444c2f246ac6bd38219bc940062ecfb6e98c3880"
+    },
+    {
+      "city": "hamilton",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "4c04a84736f86b02934f56a37db38984547b89b57684e261bdf25a4c91df87a9",
+      "newBriefInputDigest": "bf9b172693898be7174e95ff0f695b501fdda685fac196100a2d560b45b3f44c"
+    },
+    {
+      "city": "harare",
+      "banks": 46,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 193,
+      "oldBriefInputDigest": "5aa4a4a7d44655d9668804c307ea9550687969d483c0d7e21c380fdec544eb2a",
+      "newBriefInputDigest": "437bed5df77a682bc7ffbb70b270387c48c9e9c2e592507f8cfa13ddf485c6e2"
+    },
+    {
+      "city": "hargeisa",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "bba97c2eaa2b4fe4bfa26bcec88e0959a13504fbe59d61216563666d10cec620",
+      "newBriefInputDigest": "d4364f5cad18fce73ead1cb55fce6dff4664a869d87d8a64fd34349dd5711811"
+    },
+    {
+      "city": "havana",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "00e3c030eba6952eadb39aae570381586af18810729de22ac8d6f8f98599e541",
+      "newBriefInputDigest": "f9d536e1503425c798d607012e0aac0cce514df5af56db278e665c34227b8ab5"
+    },
+    {
+      "city": "helsinki",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "9bbb20022971d2afc198abaaeb1ed5e04fa3d7bdda4e306a9538366ea7a8b513",
+      "newBriefInputDigest": "958b9676ed85dace4afeb39ec5d31479e449047d1e41e8e557c7a6c1d5b3267e"
+    },
+    {
+      "city": "ho-chi-minh-city",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "6f431dfd9321152836d25afc3f552f0b6590d70e06d5e9b145d789919c6e6447",
+      "newBriefInputDigest": "84f6704a2183e9ccb1ab845633570cce6195f0ae03ba75ad1316e83fa28952cf"
+    },
+    {
+      "city": "hong-kong",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "5da464d9237b02c6e3d65e742b6b404382207a392a8997d268ba6c350fe2ca4e",
+      "newBriefInputDigest": "f0b155753f3beeb2df7fcc01dceb45e4279b7e30e204a3204d8f8cf107d6c51f"
+    },
+    {
+      "city": "honiara",
+      "banks": 50,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 209,
+      "oldBriefInputDigest": "98c9e6f2e5797ee12076d73f58c030c5445fd6aefeecf484cae96b2d86c0a28c",
+      "newBriefInputDigest": "f03d83f7ea4fae7d4b6fd1c0a207b1f90a095eb4a6c4d084cf7bb742a5080cad"
+    },
+    {
+      "city": "ibadan",
+      "banks": 50,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 236,
+      "oldBriefInputDigest": "dd821c978d744746d9837dbd8e9ee5313d87e2103e3fd331d59b7167c9862881",
+      "newBriefInputDigest": "8983e39925ba8447c4718e548a9ad84c4e0a590f9e77bf1590345ec168173b59"
+    },
+    {
+      "city": "ijebu-ode",
+      "banks": 32,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 152,
+      "oldBriefInputDigest": "41cd64fe796c1983750eae985a0a5152bc69336b2ebb109e75f5fb20ecd9c117",
+      "newBriefInputDigest": "17a2ef1210e8909d05b18e16cab4e60af107fe3f4c3e61ba9bd0bd52a9839888"
+    },
+    {
+      "city": "ilorin",
+      "banks": 36,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 182,
+      "oldBriefInputDigest": "d760b9869f8c141f6c4891f0b84a3fad4f2f6e80aa79f51c16bd7713160d764e",
+      "newBriefInputDigest": "b65cd16a8d08686c5db5aa4b208cf98eb28515989325021d3836ffa57e948d63"
+    },
+    {
+      "city": "istanbul",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "a44cfad4914b18d513b783851b9af5d515a02e1f555e6b9a5cbea7e65a7e9af4",
+      "newBriefInputDigest": "b42b626cab2d24afec8f179b891bc2064ce770932d8f0357893d2b2467351030"
+    },
+    {
+      "city": "jakarta",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 215,
+      "oldBriefInputDigest": "ed0d1b5d7d203786a2b1aca722977f094c3aca4de04be91b74972605500f1a17",
+      "newBriefInputDigest": "0a95ec0b86838cd2039cbd091449aaa5955880f60864f784162e837d2265ad45"
+    },
+    {
+      "city": "jalingo",
+      "banks": 28,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 142,
+      "oldBriefInputDigest": "114abcea5bd98cee30baa36b7a392c7f0b20baa9832e9b6adcb0f6b08fa1722a",
+      "newBriefInputDigest": "e3a5b0f14b5baad38f8b27c1d97f93bd4c09293486c44e344b60cefe8cf936e7"
+    },
+    {
+      "city": "jamestown",
+      "banks": 40,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 169,
+      "oldBriefInputDigest": "062fa83c58fe678393ad0587576cfa2b259cd813f211e9330228f597add32e8f",
+      "newBriefInputDigest": "ff3d2e9eab2c2406888be4e77364f00ff07266601056e08bae66b2b7144bca58"
+    },
+    {
+      "city": "jos",
+      "banks": 46,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 232,
+      "oldBriefInputDigest": "973407db03426e55e373007213b945cc6a56b9dbe1dac7e7a6741e614f662898",
+      "newBriefInputDigest": "f9c7f880cd62a37f423066ad7fec540aee4b9afd49f111dbbb3b21722ab63a2a"
+    },
+    {
+      "city": "juba",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "5d874394ce60e7d00f78162a058b5af0f2f5c40ac1c993b075a8ca4480e491e0",
+      "newBriefInputDigest": "6f0df26dd01280fa0ef754167b733c69af7c05170537c7a3f387e441482f3f86"
+    },
+    {
+      "city": "kabul",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "a40ce63f7140e3a1dd87a670cdacebcd2ee595c196becc375befbe496d7c779e",
+      "newBriefInputDigest": "5a07678cfe791381f2787c954fccfa73de7218a2cdeddf028070ed4971da0bf4"
+    },
+    {
+      "city": "kaduna",
+      "banks": 40,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 202,
+      "oldBriefInputDigest": "2dd6017b227d974a3890b3b03f995d36d79725680ec25d9b8d9637b2eccb6827",
+      "newBriefInputDigest": "96adbba22c0210ce12143da9304c82594a4efcbdf48635df0061676dd7fcf287"
+    },
+    {
+      "city": "kampala",
+      "banks": 46,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 193,
+      "oldBriefInputDigest": "a38339e154fe5d25c5dcc1eb69135c78e24166680ed4fa06cc2e0d6f022bc79e",
+      "newBriefInputDigest": "a60dad2a12de662dc33d0f5e51f76ffc49485e493b433ddfa2abb5482783963d"
+    },
+    {
+      "city": "kano",
+      "banks": 60,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 302,
+      "oldBriefInputDigest": "3f9cd663878f9d6e3ae2436d516ef45b47b4c6440175d5f7381ab1fdd0201843",
+      "newBriefInputDigest": "e66bea0405dde42ecf67897de4044c96c6d2a7b4359d56ab054a0e741bbc4608"
+    },
+    {
+      "city": "kathmandu",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "7d28c7be47a0bed0e413ee508b540da969401912efd1981cdc28dae36a70d052",
+      "newBriefInputDigest": "4cc7f5337421c392f6d16eaa8f666605c4cfcf25cb5d813a9ed36310d01209ed"
+    },
+    {
+      "city": "katsina",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 262,
+      "oldBriefInputDigest": "60565525967c7e9f7579a8efdee0182274906b4b39ad8237ed60819b4c2dca17",
+      "newBriefInputDigest": "4f72a3072200ba4743cbd6f5eb57d1ecbf39c18019014248a785a4ed8b7a62ab"
+    },
+    {
+      "city": "khartoum",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "8e17d5e2e58128ab3eea021abf353bbff4ff528d222229f3837b3db6b815955a",
+      "newBriefInputDigest": "8175e562cdb45ed1d1d156c6b7c4dcddadb307ebcad64d5914571479ac8e2f5a"
+    },
+    {
+      "city": "kigali",
+      "banks": 54,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 225,
+      "oldBriefInputDigest": "0df4e26725e4ef4f2ca75d9f765aa2e4044f8a7df70de164ae9f534489200c07",
+      "newBriefInputDigest": "79229ac100c658f9a8e1e1db4c6263427745ebd238dd136251344fbc3a856ab1"
+    },
+    {
+      "city": "kingston",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 215,
+      "oldBriefInputDigest": "faccfcb5c2d9cd1414a100ef422134231fd04d6fb6f2b5e82ba7309ccf44ae85",
+      "newBriefInputDigest": "34096510a688f45bc5173316ff81d157c22944ff9f3053a3c7d67d3e61575b12"
+    },
+    {
+      "city": "kingston-nf",
+      "banks": 42,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 177,
+      "oldBriefInputDigest": "9ef8916c2e68ae15462b3fba828b35ba823c1b0ffaed5b8c9629aecc9ace971a",
+      "newBriefInputDigest": "1a8d3c2833ac1bc1e288721588259f1a6fef7018cabe37476e6e6032c8cd287e"
+    },
+    {
+      "city": "kingstown",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "546162ed55094ce95c49dcf4f0fd85023847d8927afad5a6066bf3c892511475",
+      "newBriefInputDigest": "4537d95a241b86d8288980aa4ca3cf11a3139205c4f9683c61908c40ceef0694"
+    },
+    {
+      "city": "kinshasa",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "80e608b569ca6007e3cd774812ca1e2c0344808d255dedae7e949506aa753865",
+      "newBriefInputDigest": "82c90e936f7b9f30e6f409f67cbe3496db21e13fe6d9ab6c06442e300f7f787a"
+    },
+    {
+      "city": "koror",
+      "banks": 50,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 209,
+      "oldBriefInputDigest": "943a2c4543473c7ed20dc95c04828e41c123d1b32189b2d5b5784ccfc77a3ed0",
+      "newBriefInputDigest": "82851630deda3641cf8b04cc0a3be359132b43143b08cbcbe29aa2f410bc383d"
+    },
+    {
+      "city": "kuala-lumpur",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "96612e34503ebc1d82a7895df85c364cf75b21b84ab4871521c8d92d2f6db3c5",
+      "newBriefInputDigest": "8ac16af61de1d38a809f15ced46b70d4d61f77a3de4c9d0a50b6dc685e5de857"
+    },
+    {
+      "city": "kuwait-city",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "9796f024fd258b181247fd53cb7538831cfb181d69b7e02b8a225e916a51d8f7",
+      "newBriefInputDigest": "ad3e9dc372b324c92283919c012fd96e25c073cc24c6d66dd75027a6b98751b9"
+    },
+    {
+      "city": "kyiv",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "5edebd8610714527b7aa749184f9cbc34cdf6b0f288de4d259b54eee1d800c65",
+      "newBriefInputDigest": "61b9dd140d775879e259f27b79a2d9471da3be95316334ad4cd97f4743b2f9d8"
+    },
+    {
+      "city": "kyrenia",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "da342119b41c0d20d40c547f2bdc944edfcdc2ecb4c243d70c92f8a8ffb1fd51",
+      "newBriefInputDigest": "554acc96194fbce9d69c1c9dc5df68d81321e29fb58208f79c19288122d9cca3"
+    },
+    {
+      "city": "la-paz",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "f952395803796331752309fa654e713fda21414f10ab759ed0c81167f57bfce6",
+      "newBriefInputDigest": "4d4ab773dcbc0e97193ab05a910a0b25baa9b80b6bd1ebc8a1e881240c4b0a23"
+    },
+    {
+      "city": "laayoune",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "5ca4918bd0562ea4952a7c3eb168072a4785830369dacba4b77e4eeccfa23da6",
+      "newBriefInputDigest": "d65f4ca6aaa907008f7c51994c506a4cd21515d2d5748822a022d7e61c23bcf3"
+    },
+    {
+      "city": "lafia",
+      "banks": 26,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 132,
+      "oldBriefInputDigest": "9b80e6a69fe18689a09ce9a8ac27db75b6d8e04b0415eb09ca14e560d77fdd62",
+      "newBriefInputDigest": "7ac66368a386403ee9e85dfe6cb4e7e9e47e471e2624e7443e5c6543282a1a35"
+    },
+    {
+      "city": "lagos",
+      "banks": 66,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 970,
+      "oldBriefInputDigest": "d30dbd7c027f0ae21d9bf270fee5c162c7a13a9b9412d5e0ceca03a058d7664a",
+      "newBriefInputDigest": "86d24fd22d91c6fbe3465bafdd1a9d99ebd0e19c1180c38cf898f182ea1cdf70"
+    },
+    {
+      "city": "lahore",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "8db93b747c5ba0eb8ad8ce7e585a723944b1ffb632527de2168ecf9357c3c4ce",
+      "newBriefInputDigest": "d30ee915ab5269bcd2f606a21117e9c1fb7b77784bd6ce0a52af817df4c59040"
+    },
+    {
+      "city": "larnaca",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "e1c7d79762f49f21d37f5427e6ba3ef4cff79a4dc3e672216c10ed56ee3807d2",
+      "newBriefInputDigest": "442348c04087d1f2e3f5600fdd518a5550a7cb855cb5c3afe979c52cc7f9e91a"
+    },
+    {
+      "city": "libreville",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "daaf1a104241491307c1d7733b4ca05051b5ff84d58936e3ba7e8ba4266e269f",
+      "newBriefInputDigest": "93057984f7574b55bfd33763f1e6bd9f3b65ed54fc07daa8560f113eac9f8bf7"
+    },
+    {
+      "city": "lilongwe",
+      "banks": 50,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 209,
+      "oldBriefInputDigest": "e8c46127dd475b26dbcb1624a72d98e472ed387db20fb43b227c65d3d3910052",
+      "newBriefInputDigest": "8c4475b892e9ad2c4ee65c1c7c02148f060c199519709bd392487c1d89f1a45e"
+    },
+    {
+      "city": "lima",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "f7ee9c944d5915652f2927529c1ef5062859972745b6e22f8f257d335850d385",
+      "newBriefInputDigest": "ebf3788f84a24c0a9cec23cd98eac4f80fdb1420e85b491e12571cc12895c2a5"
+    },
+    {
+      "city": "lisbon",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "8c4cd7841e2a7debd3fb10b43a41066963003396f5377db044d1d56f61df349b",
+      "newBriefInputDigest": "d296ae933ec007b7e277728c613bba3bf989ff24bbd5ac0da6955ba4d456df2e"
+    },
+    {
+      "city": "ljubljana",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "99285c635de1291070ffcd1a67a8a7f2343def1099f51036db714440f2087338",
+      "newBriefInputDigest": "ead9ee257e02935410caad89bdfd87208b7a5ee71fb6a9a9eb2fe0a9759e8fbc"
+    },
+    {
+      "city": "lokoja",
+      "banks": 28,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 142,
+      "oldBriefInputDigest": "de2b8827dc6b603162c704cb0d0e7aa30abbfa2056f41186e1e0388a884a14fc",
+      "newBriefInputDigest": "550e44756be56b5fd41136424d0bf27c7e2df225f5325b87afacdf1417ab8443"
+    },
+    {
+      "city": "lome",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "6b6c732fd50ae074c5191a0186c2059e7989227498ef7d422c49988ba0b6fe37",
+      "newBriefInputDigest": "85d78af38e92f7251ce59b05f50781e9d5faaf3bcd382ef2e858ac066cd36a7f"
+    },
+    {
+      "city": "london",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "148f71f32099c3597f1c8e29a65876c02a634494d2d3ffd485500727a0c02ed1",
+      "newBriefInputDigest": "60a64a1d628eae5b34735a7c553257aa42cb3bd77b1fb900f3683a9fa7c276da"
+    },
+    {
+      "city": "luanda",
+      "banks": 46,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 193,
+      "oldBriefInputDigest": "f6344eabdff44b9dc51964b43dfb12fc033b917b6c34c847cbcd30348db4f429",
+      "newBriefInputDigest": "1dea88c48696edc4adedd8e4f6f4a2c4deff27d11eed2b508f229da6e39b463a"
+    },
+    {
+      "city": "lusaka",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "eeb9928a0325c4d889b453eaf3fffc604192e29d4b56148cfd30370ce6c9fec4",
+      "newBriefInputDigest": "d79ebf297d041ea4ef6ded481b811af8892e6bfccc4d9d6494ee0a51098ed9cb"
+    },
+    {
+      "city": "luxembourg",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "eed6e09f47cea2d0e80d549eedebc38916dbab51e148b4922d444d78ab54c028",
+      "newBriefInputDigest": "fb9853416444cd1ed00ef2cc06686bd04f730c0ab2712dbdc07abf78aeb9bffd"
+    },
+    {
+      "city": "macau",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "b3a5d96adf076a5325e394cac0945b4b571fc70af6b0b6047f859173a8ce4af2",
+      "newBriefInputDigest": "8d98e8be4cb3cdbd19e075556eeaa45a264e169a5bb42a9547e692b8063d1190"
+    },
+    {
+      "city": "madrid",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "4e91d10fb7eec9d42bbbbe76c99b9019c198ffa7df201b1760ca412f6d129244",
+      "newBriefInputDigest": "d5c6f2243462f06e2339c30428a1d12931db116bd0df3e8c1e1a85130180dc09"
+    },
+    {
+      "city": "maiduguri",
+      "banks": 42,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 212,
+      "oldBriefInputDigest": "ea54d71e2fdf872e304f7d05d1084c4c6c60a1e396f6b471e76fcc76027ed460",
+      "newBriefInputDigest": "d564b03846b38b33876c814567d8564e71debfea9a03c0870040b6231d46b83b"
+    },
+    {
+      "city": "majuro",
+      "banks": 44,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 185,
+      "oldBriefInputDigest": "eec05c8ad46a6549e6efa648ff18f1ce586ac5a94c866ba6252b278b5b6f6268",
+      "newBriefInputDigest": "c150c05efe4ff94aa78daeda5202e7e1f347d0d365e5e1053537edcd5e49a2ce"
+    },
+    {
+      "city": "makurdi",
+      "banks": 30,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 152,
+      "oldBriefInputDigest": "4bdc2fb846e78d5ede1a827030c46cce3189daef9f5a4430a28490eaabc48b29",
+      "newBriefInputDigest": "3e5309043b7bb9fe28e5f4539e32aa08e631e0466d1fe8f10905b863e4ea17a0"
+    },
+    {
+      "city": "malabo",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "957121981062df4b8217d06ee700e37b90c2af8e3b0b8a743f87aea5d88487d8",
+      "newBriefInputDigest": "53ceaef5ae02c2c8480bcd508b54cc7a2a6c69d7039871b7be2dd19974af040c"
+    },
+    {
+      "city": "male",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "56414b65b5eafc9d8147bd14858b8cd6de99cfa3ccbbf7311a12e5f7e9cb7f29",
+      "newBriefInputDigest": "720620aa4a3464d9f824cf2a05fd1650bb99c2953c96e28dcb48e6c5e5d43259"
+    },
+    {
+      "city": "managua",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "a6ba68117cb184f12d52f7fb6068a172883a6b8ce557869d898d8c6149cc6922",
+      "newBriefInputDigest": "b3a068a1f3df43303a09c8f52058c8d51092f4e4b1896a6e9f7b80a6db14ed26"
+    },
+    {
+      "city": "manama",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "5fa2b83b011468ab75cede94610e3cae324fede74e8f2ea8bbdcfce4b7f79363",
+      "newBriefInputDigest": "36483e1f90c9eb6b6092765e71bca47753f4a635cd081c9f116a408d8f38e572"
+    },
+    {
+      "city": "manila",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "e73f6dfaccfa78e5e604fc9fa9233d596487fc0e4475c53a51509443188430bb",
+      "newBriefInputDigest": "9a89a5c96cd86f54b2a7c3ab07fa9bd0fe9855952e72af47d69b8e9619df5e26"
+    },
+    {
+      "city": "maputo",
+      "banks": 46,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 193,
+      "oldBriefInputDigest": "db0ef2f29e78b1a4e26cf622f8b9212124d39eec04944f0e899d73ffed44d3c2",
+      "newBriefInputDigest": "fbadab1f3c82453d52e4650ee5e9d7078fc0fc9399943dc4e9b7cc6ec4742ed1"
+    },
+    {
+      "city": "mariehamn",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "553c7435e965ea4a7018997948c1c9c7d6ca62af6409c478110ecbab24d8cfc1",
+      "newBriefInputDigest": "f870e1efbd86c02205bd821f2e13abbe338438a01571d41e50e186e15155e933"
+    },
+    {
+      "city": "marigot",
+      "banks": 42,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 177,
+      "oldBriefInputDigest": "5460fa0367aa7178cde8b2768deca100ab99ab3585bfdefe5ac3ca5813aa3aa6",
+      "newBriefInputDigest": "f3e515121e6931a0afde598c2587b8797ecf383bf17e12ebfd9407f8342890e0"
+    },
+    {
+      "city": "maseru",
+      "banks": 46,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 193,
+      "oldBriefInputDigest": "0f7c061832ca52c85d4fea6212fced20ab248dbb8f3f2bbd42c4a157bb199342",
+      "newBriefInputDigest": "6e192edf40111c2a5cf937e60170578f2fd6b22e1625bf0abff96f23c65f69dd"
+    },
+    {
+      "city": "mata-utu",
+      "banks": 42,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 177,
+      "oldBriefInputDigest": "10d31a001808f37c70ee9b5558295c5d4e4e34b90ff531d63d62ae9ff4b75b39",
+      "newBriefInputDigest": "74bc509837e47822a50a4fd9fbe085334ab98dc61c729d559fe5b8d2def8171f"
+    },
+    {
+      "city": "mbabane",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "98d570134ffced5c797dddca68277f0b8c1c68f084153ea660b393abcf839d9c",
+      "newBriefInputDigest": "609c7a11543cce171f0eacc28d642da1f4cebac91e6989edbd2f04b1b93ea9b9"
+    },
+    {
+      "city": "mexico-city",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "42171fc03758abaf55cb3076d2bbdc757c9195ff5e7aa5fd03b4e3b4ef7ef753",
+      "newBriefInputDigest": "0084bc83bc058c32acd1947b7df739c4117211fbe9d48da2b1e11beb8dbc5618"
+    },
+    {
+      "city": "minna",
+      "banks": 30,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 152,
+      "oldBriefInputDigest": "709f82e028a707bc987746a26e0b99218fefb53eff5de96e4912af23f8609e10",
+      "newBriefInputDigest": "2e78fd78219311ec1d57b533316b7a26c5fb5e0be891d186ca1018be149454d1"
+    },
+    {
+      "city": "minsk",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "ebdec58b117ecb0b045d659d3789a94462c551eca5358286a699d85df2499b42",
+      "newBriefInputDigest": "91d553ef0bc826f028708279d976dfe293453debbc9c84bea6b31f52e4985222"
+    },
+    {
+      "city": "mogadishu",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "aae31466074e365a399b4745bebc8529290a0ab55a71daffcdb0c5f6615d2c5e",
+      "newBriefInputDigest": "c2240d61a8cc6ad25af90bb5b594ed46110d0f495a0b4fcc45c79e1e97afa853"
+    },
+    {
+      "city": "monaco",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "375e85a906a2e4ebe4fd28641fd5e1ac29bdb82699addc32815a3cac8c941857",
+      "newBriefInputDigest": "1a0284d17ed685e28d941310cfca5de0f36830bebabe0506865f6fa98362f7b2"
+    },
+    {
+      "city": "monrovia",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "fc65b3b60b96926d35ebdcf6f21f19727dc0aebc69416f67084dea254b5684b3",
+      "newBriefInputDigest": "b08e3a92101d5bce32355ae173554b07eb0272601a1593a5c3144f832e387043"
+    },
+    {
+      "city": "montevideo",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "351e040ca723b9cb885f2a6d78e8da2d179b86576e9d10b0a5a2650c34e9513d",
+      "newBriefInputDigest": "053b032ac7cae64efe886924d3fe7a41ee65a7c22e9648d858cf14728202cd3c"
+    },
+    {
+      "city": "moroni",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "7f683ca52703ec34631f5c18d0e910035217f7b0238c20697a89d508f9dcc898",
+      "newBriefInputDigest": "451287ea604694dc3cba78b6b1de6e6059684b6ec25bc2f0068b3d0cdc989dba"
+    },
+    {
+      "city": "moscow",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "38fad05657b1760ee4a24f32ad72226fa43a5ec73d9a180ca5126916db811b5b",
+      "newBriefInputDigest": "ec9ebcd332118d067bd8471defa721554c989958e2ac815c6908389a066a255c"
+    },
+    {
+      "city": "muscat",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "6c12a7f0604b5dea54863c3c0ca36c6aae5629775d560fc7524d14cb82f3db9f",
+      "newBriefInputDigest": "0a2c22c09e5e7796e3c45b14a2f3bd83164f83f50b1484d3eb3eae5f5c68fc3d"
+    },
+    {
+      "city": "nairobi",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "bf90881883277055173cea4574612c5ae2ae34b1e3f9e91814419bc7664ad961",
+      "newBriefInputDigest": "0bc956907a5fe43305e7915c729673adf3a841811d1718226829d19d40471396"
+    },
+    {
+      "city": "nassau",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "e6905f89624cc2576e6d18eccde4edf1ee5d867f10b9c46a5f56ad403b7f0d61",
+      "newBriefInputDigest": "69ea43dea1839e4222ea47c4dd8a1a8b186914b4167d209b42995116dc51a09e"
+    },
+    {
+      "city": "ndjamena",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "cdd268bc6d066debf14af507d2b12a25d77c669371ccb4190f64f2f402903280",
+      "newBriefInputDigest": "0a15947a98256bea7e2cd65ebee6d860a38d76bbe960ce65f679129efd0d0018"
+    },
+    {
+      "city": "new-york",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "42476fdb1568b5602691ce7eb475f98e6f4b3a30e10337abbebb05088d15eb0a",
+      "newBriefInputDigest": "e217038af914d551f55352f13988c1a3e0fb7949e02ee994bc276e06dd0d3af6"
+    },
+    {
+      "city": "niamey",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "e40923c8cbcb1132d4c9433808d2d626ad877d328d33a6fa5cc945c9cf9492af",
+      "newBriefInputDigest": "c14e62a5592c4282a389a63ac5f6362d3c61b37e4afcc3977e495fe0f5e3ee34"
+    },
+    {
+      "city": "nouakchott",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "e839df0ea25dbb9dd3de46425543603b6b400d2d9bda5c3c626057328779043f",
+      "newBriefInputDigest": "47e18419f02fdb11ab965be267b59438fbc12d0ee1bc80a65f9293ffb57b3e88"
+    },
+    {
+      "city": "noumea",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "65ec97ef4dd0499527da0a50d133a04f01686045fcd0fda708fa1609513f7e01",
+      "newBriefInputDigest": "53ee25cd3812af3ef1a8475af04da8e69191f28b8e32233ca9e752035f940c56"
+    },
+    {
+      "city": "nukualofa",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "be48fa3abca7d3450bd45fa708125c856a0fbcc151020727e8aa0de3a0ac0765",
+      "newBriefInputDigest": "02191c9a64ba79328ec3d7281b9673e951e803b251d0fb978cb9111e16483256"
+    },
+    {
+      "city": "nuuk",
+      "banks": 46,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 193,
+      "oldBriefInputDigest": "e6c022a62b24f9b0384e3240d3d69b0156feae9eaa0d7efb3e36f517cab2c5b4",
+      "newBriefInputDigest": "40b906a1fe44ac77c65b2a24b68223b52e2957f58ee438c3e84e658604ae2d06"
+    },
+    {
+      "city": "oranjestad",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "b57a744c4d30d6adb569dd47e08ff210dd02914e62859f597ee753bc38e27863",
+      "newBriefInputDigest": "fecedf0e3836ad676cb2efecf5ac480f97336afc745fecee098771c2b7d0d19d"
+    },
+    {
+      "city": "oslo",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "9f4ddb86b94ef100151c3128646ceee2ab8914dad4be4754ba21727db2dfd55f",
+      "newBriefInputDigest": "b0ac7998e2c8cb0bd07fcc9383b9ed77ccfeaff85d3fe9ae09711c32af010229"
+    },
+    {
+      "city": "osogbo",
+      "banks": 34,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 172,
+      "oldBriefInputDigest": "53ab0472178dbf20e293261d1c358f7b1fa1363c9dcaec70a85f37c240a7e095",
+      "newBriefInputDigest": "163c3f8d412c31270ec3d380db6cddec41a0445947a672e8e124fbc8ec08d6a1"
+    },
+    {
+      "city": "ota",
+      "banks": 32,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 154,
+      "oldBriefInputDigest": "fe1d8fa27d5c79fc5619e5fa6683e394add053c112b128fedc46baf548696d73",
+      "newBriefInputDigest": "8cda3b2fc61e39f7dcc99a87cb1a71ea0b5c0031fa803cc5576102a4de693991"
+    },
+    {
+      "city": "ouagadougou",
+      "banks": 56,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 233,
+      "oldBriefInputDigest": "eee59ef5aa4c711ada6de5d9814fcbf4360f2c5709d2c939509363da665d3a9b",
+      "newBriefInputDigest": "fd34d70b85242c1993a849db8711a788b801c961da7ad47af46fb76a731adb43"
+    },
+    {
+      "city": "owerri",
+      "banks": 54,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 272,
+      "oldBriefInputDigest": "d8b6ffdae51db1ce4cfbf8b1ffbb63338ebb2e3d306b4fb31fa8b8f2f1d01620",
+      "newBriefInputDigest": "a978cf8b5d29bb1e49246c682e2c0e7b7f3a7e05ad4630d5695def3fafc54b51"
+    },
+    {
+      "city": "pago-pago",
+      "banks": 38,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 161,
+      "oldBriefInputDigest": "72aa44272a9d0119537447f26caecff9b98a5d812b892a17190eb26c0177d358",
+      "newBriefInputDigest": "e3c197b0f5fcca532d87df6961948fe020510b9a7af185bc19a8a5ca68de7c67"
+    },
+    {
+      "city": "palikir",
+      "banks": 44,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 185,
+      "oldBriefInputDigest": "c2c155e5ede5c8019c235e077041b0dacc85d56c53328963e4da52f3194a0543",
+      "newBriefInputDigest": "182c28eb7efa6debef71fdffe263e6f1f865e221b816aae014a59edd1ce6c681"
+    },
+    {
+      "city": "panama-city",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "8118db8ab76edc6c2b3582ed4b08456844cab2309b95d8bd7ebd7da84045e305",
+      "newBriefInputDigest": "2d96fe42b09025a113904336e1d97a54a76b3c158a72e8e1410c15901851c39c"
+    },
+    {
+      "city": "papeete",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "3089aea872b98fb805bf17aa3e9c856ac10750774030302d620e684b478b525d",
+      "newBriefInputDigest": "015a915540f2fa8d1690bb6d2bb4391d04ba7cd21c0db75f9f94d12aa8f5ccf0"
+    },
+    {
+      "city": "paramaribo",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "6f00270208dec92fcab485cb1d621b9209c180583acc6091ef210c35740cb32b",
+      "newBriefInputDigest": "393c939af1086c9e03d314a3daf8e48e220672e36dd1ad848499a6deb481e25e"
+    },
+    {
+      "city": "paris",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "4fdb45d61ceb8b564732ccd30df08e45467501e9b32364269e578a3703b996d1",
+      "newBriefInputDigest": "6a6146c352c32fcbdb6c086667d08799991275c6f90cdbad95a58e4e6da36f5a"
+    },
+    {
+      "city": "philipsburg",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "14c90059082ce8c6fcbb0739298239c9789d67b748d91f07e97ec2ff168ce0f1",
+      "newBriefInputDigest": "011f2033fea05e96a070c1ed71258251dc2bfe02a886a3af48b488c024db64d2"
+    },
+    {
+      "city": "phnom-penh",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "3a3501e52401e50b6efda99890d631ddc2e26c73a1ada47086eda985c45c8175",
+      "newBriefInputDigest": "16e2204c3ce0845d0a26a50804ae6d2de983ff88f23fbbfb3f75691feadff683"
+    },
+    {
+      "city": "podgorica",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "a7c2df0e7499776fb3dbd922fd98e26e8bb260108cd85a9145060637d11c5c80",
+      "newBriefInputDigest": "3c3314405fde1d82ca0adcdc94c8e348193262e893ca667bfcded01db15dbf01"
+    },
+    {
+      "city": "port-au-prince",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "05908630285f6e6d6369588e807b8a962e5ea34f2e20ff7cbfde7fb710d66ff9",
+      "newBriefInputDigest": "a2088c13981f144cc04b5dffb3f20b3be05f7dd473c00c10bfdcaffd05a140f2"
+    },
+    {
+      "city": "port-aux-francais",
+      "banks": 28,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 121,
+      "oldBriefInputDigest": "ab451564ace6f094af919e8a0e70dfe44cc73afb2606e9afcfc8d51481be8631",
+      "newBriefInputDigest": "900150ad87402713b9d5016080c759b6f125149feab4a323e09bfde4353132ae"
+    },
+    {
+      "city": "port-harcourt",
+      "banks": 60,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 280,
+      "oldBriefInputDigest": "76b764d3c9bdf0f612ce261db01198b21bb2b6f551f7518395aabeb2a0c2a036",
+      "newBriefInputDigest": "731ea5546350aa1b9d986cb5603333d6703705c7cb3d07df2e370363daad94a1"
+    },
+    {
+      "city": "port-louis",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "04ab28dc0f8358cdb235326d3aceefb8157faa0aaf311017fa2ab35aa4a043b8",
+      "newBriefInputDigest": "51915e4d2e09b15b2c94abec6f20f5661ed0862809edbed40cb174f17f45c462"
+    },
+    {
+      "city": "port-moresby",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "c8cdf63a37b3fc418e4993bc60bedb829fc1590ecafa8ee9b76d81fbb047d871",
+      "newBriefInputDigest": "d52559baeab395f1b97a19869a951ba9c5629e1045ab0b26f72d130c63ecf8ae"
+    },
+    {
+      "city": "port-of-spain",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "0d025f09cc54bd500ec6590aed5f228e0b21e4e083060619553bf052844f5a94",
+      "newBriefInputDigest": "8666a244a868eaca7420b86052d3fc6593c6bc68224603da4102b46bad12c893"
+    },
+    {
+      "city": "port-vila",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "c789529ee5d8cbd0e1857d76256881bdd8b17f85ec30f58e00f4b0a93761a06e",
+      "newBriefInputDigest": "88342c72425571959a54b691e3ae020bc6c1056cebe0f99d7f949dbe34112de1"
+    },
+    {
+      "city": "prague",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "6f04868ab26915eafa65c34c2de2ed5a74693a9003d7765ad9dbb5440fd16c4f",
+      "newBriefInputDigest": "ace90b7f29676908fb14cbe2d30d761783c8fc19e537572fb8d3dd2eb9896286"
+    },
+    {
+      "city": "praia",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "413afb75aa7132572d0fff5a50a0c1cd1eb36ff48fb599c026c9e575f81c376e",
+      "newBriefInputDigest": "c0f141d0b627e84bf5747f933dcf2cdfddcb86c69fc6426aa4402fade6670133"
+    },
+    {
+      "city": "pristina",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "4cdda4ec8726bc962da73889433e7d9c6f6dee8d362aeb66ba1065e942aa5e66",
+      "newBriefInputDigest": "597770099d432a2fa286bddb3251cfee599eec76757b34b21a9cf169343ebf8a"
+    },
+    {
+      "city": "pyongyang",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "68e4443c14f95a181de1968ed608d32036b39111d0a8adb24fadc4620bf3567a",
+      "newBriefInputDigest": "2560e75c2569eaf57745af8df0de578ed2218d900366568d13dc3e7bfbc89d72"
+    },
+    {
+      "city": "quito",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "f5757e29ef7588588c3ad88530d63f2eecec644aa504a45c87d0dd3fd03dbb7d",
+      "newBriefInputDigest": "89528e4bb07fe2a69ccecfa5df3a291983b71e9b8716b9ff0f481a66a53a92e6"
+    },
+    {
+      "city": "rabat",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "72892f72fa87fbd16f5bc88f60132c30939a526f4fa4d1f619e722ca8db531eb",
+      "newBriefInputDigest": "5633d0acbda0ed45cdff2f4db8fbd655e81b3572787c608c915dd5df9bfa9cde"
+    },
+    {
+      "city": "ramallah",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "4812b64c48b3494820ae6095da9d28a984a747687338b01920c1b18b640bd5b7",
+      "newBriefInputDigest": "ee9b89536b9829a80acb662da38195665b2f0151698506833bc51cd5c757abc6"
+    },
+    {
+      "city": "reykjavik",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "6dbeaba3fb31abfd753593b53325c65a3298b46d723cb74d35e95374d046e8bc",
+      "newBriefInputDigest": "f378896a89b1a71907f1894d2c600979b1a9133d75d710f0861fb288768f0090"
+    },
+    {
+      "city": "riga",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "1aba44a902613cc33a740f0e0ca482c81420c295ed1763de304a7ec345d1ed34",
+      "newBriefInputDigest": "654445ecea1f4c34b4d291eb4481e018237ab59f3e054eceb23609d2cc42faf5"
+    },
+    {
+      "city": "riyadh",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "760a4959fb93742132c01ab0cf8dbf62a856025a7755f4c4cb6e68954e5de9fe",
+      "newBriefInputDigest": "6e50100dec4535675e15df08d37c13957e53a6839e7cccddc8cc390eb401626f"
+    },
+    {
+      "city": "road-town",
+      "banks": 46,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 193,
+      "oldBriefInputDigest": "6deb72ddee1a8de5bf4908cb13632c4a5eecd7c2070086ad08c7bd4950047895",
+      "newBriefInputDigest": "7b0c64e8a9ec9d4916c58c5a4326fe6d4499f3271c65fcced1284f842152fd55"
+    },
+    {
+      "city": "rome",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "3dff03d913d8cc568f4dc3ad49bbbd62c90c2c5d965a1e923d57add5db6d11ad",
+      "newBriefInputDigest": "f1bbb69111d21a2d2f97c7870deb918208384e90ac243f257797d9bd70ba720f"
+    },
+    {
+      "city": "roseau",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "73eadb06bc2af5c3712d603f08449228a021f5ae66249249c675e411d977d51f",
+      "newBriefInputDigest": "5ffa481eb3300f7a0669875035ac21e39349dda60c72b65de5816fa270d16962"
+    },
+    {
+      "city": "sagamu",
+      "banks": 32,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 152,
+      "oldBriefInputDigest": "a4d07cd6531b542faa0807dfed020db5bfc18dbd88096d56adc91952824e89fe",
+      "newBriefInputDigest": "197519a7e7f40f009ee4c302b4a14ce25b58625a4ecb1dd01b8a26bad6bf4574"
+    },
+    {
+      "city": "saint-pierre",
+      "banks": 44,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 185,
+      "oldBriefInputDigest": "9edc50aa072a92991af96e235c2a1e711ec185f7cf3725afd049c4cc43f2b4a1",
+      "newBriefInputDigest": "44e2a12badf9d3b2f5b4ce854a45b6037280fd8f305f46811f7babc7bc198634"
+    },
+    {
+      "city": "san-jose",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "10f654e3575983fa8393d15978b14f87eca17259aef15acc900b602571275724",
+      "newBriefInputDigest": "bfd243f8756e19ef6390fc84c2f38696f74d29761e5abac86a947c6759683fc1"
+    },
+    {
+      "city": "san-juan",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "601960721987523f4c1fab508cf90d55a45cb710f90152bbe36bbe472103f075",
+      "newBriefInputDigest": "3815677937278d63a231706384ea7f658542be80267d0d1fe573599f7e1c58d9"
+    },
+    {
+      "city": "san-marino",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "745dbfddb819d6fb2926e1c519e118cd126da0d2615437962bb870c56e7178d6",
+      "newBriefInputDigest": "4e0e08907875422bb5652ab833e3efd76bb9e35d45136ea059308bac6acd6d5f"
+    },
+    {
+      "city": "san-salvador",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "9e1dd800c992a535e43b0399712020999752adc5a93b81f328910a554bb64881",
+      "newBriefInputDigest": "c2a2feccc182702b0b8638722b2306a1100f6bf19f5b4127dd49a36c2d21682a"
+    },
+    {
+      "city": "sanaa",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "1a6ebcf33506fd06ea4b1eb8f411ef9e53d49063610d288720e2db3b11ff402c",
+      "newBriefInputDigest": "721971c9d04019fc16cf99b225d2e308d9ad174777d1456815a81f4edc072fb4"
+    },
+    {
+      "city": "santiago",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "7df788394083349385a1cf05ca06716b3925e9e0e8f792fe708e641aedcb20ea",
+      "newBriefInputDigest": "f95037793bee88fe565cca496ed9f53514057f05ee93cdd2e4cc6bc327124944"
+    },
+    {
+      "city": "santo-domingo",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "cefb093b760e1be3554cc97311b625e384d999674ff73b7bd44c677c2a577baa",
+      "newBriefInputDigest": "f1a8018e92a80c89322bdebd12a83043c6057eb67c08112d11d8a1eca18c36b5"
+    },
+    {
+      "city": "sao-paulo",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "ab6e9d0c1727af59b7a5b6b38ca1045a624168ccfc0797dc94674307047478c5",
+      "newBriefInputDigest": "c8acbba95b184cda730fa16904c0891030d265d0ea066067ab9b92f5abb80de1"
+    },
+    {
+      "city": "sao-tome",
+      "banks": 50,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 209,
+      "oldBriefInputDigest": "802f3abe69c3cf5ea568208c8f9bc1e993319eccf0ebb85acf174abae09e1c3d",
+      "newBriefInputDigest": "32e0200f42deb030020dfdafff5ef1eb9b1e236e7b01c239068ebf74273b1b61"
+    },
+    {
+      "city": "sarajevo",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "a6351c1cb1e85715a561999c0973cf2a3bf7252ecfed9a5dbd1c8c71fa852112",
+      "newBriefInputDigest": "9154019caf5c651ff9210ef6cef3743c4ff38c2082bf1e7a9884a1a680205c8f"
+    },
+    {
+      "city": "seoul",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "1090c4427fdd7550570c49bc9cd82ce042a7298282e4b725bf1f0ba0775071e6",
+      "newBriefInputDigest": "3f5870273cc4b751e77cdb2fa0ad5bed32c393ef484518fe8cbb8859062b000d"
+    },
+    {
+      "city": "serekunda",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "ce84c26e7649251b14b942560562628361ee71d3ada41d9430b6e37a27574247",
+      "newBriefInputDigest": "99b82fa60e76a7e40ee49887ad8993ea719789267eb07382c0170b6fa4bc6127"
+    },
+    {
+      "city": "shanghai",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "79ce68d6c7f83766335ca2969451764ec03bbbb85d0577369e4ccd06855b0652",
+      "newBriefInputDigest": "01538a2e821d8f85067e7a14d163b61c15cec8f8e162a4f7ce9ba08a97fe93a4"
+    },
+    {
+      "city": "siachen",
+      "banks": 22,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 97,
+      "oldBriefInputDigest": "bea953092326a6bbf54e067f42cb9ec13070fd43e2c409591f9f51867acbb652",
+      "newBriefInputDigest": "f66b3728c28d7861cd3f42324510a9e70f7a1094941933729c8ed45b637d030d"
+    },
+    {
+      "city": "singapore",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "25a6040ca14e1e4053aa6cb9984dac7f78402382f9871573dc2192d763417c73",
+      "newBriefInputDigest": "7cd9fbbcf0721d3fed9bbbb6a19a9358e07224628d57f5fe20eea73840ff097e"
+    },
+    {
+      "city": "skopje",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "c67b4752d3e3b04f53523a0cd52506dc43adab71aff3a653c6d90c7d129e5e9f",
+      "newBriefInputDigest": "39b2e800c3319a0cec59c651eab526876ec3bdbbbd059cc76640f8cf23b2da83"
+    },
+    {
+      "city": "sofia",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "3e85d32070930b2c82d834a1d7c6262fdc0a2f712b5db167ec40eb4ee0cd124c",
+      "newBriefInputDigest": "bffd08db1e9af1bdd962c02f7a1defa8a4234b4c5d503df24cec84581e8126a3"
+    },
+    {
+      "city": "sokoto",
+      "banks": 42,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 212,
+      "oldBriefInputDigest": "dfb3cadb3715833f5ee0c4bb42be104b85028da52bf991dc320387291a311586",
+      "newBriefInputDigest": "75dc601b69219d6fa2c91dde57aad099583bad2684dbb2c10166655ea4fc02b9"
+    },
+    {
+      "city": "st-georges",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "96e7b6807f146733427df1e29c0519d8bea3ee347dfca67257b6dfedfdd43a0d",
+      "newBriefInputDigest": "e4b4b90763c0871216a243d9a9c0d7c9de85069fd6929c6bdd0aa8df93101d78"
+    },
+    {
+      "city": "st-helier",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "033da8fdcfee1de023229fb377a17d901149fc0d9be31158a00e279922160202",
+      "newBriefInputDigest": "2b4f06b1e0b0199b8122b19352fca133951208b31ef9dfb53e768a15df201857"
+    },
+    {
+      "city": "st-johns",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "3f0c1c37c5b2a124e9b705d92d1fb67eec3cf52e4be0f405990735b5b2257d0f",
+      "newBriefInputDigest": "44136835d2ce59c8d54f39d031c835b14f1b38f2c8f6e3774c535a1c4ce93a00"
+    },
+    {
+      "city": "st-peter-port",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "1be0149047382beb229bed4c9bb7f8e3b087607d7a3a32e7fcb1c295368fd5fb",
+      "newBriefInputDigest": "0f63a6a6f94c9ccca4e261fd63e6816a6b69b97f5fff87bab652a63413f59b9f"
+    },
+    {
+      "city": "stanley",
+      "banks": 38,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 161,
+      "oldBriefInputDigest": "d7da354f8c21ec0abd7f45ee1e9e61e91fcf6feced3f8d62c778e9077ee376ba",
+      "newBriefInputDigest": "88fc800af96413502c5f018da4370fb304bab141ef20fc9f8a8d1bd90044f538"
+    },
+    {
+      "city": "stockholm",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "4138714c4db03eab2d4119400ea557717268a6c3d9b3127995fffe2c7285c584",
+      "newBriefInputDigest": "7974aa23889eef6c87c6ad0ec1e1e35124cac67129f0736f45f7f4a7d73b3f20"
+    },
+    {
+      "city": "suva",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "0f45b42fecd091bb3c19de33a92e3e9f7df0352956b7c4fa1e962808ace8325b",
+      "newBriefInputDigest": "3c1d098535aaa6f022778d1fc124e0e403d0e5c801fa6982ceaa6c7bfbaa1e37"
+    },
+    {
+      "city": "sydney",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "d8dbaaaf665ba4a719bcaaebce7b8cdab594b58ceaaff3fcb5cd071d9bb8c14d",
+      "newBriefInputDigest": "abe64dc5eebafedc84118a63de2b7666fff2eea051dfe583b40722e53d9d89af"
+    },
+    {
+      "city": "taipei",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "96daf79cfe761560d67f01053a231eaf824ad9393c3b99d97742921902198760",
+      "newBriefInputDigest": "bed498413685ed9d69f29745a1407184ed967b8fafd862a9852a71ad5bf6ddc0"
+    },
+    {
+      "city": "tallinn",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "fc583a69124c11eb980a25a42cc13fdb313d06e5216b63dba7cef29a3b27672d",
+      "newBriefInputDigest": "ed2126df65383f9dee0ff95124e2eab88c0f80b2ee845f4a0334e264cf4eb499"
+    },
+    {
+      "city": "tarawa",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "72e36def102a04527b5ce5a2d70ab6103841c0f5e4380985b80b492f321649ca",
+      "newBriefInputDigest": "dfb2ff030b351ad386de9fa643470bd51cd6c25082f4c4946ca4546810f5dd57"
+    },
+    {
+      "city": "tashkent",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "3f3650428348d78c5b0b354d9f76b3a0cdca4d10e6d64c76d29e54435bfef898",
+      "newBriefInputDigest": "e31db2ab4f468641de14bce03da4df17aba8641eb72ec1af741a89bb083c76e2"
+    },
+    {
+      "city": "tbilisi",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "b1b5065192ab1f5388768e6e873ab7c33c8f01475d8629428bb8cf1a6314cfae",
+      "newBriefInputDigest": "170ae40c33334ad45b5fd5be3fb80145aadabc67bb508bba05c8d2e820f808bb"
+    },
+    {
+      "city": "tegucigalpa",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "07bf5371af84a38f718c6f19a9dc8ba74a89029ac322e06a848f0acf1983fd50",
+      "newBriefInputDigest": "9cff525dbf42e0a45f17edd7a4ceae120130b2f7466afbeda1461a90c1374349"
+    },
+    {
+      "city": "tehran",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "1df7ca36580416c3b3e1225da17ae779939b7cf96028d605a025e03288c53e94",
+      "newBriefInputDigest": "cf1906465ac410e91193a424b0eba95b36d2de36d0ce1648ab3e90710e9016ca"
+    },
+    {
+      "city": "tel-aviv-yafo",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "83a97fcf875a01d40453bc9599a05aa870f3d1dadd7dde90df4f82835a6946ec",
+      "newBriefInputDigest": "1b0c1284c0e9782e638ef3f9c022a00c7dd63d09d52b3c461f901379392b154e"
+    },
+    {
+      "city": "the-valley",
+      "banks": 40,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 169,
+      "oldBriefInputDigest": "6721c8fa144589857912a511a2abaee8ae60ed36930c9633625ffa7ff55a03e9",
+      "newBriefInputDigest": "96cbe48bdab06c819b5a698ca36479ccdc81d81f211bad187978135ee8f9a1cf"
+    },
+    {
+      "city": "thimphu",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "12537b981d5a12c8f4fc2f63b3696b0c499599d8629b623f9f5744d5933ed1a1",
+      "newBriefInputDigest": "90f5e45c1e61bcf084588dc151659ea7a04e959e116be5997cf7d67d587f791b"
+    },
+    {
+      "city": "tirana",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "1ae229fd2dc929fcdce56c71edbee2cd64d6c089460d7aa585b35b699557076b",
+      "newBriefInputDigest": "07f133634c4253bbff526bcb6b1b67d98486dcde36e09ac687a607d95d2ed22a"
+    },
+    {
+      "city": "tokyo",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "101ce3d5592e016b257aebf670e75689181b628631a882c56309d84332c055e3",
+      "newBriefInputDigest": "c36b266cc5477c20f066b819810d7d4eeb5cfea53adc467b005263d9c5deb7fb"
+    },
+    {
+      "city": "toronto",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "71c01a7d92d7e2898f07a46a4b71da0918f9b9d06af12b20a34a9c1dee1d3cb9",
+      "newBriefInputDigest": "fe2d3fdb8b5e38991a58badb2ef685e768be4cebfc1d2f8deab498e213038872"
+    },
+    {
+      "city": "torshavn",
+      "banks": 50,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 209,
+      "oldBriefInputDigest": "632dfd7b44c7271afb2750d1961c176986b92066a802bb31515ab69e28488d09",
+      "newBriefInputDigest": "dab3c9186af18eef54e847bb2a11208bf3bc230b7081bfa9b348bd129c08c641"
+    },
+    {
+      "city": "tripoli",
+      "banks": 46,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 193,
+      "oldBriefInputDigest": "8cd15f1432bef2deb952184caf73379fd2d2201ac8aa4f39f3aa68c9d897e850",
+      "newBriefInputDigest": "9937a2cdda4665b01eb42b701f9ac2df3b51a664c750d4091a5cecabe8e0c965"
+    },
+    {
+      "city": "tunis",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "5cf66230768dd8621b8b1130b710030cd0ec71925d37cbf29f1148d5750fc854",
+      "newBriefInputDigest": "6c578d05c8203b5a6c6e928451ef19878576a0cccc1473fe5951fa2d36f1ad77"
+    },
+    {
+      "city": "ulaanbaatar",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "8c7b5ae15b6ab39041ce862428d3749f0096c745a7346a6c7808a775b62450e1",
+      "newBriefInputDigest": "9b508d4232a38fc3009369b061f58bed9760bffd45343239cce03b4a02397409"
+    },
+    {
+      "city": "umuahia",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 242,
+      "oldBriefInputDigest": "69cfcd266460f769148a3ae9e6cfb169c8dafe5c00887518aa2024242ebc1697",
+      "newBriefInputDigest": "e1067bbe1903a3f924a1b8620fc4c09a881208ca4315edf3cb73c7c81aea628d"
+    },
+    {
+      "city": "uyo",
+      "banks": 34,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 172,
+      "oldBriefInputDigest": "506d7fb5bee28f33e57b051b9b3c00250eb41db51494b859a37f776bc0e781c1",
+      "newBriefInputDigest": "ef3fbdb39f60fb427f53b8e22a200d3985c574380a25619df08799935928c5ff"
+    },
+    {
+      "city": "vaduz",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "944fb529aa3217fe042afc9ca7f591837b281817227fc7887e76d5b5bf455a31",
+      "newBriefInputDigest": "280033901ba170d44d14de013d8609dbdb3115e842ca3eda9788d49fa971cf6f"
+    },
+    {
+      "city": "valletta",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "6eb86bbce59a26d92df112aa9902d1d6451cbd81ede3f8b49016720ff8bc824c",
+      "newBriefInputDigest": "a6174815d88dc8bc9d6c81e173039394cec695eb19a7845a7138434dea726972"
+    },
+    {
+      "city": "vatican-city",
+      "banks": 38,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 161,
+      "oldBriefInputDigest": "c23262273e5052597eb278cbafbd6c013c2e2bc84fb3023ca8e7fe74a90aad4c",
+      "newBriefInputDigest": "0b10c70bde6ca9e50416781d5d84110a191bd4ea1eadcd0e1c45d8a1854eadd6"
+    },
+    {
+      "city": "victoria",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "4f127b9c85cc4537afe4b8743aa868de50919b72d62c4c63095a86e9aa381d4f",
+      "newBriefInputDigest": "4784c6707bcc2f901002be4c2e09ddd91fda1b12076eab2503f220735cbd9652"
+    },
+    {
+      "city": "vienna",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "863a6ce040ef178931e75583732f12b9cb2e133fee83e0a38e44afc5f2e51626",
+      "newBriefInputDigest": "77cb7661e35cf0be54c2cd8bc8dd928bca3babe4dc271784dbc87372e330a7db"
+    },
+    {
+      "city": "vientiane",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "894c03513b1bff3144c49494f659b69ca246575da50f22cd2104524343d94acd",
+      "newBriefInputDigest": "45a175909a085b52110ef4781779a013bb833bb6f32c5d0d50fa6b8e5f79d73f"
+    },
+    {
+      "city": "villa-las-estrellas",
+      "banks": 30,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 129,
+      "oldBriefInputDigest": "48ad66fbd4cf10e58ef8f51a6c32fadcfa2efb269510ae2880e6592902dba007",
+      "newBriefInputDigest": "93037fe7bdebfb35fa19a31d6c9070c4d4cd8c55931407143ad217c8e0a27f9c"
+    },
+    {
+      "city": "vilnius",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "fa762857b515f5533fbb653791979b67a62cc08bebc7aab22fc8ed8a3e604cb8",
+      "newBriefInputDigest": "752651cf3fa0a93d3c038c9759de0b0192d0fdcf70a951f79249b9a1fd6b2b92"
+    },
+    {
+      "city": "warsaw",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "f3a2c96b5690bae932931a7b152221da3a0d6194b510bdb2fc761f50914bbd55",
+      "newBriefInputDigest": "ad3a1d6b812e9fd7108bdbc086bbc66bb038de1f0e19f844ac5cc969aaf5aebf"
+    },
+    {
+      "city": "wellington",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "4bb15a46adaaaffc49c66ad8f4a898555fe8e38d7a8024cf30a72d21c0227801",
+      "newBriefInputDigest": "136078e387598c273bc73997fab19eb9871497e608f42ac4465251c40fc7c60c"
+    },
+    {
+      "city": "west-island",
+      "banks": 32,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 137,
+      "oldBriefInputDigest": "6e10fb570853e1ac621ec0a7b3e213da2253b4242eb909bc944ff2a4f613d1c1",
+      "newBriefInputDigest": "0f7e7d2c2269f84896e35c12552ae256053b77523ed50af07fb5bd0b5c31f043"
+    },
+    {
+      "city": "willemstad",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "e7cc90c6483f838598cb0356e49928077b1661f84b839f7b044b424029d8b968",
+      "newBriefInputDigest": "1077a143cd4088616f0c5f36453991f301e0fe0940e24100edfa9e34d7570704"
+    },
+    {
+      "city": "windhoek",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "2b87949ac7ea564985f0d08d9ecd88ee626942a8d8b5b0d8f939681cd1a9e4a1",
+      "newBriefInputDigest": "2b1e47a9e6c4c05dd09c54af53341359bfde003b570a0854e587ef3c23ae3497"
+    },
+    {
+      "city": "yangon",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "bd4b03e2fc2ce64ebd680f79462e8ac56c0d503f28185c7ee2865afe978f74f1",
+      "newBriefInputDigest": "d94fe4aaa2451b0dfda95c6fcd0d7454ad93da461cdc9c7d474111fb8923a4e1"
+    },
+    {
+      "city": "yaounde",
+      "banks": 48,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 201,
+      "oldBriefInputDigest": "6c11591c802a812f0e20c73a370fe8376a754b52fb33d97248ab140b6960def8",
+      "newBriefInputDigest": "a834d860d37c507ce0ced94cf1d18655b050af79d87be34ad0bddac409632009"
+    },
+    {
+      "city": "yaren",
+      "banks": 40,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 169,
+      "oldBriefInputDigest": "281aac89a56fe1e4d42f47c8a42c800e9bd156955aa9e268c68ebfc94b716f0e",
+      "newBriefInputDigest": "f26b76b6516c9573ff5fd69a8eed07920570ecee221a5bb5a5951efaa2011365"
+    },
+    {
+      "city": "yenagoa",
+      "banks": 58,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 292,
+      "oldBriefInputDigest": "23054cfcaa6fcd7a992228e018bc057df37f1079a55faacf43a18caeb3deee2f",
+      "newBriefInputDigest": "6c04b09fca18e993f4e86ed8e73818c08c2ad5934fc9650f31292a58c70d2f2f"
+    },
+    {
+      "city": "yerevan",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "94091a5c9f22fa15ae8f3011b3f0849d47d7fe8f3edcbf21a5a95f26c3d0ba98",
+      "newBriefInputDigest": "b5b64f7507493a9cd4c81195daa119a956ad0c5ddad638c361a579c367a587a0"
+    },
+    {
+      "city": "yola",
+      "banks": 40,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 202,
+      "oldBriefInputDigest": "d67a1e2d20674cbb88aabf7e53c295a383c8a09fbadd0d593faeceed80eadcf7",
+      "newBriefInputDigest": "4381fa3f60829c4717c671cd977c305ff18a392b5fc189a92fa0c31d872a6d37"
+    },
+    {
+      "city": "zagreb",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "1df5f8d83c74fdc048988b2b17009333d7d22fb685ecf13aaa3766d8d7624529",
+      "newBriefInputDigest": "5f36cff25210b66dea182b5fee4697fcfd7be73d8465b0ac2d764f2cf787f7e2"
+    },
+    {
+      "city": "zurich",
+      "banks": 52,
+      "fullEntryObjectsEqual": false,
+      "evidenceLeafChanges": 217,
+      "oldBriefInputDigest": "7a721108679c06194bcf792d916a74c46637f44759dcd2d11fbdf4fa2101ac36",
+      "newBriefInputDigest": "01b0d134ee10e54ade0c68d252cbe9fe766b6353995ae2164dde09d50a5812f7"
+    }
+  ],
+  "inputsStable": true,
+  "sourceExplanation": "inputs.ts115-120,143-153: city/venue and venue-target fact source use brief.digests.inputSha256; all other evidence fields exact. No bank prose, identity or assignment changed.",
+  "beforeReceiptSha256": "5ae6e5cbfd8a0d39b3c41a6ce9531a4061221da766ce20812afe90e9374d7e36",
+  "afterReceiptSha256": "c7668e97cc2da804620443923b3e6242c4d0929cea59631e5fcaae74ec071e67",
+  "leafInventorySha256": "7f7e94c63b703999e85890b561bdb4d35258c7c6f1e5e8c6361e0cb1b45b881e"
+}

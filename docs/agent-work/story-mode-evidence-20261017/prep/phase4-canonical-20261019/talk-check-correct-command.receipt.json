@@ -1,0 +1,27 @@
+{
+  "name": "talk-check-correct-command",
+  "command": [
+    "node",
+    "--experimental-strip-types",
+    "scripts/agent-slot.ts",
+    "heavy",
+    "--wait-ms",
+    "0",
+    "--",
+    "npm",
+    "run",
+    "talk:check"
+  ],
+  "pid": 34002,
+  "exitCode": 0,
+  "timeout": false,
+  "seconds": 72.08049762505107,
+  "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/talk-check-correct-command.log",
+  "logSha256": "c21543cbbe0954f9167ee6b76cafc81075adcf7ff38964d82a19bc44ff940e2c",
+  "limits": {
+    "oldSpaceMiB": 512,
+    "semiSpaceMiB": 16,
+    "GOMAXPROCS": 2,
+    "externalTimeoutSeconds": 280
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-19T04:30:24.501726+00:00",
+  "preSnapshotSha256": "3a90da673e9482f01577a9aa8d00dfca8fa7ca84b27d582d7f70d7f071ea8832",
+  "expectedIncomingPaths": 119,
+  "stagedExactlyIncoming": true,
+  "preservedDirtyPaths": 294,
+  "preservedUntrackedPaths": 11203,
+  "preservedParentDirectories": 1538,
+  "unmergedPaths": 0,
+  "feedResolutionSha256": "41a3a685ec5273ba28158ab299b5db2dfdab32944fdadcea8434958166554460",
+  "resolution": "incoming entire service plus existing two-line cover block moved after badge refusal; incoming LGA validation exact"
+}

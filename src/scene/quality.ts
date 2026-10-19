@@ -54,8 +54,8 @@ export interface Bloom {
  * signature: the stack is built here and drawn at up to BLOOM_RATIO.
  */
 export async function createBloom(THREE: ThreeModule, renderer: Renderer, width: number, height: number, threshold = 0.85, grade?: { kind: GradeKind; band: HourBand }): Promise<Bloom> {
-  const { createPost, postAoRequested } = await import('./fx/post.ts');
-  const post = await createPost(THREE, renderer, width, height, { threshold, maxRatio: BLOOM_RATIO, ao: postAoRequested(), ...(grade ? { grade } : {}) });
+  const { createPost, postAoEnabled } = await import('./fx/post.ts');
+  const post = await createPost(THREE, renderer, width, height, { threshold, maxRatio: BLOOM_RATIO, ao: postAoEnabled(), ...(grade ? { grade } : {}) });
   post.setSize(width, height, renderer.getPixelRatio?.() ?? 1);
   return post;
 }

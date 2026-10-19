@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { AO_SETTINGS, BLOOM_SETTINGS, MSAA_SAMPLES, buildPost, postAoRequested, type PostLibs } from './post.ts'
+import { AO_SETTINGS, BLOOM_SETTINGS, MSAA_SAMPLES, buildPost, postAoEnabled, type PostLibs } from './post.ts'
 import type { ThreeModule } from '../types.ts'
 
 // The stack is checked through stand-ins for the libraries (postprocessing needs a real GL context): what is built, in which
@@ -148,9 +148,9 @@ test('dispose releases the composer and the table', () => {
   assert.ok(log.includes('composer disposed')); assert.equal(texture!.disposed, true)
 })
 
-test('post-process ambient occlusion is requested only by ?ao=1', () => {
-  assert.equal(postAoRequested({ location: { search: '?ao=1' } }), true)
-  assert.equal(postAoRequested({ location: { search: '?ao=0' } }), false)
-  assert.equal(postAoRequested({ location: { search: '' } }), false)
-  assert.equal(postAoRequested({}), false)
+test('post-process ambient occlusion is on unless ?ao=0', () => {
+  assert.equal(postAoEnabled({ location: { search: '' } }), true)
+  assert.equal(postAoEnabled({ location: { search: '?ao=1' } }), true)
+  assert.equal(postAoEnabled({ location: { search: '?ao=0' } }), false)
+  assert.equal(postAoEnabled({}), true)
 })

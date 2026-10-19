@@ -10,7 +10,7 @@
  * looks from the street's start pose, where the map's dive ends on the home street (src/scene/street-life/street-scene.ts): eye height
  * on the near pavement, looking along the street. ?at=<ms> stops the street's clock at that instant (for screenshots).
  * ?px=&pz= stands the player's avatar there (the crowd gives way round it).
- * ?post=1 draws through the high tier's post stack (src/scene/fx/post.ts; add &ao=1 for its ambient occlusion, &quality=high); window.__post has the stack and a timing helper.
+ * ?post=1 draws through the high tier's post stack (src/scene/fx/post.ts; its ambient occlusion is on, &ao=0 turns it off; use &quality=high); window.__post has the stack and a timing helper.
  */
 import { createKit } from './kit.ts';
 import { buildNeighbourhoodScene } from './neighbourhood-scene.ts';
@@ -70,7 +70,7 @@ const eye = (): void => {
 };
 const draw = () => { eye(); street.look?.(camera.position.x, camera.position.z); (post ?? renderer).render(scene, camera); document.getElementById('info')!.textContent = `${cityId} · ${streets ? (eyed ? 'eye pose · ' : 'waiting for the street · ') : ''}street · ${time}${params.get('models') === '1' ? ' · models' : ' · stand-ins'} · ${renderer.info.render.calls} calls · ${renderer.info.render.triangles} tris`; (window as unknown as { __diag: unknown }).__diag = { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles }; };
 draw();
-if (params.has('bench')) (window as unknown as Record<string, unknown>).__bench = (frames: number, through: 'plain' | 'post'): number => { const gl = renderer.getContext(); const t0 = performance.now(); for (let i = 0; i < frames; i += 1) { (through === 'post' && post ? post : renderer).render(scene, camera); gl.finish(); } return (performance.now() - t0) / frames; };
+if (params.has('bench')) (window as unknown as Record<string, unknown>).__bench = (frames: number, through: 'plain' | 'post'): number => { const gl = renderer.getContext() as WebGL2RenderingContext, px = new Uint8Array(4); const t0 = performance.now(); for (let i = 0; i < frames; i += 1) { (through === 'post' && post ? post : renderer).render(scene, camera); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px); } return (performance.now() - t0) / frames; };
 // Redraw a bounded number of times while the models arrive (a timeout chain: scene sources hold no interval).
 const redraw = (left: number): void => { draw(); if (left > 0) setTimeout(() => redraw(left - 1), 700) }
 if (params.get('models') === '1' || params.has('streetlife')) { street.startCrowd?.(renderer as never, draw); redraw(30); }

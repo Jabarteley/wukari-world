@@ -62,11 +62,11 @@ export async function loadFx(tier: FxTier, context?: FxContext): Promise<FxHost>
   // FX_IMPORTS: phases 1 to 3 add their lazy imports here. Rain, particles and feel for every tier; `if (fxUsesPost(tier))` around
   // anything that imports postprocessing or n8ao.
   if (fxUsesPost(tier) && context) {
-    const [{ createPost, postAoRequested }, { gradeFor }, { cityRules }] = await Promise.all([import('./post.ts'), import('./grade.ts'), import('../../game/cities/registry.ts')])
+    const [{ createPost, postAoEnabled }, { gradeFor }, { cityRules }] = await Promise.all([import('./post.ts'), import('./grade.ts'), import('../../game/cities/registry.ts')])
     const gradeNow = (now: number) => gradeFor(cityRules(context.cityId)?.climate, now)
     const size = context.renderer.getSize(new context.THREE.Vector2())
     const first = gradeNow(Date.now())
-    const stack = await createPost(context.THREE, context.renderer, size.x, size.y, { grade: first, ao: postAoRequested() })
+    const stack = await createPost(context.THREE, context.renderer, size.x, size.y, { grade: first, ao: postAoEnabled() })
     stack.setSize(size.x, size.y, context.renderer.getPixelRatio())
     post = stack
     let key = `${first.kind}/${first.band}`

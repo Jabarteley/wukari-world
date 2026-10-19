@@ -34,19 +34,25 @@
 - `grade.ts` and `post.ts` written with tests: `node --experimental-strip-types --test src/scene/fx/*.test.ts` (22 pass, includes main's `index.test.ts`). Twelve grade fingerprints are pinned in `grade.test.ts`.
 - Typecheck: client and test projects clean at 7 GB heap (`npm run typecheck`'s 3.5 GB heap runs out in the test project).
 - `quality.ts`: `createBloom` keeps its signature (one optional trailing `grade` argument) and delegates to `fx/post.ts`.
-- Street harness (`src/scene/street-harness.ts`, dev only): `?post=1` draws through the stack, `&ao=1` adds AO, `&bench=1` exposes `window.__bench(frames, 'plain'|'post')`.
+- Street harness (`src/scene/street-harness.ts`, dev only): `?post=1` draws through the stack, `AO is on, `&ao=0` turns it off, `&bench=1` exposes `window.__bench(frames, 'plain'|'post')`.
 - CI run 39328266128 (before dropping SMAA): fx chunk 336,874 raw / 161,801 gzip, FX_GZIP over its provisional 120,000. SMAA's images were about 60 kB gzip, so SMAA was replaced by 4x MSAA (commit after that run). CI rerun: 39330014232.
 - Standalone Rollup sizes (vite lib build of post.ts, game/ external): postprocessing named classes 267 kB raw / 93 gzip with SMAA, 160 / 33 without; n8ao 174 / 87.
 
 ### In progress / blockers
 
-- Frame timings on the Mac were NOT measured: the shared `browser` slot stayed taken by other agents' captures for about 50 minutes (my request was killed unserved). Because the 3 ms AO / 5 ms stack gates are therefore unproven, post AO is default off behind `?ao=1` (`postAoRequested` in `post.ts`). The harness is ready: `street-harness.html?quality=high&post=1&bench=1[&ao=1]&time=dusk&streetlife=on&eye=1`, then `window.__bench(30, 'plain'|'post')` returns ms per frame (with gl.finish).
+- Frame timings on the Mac (Apple M4 Pro, real GPU through Chrome headless=new, ms per frame with a one-pixel read after each frame, median of 7x40 frames, three alternating rounds; other agents' captures were running, so +-0.5 ms noise): street harness, dusk, `quality=high`.
+  - 1920x1080: plain 1.7 to 2.0; stack without AO 3.4 to 4.3 (about +2); stack with AO 4.8 to 5.0 (about +3.1 over plain, AO itself about +0.7 to 1.5).
+  - 2880x1620 canvas (2x; the stack's buffers are capped at 1.5x): plain 2.5 to 2.7; without AO 4.1 (+1.5); with AO 6.3 to 6.4 (+3.7, AO itself about +2.2).
+  - Both gates pass (AO under 3 ms, stack under 5 ms), so AO is default on; `?ao=0` turns it off. Caveats: this street is light (plain 2 ms) and AO redraws the scene for depth, so it grows with the scene; an M4 Pro is a fast GPU; integrated GPUs on the high tier (any desktop) can be several times slower. The governor (phase 7) should be able to drop it.
+- Wired: `venue-world.ts` (the one place venues, the street and homes are drawn) starts `loadFx` after the first frame on the high tier only, draws through `fx.post` when present, resizes it in `frame()`, re-grades in `applyLook()` and disposes with the host. `loadFx(tier, context)` in `fx/index.ts` builds the stack behind `fxUsesPost`. `look.ts` and the scene builders (`venue-scenes.ts`, `street-scene.ts`, `home-scene.ts`) needed no change: they never call a renderer, and `lazyEnvironment` is only used by the avatar preview.
+- Before/after at dusk, 1280x800: `docs/evidence/out/os-phase2-before.png`, `-after-ao.png`, `-after.png` (stack without AO; git-ignored); 800 px copies for the critic: `docs/agent-work/os-phase2-post-before.png`, `-after.png`. The picture changes subtly: deeper violet sky, a soft vignette, slightly cooler shadows, faint contact darkening where fences meet the ground.
+- STARTUP_BROTLI (196,356 vs 196,300): hash noise. STARTUP_RAW is 613,913 in main's run, in run 39328266128 and in 39330014232, gzip within 6 bytes, and nearly every chunk filename (even untouched ones such as AccountSettings) differs between main's build and mine, so brotli sees different random hash strings (main 196,250, mine 196,322 and 196,356). Startup code did not change.
 - CI run 39330014232 (with MSAA, no SMAA): fx chunk 246,265 raw / 105,369 gzip, FX_RAW and FX_GZIP ok. STARTUP_BROTLI over by 56 bytes (196,356 vs 196,300) although STARTUP_RAW is identical to main (613,913) and gzip is lower: brotli noise from chunk hashes, main sat at 196,250. Not caused by a size change in startup code.
 
 ### Immediate resume steps
 
-1. When a browser slot is free, run the harness URL above and record ms for plain, post and post+ao at 1080p and 2x; take the before/after pair.
-2. If AO is under 3 ms and the stack under 5 ms, make `postAoRequested` default true (`?ao=0` off).
+1. Re-run the harness URL above on a lower-end GPU for a second ms row.
+2. Phase 7's governor to switch AO off when frames are slow; the integrator to confirm `fx-ao` is its own chunk (origin/main did not yet carry it when this was written).
 
 ## Release state
 

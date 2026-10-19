@@ -138,6 +138,7 @@ export const KEYED_SPECS: Readonly<Record<string, readonly KeyedSpec[]>> = Objec
   earn: [{ path: ['accounts'] }, { path: ['sales'] }, { path: ['owners'] }],
   worldEvents: [{ path: ['badges'] }, { path: ['runs', '*', 'by'] }, { path: ['runs', '*', 'keys'] }],
   danfo: [{ path: ['runs'] }, { path: ['active'] }, { path: ['riding'] }, { path: ['days'] }, { path: ['boards'] }],
+  watch: [{ path: ['picks', '*'] }, { path: ['board', '*'] }, { path: ['badges'] }, { path: ['votes', '*'] }, { path: ['artists'] }, { path: ['premieres'] }],
   contacts: [{ path: ['me'] }, { path: ['keys'] }, { path: ['edges'] }, { path: ['mine'] }, { path: ['found'] }],
   neighbourhood: [{ path: ['notices'] }, { path: ['meetups'] }],
   feed: [{ path: ['authors'] }, { path: ['posts'] }, { path: ['cities'] }, { path: ['handles'] }, { path: ['codes'] }, { path: ['crews'] }, { path: ['events'] }, { path: ['gigs'] }],

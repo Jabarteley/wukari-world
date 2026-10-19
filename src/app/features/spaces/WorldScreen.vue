@@ -24,6 +24,8 @@ import type { Together } from '../../../spaces/world/together.ts'
 
 /** `place`: a model to put down in front of the player as soon as the space is built (just uploaded, or chosen in My 3D models). */
 const props = defineProps<{ where: WorldWhere; place?: ModelView | null }>()
+// A premiere in this world (docs/ALLWORLD-HOUSE.md): play the track on the screen, clip the moment. Loaded only in a world.
+const PremiereBar = defineAsyncComponent(() => import('../watch/PremiereBar.vue'))
 /** `saved`: a world's layout was saved and its cover drawn (the Worlds app refreshes its list). */
 const emit = defineEmits<{ close: []; saved: [] }>()
 const { game, shell } = useApp()
@@ -241,6 +243,8 @@ function putOnScreen(): void {
   screenLink.value = ''
   track('world_screen', { action: 'on' })
 }
+/** The artist's premiere track on the screen, from the start (watch/PremiereBar.vue). */
+function playPremiere(v: string): void { together?.screen({ v, play: true, pos: 0 }); track('world_screen', { action: 'on' }) }
 function screenPlay(play: boolean): void { together?.screen({ play, pos: screenNow() }) }
 function screenRestart(): void { together?.screen({ play: true, pos: 0 }) }
 function screenOff(): void { together?.screen({ off: true }) }
@@ -442,6 +446,7 @@ const round = (v: number): number => Math.round(v * 100) / 100
           <button v-if="world.screen" type="button" class="ws-pill" :class="{ 'is-on': screenOpen }" :aria-pressed="screenOpen" data-world="screen" @click="screenOpen = !screenOpen">Screen</button>
           <button v-if="world.terrain?.game" type="button" class="ws-pill" data-world="game" @click="gameOpen = true">Play {{ world.terrain.game.title }}</button>
           <button v-if="streetPlot" type="button" class="ws-pill" data-world="street" @click="goStreet">Go to the street</button>
+          <PremiereBar v-if="world.kind === 'world' && where.id && world.screen" :world="where.id" :hosting="hosting" :stage="stage" :playing="screenState?.v ?? null" @play="playPremiere" />
         </div>
         <section v-if="screenOpen" class="ws-panel ws-screen" aria-label="The screen">
           <template v-if="hosting">

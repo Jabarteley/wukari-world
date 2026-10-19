@@ -117,7 +117,7 @@ function build(ctx: RouteContext) {
       id: conv.id, name: conv.name ?? 'Group', role: member ? 'member' : 'visitor', members: conv.members.length,
       grid: PLACES.roomGrid, style: roomStyle(), items: itemsOf(conv).map((item) => ({ id: item.id, itemId: item.itemId, x: item.x, y: item.y, rot: item.rot })), rev: room?.rev ?? 0,
       ...(member ? { link: room?.link ? { on: true, path: roomLinkPath(conv.id, room.link.key) } : { on: false } } : {}),
-      here: peopleIn(s, me, roomKeyOf(conv.id), conv),
+      here: [...peopleIn(s, me, roomKeyOf(conv.id), conv), ...(ctx.checks?.roomCast?.(conv.id) ?? []).map((cast) => ({ ...cast, look: null, friend: false, member: false }))],
     };
   }
   /** The caller's own group, or the refusal every member-only route answers. */

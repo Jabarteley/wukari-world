@@ -41,7 +41,7 @@ export interface StaticAvatarOptions {
 }
 
 /** Optional full affine transform for a figure captured inside nested scene batches. */
-export interface CanonicalCrowdPerson extends CrowdPerson { matrix?: readonly number[] }
+export interface CanonicalCrowdPerson extends CrowdPerson { matrix?: readonly number[]; /** An owambe's aso-ebi colour ('#rrggbb'): the top in it, in aso-oke (src/festivals/party.ts asoEbiLook). */ dress?: string }
 
 function poseFor(pose: Pose | undefined): BodyPose {
   switch (pose) {
@@ -58,7 +58,8 @@ function poseFor(pose: Pose | undefined): BodyPose {
 function crowdLook(person: CrowdPerson, index: number): { look: Look; seed: unknown } {
   const seed = person.seed ?? person.id ?? person.name ?? index;
   const appearanceSeed = person.look == null ? `canonical-crowd-${hash(String(seed)) % CROWD_LOOKS}` : seed;
-  return { look: normalizeLook(person.look, appearanceSeed), seed: appearanceSeed };
+  const look = normalizeLook(person.look, appearanceSeed), dress = (person as CanonicalCrowdPerson).dress;
+  return { look: dress ? { ...look, outfitColor: dress, fabric: 'asooke' } : look, seed: appearanceSeed };
 }
 
 function trianglesOf(geometry: THREE.BufferGeometry): number {

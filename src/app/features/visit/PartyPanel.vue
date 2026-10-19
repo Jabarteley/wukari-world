@@ -2,17 +2,19 @@
 // Owambe party, on the Home tab: the host picks a title and an aso-ebi colour and starts it, names a guest MC and a guest DJ,
 // and ends it; everyone inside sees the dress code and the two labels and can spray (a line in the house chat, no money).
 // Everything is the server's (server/social/party.ts); this only asks. The rules and words: src/festivals/party.ts.
+// Upgraded (WOW-PLAN Phase 7): the 3D home shows everyone in the aso-ebi, a jollof table and notes flying on a spray
+// (visit/partyScene.ts); "Who came" makes the photo card (watch/watchCards.ts), the room's picture only where Capture may read it.
 import '../../../ui/controls.css'
 import '../../../ui/panels/social.css'
 import { computed, ref } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { COLOURS, PARTY } from '../../../festivals/party.ts'
 import type { HouseView } from '../../../types/social.ts'
-import { endParty, nameRole, sprayFloor, startParty } from './visitStore.ts'
+import { endParty, endedParty, nameRole, sprayFloor, startParty } from './visitStore.ts'
 import { timeLeft } from '../../../game/visit.ts'
 
 const props = defineProps<{ house: HouseView }>()
-const { game } = useApp()
+const { game, scene } = useApp()
 const host = computed(() => props.house.role === 'host')
 const party = computed(() => props.house.party ?? null)
 const title = ref(''), colour = ref(COLOURS[0]!.id)
@@ -23,6 +25,13 @@ async function act(operation: () => Promise<string | null>): Promise<void> {
   pending.value = true; problem.value = null
   try { problem.value = await operation() } finally { pending.value = false }
 }
+/** The "who came" photo card: the room's picture when Capture may read it (the host's own home, every guest agreeing), else the colour. */
+async function whoCame(card: { title: string; colour: { id: string; label: string; hex: string }; sprays: number; came?: string[] }): Promise<void> {
+  const [{ shareWhoCame }, { captureAccess }] = await Promise.all([import('../watch/watchCards.ts'), import('../capture/captureSession.ts')])
+  const photo = captureAccess().allowed ? scene.venue.value?.captureCanvas() ?? null : null
+  if (!(await shareWhoCame({ ...card, came: card.came ?? [] }, props.house.host.name, photo))) game.toast('The card could not be made here.', 'error')
+}
+const closeEnded = (): void => { endedParty.value = null }
 const roleOf = (id: string): 'MC' | 'DJ' | '' => (party.value?.mc?.id === id ? 'MC' : party.value?.dj?.id === id ? 'DJ' : '')
 </script>
 
@@ -37,7 +46,8 @@ const roleOf = (id: string): 'MC' | 'DJ' | '' => (party.value?.mc?.id === id ? '
       </div>
       <p class="social-note" data-party="roles">MC: {{ party.mc?.name ?? 'nobody yet' }} · DJ: {{ party.dj?.name ?? 'nobody yet' }} · {{ party.sprays }} {{ party.sprays === 1 ? 'spray' : 'sprays' }}</p>
       <button type="button" class="ui-button is-block" data-party="spray" :disabled="pending || offline || party.sprayLeft < 1" @click="act(() => sprayFloor(house.host.id))">Spray the floor ({{ party.sprayLeft }} left)</button>
-      <p class="social-note">Spraying is just for fun: no money moves.</p>
+      <p class="social-note">Spraying is just for fun: notes fly in the room, no money moves.</p>
+      <button type="button" class="ui-button is-block" data-party="who-came" @click="whoCame(party)">Who came: make the card</button>
       <div v-if="host && house.guests.length" class="social-list">
         <div v-for="guest in house.guests" :key="guest.id" class="social-row" :data-party-guest="guest.id">
           <div><strong>{{ guest.name }}</strong><small>{{ roleOf(guest.id) || 'Guest' }}</small></div>
@@ -50,6 +60,11 @@ const roleOf = (id: string): 'MC' | 'DJ' | '' => (party.value?.mc?.id === id ? '
       <button v-if="host" type="button" class="ui-button is-block" data-party="end" :disabled="pending || offline" @click="act(endParty)">End the party</button>
     </template>
     <template v-else>
+      <div v-if="host && endedParty" class="party-card" :style="{ borderColor: endedParty.colour.hex }" data-party="ended">
+        <div><strong>{{ endedParty.title }}</strong><small>{{ endedParty.came.length }} came · {{ endedParty.sprays }} sprays</small></div>
+        <button type="button" class="social-btn" data-party="ended-card" @click="whoCame(endedParty)">Who came card</button>
+        <button type="button" class="social-btn" aria-label="Close" @click="closeEnded">✕</button>
+      </div>
       <p class="social-note">Throw a party at home. Pick a colour for the aso-ebi, ask friends over, and name an MC and a DJ from the guests. It lasts {{ PARTY.minutes / 60 }} hours.</p>
       <input v-model="title" class="party-title" type="text" :maxlength="PARTY.title" placeholder="Owambe at my place" aria-label="Party name" autocomplete="off">
       <div class="party-colours" role="radiogroup" aria-label="Aso-ebi colour">

@@ -1192,6 +1192,8 @@ export interface ContextChecks {
   gameResult?: (db: Db, result: import('../src/clans/results.ts').GameResult) => void
   /** Feed (server/feed/service.ts): the gist recorded a public line naming these people; drafts a moment for each adult and posts an AI character's. */
   moment?: (db: Db, item: { n: number; at: number; city: string; kind: string; text: string }, ids: readonly string[]) => void
+  /** Watch (server/watch/house.ts): the AI housemates standing in a group room that is the Allworld House, as { id, name } (empty for any other room). */
+  roomCast?: (roomId: string) => { id: string; name: string }[]
   /** Agents: a player was reported; enough reports about a character an agent plays suspend its keys. */
   agentReported?: (db: Db, aboutId: string) => void
 }

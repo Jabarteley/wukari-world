@@ -267,6 +267,9 @@ import { prepareRouteCityContent, warmCityContentFailure } from '../request-city
 export const ROUTE_MODULES: RouteModule[] = [core, auth, social, civic, support, moderation, world, land, growth, growthMod, campus, projects, retention, pulse, festivals, worldFeed, gist, prayers, works, stages, ping, visit, places, business, commerce, businessMod, market, marketMod, notice, residence, companion, admin, bonus, storageMod, politics, records, trust, realValue, street, livingWorld, showcase, showcaseMod, agents, agentsMod, legacy, profiles, arena, clans, story, storyTalkRoutes, spaces, spacesMod, feed, feedMod, feedAdmin, promote, promoteAdmin, earn, earnAdmin, worldEvents, worldEventsAdmin, shareLoops, neighbourhood, neighbourhoodAdmin, economy];
 import danfo from './danfo.ts';
 ROUTE_MODULES.push(danfo);
+import watch from './watch.ts';
+import watchAdmin from './watch-admin.ts';
+ROUTE_MODULES.push(watch, watchAdmin);
 import shareLoops from '../shareloops/routes.ts';
 import detty from './detty.ts';
 // Detty December (docs/DETTY-DECEMBER.md), on its own line so the list above stays one line per change.

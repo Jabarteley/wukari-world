@@ -47,7 +47,9 @@ export type CaptureConsentResult = Done<'consented' | 'revoked', { house: HouseV
 /** What a link is to someone with no session: 'open' (with the host's display name and nothing else), 'ended' or 'expired'. */
 export type PeekResult = Done<'open', { host: { name: string } }> | Done<'ended' | 'expired'>
 export type LinkEnterResult = Done<'inside', { house: HouseView } & Repeat> | Done<'knocking', { expiresAt: number } & Repeat> | Refused
-export type PartyResult = Done<'started' | 'role' | 'sprayed' | 'ended', { house: HouseView } & Repeat> | Refused
+/** What the "who came" card is made of, in the answer to `end` (src/festivals/party.ts whoCameWords). */
+export interface PartyCard { title: string; colour: { id: string; label: string; hex: string }; sprays: number; came: string[] }
+export type PartyResult = Done<'started' | 'role' | 'sprayed' | 'ended', { house: HouseView; card?: PartyCard } & Repeat> | Refused
 
 type Common = HostErrorCode | SessionErrorCode | StorageErrorCode | 'onboarding_required'
 type Post = Common | JsonBodyErrorCode

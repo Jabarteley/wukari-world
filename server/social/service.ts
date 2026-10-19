@@ -103,7 +103,7 @@ import type { ThanksView, MoneyRequestView, PlayerReportReceipt, ReportReason, C
 import type { LifeState } from '../../src/types/life.ts';
 import type { AccountRecord, ConversationRecord, ImageRef, MoneyRequestRecord, VoiceRef, Db, HouseRecord, MessageRecord, PendingEffect, PlayerReportRecord, RouteContext, SessionRecord, SocialCollection, SocialEffectPayload, SocialPlayerRecord, VisitRecord, WsConnection } from '../types.ts';
 import { captureProjection } from './capture.ts';
-import { partyOn, partyView } from '../../src/festivals/party.ts';
+import { noteCame, partyOn, partyView } from '../../src/festivals/party.ts';
 
 /** A request body or socket frame: every field is untrusted until a validator below has read it. */
 export type SocialBody = Record<string, unknown>;
@@ -902,7 +902,7 @@ function buildService(ctx: RouteContext) {
     return { host: pub(s, hostId), capacity: LIMITS.guests, guests, role, cityId, conv: guests.length && role !== 'none' ? `h.${hostId}` : null,
       hostStatus,
       ...(house?.closed !== undefined && house.closed > now() ? { closed: true as const } : {}),
-      ...(house?.party && partyOn(house.party, now()) ? { party: partyView(house.party, viewer, (id) => house.guests[id] ? pub(s, id) : null) } : {}),
+      ...(house?.party && partyOn(house.party, now()) ? { party: partyView(house.party, viewer, (id) => house.guests[id] ? pub(s, id) : null, (id) => pub(s, id).name) } : {}),
       knocks: role === 'host' ? Object.entries(house?.knocks || {}).filter(([, knock]) => knock.status === 'pending').map(([id, knock]) => ({ from: pub(s, id), at: knock.at, expiresAt: knock.expires, ...(knock.link ? { via: 'link' as const } : {}) })) : [],
       ...(capture ? { capture } : {}),
       ...(role === 'guest' && ownVisit?.captureId ? { myCapture: { visitId: ownVisit.captureId, allowed: ownVisit.captureConsent === true, expiresAt: ownVisit.expires } } : {}) };
@@ -916,6 +916,7 @@ function buildService(ctx: RouteContext) {
     const visiting = s.players[guest]?.visiting;
     if (visiting && visiting !== hostId && endVisit(s, visiting, guest)) housePush(s, visiting, push);
     house.guests[guest] = { since: now(), expires: now() + LIMITS.visitMs, cityId, captureId: ctx.randomId(), ...(link ? { link } : {}) };
+    if (house.party && partyOn(house.party, now())) noteCame(house.party, guest);
     if (house.barred) delete house.barred[guest];
     if (s.players[guest]) s.players[guest].visiting = hostId;
     syncHouseConv(s, hostId);

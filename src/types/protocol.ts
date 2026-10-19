@@ -67,6 +67,7 @@ import type { PromoteHttpRoutes } from './promote.ts'
 import type { EarnHttpRoutes } from './earn.ts'
 import type { WorldEventsHttpRoutes, WorldLiveFrame } from './world-events.ts'
 import type { DanfoHttpRoutes } from './danfo.ts'
+import type { WatchHttpRoutes } from './watch.ts'
 import type { NeighbourhoodHttpRoutes, EconomyHttpRoutes, BillboardHttpRoutes } from './neighbourhood.ts'
 import type { StoryHttpRoutes } from './story-http.ts'
 import type { ShareLoopsHttpRoutes } from './shareloops.ts'
@@ -314,6 +315,8 @@ export interface HttpRoutes extends CoreHttpRoutes, SocialHttpRoutes, CivicHttpR
 }
 /** Drive a danfo (docs/DANFO.md): merged into HttpRoutes here, beside the list above rather than in it. */
 export interface HttpRoutes extends DanfoHttpRoutes {}
+/** Shared watching (docs/ALLWORLD-HOUSE.md): merged the same way. */
+export interface HttpRoutes extends WatchHttpRoutes {}
 export type HttpRouteKey = keyof HttpRoutes
 export type ResponseOf<K extends HttpRouteKey> = HttpRoutes[K]['response']
 export type ErrorCodeOf<K extends HttpRouteKey> = HttpRoutes[K]['errors']
@@ -946,6 +949,7 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/neighbourhood/board', 'POST /api/neighbourhood/notices', 'POST /api/neighbourhood/notices/vote', 'POST /api/neighbourhood/notices/report', 'POST /api/neighbourhood/notices/remove', 'GET /api/neighbourhood/meetups', 'POST /api/neighbourhood/meetups/plan',
   'GET /api/admin/neighbourhood', 'POST /api/admin/neighbourhood/act', 'POST /api/admin/neighbourhood/meetup',
   'GET /api/economy', 'GET /api/promote/boards', 'GET /api/promote/street',
+  'GET /api/watch/matches', 'POST /api/watch/predict', 'GET /api/watch/board', 'GET /api/watch/house', 'POST /api/watch/house/vote', 'GET /api/watch/premieres', 'POST /api/watch/artist/apply', 'POST /api/watch/premiere', 'POST /api/watch/premiere/cancel', 'GET /api/admin/watch', 'POST /api/admin/watch',
 ] as const satisfies readonly HttpRouteKey[]
 
 /** WORKER: the same registry, so the same routes. (`/api/mod/*` answers only when the MODERATOR_TOKEN secret is set, as on Node.) */

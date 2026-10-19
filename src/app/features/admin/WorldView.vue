@@ -6,6 +6,7 @@ import { admin, useAdmin } from './useAdmin.ts'
 import { naira } from './adminModel.ts'
 import { recordDone } from './adminUi.ts'
 import WorldEventsAdmin from './WorldEventsAdmin.vue'
+import WatchAdmin from './WatchAdmin.vue'
 
 const api = useAdmin()
 const grant = reactive({ audience: 'online', city: 'lagos', amount: 500, reason: 'launch bonus', unrestricted: false })
@@ -119,5 +120,6 @@ async function notice(m: number): Promise<void> { const r = await api.post('/api
       </tbody></table>
     </div>
     <WorldEventsAdmin />
+    <WatchAdmin />
   </section>
 </template>

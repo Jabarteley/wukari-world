@@ -8,11 +8,12 @@
  *   start   { title?, colour }            the host is home; starting again while one runs changes the title and colour and keeps the roles
  *   role    { role: mc | dj, guest|null }  the host names a guest inside (or clears the role); one role per guest
  *   spray   { host? }                      host or guest: a line in the house chat, no money moves; PARTY.sprayPerGuest each, spaced out
- *   end                                    the host ends it; guests stay in the visit
+ *                                          (the scene shows notes flying: a picture and a counted cheer, never money)
+ *   end                                    the host ends it; guests stay in the visit; the answer carries the "who came" card's facts
  * Row cost: each is one social row (the house, plus the house chat line it writes). Reads cost nothing: the party rides in the
  * house view the guests already get.
  */
-import { COLOURS, PARTY, ROLE_LABEL, assignRole, cleanTitle, colourOf, isRole, maySpray, partyOn } from '../../src/festivals/party.ts';
+import { COLOURS, PARTY, ROLE_LABEL, assignRole, cleanTitle, colourOf, isRole, maySpray, noteCame, partyOn } from '../../src/festivals/party.ts';
 import { UUID_PATTERN } from '../protocol.ts';
 import { socialService } from './service.ts';
 import type { PushList } from './service.ts';
@@ -47,6 +48,7 @@ function build(ctx: RouteContext) {
       const again = partyOn(house.party, t);
       if (house.party && again) { house.party.title = title; house.party.colour = colour.id; }
       else house.party = { title, colour: colour.id, startedAt: t, until: t + PARTY.minutes * 60000, sprays: 0 };
+      noteCame(house.party, ...Object.keys(house.guests));
       say(s, id, again ? `The dress code is now ${colour.label.toLowerCase()}.` : `${s.players[id]?.name ?? 'The host'} is throwing a party: ${title}. Dress code: ${colour.label.toLowerCase()}.`, push);
       kit.housePush(s, id, push);
       return yes('started', { house: kit.houseView(s, id, id), push });
@@ -79,6 +81,7 @@ function build(ctx: RouteContext) {
       if (!ok.ok) return no('spray_limit', ok.reason);
       if (!ctx.allow(`party:spray:${id}`, 1, PARTY.sprayEveryMs)) return no('spray_limit', 'Slow down a little.');
       house.party.sprays += 1;
+      if (id !== hostId) noteCame(house.party, id);
       (house.party.sprayed ||= {})[id] = (house.party.sprayed[id] ?? 0) + 1;
       const push: PushList = [];
       say(s, hostId, `${s.players[id]?.name ?? 'Someone'} sprayed the floor. Make way!`, push);
@@ -90,11 +93,15 @@ function build(ctx: RouteContext) {
       const house = kit.pruneHouse(s, id);
       if (!house?.party) return yes('ended', { house: kit.houseView(s, id, id), duplicate: true as const });
       const push: PushList = [];
+      // The "who came" card: everyone who came while it was on, by their shown names, for the host's card (src/festivals/party.ts whoCameWords).
+      const ended = house.party, colour = colourOf(ended.colour) ?? COLOURS[0]!;
+      noteCame(ended, ...Object.keys(house.guests));
+      const card = { title: ended.title, colour: { ...colour }, sprays: ended.sprays, came: (ended.came ?? []).map((guest) => s.players[guest]?.name ?? 'A guest') };
       delete house.party;
       say(s, id, 'The party is over. Thank you for coming.', push);
       kit.housePush(s, id, push);
       kit.pruneHouse(s, id);
-      return yes('ended', { house: kit.houseView(s, id, id), push });
+      return yes('ended', { house: kit.houseView(s, id, id), push, card });
     },
     colours: COLOURS,
   };

@@ -118,7 +118,7 @@ work by agent id and person id and need no change.
 ## Cost
 
 A conversation costs what it did (one reply per line that needs the model) plus at most **one** summary of about 150 tokens in and 40 out, at the paid
-price of `gpt-5.6-luna` about US$0.00004. The router's US$2 a day stop and per-person caps apply to the summaries too; past them rules write the facts. The
+price of `gpt-6-luna` about US$0.00004. The router's US$2 a day stop and per-person caps apply to the summaries too; past them rules write the facts. The
 load tests (`memory-talk.test.ts`) run hundreds of people through a fake model, once with a cap of a few thousand micro-dollars (the stop is reached, spend
 stays under it, people are still answered, the rest of the facts come from rules) and once at the real cap.
 

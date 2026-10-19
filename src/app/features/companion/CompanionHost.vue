@@ -216,6 +216,14 @@ async function hosted(message: string, history: { role: 'user' | 'assistant'; te
     return { text: answer.text, suggest: Array.isArray(answer.suggest) ? answer.suggest : [], via: answer.via, ...(answer.topic ? { topic: answer.topic } : {}) }
   } catch { hostedOffUntil = Date.now() + 5 * 60_000; return null }
 }
+async function rephrase(localText: string, asked: string): Promise<Hosted | null> {
+  if (Date.now() < hostedOffUntil) return null
+  try {
+    const answer = await game.fetchJson<{ ok?: boolean; via?: string; text?: string | null }>('/api/companion/ask', { method: 'POST', body: { rephrase: true, localText, asked, clientId: game.newId() } })
+    if (!answer || answer.ok === false || !answer.text || (answer.via !== 'primary' && answer.via !== 'fallback')) return null
+    return { text: answer.text, suggest: [], via: answer.via }
+  } catch { hostedOffUntil = Date.now() + 5 * 60_000; return null }
+}
 async function send(message: string): Promise<void> {
   const clean = message.trim().slice(0, 400)
   if (!clean || thinking.value) return
@@ -226,7 +234,7 @@ async function send(message: string): Promise<void> {
   const started = Date.now()
   const history = memory.data.log.slice(-7, -1).map((line) => ({ role: line.from === 'you' ? 'user' as const : 'assistant' as const, text: line.text }))
   try {
-    const answer = await askCompanion({ context: contextFromGame(app), message: clean, memory: { explained: memory.data.explained, asked: memory.data.asked } }, hosted, history)
+    const answer = await askCompanion({ context: contextFromGame(app), message: clean, memory: { explained: memory.data.explained, asked: memory.data.asked } }, hosted, history, rephrase)
     const wait = reduced.value ? 0 : Math.max(0, 450 - (Date.now() - started))
     if (wait) await new Promise((resolve) => setTimeout(resolve, wait))
     memory.explained(answer.topic); memory.asked()

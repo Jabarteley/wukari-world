@@ -26,15 +26,15 @@ A provider with no key is skipped. With only `AI_GATEWAY_API_KEY` the guide work
 
 ## Model lists are settings
 
-A list is text, free models first, then paid: `openrouter:google/gemma-4-31b-it:free, gateway:openai/gpt-5.6-luna` (a bare id means the
+A list is text, free models first, then paid: `openrouter:google/gemma-4-31b-it:free, gateway:openai/gpt-6-luna` (a bare id means the
 gateway). The defaults are in `server/models/catalog.ts` (as of 14 Oct 2026); the admin page, World, Settings, edits one list per
 purpose without a release. An empty or unreadable list means the default.
 
 | Purpose | Setting | Default | Carries player words |
 | --- | --- | --- | --- |
-| `companion` | `modelsCompanion` | `COMPANION_MODEL`, then `COMPANION_FALLBACK_MODEL` (gpt-5.6-luna, grok-4.1-fast) | yes |
+| `companion` | `modelsCompanion` | `COMPANION_MODEL`, then `COMPANION_FALLBACK_MODEL` (gpt-6-luna, grok-4.1-fast) | yes |
 | `agent-talk` | `modelsAgentTalk` | the same two, paid | yes |
-| `resident` | `modelsResident` | four free gateway models, five free OpenRouter models, then gpt-5.6-luna | no |
+| `resident` | `modelsResident` | four free gateway models, five free OpenRouter models, then gpt-6-luna | no |
 | `safety` | `modelsSafety` | `nvidia/nemotron-3.5-content-safety:free` on OpenRouter | no |
 | `newspaper` | `modelsNewspaper` | the paid pair (the city front page from public gist lines, which carry players' shown names; docs/SHARE-LOOPS.md) | yes |
 

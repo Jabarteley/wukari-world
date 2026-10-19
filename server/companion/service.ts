@@ -90,25 +90,27 @@ function build(ctx: RouteContext) {
     if (rephrase && !settings.rephrase) { count('skipped'); return answer('local', null, [], extra); }
     const message = cleanInput(rephrase ? body['localText'] : body['message']);
     if (!message) throw ctx.fail(400, 'invalid_message');
+    // With a rephrase, what the player said (optional), so the line answers them: their words, screened and wrapped like any message.
+    const asked = rephrase ? cleanInput(body['asked']) : '';
     if (!rephrase && typeof body['message'] === 'string' && body['message'].trim().length > 4 * MAX_INPUT) throw ctx.fail(400, 'invalid_message');
 
-    const verdict = screenText(message, { contact: true });
+    const verdict = screenText(message, { contact: true }) ?? (asked ? screenText(asked, { contact: true }) : null);
     if (verdict) { count('filtered'); return answer('filtered', verdict.code === 'text_blocked' ? GENTLE : PRIVATE, [], extra); }
     // A player in crisis is answered by the authored reply, never by a model.
-    if (!rephrase && matchIntent(message).intent === 'safety') { count('skipped'); return answer('local', null, [], extra); }
+    if (matchIntent(rephrase ? asked : message).intent === 'safety') { count('skipped'); return answer('local', null, [], extra); }
 
     // Read what the game holds, then let go of the store before any outside call.
     const prepared = await ctx.store.read((db) => {
       const session = request.requireSession(db);
       const city = characterCity(session);
       if (!city || !session.cities[city]?.state) throw ctx.fail(409, 'no_life');
-      const built = buildContext(db, session, city, message, { now: ctx.now(), online: (id) => ctx.online(id) });
+      const built = buildContext(db, session, city, asked || message, { now: ctx.now(), online: (id) => ctx.online(id) });
       if (!built) throw ctx.fail(409, 'no_life');
       return { id: session.publicId, built };
     });
     const { id, built } = prepared;
 
-    const current: ChatMessage = { role: 'user', content: wrapPlayerText(message) };
+    const current: ChatMessage = { role: 'user', content: rephrase ? `${asked ? `The player said: ${wrapPlayerText(asked)}\n` : ''}The game's answer, to say in your own words: "${message.replace(/"/g, "'")}"` : wrapPlayerText(message) };
     let spare = MAX_REQUEST_CHARACTERS - systemPrompt(built.sections, rephrase).length - current.content.length;
     if (spare < 0) { count('skipped'); return answer('local', null, [], extra); }
 

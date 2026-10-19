@@ -108,11 +108,11 @@ test('success: the exact request, the tags, a hashed user, and the key only in t
   assert.equal(seen.path, '/v1/chat/completions');
   assert.equal(seen.headers['authorization'], `Bearer ${KEY}`);
   const body = seen.body as { model: string; stream: boolean; max_tokens: number; temperature: number; messages: { role: string; content: string }[]; providerOptions: { gateway: { user: string; tags: string[] } } };
-  assert.equal(body.model, 'openai/gpt-5.6-luna');
+  assert.equal(body.model, 'openai/gpt-6-luna');
   assert.equal(body.stream, false);
   assert.equal(body.max_tokens, 220);
   assert.equal(typeof body.temperature, 'number');
-  assert.deepEqual(body.providerOptions.gateway.tags, ['product:allworld', 'feature:companion', 'role:primary', 'model:openai/gpt-5.6-luna']);
+  assert.deepEqual(body.providerOptions.gateway.tags, ['product:allworld', 'feature:companion', 'role:primary', 'model:openai/gpt-6-luna']);
   assert.match(body.providerOptions.gateway.user, /^p_[0-9a-f]{32}$/);
   assert.ok(!seen.raw.includes(ada.id) && !seen.raw.includes(KEY));
   assert.equal(body.messages[0]?.role, 'system');
@@ -147,7 +147,7 @@ test('every failure ends safely: 429 then fallback, 500 twice, malformed, auth, 
   const ada = await life('Ada');
   // The router rests a model that failed for a few minutes (a refused key rests its provider for ten): each case below starts after that.
   const rest = (): void => f.advance(11 * 60000);
-  gateway.plan((seen) => (seen.body['model'] === 'openai/gpt-5.6-luna' ? { status: 429 } : { reply: reply('Fallback here.') }));
+  gateway.plan((seen) => (seen.body['model'] === 'openai/gpt-6-luna' ? { status: 429 } : { reply: reply('Fallback here.') }));
   let got = await ask(ada, { message: 'what is a stall' });
   assert.deepEqual([got.via, got.text], ['fallback', 'Fallback here.']);
   assert.deepEqual(gateway.seen.map((s) => (s.body['providerOptions'] as { gateway: { tags: string[] } }).gateway.tags[2]), ['role:primary', 'role:fallback']);
@@ -355,25 +355,29 @@ test('a session with a started life is required', async (t) => {
   assert.equal((await ask(await life('Ada'), { message: 'hi' })).via, 'primary');
 });
 
-test('rephrase: only when switched on, and then the same checks apply', async (t) => {
-  const off = await harness(t);
+test('rephrase: on unless switched off, and then the same checks apply', async (t) => {
+  const off = await harness(t, { COMPANION_AI_REPHRASE: 'off' });
   const ada = await off.life('Ada');
   assert.equal((await off.ask(ada, { rephrase: true, localText: 'You have ₦100.' })).via, 'local');
   assert.equal(off.gateway.seen.length, 0);
   await off.gateway.stop();
 });
-test('rephrase on', async (t) => {
-  const { gateway, life, ask } = await harness(t, { COMPANION_AI_REPHRASE: 'on' });
+test('rephrase on by default: the brain\'s line in Lumo\'s words, as a reply to what the player said', async (t) => {
+  const { gateway, life, ask } = await harness(t);
   const ada = await life('Ada');
   gateway.plan(() => ({ reply: reply('You have ₦100 left. Nice.', ['open-bank']) }));
-  const got = await ask(ada, { rephrase: true, localText: 'You have ₦100.' });
+  const got = await ask(ada, { rephrase: true, localText: 'You have ₦100.', asked: 'how much money do I have' });
   assert.deepEqual([got.via, got.text, got.suggest], ['primary', 'You have ₦100 left. Nice.', []]);
+  assert.equal(sentMessages(gateway.seen.at(-1))[1]?.content, `The player said: ${wrapPlayerText('how much money do I have')}\nThe game's answer, to say in your own words: "You have ₦100."`);
+  const before = gateway.seen.length;
+  assert.equal((await ask(ada, { rephrase: true, localText: 'Talk to someone you trust.', asked: 'I want to kill myself' })).via, 'local', 'a crisis is never rephrased');
+  assert.equal(gateway.seen.length, before);
   gateway.plan(() => ({ reply: reply('You have ₦9,999.') }));
   assert.equal((await ask(ada, { rephrase: true, localText: 'You have ₦100.' })).via, 'local');
 });
 
 test('maximum rephrase input keeps its rules and authorized amount within the same full request bound', async (t) => {
-  const { gateway, life, ask } = await harness(t, { COMPANION_AI_REPHRASE: 'on' });
+  const { gateway, life, ask } = await harness(t);
   const ada = await life('Ada');
   const localText = 'You have ₦100. ' + 'x'.repeat(400);
   gateway.plan(() => ({ reply: reply('You have ₦100 left.', ['open-bank']) }));
@@ -381,7 +385,7 @@ test('maximum rephrase input keeps its rules and authorized amount within the sa
   const messages = sentMessages(gateway.seen[0]);
   assert.equal(messages.length, 2, 'rephrase still excludes history');
   assert.ok((messages[0]?.content ?? '').startsWith(RULES + '\n\n' + REPHRASE_RULES + '\n\n'));
-  assert.equal(messages[1]?.content, wrapPlayerText(cleanInput(localText)));
+  assert.equal(messages[1]?.content, `The game's answer, to say in your own words: "${cleanInput(localText)}"`);
   assert.equal(cleanInput(localText).length, 400);
   assert.ok(messages.reduce((length, item) => length + item.content.length, 0) <= 3600);
   assert.deepEqual([answer.text, answer.suggest], ['You have ₦100 left.', []]);
@@ -407,11 +411,11 @@ test('operator self-test: ok, a refused key, a wrong model, a timeout; guarded b
   assert.equal((await fetch(f.base + '/api/mod/companion-test', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' })).status, 401);
   gateway.plan(() => ({ reply: 'ok' }));
   const good = (await mod('/api/mod/companion-test', true)).body;
-  assert.deepEqual([good['ok'], good['model'], good['usedFallback']], [true, 'openai/gpt-5.6-luna', false]);
+  assert.deepEqual([good['ok'], good['model'], good['usedFallback']], [true, 'openai/gpt-6-luna', false]);
   assert.equal((gateway.seen[0]!.body as { max_tokens: number }).max_tokens, 16);
   f.advance(11 * 60000); gateway.plan(() => ({ status: 401 }));
   assert.equal((await mod('/api/mod/companion-test', true)).body['error'], 'auth');
-  f.advance(11 * 60000); gateway.plan((seen) => (seen.body['model'] === 'openai/gpt-5.6-luna' ? { status: 404 } : { reply: 'ok' }));
+  f.advance(11 * 60000); gateway.plan((seen) => (seen.body['model'] === 'openai/gpt-6-luna' ? { status: 404 } : { reply: 'ok' }));
   const moved = (await mod('/api/mod/companion-test', true)).body;
   assert.deepEqual([moved['ok'], moved['usedFallback'], moved['primaryError']], [true, true, 'model_not_found']);
   f.advance(61 * 60000); gateway.plan(() => ({ status: 404 }));

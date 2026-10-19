@@ -23,14 +23,18 @@ export type OperatorHandler = (db: Db, request: RouteRequest, body: Record<strin
 const FAILED_PER_ADDRESS = 10, FAILED_TOTAL = 100, FAILED_WINDOW_MS = 600000, OPERATOR_PER_MINUTE = 60;
 
 /** The operator's checks, for a route that does its own work: the token, the rate limits, and the JSON body of a POST. */
+/** Throws unless `request` carries the operator token (failed tries are limited per address and in all). */
+export function requireOperator(ctx: RouteContext, request: RouteRequest): void {
+  if (!ctx.config.moderation) throw ctx.fail(404, 'not_found');
+  if (!request.moderator()) {
+    if (!ctx.allow(`mod-fail:${request.ip}`, FAILED_PER_ADDRESS, FAILED_WINDOW_MS) || !ctx.allow('mod-fail:all', FAILED_TOTAL, FAILED_WINDOW_MS)) throw ctx.fail(429, 'rate_limited');
+    throw ctx.fail(401, 'moderator_token_required');
+  }
+  if (!ctx.allow(`mod:${request.ip}`, OPERATOR_PER_MINUTE)) throw ctx.fail(429, 'rate_limited');
+}
 export function operatorGate(ctx: RouteContext) {
   return async (request: RouteRequest): Promise<Record<string, unknown>> => {
-    if (!ctx.config.moderation) throw ctx.fail(404, 'not_found');
-    if (!request.moderator()) {
-      if (!ctx.allow(`mod-fail:${request.ip}`, FAILED_PER_ADDRESS, FAILED_WINDOW_MS) || !ctx.allow('mod-fail:all', FAILED_TOTAL, FAILED_WINDOW_MS)) throw ctx.fail(429, 'rate_limited');
-      throw ctx.fail(401, 'moderator_token_required');
-    }
-    if (!ctx.allow(`mod:${request.ip}`, OPERATOR_PER_MINUTE)) throw ctx.fail(429, 'rate_limited');
+    requireOperator(ctx, request);
     return request.method === 'POST' ? await request.json() : {};
   };
 }

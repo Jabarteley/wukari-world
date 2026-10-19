@@ -38,7 +38,7 @@ its models stood, its script and its cover; the models stay in My 3D models. Eve
 
 ## Settings
 
-`spacesWorlds` (Admin → World → Settings; `POST /api/mod/spaces/switch { worlds: true }`), off by default; needs `spaces3d`. Uploading
+`spacesWorlds` (Admin → World → Settings; `POST /api/mod/spaces/switch { worlds: true }`), off by default; needs `spaces3d`. `spacesPhotoWorlds` (`{ photo: true }`) adds Walk into a photo (phase 8). Uploading
 models needs `spacesModels` and the R2 bucket; covers share that store.
 
 ## Analytics
@@ -58,8 +58,35 @@ fixed lists only, never a name or an id. Sent only when telemetry is configured 
 | 5 | **Polish and heavy detail** (first cut done: sky, sea, shapes, house models to 50 MB, the player's own character in 3D) | Bigger uploads for worlds (50 MB, 500,000 triangles a model), the player's real character instead of the capsule, ground shaping (hills, water), skyboxes, day and night, better touch controls, a first-run tour of a world. | per feature | 1; the character body is the NPC programme's: coordinate | ongoing, 1 week for the first cut |
 | 6 | **The social loop** (done: friends-only, likes, builders; feed and notices wait for the feed phases) | Friends-only worlds, co-builders, likes, a share card with the cover (growth share kind `world`), worlds on the feed, "a friend's world is live" notices, worlds of the week. | `spacesWorlds` | 1; feed phases (docs/SOCIAL-PLATFORM-PLAN.md) | 2 days |
 | 7 | **Analytics on** (switched on with the owner's key) | PostHog is built (src/telemetry, SECURITY.md "Telemetry") but off live: `GET /api/telemetry/config` answers `enabled: false`. Switch-on: `TELEMETRY_ENV=production`, `POSTHOG_KEY=phc_…`, optionally `POSTHOG_HOST` (EU) as Worker secrets; in PostHog turn on "Discard client IP data". Then three dashboards: activation funnel, invite funnel, worlds funnel (`world_created` → `world_entered` → `world_shared`). | — | the owner's PostHog key and region | 0.5 day after the key |
+| 8 | **Walk into a photo** (built 19 Oct 2026) | A player picks a photo of a room, a street or a view. Their own device works out how far away everything in it is (Depth Anything V2 Small, Apache-2.0, on onnxruntime-web, MIT: about 41 MB fetched once, from `/api/spaces/depth/*`, never part of the game's download) and builds a place from it (src/spaces/photo/): the ground is found and levelled, the eye put at 1.55 m, the lens angle read from the photo's EXIF. A link-only Huge world is made around it and they start where the photo was taken. The photo is the picture on their own model, like any upload. Details below. | `spacesPhotoWorlds` | 1, model uploads, the three files in the model store | done |
 
 Order: 2, 3 and 7 first (a world with a screen and a game is the thing to market; analytics measures it), then 3b and 4 together (the real house on the real street), then 6, 5.
+
+## A world from a photo (phase 8)
+
+The Worlds app shows **Walk into a photo** when `spacesPhotoWorlds` is on (the worlds list answers `photo: true`). Then:
+
+1. The player picks a photo. Nothing leaves the device for this step.
+2. The device fetches three fixed files once, which the browser then keeps for a week: `ort.mjs` and `ort.wasm` (onnxruntime-web 1.30.0) and `depth.onnx` (Depth Anything V2 Small, quantized).
+3. It runs the model on the photo, scaled so its long side is 518 pixels. On a laptop this takes about 4 seconds.
+4. `photoMesh` (src/spaces/photo/mesh.ts) turns the depth into a place:
+   - **Finding the ground.** The depth model gives relative depth with an unknown shift. Every shift leaves a floor flat but leaning, so the shift is the one that makes the bottom of the photo level front to back, on the assumption that photos are taken about level. A sideways lean is kept and levelled.
+   - **Scale.** The eye is put 1.55 m above the ground. The lens angle comes from EXIF `FocalLengthIn35mmFilm` when the photo has it; otherwise it is taken as 68°.
+   - **The surface.** Everything further than 55 m becomes a backdrop. Anything within 12 cm of the ground is put on it, and nothing goes below it.
+   - **When no ground is found** (a photo of a wall), the photo is taken as level and the ground is a guess, and the player is told so.
+5. `photoGlb` (glb-write.ts) writes one unlit, textured mesh (220 points along the long side) plus:
+   - `allworld_collider`: never drawn. It holds what stands up in a coarser, smoothed copy (72 points), so visitors walk on the world's own ground and are blocked by walls and furniture. The physics uses this shape exactly (Rapier trimesh with internal-edge fixing), not a box around it.
+   - `allworld_spawn`: just onto the nearest ground the photo shows. A world holding the model starts its visitors there, looking in.
+   - The file passes the same upload check as any model, at about 1.5 MB and 60,000 triangles.
+6. The model is uploaded to My 3D models, a link-only Huge world is made, and the model is placed in its middle (the 3D view centres a model on itself). The player walks in.
+
+The model only knows what the camera saw. Behind a sofa, the surface stretches from the sofa to the wall, and that stretch is a wall too. 360° photos are the natural next step (a whole room around you).
+
+**Setup on a server:**
+1. Run `node --experimental-strip-types scripts/spaces/depth-assets.ts --r2 allworld` (or `--local .data` for a local server). It fetches the three files from npm and Hugging Face, checks them against the SHA-256 values server/spaces/depth.ts pins, and stores them under `glb/<sha256>`.
+2. Turn the setting on with `POST /api/mod/spaces/switch { photo: true }`.
+
+Analytics: `photo_world { step, ground, seconds }`, plus `world_created` with template `photo`.
 
 ## Decisions for the owner
 

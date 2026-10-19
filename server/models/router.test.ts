@@ -40,15 +40,16 @@ function world(options: { plan?: Plan; keys?: Partial<Record<'gateway' | 'openro
 const say = (purpose: 'companion' | 'agent-talk' | 'resident' | 'safety', extra: { carriesPlayerWords?: boolean; playerId?: string; maxTokens?: number; timeoutMs?: number } = {}) => ({ purpose, messages: [{ role: 'user' as const, content: 'hello' }], maxTokens: 100, carriesPlayerWords: false, ...extra });
 
 test('lists: parsed, bad entries dropped, free recognised, prices default high for unknown paid models', () => {
-  assert.deepEqual(parseList('openrouter:google/gemma-4-31b-it:free, openai/gpt-5.6-luna\nnonsense, gateway:openai/gpt-5.6-luna'), [{ provider: 'openrouter', id: 'google/gemma-4-31b-it:free' }, { provider: 'gateway', id: 'openai/gpt-5.6-luna' }]);
+  assert.deepEqual(parseList('openrouter:google/gemma-4-31b-it:free, openai/gpt-6-luna\nnonsense, gateway:openai/gpt-6-luna'), [{ provider: 'openrouter', id: 'google/gemma-4-31b-it:free' }, { provider: 'gateway', id: 'openai/gpt-6-luna' }]);
   assert.equal(formatList(parseList('a/b')), 'gateway:a/b');
-  assert.ok(isFree('google/gemma-4-31b-it:free') && isFree('stealth/glyph-cluster') && !isFree('openai/gpt-5.6-luna'));
-  assert.deepEqual(priceOf('openai/gpt-5.6-luna'), { input: 0.1, output: 0.5 });
+  assert.ok(isFree('google/gemma-4-31b-it:free') && isFree('stealth/glyph-cluster') && !isFree('openai/gpt-6-luna'));
+  assert.deepEqual(priceOf('openai/gpt-6-luna'), { input: 0.1, output: 0.5 });
+  assert.deepEqual(priceOf('openai/gpt-5.6-luna'), { input: 0.2, output: 1.2 });
   assert.ok(priceOf('some/unknown-paid').input >= 1);
 });
 
 test('fallback order: free first, then paid; a failing model rests and is skipped next time', async () => {
-  const w = world({ plan: (call) => (call.model.includes('laguna') || call.model.includes('nemotron-3.5-lightning') ? { status: 500 } : {}), settings: { modelsResident: 'gateway:nvidia/nemotron-3.5-lightning-free, gateway:poolside/laguna-s-2.1-free, openrouter:google/gemma-4-31b-it:free, gateway:openai/gpt-5.6-luna' } });
+  const w = world({ plan: (call) => (call.model.includes('laguna') || call.model.includes('nemotron-3.5-lightning') ? { status: 500 } : {}), settings: { modelsResident: 'gateway:nvidia/nemotron-3.5-lightning-free, gateway:poolside/laguna-s-2.1-free, openrouter:google/gemma-4-31b-it:free, gateway:openai/gpt-6-luna' } });
   const first = await w.router.ask(say('resident'));
   assert.ok(first.ok);
   assert.deepEqual(w.calls.map((call) => call.model), ['nvidia/nemotron-3.5-lightning-free', 'poolside/laguna-s-2.1-free', 'google/gemma-4-31b-it:free']);
@@ -74,10 +75,10 @@ test('a provider with no key is skipped; with no key at all the answer is off', 
 });
 
 test('the no-training rule: a request with a person’s words never reaches a free model', async () => {
-  const w = world({ settings: { modelsAgentTalk: 'openrouter:google/gemma-4-31b-it:free, gateway:nvidia/nemotron-3.5-lightning-free, gateway:openai/gpt-5.6-luna' } });
+  const w = world({ settings: { modelsAgentTalk: 'openrouter:google/gemma-4-31b-it:free, gateway:nvidia/nemotron-3.5-lightning-free, gateway:openai/gpt-6-luna' } });
   const got = await w.router.ask(say('agent-talk', { carriesPlayerWords: true }));
   assert.ok(got.ok);
-  assert.deepEqual(w.calls.map((call) => call.model), ['openai/gpt-5.6-luna']);
+  assert.deepEqual(w.calls.map((call) => call.model), ['openai/gpt-6-luna']);
   // Only free models in the list, and a person's words: nothing is sent.
   const only = world({ settings: { modelsAgentTalk: 'openrouter:google/gemma-4-31b-it:free' } });
   const refused = await only.router.ask(say('agent-talk', { carriesPlayerWords: true }));
@@ -99,7 +100,7 @@ test('the no-training rule: a request with a person’s words never reaches a fr
 test('the default lists keep the rule: companion and agent-talk hold paid models only, residents free first', async () => {
   const w = world();
   await w.router.ask(say('companion', { carriesPlayerWords: true }));
-  assert.equal(w.calls[0]?.model, 'openai/gpt-5.6-luna');
+  assert.equal(w.calls[0]?.model, 'openai/gpt-6-luna');
   w.calls.length = 0;
   await w.router.ask(say('resident'));
   assert.ok(isFree(w.calls[0]!.model), 'a resident starts on a free model');
@@ -140,7 +141,7 @@ test('a setting can lower the cap but the code never lets it pass US$2', async (
 });
 
 test('without usage in the answer the conservative reservation remains a budget debit', async () => {
-  const w = world({ plan: () => ({ usage: null, text: 'x'.repeat(400) }), settings: { modelsCompanion: 'openai/gpt-5.6-luna' } });
+  const w = world({ plan: () => ({ usage: null, text: 'x'.repeat(400) }), settings: { modelsCompanion: 'openai/gpt-6-luna' } });
   const got = await w.router.ask({ ...say('companion', { carriesPlayerWords: true }), messages: [{ role: 'user', content: 'y'.repeat(800) }] });
   assert.ok(got.ok && got.usage === null);
   // 800 UTF-8 bytes + 64 framing allowance, and all 100 permitted output tokens.
@@ -183,16 +184,16 @@ test('free provider rates: per minute and per day, each provider on its own', as
 });
 
 test('a free model out of room falls to a paid one when the request allows it', async () => {
-  const w = world({ limits: { freePerMinute: { openrouter: 0, gateway: 0 }, freePerDay: { openrouter: 0, gateway: 0 } }, settings: { modelsResident: 'openrouter:google/gemma-4-31b-it:free, gateway:openai/gpt-5.6-luna' } });
+  const w = world({ limits: { freePerMinute: { openrouter: 0, gateway: 0 }, freePerDay: { openrouter: 0, gateway: 0 } }, settings: { modelsResident: 'openrouter:google/gemma-4-31b-it:free, gateway:openai/gpt-6-luna' } });
   const got = await w.router.ask(say('resident'));
-  assert.equal(got.ok && got.model, 'openai/gpt-5.6-luna');
+  assert.equal(got.ok && got.model, 'openai/gpt-6-luna');
   assert.ok(got.ok && got.costMicro > 0);
 });
 
 test('a model that disappears (404) falls to the next and is not asked for half an hour; 429 and timeouts fall too', async () => {
-  const w = world({ plan: (call) => (call.model === 'gone/model-x' ? { status: 404 } : call.model === 'busy/model-y' ? { status: 429 } : call.model === 'slow/model-z' ? { delayMs: 1500 } : {}), settings: { modelsResident: 'gone/model-x, busy/model-y, slow/model-z, openai/gpt-5.6-luna' } });
+  const w = world({ plan: (call) => (call.model === 'gone/model-x' ? { status: 404 } : call.model === 'busy/model-y' ? { status: 429 } : call.model === 'slow/model-z' ? { delayMs: 1500 } : {}), settings: { modelsResident: 'gone/model-x, busy/model-y, slow/model-z, openai/gpt-6-luna' } });
   const got = await w.router.ask({ ...say('resident'), timeoutMs: 1000 });
-  assert.equal(got.ok && got.model, 'openai/gpt-5.6-luna');
+  assert.equal(got.ok && got.model, 'openai/gpt-6-luna');
   assert.deepEqual(got.attempts.map((attempt) => attempt.ok ? 'ok' : attempt.why), ['model', 'rate', 'timeout', 'ok']);
   w.calls.length = 0; w.clock.now += 10 * 60000;
   await w.router.ask({ ...say('resident'), timeoutMs: 1000 });
@@ -204,14 +205,14 @@ test('a model that disappears (404) falls to the next and is not asked for half 
 });
 
 test('every model failing is a refusal the caller handles; a key refused stops that provider', async () => {
-  const w = world({ plan: () => ({ status: 500 }), settings: { modelsCompanion: 'openai/gpt-5.6-luna, xai/grok-4.1-fast-non-reasoning' } });
+  const w = world({ plan: () => ({ status: 500 }), settings: { modelsCompanion: 'openai/gpt-6-luna, xai/grok-4.1-fast-non-reasoning' } });
   const got = await w.router.ask(say('companion', { carriesPlayerWords: true }));
   assert.equal(got.ok ? 'ok' : got.why, 'failed');
   assert.equal(w.calls.length, 2);
   assert.equal(w.router.today().reservedMicro, 0);
   assert.ok(w.router.today().ledger.micro > 0, 'ambiguous paid failures retain conservative debits');
   assert.equal(w.router.today().ledger.estimatedMicro, w.router.today().ledger.micro);
-  const bad = world({ plan: () => ({ status: 401 }), settings: { modelsCompanion: 'openai/gpt-5.6-luna, xai/grok-4.1-fast-non-reasoning' } });
+  const bad = world({ plan: () => ({ status: 401 }), settings: { modelsCompanion: 'openai/gpt-6-luna, xai/grok-4.1-fast-non-reasoning' } });
   await bad.router.ask(say('companion', { carriesPlayerWords: true }));
   assert.equal(bad.calls.length, 1, 'the same key would fail again');
 });
@@ -224,7 +225,7 @@ test('the ledger is stored and comes back after a restart; spend by model and by
   const last = w.saves.at(-1)!;
   const day = Object.values(last.days)[0]!;
   assert.ok(day.micro > 0 && day.requests === 2);
-  assert.ok(day.byModel['gateway:openai/gpt-5.6-luna']!.micro > 0);
+  assert.ok(day.byModel['gateway:openai/gpt-6-luna']!.micro > 0);
   assert.deepEqual(Object.keys(day.byPurpose).sort(), ['companion', 'resident']);
   assert.equal(JSON.stringify(last).includes('hello'), false, 'no words are stored');
   const again = world({ saved: last });
@@ -252,7 +253,7 @@ const listsFor = (state: { openrouter: object[]; gateway: object[]; fail?: strin
 };
 test('the weekly report: new and departing free models, once a week, and a failing provider keeps its old list', async () => {
   const w = world();
-  const state = { openrouter: [{ id: 'a/one:free', pricing: { prompt: '0', completion: '0' } }, { id: 'b/paid', pricing: { prompt: '0.1', completion: '0.2' } }] as object[], gateway: [{ id: 'g/free-thing', pricing: { input: '0', output: '0' } }, { id: 'openai/gpt-5.6-luna', pricing: { input: '0.1' } }] as object[], fail: undefined as string | undefined };
+  const state = { openrouter: [{ id: 'a/one:free', pricing: { prompt: '0', completion: '0' } }, { id: 'b/paid', pricing: { prompt: '0.1', completion: '0.2' } }] as object[], gateway: [{ id: 'g/free-thing', pricing: { input: '0', output: '0' } }, { id: 'openai/gpt-6-luna', pricing: { input: '0.1' } }] as object[], fail: undefined as string | undefined };
   const fetcher = listsFor(state);
   assert.equal(reportDue(w.router, w.clock.now), true);
   const first = await weeklyReport(w.router, fetcher, () => w.clock.now);
@@ -261,7 +262,7 @@ test('the weekly report: new and departing free models, once a week, and a faili
   assert.equal(await weeklyReport(w.router, fetcher, () => w.clock.now), null, 'not again within the week');
   assert.equal(reportDue(w.router, w.clock.now + 6 * 86400000), false);
   state.openrouter = [{ id: 'a/two:free' }, { id: 'a/three:free' }];
-  state.gateway = [{ id: 'openai/gpt-5.6-luna' }];
+  state.gateway = [{ id: 'openai/gpt-6-luna' }];
   w.clock.now += 8 * 86400000;
   const second = await weeklyReport(w.router, fetcher, () => w.clock.now);
   assert.deepEqual(second?.openrouter.appeared, ['a/two:free', 'a/three:free']);

@@ -60,8 +60,8 @@ async function send(): Promise<void> {
 
 <template>
   <div class="report">
-    <HeroCard label="Feedback and help" figure="Tell us anything" class="report-hero">
-      An idea, something you love or miss, or something that went wrong: the team reads every one. You get a receipt number at once. No e-mail needed.
+    <HeroCard label="Report a problem" figure="Tell us what went wrong" class="report-hero">
+      You get a receipt number at once. No e-mail needed. Ideas go on the feedback board (Phone → Feedback).
     </HeroCard>
 
     <form class="report-form" novalidate @submit.prevent="send">

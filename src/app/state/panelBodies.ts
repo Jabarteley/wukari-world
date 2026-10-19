@@ -7,6 +7,7 @@ type BodyModule = { default: Component }
 const loaders = {
   'bank/BankApp': () => import('../features/bank/BankApp.vue'),
   'messages/MessagesApp': () => import('../features/messages/MessagesApp.vue'),
+  'feedback/FeedbackApp': () => import('../features/feedback/FeedbackApp.vue'),
   'support/ReportApp': () => import('../features/support/ReportApp.vue'),
   'jobs/JobsApp': () => import('../features/jobs/JobsApp.vue'),
   'jobs/CareerTab': () => import('../features/jobs/CareerTab.vue'),

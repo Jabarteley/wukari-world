@@ -40,7 +40,9 @@ export const messages = phonePanel('messages', 'Messages', bodyLoader('messages/
   notifications: (_state, view) => notificationLines(social.me, { connected: view.connected, now: view.now, notices: view.social?.notices, seen: noticeMarks.seen(view.session?.id ?? null, view.cityId) }),
 })
 
-export const support = phonePanel('support', 'Feedback and help', bodyLoader('support/ReportApp'), { short: 'Feedback', icon: '🛟', order: 1, group: 'life', badge: () => reportReplies() })
+/** Feedback: the public board for ideas and votes (features/feedback/board.ts), first on the phone's first page. */
+export const feedback = phonePanel('feedback', 'Feedback', bodyLoader('feedback/FeedbackApp'), { icon: '💬', order: 1, group: 'life' })
+export const support = phonePanel('support', 'Report a problem', bodyLoader('support/ReportApp'), { short: 'Report', icon: '🛟', order: 96, group: 'city', badge: () => reportReplies() })
 
 export const jobs = phonePanel('jobs', 'Jobs', bodyLoader('jobs/JobsApp'), { order: 10, group: 'money' })
 

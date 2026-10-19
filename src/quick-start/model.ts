@@ -48,7 +48,9 @@ export function joinIdFrom(pathname: unknown, search: unknown): string | null {
 export function linkParts(pathname: unknown, search: unknown): { ref: string | null; table: string | null } {
   const ref = /^\/s\/([a-z0-9]{8,16})(?:[/?#]|$)/.exec(String(pathname ?? '')) ?? /[?&](?:ref|s)=([a-z0-9]{8,16})(?:[&#]|$)/.exec(String(search ?? ''));
   const table = /[?&]table=([a-z0-9-]{1,40})(?:[&#]|$)/.exec(String(search ?? ''));
-  return { ref: ref?.[1] ?? null, table: table?.[1] ?? null };
+  // A world's link, /w/<id> (docs/WORLDS.md; src/spaces/worlds.ts makes them, lower-case), rides as the table `world-<id>`, as a clan invite does.
+  const world = /^\/w\/(w[0-9a-z]{12})\b/.exec(String(pathname ?? ''));
+  return { ref: ref?.[1] ?? null, table: table?.[1] ?? (world ? `world-${world[1]}` : null) };
 }
 // ---- when to offer settling in ---------------------------------------------------------------
 export function nudgeMemory(saved: unknown): NudgeMemory {

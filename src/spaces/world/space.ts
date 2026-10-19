@@ -13,6 +13,7 @@ import { HOUSE_STYLE } from '../../game/content/world.ts'
 import { footprint, doorSlot, windowSlot, plotOf } from '../../game/home-layout.ts'
 import { bumpsOf, finishAt, planOf, slabOf, wallsOf, type HousePlan, type PlanWall } from '../../game/home-plan.ts'
 import { WORLD } from '../layout.ts'
+import { WORLD_GROUNDS, type WorldGround } from '../worlds.ts'
 import { THREE, disposeTree, parseModel } from './look.ts'
 import type { PlacedModel, WorldItem } from '../../types/spaces.ts'
 
@@ -77,6 +78,14 @@ function grass(g: CanvasRenderingContext2D, s: number): void {
   g.fillStyle = '#5d7d3c'; g.fillRect(0, 0, s, s)
   for (let i = 0; i < 9000; i++) { const t = rand(); g.fillStyle = `rgba(${60 + t * 60},${100 + t * 60},${30 + t * 25},0.5)`; g.fillRect(rand() * s, rand() * s, 1.5, 3 + rand() * 4) }
 }
+/** The surfaces a world may stand on (src/spaces/worlds.ts WORLD_GROUNDS): grass, or speckled sand, stone slabs, snow, or grass by night. */
+function groundOf(ground: WorldGround): (g: CanvasRenderingContext2D, s: number) => void {
+  if (ground === 'sand') return (g, s) => { g.fillStyle = '#d9c38f'; g.fillRect(0, 0, s, s); for (let i = 0; i < 7000; i++) { const t = rand(); g.fillStyle = `rgba(${150 + t * 80},${120 + t * 70},${70 + t * 50},0.45)`; g.fillRect(rand() * s, rand() * s, 2, 2) } }
+  if (ground === 'stone') return (g, s) => { g.fillStyle = '#8f9499'; g.fillRect(0, 0, s, s); const n = 4; for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) { const t = 0.85 + rand() * 0.3; g.fillStyle = `rgb(${Math.round(140 * t)},${Math.round(145 * t)},${Math.round(150 * t)})`; g.fillRect((i * s) / n + 2, (j * s) / n + 2, s / n - 4, s / n - 4) } for (let i = 0; i < 1500; i++) { g.fillStyle = `rgba(0,0,0,${rand() * 0.08})`; g.fillRect(rand() * s, rand() * s, 2, 2) } }
+  if (ground === 'snow') return (g, s) => { g.fillStyle = '#eef3f7'; g.fillRect(0, 0, s, s); for (let i = 0; i < 4000; i++) { g.fillStyle = `rgba(${200 + rand() * 55},${210 + rand() * 45},${235 + rand() * 20},0.5)`; g.fillRect(rand() * s, rand() * s, 3, 3) } }
+  if (ground === 'night') return (g, s) => { g.fillStyle = '#263a24'; g.fillRect(0, 0, s, s); for (let i = 0; i < 6000; i++) { const t = rand(); g.fillStyle = `rgba(${30 + t * 30},${55 + t * 40},${25 + t * 20},0.5)`; g.fillRect(rand() * s, rand() * s, 1.5, 3 + rand() * 4) } }
+  return grass
+}
 
 export interface BuiltSpace {
   root: InstanceType<typeof THREE.Group>
@@ -102,12 +111,16 @@ export interface BuiltSpace {
   dispose(): void
 }
 
-export interface SpaceInput { grid: number; owned: boolean; style: Record<string, number> | null; items: readonly WorldItem[] }
+/** `terrain`: a world (docs/WORLDS.md): open ground of this surface and no house at all; the plot is its size. */
+export interface SpaceInput { grid: number; owned: boolean; style: Record<string, number> | null; items: readonly WorldItem[]; terrain?: { ground: string } | null }
+/** The sky over a space: a world's ground names one; a home stands under the day sky. */
+export const skyOf = (input: Pick<SpaceInput, 'terrain'>): string => (input.terrain && Object.hasOwn(WORLD_GROUNDS, input.terrain.ground) ? WORLD_GROUNDS[input.terrain.ground as WorldGround].sky : '#a9c7de')
 
 export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
   seed = 7
   const plot = plotOf(input.grid, input.owned)
-  const plan = planOf(plot)
+  const open = input.terrain ? (Object.hasOwn(WORLD_GROUNDS, input.terrain.ground) ? input.terrain.ground as WorldGround : 'grass') : null
+  const plan: HousePlan = open ? { plot, floors: [[]], stairs: [] } : planOf(plot)
   const root = new THREE.Group()
   const style = input.style ?? {}
   const pick = (field: keyof typeof HOUSE_STYLE, fallback: string): string => (HOUSE_STYLE[field][style[field] ?? 0] as { hex?: string } | undefined)?.hex ?? fallback
@@ -146,7 +159,7 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
   const solid = (mesh: InstanceType<typeof THREE.Mesh>): InstanceType<typeof THREE.Mesh> => { mesh.castShadow = true; mesh.receiveShadow = true; return mesh }
 
   // The yard: grass round the house, a step at the door.
-  const yard = canvasTexture(512, grass, 1)
+  const yard = canvasTexture(512, open ? groundOf(open) : grass, 1)
   yard.repeat.set((plot.w + 40) / 4, (plot.d + 40) / 4)
   owned.push(yard)
   const ground = new THREE.Mesh(new THREE.PlaneGeometry(plot.w + 40, plot.d + 40), material({ map: yard, roughness: 1 }))
@@ -163,7 +176,8 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
     const y = f * H
     const base = new THREE.Mesh(box(plot.w * T + THICK * 2, 0.12, plot.d * T + THICK * 2), slabMat)
     const hole = slabOf(plan, f)
-    if (!hole.length) { base.position.set((plot.w * T) / 2, y - 0.06, (plot.d * T) / 2); floors[f]!.add(solid(base)) }
+    if (open) { base.geometry.dispose() }
+    else if (!hole.length) { base.position.set((plot.w * T) / 2, y - 0.06, (plot.d * T) / 2); floors[f]!.add(solid(base)) }
     else for (const [x0, z0, x1, z1] of hole) { const part = new THREE.Mesh(box((x1 - x0) * T, 0.12, (z1 - z0) * T), slabMat); part.position.set(((x0 + x1) / 2) * T, y - 0.06, ((z0 + z1) / 2) * T); floors[f]!.add(solid(part)) }
     const well = plan.stairs.find((s) => s.floor === f - 1)
     for (const room of plan.floors[f] ?? []) {
@@ -220,8 +234,8 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
       group.add(bar)
     }
   }
-  const door = doorSlot(plot.grid), window = windowSlot(plot.grid)
-  for (let f = 0; f < plot.floors; f++) {
+  const door = open ? 0 : doorSlot(plot.grid), window = open ? 0 : windowSlot(plot.grid)
+  for (let f = 0; f < (open ? 0 : plot.floors); f++) {
     const y = f * H, group = floors[f]!, w = plot.w * T, d = plot.d * T
     // Windows on every side, one in each room's stretch of outside wall that is long enough; the game's own window on the top wall.
     const rooms = plan.floors[f] ?? []
@@ -281,7 +295,7 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
   // The roof: a flat slab with a low parapet in the house's roof colour, seen from the yard (inside, the ceilings close the rooms).
   const roof = new THREE.Group()
   roof.name = 'roof'
-  {
+  if (!open) {
     const top = (plot.floors - 1) * H + WALL, w = plot.w * T, d = plot.d * T, roofMat = material({ color: pick('roof', '#a85c40'), roughness: 0.8 })
     const slab = solid(new THREE.Mesh(box(w + 0.5, 0.18, d + 0.5), roofMat))
     slab.position.set(w / 2, top + 0.09, d / 2)
@@ -366,7 +380,7 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
 
   return {
     root, plan,
-    walls: (floor) => bumpsOf(plan, floor).map((w) => ({ x0: w.x0 * T, y0: w.y0 * T, x1: w.x1 * T, y1: w.y1 * T })).concat(outerWallsOf(plot.w * T, plot.d * T, floor === 0 ? [door * T, (door + 1) * T] : null)),
+    walls: (floor) => (open ? [] : bumpsOf(plan, floor).map((w) => ({ x0: w.x0 * T, y0: w.y0 * T, x1: w.x1 * T, y1: w.y1 * T })).concat(outerWallsOf(plot.w * T, plot.d * T, floor === 0 ? [door * T, (door + 1) * T] : null))),
     blocks: (floor) => [...(blocking[floor] ?? []), ...modelBlocks.filter((b) => b.floor === floor).map((b) => b.rect)],
     show(floor, inside, outdoors = false) {
       roof.visible = outdoors

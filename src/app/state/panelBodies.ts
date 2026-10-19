@@ -13,6 +13,7 @@ const loaders = {
   'money/StatementApp': () => import('../features/money/StatementApp.vue'),
   'money/InvestApp': () => import('../features/money/InvestApp.vue'),
   'home/HousesApp': () => import('../features/home/HousesApp.vue'),
+  'worlds/WorldsApp': () => import('../features/worlds/WorldsApp.vue'),
   'neighbourhood/LandPanel': () => import('../features/neighbourhood/LandPanel.vue'),
   'neighbourhood/NeighbourhoodPanel': () => import('../features/neighbourhood/NeighbourhoodPanel.vue'),
   'stories/StoriesApp': () => import('../features/stories/StoriesApp.vue'),

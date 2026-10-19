@@ -101,6 +101,10 @@ export const EVENTS: Record<string, EventSpec> = {
   house_styled: { from: 'world', props: {}, when: 'The look of the player’s house was changed.', why: 'Is house styling used?' },
   estate_viewed: { from: 'world', props: { lga: 'string' }, when: 'A local government’s page (its estates and residents directory) was opened.', why: 'Do people look around their area?' },
   neighbour_card_opened: { from: 'world', props: { from: 'string' }, when: 'A resident’s card was opened (from: directory | map).', why: 'Does the directory lead to people?' },
+  // ---- Worlds (docs/WORLDS.md; src/app/features/worlds). Sizes, surfaces and openness are words from fixed lists; never a name or an id.
+  world_created: { from: 'world', props: { size: 'string', ground: 'string', open: 'string' }, when: 'A player made a world (size: small | big | huge; ground: grass | sand | stone | snow | night; open: everyone | link).', why: 'How many make worlds, and what kind.' },
+  world_entered: { from: 'world', props: { mine: 'boolean', from: 'string' }, when: 'A world was opened in 3D (mine: the player’s own; from: mine | new | popular | link).', why: 'Do people go into worlds, and how do they find them?' },
+  world_shared: { from: 'world', props: { channel: 'string' }, when: 'A world’s link was sent (channel: native | copy).', why: 'The top of the world-invite funnel.' },
 
   // ---- Missions, tables, sharing and outreach (the growth panels: src/ui/panels/*, src/tables/client.ts)
   mission_completed: { from: 'growth', props: { kind: 'string' }, when: 'A finished mission was collected (kind: life | discovery | social).', why: 'Which missions get done.' },

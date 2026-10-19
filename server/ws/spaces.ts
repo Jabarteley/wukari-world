@@ -11,12 +11,15 @@
  *   → space-peer { id, p, o?, s?, say? }                         one member's tick, to everyone else
  *
  * The host is the space's owner when they are in it, else whoever came first; when the host leaves the next one takes over. Only
- * the host's models, score and lines are passed on. Nothing here is stored: a space's live state lives in this process's memory.
+ * the host's models, score and lines are passed on. Nothing here is stored: a space's live state lives in this process's memory,
+ * except a world's count of visits (server/spaces/worlds.ts), written when someone other than its maker joins.
  */
+import { SPACE_LIMITS_BY_KIND } from '../../src/spaces/worlds.ts';
 import { worldService } from '../spaces/world.ts';
+import { worldsService } from '../spaces/worlds.ts';
 import type { RouteContext, WsConnection, WsHandlers } from '../types.ts';
 
-export const SPACE_LIVE = Object.freeze({ hz: 6, members: 16, objects: 40 });
+export const SPACE_LIVE = Object.freeze({ hz: 6, members: 16, objects: SPACE_LIMITS_BY_KIND.world.placements });
 
 interface Live { key: string; owner: string | null; host: string | null; sockets: Set<WsConnection> }
 
@@ -42,7 +45,7 @@ function cleanSay(value: unknown): number[] | null {
 }
 
 export default function spacesSocket(ctx: RouteContext): WsHandlers {
-  const world = worldService(ctx);
+  const world = worldService(ctx), worlds = worldsService(ctx);
   const spaces = new Map<string, Live>();
   const where = new Map<WsConnection, Live>();
   const send = (ws: WsConnection, frame: Record<string, unknown>): void => { if (ws.readyState === 1) ctx.send(ws, frame as never); };
@@ -51,6 +54,7 @@ export default function spacesSocket(ctx: RouteContext): WsHandlers {
 
   function announce(live: Live): void {
     const members = [...new Map([...live.sockets].map((ws) => [ws.session.id, { id: ws.session.id, name: ws.session.name }])).values()];
+    if (live.key.startsWith('world:')) worlds.setLive(live.key.slice(6), members.length);
     for (const ws of live.sockets) send(ws, { type: 'space-room', key: live.key, you: ws.session.id, host: live.host, members });
   }
   function leave(ws: WsConnection): void {
@@ -58,7 +62,7 @@ export default function spacesSocket(ctx: RouteContext): WsHandlers {
     if (!live) return;
     where.delete(ws);
     live.sockets.delete(ws);
-    if (!live.sockets.size) { spaces.delete(live.key); return; }
+    if (!live.sockets.size) { spaces.delete(live.key); if (live.key.startsWith('world:')) worlds.setLive(live.key.slice(6), 0); return; }
     const ids = new Set([...live.sockets].map((s) => s.session.id));
     if (!live.host || !ids.has(live.host)) live.host = live.owner && ids.has(live.owner) ? live.owner : [...live.sockets][0]!.session.id;
     announce(live);
@@ -80,13 +84,14 @@ export default function spacesSocket(ctx: RouteContext): WsHandlers {
         if (!seen.ok) throw refuse(seen.code, seen.reason);
         leave(ws);
         let live = spaces.get(seen.key);
-        if (!live) { live = { key: seen.key, owner: seen.kind === 'home' ? seen.owner : null, host: null, sockets: new Set() }; spaces.set(seen.key, live); }
+        if (!live) { live = { key: seen.key, owner: seen.kind === 'room' ? null : seen.owner, host: null, sockets: new Set() }; spaces.set(seen.key, live); }
         if (new Set([...live.sockets].map((s) => s.session.id).concat(ws.session.id)).size > SPACE_LIVE.members) throw refuse('space_full', `At most ${SPACE_LIVE.members} people can be in a space together.`);
         live.sockets.add(ws);
         where.set(ws, live);
         // The owner hosts their own space; otherwise the first one in keeps hosting.
         if (!live.host || ws.session.id === live.owner) live.host = ws.session.id;
         announce(live);
+        if (seen.kind === 'world' && seen.owner !== ws.session.id) await ctx.store.transact((db) => { worlds.visited(db, seen.key.slice(6), ws.session.id); }, { durable: false });
       },
       'space-leave': (ws) => { leave(ws); },
       'space-tick': (ws, message) => {

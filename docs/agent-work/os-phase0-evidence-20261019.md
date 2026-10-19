@@ -40,6 +40,7 @@
 - Frame table: `docs/evidence/frames.md` from `shoot.ts --view all --scale 2` (capped and `--uncapped`) and `walk.ts`; the walk exits 1 today (8 stalls, worst 233 ms stepping out to the street).
 - Docs: `docs/EVIDENCE.md`, critic prompt and process rules in `docs/AGENT-PROMPTS.md`; skills in `.claude/skills/`.
 - Merged `origin/main` (7ec83aab5) as the integrator asked.
+- Review round (coordinator): view renamed `street-dusk` and shot from the street pose (eye height, street-life scene); `--prove-clock` added and passes (street 156.6 to 67.8, Kano 196.7 to 50.0, home 194.4 to 52.0); `Date.now` shifted in the page as well; walk gate is now 'no more than 8 stalls' (`STALL_BASELINE`); anchors, frames and docs re-taken. 20 tests pass.
 - Server on 5211 and every browser stopped; `/tmp/aw-evidence-*` profiles deleted; `.data-open` of this worktree removed.
 
 ### In progress / blockers

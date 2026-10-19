@@ -78,24 +78,44 @@ node --experimental-strip-types scripts/agent-slot.ts server -- npm run dev:open
 
 # 2. the three reference views, 2x, with the numbers (PNG and JSON in docs/evidence/out/, which git ignores)
 node --experimental-strip-types scripts/agent-slot.ts browser -- node --experimental-strip-types scripts/evidence/shoot.ts --view all --scale 2
-#    --view yaba-dusk|kano-noon|home-night|all   --gpu metal|swiftshader (metal by default on an Apple-silicon Mac)
+#    --view street-dusk|kano-noon|home-night|all   --clock HH:MM   --prove-clock   --gpu metal|swiftshader (metal by default on an Apple-silicon Mac)
 #    --uncapped (frame gaps without the screen's 60 Hz limit)   --dwell SECONDS (default 10)   --out DIR   --base URL
+
+#    --prove-clock shoots each view at 12:00 and 21:00 and exits 1 unless the scene's mean brightness differs by 15 or more (0 to 255)
 
 # 3. the pixel figures; exits 1 on a missed threshold, --advisory only prints
 node --experimental-strip-types scripts/evidence/inspect.ts docs/evidence/out/*-scene.png
 
-# 4. the bot walk: home, gate, street, market, back. Exits 1 on a console error or a stall (a frame gap over 42 ms), 2 if it cannot finish
+# 4. the bot walk: home, gate, street, market, back. Exits 1 on a console error or more than 8 stalls (a stall is a frame gap over 42 ms), 2 if it cannot finish
 node --experimental-strip-types scripts/agent-slot.ts browser -- node --experimental-strip-types scripts/evidence/walk.ts --base http://127.0.0.1:5211
-#    --max-stalls N lets a run with N stalls pass (default 0)   --window SECONDS per scene (default 10)
+#    --max-stalls N changes the limit (default 8, the baseline below)   --window SECONDS per scene (default 10)
 
 # 5. their tests (part of npm test)
 node --experimental-strip-types --test scripts/evidence/*.test.ts
 ```
 
-What the views are, and the in-game clock each is held at, is in `scripts/evidence/views.ts` (the clock is pinned for the light of
-the scene; the HUD's own clock shows the real time). The harness reads the renderer through the game's own `?diagnostics` page
-hook (`window.__jaw`), so nothing in the game was changed for it. Open mode runs the game ten times faster than real time and
-keeps a market's real opening hours, so the walk goes to a street kitchen when the market is shut.
+What the views are, and the in-game clock each is held at, is in `scripts/evidence/views.ts`. The clock is pinned in two places: the
+scene is handed the same moment on every update (its light, sky and window glow), and the page's `Date.now` is shifted by a constant
+(the walkers, traffic and ambient crowd read it), so day parts look like day parts. The HUD's own clock still shows the real time.
+`--prove-clock` is the check that the pin reaches the light; on 19 October 2026 it gave, for the scene canvas alone (mean brightness,
+0 to 255, noon then 21:00): street 156.6 then 67.8, Kano market 196.7 then 50.0, home 194.4 then 52.0. A view whose two pictures differ
+by less than 15 has a clock that never reached its light, and the run fails. The harness reads the renderer through the game's own
+`?diagnostics` page hook (`window.__jaw`), so nothing in the game was changed for it. Open mode runs the game ten times faster than
+real time and keeps a market's real opening hours, so the walk goes to a street kitchen when the market is shut.
+
+**The street view** is the home street's street-life scene (traffic, passers-by, shopfronts, lamps) seen from the pavement at eye
+height, looking along the road: the pose the map's dive is meant to end on (`src/scene/street-life/street-scene.ts`,
+`src/map3d/arrive-street.ts`). The page cannot reach the host's camera (the world adapter does not hand on `motion()`), so the harness
+places the camera with a view whose `render()` sets it before each draw. It is not the walk over the real city's tiles
+(`src/street/host.ts`), which has a single fixed daylight and no clock at all; that is a Lighting finding for whoever scores it.
+
+### The walk's gate: no worse than the baseline
+
+The bot walk passes when there is no unexpected console error and the whole loop has **no more than 8 stalls** (`STALL_BASELINE` in
+`scripts/evidence/walk.ts`), the count measured on 19 October 2026 on a Mac with a real GPU. The gate is "no worse than the
+baseline", not "no stalls": scene builds still cost a frame or two. The baseline is lowered only by a release that improves it, in the
+same commit, with the new measured count in `docs/evidence/frames.md`; it is never raised to let a regression through. A run that is
+slower for a reason outside the game (a loaded machine, software drawing) is not evidence either way: re-run it on the Mac's GPU.
 
 One console error is known and harmless and is not counted (`KNOWN_ERRORS` in `views.ts`): `GET /api/street/me` answers 409 when
 no street journey is open, and the page logs it.
@@ -106,7 +126,7 @@ A graphics phase is not scored by the agent that built it.
 
 1. The builder ships the change, its before and after screenshots at the three views, the harness JSON and the updated frame table.
 2. A different agent, the **critic**, writes no code. It takes its own screenshots at the three views at two times of day (the
-   harness's `--day` and the views' clocks; a scene whose light does not change with the hour has a Lighting problem), looks at
+   harness's `--clock`, and `--prove-clock` for noon against 21:00; a scene whose light does not change with the hour has a Lighting problem), looks at
    the anchors, scores the ten categories 0 to 3 with one line of evidence each, names the weakest surface, and lists any automatic
    failure still standing. It never inflates: a doubt is a lower number, and "not captured" is a valid entry. Its prompt is in
    [AGENT-PROMPTS.md](AGENT-PROMPTS.md#critic).

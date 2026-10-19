@@ -3,7 +3,7 @@
 // A view is: a city, the game actions that bring a fresh open-mode life to the place, the place the page must report when it
 // is there, and an in-game clock. Lagos time is UTC+1 all year, which is how the game reads the hour (src/game/clock.ts).
 
-export type ViewName = 'yaba-dusk' | 'kano-noon' | 'home-night';
+export type ViewName = 'street-dusk' | 'kano-noon' | 'home-night';
 export type Band = 'day' | 'dusk' | 'night';
 
 /** One game action sent over HTTP before the browser opens, then waited for until it has finished. */
@@ -24,6 +24,8 @@ export interface ViewSpec {
   band: Band;
   /** Where the page is told to open. */
   path: string;
+  /** `street-pose`: put the camera where the map's dive ends on the home street (eye height on the pavement, looking along the traffic). */
+  camera?: 'street-pose';
   /** What a reader should know about the view that the table does not show. */
   note: string;
 }
@@ -31,10 +33,10 @@ export interface ViewSpec {
 const goHome: Step = { type: 'travel', payload: { id: 'home', mode: 'trek' } };
 
 export const VIEWS: Readonly<Record<ViewName, ViewSpec>> = Object.freeze({
-  'yaba-dusk': {
-    name: 'yaba-dusk', title: 'A Lagos street at dusk', city: 'lagos', location: 'neighbourhood', band: 'dusk', clock: { hour: 18, minute: 30 }, path: '/',
+  'street-dusk': {
+    name: 'street-dusk', title: 'A Lagos street at dusk', city: 'lagos', location: 'neighbourhood', band: 'dusk', clock: { hour: 18, minute: 30 }, path: '/', camera: 'street-pose',
     steps: [goHome, { type: 'home.door', payload: { direction: 'outside' } }],
-    note: 'The home street outside the free starter house. Open mode puts the new life in Agege; the street scene is the same code as in Yaba.',
+    note: 'The home street (the street-life scene: traffic, passers-by, shopfronts) seen from the pavement, where the map dive lands. Open mode puts the new life in Agege, so this is not Yaba; the scene is the same code for every Lagos home.',
   },
   'kano-noon': {
     name: 'kano-noon', title: 'A Kano venue at noon', city: 'kano', location: 'kurmi-market', band: 'day', clock: { hour: 12, minute: 0 }, path: '/',
@@ -75,9 +77,28 @@ export function summariseGaps(gaps: readonly number[]): FrameSummary {
   return { frames: sorted.length, p50: at(0.5), p95: at(0.95), max: sorted.length ? round1(sorted[sorted.length - 1]!) : null, over42: sorted.filter((gap) => gap > 42).length, over100: sorted.filter((gap) => gap > 100).length };
 }
 
-export interface ShootOptions { base: string; views: ViewName[]; out: string; scale: number; width: number; height: number; dwellMs: number; gpu: 'swiftshader' | 'metal'; uncapped: boolean; day: string }
+/** `HH:MM` as a Lagos clock; throws on anything else. */
+export function parseClock(text: string): { hour: number; minute: number } {
+  const match = /^(\d{1,2}):(\d{2})$/.exec(text.trim());
+  const hour = match ? Number(match[1]) : NaN, minute = match ? Number(match[2]) : NaN;
+  if (!match || hour > 23 || minute > 59) throw new Error(`"${text}" is not a clock like 18:30`);
+  return { hour, minute };
+}
 
-/** `--uncapped` is a switch. `--base URL --view name[,name|all] --out DIR --scale N --size WxH --dwell SECONDS --gpu swiftshader|metal --day YYYY-MM-DD`. */
+/** The two clocks the clock-pin proof shoots each view at: full day and clear night. */
+export const PROOF_CLOCKS: readonly { hour: number; minute: number }[] = Object.freeze([{ hour: 12, minute: 0 }, { hour: 21, minute: 0 }]);
+/** The least difference in the scene's mean brightness (0 to 255) between those two pictures that counts as "the clock reached the light". */
+export const PROOF_MIN_DIFFERENCE = 15;
+
+/** The proof's verdict from the two mean brightness figures (day, night). */
+export function proveClock(day: number, night: number): { ok: boolean; difference: number } {
+  const difference = Math.round((day - night) * 10) / 10;
+  return { ok: difference >= PROOF_MIN_DIFFERENCE, difference };
+}
+
+export interface ShootOptions { base: string; views: ViewName[]; out: string; scale: number; width: number; height: number; dwellMs: number; gpu: 'swiftshader' | 'metal'; uncapped: boolean; day: string; clock: { hour: number; minute: number } | null; proveClock: boolean }
+
+/** `--uncapped` and `--prove-clock` are switches; `--clock HH:MM` replaces each view's own clock.  `--base URL --view name[,name|all] --out DIR --scale N --size WxH --dwell SECONDS --gpu swiftshader|metal --day YYYY-MM-DD`. */
 export function parseShootArgs(argv: readonly string[], today = new Date().toISOString().slice(0, 10)): ShootOptions {
   const value = (name: string): string | undefined => {
     const at = argv.indexOf(`--${name}`);
@@ -96,7 +117,7 @@ export function parseShootArgs(argv: readonly string[], today = new Date().toISO
   if (gpu !== 'swiftshader' && gpu !== 'metal') throw new Error('--gpu is swiftshader or metal.');
   const day = value('day') ?? today;
   lagosInstant(day, { hour: 12, minute: 0 });
-  return { base, views, out: value('out') ?? 'docs/evidence/out', scale, width: Number(size[1]), height: Number(size[2]), dwellMs: dwell * 1000, gpu, uncapped: argv.includes('--uncapped'), day };
+  return { base, views, out: value('out') ?? 'docs/evidence/out', scale, width: Number(size[1]), height: Number(size[2]), dwellMs: dwell * 1000, gpu, uncapped: argv.includes('--uncapped'), day, clock: value('clock') === undefined ? null : parseClock(value('clock')!), proveClock: argv.includes('--prove-clock') };
 }
 
 /**

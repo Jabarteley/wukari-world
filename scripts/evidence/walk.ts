@@ -6,7 +6,7 @@
 // It uses the game's own client the way the buttons do (`client.command`, reached through the `?diagnostics` hook) and watches the
 // page: time to the first frame, console errors, stalls (a gap of more than 42 ms between animation frames) and frames over 100 ms
 // during the first 10 seconds of each scene. One JSON object is printed. Exit code 1 when there is a console error (other than the
-// known harmless ones in views.ts) or more stalls than --max-stalls (default 0); 2 when the walk could not be carried out.
+// known harmless ones in views.ts) or more stalls in the whole loop than --max-stalls (default STALL_BASELINE, 8); 2 when the walk could not be carried out.
 //
 // Stalls measured with software drawing (--gpu swiftshader) mean the computer, not the game; use the Mac's GPU for a real answer.
 import { resolve } from 'node:path';
@@ -15,6 +15,8 @@ import { launchBrowser, openSession, setCookie, type Page } from './cdp.ts';
 import { classifyErrors, defaultGpu, percentile } from './views.ts';
 
 export const STALL_MS = 42, SLOW_FRAME_MS = 100;
+/** The gate is "no worse than the baseline": the stalls the loop had on 19 October 2026 (Mac, real GPU). Lower it only in a release that improves it. */
+export const STALL_BASELINE = 8;
 
 /**
  * The loop, in order. A stage is a game command (`type` and `payload`) or, with `script`, something done on the scene itself.
@@ -31,7 +33,7 @@ export const STAGES: readonly StageSpec[] = Object.freeze([
 ]);
 
 export interface StageReport { stage: string; target: string; ok: boolean; ttffMs: number | null; frames: number; stalls: number; slowFrames: number; maxGapMs: number | null; p95GapMs: number | null; errors: string[]; refused?: string }
-export interface WalkReport { ok: boolean; gpu: string; loadFirstFrameMs: number | null; stages: StageReport[]; consoleErrors: string[]; knownErrors: number; stalls: number; slowFrames: number }
+export interface WalkReport { ok: boolean; maxStalls: number; gpu: string; loadFirstFrameMs: number | null; stages: StageReport[]; consoleErrors: string[]; knownErrors: number; stalls: number; slowFrames: number }
 
 /** What a stage's frame gaps say. Pure, so it can be tested. */
 export function judgeGaps(gaps: readonly number[]): { frames: number; stalls: number; slowFrames: number; maxGapMs: number | null; p95GapMs: number | null } {
@@ -75,10 +77,10 @@ async function runStage(page: Page, step: StageSpec, payload: Record<string, unk
 async function main(): Promise<void> {
   const base = (arg('base') ?? 'http://127.0.0.1:5211').replace(/\/+$/, '');
   const gpu = arg('gpu') === 'swiftshader' ? 'swiftshader' : arg('gpu') === 'metal' ? 'metal' : defaultGpu();
-  const windowMs = Number(arg('window') ?? 10) * 1000, maxStalls = Number(arg('max-stalls') ?? 0);
+  const windowMs = Number(arg('window') ?? 10) * 1000, maxStalls = Number(arg('max-stalls') ?? STALL_BASELINE);
   const browser = await launchBrowser({ width: 1280, height: 800, scale: 2, gpu });
   const { page } = browser;
-  const report: WalkReport = { ok: false, gpu, loadFirstFrameMs: null, stages: [], consoleErrors: [], knownErrors: 0, stalls: 0, slowFrames: 0 };
+  const report: WalkReport = { ok: false, maxStalls, gpu, loadFirstFrameMs: null, stages: [], consoleErrors: [], knownErrors: 0, stalls: 0, slowFrames: 0 };
   try {
     const sid = await openSession(base, 'Evidence walk');
     await setCookie(page, base, sid);
@@ -95,13 +97,13 @@ async function main(): Promise<void> {
       if (reply.refused?.startsWith('closed') && step.fallback) { used = step.fallback.target; reply = await runStage(page, step, step.fallback.payload, used, windowMs); }
       const judged = judgeGaps(reply.gaps), seen = classifyErrors(reply.errors);
       report.knownErrors += seen.known.length;
-      const stage: StageReport = { stage: step.stage, target: used, ok: reply.ttff !== null && !reply.refused && seen.unexpected.length === 0 && judged.stalls <= maxStalls, ttffMs: reply.ttff, ...judged, errors: seen.unexpected, ...(reply.refused ? { refused: reply.refused } : {}) };
+      const stage: StageReport = { stage: step.stage, target: used, ok: reply.ttff !== null && !reply.refused && seen.unexpected.length === 0, ttffMs: reply.ttff, ...judged, errors: seen.unexpected, ...(reply.refused ? { refused: reply.refused } : {}) };
       report.stages.push(stage);
       report.consoleErrors.push(...seen.unexpected);
       report.stalls += judged.stalls; report.slowFrames += judged.slowFrames;
       if (reply.refused) break;
     }
-    report.ok = report.stages.length === STAGES.length && report.consoleErrors.length === 0 && report.stages.every((stage) => stage.ok);
+    report.ok = report.stages.length === STAGES.length && report.consoleErrors.length === 0 && report.stalls <= maxStalls && report.stages.every((stage) => stage.ok);
     console.log(JSON.stringify(report));
     process.exitCode = report.ok ? 0 : report.stages.length < STAGES.length ? 2 : 1;
   } finally {

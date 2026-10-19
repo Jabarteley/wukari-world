@@ -7,7 +7,7 @@ import '../../../ui/controls.css'
 import { useApp } from '../../state/app.ts'
 import BaseSheet from '../../ui/BaseSheet.vue'
 import { checkGlb, GLB_LIMITS, type GlbInfo } from '../../../spaces/glb.ts'
-import { modelBytes, modelDelete, modelRename, modelUpload, modelsMine, type ModelView, type ModelsMine } from './spacesClient.ts'
+import { modelBytes, modelDelete, modelFileUrl, modelRename, modelUpload, modelsMine, type ModelView, type ModelsMine } from './spacesClient.ts'
 
 const ModelPreview = defineAsyncComponent(() => import('./ModelPreview.vue'))
 /** `place`: the player wants this model in their house now; the Houses app opens the 3D screen with it in hand. */
@@ -144,6 +144,7 @@ async function remove(model: ModelView): Promise<void> {
                 </button>
                 <span class="sp-acts">
                   <button type="button" class="sp-mini" :aria-label="`Put ${model.name} in my house`" @click="emit('place', model)">Place</button>
+                  <a class="sp-mini sp-dl" :href="modelFileUrl(model.hash)" :download="`${model.name}.glb`" :aria-label="`Download ${model.name} to open in Blender`">Download</a>
                   <button type="button" class="sp-mini" :aria-label="`Rename ${model.name}`" @click="renaming = model.id; newName = model.name">Rename</button>
                   <button type="button" class="sp-mini" :aria-label="`Delete ${model.name}`" :disabled="busy" @click="remove(model)">Delete</button>
                 </span>
@@ -178,5 +179,6 @@ async function remove(model: ModelView): Promise<void> {
 .sp-model strong { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sp-model span { font-size: 12px; color: var(--c-ink-2); }
 .sp-acts { display: flex; gap: 6px; margin-left: auto; }
+.sp-dl { display: inline-flex; align-items: center; text-decoration: none; }
 .sp-mini { flex: 0 0 auto; min-height: 44px; padding: 0 10px; border: 0; border-radius: 10px; background: var(--c-surface, #fff); color: var(--c-ink); font: 600 13px var(--font); cursor: pointer; }
 </style>

@@ -27,6 +27,7 @@ import { visitService } from '../social/visit.ts';
 import { homeTitleOf, spacesOf, type ModelEntry } from './store.ts';
 import { modelView } from './models.ts';
 import { worldsService } from './worlds.ts';
+import { homeHouseService, type HomeHouse } from './home-house.ts';
 import type { LifeState } from '../../src/types/life.ts';
 import type { WorldView } from '../../src/types/spaces.ts';
 import type { Db, RouteContext, SessionRecord } from '../types.ts';
@@ -52,7 +53,14 @@ function build(ctx: RouteContext) {
     const all = (db as { spaces?: { scripts?: Record<string, SpaceScript & { at: number; by: string }> } }).spaces?.scripts;
     return all && Object.hasOwn(all, key) ? all[key] : undefined;
   };
-  const places = placesService(ctx), visits = visitService(ctx), worlds = worldsService(ctx);
+  const places = placesService(ctx), visits = visitService(ctx), worlds = worldsService(ctx), houses = homeHouseService(ctx);
+  /** A copied house replaces the game's own: its own plot, and the game's furniture is not drawn in it. */
+  const copied = (house: HomeHouse | null, plot: { w: number; d: number; floors: number }) => {
+    if (!house) return null;
+    if (house.kind === 'spec') return { house, plot: { w: house.spec.width, d: house.spec.depth, floors: house.spec.storeys } };
+    const [w, h, d] = house.model.size;
+    return { house, plot: { w: Math.max(plot.w, Math.ceil(w)), d: Math.max(plot.d, Math.ceil(d)), floors: Math.min(3, Math.max(1, Math.round(h / 3))) } };
+  };
 
   const allModels = (db: Db): Record<string, ModelEntry[]> => (db as { spaces?: { models?: Record<string, ModelEntry[]> } }).spaces?.models ?? {};
   const modelOf = (db: Db, by: string, id: string): ModelEntry | undefined => {
@@ -65,7 +73,7 @@ function build(ctx: RouteContext) {
   };
   const nameOf = (db: Db, id: string): string => db.social?.players[id]?.name ?? 'Player';
 
-  type Where = { key: string; kind: SpaceKind; title: string; owner: { id: string; name: string }; grid: number; owned: boolean; plot: { w: number; d: number; floors: number }; style: object | null; items: { itemId: string; x: number; y: number; rot: number; floor?: number }[]; canEdit: boolean; terrain?: { ground: string; size: string; open: string; blurb: string; sky: string; game?: { id: string; title: string } } };
+  type Where = { key: string; kind: SpaceKind; title: string; owner: { id: string; name: string }; grid: number; owned: boolean; plot: { w: number; d: number; floors: number }; style: object | null; items: { itemId: string; x: number; y: number; rot: number; floor?: number }[]; canEdit: boolean; terrain?: { ground: string; size: string; open: string; blurb: string; sky: string; game?: { id: string; title: string } }; house?: HomeHouse };
   /** The space the caller asked for, if they may see it. */
   function where(db: Db, session: SessionRecord, query: URLSearchParams): Where | ReturnType<typeof no> {
     const target = query.get('target');
@@ -89,13 +97,13 @@ function build(ctx: RouteContext) {
       if (!UUID.test(host)) throw ctx.fail(400, 'invalid_host');
       const seen = visits.homeProjection(db, session, host);
       if (!seen.ok) return no(seen.code, seen.reason);
-      const home = seen.home, plot = plotOf(home.grid, home.owned);
-      return { key: `home:${home.host.id}`, kind: 'home', title: homeTitleOf(db, home.host.id) || `${home.host.name.split(/\s+/)[0]}'s home`, owner: home.host, grid: home.grid, owned: home.owned, plot: { w: plot.w, d: plot.d, floors: plot.floors }, style: home.style, items: home.items.map((i) => ({ itemId: i.itemId, x: i.x, y: i.y, rot: i.rot, ...(i.floor ? { floor: i.floor } : {}) })), canEdit: false };
+      const home = seen.home, plot = plotOf(home.grid, home.owned), copy = copied(houses.houseOf(db, home.host.id), plot);
+      return { key: `home:${home.host.id}`, kind: 'home', title: homeTitleOf(db, home.host.id) || `${home.host.name.split(/\s+/)[0]}'s home`, owner: home.host, grid: home.grid, owned: home.owned, plot: copy?.plot ?? { w: plot.w, d: plot.d, floors: plot.floors }, style: home.style, items: copy ? [] : home.items.map((i) => ({ itemId: i.itemId, x: i.x, y: i.y, rot: i.rot, ...(i.floor ? { floor: i.floor } : {}) })), canEdit: false, ...(copy ? { house: copy.house } : {}) };
     }
     const cityId = characterCity(session), state = cityId ? session.cities?.[cityId]?.state as LifeState | undefined : undefined;
     if (!state) return no('no_home', 'Start your life in a city first.');
-    const plot = plotFor(state);
-    return { key: `home:${session.publicId}`, kind: 'home', title: homeTitleOf(db, session.publicId) || 'My home', owner: { id: session.publicId, name: session.name }, grid: plot.grid, owned: plot.w > plot.grid, plot: { w: plot.w, d: plot.d, floors: plot.floors }, style: { ...state.estate.style }, items: state.home.items.map((i) => ({ itemId: i.itemId, x: i.x, y: i.y, rot: i.rot, ...('floor' in i && i.floor ? { floor: i.floor } : {}) })), canEdit: true };
+    const plot = plotFor(state), copy = copied(houses.houseOf(db, session.publicId), plot);
+    return { key: `home:${session.publicId}`, kind: 'home', title: homeTitleOf(db, session.publicId) || 'My home', owner: { id: session.publicId, name: session.name }, grid: plot.grid, owned: plot.w > plot.grid, plot: copy?.plot ?? { w: plot.w, d: plot.d, floors: plot.floors }, style: { ...state.estate.style }, items: copy ? [] : state.home.items.map((i) => ({ itemId: i.itemId, x: i.x, y: i.y, rot: i.rot, ...('floor' in i && i.floor ? { floor: i.floor } : {}) })), canEdit: true, ...(copy ? { house: copy.house } : {}) };
   }
 
   /** Placements whose model is still there; a hidden model shows only to its own owner. */

@@ -7,7 +7,9 @@ import '../../../ui/controls.css'
 import { useApp } from '../../state/app.ts'
 import { modelBytes, modelUpload, scriptSave, worldCoverUpload, worldRead, worldSave, type ModelView, type PlacedModel, type WorldView, type WorldWhere } from './spacesClient.ts'
 import { WORLDS, worldLinkPath } from '../../../spaces/worlds.ts'
-import { track } from '../world/worldModel.ts'
+import { focusMap, track } from '../world/worldModel.ts'
+import { neighbourPlots, neighboursFrom, pagesFor } from './streetModel.ts'
+import { unpackStyle } from '../../../scene/house-style.ts'
 import { PROPS, PROP_IDS, PROP_OWNER, propModel, propOf, propView, type PropDef, type PropId } from '../../../spaces/props.ts'
 import { embedUrl, screenPosition, youtubeId, type ScreenState } from '../../../spaces/screen.ts'
 // A world's lite game (docs/WORLDS.md phase 3): the arena's own room, fetched only when someone presses Play.
@@ -16,6 +18,7 @@ import { checkGlb, GLB_LIMITS } from '../../../spaces/glb.ts'
 import { scriptNames, SCRIPT, TEMPLATES } from '../../../spaces/script.ts'
 import type { Placement } from '../../../spaces/layout.ts'
 import type { Engine, View } from '../../../spaces/world/engine.ts'
+import type { SpaceHouse } from '../../../spaces/world/space.ts'
 import { fillLine } from '../../../spaces/script.ts'
 import type { Together } from '../../../spaces/world/together.ts'
 
@@ -23,7 +26,7 @@ import type { Together } from '../../../spaces/world/together.ts'
 const props = defineProps<{ where: WorldWhere; place?: ModelView | null }>()
 /** `saved`: a world's layout was saved and its cover drawn (the Worlds app refreshes its list). */
 const emit = defineEmits<{ close: []; saved: [] }>()
-const { game } = useApp()
+const { game, shell } = useApp()
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 // A modal dialog: the phone is one too, and a dialog shown later sits above it in the page's top layer.
@@ -70,6 +73,8 @@ function startScript(source: { code: string; lines: string[] } | null): void {
   scriptError.value = ''; score.value = null; said.value = ''
   engine?.runScript(source, namesOf())
 }
+/** A copied house (docs/HOUSE-FROM-PHOTOS.md) in the shape the engine takes. */
+const houseOf = (w: WorldView['world']): SpaceHouse | null => (w.house?.kind === 'spec' ? { kind: 'spec', spec: w.house.spec } : w.house?.kind === 'model' ? { kind: 'model', hash: w.house.model.hash, size: w.house.model.size } : null)
 let engine: Engine | null = null
 let gone = false
 let counter = Date.now() % 100000
@@ -88,7 +93,7 @@ onMounted(async () => {
   layout.value = answer.world.models.map((p) => ({ ...p }))
   const { startEngine } = await import('../../../spaces/world/engine.ts')
   if (gone || !canvas.value) return
-  engine = startEngine(canvas.value, { grid: answer.world.grid, owned: answer.world.owned, style: answer.world.style as Record<string, number> | null, items: answer.world.items, models: layout.value, terrain: answer.world.terrain ? { ground: answer.world.terrain.ground, sky: answer.world.terrain.sky } : null }, bytesOf, {
+  engine = startEngine(canvas.value, { grid: answer.world.grid, owned: answer.world.owned, style: answer.world.style as Record<string, number> | null, items: answer.world.items, models: layout.value, terrain: answer.world.terrain ? { ground: answer.world.terrain.ground, sky: answer.world.terrain.sky } : null, house: houseOf(answer.world) }, bytesOf, {
     status(s) { floor.value = s.floor; floors.value = s.floors; view.value = s.view },
     picked(key) { selected.value = key; engine?.highlight(key) },
     tapped(at) { if (choosing.value) add(choosing.value, at); else if (picked.value) move(at) },
@@ -98,7 +103,10 @@ onMounted(async () => {
     scriptProblem(message, stopped) { scriptError.value = stopped ? message : `Your code: ${message}` },
   })
   loading.value = false
+  // The player's own character in place of the stand-in (the look they made in the game).
+  engine.setSelfLook(game.state.value.onboarding?.look, game.session.value?.id ?? 'you')
   startTogether()
+  if (answer.world.kind === 'home' && !props.where.host) void loadStreet(answer.world)
   // The first world a player walks into says how: once per device.
   try {
     if (answer.world.kind === 'world' && !localStorage.getItem('aw-world-tip')) {
@@ -214,6 +222,25 @@ function shapeModel(id: PropId): ModelView {
 function placeShape(id: PropId): void { choosing.value = shapeModel(id); placeInFront() }
 // ---- The world's lite game.
 const gameOpen = ref(false)
+
+// ---- The street round my home (docs/WORLDS.md phase 4): the road, the neighbours' houses as the map has them, the address.
+const streetPlot = computed(() => (world.value?.kind === 'home' && !props.where.host ? game.view.value.estate?.plot ?? null : null))
+async function loadStreet(w: WorldView['world']): Promise<void> {
+  const plot = game.view.value.estate?.plot
+  if (!plot) return
+  const pages = pagesFor(neighbourPlots(plot.plot))
+  const answers = await Promise.all(pages.map((page) => game.fetchJson<{ houses?: { p: number; s: number }[] }>(`/api/world/lga/${encodeURIComponent(plot.lga)}/estate/${plot.estate}/houses?city=${encodeURIComponent(game.cityId.value)}&page=${page}`).catch(() => null)))
+  if (gone) return
+  const houses = answers.flatMap((a) => a?.houses ?? [])
+  engine?.setStreet({ address: plot.address ?? '', front: w.house ? 'near' : 'left', neighbours: neighboursFrom(houses, plot.plot, (bits) => unpackStyle(bits)) })
+}
+function goStreet(): void {
+  const plot = streetPlot.value
+  if (!plot) return
+  leave()
+  shell.open('map', { destination: null, layer: 'city' })
+  focusMap({ plot })
+}
 
 /** A world's link, sent with the device's share sheet or copied. */
 async function invite(): Promise<void> {
@@ -380,6 +407,7 @@ const round = (v: number): number => Math.round(v * 100) / 100
         <div class="ws-left" role="group" aria-label="Screen and game">
           <button v-if="world.screen" type="button" class="ws-pill" :class="{ 'is-on': screenOpen }" :aria-pressed="screenOpen" data-world="screen" @click="screenOpen = !screenOpen">Screen</button>
           <button v-if="world.terrain?.game" type="button" class="ws-pill" data-world="game" @click="gameOpen = true">Play {{ world.terrain.game.title }}</button>
+          <button v-if="streetPlot" type="button" class="ws-pill" data-world="street" @click="goStreet">Go to the street</button>
         </div>
         <section v-if="screenOpen" class="ws-panel ws-screen" aria-label="The screen">
           <template v-if="hosting">

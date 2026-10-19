@@ -10,8 +10,12 @@
  *
  * Who may upload: a player with an account (not a guest) whose listings are not held, while the operator setting `spacesModels`
  * is on and the host has storage. Three reports hide a model until an operator looks (GET/POST /api/mod/spaces/models).
+ *
+ * A whole house (docs/HOUSE-FROM-PHOTOS.md): `?house=1` takes the bigger HOUSE_GLB_LIMITS; a player keeps one, and a new one replaces it.
+ * A one-time upload link (POST /api/spaces/models/upload-link) lets a player's own AI send a model without the browser's cookie:
+ *   spaces.links[token]   { by, name, house, use, exp }   ten minutes, one model; erased with the player
  */
-import { checkGlb, GLB_LIMITS, type GlbInfo } from '../../src/spaces/glb.ts';
+import { checkGlb, GLB_LIMITS, HOUSE_GLB_LIMITS, type GlbInfo } from '../../src/spaces/glb.ts';
 import { oneLine } from '../../src/spaces/plan.ts';
 import { MODELS, type ModelView } from '../../src/types/spaces.ts';
 import { registerAdminSetting } from '../admin/settings.ts';
@@ -98,8 +102,7 @@ function build(ctx: RouteContext) {
   }
   ctx.on?.('heartbeat', () => { void sweep().catch(() => {}); });
 
-  return {
-    on, ready, sweep,
+  const methods = {
     /** GET /api/spaces/models */
     mine(db: Db, session: SessionRecord) {
       const list = listOf(db, session.publicId);
@@ -109,14 +112,56 @@ function build(ctx: RouteContext) {
     /** POST /api/spaces/models?name=…  (the body is the .glb itself) */
     async upload(request: RouteRequest) {
       const session = await ctx.store.read((db) => request.requireSession(db));
+      const named = cleanName(request.query.get('name'));
+      if ('ok' in named) return named;
+      return store(session, named.name, request, request.query.get('house') === '1');
+    },
+    /** POST /api/spaces/models/upload-link { name, house?, use? }: a one-time address the player's own AI sends one model to. */
+    uploadLink(db: Db, session: SessionRecord, body: Record<string, unknown>) {
+      const first = refusal(db, session);
+      if (first) return first;
+      const named = cleanName(body['name']);
+      if ('ok' in named) return named;
+      if (!ctx.allow(`spaces:upload-link:${session.publicId}`, 20, 3_600_000)) return no('rate_limited', 'Too many upload links. Wait a while.');
+      const col = spacesOf(db), now = ctx.now();
+      const links = col.links ??= {};
+      for (const [token, link] of Object.entries(links)) if (link.exp <= now) delete links[token];
+      const token = ctx.randomId().replace(/[^0-9a-z]/gi, '') + ctx.randomId().replace(/[^0-9a-z]/gi, '');
+      const house = body['house'] === true || body['use'] === 'house';
+      links[token] = { by: session.publicId, name: named.name, house, use: body['use'] === 'house' ? 'house' : 'model', exp: now + 600_000 };
+      return { ok: true as const, code: 'ok' as const, url: `/api/spaces/models/upload/${token}`, expires: now + 600_000, limits: house ? { bytes: HOUSE_GLB_LIMITS.bytes, triangles: HOUSE_GLB_LIMITS.triangles } : { bytes: GLB_LIMITS.bytes, triangles: GLB_LIMITS.triangles } };
+    },
+    /** POST /api/spaces/models/upload/:token (the .glb, no cookie): the upload the link was made for, once. */
+    async uploadByLink(request: RouteRequest, setHouse: (db: Db, by: string, id: string) => void) {
+      const token = request.params['token'] ?? '';
+      const found = await ctx.store.read((db) => {
+        const link = /^[0-9a-z]{16,80}$/i.test(token) ? spacesOf(db).links?.[token] : undefined;
+        if (!link || link.exp <= ctx.now()) return null;
+        const session = ctx.core.sessionByPublicId(db, link.by);
+        return session ? { link, session } : null;
+      });
+      if (!found) throw ctx.fail(404, 'unknown_link');
+      const result = await store(found.session, found.link.name, request, found.link.house);
+      if (result.ok) await ctx.store.transact((db) => {
+        const links = spacesOf(db).links;
+        if (links) delete links[token];
+        if (found.link.use === 'house') setHouse(db, found.link.by, result.model.id);
+      });
+      return result;
+    },
+  };
+
+  /** Keep one uploaded model for `session`: checked, stored by hash, listed. A house replaces the player's last house. */
+  async function store(session: SessionRecord, name: string, request: RouteRequest, house: boolean) {
+    {
       const first = await ctx.store.read((db) => refusal(db, session));
       if (first) return first;
       if (!ctx.allow(`spaces:model-upload:${session.publicId}`, MODELS.uploadsPerHour, 3_600_000)) return no('rate_limited', `You can upload ${MODELS.uploadsPerHour} models an hour. Try again later.`);
-      const named = cleanName(request.query.get('name'));
-      if ('ok' in named) return named;
+      const named = { name };
       if (!request.binaryBody) return no('not_ready', 'Model uploads are not ready on this server yet.');
-      const bytes = await request.binaryBody(GLB_LIMITS.bytes, MODEL_TYPES);
-      const checked = checkGlb(bytes);
+      const limits = house ? HOUSE_GLB_LIMITS : GLB_LIMITS;
+      const bytes = await request.binaryBody(limits.bytes, MODEL_TYPES);
+      const checked = checkGlb(bytes, limits);
       if (!checked.ok) return no(checked.code, checked.reason);
       const hash = await sha256(bytes);
       const room = await ctx.store.read((db) => {
@@ -139,12 +184,23 @@ function build(ctx: RouteContext) {
         const again = refusal(db, session);
         const full = list.length >= MODELS.perPlayer || totalBytes(list) + bytes.byteLength > MODELS.bytesPerPlayer;
         if (again || full) { (col.modelTrash ??= []).push(hash); return again ?? no('too_many', 'You have the most models you can keep. Delete one first.'); }
-        const entry: ModelEntry = { id: newId(), name: named.name, hash, bytes: bytes.byteLength, tris: info.triangles, tex: info.textures, size: info.size, min: info.min, anims: info.animations, ...(info.skinned ? { skinned: true } : {}), at: ctx.now() };
+        const entry: ModelEntry = { id: newId(), name: named.name, hash, bytes: bytes.byteLength, tris: info.triangles, tex: info.textures, size: info.size, min: info.min, anims: info.animations, ...(info.skinned ? { skinned: true } : {}), ...(house ? { house: true as const } : {}), at: ctx.now() };
+        // One house a player: the one before it goes (its bytes are swept), and the home that used it uses the new one.
+        if (house) for (const old of list.filter((m) => m.house)) {
+          list.splice(list.indexOf(old), 1);
+          (col.modelTrash ??= []).push(old.hash);
+          forgetPlacements(col, session.publicId, old.id);
+          const home = col.homes[session.publicId];
+          if (home?.house?.m === old.id) home.house = { m: entry.id, by: session.publicId };
+        }
         list.push(entry);
         return { ok: true as const, code: 'uploaded' as const, model: modelView(entry, session.publicId) };
       });
       return result;
-    },
+    }
+  }
+  const api = {
+    on, ready, sweep, ...methods,
     /** POST /api/spaces/models/rename { id, name } */
     rename(db: Db, session: SessionRecord, body: Record<string, unknown>) {
       const entry = listOf(db, session.publicId).find((m) => m.id === body['id']);
@@ -211,4 +267,5 @@ function build(ctx: RouteContext) {
       return no('invalid_action', 'action must be remove, hide or clear.');
     },
   };
+  return api;
 }

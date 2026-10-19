@@ -20,12 +20,17 @@ import type { SpaceLayout } from '../../src/spaces/layout.ts';
 import type { SpaceScript } from '../../src/spaces/script.ts';
 import type { WorldInput } from '../../src/spaces/worlds.ts';
 
-export interface SpaceHome { title: string; at: number }
+/** A player's home record. `spec`: the house description it is built from; `house`: a model of theirs standing as the whole house (docs/HOUSE-FROM-PHOTOS.md). */
+export interface SpaceHome { title: string; at: number; spec?: import('../../src/spaces/house-spec.ts').HouseSpecV1; house?: { m: string; by: string } }
+/** A one-time upload link (./models.ts uploadLink). */
+export interface UploadLink { by: string; name: string; house: boolean; use: 'house' | 'model'; exp: number }
 export interface SpaceHost { kind: string; persona: string; on: boolean; at: number; guests?: Record<string, { n: number; at: number }> }
 /** A player's 3D model (./models.ts): the facts only; the bytes are in ctx.models under `hash`. */
 export interface ModelEntry {
   id: string; name: string; hash: string; bytes: number; tris: number; tex: number
   size: [number, number, number]; min: [number, number, number]; anims: number; skinned?: true; at: number
+  /** A whole house (HOUSE_GLB_LIMITS): one a player. */
+  house?: true
   /** Who reported it (at most 10), whether reports hid it, and whether an operator cleared it for good. */
   reports?: string[]; hidden?: true; cleared?: true
 }
@@ -41,7 +46,7 @@ export interface WorldEntry extends WorldInput {
   /** A lite game played from inside the world (docs/WORLDS.md phase 3). */
   game?: { id: string; title: string }
 }
-export interface SpacesCollection { homes: Record<string, SpaceHome>; hosts: Record<string, SpaceHost>; models?: Record<string, ModelEntry[]>; modelTrash?: string[]; layouts?: Record<string, SpaceLayout>; scripts?: Record<string, SpaceScript & { at: number; by: string }>; worlds?: Record<string, WorldEntry> }
+export interface SpacesCollection { homes: Record<string, SpaceHome>; hosts: Record<string, SpaceHost>; models?: Record<string, ModelEntry[]>; modelTrash?: string[]; layouts?: Record<string, SpaceLayout>; scripts?: Record<string, SpaceScript & { at: number; by: string }>; worlds?: Record<string, WorldEntry>; links?: Record<string, UploadLink> }
 
 const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value);
 /** The collection, made on first write. */
@@ -71,7 +76,7 @@ export function forgetPlacements(col: SpacesCollection, by: string, id: string):
 }
 /** Forget players (erasure). Returns how many records went. */
 export function eraseSpaces(db: Db, ids: Iterable<string>): number {
-  const col = (db as Record<string, { homes?: Record<string, SpaceHome>; hosts?: Record<string, SpaceHost>; games?: Record<string, { by: string }>; models?: Record<string, ModelEntry[]>; modelTrash?: string[]; layouts?: Record<string, SpaceLayout>; scripts?: Record<string, { by: string }>; worlds?: Record<string, WorldEntry> } | undefined>)['spaces'];
+  const col = (db as Record<string, { homes?: Record<string, SpaceHome>; hosts?: Record<string, SpaceHost>; games?: Record<string, { by: string }>; models?: Record<string, ModelEntry[]>; modelTrash?: string[]; layouts?: Record<string, SpaceLayout>; scripts?: Record<string, { by: string }>; worlds?: Record<string, WorldEntry>; links?: Record<string, UploadLink> } | undefined>)['spaces'];
   if (!col) return 0;
   let gone = 0;
   const list = [...ids];
@@ -87,6 +92,7 @@ export function eraseSpaces(db: Db, ids: Iterable<string>): number {
       delete col.models[id];
     }
     for (const list of Object.values(col.models ?? {})) for (const m of list) if (m.reports?.includes(id)) m.reports = m.reports.filter((r) => r !== id);
+    for (const [token, link] of Object.entries(col.links ?? {})) if (link.by === id) delete col.links![token];
     // Their name leaves other makers' builders and likes (the count of likes stays: it holds no person).
     for (const world of Object.values(col.worlds ?? {})) {
       if (world.builders?.includes(id)) { world.builders = world.builders.filter((b) => b !== id); if (!world.builders.length) delete world.builders; gone++; }

@@ -21,7 +21,8 @@
 // patterns in ASSET_PATTERNS are the convention to change when the asset layout is decided.
 import { createHash } from 'node:crypto'
 import { inventory } from './native-character-assets.mjs'
-import { brotliCompressSync, constants, gzipSync } from 'node:zlib'
+import { brotliCompress, brotliCompressSync, constants, gzip, gzipSync } from 'node:zlib'
+import { promisify } from 'node:util'
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -48,6 +49,21 @@ export function sizeOf(data: Uint8Array): Size {
   }
   measured.set(data, size)
   return size
+}
+
+const brotliAsync = promisify(brotliCompress), gzipAsync = promisify(gzip)
+
+/** Measures every file of a build up front on Node's worker threads, largest first, so the release step is not one core compressing
+ *  hundreds of megabytes in turn; sizeOf then reads the results. The numbers are the same as sizeOf's own. */
+export async function measureAll(dist: Dist): Promise<void> {
+  const queue = [...dist.values()].filter(data => !measured.has(data)).sort((a, b) => b.length - a.length)
+  const worker = async (): Promise<void> => {
+    for (let data = queue.shift(); data; data = queue.shift()) {
+      const [gz, br] = await Promise.all([gzipAsync(data), brotliAsync(data, { params: { [constants.BROTLI_PARAM_QUALITY]: 11, [constants.BROTLI_PARAM_SIZE_HINT]: data.length } })])
+      measured.set(data, { raw: data.length, gzip: gz.length, brotli: br.length })
+    }
+  }
+  await Promise.all(Array.from({ length: 4 }, worker))
 }
 
 export function addSizes(sizes: readonly Size[]): Size {
@@ -293,6 +309,7 @@ async function main(): Promise<number> {
   const dir = resolve(root, args.includes('--dist') ? args[args.indexOf('--dist') + 1] ?? 'dist' : 'dist')
   if (!existsSync(join(dir, 'index.html'))) { console.error(`No build at ${dir}: run \`npm run build\` first.`); return 2 }
   const dist = readDist(dir)
+  await measureAll(dist)
   const results = checks(dist)
   const over = results.filter((item) => item.status === 'over')
   if (over.length) {

@@ -1,0 +1,16 @@
+{
+  "name": "allworld-house",
+  "files": [
+    "SKILL.md",
+    "reference/photos.md",
+    "reference/house-spec.md",
+    "reference/limits.md",
+    "reference/blender.md",
+    "reference/privacy.md",
+    "reference/worlds.md",
+    "scripts/build_house.py",
+    "scripts/project_photos.py",
+    "scripts/check_model.mjs",
+    "scripts/upload.mjs"
+  ]
+}

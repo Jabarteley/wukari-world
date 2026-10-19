@@ -25,6 +25,8 @@ test('JavaScript is limited to the service worker, release shims and exact revie
     'docs/agent-work/native-character-release-evidence-20261016/neighbourhood-player-ownership-probe.mjs',
     // The script sandbox of a 3D space (docs/SPACES-3D.md phase 4): a static page's own script, served with its own policy.
     'public/sandbox/space.js',
+    // The house skill's scripts (docs/HOUSE-FROM-PHOTOS.md): served as text for a player's own AI to run on their computer; check_model.mjs is generated from src/spaces/glb.ts.
+    'public/skills/allworld-house/scripts/check_model.mjs', 'public/skills/allworld-house/scripts/upload.mjs',
     'public/sw.js',
     'scripts/check-joinallworld-source.mjs', 'scripts/check-workflows.mjs',
     // Reviewed generated-travel gate: proves the committed land-components table matches the catalogue.

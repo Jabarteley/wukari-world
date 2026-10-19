@@ -76,6 +76,13 @@ Capture (`src/app/features/capture/`) has a **Share** button beside Download for
   (see `captureAccess`), so the offer appears only there; nothing about that gate was loosened.
 * Capture still never asks for the camera or microphone. The only request is the player's own `GET /api/feed/me` for the handle.
 
+## Share loops (Phase 4 of the wow plan)
+
+The street video, the start card, Monthly Wrapped, passport pages, the city front page, street fame and duets are made on the device like
+Capture's clips: no `/s/<code>`, nothing stored to make them, the mark in the frame, the file shared through the phone's own sheet (or this
+sheet, `surface: 'other'`). Their links carry `utm_source=<loop>&utm_medium=card&utm_campaign=<loop>` (`street-video`, `start`, `wrapped`,
+`passport`, `frontpage`, `fame`, `duet`). See [SHARE-LOOPS.md](SHARE-LOOPS.md).
+
 ## Ad-source words
 
 Every shared link carries `utm_source=share&utm_medium=card&utm_campaign=<kind>`. The page keeps the cleaned words

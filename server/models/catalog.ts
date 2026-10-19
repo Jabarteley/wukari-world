@@ -21,7 +21,7 @@
 
 export const PROVIDERS = ['gateway', 'openrouter'] as const;
 export type Provider = typeof PROVIDERS[number];
-export const PURPOSES = ['companion', 'agent-talk', 'resident', 'safety', 'moderation'] as const;
+export const PURPOSES = ['companion', 'agent-talk', 'resident', 'safety', 'moderation', 'newspaper'] as const;
 export type Purpose = typeof PURPOSES[number];
 
 /** Secrets and settings the router reads from the environment (added to the host's allowlist in server/host-context.ts). */
@@ -90,7 +90,9 @@ export const DEFAULT_LISTS: Readonly<Record<Purpose, readonly Entry[]>> = Object
   'safety': [or(SAFETY_MODEL)],
   // The feed's reviewer (server/feed/review.ts): reported posts and public photos, a person's words and pictures, so paid models only.
   'moderation': PAID,
+  // The city front page (server/shareloops/frontpage.ts): public gist lines, which carry players' shown names, so paid models only.
+  'newspaper': PAID,
 });
 
 /** The setting key for a purpose's list. */
-export const LIST_SETTING: Readonly<Record<Purpose, string>> = Object.freeze({ 'companion': 'modelsCompanion', 'agent-talk': 'modelsAgentTalk', 'resident': 'modelsResident', 'safety': 'modelsSafety', 'moderation': 'modelsModeration' });
+export const LIST_SETTING: Readonly<Record<Purpose, string>> = Object.freeze({ 'companion': 'modelsCompanion', 'agent-talk': 'modelsAgentTalk', 'resident': 'modelsResident', 'safety': 'modelsSafety', 'moderation': 'modelsModeration', 'newspaper': 'modelsNewspaper' });

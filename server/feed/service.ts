@@ -170,7 +170,14 @@ function buildService(ctx: RouteContext) {
       reactions: reactionsOf(post, viewer), replies: replies.length,
       thread: (full ? replies : replies.slice(-3)).map((r) => replyView(db, f, r, viewer)),
       canReply: canReply(post, rel), ...(rel.self ? { mine: true as const } : {}), ...(post.hidden ? { hidden: true as const } : {}), ...(post.ai ? { ai: true as const } : {}),
+      ...(post.duet ? { duet: duetView(db, f, post.duet, viewer) } : {}),
     }
+  }
+  /** The clip a duet answers, when it is still there and the viewer may see it (docs/SHARE-LOOPS.md); null otherwise. */
+  function duetView(db: Db, f: FeedCollection, id: string, viewer: string | null): PostView['duet'] {
+    const first = f.posts[id]
+    if (!first || first.gone || !first.media || first.kind !== 'clip' || blocked(first.by, viewer ?? '') || !canSee(first, relation(db, f, first, viewer))) return null
+    return { id: first.id, by: person(db, f, first.by, viewer), media: first.media, ...(first.poster ? { poster: first.poster } : {}) }
   }
   /** The community's 3D world: its group's room, and (for members) the room link, when the founder made one and its link is on. */
   function worldOf(db: Db, c: CrewRecord, mine: boolean): CrewView['world'] {
@@ -332,6 +339,18 @@ function buildService(ctx: RouteContext) {
       text = text ? `${draft.text}\n${text}` : draft.text
       a.drafts = (a.drafts ?? []).filter((x) => x.n !== draftN)
     }
+    // A duet answers a clip the author can see and reply to, with a clip of their own (docs/SHARE-LOOPS.md). Checked before the upload is
+    // taken, so a refused duet leaves the clip waiting to be posted.
+    let duet: PostRecord | undefined
+    if (body.duet !== undefined) {
+      const first = visiblePost(db, f, body.duet, id)
+      if ('ok' in first) return first
+      if (first.kind !== 'clip' || !first.media || first.gone || blocked(first.by, id)) return no('invalid_duet', 'Only a clip can be answered with a duet.')
+      if (!canReply(first, relation(db, f, first, id))) return no('cannot_reply', 'Duets on this clip are for the author\'s friends.')
+      const answer = typeof body.media === 'string' ? (a.media ?? []).find((m) => m.hash === body.media && m.use === 'post') : undefined
+      if (answer?.type !== 'webm' && answer?.type !== 'mp4') return no('invalid_duet', 'Record a clip to answer with.')
+      duet = first
+    }
     let media: FeedMedia | undefined, posterHash: string | undefined
     if (typeof body.media === 'string' && body.media) {
       if (!mediaOn()) return no('media_off', 'Photos and clips are not switched on here.')
@@ -352,11 +371,12 @@ function buildService(ctx: RouteContext) {
     if (typeof vis !== 'string') return vis
     const at = lifePlace(session), label = cleanLine(body.label, FEED.place)
     if (label) { const bad = screened(label, 'The place'); if (bad) return bad }
-    const post: PostRecord = { id: newId(f, 'p'), by: id, at: now(), kind, body: text, place: { city: at.city, ...(at.venue ? { venue: at.venue } : {}), ...(label ? { label } : {}) }, vis, ...(crew ? { crew: crew.id } : {}), ...(media ? { media } : {}), ...(posterHash ? { poster: posterHash } : {}), ...(gist ? { gist } : {}), ...(aiOf(db, id) ? { ai: 1 as const } : {}) }
+    const post: PostRecord = { id: newId(f, 'p'), by: id, at: now(), kind, body: text, place: { city: at.city, ...(at.venue ? { venue: at.venue } : {}), ...(label ? { label } : {}) }, vis, ...(crew ? { crew: crew.id } : {}), ...(media ? { media } : {}), ...(posterHash ? { poster: posterHash } : {}), ...(gist ? { gist } : {}), ...(aiOf(db, id) ? { ai: 1 as const } : {}), ...(duet ? { duet: duet.id } : {}) }
     f.posts[post.id] = post
     indexPost(f, a, post)
     d.posts += 1
     const push: Push = []
+    if (duet && duet.by !== id && canSee(post, relation(db, f, post, duet.by))) tell(db, f, duet.by, { kind: 'reply', text: `${nameOf(db, f, id)} answered your clip with a duet`, post: post.id, from: person(db, f, id, duet.by) }, push)
     return { ok: true, post: postView(db, f, post, id), push }
   }
   function removePost(db: Db, session: SessionRecord, body: Record<string, unknown>): { ok: true } | Refused {

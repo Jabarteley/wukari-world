@@ -44,6 +44,8 @@ export interface PostView {
   mine?: true
   hidden?: true
   ai?: true
+  /** A duet (docs/SHARE-LOOPS.md): the clip this clip answers, shown beside it; null when that clip is gone or the viewer may not see it. */
+  duet?: { id: string; by: FeedPerson; media: FeedMedia; poster?: string } | null
 }
 export interface NewsLine { n: number; at: number; city: string; text: string }
 /**
@@ -131,7 +133,7 @@ export interface FeedHttpRoutes {
   'GET /api/feed/crew': { query: { id: string; after?: string }; response: Ok<FeedPage | Refused>; errors: E }
   'GET /api/feed/by': { query: { id: string; after?: string }; response: Ok<FeedPage | Refused>; errors: E }
   'GET /api/feed/post': { query: { id: string }; response: Done<{ post: PostView }>; errors: E }
-  'POST /api/feed/post': { body: { body?: string; vis?: Visibility; crew?: string; media?: string; poster?: string; draft?: number; label?: string }; response: Done<{ post: PostView }>; errors: E }
+  'POST /api/feed/post': { body: { body?: string; vis?: Visibility; crew?: string; media?: string; poster?: string; draft?: number; label?: string; duet?: string }; response: Done<{ post: PostView }>; errors: E }
   'POST /api/feed/post/remove': { body: { id: string }; response: Done; errors: E }
   'POST /api/feed/react': { body: { id: string; emoji: string | null }; response: Done<{ post: PostView }>; errors: E }
   'POST /api/feed/reply': { body: { id: string; body: string }; response: Done<{ post: PostView }>; errors: E }

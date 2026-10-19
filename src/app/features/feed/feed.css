@@ -53,3 +53,9 @@
 
 /* The location badge (docs/FEED.md): a small pin and the city. */
 .feed-located { color: #1f7a4d; font-weight: 600; }
+/* A duet (docs/SHARE-LOOPS.md): the clip answered and the answer, side by side. */
+.feed-duet{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.feed-duet figure{margin:0;min-width:0}
+.feed-duet .feed-media{max-height:320px}
+.feed-duet figcaption{font-size:12px;opacity:.75;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.feed-answering{display:flex;align-items:center;gap:8px;margin:0 0 6px;font-size:13px}

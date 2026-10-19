@@ -2,7 +2,7 @@
 // One post: who, where and when, the words, a photo or clip, an event or gig inside it, reactions, the newest replies and a reply box.
 // Everything a viewer may do is what the server said (`canReply`, `mine`); this only draws it.
 import './feed.css'
-import { computed, ref } from 'vue'
+import { computed, defineAsyncComponent, ref } from 'vue'
 import PlayerAvatar from '../social/PlayerAvatar.vue'
 import ScamNotice from '../trust/ScamNotice.vue'
 import { SCAM_REPORT_REASON } from '../trust/scamNotice.ts'
@@ -12,7 +12,11 @@ import type { FeedApi } from './feedApi.ts'
 import type { PostView, ReplyView } from '../../../types/feed.ts'
 
 const props = defineProps<{ post: PostView; api: FeedApi; now: number; full?: boolean }>()
-const emit = defineEmits<{ changed: [post: PostView]; removed: [id: string]; person: [id: string, name: string]; open: [id: string]; toast: [text: string, tone?: 'error']; share: [post: PostView]; event: [id: string]; gig: [id: string] }>()
+const emit = defineEmits<{ changed: [post: PostView]; removed: [id: string]; person: [id: string, name: string]; open: [id: string]; toast: [text: string, tone?: 'error']; share: [post: PostView]; event: [id: string]; gig: [id: string]; duet: [post: PostView] }>()
+// Duets (docs/SHARE-LOOPS.md): a clip that answers a clip shows beside it; sharing one makes a single video on this device, fetched when asked.
+const DuetSheet = defineAsyncComponent(() => import('../shareloops/DuetSheet.vue'))
+const sharingDuet = ref(false)
+const isClip = computed(() => props.post.kind === 'clip' && (props.post.media?.type === 'webm' || props.post.media?.type === 'mp4'))
 const QUICK = ['❤️', '😂', '🔥', '👏', '😮', '🙏']
 const reply = ref(''), busy = ref(false), menu = ref(false), picking = ref(false)
 const mine = computed(() => props.post.reactions.find((r) => r.mine)?.emoji ?? null)
@@ -71,6 +75,7 @@ async function dropReply(n: number): Promise<void> {
     </header>
     <div v-if="menu" class="feed-bar" role="menu">
       <button type="button" @click="menu = false; emit('share', post)">Share</button>
+      <button v-if="post.duet && isClip" type="button" @click="menu = false; sharingDuet = true">Share the duet</button>
       <button v-if="post.mine" type="button" @click="remove">Delete</button>
       <button v-else type="button" @click="report">Report</button>
     </div>
@@ -78,7 +83,12 @@ async function dropReply(n: number): Promise<void> {
     <p v-if="post.kind === 'moment' && post.body" class="feed-moment">{{ post.body }}</p>
     <p v-else-if="post.body" class="feed-body">{{ post.body }}</p>
     <img v-if="post.media && (post.media.type === 'jpeg' || post.media.type === 'png' || post.media.type === 'webp')" class="feed-media" :src="mediaUrl(post.media.hash)" :width="post.media.w" :height="post.media.h" alt="" loading="lazy">
+    <div v-else-if="post.media && post.duet" class="feed-duet" data-feed="duet">
+      <figure><video class="feed-media" :src="mediaUrl(post.duet.media.hash)" :poster="post.duet.poster ? mediaUrl(post.duet.poster) : undefined" controls playsinline preload="metadata" /><figcaption>{{ post.duet.by.name }}</figcaption></figure>
+      <figure><video class="feed-media" :src="mediaUrl(post.media.hash)" :poster="post.poster ? mediaUrl(post.poster) : undefined" controls playsinline preload="metadata" /><figcaption>{{ post.by.name }}</figcaption></figure>
+    </div>
     <video v-else-if="post.media" class="feed-media" :src="mediaUrl(post.media.hash)" :poster="post.poster ? mediaUrl(post.poster) : undefined" controls playsinline preload="metadata" />
+    <p v-if="post.duet === null" class="feed-note">A duet: the clip it answered is no longer here.</p>
     <button v-if="post.event" type="button" class="feed-embed" @click="emit('event', post.event.id)">
       <small>{{ post.event.phase === 'live' ? 'Happening now' : new Date(post.event.start).toLocaleString(undefined, { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) }}</small>
       <b>{{ post.event.title }}</b>
@@ -90,6 +100,7 @@ async function dropReply(n: number): Promise<void> {
     <div class="feed-bar">
       <button v-for="r in post.reactions" :key="r.emoji" type="button" :class="{ 'is-mine': r.mine }" :disabled="busy" @click="react(r.emoji)">{{ r.emoji }} {{ r.count }}</button>
       <button type="button" :aria-expanded="picking" aria-label="React" :disabled="busy" @click="picking = !picking">{{ mine ? 'Change' : 'React' }}</button>
+      <button v-if="isClip && post.canReply" type="button" data-feed="duet-answer" @click="emit('duet', post)">Duet</button>
       <span class="feed-grow" />
       <button v-if="!full && post.replies > post.thread.length" type="button" @click="emit('open', post.id)">{{ post.replies }} replies</button>
     </div>
@@ -97,6 +108,7 @@ async function dropReply(n: number): Promise<void> {
     <ul v-if="post.thread.length" class="feed-replies">
       <li v-for="r in post.thread" :key="r.n"><b><button type="button" class="feed-name" @click="emit('person', r.by.id, r.by.name)">{{ r.by.name }}</button><template v-if="r.by.ai"> <span class="ai-tag">AI</span></template></b>{{ r.body }} <small class="feed-note">{{ agoText(r.at, now) }}</small> <button v-if="r.mine || post.mine" type="button" class="feed-name feed-note" @click="dropReply(r.n)">Delete</button><ScamNotice v-if="r.scam && !r.mine" @report="reportScam(r)" /></li>
     </ul>
+    <DuetSheet v-if="sharingDuet" :post="post" @close="sharingDuet = false" />
     <form v-if="post.canReply" class="feed-reply" @submit.prevent="send">
       <input v-model="reply" maxlength="280" placeholder="Reply" aria-label="Reply">
       <button type="submit" class="feed-pill" :disabled="busy || !reply.trim()">Send</button>

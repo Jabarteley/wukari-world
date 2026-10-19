@@ -1,8 +1,11 @@
 /**
  * OWNER: scenes
- * CAMERA SHAKE FROM TRAUMA. (Lives beside camera-controls.ts, not in feel/: the orbit imports it, and src/scene/feel/ is the lazy `fx` chunk that the scene host must not import statically.) Trauma is a number from 0 to 1 that a big moment adds to and that falls away on its own. The camera is
+ * CAMERA SHAKE FROM TRAUMA. Trauma is a number from 0 to 1 that a big moment adds to and that falls away on its own. The camera is
  * moved by max · trauma² · sin(k · clock) on two axes with different k: a smooth wobble that is the same for the same inputs (never
  * a random number per frame), and that dies quickly because of the square. Pure, so it runs under `node --test`.
+ *
+ * The scene host (src/venue-world.ts) loads this lazily the first time a big moment asks for a shake, steps it inside its own frame loop,
+ * and calls apply() after the orbit has put the camera where it belongs. camera-controls.ts (which is in the first download) is not touched.
  */
 
 /** Trauma lost each second: 0.4 is gone in under 0.3 s, a large moment's 0.6 in 0.4 s. */
@@ -35,10 +38,13 @@ export interface Shake {
   /** The offset right now, scaled by `max` (scene units). */
   offset(max: number, out?: ShakeOffset): ShakeOffset
   clear(): void
+  /** Move a camera's position by the offset (sideways along the screen's right, and up) after the orbit has placed it: `max` is the largest move, `azimuth` the orbit's heading. Never touches where the camera looks or the avatar. */
+  apply(position: { x: number; y: number; z: number }, azimuth: number, max: number): void
 }
 
 export function createShake(): Shake {
   let trauma = 0, clock = 0
+  const out: ShakeOffset = { x: 0, y: 0 }
   return {
     get trauma() { return trauma },
     kick(amount) { if (Number.isFinite(amount) && amount > 0) trauma = Math.min(1, trauma + amount) },
@@ -50,5 +56,10 @@ export function createShake(): Shake {
     },
     offset(max, out = { x: 0, y: 0 }) { return trauma > 0 ? shakeOffset(trauma, clock, max, out) : (out.x = 0, out.y = 0, out) },
     clear() { trauma = 0 },
+    apply(position, azimuth, max) {
+      if (trauma <= 0) return
+      const { x, y } = shakeOffset(trauma, clock, max, out)
+      position.x += Math.cos(azimuth) * x; position.z -= Math.sin(azimuth) * x; position.y += y
+    },
   }
 }

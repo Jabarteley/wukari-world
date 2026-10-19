@@ -11,7 +11,7 @@ import { play } from '../../audio/play.ts'
 import { confetti } from './burst.ts'
 import { popElement } from './pop.ts'
 import { shakeReduced } from './reduce.ts'
-import { SHAKE_EVENT } from '../camera-shake.ts'
+import { SHAKE_EVENT } from './shake.ts'
 import { TIERS, createTierGate, feelFor } from './tiers.ts'
 import type { Feel, FeelEvent } from './tiers.ts'
 

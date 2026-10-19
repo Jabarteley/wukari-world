@@ -94,25 +94,3 @@ test('the camera is put where the orbit says, looking at the slid pivot', () => 
   near(calls.look![0]!, orbit.now.x + orbit.now.px); near(calls.look![2]!, orbit.now.z + orbit.now.pz);
   near(calls.position![0]! - calls.look![0]!, Math.sin(orbit.azimuth) * Math.cos(orbit.pitch) * orbit.distance);
 });
-
-test('a shake moves only the camera, keeps the frame loop going until it has died away, and leaves the view as it was', () => {
-  const orbit = make();
-  const camera = () => { const c = { p: [0, 0, 0], look: [0, 0, 0] }; orbit.apply({ position: { set(x, y, z) { c.p = [x, y, z]; } }, lookAt(x, y, z) { c.look = [x, y, z]; } }); return c; };
-  const still = camera();
-  assert.equal(orbit.settled, true);
-  const goal = { ...orbit.goal }, now = { ...orbit.now };
-  orbit.kick(0.6);
-  assert.equal(orbit.settled, false);
-  let moved = 0, frames = 0;
-  while (orbit.step(1 / 60)) {
-    frames++;
-    const c = camera();
-    moved = Math.max(moved, Math.hypot(c.p[0]! - still.p[0]!, c.p[1]! - still.p[1]!, c.p[2]! - still.p[2]!));
-    assert.deepEqual(c.look, still.look, 'it keeps looking at the same point');
-    assert.ok(frames < 60, 'the shake dies away in under a second');
-  }
-  assert.ok(moved > 0.05 && moved < orbit.distance * 0.05, `the nudge is small (${moved})`);
-  assert.deepEqual(camera(), still);
-  assert.equal(orbit.settled, true);
-  assert.deepEqual({ ...orbit.goal }, goal); assert.deepEqual({ ...orbit.now }, now);
-});

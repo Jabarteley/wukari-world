@@ -1,7 +1,7 @@
 // Camera shake from trauma: decays to zero fast, identical inputs give identical output, offsets grow with the square of trauma.
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { K_X, K_Y, createShake, decayTrauma, shakeOffset } from './camera-shake.ts'
+import { K_X, K_Y, createShake, decayTrauma, shakeOffset } from './shake.ts'
 
 test('trauma 0.4 is gone within 600 ms at 60 and at 30 frames a second, and the offset is exactly zero then', () => {
   for (const fps of [60, 30, 20]) {
@@ -44,4 +44,18 @@ test('kicks add up to at most 1, bad numbers are ignored, and an idle shake asks
   shake.kick(0.7); shake.kick(0.7); assert.equal(shake.trauma, 1)
   shake.kick(NaN); shake.kick(-1); assert.equal(shake.trauma, 1)
   shake.clear(); assert.equal(shake.trauma, 0)
+})
+
+test('apply moves the camera sideways along the screen and up, never along its view, and nothing at rest', () => {
+  const shake = createShake()
+  const at = { x: 3, y: 5, z: 7 }
+  shake.apply(at, 0.6, 1); assert.deepEqual(at, { x: 3, y: 5, z: 7 })
+  shake.kick(1); shake.step(0.01)
+  const azimuth = 0.6, moved = { x: 3, y: 5, z: 7 }
+  shake.apply(moved, azimuth, 2)
+  const dx = moved.x - 3, dz = moved.z - 7, dy = moved.y - 5
+  // The camera looks along (-sin a, -cos a): a sideways move has no part along that line.
+  assert.ok(Math.abs(dx * -Math.sin(azimuth) + dz * -Math.cos(azimuth)) < 1e-12)
+  assert.ok(Math.hypot(dx, dz) > 0 || dy !== 0)
+  assert.ok(Math.hypot(dx, dz) <= 2 && Math.abs(dy) <= 2)
 })

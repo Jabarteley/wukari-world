@@ -13,7 +13,7 @@
 ## Goal and boundaries
 
 - **Goal:** Phase 3 "Feel" (ideas 8, 9, 10), narrowed by the worth-it review: tiers, a sampled-sine camera shake for the large tier only, hit-stop in the arena fight only, a CSS/mesh pop, and a reduce-shake preference.
-- **In scope:** `src/scene/feel/`, `src/scene/reward.ts`, hook lines in `src/scene/camera-controls.ts`, `src/arena/fight-3d.ts`, `src/ui/shell.css` (pop keyframes), `src/scene/first-person/preferences.ts` (reduceShake key only),
+- **In scope:** `src/scene/feel/`, `src/scene/reward.ts`, hook lines in `src/arena/fight-3d.ts`, `src/ui/shell.css` (pop keyframes), `src/scene/first-person/preferences.ts` (reduceShake key only),
 - **Out of scope:** `AccountSettings.vue` (integrator request), `vite.config.ts`, `src/budgets.ts`, football hit-stop, 3D burst (phase 1).
 - **Exclusive file ownership:** see in scope.
 - **Input contract:** branch `claude/os-p3-feel` from main 090f1e97b.
@@ -35,7 +35,7 @@
 ### Done and exact evidence
 
 - Pure modules `src/scene/feel/{tiers,shake,hitstop,pop,reduce,burst,index}.ts` with tests (16 tests) — `node --experimental-strip-types --test src/scene/feel/*.test.ts`.
-- Hooks: `camera-controls.ts` (orbit.kick, shake applied last in apply(), step keeps the loop going), `reward.ts` (cheer and showReward call feel), `fight-3d.ts` (hit-stop, shake honours the preference), `shell.css` (feel-pop keyframes), `preferences.ts` (reduceShake: boolean|null).
+- Hooks: `reward.ts` (cheer and showReward call feel), `fight-3d.ts` (hit-stop, shake honours the preference), `shell.css` (feel-pop keyframes), `preferences.ts` (reduceShake: boolean|null).
 - 68 targeted tests and 23 venue-world tests pass locally; commit f0b57ea63 pushed; CI run 39322947505 (full_checks=false).
 
 ### In progress / blockers
@@ -51,7 +51,7 @@
 
 - **Local implementation:** active
 - **Deployment:** not-requested
-- **Release gate:** integrator review. Requests: (0) THE SHAKE IS DORMANT until `src/venue-world.ts` gets a `jaw:shake` listener that calls `orbit.kick(trauma)` and `loop.wake()`: ready as `docs/agent-work/os-phase3-feel-venue-world.patch` (`git apply`). I did not apply it because venue-world.ts is pinned by SHA-256 in scripts/scene-factory/host-scenery.json (the build's `scenes:check` failed on it in CI run 39322947505), so it needs the usual `npm run scenes:build` repin of the 284 manifests, an integrator step. (1) Settings toggle "Reduce shake and flashes" in the view settings (src/app/features/sim/ViewSettings.vue pattern: `setViewPreferences({ reduceShake: true|false })`, null = follow the system). (2) To make level up, danfo stop and election won fire, their owners dispatch `jaw:cheer` with detail { event } or call feel(); today only a finished goal and pay chips are wired.
+- **Release gate:** integrator review. Requests: (0) THE SHAKE IS DORMANT until `src/venue-world.ts` gets the `jaw:shake` listener (lazy-loads feel/shake.ts, steps it in the frame loop, applies it to the camera after the orbit): ready as `docs/agent-work/os-phase3-feel-venue-world.patch` (`git apply`). I did not apply it because venue-world.ts is pinned by SHA-256 in scripts/scene-factory/host-scenery.json (the build's `scenes:check` failed on it in CI run 39322947505), so it needs the usual `npm run scenes:build` repin of the 284 manifests, an integrator step. (1) Settings toggle "Reduce shake and flashes" in the view settings (src/app/features/sim/ViewSettings.vue pattern: `setViewPreferences({ reduceShake: true|false })`, null = follow the system). (2) To make level up, danfo stop and election won fire, their owners dispatch `jaw:cheer` with detail { event } or call feel(); today only a finished goal and pay chips are wired.
 - **References:** `docs/OPEN-SOURCE-PLAN.md` phase 3, `docs/OPEN-SOURCE-LEARNINGS.md` ideas 8-10.
 
 ## Checkpoint history
@@ -59,3 +59,8 @@
 | UTC | Status | Change or finding | Evidence | Next step |
 |---|---|---|---|---|
 | 2026-10-19 | active | Registered | this file | write feel modules |
+
+## Findings from CI (19 Oct)
+
+- camera-controls.ts is in the `controls` chunk, which is in the first download (startup gzip 223,153 on main against a 223,500 budget, 347 bytes of headroom). Adding the shake to it (plus a shared shake chunk) cost +741 gzip and failed `entry.test.ts`. So camera-controls.ts is NOT touched; the shake is applied by the scene host, which is lazy (patch above).
+- feel/ lands in the lazy `fx` chunk (3,043 bytes raw before the changes below); reward and fight-3d import it.

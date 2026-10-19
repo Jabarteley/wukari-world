@@ -30,6 +30,13 @@ const MANIFEST = `{
     { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
     { "src": "/icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
     { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    { "src": "/store/1-street-entry.png", "sizes": "1080x1920", "type": "image/png", "form_factor": "narrow", "label": "Walk your own street: the entry card over the world" },
+    { "src": "/store/2-near-you.png", "sizes": "1080x1920", "type": "image/png", "form_factor": "narrow", "label": "Near you: posts from people confirmed in your area" },
+    { "src": "/store/3-communities.png", "sizes": "1080x1920", "type": "image/png", "form_factor": "narrow", "label": "Communities: your city, your estate, your club" },
+    { "src": "/store/4-world.png", "sizes": "1080x1920", "type": "image/png", "form_factor": "narrow", "label": "Your character at home in 3D Lagos" },
+    { "src": "/store/5-map.png", "sizes": "1080x1920", "type": "image/png", "form_factor": "narrow", "label": "The Lagos map: real places, your home marked" }
   ]
 }
 `;

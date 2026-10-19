@@ -81,8 +81,16 @@ test('public files: robots.txt, sitemap.xml, manifest and the images they name',
   const manifest = JSON.parse(siteFile('/manifest.webmanifest', '')?.body ?? '') as { name: string; short_name: string; lang: string; start_url: string; display: string; theme_color: string; background_color: string; icons: { src: string; purpose: string; sizes: string }[] };
   assert.deepEqual([manifest.name, manifest.short_name, manifest.lang, manifest.start_url, manifest.display, manifest.theme_color, manifest.background_color], ['Allworld', 'Allworld', 'en-NG', '/?utm_source=pwa', 'standalone', '#183b2a', '#183b2a']);
   // A store listing (docs/STORE.md): a stable id apart from the start address, a scope, categories, and maskable icons at both sizes.
-  const listing = manifest as unknown as { id: string; scope: string; categories: string[]; related_applications?: unknown; screenshots?: unknown };
-  assert.deepEqual([listing.id, listing.scope, listing.categories, listing.related_applications, listing.screenshots], ['/', '/', ['games', 'social', 'entertainment'], undefined, undefined]);
+  const listing = manifest as unknown as { id: string; scope: string; categories: string[]; related_applications?: unknown; screenshots: { src: string; sizes: string; type: string; form_factor: string; label: string }[] };
+  assert.deepEqual([listing.id, listing.scope, listing.categories, listing.related_applications], ['/', '/', ['games', 'social', 'entertainment'], undefined]);
+  // The store screenshots are real pictures of the app under public/store (docs/STORE.md), 1080x1920 PNGs, each with a label.
+  assert.equal(listing.screenshots.length, 5);
+  for (const shot of listing.screenshots) {
+    assert.deepEqual([shot.sizes, shot.type, shot.form_factor], ['1080x1920', 'image/png', 'narrow'], shot.src);
+    assert.ok(shot.label.length > 10 && shot.src.startsWith('/store/'), shot.src);
+    const bytes = await readFile(new URL(`public${shot.src}`, root));
+    assert.deepEqual([bytes.subarray(1, 4).toString(), bytes.readUInt32BE(16), bytes.readUInt32BE(20)], ['PNG', 1080, 1920], shot.src);
+  }
   assert.deepEqual(manifest.icons.filter(icon => icon.purpose === 'maskable').map(icon => icon.sizes).sort(), ['192x192', '512x512']);
   assert.ok(manifest.icons.some(icon => icon.purpose === 'maskable') && manifest.icons.some(icon => icon.purpose === 'any' && icon.sizes === '512x512') && manifest.icons.some(icon => icon.sizes === '192x192'));
   for (const icon of manifest.icons) assert.ok((await stat(new URL(`public${icon.src}`, root))).size > 0, icon.src);

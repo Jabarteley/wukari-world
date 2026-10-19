@@ -90,6 +90,7 @@ import { cachedCityContent, cityRules } from '../game/cities/registry.ts';
 import { CLEAR_LOOK, lookAt, lookKey } from '../game/conditions/look.ts';
 import type { LookConditions } from '../game/conditions/look.ts';
 import type { Weather } from './fx/weather.ts';
+import { withWetQuery } from './weather-query.ts';
 import type { HomePalette } from '../types/content.ts';
 import { HOUSE_DESIGNS, HOUSE_STYLE } from '../game/content/world.ts';
 import { footprint, windowSlot, doorSlot, plotOf } from '../game/home-layout.ts';
@@ -417,7 +418,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   // frames of its own: the host's ambient hooks below give it a window of frames when the player acts (as in the venues and the street).
   let weatherFx: Weather | null = null, weatherAsked = false, wetNow: LookConditions = CLEAR_LOOK, onAmbient: ((ready: boolean) => void) | null = null;
   function syncWeather(state: LifeState): boolean {
-    const city = state.estate?.city, next = Number.isFinite(state.t) && city ? lookAt(city, null, cityRules(city)?.climate, state.t) : wetNow;
+    const city = state.estate?.city, next = Number.isFinite(state.t) && city ? withWetQuery(lookAt(city, null, cityRules(city)?.climate, state.t)) : wetNow;
     const changed = lookKey(next) !== lookKey(wetNow);
     wetNow = next;
     if (weatherFx) { weatherFx.setTime(homeTime); weatherFx.update(wetNow); if (changed) onAmbient?.(true); return changed; }

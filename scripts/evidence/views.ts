@@ -96,9 +96,9 @@ export function proveClock(day: number, night: number): { ok: boolean; differenc
   return { ok: difference >= PROOF_MIN_DIFFERENCE, difference };
 }
 
-export interface ShootOptions { base: string; views: ViewName[]; out: string; scale: number; width: number; height: number; dwellMs: number; gpu: 'swiftshader' | 'metal'; uncapped: boolean; day: string; clock: { hour: number; minute: number } | null; proveClock: boolean }
+export interface ShootOptions { base: string; views: ViewName[]; out: string; scale: number; width: number; height: number; dwellMs: number; gpu: 'swiftshader' | 'metal'; uncapped: boolean; day: string; clock: { hour: number; minute: number } | null; proveClock: boolean; query: string }
 
-/** `--uncapped` and `--prove-clock` are switches; `--clock HH:MM` replaces each view's own clock.  `--base URL --view name[,name|all] --out DIR --scale N --size WxH --dwell SECONDS --gpu swiftshader|metal --day YYYY-MM-DD`. */
+/** `--uncapped` and `--prove-clock` are switches; `--clock HH:MM` replaces each view's own clock.  `--base URL --view name[,name|all] --out DIR --scale N --size WxH --dwell SECONDS --gpu swiftshader|metal --day YYYY-MM-DD --query "quality=high&wet=1"` (extra page query). */
 export function parseShootArgs(argv: readonly string[], today = new Date().toISOString().slice(0, 10)): ShootOptions {
   const value = (name: string): string | undefined => {
     const at = argv.indexOf(`--${name}`);
@@ -117,7 +117,7 @@ export function parseShootArgs(argv: readonly string[], today = new Date().toISO
   if (gpu !== 'swiftshader' && gpu !== 'metal') throw new Error('--gpu is swiftshader or metal.');
   const day = value('day') ?? today;
   lagosInstant(day, { hour: 12, minute: 0 });
-  return { base, views, out: value('out') ?? 'docs/evidence/out', scale, width: Number(size[1]), height: Number(size[2]), dwellMs: dwell * 1000, gpu, uncapped: argv.includes('--uncapped'), day, clock: value('clock') === undefined ? null : parseClock(value('clock')!), proveClock: argv.includes('--prove-clock') };
+  return { base, views, out: value('out') ?? 'docs/evidence/out', scale, width: Number(size[1]), height: Number(size[2]), dwellMs: dwell * 1000, gpu, uncapped: argv.includes('--uncapped'), day, clock: value('clock') === undefined ? null : parseClock(value('clock')!), proveClock: argv.includes('--prove-clock'), query: (value('query') ?? '').replace(/^[?&]+/, '') };
 }
 
 /**

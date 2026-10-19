@@ -9,6 +9,7 @@ import { cachedCityContent, cityRules } from '../game/cities/registry.ts';
 import { CLEAR_LOOK, lookAt, lookKey } from '../game/conditions/look.ts';
 import type { LookConditions } from '../game/conditions/look.ts';
 import type { Weather } from './fx/weather.ts';
+import { withWetQuery } from './weather-query.ts';
 import { unpackStyle } from './house-style.ts';
 import type { HouseStyle, HouseTierId, LifeState } from '../types/life.ts';
 import type { WorldStreetResponse } from '../types/world.ts';
@@ -100,7 +101,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
   // of its own: it moves in the same window as the street's people (stepAmbient below). True when the conditions changed.
   let weatherFx: Weather | null = null, weatherAsked = false, wetNow: LookConditions = CLEAR_LOOK;
   function syncWeather(state: LifeState): boolean {
-    const city = state.estate.city, next = finite(state.t) ? lookAt(city, null, cityRules(city)?.climate, state.t) : wetNow;
+    const city = state.estate.city, next = finite(state.t) ? withWetQuery(lookAt(city, null, cityRules(city)?.climate, state.t)) : wetNow;
     const changed = lookKey(next) !== lookKey(wetNow);
     wetNow = next;
     if (weatherFx) { weatherFx.setTime(streetTime); weatherFx.update(wetNow); return changed; }

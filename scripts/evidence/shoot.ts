@@ -94,7 +94,7 @@ async function shootView(page: Page, base: string, spec: ViewSpec, options: Retu
   const shift = pinned - Date.now();
   const hook = await page.send<{ identifier: string }>('Page.addScriptToEvaluateOnNewDocument', { source: `const __awNow = Date.now.bind(Date); Date.now = () => __awNow() + (${shift}); try { if (${JSON.stringify(spec.city)} !== 'lagos') localStorage.setItem('joinallworld-life-v1', ${JSON.stringify(saved)}); else localStorage.removeItem('joinallworld-life-v1'); } catch (e) {}` });
   page.errors.length = 0;
-  await page.send('Page.navigate', { url: `${options.base}${spec.path}${spec.path.includes('?') ? '&' : '?'}diagnostics=1` });
+  await page.send('Page.navigate', { url: `${options.base}${spec.path}${spec.path.includes('?') ? '&' : '?'}diagnostics=1${options.query ? `&${options.query}` : ''}` });
   const here = JSON.stringify(spec.location);
   const ready = await page.until(`window.__jaw && window.__jaw.venue && window.__jaw.venue.location === ${here} && window.__jaw.venue.diagnostics().renderCount > 3`, 60_000);
   await page.send('Page.removeScriptToEvaluateOnNewDocument', { identifier: hook.identifier });

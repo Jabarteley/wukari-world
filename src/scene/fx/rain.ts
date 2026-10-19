@@ -149,7 +149,7 @@ export interface Rain {
   readonly group: THREE.Group
   readonly drops: THREE.Mesh
   readonly splashes: THREE.Mesh
-  /** Draw calls this costs when shown: the drops and the splashes. */
+  /** Draw calls this costs now: the drops, and the splashes while the rain is moving. */
   readonly drawCalls: number
   readonly dropCount: number
   readonly seconds: number
@@ -162,8 +162,10 @@ export interface Rain {
   setLightmap(map: RainOptions['lightmap']): void
   /** Move the seconds on. Call only inside the wake window. */
   step(dt: number): void
-  /** The still frame: the seconds fixed, the camera taken as still. */
+  /** The still frame: the seconds fixed, the camera taken as still. The splashes are hidden (a crown would hang in the air). */
   settle(): void
+  /** The wake window closed: hide the splashes; the streaks stay where they are. */
+  rest(): void
   dispose(): void
 }
 
@@ -234,6 +236,7 @@ export function createRain({ THREE, parent, tier, cover = null, lightmap = null,
   drops.renderOrder = 5; splashes.renderOrder = 4
   const group = new THREE.Group()
   group.name = 'rain'
+  splashes.visible = false // splashes are only drawn while the rain moves: a frozen crown would hang in the air
   group.add(splashes, drops)
   parent.add(group)
 
@@ -259,7 +262,7 @@ export function createRain({ THREE, parent, tier, cover = null, lightmap = null,
 
   return {
     group, drops, splashes,
-    drawCalls: 2,
+    get drawCalls() { return group.visible ? 1 + (splashes.visible ? 1 : 0) : 0 },
     dropCount: count,
     get seconds() { return seconds },
     get active() { return group.visible },
@@ -273,10 +276,12 @@ export function createRain({ THREE, parent, tier, cover = null, lightmap = null,
     step(dt) {
       if (gone || !(dt > 0)) return
       still = false
+      splashes.visible = true
       seconds += dt
       shared.uTime.value = seconds
     },
-    settle() { still = true; seconds = STILL_SECONDS; shared.uTime.value = seconds; shared.uCamVel.value.set(0, 0, 0) },
+    rest() { splashes.visible = false },
+    settle() { still = true; splashes.visible = false; seconds = STILL_SECONDS; shared.uTime.value = seconds; shared.uCamVel.value.set(0, 0, 0) },
     dispose() {
       if (gone) return
       gone = true

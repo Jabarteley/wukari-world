@@ -25,6 +25,8 @@ import type { Box6, Rect4 } from './cover.ts'
 import { smokeSources } from './smoke-plan.ts'
 import type { LandmarkLike, SmokeSource } from './smoke-plan.ts'
 
+export { wetFromQuery, withWetQuery } from '../weather-query.ts'
+
 /** Seconds of frames the weather asks for after it is woken (the same window as the people: ambient/layer.ts WINDOW_MS). */
 export const WINDOW_S = 12
 /** How much of the day's light the smoke is lit with. */
@@ -98,6 +100,7 @@ export function createWeather({ THREE, parent, open = true, roofs = null, tier =
       left = Math.max(0, left - dt)
       if (rain?.active) rain.step(dt)
       smoke?.step(dt)
+      if (left <= 0) rain?.rest()
       return left > 0
     },
     settle() { left = 0; still = true; rain?.settle(); smoke?.settle() },

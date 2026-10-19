@@ -18,7 +18,9 @@ test('rain is one mesh of drops and one of splashes, additive, depth-free and ne
   assert.equal(meshes.length, 2)
   assert.equal(meshes.filter((m) => m.name === 'rain-drops').length, 1)
   assert.equal(meshes.filter((m) => m.name === 'rain-splashes').length, 1)
-  assert.equal(rain.drawCalls, 2)
+  assert.equal(rain.drawCalls, 1, 'at rest only the streaks are drawn')
+  rain.step(0.1)
+  assert.equal(rain.drawCalls, 2, 'moving: the streaks and the splashes')
   for (const mesh of meshes) {
     const material = mesh.material as THREE.ShaderMaterial
     assert.equal(material.blending, THREE.AdditiveBlending)
@@ -135,12 +137,16 @@ test('weather: wet builds the rain once, the window opens and closes, settle is 
   assert.ok(rain)
   weather.update({ wet: true, outage: false, generator: false })
   assert.equal(weather.rain, rain, 'built once')
-  assert.equal(weather.drawCalls, 2)
+  assert.equal(weather.drawCalls, 1, 'streaks only until it moves')
   assert.equal(weather.awake, false, 'nothing asks for frames on its own')
   assert.equal(weather.wake(), true)
   assert.equal(weather.awake, true)
+  weather.step(1 / 30)
+  assert.equal(weather.drawCalls, 2, 'moving')
   let frames = 0
   while (weather.step(1 / 30)) frames++
+  assert.equal(rain.splashes.visible, false, 'the window closed: no crown hangs in the air')
+  assert.equal(rain.drops.visible, true, 'the streaks stay')
   assert.ok(Math.abs(frames - WINDOW_S * 30) <= 2, `the window is ${WINDOW_S} s of frames, ${frames}`)
   assert.equal(weather.awake, false)
   const stopped = rain.seconds
@@ -148,6 +154,7 @@ test('weather: wet builds the rain once, the window opens and closes, settle is 
   assert.equal(rain.seconds, stopped, 'outside the window the rain stands still')
   weather.wake(); weather.step(0.5); weather.settle()
   assert.equal(rain.seconds, STILL_SECONDS)
+  assert.equal(rain.splashes.visible, false)
   assert.equal(weather.awake, false)
   weather.update({ wet: false, outage: false, generator: false })
   assert.equal(rain.active, false)
@@ -172,4 +179,18 @@ test('weather: a room with a ceiling draws no rain, only its smoke; a changed so
   assert.equal(weather.smoke, null)
   assert.equal(weather.wake(), false)
   weather.dispose()
+})
+
+test('the address can force the rain: ?wet=1 wet, ?wet=0 dry, anything else leaves the weather alone', async () => {
+  const { wetFromQuery, withWetQuery } = await import('./weather.ts')
+  assert.equal(wetFromQuery('?quality=high&wet=1'), true)
+  assert.equal(wetFromQuery('?wet=0&x=1'), false)
+  assert.equal(wetFromQuery('?wet=2'), null)
+  assert.equal(wetFromQuery('?wetter=1'), null)
+  assert.equal(wetFromQuery(''), null)
+  const dry = { wet: false, harmattan: true }
+  assert.deepEqual(withWetQuery(dry, '?wet=1'), { wet: true, harmattan: true })
+  assert.equal(withWetQuery(dry, '?wet=0'), dry, 'the same object when nothing changes')
+  assert.equal(withWetQuery(dry, ''), dry)
+  assert.equal(dry.wet, false, 'the input is never changed')
 })

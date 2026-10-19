@@ -95,6 +95,7 @@ import { createAmbientHub } from './ambient/hub.ts';
 import { coverRecorder } from './roof-record.ts';
 import type { CoverRecorder } from './roof-record.ts';
 import type { Weather } from './fx/weather.ts';
+import { withWetQuery } from './weather-query.ts';
 import type { Ident } from './ambient/plan.ts';
 import { tablesAt, GAME_LABELS } from '../tables/city-places.ts';
 import { CITY_RULES, DEFAULT_CITY_ID } from '../game/cities/registry.ts';
@@ -1306,7 +1307,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
         if (time !== view.time) { view.time = time; changed = true; }
       }
       if (Number.isFinite(state.t)) {
-        const weather = lookAt(cityId, venue, CITY_RULES[cityId]?.climate, state.t!);
+        const weather = withWetQuery(lookAt(cityId, venue, CITY_RULES[cityId]?.climate, state.t!));
         if (lookKey(weather) !== lookKey(view.weather)) { view.weather = weather; changed = true; }
         if (festiveChanged(state.t!)) changed = true;
       }

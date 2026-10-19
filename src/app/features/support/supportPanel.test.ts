@@ -132,14 +132,16 @@ test('filing: the receipt id is kept for the toast, and a retry reuses the same 
   assert.equal(support.lastReceipt.value, 'P-7')
 })
 
-test('feedback is one tap away: an idea category first, the Feedback buttons in Lite, the 3D menu, Settings and Help, and /feedback', async () => {
+test('feedback is one tap away: the board from Lite, the 3D menu, Settings, Help and the Feedback app; problems stay in the report', async () => {
   const { readFileSync } = await import('node:fs')
-  const { SUPPORT_CATEGORIES } = await import('../../../types/support.ts')
+  const { FEEDBACK_URL } = await import('../feedback/board.ts')
   const { parsePath } = await import('../../../paths.ts')
-  assert.equal(SUPPORT_CATEGORIES[0], 'idea')
-  assert.equal(CATEGORY_LABELS.idea, 'An idea or feedback')
+  assert.equal(FEEDBACK_URL, 'https://feedback-studio.apps.goalmatic.io/b/allworld')
   const src = (path: string): string => readFileSync(new URL(path, import.meta.url), 'utf8')
-  for (const file of ['../lite/LiteShell.vue', '../hud/HudSidebar.vue', '../sim/SettingsTab.vue', '../help/HelpBody.vue']) assert.match(src(file), /shell\.open\('support', \{ category: 'idea' \}\)/, file)
-  assert.match(src('../panels.ts'), /phonePanel\('support', 'Feedback and help'.*short: 'Feedback'.*order: 1, group: 'life'/)
+  for (const file of ['../lite/LiteShell.vue', '../sim/SettingsTab.vue', '../help/HelpBody.vue', '../feedback/FeedbackApp.vue']) assert.match(src(file), /:href="FEEDBACK_URL" target="_blank" rel="noopener noreferrer"/, file)
+  assert.match(src('../hud/HudSidebar.vue'), /openFeedbackBoard\(\)/)
+  assert.match(src('../panels.ts'), /phonePanel\('feedback', 'Feedback'.*order: 1, group: 'life'/)
+  assert.match(src('../panels.ts'), /phonePanel\('support', 'Report a problem'/)
   assert.deepEqual(parsePath('/feedback'), { kind: 'panel', panel: 'feedback' })
+  assert.equal(CATEGORY_LABELS.idea, 'An idea or feedback')
 })

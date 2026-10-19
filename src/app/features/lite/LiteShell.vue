@@ -9,6 +9,7 @@ import { useApp } from '../../state/app.ts'
 import { canDraw3d, stepInto3d } from '../../state/liteSwitch.ts'
 import { social } from '../social/useSocial.ts'
 import { feedUnseen } from '../feed/feedBadge.ts'
+import { FEEDBACK_URL } from '../feedback/board.ts'
 import { placeNow } from '../places/placeState.ts'
 // The shell's own components, handed over by App.vue, which already holds them: importing them here would split them out of the startup.
 const props = defineProps<{ host: Component; venue: Component; place: Component; why: 'chosen' | 'no-3d' | null }>()
@@ -31,7 +32,7 @@ const more = (): void => { shell.open('phone') }
     <header class="lite-top">
       <b>Allworld</b>
       <span class="lite-grow" />
-      <button type="button" class="lite-chip" data-feedback @click="shell.open('support', { category: 'idea' })">Feedback</button>
+      <a class="lite-chip" :href="FEEDBACK_URL" target="_blank" rel="noopener noreferrer" data-feedback>Feedback</a>
       <button type="button" class="lite-chip" @click="more">All apps</button>
       <button v-if="can3d" type="button" class="lite-chip is-world" @click="stepInto3d">Step into the 3D world</button>
     </header>

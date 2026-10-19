@@ -14,6 +14,7 @@ import HudChip from './HudChip.vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import NeedsStrip from './NeedsStrip.vue'
 import { linkWording } from './hudModel.ts'
+import { openFeedbackBoard } from '../feedback/board.ts'
 
 const { game, shell, menu, community, scene } = useApp()
 const ui = shell.ui
@@ -80,7 +81,7 @@ function openHelp(): void { more.value?.focus({ preventScroll: true }); shell.op
           <button type="button" @click="pick('city')"><span aria-hidden="true"><GameIcon name="globe" :size="19" /></span><span><b>{{ view.city?.name || 'City' }}</b><small>Switch city on the world map</small></span></button>
           <button type="button" @click="ui.trayOpen = false; community.toggle(true)"><span aria-hidden="true"><GameIcon name="community" :size="19" /></span><span><b>Community</b><small>{{ atHome ? 'Home is private — visit a venue to chat' : 'People, chat and voice at this venue' }}</small></span></button>
           <button type="button" @click="openHelp"><span aria-hidden="true"><GameIcon name="help" :size="19" /></span><span><b>How to play</b><small>Tips and keyboard shortcuts</small></span></button>
-          <button type="button" data-feedback @click="ui.trayOpen = false; shell.open('support', { category: 'idea' })"><span aria-hidden="true"><GameIcon name="support" :size="19" /></span><span><b>Feedback</b><small>An idea, or something wrong? Tell us</small></span></button>
+          <button type="button" data-feedback @click="ui.trayOpen = false; openFeedbackBoard()"><span aria-hidden="true"><GameIcon name="support" :size="19" /></span><span><b>Feedback</b><small>Share an idea or vote on the board</small></span></button>
           <p class="life-net" :class="{ 'is-error': view.net.error }" role="status">{{ view.net.text }}</p>
           <button v-if="link?.tone === 'off'" class="life-menu-retry" type="button" @click="pick('reconnect')">Try again</button>
         </div>

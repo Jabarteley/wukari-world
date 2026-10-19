@@ -7,6 +7,7 @@ import BaseButton from '../../ui/BaseButton.vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import { openWorld } from '../tour/tourWorld.ts'
 import { feedCredits } from '../world/feedCredits.ts'
+import { FEEDBACK_URL } from '../feedback/board.ts'
 
 /** Game art credits: the component and its data load only when asked for (src/app/features/help/AssetCredits.vue). */
 const AssetCredits = defineAsyncComponent(() => import('./AssetCredits.vue'))
@@ -44,7 +45,7 @@ function showShortcuts(): void { window.dispatchEvent(new CustomEvent('jaw:short
     </div>
     <h3>Keyboard</h3>
     <dl class="help-keys"><div v-for="row in rows" :key="row.label"><dt><kbd>{{ row.label }}</kbd></dt><dd>{{ row.description }}</dd></div></dl>
-    <BaseButton block @click="shell.open('support', { category: 'idea' })">Send feedback</BaseButton>
+    <a class="ui-button is-block" :href="FEEDBACK_URL" target="_blank" rel="noopener noreferrer" data-feedback>Share an idea</a>
     <BaseButton block @click="shell.open('support', { category: 'bug' })">Report a problem</BaseButton>
     <p class="help-credits">
       <a :href="feedCredits.weatherUrl" target="_blank" rel="noopener noreferrer">{{ feedCredits.weather }}</a>

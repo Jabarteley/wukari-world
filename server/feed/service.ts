@@ -22,6 +22,7 @@ import { lagosTime } from '../../src/game/clock.ts'
 import { cityName, cityCatalogue, cityCatalogueEntry, cityRules } from '../../src/game/cities/registry.ts'
 import { roomLinkPath } from '../../src/places/model.ts'
 import { feedOf, peekFeed } from './data.ts'
+import { castMember } from '../house/cast-ids.ts'
 import { gigPaid, needsTicket, ticketOf } from '../earn/data.ts'
 import type { AuthorRecord, CrewRecord, DecisionRecord, EventRecord, FeedCollection, GigRecord, PostRecord, Reply, ReportRecord } from './data.ts'
 import type { Db, RouteContext, SessionRecord } from '../types.ts'
@@ -73,9 +74,10 @@ function buildService(ctx: RouteContext) {
   const adult = (db: Db, id: string): boolean => ctx.checks?.adult?.(db, id) === true
   const blocked = (a: string, b: string): boolean => a !== b && ctx.checks?.blocked?.(a, b) === true
   const friends = (db: Db, a: string, b: string): boolean => a !== b && friendsIn(playersOf(db) as never, a, b)
-  const aiOf = (db: Db, id: string): boolean => { const p = playersOf(db)[id]; return p?.agent?.char === true || (typeof p?.agent?.at === 'number' && now() - p.agent.at < AGENT_WINDOW_MS) }
-  const nameOf = (db: Db, f: FeedCollection | undefined, id: string): string => playersOf(db)[id]?.name ?? f?.authors[id]?.name ?? 'Former player'
-  const exists = (db: Db, id: string): boolean => Object.hasOwn(playersOf(db), id)
+  // The game's own AI cast (house agents and residents, server/house/cast-ids.ts) are feed authors too: AI-played, followable, never a player record (docs/AI-RESIDENTS.md).
+  const aiOf = (db: Db, id: string): boolean => { const p = playersOf(db)[id]; return p?.agent?.char === true || (typeof p?.agent?.at === 'number' && now() - p.agent.at < AGENT_WINDOW_MS) || (!p && castMember(id) !== null) }
+  const nameOf = (db: Db, f: FeedCollection | undefined, id: string): string => playersOf(db)[id]?.name ?? f?.authors[id]?.name ?? castMember(id)?.name ?? 'Former player'
+  const exists = (db: Db, id: string): boolean => Object.hasOwn(playersOf(db), id) || castMember(id) !== null
   const mutedRefusal = (id: string): Refused | null => { const m = ctx.checks?.muted?.(id); return m ? no(m.code, m.reason) : null }
   const screened = (text: string, what: string): Refused | null => { const v = screenText(text, { what, contact: true }); return v ? no(v.code, v.reason) : null }
   /** An AI character's words also pass the AI-safety check (docs/AI-SAFETY.md): no asking for money, contact details or meetings; stricter where a minor may read. */
@@ -225,7 +227,7 @@ function buildService(ctx: RouteContext) {
     const mutual = viewer && !self ? Object.keys(playersOf(db)[viewer]?.friends ?? {}).filter((x) => x !== id && friends(db, x, id) && friends(db, viewer, x)).slice(0, 5).map((x) => person(db, f, x, viewer)) : []
     return {
       ...person(db, f, id, viewer),
-      ...(a?.bio ? { bio: a.bio } : {}), ...(a?.status ? { status: a.status } : {}),
+      ...(a?.bio ? { bio: a.bio } : castMember(id) ? { bio: castMember(id)!.about } : {}), ...(a?.status ? { status: a.status } : {}),
       followers: followersText(a?.followers ?? 0), following: Boolean(viewer && f.authors[viewer]?.follows?.[id]), followable: !self && followable(db, f, id),
       ...(self || (viewer && friends(db, viewer, id)) ? (a?.code ? { code: a.code } : {}) : {}),
       crews: (a?.crews ?? []).map((c) => f.crews[c]).filter((c): c is CrewRecord => Boolean(c)).map((c) => ({ id: c.id, name: c.name, colour: c.colour })),
@@ -523,6 +525,7 @@ function buildService(ctx: RouteContext) {
   function resolve(db: Db, value: unknown): string | null {
     const f = peekFeed(db)
     if (typeof value !== 'string') return null
+    if (castMember(value)) return value
     if (value.startsWith('@')) { const h = cleanHandle(value); return h && f?.handles[h] ? f.handles[h]! : null }
     if (UUID.test(value)) return exists(db, value) ? value : null
     const code = cleanCode(value), hit = code ? f?.codes[code] : undefined
@@ -554,7 +557,7 @@ function buildService(ctx: RouteContext) {
       if (!follows[target]) {
         if (Object.keys(follows).length >= FEED.follows) return no('too_many', `You follow ${FEED.follows} people, the most you can.`)
         follows[target] = now(); t.followers = (t.followers ?? 0) + 1
-        tell(db, f, target, { kind: 'follow', text: `${nameOf(db, f, id)} followed you`, from: person(db, f, id, target) }, push)
+        if (!castMember(target)) tell(db, f, target, { kind: 'follow', text: `${nameOf(db, f, id)} followed you`, from: person(db, f, id, target) }, push)
       }
     }
     return { ok: true, profile: profileView(db, f, target, id), push }
@@ -903,6 +906,29 @@ function buildService(ctx: RouteContext) {
       a.drafts = drafts
     }
   }
+  /**
+   * One of the game's own AI characters posts as itself (server/house/follow.ts, continuity.ts): always marked AI, `city` or `public`, its text checked like any
+   * AI character's (the AI word rules for a minor, the contact filter). The caller bounds how often. Returns the post id, or null when it may not be posted.
+   */
+  function aiPost(db: Db, id: string, input: { kind: 'moment' | 'recap'; body: string; city: string; vis: 'city' | 'public'; status?: string }): string | null {
+    const who = castMember(id), text = cleanBody(input.body)
+    if (!who || !text || !agentWords(text, { toMinor: true }).ok || screened(text, 'A post')) return null
+    const f = feedOf(ctx, db), a = author(f, db, id)
+    const post: PostRecord = { id: newId(f, 'p'), by: id, at: now(), kind: input.kind, body: text, place: { city: input.city }, vis: input.vis, ai: 1 }
+    f.posts[post.id] = post; indexPost(f, a, post)
+    a.bio = who.about
+    const status = input.status ? cleanLine(input.status, FEED.status) : ''
+    if (status && agentWords(status, { toMinor: true }).ok) a.status = { text: status, at: now() }
+    return post.id
+  }
+  /** A line from one of the game's own AI characters in a person's feed inbox (the continuity notice of docs/AI-RESIDENTS.md). False when it cannot be told. */
+  function aiNote(db: Db, to: string, id: string, text: string): boolean {
+    const line = cleanLine(text, 280)
+    if (!castMember(id) || !Object.hasOwn(playersOf(db), to) || !line) return false
+    const f = feedOf(ctx, db)
+    tell(db, f, to, { kind: 'ai', text: line, from: person(db, f, id, to) }, [])
+    return true
+  }
   function dropDraft(db: Db, session: SessionRecord, body: Record<string, unknown>): { ok: true } {
     const a = peekFeed(db)?.authors[session.publicId]
     if (a?.drafts) a.drafts = a.drafts.filter((x) => x.n !== Number(body.n))
@@ -1051,7 +1077,7 @@ function buildService(ctx: RouteContext) {
   return {
     publicMedia, mediaOn, takeTrash, read, thread, me, seen, profile, code, resolve, editProfile, setHandle, createPost, removePost, react, reply, removeReply,
     noteMedia, mediaAllowed, portraitOf, snapshot, decide, undo, decisions, purge, follow, suggestions, createCrew, joinCrew, leaveCrew, crew, discover, setMod, setLocals, setLocated, attachWorld, createEvent, rsvp, cancelEvent, events, event, remind,
-    createGig, gigAct, gigs, vouch, noteMoment, dropDraft, report, queue, moderate, profileView, crewView, eventView,
+    createGig, gigAct, gigs, vouch, noteMoment, dropDraft, aiPost, aiNote, report, queue, moderate, profileView, crewView, eventView,
     peek: peekFeed,
   }
 }

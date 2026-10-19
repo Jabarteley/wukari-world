@@ -24,6 +24,7 @@ import { eraseMarket } from '../market/privacy.ts'
 import { eraseLegacy } from '../legacy/privacy.ts'
 import { eraseShowcase } from '../showcase/privacy.ts'
 import { erasePerson } from '../house/memory.ts'
+import { eraseAiLife } from '../house/erase.ts'
 import { eraseWalletActors } from '../economy/privacy.ts'
 import { peekRecords } from '../records/store.ts'
 import { forgetReplayPlayers } from '../growth/arena-replays.ts'
@@ -238,6 +239,7 @@ function preflightSharedIntegrity(ctx: RouteContext, db: Db, actors: ReadonlySet
     'version', 'sessions', 'archivedLives', 'social', 'civic', 'support', 'moderation', 'growth', 'visits', 'commerce', 'business', 'market', 'legacy',
     'trust', 'trustChecks', 'street', 'realValue', 'showcase', 'politics', 'campus', 'accounts', 'accountDevices', 'accountLog', 'walletEffects', 'livingWorld', 'clans',
     'storyHelp', 'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', 'agentarena', 'oauth', 'arenadaily', 'spaces', '$store',
+    'spotAi', 'aiRoles', 'aiContinuity', // erased by server/house/erase.ts eraseAiLife
   ])
   known.add('danfo') // runs, crews, days and boards: forgetDanfoPlayers (server/danfo/service.ts)
   const collectionNames = (db.$store as (typeof db.$store & { collectionNames?: () => readonly string[] }) | undefined)?.collectionNames?.() ?? []
@@ -726,6 +728,7 @@ export function eraseData(ctx: RouteContext, db: Db, plan: ErasurePlan): Erasure
   const photos = sorted(eraseShowcase(db, plan.actorIds))
   if (JSON.stringify(photos) !== JSON.stringify(plan.photos)) fail(ctx, 409, 'erasure_plan_changed', 'Showcase ownership changed after the erasure preview.')
   for (const id of plan.actorIds) erasePerson(db, id)
+  for (const id of plan.actorIds) eraseAiLife(db, id)
 
   if (db.social) scrubSocial(ctx, db.social, ids)
   scrubVisits(db, ids)

@@ -89,6 +89,21 @@ their relationship).
 - Tests: `memory-flirt.test.ts` (a real server and the real room check: partner and consenting adult pass, adult without a yes, minor and unknown age refused, sexual,
   money, contact, human and meeting lines refused for a partner) and `memory-talk.test.ts` (the runner end to end).
 
+## Who hears a remembered fact (Phase 3, [AI-RESIDENTS.md](AI-RESIDENTS.md))
+
+A fact is the person's, so it is said only to them. Since Phase 3 the runner passes an agent's facts about a person to the model (and uses one in the written greeting,
+"Ada! Still saving for a car?", `greet.ts`) **only when nobody else stands in the same part of the venue** (`ctx.checks.groupPeers` lists only that person), or on a
+call or private chat. With somebody else there, the facts stay out of the prompt and out of the line. **Gossip** about people is only the public gist
+(`greet.ts gossipLine`), never a fact; `greet.test.ts` is the adversarial test (another person asking by name, a model that repeats its whole prompt).
+
+## Download, and a character that leaves (Phase 3)
+
+- **Download.** `GET /api/agents/memory/export[?agent=]` answers what AI characters remember about the signed-in person (every character, or one) as JSON with a file
+  name; the card's **Download** buttons save it on the device (the host sets no download header, as for the account export). Only the person's own record.
+- **Continuity.** A character the person follows or partners is never changed or removed without 7 days' notice in their inbox and a goodbye
+  (`server/house/continuity.ts`). Its card then says "is leaving on …"; after it has gone the card keeps its name and "left on …" (`cast-ids.ts leftMember`) and its
+  facts can still be seen, deleted and downloaded. `memory-routes.ts` accepts such an id.
+
 ## Direct messages (not here)
 
 House agents cannot receive direct messages: a DM needs a stored character, and they have none. None is invented. The hook is `HOUSE_DM = false` and the

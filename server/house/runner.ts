@@ -39,6 +39,7 @@ import { cachedCityContent, cityRules } from '../../src/game/cities/index.ts';
 import { sha256Hex } from '../../src/game/util.ts';
 import { agentWords } from '../moderation/agent-words.ts';
 import { gistService } from '../gist/ledger.ts';
+import type { GistItem } from '../gist/ledger.ts';
 import { initialVenuePosition, venueRoomKey } from '../protocol.ts';
 import { registerAdminSetting } from '../admin/settings.ts';
 import { registerAdminStat } from '../admin/tools.ts';
@@ -55,6 +56,11 @@ import * as say from './lines.ts';
 import * as memory from './memory.ts';
 import { QUIZ, allowedNumbers, cleanReply, handsOver, intentOf, isRight, matchItem, matchVenue, promptFor, takesIt } from './talk.ts';
 import { deskOf } from './desk.ts';
+import { asksGossip, factGreeting, gossipLine } from './greet.ts';
+import { noteAiLine, spotFor } from './spot.ts';
+import { FOLLOW, followService } from './follow.ts';
+import { ROLES, rolesFor } from './roles.ts';
+import { continuityFor } from './continuity.ts';
 import type { Desk } from './desk.ts';
 import type { AgentRef } from './errands.ts';
 import type { Intent, Question } from './talk.ts';
@@ -84,6 +90,7 @@ export interface HouseDeps {
   /** A person's open missions from this agent, as short phrases for the prompt. Defaults to the desk's open agent tasks (the life's own list). */
   missions?: (personId: string, agent: { id: string; role: Spec['role']; city: string }) => readonly string[] | Promise<readonly string[]>
 }
+interface Tally { d: number; talks: number; sold: number; quiz: number }
 interface Convo { agent: string; person: string; name: string; lines: string[]; at: number; busy: boolean }
 interface Person { item: string | null; talks: Map<string, Talk & { at: number }> }
 interface Presence { room: string; action: ActionId; until: number }
@@ -99,8 +106,8 @@ interface Agent {
   people: Map<string, Person>
   busy: boolean
 }
-export interface Counters { wakes: number; model: number; written: number; blocked: number; said: number; refusedLow: number; facts: number; summaryModel: number; summaryRules: number; summarySkipped: number }
-const blank = (): Counters => ({ wakes: 0, model: 0, written: 0, blocked: 0, said: 0, refusedLow: 0, facts: 0, summaryModel: 0, summaryRules: 0, summarySkipped: 0 });
+export interface Counters { wakes: number; model: number; written: number; blocked: number; said: number; refusedLow: number; facts: number; summaryModel: number; summaryRules: number; summarySkipped: number; factGreets: number; gossip: number }
+const blank = (): Counters => ({ wakes: 0, model: 0, written: 0, blocked: 0, said: 0, refusedLow: 0, facts: 0, summaryModel: 0, summaryRules: 0, summarySkipped: 0, factGreets: 0, gossip: 0 });
 
 const clampInt = (value: unknown, least: number, most: number, fallback: number): number => (typeof value === 'number' && Number.isFinite(value) ? Math.max(least, Math.min(most, Math.round(value))) : fallback);
 
@@ -117,6 +124,9 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
   const setting = (key: string): boolean | number | string | undefined => ctx.checks?.setting?.(key) ?? ctx.checks?.text?.(key);
   const room = () => ctx.checks?.agentRoom;
   const desk = deps.desk ?? deskOf(ctx, deps.ask ? { ask: deps.ask } : {});
+  /** What each agent did today (follow.ts writes its daily line from it): people answered, bargains handed over, quiz rounds won. Memory only. */
+  const tallies = new Map<string, Tally>();
+  const tallyOf = (id: string): Tally => { const d = memory.lagosDayOf(ctx.now()); let found = tallies.get(id); if (!found || found.d !== d) { found = { d, talks: 0, sold: 0, quiz: 0 }; tallies.set(id, found); } return found; };
 
   const day = (): number => Math.floor(ctx.now() / 86400000);
   function count(): Counters { if (counterDay !== day()) { counterDay = day(); counters = blank(); } return counters; }
@@ -199,7 +209,7 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
 
   // ---- saying a line ------------------------------------------------------------------------------------------------------------------
   /** One line into the venue the agent stands in, through the same door as a person's (agentRoom.say) after our own word check. */
-  async function speak(agent: Agent, text: string, replyTo?: number): Promise<boolean> {
+  async function speak(agent: Agent, text: string, replyTo?: number, options: { spot?: boolean } = {}): Promise<boolean> {
     const where = agent.at?.room, door = room();
     if (!where || !door) return false;
     let checked = agentWords(text, { toMinor: true });
@@ -210,6 +220,8 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
     const done = await door.say({ id: agent.id, name: agent.spec.name, mark: { agent: true } }, where, text, null, replyTo);
     if (!done.ok) { if (done.code.startsWith('agent_words_')) count().blocked += 1; return false; }
     count().said += 1;
+    // Spot the AI (spot.ts) may later ask "did an AI say this?" of a line said in public; never of a line made with a person's remembered facts.
+    if (options.spot !== false) noteAiLine(ctx, { name: agent.spec.name, text, city: agent.city });
     return true;
   }
 
@@ -290,6 +302,12 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
       return rows.slice(0, 3).map((item) => item.text.replace(/[.!?]+$/, ''));
     } catch { return []; }
   }
+
+  /** The city's public gist items (the gossip source, greet.ts): the newest dozen. */
+  async function gistItems(city: string): Promise<GistItem[]> {
+    try { const gist = gistService(ctx); return await ctx.store.read((db) => gist.recent(db, city, { limit: 12 })); } catch { return []; }
+  }
+  const lagosDayKey = (t: number): number => memory.lagosDayOf(t);
 
   // ---- memory and closeness (memory.ts) -----------------------------------------------------------------------------------------------
   const adultOf = (db: Db, id: string): boolean => ctx.checks?.adult?.(db, id) === true;
@@ -457,6 +475,7 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
     // A running quiz takes the line first: the first right answer wins the round.
     if (agent.quiz && t < agent.quiz.until && isRight(agent.quiz.question, body)) {
       const won = agent.quiz.question; agent.quiz = null; agent.nextQuiz = t + QUIZ_EVERY_MS;
+      tallyOf(agent.id).quiz += 1;
       await speak(agent, say.quizWin(from.name.slice(0, 24), won.a));
       return;
     }
@@ -471,7 +490,7 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
     if (taking && quote) {
       const price = Math.max(quote.item.floor, quote.talk.deal!), seed = `${agent.id}|${from.id}|${t}`;
       const done = await desk.sell({ agent: refOf(agent), who: from, item: { id: quote.item.id, label: quote.item.label, list: quote.item.list }, price, quoteAt: quote.talk.at });
-      if (done.ok) agent.people.get(from.id)?.talks.delete(quote.item.id);
+      if (done.ok) { agent.people.get(from.id)?.talks.delete(quote.item.id); tallyOf(agent.id).sold += 1; }
       await speak(agent, say.sale(spec, done.ok ? { ok: true, label: quote.item.label, price } : { ok: false, code: done.code, label: quote.item.label, price }, seed));
       return;
     }
@@ -481,10 +500,17 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
       return;
     }
     const worked = plan(agent, from, body, t);
+    tallyOf(agent.id).talks += 1;
     // What this agent remembers of this person, and closeness from the line (friendly talk raises it). Remembering off: nothing is kept of the lines.
     const mem = s.memory ? await bondTouch(agent, from.id, memory.gainFor(body, worked.intent), t) : null;
     if (mem?.remembering) { const noted = noteLine(agent, from, body, t); if (worked.intent === 'bye' || noted.convo.lines.length >= CONVO_LINES) void finish(noted.key).catch(() => {}); }
-    if (mem && !worked.useModel && worked.intent === 'greet' && (mem.facts.length > 0 || mem.partner)) worked.useModel = true;
+    // Gossip (greet.ts): a line of the public gist and nothing else, written, no model. A remembered fact is never gossip.
+    if (asksGossip(body)) { const told = gossipLine(spec.voice, await gistItems(agent.city), t, `${agent.id}|${from.id}|${Math.floor(t / 60000)}`); if (await speak(agent, told.text)) { count().written += 1; if (told.n !== null) count().gossip += 1; } return; }
+    // A remembered fact is said only to its owner, and only where nobody else stands in the same part of the venue: the facts never reach a prompt or a line otherwise.
+    const alone = humans.every((id) => id === from.id);
+    const ownFacts = alone && mem ? mem.facts : [];
+    if (worked.intent === 'greet' && ownFacts.length) { const greeting = factGreeting(spec.voice, from.name, ownFacts, `${agent.id}|${from.id}|${lagosDayKey(t)}`); if (greeting) { worked.written = greeting; count().factGreets += 1; } }
+    if (mem && !worked.useModel && worked.intent === 'greet' && (ownFacts.length > 0 || mem.partner)) worked.useModel = true;
     const missions = s.model && worked.useModel ? await openMissions(agent, from.id) : [];
     const cityName = cityRules(agent.city)?.name ?? agent.city;
     const around = places(agent.city, t);
@@ -499,7 +525,7 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
       const hoursWords = `${formatHour(spec.hours.open)} to ${formatHour(spec.hours.close)}`;
       const messages = promptFor({ spec, cityName, list: agent.items, verdict: worked.verdict, gist: claims, hours: hoursWords, intent: worked.intent,
         places: worked.intent === 'directions' ? around.slice(0, 12).map((place) => `${place.name} in ${place.district} (${place.status})`) : [],
-        ...(mem && mem.facts.length ? { remembered: mem.facts } : {}), ...(mem && (mem.standing.points > 0 || mem.partner) ? { closeness: mem.standing.label } : {}), ...(mem?.partner ? { partner: true } : {}), ...(mem?.flirt ? { flirt: true } : {}), ...(missions.length ? { missions } : {}) }, from.name.slice(0, 24), body);
+        ...(ownFacts.length ? { remembered: ownFacts } : {}), ...(mem && (mem.standing.points > 0 || mem.partner) ? { closeness: mem.standing.label } : {}), ...(mem?.partner ? { partner: true } : {}), ...(mem?.flirt ? { flirt: true } : {}), ...(missions.length ? { missions } : {}) }, from.name.slice(0, 24), body);
       try {
         const answer = await ask({ purpose: 'agent-talk', messages, maxTokens: MODEL_TOKENS, playerId: `p_${sha256Hex(`allworld-house-v1|${from.id}`).slice(0, 32)}`, carriesPlayerWords: true, timeoutMs: 8000 });
         if (answer.ok) {
@@ -513,9 +539,9 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
     }
     if (!text) text = say.fallback(spec, seed);
     const toThem = mem?.flirt === true ? replySeq : undefined;
-    const spoken = await speak(agent, text, toThem);
+    const spoken = await speak(agent, text, toThem, { spot: ownFacts.length === 0 });
     if (spoken) { if (viaModel) count().model += 1; else count().written += 1; }
-    else if (viaModel) { const safe = worked.written || say.fallback(spec, seed); if (await speak(agent, safe)) count().written += 1; }
+    else if (viaModel) { const safe = worked.written || say.fallback(spec, seed); if (await speak(agent, safe, undefined, { spot: ownFacts.length === 0 })) count().written += 1; }
   }
 
   /**
@@ -547,6 +573,9 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
     else claimsQuery = said.slice(0, 80);
     if (intent === 'greet' || intent === 'bye' || intent === 'hours') useModel = false;
     const mem = s.memory ? await bondTouch(agent, from.id, memory.gainFor(said, intent), t) : null;
+    // A call is private: the person's own facts may be used, and gossip is still only the public gist.
+    if (asksGossip(said)) { const told = gossipLine(spec.voice, await gistItems(agent.city), t, seed); count().written += 1; return { text: told.text, viaModel: false, name: spec.name, city: info.city }; }
+    if (intent === 'greet' && mem?.facts.length) { const greeting = factGreeting(spec.voice, from.name, mem.facts, `${agentId}|${from.id}|${lagosDayKey(t)}`); if (greeting) written = greeting; }
     if (mem && !useModel && intent === 'greet' && (mem.facts.length > 0 || mem.partner)) useModel = true;
     const cityName = cityRules(agent.city)?.name ?? agent.city;
     const around = places(agent.city, t);
@@ -618,6 +647,8 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
     knows: (id: string): boolean => agentInfo(id) !== null,
     /** A line said to an agent on a call: its answer as text (call-routes.ts). */
     answerCall,
+    /** What this agent did today (follow.ts): people answered, bargains handed over, quiz rounds won. */
+    tally: (id: string): Omit<Tally, 'd'> => { const found = tallies.get(id); return found && found.d === memory.lagosDayOf(ctx.now()) ? { talks: found.talks, sold: found.sold, quiz: found.quiz } : { talks: 0, sold: 0, quiz: 0 }; },
     /** Test hook: the same call the 'venue-line' event makes. */
     line: onLine,
     present: (): number => [...agents.values()].filter((agent) => agent.at !== null).length,
@@ -663,6 +694,8 @@ export function linkHouse(ctx: RouteContext): void {
   stat('sum-rules', 'Conversations summarised by rules today', () => house.counters().summaryRules);
   stat('sum-skipped', 'Summaries left to rules (daily limit) today', () => house.counters().summarySkipped);
   stat('blocked', 'Lines held back by the word rules today', () => house.counters().blocked);
+  stat('greet-fact', 'Greetings that used a remembered fact today (said only to its owner)', () => house.counters().factGreets);
+  stat('gossip', 'Public gist lines told as gossip today', () => house.counters().gossip);
   const task = (id: string, label: string, read: () => number): void => stat(`task-${id}`, label, read);
   task('given', 'Tasks given in person today', () => house.desk.counters().given);
   task('model', 'Task briefs phrased by a model today', () => house.desk.counters().model);
@@ -670,4 +703,25 @@ export function linkHouse(ctx: RouteContext): void {
   task('written', 'Task briefs from the written brief today', () => house.desk.counters().written);
   task('done', 'Greetings, hand-overs and friends brought today', () => { const c = house.desk.counters(); return c.greeted + c.handed + c.brought; });
   task('sold', 'Held quotes paid and handed over today', () => house.desk.counters().sold);
+  linkAiResidents(ctx, house);
+}
+
+/** Phase 3 (docs/AI-RESIDENTS.md): followed characters' daily lines and highlights, Spot the AI, landlord/boss/rival caps, and the continuity rule. */
+function linkAiResidents(ctx: RouteContext, house: House): void {
+  registerAdminSetting(ctx, { key: 'aiFollowOn', label: 'AI residents: daily lines of followed characters', help: 'On: a character of the cast that somebody follows posts one written line a day about what it did, and a weekly highlight (docs/AI-RESIDENTS.md). Off: they post nothing.', kind: 'boolean', default: () => true });
+  registerAdminSetting(ctx, { key: 'aiHighlightModel', label: 'AI residents: weekly highlights by a model', help: 'On: a model may write a followed character\'s weekly highlight, within the caps below. Off, or past a cap: the written highlight.', kind: 'boolean', default: () => true });
+  registerAdminSetting(ctx, { key: 'aiHighlightCityCalls', label: 'AI residents: model highlights a day in each city', help: 'The most weekly highlights a model writes in one city in a UTC day. 0 to 50.', kind: 'number', min: 0, max: 50, default: () => FOLLOW.cityCalls });
+  registerAdminSetting(ctx, { key: 'aiHighlightCalls', label: 'AI residents: model highlights a day in all', help: 'The most weekly highlights a model writes in a UTC day, all cities together. 0 to 500.', kind: 'number', min: 0, max: 500, default: () => FOLLOW.calls });
+  registerAdminSetting(ctx, { key: 'aiRolesModel', label: 'Landlord, boss and rival: rephrase with a model', help: 'On: a model may rephrase their written line, within the caps below. Off: written lines only.', kind: 'boolean', default: () => true });
+  registerAdminSetting(ctx, { key: 'aiRolesCityCalls', label: 'Landlord, boss and rival: model lines a day in each city', help: 'The most lines a model rephrases in one city in a UTC day. 0 to 500.', kind: 'number', min: 0, max: 500, default: () => ROLES.cityCalls });
+  registerAdminSetting(ctx, { key: 'aiRolesCalls', label: 'Landlord, boss and rival: model lines a day in all', help: 'The most lines a model rephrases in a UTC day, all cities together. 0 to 5000.', kind: 'number', min: 0, max: 5000, default: () => ROLES.calls });
+  const follow = followService(ctx, { tally: (id) => house.tally(id) });
+  spotFor(ctx);
+  const continuity = continuityFor(ctx);
+  const stat = (id: string, label: string, read: () => number | string): void => registerAdminStat(ctx, { id: `ai-residents-${id}`, group: 'AI residents', label, cost: 'memory', read });
+  stat('daily', 'Daily lines posted today (followed characters)', () => follow.counters().daily);
+  stat('highlights', 'Weekly highlights today: by a model / written / past the cap', () => { const c = follow.counters(); return `${c.model} / ${c.written} / ${c.capped}`; });
+  stat('roles', 'Landlord, boss and rival lines by a model today', () => rolesFor(ctx).calls().n);
+  stat('spot', 'Spot the AI: lines waiting to be kept', () => spotFor(ctx).pending());
+  stat('continuity', 'Continuity: who-would-miss-them read', () => (continuity.ready() ? 'yes' : 'not yet'));
 }

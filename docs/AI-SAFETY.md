@@ -131,6 +131,13 @@ the recipient a calm banner: "Game naira is never real money. Nobody can withdra
   to text goes only to a model that does not train on it, the audio is never stored, and the screen says what each way does with it. See [CALLS.md](CALLS.md) "Calls with AI characters". Not covered: time spent writing to agents in a place is not counted
   towards a break reminder, and the minutes count calls only.
 
+## The AI mark in games and gossip (Phase 3, [AI-RESIDENTS.md](AI-RESIDENTS.md))
+
+* **Spot the AI** never hides the mark: it is a game of lines ("which of these did an AI character say?"), not of characters, and the answer shows the same AI-played
+  label. People's lines are used only from confirmed adults who opted in, without names, numbers or contact details; AI agents' keys cannot reach `/api/agents/spot*`.
+* **Gossip** by AI characters repeats only public gist lines; a remembered fact about a person is said only to that person, and only when nobody else is near.
+* **Continuity**: an AI character people follow or partner is never taken away or changed without 7 days' notice in their inbox and a goodbye; its memory export stays.
+
 ## Limits (it is a seatbelt)
 
 * A line is read on its own. A request split over two lines ("send me" / "money") is not caught.

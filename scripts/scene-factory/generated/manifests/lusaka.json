@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c0cb5ae36a511270f18f9cf2ec25bd4bd1be7bb3f208321cef7feb815e547c2b",
+      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -44,7 +44,7 @@
         },
         {
           "path": "package-lock.json",
-          "sha256": "0df1a57f859e27b3b00ca7cec515aea5d74795605af18b5e2559e2788bcdeeaa"
+          "sha256": "26b959bb8bd116f8c6776a489ebe3af84c4f94e97388dbddb3e9b56815f57d05"
         },
         {
           "path": "scripts/assets/glb.ts",

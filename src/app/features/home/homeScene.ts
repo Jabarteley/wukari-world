@@ -11,6 +11,7 @@ import { nudge, turn } from './ghostMoves.ts'
 import { MOVES, defOf, homeUi, objectOf, plotIn, startGhost, whyNot } from './buyModel.ts'
 import type { Ghost, GhostSource } from './buyModel.ts'
 import { H, scene } from './homeState.ts'
+import { startPartyScene } from '../visit/partyScene.ts'
 import type { SceneStatus } from './homeState.ts'
 
 let sent = ''
@@ -64,6 +65,7 @@ export function startHome(): void {
   window.addEventListener('jaw:home-pick', onPick)
   window.addEventListener('jaw:home-scene', onScene)
   window.addEventListener('jaw:home-frame', () => useApp().api.redrawScene())
+  startPartyScene()
   watch([game.state, () => game.mode.value], ([state, mode]) => {
     const buying = mode === 'buy'
     const left = H.inBuy && !buying

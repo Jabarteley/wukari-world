@@ -1,10 +1,10 @@
 // The visit store of the page: the calls the buttons, the Home tab and the notices make (server/routes/visit.ts). Fetched with
 // the first of them; nothing here is in the startup download (the always-loaded part is ping/pingLoader.ts).
 // Every answer is the server's: a button only asks, and the server checks the door again.
-import { reactive } from 'vue'
+import { reactive, shallowRef } from 'vue'
 import { call, social, sync } from '../social/useSocial.ts'
 import type { DoorWho } from '../../../game/visit.ts'
-import type { PartyResult, CloseResult, DoorSetResult, EnterResult, HouseLinkView, InviteResult, LinkEndResult, LinkResult, LinksResult, PeekResult } from '../../../types/visit.ts'
+import type { PartyCard, PartyResult, CloseResult, DoorSetResult, EnterResult, HouseLinkView, InviteResult, LinkEndResult, LinkResult, LinksResult, PeekResult } from '../../../types/visit.ts'
 
 /** What the page can do for the store: say a line, open a screen. */
 export interface Hands { toast(text: string, tone?: 'good' | 'error'): void; open(id: string, params?: unknown): unknown }
@@ -79,9 +79,12 @@ export async function peekLink(token: string): Promise<PeekResult | null> {
 }
 
 // ---- owambe party (src/festivals/party.ts, server/social/party.ts) --------------------------------
+/** The facts of the "who came" card of the party the host just ended (PartyPanel offers the card until it is closed). */
+export const endedParty = shallowRef<PartyCard | null>(null)
 async function party(path: string, body: object): Promise<string | null> {
   const done = await call<Extract<PartyResult, { ok: true }>>(`/api/social/visit/party/${path}`, body)
   if (!done.ok) return done.reason
+  if ('card' in done && done.card) endedParty.value = done.card
   await sync()
   return null
 }

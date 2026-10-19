@@ -205,7 +205,7 @@ export interface HouseView {
   party?: PartyView
 }
 /** A party as the host and the guests see it. `mc` and `dj` are guests still inside. */
-export interface PartyView { title: string; colour: { id: string; label: string; hex: string }; until: number; mc: PlayerRef | null; dj: PlayerRef | null; sprays: number; /** Sprays this viewer has left. */ sprayLeft: number }
+export interface PartyView { title: string; colour: { id: string; label: string; hex: string }; until: number; mc: PlayerRef | null; dj: PlayerRef | null; sprays: number; /** Sprays this viewer has left. */ sprayLeft: number; /** The shown names of everyone who came (the "who came" card). */ came?: string[] }
 
 export interface Friend extends PlayerRef, Whereabouts {
   /** Server ms the friendship began. */

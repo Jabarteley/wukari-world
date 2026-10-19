@@ -70,7 +70,10 @@ import { ACHIEVEMENTS } from '../game/content/achievements.ts';
 import type { AchievementId } from '../types/achievements.ts';
 import { RECIPES } from '../game/content/food.ts';
 import { createBatch, sceneMaterials, releaseObjects } from './build.ts';
-import { POSES } from './characters.ts';
+import { POSES, normalizeLook } from './characters.ts';
+import { createPartyLayer } from './party-dress.ts';
+import type { PartyDressing } from './party-dress.ts';
+import { asoEbiLook } from '../festivals/party.ts';
 import type { Pose } from './characters.ts';
 import { buildCanonicalCrowd } from './body/canonical-crowd.ts';
 import { createWalkGrid } from './movement.ts';
@@ -395,6 +398,10 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   let solids: Solid[] = [];
   group.add(room, furniture, overlay, people);
   group.position.set(SHIFT, 0, SHIFT);
+  // An owambe while one is on (setParty): the jollof table, the flying notes, and everyone in the party's aso-ebi (src/scene/party-dress.ts).
+  const owambe = createPartyLayer(kit);
+  group.add(owambe.group);
+  let party: PartyDressing | null = null;
   const glow = new THREE.PointLight('#ffe3b0', 26, 18, 1.5);
   glow.position.set(-1, 3, -1);
   group.add(glow);
@@ -1046,10 +1053,11 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     const pose = who.pose || (!active ? 'stand' : leaving ? 'walk' : 'work');
     let changed = false;
     refreshGrid(state);
-    const dress = JSON.stringify([tile, who.look ?? state?.onboarding?.look ?? null, who.seed]);
+    const own = who.look ?? state?.onboarding?.look ?? null, worn = party ? asoEbiLook(normalizeLook(own, who.seed), party.hex) : own;
+    const dress = JSON.stringify([tile, own, who.seed, party?.hex ?? null]);
     if (dress !== dressKey) {
       dressKey = dress; if (driven) { show(shownPose); moveAvatar(floorAt.x, floorAt.y, floorAt.z, floorAt.ry); } changed = true;
-      if (body) { if (body.wear(who.look ?? state?.onboarding?.look ?? null, who.seed)) { body.fit(tile * AVATAR_SCALE); buildRoom(); } else { dropBody(); startBody(); } }
+      if (body) { if (body.wear(worn, who.seed)) { body.fit(tile * AVATAR_SCALE); buildRoom(); } else { dropBody(); startBody(); } }
     }
     restFloor = mine.floor;
     const seat = seatFor(state, mine);
@@ -1073,7 +1081,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       if (selfTag) { selfTag.name = who.name; selfTag.text = who.name; }
     }
     if (changed && !driven) { level = restFloor; show(pose); moveAvatar(restAt.x, restAt.y, restAt.z, restAt.ry); poseBody(pose, false); }
-    const guestsNow = JSON.stringify([grid, plot.w, mine, guests]);
+    const guestsNow = JSON.stringify([grid, plot.w, mine, guests, party?.hex ?? null]);
     if (guestsNow === guestKey) return changed;
     guestKey = guestsNow;
     guestBatch?.dispose(); guestBatch = null;
@@ -1082,7 +1090,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     guestTags = [];
     // Guests wait on the free tiles nearest the door.
     const spare = nearestFree(plan, 0, 0, doorSlot(grid), taken);
-    const placed = guests.slice(0, Math.min(MAX_GUESTS_SHOWN, spare.length)).map((guest, index) => ({ id: String(guest.id ?? `guest-${index}`), name: String(guest.name ?? ''), kind: guest.kind === 'npc' ? 'npc' as const : 'player' as const, look: guest.look, seed: guest.seed ?? guest.id, x: along(spare[index]!.x), y: 0.03, z: along(spare[index]!.y), ry: Math.PI / 2, scale }));
+    const placed = guests.slice(0, Math.min(MAX_GUESTS_SHOWN, spare.length)).map((guest, index) => ({ id: String(guest.id ?? `guest-${index}`), name: String(guest.name ?? ''), kind: guest.kind === 'npc' ? 'npc' as const : 'player' as const, look: guest.look, seed: guest.seed ?? guest.id, x: along(spare[index]!.x), y: 0.03, z: along(spare[index]!.y), ry: Math.PI / 2, scale, ...(party ? { dress: party.hex } : {}) }));
     guestBatch = buildCanonicalCrowd(kit, placed);
     people.add(guestBatch.group);
     const pendingGuests = guestBatch;
@@ -1223,6 +1231,18 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       who = { look, seed: seed ?? 'you', name: String(name ?? 'You'), pose: (pose as Pose | null | undefined) || null };
       return refreshPeople(lastState);
     },
+    /**
+     * An owambe in this home (src/festivals/party.ts), or null: the jollof table on the free tile nearest the middle of the ground floor,
+     * everyone in the party's aso-ebi, and notes flying whenever `sprays` goes up. Returns true when the picture changed.
+     */
+    setParty(next: PartyDressing | null) {
+      const before = party?.hex ?? null;
+      party = next && /^#[0-9a-f]{6}$/i.test(next.hex) ? { hex: next.hex, sprays: Math.max(0, Math.floor(next.sprays) || 0) } : null;
+      const spot = nearestFree(plan, 0, (plot.w - 1) / 2, (plot.d - 1) / 2, freeTiles(itemsOf(lastState)))[0] ?? { x: 0, y: 0 };
+      const shown = owambe.set(party, { x: along(spot.x), z: along(spot.y) }, tile * 0.8);
+      const dressed = before !== (party?.hex ?? null) && refreshPeople(lastState);
+      return shown || dressed;
+    },
     /** Guests the host let in, standing by the door: [{ id, name, look?, seed? }]. */
     setCrowd(list: unknown) {
       guests = (Array.isArray(list) ? list as Record<string, unknown>[] : []).filter((person) => person && typeof person === 'object').slice(0, MAX_GUESTS_SHOWN)
@@ -1240,7 +1260,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     },
     look,
     // The skinned body's sit-down (always false without the body): the host steps it in its motion loop.
-    get easing() { return Boolean(body?.easing || sequence.easing || doorDone); },
+    get easing() { return Boolean(body?.easing || sequence.easing || doorDone || owambe.flying); },
     beginDoor(done: () => void) {
       if (!hinge) { done(); return; }
       doorDone = done; doorVisual = true; doorRelease.x = floorAt.x; doorRelease.z = floorAt.z; hinge.begin(() => {}, 2.4);
@@ -1256,15 +1276,16 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     cycleDistance(jog:boolean){return body?.cycleDistance(jog);},
     stepCharacter(dt:number){return body?.easing||sequence.easing||doorDone?false:body?.step(dt)??false;},
     stepCrowd(dt: number) {
-      const more = Boolean(body?.step(dt)), using = sequence.step(dt), door = hinge?.step(dt) ?? false;
+      const more = Boolean(body?.step(dt)), using = sequence.step(dt), door = hinge?.step(dt) ?? false, notes = owambe.step(dt);
       if (body?.contactSolvable && !sequence.presented && !doorDone) body.solveFeet(contact => contactHeightAt(contact.x, contact.z, contact.y));
       if (doorDone && body) body.sampleUse('homeDoor', Math.min(2.399, (hinge?.progress ?? 0) * 2.4));
       if (!more) placeBody();
       const action = sequence.presented; if (action) useProps.update(action, body); else useProps.hide();
       syncPresentation();
-      markAvatar(); finishDoor(); return more || using || door || Boolean(doorDone);
+      markAvatar(); finishDoor(); return more || using || door || notes || Boolean(doorDone);
     },
     settleCrowd() {
+      while (owambe.step(0.1)) { /* the notes land at once (reduced motion) */ }
       sequence.settle(); body?.settle(); placeBody();
       hinge?.settle(); finishDoor();
       const action = sequence.presented; if (action) useProps.update(action, body); else useProps.hide();
@@ -1400,6 +1421,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       useProps.dispose();
       sequence.dispose();
       guestBatch?.dispose(); guestBatch = null;
+      owambe.dispose();
       releaseObjects(markMeshes);
       releaseObjects(roomMeshes);
       releaseObjects(itemMeshes);

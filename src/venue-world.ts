@@ -221,6 +221,8 @@ export interface HostScene {
   readonly streetGate?: { x: number; z: number; ry?: number }
   beginDoor?(done: () => void): void
   setStreet?(street: WorldStreetResponse | null): boolean
+  /** An owambe in a home scene (src/scene/party-dress.ts): its colour and spray count, or null. True when the picture changed. */
+  setParty?(party: { hex: string; sprays: number } | null): boolean
   neighbourDoors?(): NeighbourDoor[]
   group: THREE.Group
   readonly homeDoor?: Place & { ry?: number; direction: 'outside' | 'inside'; blocked?: boolean }
@@ -286,6 +288,8 @@ export interface VenueWorld {
   setPlayer(next?: Partial<PlayerLook>): void
   setGoal(next: { venue?: unknown; spot?: unknown; text?: unknown } | null | undefined): boolean
   setCrowd(people: unknown): boolean
+  /** The owambe of the home being shown (the party's colour and spray count), or null: kept across scene changes. */
+  setParty(party: { hex: string; sprays: number } | null): boolean
   /**
    * The background people of whichever venue is shown: `ambientFor(venue, sceneKind)` says who is there (src/scene/ambient), or null for nobody. The scene wakes the
    * frame loop for a short window when it is built and whenever `wakeAmbient()` is called (the player arrives, the quarter turns); the loop then ends again.
@@ -522,6 +526,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   let measurement: RenderMeasurement | null = null;
   let rewardEpoch = 0, benchmarkEpoch = 0;
   let ambientFor: ((venue: string, kind: string) => AmbientIdent | null) | null = null;
+  let partyNow: { hex: string; sprays: number } | null = null;
   let player: Partial<PlayerLook> = {}, crowd: CrowdPerson[] = [], crowdKey = '[]', background: Colour = DEFAULT_BACKGROUND, insets = { top: 0, bottom: 0 };
   let tagSource: TagData[] = [], shownTags: ShownTag[] = [], tagNodes: TagNode[] = [], tagShape = '', tagsRead = true;
   const point = new THREE.Vector3(), rayA = new THREE.Vector3(), rayB = new THREE.Vector3();
@@ -1532,6 +1537,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     current.setPlayer?.(player);
     dressStandIn();
     current.setCrowd?.(crowd);
+    current.setParty?.(partyNow);
     current.settleCrowd?.();
     if (lastState) current.update?.(lastState);
     showAmbient();
@@ -1706,6 +1712,15 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       return true;
     },
     setCrowd,
+    setParty(next) {
+      partyNow = next ? { hex: next.hex, sprays: next.sprays } : null;
+      if (!current?.setParty?.(partyNow)) return false;
+      readTags();
+      // Notes in the air: the loop flies them (bounded), or they land at once.
+      if (current.easing) { if (loop.available && !reduced()) { loop.wake(); return true; } current.settleCrowd?.(); }
+      if (!loop.running) renderScene();
+      return true;
+    },
     setAmbient(next) {
       ambientFor = next;
       if (showAmbient()) { readTags(); if (!loop.running) renderScene(); }

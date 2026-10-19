@@ -60,6 +60,26 @@ or a house link as always, and the party only adds what they see.
   rides in the `HouseView` the guests already get (`party`).
 * **Hook:** the gist ledger (Phase 8) does not exist yet in this build; a big party could be noted there later.
 
+### Upgraded (WOW-PLAN Phase 7)
+
+* **Notes flying.** Every spray, by anyone inside, sends naira notes flying up from the middle of the room in the 3D home; they turn,
+  drift down and settle on the floor (`noteBurst`/`noteAt` in `src/festivals/party.ts`, drawn by `src/scene/party-dress.ts`: one instanced
+  mesh of 16 thin cards, the frame loop runs only while they are in the air; with reduced motion they land at once). The page sees a
+  spray as the house view's `sprays` going up (`src/app/features/visit/partyScene.ts`). **The home party's spray stays a counted cheer:
+  no money moves**, as above. The plan asked for game naira under the Square's spray rules; that is `events.spray` in
+  `src/game/systems/events.ts` and stays the one place game money is sprayed. Making the home spray move money would need a second money
+  path (a host's balance, limits, refunds when a party ends early), which this phase does not invent: the notes are a picture.
+* **Aso-ebi on everyone.** While a party is on, every guest and the host wear the party colour in the 3D home: the top in the colour, in
+  aso-oke cloth, everything else their own (`asoEbiLook`; guests through `dress` on the canonical crowd, the host's body through the same
+  look). Cosmetic and local: nothing is bought, saved or shown anywhere else, and it ends with the party.
+* **A jollof table** stands on the free tile nearest the middle of the ground floor: a cloth in the party colour, a pot of jollof, plates.
+* **Who came.** Everyone who came while the party was on is kept (`PartyRecord.came`, public ids, the first 30): the guests inside when it
+  starts, everyone let in during it (`admit` in `server/social/service.ts`), anyone who sprayed. The house view names them
+  (`PartyView.came`). "Who came: make the card" in the party panel, and on the host's panel after **End**, makes the **"who came" photo
+  card** on the phone (`src/app/features/watch/watchCards.ts`, share loop `owambe`): the room as the scene shows it now (only where Capture
+  may read it: the host's own home with every guest agreeing; otherwise the party colour), the title, "Ada's owambe · 9 came · 23 sprays ·
+  Gold aso-ebi" and the names. `end` answers the card's facts (`card`), so the host can make it after the party has gone.
+
 ## Match nights
 
 Schedule only: a title and a time, never a broadcast, a stream, a link or a score (no rights to any). Two sources, `src/festivals/matches.ts`:
@@ -71,6 +91,10 @@ Schedule only: a title and a time, never a broadcast, a stream, a link or a scor
 
 During a match night the viewing centre is **fuller**: the background crowd's busyness gets `MATCH_LIFT` (0.45) added
 (`densityFor(..., lift)`, `Ident.liftAt`, fed by `src/app/chatter/ambient.ts`). Match nights are also rows in Phone → Events.
+
+**Predictions (WOW-PLAN Phase 7).** A fixture whose title names two sides ("Red v Blue") can be predicted in Phone → Watch before kick-off:
+a winner and, optionally, the score. An admin types the result in afterwards (there is no score feed); a right winner is a point and a
+badge, the exact score three. Bragging rights only, never money. The viewing centre's room has voice. See [ALLWORLD-HOUSE.md](ALLWORLD-HOUSE.md).
 
 ## Editing without a release
 
@@ -96,10 +120,12 @@ functions the server does. Example item:
 ## Size
 
 All of it is outside the first download: the calendar is fetched with the Events app, the scene dresses itself through a dynamic import
-of `src/festivals/client.ts` (only in the arrival venue), and the party panel is part of the lazy Home tab.
+of `src/festivals/client.ts` (only in the arrival venue), and the party panel is part of the lazy Home tab. The party's scene
+watcher (`visit/partyScene.ts`) starts with the home chip's lazy chunk; the table and the notes are in the scene's chunk.
 
 ## Tests
 
 `src/festivals/calendar.test.ts`, `matches.test.ts`, `party.test.ts` (spans, countries, lunar rows, the dressing decision, main events,
-fixture validation, party rules), `server/admin/festivals.test.ts` (the admin route and the public feed), `server/party.test.ts` (the
-party over HTTP).
+fixture validation, party rules), `party-upgrade.test.ts` (who came, the aso-ebi look, the notes' flight, the card's words, no money in the
+party files), `server/admin/festivals.test.ts` (the admin route and the public feed), `server/party.test.ts` (the party over HTTP),
+`server/party-upgrade.test.ts` (who came over HTTP, the end's card, no money on a spray).

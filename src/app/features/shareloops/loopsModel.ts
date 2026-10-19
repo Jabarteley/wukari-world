@@ -9,8 +9,9 @@
 import { shareUrl } from '../../../game/share-model.ts'
 
 /** The seven loops, as the source word their links carry (`utm_source=<loop>`). */
-export type LoopKind = 'street-video' | 'start' | 'wrapped' | 'passport' | 'frontpage' | 'fame' | 'duet'
-export const LOOP_KINDS: readonly LoopKind[] = Object.freeze(['street-video', 'start', 'wrapped', 'passport', 'frontpage', 'fame', 'duet'])
+export type LoopKind = 'street-video' | 'start' | 'wrapped' | 'passport' | 'frontpage' | 'fame' | 'duet' | 'owambe' | 'called-it' | 'premiere'
+// The last three are shared watching's cards and clips (docs/ALLWORLD-HOUSE.md): the "who came" card, a right prediction, a premiere clip.
+export const LOOP_KINDS: readonly LoopKind[] = Object.freeze(['street-video', 'start', 'wrapped', 'passport', 'frontpage', 'fame', 'duet', 'owambe', 'called-it', 'premiere'])
 
 export const SITE = 'joinallworld.com'
 /** Phone-story shape (WhatsApp Status, Instagram and TikTok stories). */

@@ -6,7 +6,7 @@
 - **Owner:** Claude (Sonnet 5.5 session, phase 3 builder)
 - **Model / effort:** Sonnet 5.5 / default
 - **Thread:** local
-- **UTC updated:** 2026-10-19T00:00:00Z
+- **UTC updated:** 2026-10-19T12:00:00Z
 - **Status:** `active`
 - **Work state:** `implementation`
 
@@ -34,11 +34,13 @@
 
 ### Done and exact evidence
 
-- (filled in as milestones land)
+- Pure modules `src/scene/feel/{tiers,shake,hitstop,pop,reduce,burst,index}.ts` with tests (16 tests) — `node --experimental-strip-types --test src/scene/feel/*.test.ts`.
+- Hooks: `camera-controls.ts` (orbit.kick, shake applied last in apply(), step keeps the loop going), `venue-world.ts` (`jaw:shake` listener wakes the loop), `reward.ts` (cheer and showReward call feel), `fight-3d.ts` (hit-stop, shake honours the preference), `shell.css` (feel-pop keyframes), `preferences.ts` (reduceShake: boolean|null).
+- 68 targeted tests and 23 venue-world tests pass locally; commit f0b57ea63 pushed; CI run 39322947505 (full_checks=false).
 
 ### In progress / blockers
 
-- Building the pure modules, then the hooks.
+- Local typecheck crashed (free disk fell to 1-3 GB, under the 5 GB stop line; other agents share the disk), so typecheck is verified by CI only.
 
 ### Immediate resume steps
 
@@ -49,7 +51,7 @@
 
 - **Local implementation:** active
 - **Deployment:** not-requested
-- **Release gate:** integrator review; Settings toggle request below.
+- **Release gate:** integrator review. Requests: (1) Settings toggle "Reduce shake and flashes" in the view settings (src/app/features/sim/ViewSettings.vue pattern: `setViewPreferences({ reduceShake: true|false })`, null = follow the system). (2) To make level up, danfo stop and election won fire, their owners dispatch `jaw:cheer` with detail { event } or call feel(); today only a finished goal and pay chips are wired.
 - **References:** `docs/OPEN-SOURCE-PLAN.md` phase 3, `docs/OPEN-SOURCE-LEARNINGS.md` ideas 8-10.
 
 ## Checkpoint history

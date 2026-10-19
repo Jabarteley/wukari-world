@@ -18,6 +18,7 @@ import { forgetEarnPlayers } from '../earn/service.ts'
 import { forgetWorldEventPlayers } from '../world-events/data.ts'
 import { forgetDanfoPlayers } from '../danfo/service.ts'
 import { forgetWatchPlayers } from '../watch/data.ts'
+import { forgetMinigamesPlayers } from '../minigames/store.ts'
 import { forgetLoopsPlayers } from '../shareloops/store.ts'
 import { forgetNeighbourhoodPlayers } from '../neighbourhood/service.ts'
 import { forgetGluePlayers } from '../glue/forget.ts'
@@ -249,6 +250,7 @@ function preflightSharedIntegrity(ctx: RouteContext, db: Db, actors: ReadonlySet
   known.add('danfo') // runs, crews, days and boards: forgetDanfoPlayers (server/danfo/service.ts)
   known.add('watch') // picks, boards, badges, votes, artists, premieres: forgetWatchPlayers (server/watch/data.ts)
   known.add('glue') // close friends, talks, gist posts, trips, marriages: forgetGluePlayers (server/glue/forget.ts)
+  known.add('minigames') // haggle memory, season rows and day counters: forgetMinigamesPlayers (server/minigames/store.ts)
   const collectionNames = (db.$store as (typeof db.$store & { collectionNames?: () => readonly string[] }) | undefined)?.collectionNames?.() ?? []
   const names = new Set([...Object.keys(db), ...collectionNames])
   for (const name of names) {
@@ -753,6 +755,7 @@ export function eraseData(ctx: RouteContext, db: Db, plan: ErasurePlan): Erasure
   forgetWorldEventPlayers(db, [...ids])
   forgetDanfoPlayers(db, ids)
   forgetWatchPlayers(db, [...ids])
+  forgetMinigamesPlayers(db, ids)
   forgetLoopsPlayers(db, ids)
   forgetNeighbourhoodPlayers(db, ids)
   forgetGluePlayers(db, ids)

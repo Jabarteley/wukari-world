@@ -139,6 +139,7 @@ export const KEYED_SPECS: Readonly<Record<string, readonly KeyedSpec[]>> = Objec
   worldEvents: [{ path: ['badges'] }, { path: ['runs', '*', 'by'] }, { path: ['runs', '*', 'keys'] }],
   danfo: [{ path: ['runs'] }, { path: ['active'] }, { path: ['riding'] }, { path: ['days'] }, { path: ['boards'] }],
   watch: [{ path: ['picks', '*'] }, { path: ['board', '*'] }, { path: ['badges'] }, { path: ['votes', '*'] }, { path: ['artists'] }, { path: ['premieres'] }],
+  minigames: [{ path: ['haggle'] }, { path: ['days'] }, { path: ['nysc'] }, { path: ['jamb'] }, { path: ['skits'] }],
   contacts: [{ path: ['me'] }, { path: ['keys'] }, { path: ['edges'] }, { path: ['mine'] }, { path: ['found'] }],
   neighbourhood: [{ path: ['notices'] }, { path: ['meetups'] }],
   glue: [{ path: ['close'] }, { path: ['seen'] }, { path: ['talks'] }, { path: ['boards'] }, { path: ['posts'] }, { path: ['days'] }, { path: ['trips'] }, { path: ['crewTrips'] }, { path: ['marriages'] }, { path: ['wed'] }, { path: ['asked'] }],

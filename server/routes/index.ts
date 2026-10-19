@@ -270,6 +270,8 @@ ROUTE_MODULES.push(danfo);
 import watch from './watch.ts';
 import watchAdmin from './watch-admin.ts';
 ROUTE_MODULES.push(watch, watchAdmin);
+import minigames from './minigames.ts';
+ROUTE_MODULES.push(minigames);
 import shareLoops from '../shareloops/routes.ts';
 import detty from './detty.ts';
 // Detty December (docs/DETTY-DECEMBER.md), on its own line so the list above stays one line per change.

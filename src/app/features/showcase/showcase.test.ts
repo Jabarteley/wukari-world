@@ -290,7 +290,7 @@ test('the gap under the last card is the bar\'s height, the safe area and 16 px 
 test('Phone apps use an atlas picture or an explicit alias; Services and Market draw their icon-set marks and the others keep the settings gears', () => {
   const art = source('app', 'features', 'phone', 'AppArtwork.vue')
   const atlas = (readFileSync(join(root, 'ui', 'phone', 'appArtwork.ts'), 'utf8').match(/PHONE_ART: readonly string\[\] = \[([^\]]*)\]/)?.[1] ?? '').split(',').map((id) => id.replace(/"/g, '').trim())
-  const aliases: Readonly<Record<string, string>> = { passport: 'goals', gist: 'community', feed: 'community', me: 'contacts', crews: 'people', plans: 'events', work: 'career', promote: 'business', earn: 'statement', 'ai-agents': 'people', 'agent-chat': 'messages', danfo: 'ride', worlds: 'land', feedback: 'support', 'world-event': 'events', watch: 'events' }
+  const aliases: Readonly<Record<string, string>> = { passport: 'goals', gist: 'community', feed: 'community', me: 'contacts', crews: 'people', plans: 'events', work: 'career', promote: 'business', earn: 'statement', 'ai-agents': 'people', 'agent-chat': 'messages', danfo: 'ride', worlds: 'land', feedback: 'support', 'world-event': 'events', watch: 'events', haggle: 'commerce', skit: 'capture', seasons: 'campus' }
   const without = NATIVE_PANELS.filter((panel) => panel.placement === 'phone' && !atlas.includes(aliases[panel.id] ?? panel.id)).map((panel) => panel.id).sort()
   assert.deepEqual(without, ['barber-practice', 'clerk-practice', 'driving-practice', 'justice-practice', 'market', 'places', 'showcase'], 'the apps that have no atlas picture')
   const drawn = /ICON_SET_APPS: readonly string\[\] = \[([^\]]*)\]/.exec(art)?.[1]?.replace(/'/g, '').split(',').map((id) => id.trim()) ?? []

@@ -68,6 +68,7 @@ import type { EarnHttpRoutes } from './earn.ts'
 import type { WorldEventsHttpRoutes, WorldLiveFrame } from './world-events.ts'
 import type { DanfoHttpRoutes } from './danfo.ts'
 import type { WatchHttpRoutes } from './watch.ts'
+import type { MiniGamesHttpRoutes } from './minigames.ts'
 import type { NeighbourhoodHttpRoutes, EconomyHttpRoutes, BillboardHttpRoutes } from './neighbourhood.ts'
 import type { StoryHttpRoutes } from './story-http.ts'
 import type { ShareLoopsHttpRoutes } from './shareloops.ts'
@@ -317,6 +318,8 @@ export interface HttpRoutes extends CoreHttpRoutes, SocialHttpRoutes, CivicHttpR
 export interface HttpRoutes extends DanfoHttpRoutes {}
 /** Shared watching (docs/ALLWORLD-HOUSE.md): merged the same way. */
 export interface HttpRoutes extends WatchHttpRoutes {}
+/** Local mini-games (docs/MINI-GAMES.md): the market haggle, the skit studio's caption check, NYSC camp and JAMB season. */
+export interface HttpRoutes extends MiniGamesHttpRoutes {}
 export type HttpRouteKey = keyof HttpRoutes
 export type ResponseOf<K extends HttpRouteKey> = HttpRoutes[K]['response']
 export type ErrorCodeOf<K extends HttpRouteKey> = HttpRoutes[K]['errors']
@@ -585,6 +588,7 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/feed/me', 'POST /api/feed/seen', 'GET /api/feed/list', 'GET /api/feed/crew', 'GET /api/feed/by', 'GET /api/feed/post', 'POST /api/feed/post', 'POST /api/feed/post/remove', 'POST /api/feed/react', 'POST /api/feed/reply', 'POST /api/feed/reply/remove', 'POST /api/feed/report', 'POST /api/feed/draft/remove', 'POST /api/feed/media', 'GET /api/feed/media/:hash', 'GET /api/feed/portrait/:id', 'GET /api/feed/profile', 'POST /api/feed/profile', 'POST /api/feed/handle', 'GET /api/feed/code', 'POST /api/feed/follow', 'GET /api/feed/suggestions', 'POST /api/feed/vouch', 'POST /api/feed/crews', 'POST /api/feed/crews/join', 'POST /api/feed/crews/leave', 'GET /api/feed/crews/one', 'GET /api/feed/events', 'GET /api/feed/events/one', 'POST /api/feed/events', 'POST /api/feed/events/rsvp', 'POST /api/feed/events/cancel', 'GET /api/feed/gigs', 'POST /api/feed/gigs', 'POST /api/feed/gigs/act', 'GET /api/mod/feed', 'POST /api/mod/feed', 'GET /api/feed/communities', 'POST /api/feed/crews/mod', 'POST /api/feed/crews/locals', 'POST /api/feed/located', 'POST /api/feed/crews/world', 'GET /api/feed/contacts', 'POST /api/feed/contacts/self', 'POST /api/feed/contacts/match', 'POST /api/feed/contacts/forget', 'GET /api/promote/me', 'GET /api/promote/directory', 'POST /api/promote/listings', 'POST /api/promote/listings/remove', 'POST /api/promote/order', 'POST /api/promote/order/verify', 'POST /api/promote/contact', 'GET /api/admin/promote', 'POST /api/admin/promote/act', 'GET /api/earn/me', 'POST /api/earn/account', 'POST /api/earn/account/refresh', 'GET /api/earn/ready', 'POST /api/earn/price', 'POST /api/earn/pay', 'POST /api/earn/pay/verify', 'GET /api/admin/earn', 'POST /api/admin/earn/pay', 'GET /api/admin/feed', 'POST /api/admin/feed/undo', 'POST /api/admin/feed/act',
   'GET /api/profiles/:id',
   'GET /api/danfo/park', 'POST /api/danfo/start', 'POST /api/danfo/stop', 'POST /api/danfo/finish', 'POST /api/danfo/abandon', 'GET /api/danfo/run', 'POST /api/danfo/join', 'POST /api/danfo/leave', 'POST /api/danfo/shout', 'POST /api/danfo/collect', 'GET /api/danfo/board',
+  'GET /api/minigames/haggle/stalls', 'POST /api/minigames/haggle/open', 'POST /api/minigames/haggle/offer', 'POST /api/minigames/haggle/buy', 'POST /api/minigames/skit/check', 'GET /api/minigames/seasons', 'POST /api/minigames/nysc/join', 'POST /api/minigames/nysc/duty', 'POST /api/minigames/nysc/pass-out', 'POST /api/minigames/jamb/join', 'POST /api/minigames/jamb/today', 'POST /api/minigames/jamb/answer', 'POST /api/minigames/jamb/mock/start', 'POST /api/minigames/jamb/mock/submit',
   'GET /api/living-world/assessment', 'POST /api/living-world/assessment/start', 'POST /api/living-world/assessment/step',
   'GET /api/living-world/justice-practice', 'POST /api/living-world/justice-practice/start', 'POST /api/living-world/justice-practice/step',
   'GET /api/living-world/barber',

@@ -112,6 +112,9 @@ export const EVENTS: Record<string, EventSpec> = {
   danfo_run: { from: 'world', props: { action: 'string', route: 'string', earned: 'number' }, when: 'A danfo run started (action: start) or was settled by the server (action: end, earned: game naira) on a line (route).', why: 'Runs per day and per person, and which lines are driven (docs/DANFO.md).' },
   danfo_clip: { from: 'world', props: { what: 'string' }, when: 'A danfo run\'s clip (what: clip) or card (what: card) was handed to Capture to share.', why: 'Are runs shared?' },
   danfo_crew: { from: 'world', props: { role: 'string' }, when: 'A player joined someone\'s danfo run (role: passenger | conductor).', why: 'Do friends ride along?' },
+  haggle_talk: { from: 'world', props: { action: 'string', grade: 'string' }, when: 'A market haggle step (open | deal | buy | card | clip), with the grade.', why: 'Haggle plays, buys and shares (docs/MINI-GAMES.md).' },
+  skit_made: { from: 'world', props: { action: 'string', actors: 'number' }, when: 'A skit was recorded or sent to Capture.', why: 'Skits made and shared.' },
+  season_step: { from: 'world', props: { season: 'string', action: 'string' }, when: 'A season step (nysc | jamb; join, duty, practice, mock, card...).', why: 'Season starts and finishes.' },
   world_liked: { from: 'world', props: { on: 'boolean' }, when: 'A world was liked (on: true) or the like taken back.', why: 'Which worlds people value, beyond visits.' },
 
   // ---- Missions, tables, sharing and outreach (the growth panels: src/ui/panels/*, src/tables/client.ts)

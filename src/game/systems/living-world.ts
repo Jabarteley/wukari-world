@@ -10,6 +10,8 @@ import type { SystemDefinition, TypedActionHandler } from '../../types/registry.
 
 /** The most one danfo payment can be: DAY_CAP of src/danfo/run.ts, written here so the first download does not carry the danfo code (server/danfo.test.ts keeps them equal). */
 export const DANFO_DAY_CAP = 45_000
+/** The most one season payment can be: the passing out of server/minigames/nysc.ts (PASS_OUT_PAY), written here so the first download does not carry the season code (server/minigames.test.ts keeps them equal). */
+export const MINIGAME_PAY_CAP = 8_000
 
 const exactKeys = (value: Record<string, unknown>, keys: readonly string[]): boolean => {
   const own = Reflect.ownKeys(value)
@@ -39,6 +41,15 @@ const serverAction: TypedActionHandler<'living-world.server'> = (state, payload,
     if (Number.isSafeInteger(state.social.earned) && state.social.earned >= 0) state.social.earned = Math.min(Number.MAX_SAFE_INTEGER, state.social.earned + amount)
     repayFromEarnings(state, amount, ctx)
     return ok(state, 'danfo_fare_paid')
+  }
+  if (payload.op === 'minigame-reward') {
+    // A season's service settles the step from its own row and caps it (per payment, per game day) before it asks for this. Like the clerk reward it is not earned work.
+    const amount: unknown = payload.amount
+    if (!exactKeys(payload, ['op', 'amount', 'kind']) || (payload.kind !== 'nysc' && payload.kind !== 'jamb')
+      || typeof amount !== 'number' || !Number.isSafeInteger(amount) || amount < 1 || amount > MINIGAME_PAY_CAP) return fail(state, 'invalid_minigame_action')
+    if (!canCredit(state, amount) || !credit(state, amount, payload.kind === 'nysc' ? 'NYSC camp: allowance' : 'JAMB season: revision prize', ctx)) return fail(state, 'balance_limit')
+    repayFromEarnings(state, amount, ctx)
+    return ok(state, 'minigame_paid')
   }
   if (payload.op === 'clerk-reward') {
     if (!exactKeys(payload, ['op'])) return fail(state, 'invalid_clerk_action')

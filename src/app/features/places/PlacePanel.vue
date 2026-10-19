@@ -10,7 +10,7 @@ import GameIcon from '../../ui/GameIcon.vue'
 import PlayerAvatar from '../social/PlayerAvatar.vue'
 import { copyText } from '../../../ui/share.ts'
 import { FURNITURE } from '../../../game/content/furniture.ts'
-import { PLACES, SERVICE_WORDS } from '../../../places/model.ts'
+import { PLACES, SERVICE_WORDS, SQUARE_ROOM, roomKeyOf } from '../../../places/model.ts'
 import { placeNow, placePeople } from './placeState.ts'
 import { addPiece, askToLeave, enterRoom, movePiece, places, removePiece, setLink, stepOut } from './placesStore.ts'
 import { gist, loadGist } from '../gist/gistStore.ts'
@@ -22,6 +22,8 @@ import type { FurnitureDefinition } from '../../../types/content.ts'
 const DesignSheet = defineAsyncComponent(() => import('../spaces/DesignSheet.vue'))
 const designOpen = ref(false)
 const WorldScreen = defineAsyncComponent(() => import('../spaces/WorldScreen.vue'))
+// The world's live moments here (docs/WORLD-EVENTS.md): the weekly event's bar and drops, election night, a stage. Its own chunk.
+const PlaceLive = defineAsyncComponent(() => import('../world-events/PlaceLive.vue'))
 const walking = ref(false)
 const { game, shell, community } = useApp()
 const now = computed(() => placeNow.value)
@@ -116,6 +118,7 @@ const whatsapp = computed(() => `https://wa.me/?text=${encodeURIComponent(`${now
     </div>
     <p class="social-note place-voice-note" role="status">{{ voiceNote }}</p>
     <p v-if="gistLine" class="social-note place-gist" data-place="gist">{{ gistLine }}</p>
+    <PlaceLive :room="now.kind === 'room' ? roomKeyOf(now.id) : SQUARE_ROOM" :square="now.kind === 'square'" />
     <p v-if="offline" class="ui-note" role="status">Reconnect to talk, build or invite.</p>
     <p v-if="problem" class="ui-error" role="alert">{{ problem }}</p>
 

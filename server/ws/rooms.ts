@@ -767,6 +767,9 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
   if (ctx.checks) {
     ctx.checks.groupPeers = (id, room) => { const venue = venues.get(room), group = venue?.groups.get(venue.where.get(id) ?? ''); return group ? [...group.players] : null; };
     ctx.checks.venueCounts = (room) => { const venue = venues.get(room); return venue ? { total: venue.where.size, groups: venue.groups.size } : null; };
+    // Stage mode and the world event (server/world-events/): is this player in that room now, and who is (one entry per player).
+    ctx.checks.inRoom = (id, room) => [...(inRooms.get(id) ?? [])].some(ws => ws.room === room);
+    ctx.checks.roomMembers = (room) => [...new Set([...(rooms.get(room) ?? [])].map(ws => ws.session.id))];
   }
   // A visit the social module ended (left, removed, blocked): that guest leaves the host's Home room at once.
   ctx.on?.('visit-ended', ({ hostId, guestId }) => {
@@ -915,6 +918,8 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       // The voice circle is the group's: its cap counts the people around you, not the whole venue.
       const enabled = new Set([...audience(room, ws.group)].filter(peer => peer.voice.enabled).map(peer => peer.session.id));
       if (message.enabled && !enabled.has(ws.session.id) && enabled.size >= MAX_VOICE_MEMBERS) throw Error('voice_room_full');
+      // STAGE MODE (server/world-events/stages.ts): while a stage is open in this room only its speakers and moderator may unmute.
+      if (message.enabled && !message.muted && ctx.checks?.stageMayTalk?.(room, ws.session.id) === false) throw Object.assign(Error('stage_listener'), { reason: 'Only the people on the stage can talk. Raise your hand to ask.' });
       ws.voice = { enabled: message.enabled, muted: message.muted }; announce(room, ws.group ?? null, { voice: [ws.session.id], causes: [ws.session.id] });
     }),
     signal: guarded((ws, message, room) => {
@@ -924,7 +929,8 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       // A blocked pair cannot signal: the answer is the same as for a peer who is not there.
       const peers = hidden(ws.session.id, to) ? [] : [...audience(room, ws.group)].filter(peer => peer.session.id === to && peer !== ws);
       if (!peers.length) throw Error('peer_not_in_room');
-      const radius = room.split(':')[1] === 'neighbourhood' ? VOICE_RADIUS * STREET_NETWORK_SCALE : VOICE_RADIUS;
+      // On a stage the speakers reach everyone in the group whatever the distance (and everyone reaches them); other pairs keep the radius.
+      const radius = ctx.checks?.stagePair?.(room, ws.session.id, to) === true ? Infinity : room.split(':')[1] === 'neighbourhood' ? VOICE_RADIUS * STREET_NETWORK_SCALE : VOICE_RADIUS;
       const nearby = peers.filter(peer => withinVoiceDistance(ws.position, peer.position, radius));
       if (!nearby.length) throw Error('peer_out_of_range');
       // The server relays `data` untouched: any object of at most 12 000 characters of JSON. The protocol type SignalData

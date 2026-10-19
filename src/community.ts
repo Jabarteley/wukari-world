@@ -107,6 +107,12 @@ interface Browser {
   removeEventListener?: (type: string, listener: () => void) => void
 }
 const browser = (): Browser => globalThis as unknown as Browser
+/**
+ * STAGE MODE (docs/WORLD-EVENTS.md): while a stage is open in the room, the lazy stage panel sets `onStage` (the speakers and the
+ * moderator). A pair with someone on the stage is "near" whatever the distance; the page plays only people on the stage; a listener
+ * cannot unmute (the server refuses it too). Null: the ordinary rules.
+ */
+export const stageVoice: { onStage: ((id: string) => boolean) | null } = { onStage: null }
 
 export async function createCommunity(options: CommunityOptions = {}): Promise<CommunityController> {
   const { cityId = 'lagos', venueId = 'park', room: firstRoom = null, onStatus = () => {}, onMembers = () => {}, onNotice = () => {}, onChange = null, onStep = null, venueName = null, audioStreamFactory = null, diagnostics = false, onPeerStats = () => {}, iceTransportPolicy = 'all', createAudio = () => new Audio() } = options
@@ -213,6 +219,7 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
   function distanceTo(member: RoomMember | null | undefined): number {
     const self = validPosition(selfMember()), other = validPosition(member)
     if (flat()) return member && member.id !== session?.id ? 0 : Infinity
+    if (stageVoice.onStage && member && member.id !== session?.id && (stageVoice.onStage(member.id) || stageVoice.onStage(session?.id ?? ''))) return 0
     const distance = self && other ? Math.hypot(self.x - other.x, self.z - other.z) : Infinity
     return room.venueId === 'neighbourhood' ? distance / STREET_NETWORK_SCALE : distance
   }
@@ -325,7 +332,7 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
     voiceStatus()
   }
   function setPeerGain(id: string, peer: Peer): void {
-    const gain = Math.max(0, 1 - distanceTo(members.find((member) => member.id === id)) / VOICE_RADIUS)
+    const gain = stageVoice.onStage && !stageVoice.onStage(id) ? 0 : Math.max(0, 1 - distanceTo(members.find((member) => member.id === id)) / VOICE_RADIUS)
     peer.gain = gain
     if (peer.gainNode) peer.gainNode.gain.value = gain
     else peer.audio.volume = gain
@@ -680,6 +687,7 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
   // ---- what the panel's controls do ----------------------------------------------------------------------------------
   function toggleMute(): void {
     if (!voice) return
+    if (muted && stageVoice.onStage && !stageVoice.onStage(session?.id ?? '')) { feedback('Only the people on the stage can talk. Raise your hand to ask.'); return }
     muted = !muted
     stream?.getAudioTracks().forEach((track) => { track.enabled = !muted })
     send({ type: 'voice-state', enabled: voice, muted }); voiceStatus()

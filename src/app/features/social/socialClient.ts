@@ -397,6 +397,8 @@ export function createSocialClient(overrides: Partial<SocialEnv> = {}) {
     // The Worker's liveness probe: answered at once, or the social socket is closed as idle.
     if ((message.type as string) === 'heartbeat') { if (ws?.readyState === 1) ws.send(JSON.stringify({ type: 'heartbeat-ack' })); return }
     if (message.type.startsWith('call-')) { for (const listener of [...frameListeners]) listener(message); return }
+    // The world's live moments (docs/WORLD-EVENTS.md): the lazy world-event features listen beside the calls.
+    if ((message.type as string) === 'world-live') { for (const listener of [...frameListeners]) listener(message); return }
     // The player's life changed on the server (an action on another of their devices, a settlement): the game reads it again.
     if ((message.type as string) === 'life-changed') { const hint = message as unknown as { rev?: unknown; by?: unknown }; if (typeof hint.rev === 'number') for (const listener of [...lifeListeners]) listener({ rev: hint.rev, ...(Array.isArray(hint.by) ? { by: hint.by.filter((id): id is string => typeof id === 'string') } : {}) }); return }
     switch (message.type) {

@@ -1,0 +1,82 @@
+{
+  "at": "2026-10-19T04:22:46.467592+00:00",
+  "base": "8d0c2b29a63934410d84905f176f188af8fb9c91",
+  "allowlistPaths": 288,
+  "actualPinsVerified": 2951,
+  "allEvidenceAnd9CommandLogsVerified": true,
+  "actualBeforeGitAndAfterWorkingHashesVerified": true,
+  "trackedNonrecordDiffEqualsAllowlist": true,
+  "focused": {
+    "surface": 4,
+    "cityScenes": 8
+  },
+  "scope": "CPU/source/canonical acceptance only; fixed hosted artifact, GPU consumer and street journey pending. No texture-growth fix claim.",
+  "verificationCorrection": "Initial parent checker expected TAP # pass; actual logs use Node spec \u2139 pass. Source/2951pins/288beforeafter hashes already verified; format corrected after reading actual log tails. No app check rerun.",
+  "files": [
+    {
+      "file": "HANDOFF-final.json",
+      "bytes": 14594,
+      "sha256": "e406db2e8e98eeacc134635f80b5a4d558cf29b5eae5fdc57ad8d8a5a9a70a3b"
+    },
+    {
+      "file": "content-and-provenance-comparison.json",
+      "bytes": 1280,
+      "sha256": "bf45f0063b8b3ac818416a438971e15cffcbebd76788b41c53bcbc535991447b"
+    },
+    {
+      "file": "changed-path-allowlist.json",
+      "bytes": 84488,
+      "sha256": "da7484f7f73e5a43656790421b4dd6817cc07125c72a3a99a5e22e8c037d977d"
+    },
+    {
+      "file": "final-pins.json",
+      "bytes": 377095,
+      "sha256": "e10687561905c29e9b363857ce65b68b06f0740e4ac63ecf3759fe81c00cf9af"
+    },
+    {
+      "file": "host-audit.json",
+      "bytes": 2098396,
+      "sha256": "d4e5b7838436f4e7446bdc94efab52c1b37f24d462759c00c1fd50ebba3ce971"
+    },
+    {
+      "file": "host-adoption.json",
+      "bytes": 770,
+      "sha256": "70cdf2ce1022104e0d164fe13b8af74d67dc0e8cd7c70161b796700f6faa1a00"
+    },
+    {
+      "file": "surface-focused.log",
+      "bytes": 525,
+      "sha256": "2a0078a4a47ba077b2c7f1e4015a86fc04e781387d3b07d33748d89a3062f1d8"
+    },
+    {
+      "file": "city-scenes-caller.log",
+      "bytes": 1431,
+      "sha256": "2797c8273bf6f5710aa62db3a032f60817c1c8c3832b5dfee9c96c571dcbf106"
+    },
+    {
+      "file": "scenes-build.log",
+      "bytes": 295,
+      "sha256": "78baaae492811177f583a88768074a8d339781292d85a4122983b1458b1fff42"
+    },
+    {
+      "file": "scenes-check.log",
+      "bytes": 293,
+      "sha256": "e5e9d276a806fc73a17756c2743425dadf3d3dd9646249328da55d36b6d5c18c"
+    },
+    {
+      "file": "talk-check.log",
+      "bytes": 350,
+      "sha256": "c21543cbbe0954f9167ee6b76cafc81075adcf7ff38964d82a19bc44ff940e2c"
+    },
+    {
+      "file": "surface-disposal.patch.txt",
+      "bytes": 3156,
+      "sha256": "a3eeff82f3b62a916352e05c3d0ef3dee19accd827aa9f3465c3c1618c6268a7"
+    },
+    {
+      "file": "drain-backup-acceptance.json",
+      "bytes": 2930,
+      "sha256": "63562fcab02ef315f6ddb15ed96512b053abc331c919eea81b6184a7053eb31c"
+    }
+  ]
+}

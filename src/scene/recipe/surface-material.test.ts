@@ -58,7 +58,13 @@ test('actual Batch floor/shell use isolated clone and explicit roles, restore on
   assert.equal(Array.from(mask.array).filter(v => v === 2).length, 16);
   for (const [key, values] of Object.entries(arrays)) assert.deepEqual(Array.from(mesh.geometry.getAttribute(key).array), values);
   let disposed = 0; (mesh.material as THREE.Material).addEventListener('dispose', () => disposed++);
+  const releasedWithMask: boolean[] = [];
+  const observeRelease = () => { releasedWithMask.push(mesh.geometry.getAttribute('recipeSurface') === mask); };
+  mesh.geometry.addEventListener('dispose', observeRelease);
   owner.dispose(); owner.dispose(); assert.equal(disposed, 1); assert.equal(mesh.material, original); assert.equal(mesh.geometry.hasAttribute('recipeSurface'), false);
+  assert.deepEqual(releasedWithMask, [true], 'renderer disposal must still see the uploaded fallback surface attribute');
+  mesh.geometry.removeEventListener('dispose', observeRelease);
+  for (const [key, values] of Object.entries(arrays)) assert.deepEqual(Array.from(mesh.geometry.getAttribute(key).array), values);
   mesh.geometry.dispose(); kit.dispose();
 });
 
@@ -97,5 +103,14 @@ test('real ModelLayer merge masks preserve transforms, arrays and hero exclusion
   assert.deepEqual(Array.from(mesh.geometry.getAttribute('recipeSurface').array), [2, 2, 2, 0, 0, 0]);
   assert.deepEqual(Array.from(mesh.geometry.getAttribute('position').array), position); assert.deepEqual(Array.from(mesh.geometry.index!.array), indices); assert.deepEqual(layer.stats(), stats);
   assert.equal(wall.position[0], 0); assert.equal(wall.uv![0], part().uv![0]);
-  owner.dispose(); layer.dispose(); kit.dispose();
+  const mask = mesh.geometry.getAttribute('recipeSurface'), releasedWithMask: boolean[] = [];
+  const observeRelease = () => { releasedWithMask.push(mesh.geometry.getAttribute('recipeSurface') === mask); };
+  mesh.geometry.addEventListener('dispose', observeRelease);
+  owner.dispose(); owner.dispose();
+  assert.deepEqual(releasedWithMask, [true], 'renderer disposal must still see the uploaded merged surface attribute');
+  assert.equal(mesh.geometry.hasAttribute('recipeSurface'), false);
+  assert.deepEqual(Array.from(mesh.geometry.getAttribute('position').array), position);
+  assert.deepEqual(Array.from(mesh.geometry.index!.array), indices);
+  mesh.geometry.removeEventListener('dispose', observeRelease);
+  layer.dispose(); kit.dispose();
 });

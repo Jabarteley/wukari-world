@@ -1,0 +1,27 @@
+{
+  "cityCount": 284,
+  "recipeTargets": 6423,
+  "signatures": 34,
+  "measured": 34,
+  "failures": 0,
+  "missingTables": 0,
+  "perVenueDrift": 0.03271812080536913,
+  "sourcePins": 1227,
+  "allPinsCurrent": true,
+  "costMapsEqual": true,
+  "sourcePinChanges": [
+    {
+      "path": "src/scene/recipe/surface-material.ts",
+      "before": "4d24ad185a8ce7070da77ce5893474887f185b9fb0e208cd5b4f0468abe11e25",
+      "after": "24d96f4f54c18967cad1c96cd74cf6c281d4f6301ff6d685432c7a7fb9bedf02"
+    }
+  ],
+  "global": {
+    "triangles": 1264,
+    "meshes": 7,
+    "lights": 3,
+    "drawCalls": 9
+  },
+  "auditSha256": "d4e5b7838436f4e7446bdc94efab52c1b37f24d462759c00c1fd50ebba3ce971",
+  "adoptedHostSha256": "3fffc83003326ed459d5c8a012773583440d2d4c8baf283da146050303db9e48"
+}

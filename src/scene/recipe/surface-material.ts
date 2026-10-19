@@ -110,7 +110,11 @@ export function recipeSurfaceOwner(kit: Kit, recipe: SceneRecipeV1) {
   function attribute(geometry: THREE.BufferGeometry, mask: Float32Array) {
     requireRecipe(!geometry.hasAttribute(ATTRIBUTE), 'surface mask already owned');
     geometry.setAttribute(ATTRIBUTE, new kit.THREE.BufferAttribute(mask, 1));
-    undo.push(() => geometry.deleteAttribute(ATTRIBUTE));
+    undo.push(() => {
+      // The renderer frees attached attribute buffers when this owned geometry is disposed.
+      geometry.dispose();
+      geometry.deleteAttribute(ATTRIBUTE);
+    });
   }
   function fallback(objects: readonly THREE.Object3D[]) {
     const meshes = objects.filter((o): o is THREE.Mesh => (o as THREE.Mesh).isMesh === true);

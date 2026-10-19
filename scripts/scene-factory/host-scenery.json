@@ -4852,7 +4852,7 @@
     },
     {
       "path": "src/scene/recipe/surface-material.ts",
-      "sha256": "4d24ad185a8ce7070da77ce5893474887f185b9fb0e208cd5b4f0468abe11e25"
+      "sha256": "24d96f4f54c18967cad1c96cd74cf6c281d4f6301ff6d685432c7a7fb9bedf02"
     },
     {
       "path": "src/scene/types.ts",

@@ -1,0 +1,79 @@
+{
+  "unit": "Read-only Story integration review of foreign ad-ready main delta",
+  "head": "8d0c2b29a63934410d84905f176f188af8fb9c91",
+  "branch": "story/phase4-realism",
+  "base": "d0fcbcb8cb5377ba882410ac65adb6c965763b30",
+  "incoming": "6c5e8b784fdcdd75b6888ba42b3190e9d284f660",
+  "incomingPaths": 119,
+  "dirtyIntersection": [],
+  "committedStoryIntersection": [
+    "server/feed/service.ts"
+  ],
+  "fixture53Intersection": [],
+  "declaredInputs": {
+    "scripts/scene-factory/host-scenery.json": [],
+    "scripts/scene-factory/generated/world-manifest.json": [],
+    "scripts/talk-factory/generated/world-manifest.json": []
+  },
+  "budgetPackageWorkflowChanges": [],
+  "merge": {
+    "disposition": "Proceed only with explicit createCrew conflict resolution preserving approved validation-before-consumption; all other incoming paths disjoint from committed Story and pending repair",
+    "privateMergeFileExit": 1,
+    "expectedResolution": "Incoming LGA-aware locals predicate (city and lga requirements), then badge_needed refusal, then exactly one existing let cover / pending media removal block. Preserve incoming unitOf validation and other incoming near/feed behavior. Do not accept whole theirs or ours for service.",
+    "repositoryMutation": false
+  },
+  "proofScope": {
+    "static53": "No pin overlap; retain exact static fixture proof at its original scope, not merged browser consumer or timing",
+    "canonical": "No incoming declared-input overlap; no extra world/Talk generation from this119-path merge. Recheck current repaired provenance after merge.",
+    "native": "native-migration only exports existing SKIN/HAIR_COLOR constants; avatar-preview adds snapshot state save/restore and rendering. Neither is native skeleton cleanup; protected characters source unchanged.",
+    "runtime": "Entry/street lazy backdrop and new creator/share/photo consumers alter graph. FirstMinute once/session also applies to existing lives; near/community reads and close button. Tour automatic handoff affects fresh life. Install prompt delayed20s may need ordinary dismissal. New player-walked event notes growth activation after1.5 units, not Story progress grants.",
+    "capture": "No automatic recording/RAF observed. CaptureChip mounted interval15000ms clears on unmount; button starts recording through preflight; autoShare only after requested6second clip; markVideo loop has finally cleanup. This is still runtime overhead and must be measured on merged artifact.",
+    "worker": "Shared cityAssets extraction preserves original ASSETS reader; /street HTML adds preparePathMeta; optional assetlinks signing setting defaults404; no DO name/store/build identity change."
+  },
+  "acceptancePrerequisites": [
+    "Parent snapshot dirty/untracked/ignored closure and hashes before normal merge; preserve288 repair bytes and four dirty-record bytes.",
+    "Resolve the sole service conflict as specified; rerun existing focused pending-cover refusal/authorized attach test plus feed-located/LGA checks, without weakening assertions.",
+    "Combined hosted type/build/package/size/UI gates; no cap changes. Prior foreign CI type/release success reported by parent is not combined acceptance.",
+    "Exact emitted character-boundary/cycle check and immutable artifact/source/Talk/WebP closure for merged-H.",
+    "Fresh ordinary creator/existing-life UI smoke; dismiss FirstMinute/install only through UI. Fresh actual consumer cold/warm timing and bounded lifecycle observation after repair; no blind8d timing inheritance."
+  ],
+  "exact95Plan": {
+    "status": "Still conditional; no switch or launch authorized/executed here",
+    "fourRecordBases": [
+      {
+        "path": "docs/agent-work/story-ci-measurement-20261018.md",
+        "base95": "7129981ef5c07c7b0534edd0aaf06dd59a3ed650",
+        "base6c": "7129981ef5c07c7b0534edd0aaf06dd59a3ed650",
+        "actualSha256": "de744f5fe8d1a8caf1a88d541e03d6b4c216bb809f7f435468bc15f432c8dc19"
+      },
+      {
+        "path": "docs/agent-work/story-phase3-integration-20261019.md",
+        "base95": "fec27ed67e952c0833bd88446cb408dedada966f",
+        "base6c": "fec27ed67e952c0833bd88446cb408dedada966f",
+        "actualSha256": "30f745cbc54749478e12525ba741bcbeb3a4fe2897b3a0dec2710f8302dba50f"
+      },
+      {
+        "path": "docs/agent-work/story-phase3-talk-docs-20261019.md",
+        "base95": "1740181316ca652b44398086af4323a896779fd3",
+        "base6c": "1740181316ca652b44398086af4323a896779fd3",
+        "actualSha256": "1f3e5ce7f025708af72613ced557b988a41bb98d42b15c18d3913db9a937f278"
+      },
+      {
+        "path": "docs/agent-work/story-scene-catalog-20261018.md",
+        "base95": "4c9d814d5eddc8029b3544d5f9ca39cf089ca9a8",
+        "base6c": "4c9d814d5eddc8029b3544d5f9ca39cf089ca9a8",
+        "actualSha256": "20979be7e7e539407805141709514193f49521c691189eda5c4881d061b4cd72"
+      }
+    ],
+    "schemaChecks": {
+      "server/store.ts": true,
+      "server/keyed.ts": true,
+      "server/protocol.ts": true,
+      "src/types/life.ts": true,
+      "src/types/progression.ts": true
+    },
+    "newRisk": "Feed optional lga/here and growth act/activation extend records; older95 is not acceptance for these new features. No core store migration found. Run narrow ordinary Accra scene cycles only, no feed/crew/activation feature exercise. Current private data has not run6c, preserve latest earned state and never restore olderbackup.",
+    "requiredFreshChecks": "Commit fixedH/root record, empty index, only four permitted dirty records; revalidate current source targets/untracked+ignored collisions against95 and returnH, original QA marker/modes/fullbytes, four carry hashes, strict95 source/artifact pins. Keep no-overwrite-ignore and abort any refusal. No record/source edits during detached interval."
+  },
+  "limits": "One finite consequential interface review; not a full acceptance audit of foreign ad-ready programme. No tests/build/import/browser/provider/server/Git source mutation. Main CI status supplied by parent."
+}

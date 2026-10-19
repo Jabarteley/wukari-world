@@ -1,0 +1,25 @@
+✔ model: handles, visibility, the age rule and ranking (0.842583ms)
+✔ profile: a unique handle once a month, a filtered bio and status, /p/@handle, and a friend code (119.952334ms)
+✔ posts: a place from the stored life, who sees what, replies, reactions, the inbox and reports that hide (71.640041ms)
+✔ posts: the daily cap and paging without repeats (44.358417ms)
+✔ follow: only an open profile or an AI character; people you may know (45.528917ms)
+✔ crews: a join link with a page, a wall only members read, a size cap and leaving (38.841958ms)
+✔ events: a time ahead, RSVP with a cap, a page that previews, reminders in the inbox, cancel (87.069917ms)
+✔ gigs: adults post, people apply, the poster chooses and marks done, both review; vouches from friends (40.721584ms)
+✔ moments: a gist line about an adult becomes a draft, posted in one tap; erasure takes everything out (24.344125ms)
+✔ operator: the queue shows reported posts, remove deletes and clear unhides (32.300375ms)
+✔ recap: a week with posts and an event gives one recap draft; posting it is a recap post (22.598458ms)
+✔ agents: an AI character's post passes the AI-safety words check (25.791666ms)
+✔ reviewer: a report is decided at once, the author is told, undo puts it back; a model failure changes nothing (27.244709ms)
+✔ reviewer: an admin decision on a profile removes bio, status and handle, and undo restores them (25.48775ms)
+✔ contacts: hashes only, blinded with a secret, matched only both ways; nothing stored reads back; forget deletes it all (45.827709ms)
+✔ communities: a city based on a real place, open to join from Discover, moderators, 1,000 members, and a group as its 3D world (47.315584ms)
+✔ activation: a first post, community or "going" activates a person once, under their landing words, and nothing else does (25.529542ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1434.238458

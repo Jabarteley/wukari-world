@@ -65,6 +65,7 @@ import type { SpacesHttpRoutes } from './spaces.ts'
 import type { FeedHttpRoutes } from './feed.ts'
 import type { PromoteHttpRoutes } from './promote.ts'
 import type { EarnHttpRoutes } from './earn.ts'
+import type { WorldEventsHttpRoutes, WorldLiveFrame } from './world-events.ts'
 import type { DanfoHttpRoutes } from './danfo.ts'
 import type { StoryHttpRoutes } from './story-http.ts'
 import type { StoryTalkView, StoryTalkTurn, TalkHistoryLine } from './story-talk.ts'
@@ -299,7 +300,7 @@ export interface CoreHttpRoutes {
  * telemetry endpoints are added beside them by server/server.ts: growth.ts TelemetryHttpRoutes.)
  */
 export interface HttpRoutes extends CoreHttpRoutes, SocialHttpRoutes, CivicHttpRoutes, SupportHttpRoutes, ModerationHttpRoutes, WorldHttpRoutes,
-  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, ProjectHttpRoutes, RetentionHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes, PublicProfileHttpRoutes, ArenaHttpRoutes, ClansHttpRoutes, StoryHttpRoutes, SpacesHttpRoutes, FeedHttpRoutes, PromoteHttpRoutes, EarnHttpRoutes {
+  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, ProjectHttpRoutes, RetentionHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes, PublicProfileHttpRoutes, ArenaHttpRoutes, ClansHttpRoutes, StoryHttpRoutes, SpacesHttpRoutes, FeedHttpRoutes, PromoteHttpRoutes, EarnHttpRoutes, WorldEventsHttpRoutes {
   'GET /api/story/talk': { response: Ok<StoryTalkView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'character_required' | 'city_content_unavailable' | 'talk_venue_unavailable' }
   'POST /api/story/talk': { body: { npc: string; clientId: string; question: string; history?: TalkHistoryLine[] }; response: Ok<StoryTalkTurn>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | JsonBodyErrorCode | OnceErrorCode | 'character_required' | 'city_content_unavailable' | 'talk_venue_unavailable' | 'talk_regular_unavailable' | 'invalid_talk_request' | 'invalid_talk_history' }
   'GET /api/world/land': { query: { city: CityId }; response: Ok<LandView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'invalid_city' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' }
@@ -563,7 +564,7 @@ export interface PulseFrame { type: 'pulse'; online: number; visits: number; tod
  * socket and the social client's socket both receive every frame addressed to the player.
  * WORKER: also `HeartbeatFrame`.
  */
-export type ServerFrame = RoomServerFrame | SocialServerFrame | TableServerFrame | ArenaServerFrame | CallServerFrame | LifeChangedFrame | LiveServerFrame | NoticeFrame | PulseFrame | AnnounceFrame | SpaceServerFrame | FeedInboxFrame
+export type ServerFrame = RoomServerFrame | SocialServerFrame | TableServerFrame | ArenaServerFrame | CallServerFrame | LifeChangedFrame | LiveServerFrame | NoticeFrame | PulseFrame | AnnounceFrame | SpaceServerFrame | FeedInboxFrame | WorldLiveFrame
 export type ClientFrameType = ClientFrame['type']
 export type ServerFrameType = ServerFrame['type']
 
@@ -932,6 +933,8 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/trust/profile/:id',
   'POST /api/trust/check/:kind/start',
   'POST /api/trust/report',
+  'GET /api/world/event', 'GET /api/world/event/me', 'POST /api/world/event/step', 'GET /api/world/stage', 'POST /api/world/stage',
+  'GET /api/world/election-night', 'POST /api/world/election-night/speech', 'POST /api/world/election-night/card', 'GET /api/admin/world-events', 'POST /api/admin/world-events',
 ] as const satisfies readonly HttpRouteKey[]
 
 /** WORKER: the same registry, so the same routes. (`/api/mod/*` answers only when the MODERATOR_TOKEN secret is set, as on Node.) */
@@ -967,6 +970,7 @@ export const SERVER_FRAME_TYPES = [
   'notice', 'pulse', 'announce',
   'space-room', 'space-peer', 'space-screen',
   'feed-inbox',
+  'world-live',
 ] as const satisfies readonly ServerFrameType[]
 /** WORKER: every frame type the shared modules send, and its application heartbeat. */
 export const WORKER_SERVER_FRAME_TYPES: readonly (ServerFrameType | HeartbeatFrame['type'])[] = [...SERVER_FRAME_TYPES, 'heartbeat']

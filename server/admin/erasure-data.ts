@@ -15,6 +15,7 @@ import { forgetFeedPlayers } from '../feed/service.ts'
 import { forgetContactsPlayers } from '../feed/contacts.ts'
 import { forgetPromotePlayers } from '../promote/service.ts'
 import { forgetEarnPlayers } from '../earn/service.ts'
+import { forgetWorldEventPlayers } from '../world-events/data.ts'
 import { forgetDanfoPlayers } from '../danfo/service.ts'
 import { clearPlayerFamily } from '../social/family.ts'
 import { eraseLivingWorldProgress } from '../living-world/privacy.ts'
@@ -738,6 +739,7 @@ export function eraseData(ctx: RouteContext, db: Db, plan: ErasurePlan): Erasure
   forgetContactsPlayers(db, ids)
   forgetPromotePlayers(db, ids)
   forgetEarnPlayers(db, ids)
+  forgetWorldEventPlayers(db, [...ids])
   forgetDanfoPlayers(db, ids)
   eraseSpaces(db, ids)
   scrubTrustAndSupport(db, ids, accounts)

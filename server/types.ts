@@ -1143,6 +1143,13 @@ export interface ContextChecks {
   /** Rooms: the public ids sharing the caller's group of a venue room (null when the caller is not in it), and the venue's counts. */
   groupPeers?: (publicId: string, room: string) => string[] | null
   venueCounts?: (room: string) => { total: number; groups: number } | null
+  /** Rooms: is this player in that room now (any socket), and the players in a room (all groups, one entry each). */
+  inRoom?: (publicId: string, room: string) => boolean
+  roomMembers?: (room: string) => string[]
+  /** World events (server/world-events/stages.ts): while a stage is open in `room`, may this player unmute (false: a listener)? Absent or true: the ordinary rules. */
+  stageMayTalk?: (room: string, publicId: string) => boolean
+  /** World events: is one of the pair on the open stage of `room` (then signalling ignores the voice radius)? */
+  stagePair?: (room: string, a: string, b: string) => boolean
   /** Moderation. */
   muted?: (publicId: string) => MuteVerdict | null
   /** Admin (server/admin/sanctions.ts): the player, or the account they belong to, is banned. Enforced for every route by buildRoutes. */

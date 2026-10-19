@@ -13,7 +13,9 @@ import { HOUSE_STYLE } from '../../game/content/world.ts'
 import { footprint, doorSlot, windowSlot, plotOf } from '../../game/home-layout.ts'
 import { bumpsOf, finishAt, planOf, slabOf, wallsOf, type HousePlan, type PlanWall } from '../../game/home-plan.ts'
 import { WORLD } from '../layout.ts'
-import { WORLD_GROUNDS, type WorldGround } from '../worlds.ts'
+import { WORLD_GROUNDS, WORLD_SKIES, type WorldGround, type WorldSky } from '../worlds.ts'
+import { propOf } from '../props.ts'
+import { propMesh } from './props3d.ts'
 import { THREE, disposeTree, parseModel } from './look.ts'
 import type { PlacedModel, WorldItem } from '../../types/spaces.ts'
 
@@ -112,9 +114,21 @@ export interface BuiltSpace {
 }
 
 /** `terrain`: a world (docs/WORLDS.md): open ground of this surface and no house at all; the plot is its size. */
-export interface SpaceInput { grid: number; owned: boolean; style: Record<string, number> | null; items: readonly WorldItem[]; terrain?: { ground: string } | null }
+export interface SpaceInput { grid: number; owned: boolean; style: Record<string, number> | null; items: readonly WorldItem[]; terrain?: { ground: string; sky?: string } | null }
 /** The sky over a space: a world's ground names one; a home stands under the day sky. */
-export const skyOf = (input: Pick<SpaceInput, 'terrain'>): string => (input.terrain && Object.hasOwn(WORLD_GROUNDS, input.terrain.ground) ? WORLD_GROUNDS[input.terrain.ground as WorldGround].sky : '#a9c7de')
+export const skyOf = (input: Pick<SpaceInput, 'terrain'>): string => {
+  const t = input.terrain
+  if (!t) return '#a9c7de'
+  const time = t.sky && Object.hasOwn(WORLD_SKIES, t.sky) ? WORLD_SKIES[t.sky as WorldSky] : null
+  if (time?.sky) return time.sky
+  return Object.hasOwn(WORLD_GROUNDS, t.ground) ? WORLD_GROUNDS[t.ground as WorldGround].sky : '#a9c7de'
+}
+/** The time of day over a space: a world names one; a home is under the day (and a world on the old 'night' ground under the night). */
+export const timeOf = (input: Pick<SpaceInput, 'terrain'>): WorldSky => {
+  const t = input.terrain
+  if (t?.sky && Object.hasOwn(WORLD_SKIES, t.sky) && t.sky !== 'day') return t.sky as WorldSky
+  return t?.ground === 'night' ? 'night' : 'day'
+}
 
 export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
   seed = 7
@@ -159,7 +173,7 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
   const solid = (mesh: InstanceType<typeof THREE.Mesh>): InstanceType<typeof THREE.Mesh> => { mesh.castShadow = true; mesh.receiveShadow = true; return mesh }
 
   // The yard: grass round the house, a step at the door.
-  const yard = canvasTexture(512, open ? groundOf(open) : grass, 1)
+  const yard = canvasTexture(512, open ? groundOf(open === 'island' ? 'sand' : open) : grass, 1)
   yard.repeat.set((plot.w + 40) / 4, (plot.d + 40) / 4)
   owned.push(yard)
   const ground = new THREE.Mesh(new THREE.PlaneGeometry(plot.w + 40, plot.d + 40), material({ map: yard, roughness: 1 }))
@@ -170,6 +184,20 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
   ground.name = 'ground'
   root.add(ground)
   surfaces.push(ground)
+  // An island: the sand ends a few metres past the plot and the sea runs to the horizon.
+  if (open === 'island') {
+    ground.geometry.dispose()
+    ground.geometry = new THREE.PlaneGeometry(plot.w + 12, plot.d + 12)
+    geometries.push(ground.geometry)
+    const sea = new THREE.Mesh(new THREE.PlaneGeometry(600, 600), new THREE.MeshPhysicalMaterial({ color: '#1f7fa8', roughness: 0.08, metalness: 0, transmission: 0, clearcoat: 1, clearcoatRoughness: 0.1, envMapIntensity: 1.2 }))
+    owned.push(sea.material as { dispose(): void })
+    geometries.push(sea.geometry)
+    sea.rotation.x = -Math.PI / 2
+    sea.position.set(plot.w / 2, -0.35, plot.d / 2)
+    sea.receiveShadow = true
+    sea.name = 'sea'
+    root.add(sea)
+  }
 
   // Floors: each room in its own finish (wood, or the tiles of a wet room or a terrace), and the slab round a stairwell above.
   for (let f = 0; f < plot.floors; f++) {
@@ -389,12 +417,15 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
       modelGroup.children.forEach((child) => { child.visible = (child.userData['floor'] ?? 0) <= floor && !child.userData['hidden'] })
     },
     async setModels(list, bytesOf) {
-      for (const object of placed.values()) modelGroup.remove(object)
+      // Shapes are made per placement, so they are freed with it; players' models are clones of a parse kept for the next layout.
+      for (const object of placed.values()) { modelGroup.remove(object); if (object.children[0]?.userData['prop']) disposeTree(object) }
       placed.clear()
       const blocks: typeof modelBlocks = []
       await Promise.all(list.map(async (p) => {
-        let source = parsed.get(p.hash)
-        if (!source) {
+        // A built-in shape is drawn here; a player's model is fetched (once per file) and parsed.
+        const prop = propOf(p.m)
+        let source = prop ? undefined : parsed.get(p.hash)
+        if (!prop && !source) {
           source = bytesOf(p.hash).then(async (bytes) => {
             if (!bytes) return null
             const model = await parseModel(bytes.slice(0), maxAnisotropy)
@@ -404,10 +435,11 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
           }).catch(() => null)
           parsed.set(p.hash, source)
         }
-        const found = await source
-        if (!found || gone) return
+        const found = prop ? null : await source
+        if ((!prop && !found) || gone) return
         // A skinned model is parsed again for each copy (a plain clone would share its skeleton).
-        const object = found.skinned && [...placed.values()].some((o) => o.userData['hash'] === p.hash) ? (await parseModel(found.bytes.slice(0), maxAnisotropy)).root : found.root.clone(true)
+        const object = prop ? propMesh(prop) : found!.skinned && [...placed.values()].some((o) => o.userData['hash'] === p.hash) ? (await parseModel(found!.bytes.slice(0), maxAnisotropy)).root : found!.root.clone(true)
+        if (prop) object.userData['prop'] = true
         const holder = new THREE.Group()
         holder.add(object)
         holder.position.set(p.x, p.floor * H + p.y, p.z)

@@ -200,3 +200,26 @@ badge it opens on Friends). `GET /api/feed/list?tab=near`:
 
 The privacy rule is the badge's: the position never leaves the phone; what is stored is a local-government id the player chose to show,
 as the residence badge (docs/LOCATION.md) already does.
+
+## First minute
+
+What a player sees right after Play (`src/app/features/firstminute/`, Phase 6 of `docs/AD-READY-PLAN.md`): one strip at the top of the
+bottom stack, in the 3D world and in Lite, once per session (`allworld-first-minute` in session storage), put away with ×. It shows up to
+three things of Near you (`GET /api/feed/list?tab=near`, an event first), how many other people are in this room, place or street now
+(the room's own count, else the place's or the venue's listing), and **one** next action, the first of these that exists
+(`nextAction` in `firstMinuteModel.ts`, tested in `firstMinuteModel.test.ts`):
+
+1. someone else is here and the room has a chat: **Say hello** opens the room's chat;
+2. a person with a badge in your local government posted: **Say hello** opens that post to reply;
+3. an open community of your area (then of your badge city, or your city) that you are not in and may join: **Join <community>**;
+4. a person of your city posted: **Say hello** on that post;
+5. you can walk now: **Walk to the Square**; otherwise **Say hello** opens Near you to write the first post.
+
+Nothing is counted here: a reply, a post, a join and a walk are already activation on the server. The strip's code and its two reads are a
+chunk of their own, fetched once the scene is up (`startExtras.ts`) and shown when the game is connected, the creator is done and nothing
+is in front; the first download does not grow.
+
+**A new player** (the walkthrough would have started by itself) gets the strip instead of the walkthrough, with "Show me around" for
+the tour on request (`TourDecider.vue` hands its turn over; Phone → Help and ? still start it). The Ready step of the creator says what
+comes next. **On a return visit** a player with a location badge finds Feed first in the Phone's dock (it opens on Near you); the device
+keeps only yes or no for that (`allworld-badge-v1`, `src/app/features/feed/badgeMark.ts`), set by each feed read of the profile.

@@ -8,9 +8,9 @@
  * Computer: W A S D or the arrows walk, Shift runs, dragging looks. While editing, a tap on a floor puts the chosen model there.
  */
 import { WORLD, type Placement } from '../layout.ts'
-import { SPACE_LIMITS_BY_KIND } from '../worlds.ts'
+import { SPACE_LIMITS_BY_KIND, WORLD_SKIES } from '../worlds.ts'
 import { createLook, aimSun, THREE } from './look.ts'
-import { buildSpace, skyOf, type BuiltSpace, type SpaceInput } from './space.ts'
+import { buildSpace, skyOf, timeOf, type BuiltSpace, type SpaceInput } from './space.ts'
 import { moveOf, step, WALKER, type Ground, type Walker } from './walk.ts'
 import type { Physics } from './physics.ts'
 import { playSound, runScript, type ScriptRunner } from './scripting.ts'
@@ -80,7 +80,9 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
   // A world may be wide: the fog opens up with it, and by night the sun is low and the sky dark.
   const far = open ? Math.max(90, Math.max(W, D) * 1.6) : 90
   look.scene.fog = new THREE.Fog(sky, far / 3, far)
-  if (input.terrain?.ground === 'night') { look.sun.intensity = 0.7; look.sun.color.set('#9fb4ff'); look.scene.environmentIntensity = 0.25 }
+  // The time of day (src/spaces/worlds.ts WORLD_SKIES): the sun's colour and strength and the light the sky gives.
+  const time = WORLD_SKIES[timeOf(input)]
+  look.sun.intensity = time.light; look.sun.color.set(time.sun); look.scene.environmentIntensity = time.ambient
 
   // Warm light in each room of the floor the walker is on (no shadows: the sun and the room image do those).
   const lights: InstanceType<typeof THREE.PointLight>[] = []

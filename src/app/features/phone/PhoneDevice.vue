@@ -21,7 +21,8 @@ import GameIcon from '../../ui/GameIcon.vue'
 import AppArtwork from './AppArtwork.vue'
 import HelpBody from '../help/HelpBody.vue'
 import PanelHost from './PanelHost.vue'
-import { SHADE_MAX, badgeText, battery, dockApps, notificationsOf, phonePages } from './phoneHomeModel.ts'
+import { BADGE_DOCK, DOCK, SHADE_MAX, badgeText, battery, dockApps, notificationsOf, phonePages } from './phoneHomeModel.ts'
+import { hasBadge } from '../feed/badgeMark.ts'
 import type { PhoneApp } from './phoneHomeModel.ts'
 
 const { game, shell, api, community } = useApp()
@@ -35,8 +36,10 @@ const STAMP = lagos({ weekday: 'short', hour: '2-digit', minute: '2-digit', hour
 const view = computed(() => { void shell.legacyTick.value; return shell.viewFor() })
 const now = computed(() => new Date(view.value.now))
 const power = computed(() => battery(state.value.needs?.energy))
-const pages = computed(() => phonePages(shell.panels).flatMap((section) => section.groups.map((group) => ({ label: group.label, groups: [group] }))))
-const dock = dockApps(shell.panels)
+// A player with a location badge (as the last feed read on this device said) finds Feed first in the dock: it opens on Near you.
+const dockIds = hasBadge() ? BADGE_DOCK : DOCK
+const pages = computed(() => phonePages(shell.panels, dockIds).flatMap((section) => section.groups.map((group) => ({ label: group.label, groups: [group] }))))
+const dock = dockApps(shell.panels, dockIds)
 const badges = computed(() => { const current = view.value; return Object.fromEntries(shell.panels.map((panel) => [panel.id, badgeText(panel, state.value, current)])) as Record<string, string> })
 const notes = computed(() => notificationsOf(shell.panels, state.value, view.value))
 const freshNotes = computed(() => notes.value.filter((line) => line.fresh).length)

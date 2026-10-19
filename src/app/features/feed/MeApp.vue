@@ -11,6 +11,7 @@ import PostCard from './PostCard.vue'
 import ContactsCard from './ContactsCard.vue'
 import LocatedCard from './LocatedCard.vue'
 import { feedApi, portraitUrl, uploadMedia } from './feedApi.ts'
+import { keepBadge } from './badgeMark.ts'
 import { portraitFrom, portraitFromScene, stickerFrom } from './feedMedia.ts'
 import { shareLink, whatsappUrl } from './feedShare.ts'
 import { FEED, badgePlaceText, cleanCode } from '../../../feed/model.ts'
@@ -21,14 +22,14 @@ const props = defineProps<{ params?: { code?: string } | null }>()
 const { game, shell, scene } = useApp()
 const api = feedApi((path, options) => game.fetchJson(path, options))
 const profile = ref<ProfileView | null>(null), posts = ref<PostView[]>([])
-const onLocated = (p: ProfileView): void => { if (!profile.value) return; const { located: _old, ...rest } = profile.value; profile.value = p.located ? { ...rest, located: p.located } : rest }
+const onLocated = (p: ProfileView): void => { keepBadge(Boolean(p.located)); if (!profile.value) return; const { located: _old, ...rest } = profile.value; profile.value = p.located ? { ...rest, located: p.located } : rest }
 const handle = ref(''), bio = ref(''), status = ref(''), withPlace = ref(true), code = ref(''), busy = ref(false), now = ref(Date.now())
 const toast = (text: string, tone?: 'error'): void => game.toast(text, tone === 'error' ? 'error' : 'info')
 const link = computed(() => profile.value ? `/p/${profile.value.handle ? `@${profile.value.handle}` : profile.value.id}` : '')
 async function load(): Promise<void> {
   const r = await api.me()
   if (!r.ok) { toast(r.reason, 'error'); return }
-  profile.value = r.profile; handle.value = r.profile.handle ?? ''; bio.value = r.profile.bio ?? ''; status.value = r.profile.status?.text ?? ''
+  profile.value = r.profile; keepBadge(Boolean(r.profile.located)); handle.value = r.profile.handle ?? ''; bio.value = r.profile.bio ?? ''; status.value = r.profile.status?.text ?? ''
   const mine = await api.by(r.profile.id); if (mine.ok) posts.value = mine.posts
 }
 watch(() => game.view.value.connected, (on, was) => { if (on && !was) void load() })

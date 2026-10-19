@@ -30,7 +30,17 @@ export interface ModelEntry {
   reports?: string[]; hidden?: true; cleared?: true
 }
 /** A world (./worlds.ts): what its maker chose, when, how many visits it had, and the hash of its cover picture (in the model store). */
-export interface WorldEntry extends WorldInput { id: string; by: string; at: number; updated: number; visits: number; cover?: string }
+export interface WorldEntry extends WorldInput {
+  id: string; by: string; at: number; updated: number; visits: number; cover?: string
+  /** Game furniture a starter put down (src/spaces/world-templates.ts), in tiles. */
+  items?: { itemId: string; x: number; y: number; rot: number }[]
+  /** Friends the maker lets arrange it with them (at most WORLDS.builders). */
+  builders?: string[]
+  /** How many liked it, and who (the first WORLDS.likesKept by name). */
+  likes?: number; likedBy?: string[]
+  /** A lite game played from inside the world (docs/WORLDS.md phase 3). */
+  game?: { id: string; title: string }
+}
 export interface SpacesCollection { homes: Record<string, SpaceHome>; hosts: Record<string, SpaceHost>; models?: Record<string, ModelEntry[]>; modelTrash?: string[]; layouts?: Record<string, SpaceLayout>; scripts?: Record<string, SpaceScript & { at: number; by: string }>; worlds?: Record<string, WorldEntry> }
 
 const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -77,6 +87,11 @@ export function eraseSpaces(db: Db, ids: Iterable<string>): number {
       delete col.models[id];
     }
     for (const list of Object.values(col.models ?? {})) for (const m of list) if (m.reports?.includes(id)) m.reports = m.reports.filter((r) => r !== id);
+    // Their name leaves other makers' builders and likes (the count of likes stays: it holds no person).
+    for (const world of Object.values(col.worlds ?? {})) {
+      if (world.builders?.includes(id)) { world.builders = world.builders.filter((b) => b !== id); if (!world.builders.length) delete world.builders; gone++; }
+      if (world.likedBy?.includes(id)) { world.likedBy = world.likedBy.filter((b) => b !== id); gone++; }
+    }
     // Their worlds, with their layouts, scripts and covers.
     for (const [worldId, world] of Object.entries(col.worlds ?? {})) if (world.by === id) {
       delete col.worlds![worldId]; gone++;

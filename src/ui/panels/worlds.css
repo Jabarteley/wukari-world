@@ -27,3 +27,14 @@
 .worlds-blurb{margin:8px 12px 0;font-size:13px;line-height:1.4;color:var(--c-ink-2)}
 .worlds-acts{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:6px;padding:10px 12px 12px}
 .worlds-acts .ui-button{min-height:40px;padding:0 6px;font-size:13px}
+.worlds-chips.worlds-starters{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ph.is-wide .worlds-chips.worlds-starters{grid-template-columns:repeat(3,minmax(0,1fr))}
+.worlds-chips.worlds-grounds{grid-template-columns:repeat(5,minmax(0,1fr))}
+.worlds-builders{display:flex;flex-wrap:wrap;gap:6px}
+.worlds-builders .ui-chip{min-height:32px;padding:4px 12px;border:1px solid var(--c-line);font-size:12px;cursor:pointer}
+.worlds-acts.is-two{grid-template-columns:1fr 1fr}
+.worlds-meta{display:flex;align-items:flex-start;gap:8px;padding:8px 12px 12px}
+.worlds-meta .worlds-blurb{flex:1;margin:0}
+.worlds-like{margin-left:auto;min-height:36px;padding:0 12px;border:1px solid var(--c-line);border-radius:18px;background:#fff;color:var(--c-ink);font:650 13px var(--font);cursor:pointer;white-space:nowrap}
+.worlds-like[aria-pressed=true]{border-color:#e0457b;color:#c2185b}
+.worlds-likes{position:absolute;top:10px;right:10px;padding:3px 9px;border-radius:12px;background:rgba(0,0,0,.45);color:#fff;font:650 12px var(--font);font-style:normal;z-index:1}

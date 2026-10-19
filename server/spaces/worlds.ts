@@ -8,13 +8,18 @@
  *   POST /api/spaces/worlds { name, blurb?, size?, ground?, open? }   make one (at most WORLDS.perPlayer)
  *   POST /api/spaces/worlds/update { id, …fields }      change its name, words, surface or who may come (its size stays)
  *   POST /api/spaces/worlds/delete { id }               delete it, with its layout, script and cover
+ *   POST /api/spaces/worlds/like { id, on }             like it or take the like back
+ *   POST /api/spaces/worlds/builders { id, builders }   the friends who may arrange it with the maker (docs/WORLDS.md, phase 6)
  *   POST /api/spaces/worlds/cover?id=  (body: image/webp)   a cover picture the maker's device drew from the world itself
  *   GET  /api/spaces/world-cover/:id                    the cover's bytes
  *
  * Kept in `spaces.worlds[id]` (./store.ts); the cover's bytes in the model store under their hash, like a model's. Visits are
  * counted when someone else joins the world live (at most one a visitor an hour). Erased with the player (./store.ts eraseSpaces).
  */
-import { cleanWorld, isWebp, isWorldId, WORLDS, type WorldInput, type WorldOpen } from '../../src/spaces/worlds.ts';
+import { cleanWorld, isWebp, isWorldId, worldPlot, WORLDS, type WorldInput, type WorldOpen } from '../../src/spaces/worlds.ts';
+import { templateOf, WORLD_TEMPLATES, type WorldTemplate } from '../../src/spaces/world-templates.ts';
+import { friendsIn } from '../social/founder.ts';
+import { gamesService } from './games.ts';
 import type { WorldCard } from '../../src/types/spaces.ts';
 import { registerAdminSetting } from '../admin/settings.ts';
 import { screenText } from '../moderation/text.ts';
@@ -40,15 +45,24 @@ export function worldsService(ctx: RouteContext): ReturnType<typeof build> {
 
 function build(ctx: RouteContext) {
   registerAdminSetting(ctx, { key: 'spacesWorlds', label: 'Players make their own worlds', help: 'A player makes worlds of their own (open ground, their models, their script), sends friends a link, and browses and joins the worlds others opened to everyone (docs/WORLDS.md). Needs "Walk through spaces in 3D". Off until an operator turns it on.', kind: 'boolean', default: () => false });
+  registerAdminSetting(ctx, { key: 'spacesScreen', label: 'A screen in spaces (watch or listen together)', help: 'The host of a space in 3D puts on a YouTube video or song and everyone there watches or listens in time (docs/WORLDS.md, phase 2). The player is youtube-nocookie.com\'s own; only the video id passes through Allworld. Off until an operator turns it on.', kind: 'boolean', default: () => false });
   const on = (): boolean => ctx.checks?.setting?.('spaces3d') === true && ctx.checks?.setting?.('spacesWorlds') === true;
+  const screenOn = (): boolean => ctx.checks?.setting?.('spaces3d') === true && ctx.checks?.setting?.('spacesScreen') === true;
+  const friends = (db: Db, a: string, b: string): boolean => a === b || friendsIn(db.social?.players ?? {}, a, b);
+  /** Who may arrange it: the maker and the friends they named. */
+  const mayBuild = (world: WorldEntry, id: string): boolean => world.by === id || (world.builders ?? []).includes(id);
+  /** Who may come in: anyone with the link, except a friends-only world, which takes the maker's friends and builders. */
+  const mayEnter = (db: Db, world: WorldEntry, id: string): boolean => world.open !== 'friends' || mayBuild(world, id) || friends(db, world.by, id);
   /** How many are in each world right now (server/ws/spaces.ts tells us); nothing stored. */
   const live = new Map<string, number>();
   const all = (db: Db): Record<string, WorldEntry> => (db as { spaces?: { worlds?: Record<string, WorldEntry> } }).spaces?.worlds ?? {};
   const nameOf = (db: Db, id: string): string => db.social?.players[id]?.name ?? 'Player';
   const newId = (): string => `w${ctx.randomId().replace(/[^0-9a-z]/gi, '').toLowerCase().padEnd(12, '0').slice(-12)}`;
   const card = (db: Db, world: WorldEntry, viewer: string): WorldCard => ({
-    id: world.id, name: world.name, blurb: world.blurb, by: { id: world.by, name: nameOf(db, world.by) }, size: world.size, ground: world.ground, open: world.open,
+    id: world.id, name: world.name, blurb: world.blurb, by: { id: world.by, name: nameOf(db, world.by) }, size: world.size, ground: world.ground, open: world.open, sky: world.sky ?? 'day',
     visits: world.visits, here: live.get(world.id) ?? 0, cover: world.cover ? world.cover.slice(0, 12) : null, at: world.at, updated: world.updated, mine: world.by === viewer,
+    likes: world.likes ?? 0, liked: (world.likedBy ?? []).includes(viewer), builder: (world.builders ?? []).includes(viewer), ...(world.game ? { game: { ...world.game } } : {}),
+    ...(world.by === viewer ? { builders: (world.builders ?? []).map((id) => ({ id, name: nameOf(db, id) })) } : {}),
   });
   /** The words a world shows other people pass the text filter. */
   const screened = (input: WorldInput): ReturnType<typeof no> | null => {
@@ -68,8 +82,8 @@ function build(ctx: RouteContext) {
   };
 
   return {
-    on,
-    /** The world, if it exists (whoever asks: a link-only world is reached by anyone who has its link). */
+    on, screenOn, mayBuild, mayEnter,
+    /** The world, if it exists (whoever asks: a link-only world is reached by anyone who has its link; mayEnter decides a friends-only one). */
     entry(db: Db, id: unknown): WorldEntry | undefined { return isWorldId(id) ? all(db)[id] : undefined; },
     /** server/ws/spaces.ts: how many are in a world now. */
     setLive(id: string, count: number): void { if (count > 0) live.set(id, count); else live.delete(id); },
@@ -84,10 +98,11 @@ function build(ctx: RouteContext) {
       if (!on()) return no('worlds_off', 'Worlds are not switched on yet.');
       const me = session.publicId;
       let worlds: WorldEntry[];
-      if (which === 'mine') worlds = mineOf(db, me);
+      if (which === 'mine') worlds = newest(Object.values(all(db)).filter((w) => w.by === me || (w.builders ?? []).includes(me)));
+      else if (which === 'friends') worlds = newest(Object.values(all(db)).filter((w) => w.by !== me && w.open !== 'link' && friends(db, w.by, me)));
       else {
         const open = newest(Object.values(all(db)).filter((w) => w.open === 'everyone'));
-        worlds = which === 'popular' ? open.sort((a, b) => (live.get(b.id) ?? 0) - (live.get(a.id) ?? 0) || b.visits - a.visits) : open;
+        worlds = which === 'popular' ? open.sort((a, b) => (live.get(b.id) ?? 0) - (live.get(a.id) ?? 0) || (b.likes ?? 0) - (a.likes ?? 0) || b.visits - a.visits) : open;
       }
       return { ok: true as const, code: 'ok' as const, worlds: worlds.slice(0, WORLDS.list).map((w) => card(db, w, me)), mine: mineOf(db, me).length, limit: WORLDS.perPlayer };
     },
@@ -106,6 +121,13 @@ function build(ctx: RouteContext) {
       while (Object.hasOwn(col.worlds, id)) id = newId();
       const now = ctx.now();
       const world: WorldEntry = { id, by: session.publicId, ...checked.world, at: now, updated: now, visits: 0 };
+      // A starter (src/spaces/world-templates.ts): its shapes, furniture, script and ground, laid out for the size.
+      const template = typeof body['template'] === 'string' && Object.hasOwn(WORLD_TEMPLATES, body['template']) ? body['template'] as WorldTemplate : 'empty';
+      const made = templateOf(template, worldPlot(world.size).w);
+      if (made.ground && body['ground'] === undefined) world.ground = made.ground as WorldEntry['ground'];
+      if (made.items.length) world.items = made.items.map((i) => ({ ...i }));
+      if (made.models.length) (col.layouts ??= {})[`world:${id}`] = { models: made.models.map((m) => ({ ...m })), at: now, by: session.publicId };
+      if (made.script) (col.scripts ??= {})[`world:${id}`] = { code: made.script.code, lines: [...made.script.lines], at: now, by: session.publicId };
       col.worlds[id] = world;
       return { ok: true as const, code: 'created' as const, world: card(db, world, session.publicId) };
     },
@@ -118,8 +140,15 @@ function build(ctx: RouteContext) {
       if (!checked.ok) return checked;
       const blocked = screened(checked.world);
       if (blocked) return blocked;
+      // A lite game to play from inside it: one the game knows ('' takes it away).
+      if (body['game'] === '') delete world.game;
+      else if (body['game'] !== undefined) {
+        const found = gamesService(ctx).one(body['game']);
+        if (!found.ok) return found;
+        world.game = { id: String(body['game']), title: String((found.def as { title?: unknown }).title ?? 'Game').slice(0, 40) };
+      }
       // The size stays: the models stand where they were placed within it.
-      Object.assign(world, { name: checked.world.name, blurb: checked.world.blurb, ground: checked.world.ground, open: checked.world.open as WorldOpen, updated: ctx.now() });
+      Object.assign(world, { name: checked.world.name, blurb: checked.world.blurb, ground: checked.world.ground, open: checked.world.open as WorldOpen, sky: checked.world.sky, updated: ctx.now() });
       return { ok: true as const, code: 'saved' as const, world: card(db, world, session.publicId) };
     },
     /** POST /api/spaces/worlds/delete */
@@ -132,6 +161,30 @@ function build(ctx: RouteContext) {
       if (col.scripts) delete col.scripts[`world:${world.id}`];
       if (world.cover) (col.modelTrash ??= []).push(world.cover);
       return { ok: true as const, code: 'deleted' as const };
+    },
+    /** POST /api/spaces/worlds/like */
+    like(db: Db, session: SessionRecord, body: Record<string, unknown>) {
+      if (!on()) return no('worlds_off', 'Worlds are not switched on yet.');
+      const world = isWorldId(body['id']) ? all(db)[body['id']] : undefined;
+      if (!world || !mayEnter(db, world, session.publicId)) return no('unknown_world', 'That world is gone.');
+      if (world.by === session.publicId) return no('own_world', 'You cannot like your own world.');
+      if (!ctx.allow(`spaces:world-like:${session.publicId}`, 60)) return no('rate_limited', 'You are liking too fast. Wait a moment.');
+      const list = world.likedBy ?? [], had = list.includes(session.publicId), want = body['on'] !== false;
+      if (want && !had) { world.likes = (world.likes ?? 0) + 1; if (list.length < WORLDS.likesKept) world.likedBy = [...list, session.publicId]; }
+      if (!want && had) { world.likes = Math.max(0, (world.likes ?? 1) - 1); world.likedBy = list.filter((id) => id !== session.publicId); }
+      return { ok: true as const, code: 'saved' as const, likes: world.likes ?? 0, liked: want };
+    },
+    /** POST /api/spaces/worlds/builders */
+    builders(db: Db, session: SessionRecord, body: Record<string, unknown>) {
+      if (!on()) return no('worlds_off', 'Worlds are not switched on yet.');
+      const world = own(db, session, body['id']);
+      if ('ok' in world) return world;
+      const wanted = Array.isArray(body['builders']) ? [...new Set(body['builders'].filter((id): id is string => typeof id === 'string'))] : null;
+      if (!wanted) return no('invalid_builders', 'The builders could not be read.');
+      if (wanted.length > WORLDS.builders) return no('too_many', `At most ${WORLDS.builders} friends can build with you.`);
+      if (wanted.some((id) => id === session.publicId || !friends(db, session.publicId, id))) return no('friends_only', 'Only your friends can build with you.');
+      if (wanted.length) world.builders = wanted; else delete world.builders;
+      return { ok: true as const, code: 'saved' as const, world: card(db, world, session.publicId) };
     },
     /** A world's maker bumps it to the top of "new" when its layout or script changes (server/spaces/world.ts). */
     touched(db: Db, id: string): void { const world = all(db)[id]; if (world) world.updated = ctx.now(); },

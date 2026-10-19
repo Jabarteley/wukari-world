@@ -772,7 +772,7 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/story/talk', 'POST /api/story/talk',
   'GET /api/spaces/status', 'POST /api/spaces/design', 'POST /api/spaces/check', 'POST /api/spaces/apply', 'GET /api/spaces/host', 'POST /api/spaces/host', 'GET /api/spaces/games', 'GET /api/spaces/game', 'POST /api/spaces/games',
   'GET /api/spaces/models', 'POST /api/spaces/models', 'POST /api/spaces/models/rename', 'POST /api/spaces/models/delete', 'POST /api/spaces/models/report', 'GET /api/spaces/model-file/:hash', 'GET /api/mod/spaces/models', 'POST /api/mod/spaces/models', 'POST /api/mod/spaces/switch', 'GET /api/spaces/world', 'POST /api/spaces/world/layout', 'POST /api/spaces/world/script',
-  'GET /api/spaces/worlds', 'POST /api/spaces/worlds', 'POST /api/spaces/worlds/update', 'POST /api/spaces/worlds/delete', 'POST /api/spaces/worlds/like', 'POST /api/spaces/worlds/builders', 'POST /api/spaces/worlds/cover', 'GET /api/spaces/world-cover/:id',
+  'GET /api/spaces/worlds', 'POST /api/spaces/worlds', 'POST /api/spaces/worlds/update', 'POST /api/spaces/worlds/delete', 'POST /api/spaces/worlds/like', 'POST /api/spaces/worlds/builders', 'POST /api/spaces/models/upload-link', 'POST /api/spaces/models/upload/:token', 'POST /api/spaces/house', 'POST /api/spaces/worlds/cover', 'GET /api/spaces/world-cover/:id',
   'POST /api/arena/clip',
   'GET /api/world/pray',
   'POST /api/world/pray',

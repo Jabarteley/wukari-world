@@ -202,6 +202,20 @@ The game reaches a player outside the game only by web push and e-mail, only if 
 5. Nigeria's data-protection directive (GAID 2025) requires consent for direct marketing and registration of controllers "of major importance" with the Nigeria Data Protection Commission; a game with more than a few hundred players is likely to qualify. Confirm the registration tier and the age of consent with a Nigerian lawyer before going live. Until then the game treats under-18 as "no outside messages".
 6. Send the first real message to yourself and check the headers (`List-Unsubscribe`, DKIM pass) before letting the schedule run: this build has only been tested against a fake provider. It has not been verified that ZeptoMail's SendGrid-compatible endpoint passes custom `headers` through; if it does not, the one-click header is missing and the visible link still works.
 
+## Players' houses, worlds and upload links
+
+- **A one-time upload link** (`POST /api/spaces/models/upload-link`) lets a player's own AI send one model without the browser's cookie.
+  It is made only by a signed-in, trusted player (the same rule as uploading), names that player, lasts ten minutes, and is spent by the
+  first successful upload. The token is 30 or more random letters and digits; the link is checked again on use (its player must still
+  exist and may upload). Uploads through it pass the same byte-by-byte check, limits and hourly cap as any upload, and a per-address
+  cap. Links are kept in `spaces.links` and erased with the player.
+- **A copied house** (a house description or a whole-house model, docs/HOUSE-FROM-PHOTOS.md) is shown only where the player's game house
+  already is: to them and to the visitors they let in. Names in a description pass the text filter. The game never receives the photos;
+  the skill tells the player's AI to keep house numbers, signs, faces and plates out of a model.
+- **Worlds** (docs/WORLDS.md): names and descriptions pass the text filter; a friends-only world is refused to anyone who is not the
+  maker's friend or builder; covers are WebP files drawn by the maker's own device and checked by their first bytes.
+- **The screen in a space** frames only `https://www.youtube-nocookie.com` (frame-src); the video id is the only thing Allworld relays.
+
 ## Telemetry
 
 **Off unless an operator configures it.** With no telemetry variable set (README, "Telemetry") nothing below happens: no request to either service, no SDK code run or downloaded, nothing stored. It also never runs on `localhost` or a private address unless `TELEMETRY_DEBUG=1`. When it is configured there are two separate things, with different rules.

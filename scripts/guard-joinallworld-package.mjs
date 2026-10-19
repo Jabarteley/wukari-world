@@ -63,6 +63,8 @@ const CITY_ASSET = /^assets\/assets\/cities\/[a-z][a-z0-9-]*\.([a-f0-9]{64})\.js
 const PROGRESSION_ASSET = /^assets\/assets\/progression\/(?:episodes-\d+|journeys|missions)\.([a-f0-9]{64})\.json$/;
 const TALK_INDEX = 'assets/assets/talk-banks/index.json';
 const TALK_CITY = /^assets\/assets\/talk-banks\/([a-z][a-z0-9]*(?:-[a-z0-9]+)*)-([a-f0-9]{64})\.json$/;
+/** The house skill a player's own AI reads (docs/HOUSE-FROM-PHOTOS.md): its instructions, references and scripts, served as text. */
+const SKILL_ASSET = /^assets\/skills\/allworld-house\/(?:(?:reference|scripts)\/)?[a-z][a-z0-9_-]*\.(?:md|py|mjs|json)$/;
 const NATIVE_JSON = new Set(['assets/character-lab/models/final-pass-20261015/catalog.json', 'assets/character-lab/models/candidates/motion-iteration2-upper-palm.json']);
 const NATIVE_NOTICE = new Set(['assets/character-lab/THIRD_PARTY_NOTICES.md', 'assets/character-lab/FINAL-PASS-LICENSE-NOTE.md']);
 /** Path admission only; checkPackage authenticates content and reference closure. @param {string} path @param {number} bytes */
@@ -70,7 +72,8 @@ export function isPackageAssetPath(path, bytes) {
   if (path.startsWith('assets/assets/talk-banks/')) return path === TALK_INDEX || TALK_CITY.test(path);
   // The two reduced-detail near-crowd bodies are the only non-glTF binary assets.
   const bodyLod = /^assets\/assets\/base-body-(?:male|female)-lod-[0-9a-f]{7}\.bin$/.test(path) && bytes > 0 && bytes < 1024 * 1024;
-  return NATIVE_JSON.has(path) || NATIVE_NOTICE.has(path) || CITY_ASSET.test(path) || PROGRESSION_ASSET.test(path) || bodyLod
+  const skill = path === 'assets/skills/allworld-house/SKILL.md' || (SKILL_ASSET.test(path) && bytes > 0 && bytes < 200_000);
+  return NATIVE_JSON.has(path) || NATIVE_NOTICE.has(path) || CITY_ASSET.test(path) || PROGRESSION_ASSET.test(path) || bodyLod || skill
     || /^assets\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+\.(?:html|js|css|svg|png|jpg|jpeg|webp|ico|woff2|txt|glb)$/.test(path);
 }
 /** @param {unknown} value @param {string[]} keys @returns {value is Record<string, unknown>} */

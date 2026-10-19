@@ -31,3 +31,20 @@ node --experimental-strip-types scripts/skills/build-skill-reference.ts
 ```
 
 `--check` verifies without writing. The drift test `src/spaces/skill-reference.test.ts` fails in CI when a committed file differs from the source, and also checks that the example in `space-plan.md` is a valid plan. `space-plan.md` and `SKILL.md` are written by hand.
+
+## The house skill: copy a real house
+
+`public/skills/allworld-house/` is a second skill, served by the game at `/skills/allworld-house/SKILL.md` so a player's AI can read
+it by its address (Houses → Copy my real house → Copy the instructions for my AI). It teaches an AI to turn photos of a real house into
+a house in the game: a house description the game builds (`reference/house-spec.md`), or a whole-house .glb made in Blender
+(`scripts/build_house.py`, `scripts/project_photos.py`), checked with the game's own check (`scripts/check_model.mjs`) and sent with
+the player's agent key (`scripts/upload.mjs`, a one-time upload link). It also covers worlds and their scripts (`reference/worlds.md`).
+
+`reference/house-spec.md`, `reference/limits.md`, `scripts/check_model.mjs` and `index.json` are generated from the game source:
+
+```
+node --experimental-strip-types scripts/skills/build-house-skill.ts
+```
+
+`src/spaces/house-skill.test.ts` fails in CI when they are stale, when SKILL.md names a file that is not there, or when the worked
+example is not a house the game takes unchanged. Details: [HOUSE-FROM-PHOTOS.md](HOUSE-FROM-PHOTOS.md).

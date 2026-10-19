@@ -44,12 +44,12 @@ export const modelRename = (api: Fetcher, id: string, name: string) => call<Mode
 export const modelDelete = (api: Fetcher, id: string) => call<{ ok: true; code: 'deleted' }>(api, '/api/spaces/models/delete', { id })
 export const modelReport = (api: Fetcher, by: string, id: string) => call<{ ok: true; code: 'reported' }>(api, '/api/spaces/models/report', { by, id })
 export const modelFileUrl = (hash: string): string => `/api/spaces/model-file/${hash}`
-export async function modelUpload(file: Blob, name: string): Promise<ModelDone | Refusal> {
+export async function modelUpload(file: Blob, name: string, house = false): Promise<ModelDone | Refusal> {
   try {
-    const response = await fetch(`/api/spaces/models?name=${encodeURIComponent(name)}`, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'model/gltf-binary' }, body: file })
+    const response = await fetch(`/api/spaces/models?name=${encodeURIComponent(name)}${house ? '&house=1' : ''}`, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'model/gltf-binary' }, body: file })
     const answer = await response.json().catch(() => null) as (ModelDone | Refusal | { error?: string }) | null
     if (answer && 'ok' in answer) return answer
-    if (response.status === 413) return { ok: false, code: 'too_large', reason: 'This file is too large. A model may be at most 20 MB.' }
+    if (response.status === 413) return { ok: false, code: 'too_large', reason: house ? 'This file is too large. A whole house may be at most 50 MB.' : 'This file is too large. A model may be at most 20 MB.' }
     return { ok: false, code: 'failed', reason: 'The upload did not go through. Try again.' }
   } catch { return { ok: false, code: 'network', reason: 'No connection. Check your network and try again.' } }
 }
@@ -67,6 +67,9 @@ export const worldSave = (api: Fetcher, where: WorldWhere, models: readonly Plac
   call<{ ok: true; code: 'saved'; placed: number; triangles: number }>(api, '/api/spaces/world/layout', { target: where.target, ...(where.id ? { id: where.id } : {}), models })
 export const scriptSave = (api: Fetcher, where: WorldWhere, code: string, lines: readonly string[]) =>
   call<{ ok: true; code: 'saved' | 'removed'; lines?: number }>(api, '/api/spaces/world/script', { target: where.target, ...(where.id ? { id: where.id } : {}), code, lines })
+
+// Copy my real house (docs/HOUSE-FROM-PHOTOS.md; server/spaces/home-house.ts).
+export const houseSet = (api: Fetcher, body: { spec: unknown } | { model: string } | { clear: true }) => call<{ ok: true; code: 'saved' | 'cleared'; kind?: 'spec' | 'model'; notes?: string[]; rooms?: number }>(api, '/api/spaces/house', body)
 
 // Worlds (docs/WORLDS.md; server/spaces/worlds.ts).
 export const worldsList = (api: Fetcher, which: 'mine' | 'new' | 'popular' | 'friends') => call<WorldsList>(api, `/api/spaces/worlds?list=${which}`)

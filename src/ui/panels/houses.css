@@ -15,6 +15,7 @@
 .ph.is-wide .houses-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}
 .houses-tile{display:grid;grid-template-rows:auto auto 1fr;align-content:start;justify-items:start;gap:7px 0;min-height:108px;padding:12px;border:1px solid var(--c-line);border-radius:14px;background:#fff;color:var(--c-ink);font:inherit;text-align:left;cursor:pointer}
 .houses-tile:hover{background:var(--c-fill)}
+.houses-tile[data-houses=copy]{grid-column:1/-1;min-height:0;background:linear-gradient(135deg,#fff7ec,#eef7ff)}
 .houses-tile i{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--c-fill);font-style:normal}
 .houses-tile i :deep(svg){width:18px;height:18px}
 .houses-tile b{font-size:13px;line-height:1.2}

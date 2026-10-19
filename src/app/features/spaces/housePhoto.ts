@@ -6,11 +6,13 @@ import type { SpaceInput } from '../../../spaces/world/space.ts'
 const photos = new Map<string, string>()
 
 /** What changes the outside of the house: the plot, who owns it and the colours. Furniture inside does not. */
-export const photoKey = (input: Pick<SpaceInput, 'grid' | 'owned' | 'style'>): string => JSON.stringify([input.grid, input.owned, input.style])
+export const photoKey = (input: Pick<SpaceInput, 'grid' | 'owned' | 'style' | 'house'>): string => JSON.stringify([input.grid, input.owned, input.style, input.house ?? null])
 
 /** Where the camera stands for a plot `w` by `d` metres and `h` tall: in the yard, on the front door's side (x = 0), looking at the middle. */
-export function photoCamera(w: number, d: number, h: number): { from: [number, number, number]; at: [number, number, number] } {
+export function photoCamera(w: number, d: number, h: number, front: 'left' | 'near' = 'left'): { from: [number, number, number]; at: [number, number, number] } {
   const dist = Math.max(w, d, h * 1.8) * 1.15 + 4
+  // The game's house has its door on the left wall (x = 0); a copied house faces the street from its near wall (z = 0).
+  if (front === 'near') return { from: [w / 2 - dist * 0.55, h * 0.55 + dist * 0.38, -dist * 0.75], at: [w / 2, Math.max(0.9, h * 0.38), d / 2] }
   return { from: [-dist * 0.7, h * 0.55 + dist * 0.38, d / 2 + dist * 0.62], at: [w / 2, Math.max(0.9, h * 0.38), d / 2] }
 }
 
@@ -34,7 +36,7 @@ export async function photographHouse(input: SpaceInput, width = 720, height = 4
     const centre = box.getCenter(new THREE.Vector3())
     aimSun(look, centre, Math.max(size.x, size.z) / 2 + 3)
     const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 300)
-    const { from, at } = photoCamera(size.x, size.z, size.y)
+    const { from, at } = photoCamera(size.x, size.z, size.y, input.house?.kind === 'spec' ? 'near' : 'left')
     camera.position.set(box.min.x + from[0], from[1], box.min.z + from[2])
     camera.lookAt(box.min.x + at[0], at[1], box.min.z + at[2])
     look.renderer.render(look.scene, camera)

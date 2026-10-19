@@ -3,6 +3,7 @@
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { test } from 'node:test';
+import { isPackageAssetPath } from '../scripts/guard-joinallworld-package.mjs';
 
 const root = new URL('../', import.meta.url);
 const SKIP = new Set(['node_modules', '.git', 'dist', 'dist-maps', '.data', 'evidence']);
@@ -12,15 +13,6 @@ function files(dir: URL, prefix = ''): string[] {
     return entry.isDirectory() ? files(new URL(`${entry.name}/`, dir), `${prefix}${entry.name}/`) : [`${prefix}${entry.name}`];
   });
 }
-
-/** The pipeline's own asset rule (scripts/guard-joinallworld-package.mjs), applied to what public/ ships. */
-const ASSET = /^[A-Za-z0-9_.-]+\.(?:html|js|css|svg|png|jpg|jpeg|webp|ico|woff2|txt|glb)$/;
-const NATIVE_PUBLIC_METADATA = new Set([
-  'character-lab/FINAL-PASS-LICENSE-NOTE.md',
-  'character-lab/THIRD_PARTY_NOTICES.md',
-  'character-lab/models/candidates/motion-iteration2-upper-palm.json',
-  'character-lab/models/final-pass-20261015/catalog.json',
-]);
 
 test('JavaScript is limited to the service worker, release shims and exact reviewed tooling', () => {
   const javascript = files(root).filter((file) => /\.(?:js|mjs|cjs)$/.test(file)).sort();
@@ -63,7 +55,7 @@ test('the two release shims only point at the TypeScript they stand for', () => 
 test('every file in public/ is an asset the release package admits (no dot-file, no map, no manifest, no xml)', () => {
   for (const file of files(new URL('public/', root))) {
     assert.ok(!file.split('/').some((part) => part.startsWith('.')), `${file} starts with a dot`);
-    assert.ok(NATIVE_PUBLIC_METADATA.has(file) || ASSET.test(file.split('/').at(-1) as string), `${file} is not an asset extension the package admits`);
+    assert.ok(isPackageAssetPath(`assets/${file}`, statSync(new URL(`public/${file}`, root)).size), `${file} is not an asset path the package admits`);
   }
 });
 

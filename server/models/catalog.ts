@@ -58,6 +58,7 @@ export interface Price { input: number; output: number }
 /** US$ per million tokens. Free models are 0. */
 export const PRICES: Readonly<Record<string, Price>> = Object.freeze({
   'openai/gpt-5.6-luna': { input: 0.10, output: 0.50 },
+  'openai/gpt-4o-mini': { input: 0.165, output: 0.66 },
   'xai/grok-4.1-fast-non-reasoning': { input: 0.20, output: 0.50 },
   'nvidia/nemotron-3.5-lightning-free': { input: 0, output: 0 },
   'poolside/laguna-s-2.1-free': { input: 0, output: 0 },

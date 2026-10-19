@@ -10,6 +10,7 @@ import { socialService } from '../social/service.ts';
 import { moderationService } from '../moderation/service.ts';
 import { sanctionsOf } from './sanctions.ts';
 import { agentService } from '../agents/service.ts';
+import { forgetStoryTalk } from '../story/talk-service.ts';
 import type { Db, RouteContext, RouteRequest } from '../types.ts';
 
 interface Job {
@@ -41,6 +42,7 @@ export function erasureService(ctx: RouteContext, invalidate: () => void) {
       const job = await ctx.store.read(db => jobs(db).jobs[id]);
       if (!job || job.state === 'complete') return;
       for (const socket of ctx.core.sockets()) if (socket.session && job.actors.includes(socket.session.id)) ctx.core.closeSocket?.(socket, SESSION_CHANGED, 'Player erased');
+      forgetStoryTalk(ctx, job.actors);
       socialService(ctx).forgetRuntime(job.actors);
       for (const actor of job.actors) agentService(ctx).leavePlace(actor);
       await Promise.all([moderationService(ctx).load(), sanctionsOf(ctx).load()]);

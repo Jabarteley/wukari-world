@@ -1,0 +1,116 @@
+{
+  "sourceSha": "419e3768cb337ce29b6317a094ce5eb4e57236b3",
+  "scope": "Existing download-budget checks on immutable hosted bundle plus 289 manifest-verified content supplements; no full native inventory or lazy-group scan",
+  "files": 3894,
+  "rawInputBytes": 317018538,
+  "checks": [
+    {
+      "budget": "LOADING_RAW",
+      "measured": 90399,
+      "detail": "first-paint JavaScript",
+      "status": "ok"
+    },
+    {
+      "budget": "LOADING_GZIP",
+      "measured": 35212,
+      "detail": "first-paint JavaScript",
+      "status": "ok"
+    },
+    {
+      "budget": "FIRST_PAINT_BROTLI",
+      "measured": 35401,
+      "detail": "5 files: index.html, stylesheet and JavaScript",
+      "status": "ok"
+    },
+    {
+      "budget": "STARTUP_RAW",
+      "measured": 611548,
+      "detail": "largest over 284 cities (lagos)",
+      "status": "ok"
+    },
+    {
+      "budget": "STARTUP_GZIP",
+      "measured": 222198,
+      "detail": "largest over 284 cities (lagos)",
+      "status": "ok"
+    },
+    {
+      "budget": "STARTUP_BROTLI",
+      "measured": 195623,
+      "detail": "largest over 284 cities (lagos)",
+      "status": "ok"
+    },
+    {
+      "budget": "SCENE_HOST_RAW",
+      "measured": 80065,
+      "detail": "shared scene chunk (world-adapter)",
+      "status": "ok"
+    },
+    {
+      "budget": "SCENE_HOST_GZIP",
+      "measured": 30309,
+      "detail": "shared scene chunk (world-adapter)",
+      "status": "ok"
+    },
+    {
+      "budget": "BASE_BODY_BROTLI",
+      "measured": null,
+      "detail": "no file matches /(^|\\/)base-body[^/]*\\.(glb|gltf|bin)$/",
+      "status": "not measured"
+    },
+    {
+      "budget": "CLIP_PACK_BROTLI",
+      "measured": null,
+      "detail": "no file matches /(^|\\/)clip-pack[^/]*\\.(glb|gltf|bin|json)$/",
+      "status": "not measured"
+    },
+    {
+      "budget": "WARDROBE_ITEM_BROTLI",
+      "measured": null,
+      "detail": "no file matches /(^|\\/)wardrobe\\/[^/]+\\.(glb|gltf)$/",
+      "status": "not measured"
+    },
+    {
+      "budget": "STREET_TILE_BROTLI",
+      "measured": null,
+      "detail": "no file matches /(^|\\/)(street-)?tiles?\\/[^/]+\\.(glb|gltf|bin)$/",
+      "status": "not measured"
+    },
+    {
+      "budget": "CITY_SCENE_RECIPES_BYTES",
+      "measured": 46473,
+      "detail": "284 file(s) matching /^assets\\/recipe-city-[a-z0-9]+(?:-[a-z0-9]+)*-[a-f0-9]{7}\\.js$/",
+      "status": "ok"
+    },
+    {
+      "budget": "TALK_INDEX_BYTES",
+      "measured": 64870,
+      "detail": "1 file(s) matching /^assets\\/talk-banks\\/index\\.json$/",
+      "status": "ok"
+    },
+    {
+      "budget": "TALK_CITY_PACK_BYTES",
+      "measured": 628584,
+      "detail": "284 file(s) matching /^assets\\/talk-banks\\/[a-z][a-z0-9-]*-[a-f0-9]{64}\\.json$/",
+      "status": "ok"
+    },
+    {
+      "budget": "SCENE_KIT_BROTLI",
+      "measured": 141446,
+      "detail": "14 file(s) matching /^assets\\/scene-factory\\/kits\\/[a-z][a-z0-9-]*-[a-f0-9]{64}\\.glb$/",
+      "status": "ok"
+    },
+    {
+      "budget": "HERO_BROTLI",
+      "measured": 37645,
+      "detail": "284 file(s) matching /^assets\\/scene-factory\\/heroes\\/[a-z][a-z0-9-]*-[a-f0-9]{64}\\.glb$/",
+      "status": "ok"
+    },
+    {
+      "budget": "CITY_CONTENT_RECIPE_TALK_BYTES",
+      "measured": 783868,
+      "detail": "largest city lagos: assets/cities/lagos.6adf39063369f1710e9eb9833ff9eb2cc8373caaf31004c7a71583e8d2beb3e7.json, assets/recipe-city-lagos-f42bfef.js, assets/talk-banks/lagos-a1ffd827e2426fa106430efc5ea6206636cbfa09f0266dd7817d42db29e7e78b.json",
+      "status": "ok"
+    }
+  ]
+}

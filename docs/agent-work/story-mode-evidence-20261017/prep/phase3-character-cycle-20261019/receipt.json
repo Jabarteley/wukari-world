@@ -1,0 +1,57 @@
+{
+  "scope": "source focused checks and exact old-artifact rejection only; no new bundle acceptance",
+  "rows": [
+    {
+      "name": "source-focused",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "--test",
+        "--test-name-pattern=^(the first download|the shared shell|each generated|Three.js)",
+        "src/app/entry.test.ts"
+      ],
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "passed": true,
+      "seconds": 0.16860725008882582
+    },
+    {
+      "name": "old419-rejection",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "/tmp/phase3-character-cycle-proof-20261019-ljkbd029/old-artifact-probe.ts",
+        "/private/tmp/story-phase3-bank-qa-419e3768-c1pzv8nl/prepared-dist"
+      ],
+      "exitCode": 1,
+      "expectedExitCode": 1,
+      "passed": true,
+      "seconds": 0.0722478749230504
+    }
+  ],
+  "canonicalInventoryAudit": {
+    "method": "literal path search in all generated scene/Talk JSON and canonical host map; no source or generated output written",
+    "filesInspected": 855,
+    "targets": [
+      "vite.config.ts",
+      "src/app/entry.test.ts"
+    ],
+    "hits": []
+  },
+  "afterPins": {
+    "vite.config.ts": {
+      "sha256": "d980c1c9c5a1ba1f43ce79220cf87d9a6f08d32de8143952a03eee7bf7255ad2",
+      "bytes": 36641
+    },
+    "src/app/entry.test.ts": {
+      "sha256": "87050cdbc3a5adcb6006d2d531c6ccb5f2c9d68c85a348a72f4bb0efe44829a9",
+      "bytes": 26128
+    }
+  },
+  "stageAllowlist": [
+    "vite.config.ts",
+    "src/app/entry.test.ts"
+  ],
+  "testParserShared": "eagerChunks now delegates to emittedChunks; new boundary assertion uses the identical static-import closure parser",
+  "newBundleVerified": false
+}

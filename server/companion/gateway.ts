@@ -71,7 +71,8 @@ export function companionConfig(env: (name: string) => string, anotherProvider =
 export interface ChatMessage { role: 'system' | 'user' | 'assistant'; content: string }
 export interface Usage { input: number; output: number }
 export type GatewayFailure = 'timeout' | 'status' | 'network' | 'body' | 'auth' | 'model' | 'rate';
-export type GatewayAnswer = { ok: true; text: string; model: string; usage: Usage | null } | { ok: false; why: GatewayFailure; /** A 429's `retry-after` header as the provider wrote it (seconds, or an HTTP date); the model router reads it (server/models/router.ts retryAfterMs). */ retryAfter?: string };
+export type Billing = { kind: 'unbilled' } | { kind: 'unknown' } | { kind: 'observed'; usage: Usage | null; providerCostMicro: number | null };
+export type GatewayAnswer = ({ ok: true; text: string; model: string; usage: Usage | null } | { ok: false; why: GatewayFailure; /** A 429's `retry-after` header as the provider wrote it (seconds, or an HTTP date); the model router reads it (server/models/router.ts retryAfterMs). */ retryAfter?: string }) & { /** Accounting evidence survives a rejected/empty visible answer. */ billing?: Billing };
 export type GatewayAttempt = GatewayAnswer & { role: 'primary' | 'fallback' };
 type Fetcher = (url: string, init?: object) => Promise<unknown>;
 
@@ -89,18 +90,33 @@ export function requestBody(config: Pick<Target, 'maxOutputTokens'> & Partial<Ta
 }
 
 const isResponse = (value: unknown): value is Response => typeof value === 'object' && value !== null && typeof Reflect.get(value, 'status') === 'number' && typeof Reflect.get(value, 'text') === 'function';
-const count = (value: unknown): number => (typeof value === 'number' && Number.isFinite(value) && value >= 0 ? Math.floor(value) : 0);
+const tokens = (value: unknown): value is number => typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
+function readUsage(raw: unknown): Usage | null {
+  if (typeof raw !== 'object' || raw === null) return null;
+  const used: unknown = Reflect.get(raw, 'usage');
+  if (typeof used !== 'object' || used === null) return null;
+  const input: unknown = Reflect.get(used, 'prompt_tokens'), output: unknown = Reflect.get(used, 'completion_tokens');
+  return tokens(input) && tokens(output) && input + output > 0 ? { input, output } : null;
+}
+/** OpenRouter's usage.cost is a reported total USD charge, not independently reconciled invoice evidence. */
+function readBilling(raw: unknown, kind: Target['kind']): Billing {
+  const usage = readUsage(raw);
+  const used: unknown = typeof raw === 'object' && raw !== null ? Reflect.get(raw, 'usage') : null;
+  const cost: unknown = kind === 'openrouter' && typeof used === 'object' && used !== null ? Reflect.get(used, 'cost') : null;
+  const micro = typeof cost === 'number' && Number.isFinite(cost) && cost >= 0 ? cost * 1e6 : null;
+  const providerCostMicro = micro !== null && Number.isFinite(micro) && micro <= Number.MAX_SAFE_INTEGER ? micro : null;
+  return usage || providerCostMicro !== null ? { kind: 'observed', usage, providerCostMicro } : { kind: 'unknown' };
+}
 
 /** Read the gateway's answer: the text of the first choice and, when given, the tokens it counted. */
 export function readAnswer(raw: unknown): { text: string; usage: Usage | null } | null {
   if (typeof raw !== 'object' || raw === null) return null;
   const choice = Array.isArray(Reflect.get(raw, 'choices')) ? Reflect.get(raw, 'choices')[0] : undefined;
-  const content: unknown = typeof choice === 'object' && choice !== null ? Reflect.get(Reflect.get(choice, 'message') ?? {}, 'content') : undefined;
+  const message: unknown = typeof choice === 'object' && choice !== null ? Reflect.get(choice, 'message') : undefined;
+  const content: unknown = typeof message === 'object' && message !== null ? Reflect.get(message, 'content') : undefined;
   const text = typeof content === 'string' ? content : Array.isArray(content) ? content.map((part) => (typeof part === 'object' && part !== null && typeof Reflect.get(part, 'text') === 'string' ? Reflect.get(part, 'text') : '')).join('') : '';
   if (!text.trim()) return null;
-  const used: unknown = Reflect.get(raw, 'usage');
-  const input = typeof used === 'object' && used !== null ? count(Reflect.get(used, 'prompt_tokens')) : 0, output = typeof used === 'object' && used !== null ? count(Reflect.get(used, 'completion_tokens')) : 0;
-  return { text: text.slice(0, 8000), usage: input || output ? { input, output } : null };
+  return { text: text.slice(0, 8000), usage: readUsage(raw) };
 }
 
 /** One request to one model. Answers a short fixed reason on a failure. */
@@ -115,23 +131,24 @@ export async function once(fetcher: Fetcher, config: Target, model: string, role
     });
     // The timer must win even when a fetch ignores the abort signal.
     const response = await Promise.race([sent, new Promise<never>((_, reject) => { control.signal.addEventListener('abort', () => reject(new Error('timeout'))); })]);
-    if (!isResponse(response)) return { ok: false, why: 'network' };
-    if (response.status === 401 || response.status === 403) return { ok: false, why: 'auth' };
-    if (response.status === 404) return { ok: false, why: 'model' };
-    if (response.status === 429) { const wait = response.headers?.get?.('retry-after'); return { ok: false, why: 'rate', ...(typeof wait === 'string' && wait ? { retryAfter: wait.slice(0, 80) } : {}) }; }
+    if (!isResponse(response)) return { ok: false, why: 'network', billing: { kind: 'unknown' } };
+    if (response.status === 401 || response.status === 403) return { ok: false, why: 'auth', billing: { kind: 'unbilled' } };
+    if (response.status === 404) return { ok: false, why: 'model', billing: { kind: 'unbilled' } };
+    if (response.status === 429) { const wait = response.headers?.get?.('retry-after'); return { ok: false, why: 'rate', billing: { kind: 'unbilled' }, ...(typeof wait === 'string' && wait ? { retryAfter: wait.slice(0, 80) } : {}) }; }
     if (response.status === 400 && !plain) {
       const said = await Promise.race([response.text(), new Promise<string>((resolve) => { control.signal.addEventListener('abort', () => resolve('')); })]).catch(() => '');
       if (/temperature|max_tokens|max_completion_tokens/i.test(said.slice(0, 2000))) { clearTimeout(timer); return once(fetcher, config, model, role, messages, user, budgetMs, true); }
-      return { ok: false, why: 'status' };
+      return { ok: false, why: 'status', billing: { kind: 'unbilled' } };
     }
-    if (response.status < 200 || response.status >= 300) return { ok: false, why: 'status' };
+    if (response.status < 200 || response.status >= 300) return { ok: false, why: 'status', billing: { kind: response.status === 400 || response.status === 402 ? 'unbilled' : 'unknown' } };
     const body = await Promise.race([response.text(), new Promise<never>((_, reject) => { control.signal.addEventListener('abort', () => reject(new Error('timeout'))); })]);
     let parsed: unknown;
-    try { parsed = JSON.parse(body.slice(0, 200000)); } catch { return { ok: false, why: 'body' }; }
+    try { parsed = JSON.parse(body.slice(0, 200000)); } catch { return { ok: false, why: 'body', billing: { kind: 'unknown' } }; }
+    const billing = readBilling(parsed, config.kind);
     const answer = readAnswer(parsed);
-    return answer ? { ok: true, text: answer.text, model, usage: answer.usage } : { ok: false, why: 'body' };
+    return answer ? { ok: true, text: answer.text, model, usage: answer.usage, billing } : { ok: false, why: 'body', billing };
   } catch {
-    return { ok: false, why: control.signal.aborted ? 'timeout' : 'network' };
+    return { ok: false, why: control.signal.aborted ? 'timeout' : 'network', billing: { kind: 'unknown' } };
   } finally { clearTimeout(timer); }
 }
 

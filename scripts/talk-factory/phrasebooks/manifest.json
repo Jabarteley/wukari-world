@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "status": "beta",
+  "productionIntegration": false,
+  "nativeSpeakerReviewed": false,
+  "sourceEvidence": {
+    "path": "docs/agent-work/story-mode-evidence-20261017/prep/phrasebook-primary-sources.json",
+    "sha256": "091a1d05b571eeac3ab381ae21f13bcbe74d6792cfb4eef51b4da6c9c0914ca1"
+  },
+  "entries": [
+    {
+      "lang": "ha",
+      "file": "ha.json",
+      "sha256": "f8bb8c30c4865d396ea88f401afe16e3cfca21387d169d45f24104ee1e3c2855",
+      "topic": "greeting",
+      "sourceLicense": "unknown; no reuse license identified"
+    },
+    {
+      "lang": "tw",
+      "file": "tw.json",
+      "sha256": "f6004ed164f051e84aad85858114dc776d0a7ed8ec8a72817d6168a629b6706a",
+      "topic": "thanks",
+      "sourceLicense": "unknown; no reuse license identified"
+    },
+    {
+      "lang": "ja",
+      "file": "ja.json",
+      "sha256": "3b59a63506e717a884db10b0d3e9176887eddeb7f0c57bf6ad46f7f334a1ca1e",
+      "topic": "thanks",
+      "sourceLicense": "copyright © The Japan Foundation; permission/reuse terms for phrase extraction not established"
+    }
+  ],
+  "excludedChoices": [
+    {
+      "language": "Hausa",
+      "category": "thanks",
+      "phrase": "Na gode!",
+      "reason": "The source table groups Sannu! and Na gode! alongside a combined English row; an individual exact gloss is not established."
+    },
+    {
+      "language": "Twi (Akan)",
+      "category": "time-specific morning greeting",
+      "phrase": "Mema wo akye (Maakye)",
+      "reason": "Morning-specific; the bank has no time-context field."
+    },
+    {
+      "language": "Japanese",
+      "category": "time-specific morning greeting",
+      "phrase": "おはよう（ございます）",
+      "reason": "Morning-specific; the bank has no time-context field."
+    }
+  ],
+  "reviewStatus": "Every entry is a beta candidate copied from a cited human-authored lesson; individual phrase author/native-speaker approval remains pending. Source license/reuse terms are recorded as supplied and unresolved where stated."
+}

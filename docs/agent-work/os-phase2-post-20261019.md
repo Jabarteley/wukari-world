@@ -7,7 +7,7 @@
 - **Model / effort:** Sonnet 5.5 / default
 - **Thread:** local
 - **UTC updated:** 2026-10-19T22:00:00Z
-- **Status:** `active` (waiting for a browser slot to measure)
+- **Status:** `ready-for-review`
 - **Work state:** `implementation`
 
 ## Goal and boundaries
@@ -40,12 +40,13 @@
 
 ### In progress / blockers
 
-- Frame timings on the Mac: waiting for the shared `browser` slot (design agents hold it). Script: `/tmp/p2-shot.mjs` (Chrome headless=new, CDP).
+- Frame timings on the Mac were NOT measured: the shared `browser` slot stayed taken by other agents' captures for about 50 minutes (my request was killed unserved). Because the 3 ms AO / 5 ms stack gates are therefore unproven, post AO is default off behind `?ao=1` (`postAoRequested` in `post.ts`). The harness is ready: `street-harness.html?quality=high&post=1&bench=1[&ao=1]&time=dusk&streetlife=on&eye=1`, then `window.__bench(30, 'plain'|'post')` returns ms per frame (with gl.finish).
+- CI run 39330014232 (with MSAA, no SMAA): fx chunk 246,265 raw / 105,369 gzip, FX_RAW and FX_GZIP ok. STARTUP_BROTLI over by 56 bytes (196,356 vs 196,300) although STARTUP_RAW is identical to main (613,913) and gzip is lower: brotli noise from chunk hashes, main sat at 196,250. Not caused by a size change in startup code.
 
 ### Immediate resume steps
 
-1. `node --experimental-strip-types --test src/scene/fx/*.test.ts`
-2. Typecheck through the slot, push, run CI, read the size lines.
+1. When a browser slot is free, run the harness URL above and record ms for plain, post and post+ao at 1080p and 2x; take the before/after pair.
+2. If AO is under 3 ms and the stack under 5 ms, make `postAoRequested` default true (`?ao=0` off).
 
 ## Release state
 

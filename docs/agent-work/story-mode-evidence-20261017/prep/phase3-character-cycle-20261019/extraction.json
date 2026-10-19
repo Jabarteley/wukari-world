@@ -1,0 +1,6 @@
+{
+  "source": "src/app/entry.test.ts",
+  "sourceSha256": "87050cdbc3a5adcb6006d2d531c6ccb5f2c9d68c85a348a72f4bb0efe44829a9",
+  "predicateAndParserSha256": "3f53f78ec1b126b4166dac4d1c4e9f5a50ccc6b03ee41f63a20463ad69f600d5",
+  "method": "Exact helper source slices; no product modules imported; predicate unchanged"
+}

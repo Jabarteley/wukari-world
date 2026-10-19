@@ -1,0 +1,40 @@
+{
+  "sourceSha": "419e3768cb337ce29b6317a094ce5eb4e57236b3",
+  "ciRun": 39183398238,
+  "artifactId": 12157615906,
+  "artifactName": "story-bundle-419e3768cb337ce29b6317a094ce5eb4e57236b3",
+  "archiveSha256": "cef4c7587371314d87a6160f6c3a583a34e9e159a8665d7a4a932a5142e1da5f",
+  "archiveBytes": 58526747,
+  "talkFilesVerified": 285,
+  "talkCities": 284,
+  "webps": [
+    {
+      "path": "assets/app-icons-488c822.webp",
+      "sha256": "62d612c58e3f06849fa70bdc80e531b7e3ef8028381aae9120a457af1321357c",
+      "source": "src/ui/phone/app-icons.webp"
+    },
+    {
+      "path": "assets/game-covers-4c0fb0d.webp",
+      "sha256": "825926a30e5025f45beafe8d54d7399c06d3ad354a0693fe82540dce965e2370",
+      "source": "src/app/features/games/game-covers.webp"
+    },
+    {
+      "path": "assets/car-catalogue-93fcc42.webp",
+      "sha256": "829e112f4eb86aacca7d2720aebeec840ded67ba3b2f04cc16e88adcd13b8ca4",
+      "source": "src/app/features/home/car-catalogue.webp"
+    },
+    {
+      "path": "assets/house-catalogue-28dfc24.webp",
+      "sha256": "02b44bdfd913dfacdb00e7606f42ba35726636163cc27c3825023c5b768fe1c1",
+      "source": "src/app/features/home/house-catalogue.webp"
+    }
+  ],
+  "artifactFileCount": 3605,
+  "preparedFileCount": 9415,
+  "preparationReceipt": "/private/tmp/story-phase3-bank-qa-419e3768-c1pzv8nl/prepared-dist/story-phase2-qa-preparation.json",
+  "preparationReceiptSha256": "17d57d2339000536208c5cc2039adeda4d54c956c0c8f442199e97d316359e96",
+  "artifactInventorySha256": "3295004a8d870bd0ad35b0037626db6b02212ad7201dd5c410c92626c5769aa9",
+  "sourceManifestSha256": "6e48446ece04d06119a48b77059d667d175449950f60d4b23fe59001ce38c433",
+  "targetDir": "/private/tmp/story-phase3-bank-qa-419e3768-c1pzv8nl/prepared-dist",
+  "preparerSha256": "0dd72a52b8c90d332d8f3cb46d31e23f66207bb7722c926609fe793e5f07b24b"
+}

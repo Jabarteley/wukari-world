@@ -407,10 +407,12 @@ export interface ActionMap extends CampusActionMap, StoryActionMap, StoryModeAct
     payload: { op: 'barber-reward'; lessonId: 'basic' | 'advanced' } | { op: 'barber-tool' } | { op: 'clerk-reward' } | { op: 'npc-restock-wage' }
       // A danfo run's fares (or its conductor's share), settled and capped by server/danfo/service.ts in the same transaction.
       | { op: 'danfo-fare'; amount: number; role: 'driver' | 'conductor' }
+      // A season's pay (NYSC camp, JAMB season), settled and capped by server/minigames/ in the same transaction.
+      | { op: 'minigame-reward'; amount: number; kind: 'nysc' | 'jamb' }
     ok: 'barber_rewarded' | 'barber_tool_upgraded' | 'clerk_rewarded' | 'npc_restock_wage_paid'
-      | 'danfo_fare_paid'
+      | 'danfo_fare_paid' | 'minigame_paid'
     fail: 'invalid_barber_action' | 'invalid_clerk_action' | 'invalid_npc_restock_action' | 'balance_limit' | 'insufficient_funds'
-      | 'invalid_danfo_action'
+      | 'invalid_danfo_action' | 'invalid_minigame_action'
     serverOnly: true
   }
 

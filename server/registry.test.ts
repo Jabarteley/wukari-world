@@ -118,6 +118,7 @@ test('route registry rejects duplicate and malformed routes at start-up and list
   // Every module registers only under its own namespace; the core module is exactly the core set.
   const NAMESPACES = ['', '/api/account', '/api/social/', '/api/civic/', '/api/support/', '/api/mod/', '/api/world/', '/api/world/land', '/api/growth/', '/api/mod/growth/', '/api/campus', '/api/projects', '/api/retention', '/api/world/pulse', '/api/world/festivals', '/api/world/feed', '/api/world/', '/api/world/pray', '/api/', '/api/world/', '/api/social/ping', '/api/social/visit', '/api/places', '/api/business/', '/api/commerce', '/api/mod/business/', '/api/market/', '/api/mod/market/', '/api/notice', '/api/world/badges', '/api/companion/', '/api/admin/', '/api/', '/api/mod/store', '/api/politics/', '/api/world/records', '/api/trust/', '/api/real-value/', '/api/street/', '/api/living-world/', '/api/showcase/', '/api/mod/showcase', '/api/agents', '/api/mod/agents', '/api/world/legacy', '/api/profiles/', '/api/arena/', '/api/clans/', '/api/story/', '/api/story/', '/api/spaces/', '/api/mod/spaces/', '/api/feed/', '/api/mod/feed', '/api/admin/feed', '/api/promote/', '/api/admin/promote', '/api/earn/', '/api/admin/earn', '/api/world/', '/api/admin/world-events', '/api/loops/', '/api/neighbourhood/', '/api/admin/neighbourhood', '/api/economy'];
   NAMESPACES.push('/api/danfo/');
+  NAMESPACES.push('/api/minigames/');
   assert.equal(ROUTE_MODULES.length, NAMESPACES.length);
   ROUTE_MODULES.forEach((module, index) => {
     const own = Object.keys(module(ctx) || {});

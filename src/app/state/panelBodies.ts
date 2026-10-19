@@ -76,6 +76,9 @@ const loaders = {
   'promote/BusinessesApp': () => import('../features/promote/BusinessesApp.vue'),
   'earn/EarnApp': () => import('../features/earn/EarnApp.vue'),
   'danfo/DanfoApp': () => import('../features/danfo/DanfoApp.vue'),
+  'minigames/HaggleApp': () => import('../features/minigames/HaggleApp.vue'),
+  'minigames/SkitApp': () => import('../features/minigames/SkitApp.vue'),
+  'minigames/SeasonsApp': () => import('../features/minigames/SeasonsApp.vue'),
 } satisfies Record<string, () => Promise<BodyModule>>
 
 export type PanelBody = keyof typeof loaders

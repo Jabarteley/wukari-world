@@ -4,8 +4,8 @@
 
 - **Work ID:** `20261019-agents-voice`
 - **Owner:** Claude (Claude Code, T3 Code thread, the owner's Mac)
-- **Status:** `active`
-- **Work state:** `implementation`
+- **Status:** `done`
+- **Work state:** `released`
 
 ## Goal and boundaries
 
@@ -24,3 +24,4 @@
 | UTC | Status | Change or finding | Evidence | Next step |
 |---|---|---|---|---|
 | 2026-10-19T09:50:00Z | active | Causes found: AI chats listed under all chats; house agents greet with fixed lines, never see history, fall back to "ask me about prices, hours or the way" | code read | implement |
+| 2026-10-19T12:20:00Z | done | Live as 5ca9ad22a (contains 210b3ecec) | typecheck, build, budgets ok; touched tests 373/375 (2 fail on main too); edge failures identical on main; CI green; continuity ok; smoke PASS 295 | none; open finding: gpt-5.6-luna priced at half the gateway's rate in server/models/catalog.ts |

@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "luxembourg",
+    "name": "Luxembourg",
+    "state": {
+      "id": "lu-luxembourg",
+      "name": "Luxembourg"
+    },
+    "country": {
+      "id": "lu",
+      "name": "Luxembourg"
+    },
+    "point": {
+      "lon": 6.129799,
+      "lat": 49.6112768
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/luxembourg-261011.osm.pbf",
+      "https://ourairports.com/airports/ELLX/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/luxembourg/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/luxembourg/facts.ts",
+        "sha256": "25a1e7a63923be74f881f4da378ba8b2ea512646a91df08f0c861f53cdbf7397"
+      },
+      {
+        "path": "src/game/cities/luxembourg/index.ts",
+        "sha256": "c9f06c5dfabd6bcaf8c97ffc546ff6e35de02fec845d2977e631c13e13d7dcd5"
+      },
+      {
+        "path": "src/game/cities/luxembourg/places.ts",
+        "sha256": "ecc3a02405e75be3139a3c0327fb75a11eea4395b195148cb2d38486566fb548"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.129799,
+        "lat": 49.6112768
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "luxembourg-airport-luxembourg-airport",
+      "name": "Luxembourg-Findel International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.212134,
+        "lat": 49.626845
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-airport-luxembourg-airport-1",
+        "luxembourg-luxembourg-airport-luxembourg-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "luxembourg-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-clinic",
+      "name": "Centre Hospitalier de Luxembourg",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.10139,
+        "lat": 49.61786
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-clinic-1",
+        "luxembourg-luxembourg-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/41407070"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5062271"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-community-notices",
+      "name": "Administration du cadastre et de la topographie",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.123229,
+        "lat": 49.584245
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-community-notices-1",
+        "luxembourg-luxembourg-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10837810672"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13101390"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-community-voting-game",
+      "name": "Château de Bettembourg",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.096782,
+        "lat": 49.517332
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-community-voting-game-1",
+        "luxembourg-luxembourg-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/146811861"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1821671"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-community-workshop",
+      "name": "Centre National de la littérature",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.108247,
+        "lat": 49.750928
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-community-workshop-1",
+        "luxembourg-luxembourg-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/34248783"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6974201"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-market-game",
+      "name": "Centre Commercial Belle-Étoile",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.050894,
+        "lat": 49.623444
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-market-game-1",
+        "luxembourg-luxembourg-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/79885477"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q180135"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-meal-stop",
+      "name": "La Distillerie",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.217235,
+        "lat": 49.702638
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-meal-stop-1",
+        "luxembourg-luxembourg-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1480135589"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q88282612"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-node-258816379",
+      "name": "Château de Septfontaines",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.963836,
+        "lat": 49.700729
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-node-258816379-1",
+        "luxembourg-luxembourg-osm-node-258816379-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/258816379"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7452263"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-node-365760606",
+      "name": "Tumulus",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.325375,
+        "lat": 49.745333
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-node-365760606-1",
+        "luxembourg-luxembourg-osm-node-365760606-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/365760606"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13105301"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-node-4250666792",
+      "name": "Guillou Campagne",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.955453,
+        "lat": 49.580487
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-node-4250666792-1",
+        "luxembourg-luxembourg-osm-node-4250666792-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4250666792"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q88269985"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-node-588684577",
+      "name": "Vicus Ricciacus",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.255939,
+        "lat": 49.538231
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-node-588684577-1",
+        "luxembourg-luxembourg-osm-node-588684577-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/588684577"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5210859"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-node-621867608",
+      "name": "The Bock",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.136201,
+        "lat": 49.611413
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-node-621867608-1",
+        "luxembourg-luxembourg-osm-node-621867608-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/621867608"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2714250"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-way-108752289",
+      "name": "Saint-Michel",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.324751,
+        "lat": 49.610903
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-way-108752289-1",
+        "luxembourg-luxembourg-osm-way-108752289-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/108752289"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16366279"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-way-115712504",
+      "name": "Saint-Sébastien",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.351058,
+        "lat": 49.490673
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-way-115712504-1",
+        "luxembourg-luxembourg-osm-way-115712504-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/115712504"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16365696"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-way-389682249",
+      "name": "Stade Jos Haupert",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.902703,
+        "lat": 49.545812
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-way-389682249-1",
+        "luxembourg-luxembourg-osm-way-389682249-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/389682249"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3495660"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-way-45252123",
+      "name": "Ma langue sourit",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.249595,
+        "lat": 49.597745
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-way-45252123-1",
+        "luxembourg-luxembourg-osm-way-45252123-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/45252123"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q88223773"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-way-460847721",
+      "name": "University of Luxembourg",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.948237,
+        "lat": 49.503623
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-way-460847721-1",
+        "luxembourg-luxembourg-osm-way-460847721-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/460847721"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q59668"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-way-469054630",
+      "name": "Hôpital intercommunal de Steinfort",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.91259,
+        "lat": 49.660948
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-way-469054630-1",
+        "luxembourg-luxembourg-osm-way-469054630-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/469054630"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q139718736"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-way-48992138",
+      "name": "University of Luxembourg - SnT",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.168852,
+        "lat": 49.63235
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-way-48992138-1",
+        "luxembourg-luxembourg-osm-way-48992138-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/48992138"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q119842734"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-way-50041968",
+      "name": "Place de Gand",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.106695,
+        "lat": 49.608086
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-way-50041968-1",
+        "luxembourg-luxembourg-osm-way-50041968-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/50041968"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25583805"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-way-526461841",
+      "name": "Parc Heintz",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.121767,
+        "lat": 49.60268
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-way-526461841-1",
+        "luxembourg-luxembourg-osm-way-526461841-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/526461841"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13104473"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-osm-way-707074800",
+      "name": "Stade de Luxembourg",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.114154,
+        "lat": 49.577002
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-osm-way-707074800-1",
+        "luxembourg-luxembourg-osm-way-707074800-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/707074800"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25384178"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-quiet-reflection",
+      "name": "Notre-Dame des Mineurs",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.020819,
+        "lat": 49.479003
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-quiet-reflection-1",
+        "luxembourg-luxembourg-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2844040292"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13103868"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-recreation",
+      "name": "Parc Gerlache",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.890188,
+        "lat": 49.523904
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-recreation-1",
+        "luxembourg-luxembourg-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/39054579"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q70575801"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luxembourg-transit",
+      "name": "Cents-Hamm",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.165978,
+        "lat": 49.615013
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "luxembourg-luxembourg-transit-1",
+        "luxembourg-luxembourg-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luxembourg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/25609667"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2042597"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "luxembourg-luxembourg-airport-luxembourg-airport-1",
+      "venueId": "luxembourg-airport-luxembourg-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-airport-luxembourg-airport-2",
+      "venueId": "luxembourg-airport-luxembourg-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-clinic-1",
+      "venueId": "luxembourg-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-clinic-2",
+      "venueId": "luxembourg-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-community-notices-1",
+      "venueId": "luxembourg-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-community-notices-2",
+      "venueId": "luxembourg-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-community-voting-game-1",
+      "venueId": "luxembourg-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-community-voting-game-2",
+      "venueId": "luxembourg-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-community-workshop-1",
+      "venueId": "luxembourg-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-community-workshop-2",
+      "venueId": "luxembourg-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-market-game-1",
+      "venueId": "luxembourg-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-market-game-2",
+      "venueId": "luxembourg-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-meal-stop-1",
+      "venueId": "luxembourg-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-meal-stop-2",
+      "venueId": "luxembourg-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-node-258816379-1",
+      "venueId": "luxembourg-osm-node-258816379",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-node-258816379-2",
+      "venueId": "luxembourg-osm-node-258816379",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-node-365760606-1",
+      "venueId": "luxembourg-osm-node-365760606",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-node-365760606-2",
+      "venueId": "luxembourg-osm-node-365760606",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-node-4250666792-1",
+      "venueId": "luxembourg-osm-node-4250666792",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-node-4250666792-2",
+      "venueId": "luxembourg-osm-node-4250666792",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-node-588684577-1",
+      "venueId": "luxembourg-osm-node-588684577",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-node-588684577-2",
+      "venueId": "luxembourg-osm-node-588684577",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-node-621867608-1",
+      "venueId": "luxembourg-osm-node-621867608",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-node-621867608-2",
+      "venueId": "luxembourg-osm-node-621867608",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-108752289-1",
+      "venueId": "luxembourg-osm-way-108752289",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-108752289-2",
+      "venueId": "luxembourg-osm-way-108752289",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-115712504-1",
+      "venueId": "luxembourg-osm-way-115712504",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-115712504-2",
+      "venueId": "luxembourg-osm-way-115712504",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-389682249-1",
+      "venueId": "luxembourg-osm-way-389682249",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-389682249-2",
+      "venueId": "luxembourg-osm-way-389682249",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-45252123-1",
+      "venueId": "luxembourg-osm-way-45252123",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-45252123-2",
+      "venueId": "luxembourg-osm-way-45252123",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-460847721-1",
+      "venueId": "luxembourg-osm-way-460847721",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-460847721-2",
+      "venueId": "luxembourg-osm-way-460847721",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-469054630-1",
+      "venueId": "luxembourg-osm-way-469054630",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-469054630-2",
+      "venueId": "luxembourg-osm-way-469054630",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-48992138-1",
+      "venueId": "luxembourg-osm-way-48992138",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-48992138-2",
+      "venueId": "luxembourg-osm-way-48992138",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-50041968-1",
+      "venueId": "luxembourg-osm-way-50041968",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-50041968-2",
+      "venueId": "luxembourg-osm-way-50041968",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-526461841-1",
+      "venueId": "luxembourg-osm-way-526461841",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-526461841-2",
+      "venueId": "luxembourg-osm-way-526461841",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-707074800-1",
+      "venueId": "luxembourg-osm-way-707074800",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-osm-way-707074800-2",
+      "venueId": "luxembourg-osm-way-707074800",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-quiet-reflection-1",
+      "venueId": "luxembourg-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-quiet-reflection-2",
+      "venueId": "luxembourg-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-recreation-1",
+      "venueId": "luxembourg-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-recreation-2",
+      "venueId": "luxembourg-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-transit-1",
+      "venueId": "luxembourg-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    },
+    {
+      "id": "luxembourg-luxembourg-transit-2",
+      "venueId": "luxembourg-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luxembourg/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "luxembourg-airport-luxembourg-airport",
+    "luxembourg-clinic",
+    "luxembourg-community-notices",
+    "luxembourg-community-voting-game",
+    "luxembourg-community-workshop",
+    "luxembourg-market-game",
+    "luxembourg-meal-stop",
+    "luxembourg-osm-node-258816379",
+    "luxembourg-osm-node-365760606",
+    "luxembourg-osm-node-4250666792",
+    "luxembourg-osm-node-588684577",
+    "luxembourg-osm-node-621867608",
+    "luxembourg-osm-way-108752289",
+    "luxembourg-osm-way-115712504",
+    "luxembourg-osm-way-389682249",
+    "luxembourg-osm-way-45252123",
+    "luxembourg-osm-way-460847721",
+    "luxembourg-osm-way-469054630",
+    "luxembourg-osm-way-48992138",
+    "luxembourg-osm-way-50041968",
+    "luxembourg-osm-way-526461841",
+    "luxembourg-osm-way-707074800",
+    "luxembourg-quiet-reflection",
+    "luxembourg-recreation",
+    "luxembourg-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "eed6e09f47cea2d0e80d549eedebc38916dbab51e148b4922d444d78ab54c028",
+    "contentSha256": "dcc27457ca5f846d67fbce8b1c03990aed033707ac45d372c314c1193978ce3a"
+  }
+}

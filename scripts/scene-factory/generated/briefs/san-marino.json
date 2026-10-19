@@ -1,0 +1,2091 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "san-marino",
+    "name": "City of San Marino",
+    "state": {
+      "id": "sm-san-marino",
+      "name": "City of San Marino"
+    },
+    "country": {
+      "id": "sm",
+      "name": "San Marino"
+    },
+    "point": {
+      "lon": 12.4466991,
+      "lat": 43.9363996
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/italy-261011.osm.pbf",
+      "https://ourairports.com/airports/LIKD/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/san-marino/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/san-marino/facts.ts",
+        "sha256": "3805e4c1c7db8d3a3b7f92495149873f3db2025ddba1ff7fee91f8c459f41221"
+      },
+      {
+        "path": "src/game/cities/san-marino/index.ts",
+        "sha256": "a900218fe4812ddd0612836e8a4f866d33c659a51164775bbbf940ece60138e9"
+      },
+      {
+        "path": "src/game/cities/san-marino/places.ts",
+        "sha256": "2a12f84d44e26cf54232e6556d6b04bd7c61662e0ee78513e3309acf3a6a29ac"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4466991,
+        "lat": 43.9363996
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "san-marino-airport-san-marino-airport",
+      "name": "Torraccia Airfield",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.511411,
+        "lat": 43.948895
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-airport-san-marino-airport-1",
+        "san-marino-san-marino-airport-san-marino-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "san-marino-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-clinic",
+      "name": "Ospedale di Stato - Istituto per la Sicurezza Sociale",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.455513,
+        "lat": 43.950255
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-clinic-1",
+        "san-marino-san-marino-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/86953828"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3886678"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-community-notices",
+      "name": "Casa del Castello di Domagnano",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.468811,
+        "lat": 43.947809
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-community-notices-1",
+        "san-marino-san-marino-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2094173919"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-community-voting-game",
+      "name": "Palazzo Pubblico",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.446266,
+        "lat": 43.936797
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-community-voting-game-1",
+        "san-marino-san-marino-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/59305139"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1705125"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-community-workshop",
+      "name": "Università della Repubblica di San Marino",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.444915,
+        "lat": 43.93769
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-community-workshop-1",
+        "san-marino-san-marino-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7190476762"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q796723"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-market-game",
+      "name": "Azzurro",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.483754,
+        "lat": 43.970962
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-market-game-1",
+        "san-marino-san-marino-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/32476610"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-meal-stop",
+      "name": "Amici",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.512785,
+        "lat": 43.989717
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-meal-stop-1",
+        "san-marino-san-marino-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4594496993"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-node-10718518174",
+      "name": "Ci vediamo da Mario",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.42068,
+        "lat": 43.905989
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-node-10718518174-1",
+        "san-marino-san-marino-osm-node-10718518174-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10718518174"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-node-11495475848",
+      "name": "Dipartimento Scienze Umane",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.449706,
+        "lat": 43.932535
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-node-11495475848-1",
+        "san-marino-san-marino-osm-node-11495475848-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11495475848"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-node-12903309263",
+      "name": "Street Bar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.500962,
+        "lat": 43.923394
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-node-12903309263-1",
+        "san-marino-san-marino-osm-node-12903309263-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12903309263"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-node-5840181047",
+      "name": "Università degli studi",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.448248,
+        "lat": 43.935445
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-node-5840181047-1",
+        "san-marino-san-marino-osm-node-5840181047-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5840181047"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-node-7194430374",
+      "name": "Sanmarino Shinto Shrine",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.48213,
+        "lat": 43.958113
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-node-7194430374-1",
+        "san-marino-san-marino-osm-node-7194430374-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7194430374"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q21192776"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-way-228380042",
+      "name": "Stadio Serravalle B",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.480736,
+        "lat": 43.97276
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-way-228380042-1",
+        "san-marino-san-marino-osm-way-228380042-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/228380042"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3967881"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-way-32476612",
+      "name": "Centro Atlante",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.486487,
+        "lat": 43.977269
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-way-32476612-1",
+        "san-marino-san-marino-osm-way-32476612-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/32476612"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-way-364803296",
+      "name": "Stadio di Baseball di Serravalle",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.474274,
+        "lat": 43.970041
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-way-364803296-1",
+        "san-marino-san-marino-osm-way-364803296-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/364803296"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3967943"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-way-59305144",
+      "name": "Guaita Castle",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.449286,
+        "lat": 43.935224
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-way-59305144-1",
+        "san-marino-san-marino-osm-way-59305144-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/59305144"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2711604"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-way-59316453",
+      "name": "Santuario della Beata Vergine della Consolazione",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.447424,
+        "lat": 43.940522
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-way-59316453-1",
+        "san-marino-san-marino-osm-way-59316453-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/59316453"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3949662"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-way-59329675",
+      "name": "Torre del Montale",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.452474,
+        "lat": 43.92999
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-way-59329675-1",
+        "san-marino-san-marino-osm-way-59329675-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/59329675"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2224877"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-way-59329686",
+      "name": "De La Fratta Castle",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.451383,
+        "lat": 43.932629
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-way-59329686-1",
+        "san-marino-san-marino-osm-way-59329686-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/59329686"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2592701"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-way-59965584",
+      "name": "San Marino Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.477028,
+        "lat": 43.971511
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-way-59965584-1",
+        "san-marino-san-marino-osm-way-59965584-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/59965584"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q728131"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-way-614075300",
+      "name": "Parco Montelupo",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.505652,
+        "lat": 43.953099
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-way-614075300-1",
+        "san-marino-san-marino-osm-way-614075300-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/614075300"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-osm-way-770859631",
+      "name": "Parco Marino Nicolini 1° Maestro",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.419058,
+        "lat": 43.945416
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-osm-way-770859631-1",
+        "san-marino-san-marino-osm-way-770859631-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/770859631"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-quiet-reflection",
+      "name": "Basilica di San Marino",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.446713,
+        "lat": 43.937133
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-quiet-reflection-1",
+        "san-marino-san-marino-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/59305134"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q810102"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-recreation",
+      "name": "Parco delle Fontane Azzurre",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.407124,
+        "lat": 43.951647
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-recreation-1",
+        "san-marino-san-marino-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/770370670"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-marino-transit",
+      "name": "San Marino - Rimini",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.446734,
+        "lat": 43.934929
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-marino-san-marino-transit-1",
+        "san-marino-san-marino-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-marino/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4167919194"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "san-marino-san-marino-airport-san-marino-airport-1",
+      "venueId": "san-marino-airport-san-marino-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-airport-san-marino-airport-2",
+      "venueId": "san-marino-airport-san-marino-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-clinic-1",
+      "venueId": "san-marino-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-clinic-2",
+      "venueId": "san-marino-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-community-notices-1",
+      "venueId": "san-marino-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-community-notices-2",
+      "venueId": "san-marino-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-community-voting-game-1",
+      "venueId": "san-marino-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-community-voting-game-2",
+      "venueId": "san-marino-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-community-workshop-1",
+      "venueId": "san-marino-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-community-workshop-2",
+      "venueId": "san-marino-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-market-game-1",
+      "venueId": "san-marino-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-market-game-2",
+      "venueId": "san-marino-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-meal-stop-1",
+      "venueId": "san-marino-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-meal-stop-2",
+      "venueId": "san-marino-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-node-10718518174-1",
+      "venueId": "san-marino-osm-node-10718518174",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-node-10718518174-2",
+      "venueId": "san-marino-osm-node-10718518174",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-node-11495475848-1",
+      "venueId": "san-marino-osm-node-11495475848",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-node-11495475848-2",
+      "venueId": "san-marino-osm-node-11495475848",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-node-12903309263-1",
+      "venueId": "san-marino-osm-node-12903309263",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-node-12903309263-2",
+      "venueId": "san-marino-osm-node-12903309263",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-node-5840181047-1",
+      "venueId": "san-marino-osm-node-5840181047",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-node-5840181047-2",
+      "venueId": "san-marino-osm-node-5840181047",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-node-7194430374-1",
+      "venueId": "san-marino-osm-node-7194430374",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-node-7194430374-2",
+      "venueId": "san-marino-osm-node-7194430374",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-228380042-1",
+      "venueId": "san-marino-osm-way-228380042",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-228380042-2",
+      "venueId": "san-marino-osm-way-228380042",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-32476612-1",
+      "venueId": "san-marino-osm-way-32476612",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-32476612-2",
+      "venueId": "san-marino-osm-way-32476612",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-364803296-1",
+      "venueId": "san-marino-osm-way-364803296",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-364803296-2",
+      "venueId": "san-marino-osm-way-364803296",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-59305144-1",
+      "venueId": "san-marino-osm-way-59305144",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-59305144-2",
+      "venueId": "san-marino-osm-way-59305144",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-59316453-1",
+      "venueId": "san-marino-osm-way-59316453",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-59316453-2",
+      "venueId": "san-marino-osm-way-59316453",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-59329675-1",
+      "venueId": "san-marino-osm-way-59329675",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-59329675-2",
+      "venueId": "san-marino-osm-way-59329675",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-59329686-1",
+      "venueId": "san-marino-osm-way-59329686",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-59329686-2",
+      "venueId": "san-marino-osm-way-59329686",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-59965584-1",
+      "venueId": "san-marino-osm-way-59965584",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-59965584-2",
+      "venueId": "san-marino-osm-way-59965584",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-614075300-1",
+      "venueId": "san-marino-osm-way-614075300",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-614075300-2",
+      "venueId": "san-marino-osm-way-614075300",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-770859631-1",
+      "venueId": "san-marino-osm-way-770859631",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-osm-way-770859631-2",
+      "venueId": "san-marino-osm-way-770859631",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-quiet-reflection-1",
+      "venueId": "san-marino-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-quiet-reflection-2",
+      "venueId": "san-marino-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-recreation-1",
+      "venueId": "san-marino-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-recreation-2",
+      "venueId": "san-marino-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-transit-1",
+      "venueId": "san-marino-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    },
+    {
+      "id": "san-marino-san-marino-transit-2",
+      "venueId": "san-marino-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-marino/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "san-marino-airport-san-marino-airport",
+    "san-marino-clinic",
+    "san-marino-community-notices",
+    "san-marino-community-voting-game",
+    "san-marino-community-workshop",
+    "san-marino-market-game",
+    "san-marino-meal-stop",
+    "san-marino-osm-node-10718518174",
+    "san-marino-osm-node-11495475848",
+    "san-marino-osm-node-12903309263",
+    "san-marino-osm-node-5840181047",
+    "san-marino-osm-node-7194430374",
+    "san-marino-osm-way-228380042",
+    "san-marino-osm-way-32476612",
+    "san-marino-osm-way-364803296",
+    "san-marino-osm-way-59305144",
+    "san-marino-osm-way-59316453",
+    "san-marino-osm-way-59329675",
+    "san-marino-osm-way-59329686",
+    "san-marino-osm-way-59965584",
+    "san-marino-osm-way-614075300",
+    "san-marino-osm-way-770859631",
+    "san-marino-quiet-reflection",
+    "san-marino-recreation",
+    "san-marino-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "745dbfddb819d6fb2926e1c519e118cd126da0d2615437962bb870c56e7178d6",
+    "contentSha256": "2ea76611e1b4d5975589aeda4393ef7ff33870b45a9ecbb58927aeebc29305e4"
+  }
+}

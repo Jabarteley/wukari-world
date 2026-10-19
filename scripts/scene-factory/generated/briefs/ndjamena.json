@@ -1,0 +1,2051 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "ndjamena",
+    "name": "N'Djamena",
+    "state": {
+      "id": "td-ndjamena",
+      "name": "N'Djamena"
+    },
+    "country": {
+      "id": "td",
+      "name": "Chad"
+    },
+    "point": {
+      "lon": 15.0502758,
+      "lat": 12.1191543
+    }
+  },
+  "style": {
+    "region": "sahel-francophone",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/chad-261009.osm.pbf",
+      "https://ourairports.com/airports/FTTJ/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/ndjamena/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/ndjamena/facts.ts",
+        "sha256": "5693b53682aaf49f51cc4cd61814aacaf926e0d5c1d794189a723339b8d6a354"
+      },
+      {
+        "path": "src/game/cities/ndjamena/index.ts",
+        "sha256": "b2d4f40e07bef481a28af58d2892762c3490bee09afa8cf85c643bbfb339b745"
+      },
+      {
+        "path": "src/game/cities/ndjamena/places.ts",
+        "sha256": "d59f3e122a31fb2ad206e7d47adb2d8221ceae8554fe1ebf01b32554d01e28bf"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.0502758,
+        "lat": 12.1191543
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "ndjamena-airport-ndjamena-airport",
+      "name": "N'Djamena International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.034,
+        "lat": 12.1337
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-airport-ndjamena-airport-1",
+        "ndjamena-ndjamena-airport-ndjamena-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "ndjamena-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-clinic",
+      "name": "Centre de santé de Ndjamena-Koudou",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.030619,
+        "lat": 12.165863
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-clinic-1",
+        "ndjamena-ndjamena-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/679766331"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-community-notices",
+      "name": "Centre de détention",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.202468,
+        "lat": 12.008036
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-community-notices-1",
+        "ndjamena-ndjamena-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4108575389"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-community-voting-game",
+      "name": "Commune du 7ème Arrondissement LA MAIRIE",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.109371,
+        "lat": 12.114336
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-community-voting-game-1",
+        "ndjamena-ndjamena-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10826298705"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-community-workshop",
+      "name": "Institut AVD",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.131651,
+        "lat": 12.091248
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-community-workshop-1",
+        "ndjamena-ndjamena-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/438541531"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-market-game",
+      "name": "Marché a betail",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.101429,
+        "lat": 12.158762
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-market-game-1",
+        "ndjamena-ndjamena-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4335243174"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-meal-stop",
+      "name": "Maquis d'à côté",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.991557,
+        "lat": 12.126036
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-meal-stop-1",
+        "ndjamena-ndjamena-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3997990146"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-node-11135875905",
+      "name": "Centre de santé revitalise de Goudji",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.053778,
+        "lat": 12.143392
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-node-11135875905-1",
+        "ndjamena-ndjamena-osm-node-11135875905-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11135875905"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-node-11176434237",
+      "name": "Complexe Abou Hourayra",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.956767,
+        "lat": 12.124094
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-node-11176434237-1",
+        "ndjamena-ndjamena-osm-node-11176434237-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11176434237"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-node-12350268725",
+      "name": "Académie Royale",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.06275,
+        "lat": 12.093829
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-node-12350268725-1",
+        "ndjamena-ndjamena-osm-node-12350268725-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12350268725"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-node-13208665829",
+      "name": "hopital de toukra",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.1149,
+        "lat": 12.06661
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-node-13208665829-1",
+        "ndjamena-ndjamena-osm-node-13208665829-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13208665829"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-node-4108051090",
+      "name": "مسجد Mosquée",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.041212,
+        "lat": 12.189582
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-node-4108051090-1",
+        "ndjamena-ndjamena-osm-node-4108051090-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4108051090"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-node-4146090928",
+      "name": "La caravelle",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.091147,
+        "lat": 12.092141
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-node-4146090928-1",
+        "ndjamena-ndjamena-osm-node-4146090928-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4146090928"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-node-4502748090",
+      "name": "Parc de jeux",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.155116,
+        "lat": 11.961284
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-node-4502748090-1",
+        "ndjamena-ndjamena-osm-node-4502748090-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4502748090"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-node-7174815188",
+      "name": "Ferme David Durant",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.944818,
+        "lat": 12.177236
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-node-7174815188-1",
+        "ndjamena-ndjamena-osm-node-7174815188-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7174815188"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-node-8652966419",
+      "name": "Khassam",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.071618,
+        "lat": 12.063217
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-node-8652966419-1",
+        "ndjamena-ndjamena-osm-node-8652966419-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8652966419"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-way-1066128727",
+      "name": "parc du marche Koweïtien",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.055502,
+        "lat": 12.127484
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-way-1066128727-1",
+        "ndjamena-ndjamena-osm-way-1066128727-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1066128727"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-way-1415633322",
+      "name": "Stade Olympique Maréchal Idriss Déby Itno",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.15726,
+        "lat": 12.052534
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-way-1415633322-1",
+        "ndjamena-ndjamena-osm-way-1415633322-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1415633322"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-way-1451346354",
+      "name": "Marché de Wara",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.080704,
+        "lat": 12.149884
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-way-1451346354-1",
+        "ndjamena-ndjamena-osm-way-1451346354-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1451346354"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-way-156565063",
+      "name": "Marché a Mil",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.055662,
+        "lat": 12.112806
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-way-156565063-1",
+        "ndjamena-ndjamena-osm-way-156565063-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/156565063"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-way-199599925",
+      "name": "musée national du Tchad",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.077427,
+        "lat": 12.125407
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-way-199599925-1",
+        "ndjamena-ndjamena-osm-way-199599925-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/199599925"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2684769"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-osm-way-678864284",
+      "name": "Université virtuelle du Tchad",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.04312,
+        "lat": 12.132635
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-osm-way-678864284-1",
+        "ndjamena-ndjamena-osm-way-678864284-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/678864284"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-quiet-reflection",
+      "name": "Cathédrale Notre-Dame de N'Djaména",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.03729,
+        "lat": 12.111451
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-quiet-reflection-1",
+        "ndjamena-ndjamena-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/125359481"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15689003"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-recreation",
+      "name": "Jardin Botanique",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.034609,
+        "lat": 12.122536
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-recreation-1",
+        "ndjamena-ndjamena-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2813502"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ndjamena-transit",
+      "name": "Gare d'Abeché",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.083175,
+        "lat": 12.120351
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ndjamena-ndjamena-transit-1",
+        "ndjamena-ndjamena-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ndjamena/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3134981852"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "ndjamena-ndjamena-airport-ndjamena-airport-1",
+      "venueId": "ndjamena-airport-ndjamena-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-airport-ndjamena-airport-2",
+      "venueId": "ndjamena-airport-ndjamena-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-clinic-1",
+      "venueId": "ndjamena-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-clinic-2",
+      "venueId": "ndjamena-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-community-notices-1",
+      "venueId": "ndjamena-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-community-notices-2",
+      "venueId": "ndjamena-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-community-voting-game-1",
+      "venueId": "ndjamena-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-community-voting-game-2",
+      "venueId": "ndjamena-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-community-workshop-1",
+      "venueId": "ndjamena-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-community-workshop-2",
+      "venueId": "ndjamena-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-market-game-1",
+      "venueId": "ndjamena-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-market-game-2",
+      "venueId": "ndjamena-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-meal-stop-1",
+      "venueId": "ndjamena-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-meal-stop-2",
+      "venueId": "ndjamena-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-11135875905-1",
+      "venueId": "ndjamena-osm-node-11135875905",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-11135875905-2",
+      "venueId": "ndjamena-osm-node-11135875905",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-11176434237-1",
+      "venueId": "ndjamena-osm-node-11176434237",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-11176434237-2",
+      "venueId": "ndjamena-osm-node-11176434237",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-12350268725-1",
+      "venueId": "ndjamena-osm-node-12350268725",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-12350268725-2",
+      "venueId": "ndjamena-osm-node-12350268725",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-13208665829-1",
+      "venueId": "ndjamena-osm-node-13208665829",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-13208665829-2",
+      "venueId": "ndjamena-osm-node-13208665829",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-4108051090-1",
+      "venueId": "ndjamena-osm-node-4108051090",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-4108051090-2",
+      "venueId": "ndjamena-osm-node-4108051090",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-4146090928-1",
+      "venueId": "ndjamena-osm-node-4146090928",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-4146090928-2",
+      "venueId": "ndjamena-osm-node-4146090928",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-4502748090-1",
+      "venueId": "ndjamena-osm-node-4502748090",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-4502748090-2",
+      "venueId": "ndjamena-osm-node-4502748090",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-7174815188-1",
+      "venueId": "ndjamena-osm-node-7174815188",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-7174815188-2",
+      "venueId": "ndjamena-osm-node-7174815188",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-8652966419-1",
+      "venueId": "ndjamena-osm-node-8652966419",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-node-8652966419-2",
+      "venueId": "ndjamena-osm-node-8652966419",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-way-1066128727-1",
+      "venueId": "ndjamena-osm-way-1066128727",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-way-1066128727-2",
+      "venueId": "ndjamena-osm-way-1066128727",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-way-1415633322-1",
+      "venueId": "ndjamena-osm-way-1415633322",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-way-1415633322-2",
+      "venueId": "ndjamena-osm-way-1415633322",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-way-1451346354-1",
+      "venueId": "ndjamena-osm-way-1451346354",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-way-1451346354-2",
+      "venueId": "ndjamena-osm-way-1451346354",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-way-156565063-1",
+      "venueId": "ndjamena-osm-way-156565063",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-way-156565063-2",
+      "venueId": "ndjamena-osm-way-156565063",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-way-199599925-1",
+      "venueId": "ndjamena-osm-way-199599925",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-way-199599925-2",
+      "venueId": "ndjamena-osm-way-199599925",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-way-678864284-1",
+      "venueId": "ndjamena-osm-way-678864284",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-osm-way-678864284-2",
+      "venueId": "ndjamena-osm-way-678864284",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-quiet-reflection-1",
+      "venueId": "ndjamena-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-quiet-reflection-2",
+      "venueId": "ndjamena-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-recreation-1",
+      "venueId": "ndjamena-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-recreation-2",
+      "venueId": "ndjamena-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-transit-1",
+      "venueId": "ndjamena-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    },
+    {
+      "id": "ndjamena-ndjamena-transit-2",
+      "venueId": "ndjamena-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ndjamena/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "ndjamena-airport-ndjamena-airport",
+    "ndjamena-clinic",
+    "ndjamena-community-notices",
+    "ndjamena-community-voting-game",
+    "ndjamena-community-workshop",
+    "ndjamena-market-game",
+    "ndjamena-meal-stop",
+    "ndjamena-osm-node-11135875905",
+    "ndjamena-osm-node-11176434237",
+    "ndjamena-osm-node-12350268725",
+    "ndjamena-osm-node-13208665829",
+    "ndjamena-osm-node-4108051090",
+    "ndjamena-osm-node-4146090928",
+    "ndjamena-osm-node-4502748090",
+    "ndjamena-osm-node-7174815188",
+    "ndjamena-osm-node-8652966419",
+    "ndjamena-osm-way-1066128727",
+    "ndjamena-osm-way-1415633322",
+    "ndjamena-osm-way-1451346354",
+    "ndjamena-osm-way-156565063",
+    "ndjamena-osm-way-199599925",
+    "ndjamena-osm-way-678864284",
+    "ndjamena-quiet-reflection",
+    "ndjamena-recreation",
+    "ndjamena-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "cdd268bc6d066debf14af507d2b12a25d77c669371ccb4190f64f2f402903280",
+    "contentSha256": "bff6de344c03a58aad6e31af887d11102a25e8131bdd8b3cd74406fe6d915cf2"
+  }
+}

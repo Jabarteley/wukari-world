@@ -1,0 +1,1578 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "pago-pago",
+    "name": "Pago Pago",
+    "state": {
+      "id": "as-pago-pago",
+      "name": "Pago Pago"
+    },
+    "country": {
+      "id": "as",
+      "name": "Samoa (American)"
+    },
+    "point": {
+      "lon": -170.7048298,
+      "lat": -14.2754786
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/australia-oceania/american-oceania-261011.osm.pbf",
+      "https://ourairports.com/airports/NSTU/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/pago-pago/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/pago-pago/facts.ts",
+        "sha256": "b6663ba4b2fb21b1066396b980597764f2e6502c6c8ba33119d1c7599a6e1b12"
+      },
+      {
+        "path": "src/game/cities/pago-pago/index.ts",
+        "sha256": "37b691a42e159bb20bc74ad03ab1f7e5dfcdc1720c525d90acdfb6087b02f505"
+      },
+      {
+        "path": "src/game/cities/pago-pago/places.ts",
+        "sha256": "5a7611a4869f854f6aafa6f92dd45ddae59b6cac09c16b41e3556aeb0891253a"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record.",
+      "Venue pago-pago-quiet-reflection has no mapped place source record.",
+      "Venue pago-pago-transit has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.7048298,
+        "lat": -14.2754786
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "pago-pago-airport-pago-pago-airport",
+      "name": "Pago Pago International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.710007,
+        "lat": -14.331
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-airport-pago-pago-airport-1",
+        "pago-pago-pago-pago-airport-pago-pago-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "pago-pago-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-clinic",
+      "name": "Lyndon Baines Johnson Tropical Medical Center",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.685441,
+        "lat": -14.290382
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-clinic-1",
+        "pago-pago-pago-pago-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/585450401"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30265427"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-community-notices",
+      "name": "American Samoa Fono",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.688941,
+        "lat": -14.278218
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-community-notices-1",
+        "pago-pago-pago-pago-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8285563450"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1267503"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-community-voting-game",
+      "name": "Courthouse of American Samoa",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.690488,
+        "lat": -14.278074
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-community-voting-game-1",
+        "pago-pago-pago-pago-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/332359599"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5178532"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-community-workshop",
+      "name": "American Samoa Community College",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.742558,
+        "lat": -14.322325
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-community-workshop-1",
+        "pago-pago-pago-pago-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/123454235"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4744872"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-market-game",
+      "name": "Fagatogo Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.690926,
+        "lat": -14.277097
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-market-game-1",
+        "pago-pago-pago-pago-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/107474782"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-meal-stop",
+      "name": "Sweetie's",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.690176,
+        "lat": -14.278909
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-meal-stop-1",
+        "pago-pago-pago-pago-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1235134005"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-osm-node-359258592",
+      "name": "Gagamoe Field",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.698889,
+        "lat": -14.276944
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-osm-node-359258592-1",
+        "pago-pago-pago-pago-osm-node-359258592-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/359258592"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q21847134"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-osm-node-3844905202",
+      "name": "Tisa's Barefoot Bar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.639214,
+        "lat": -14.281414
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-osm-node-3844905202-1",
+        "pago-pago-pago-pago-osm-node-3844905202-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3844905202"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-osm-node-4791141236",
+      "name": "Internet Café",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.717248,
+        "lat": -14.312702
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-osm-node-4791141236-1",
+        "pago-pago-pago-pago-osm-node-4791141236-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4791141236"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-osm-node-9049560467",
+      "name": "Poloa Defensive Fortifications",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.834158,
+        "lat": -14.316302
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-osm-node-9049560467-1",
+        "pago-pago-pago-pago-osm-node-9049560467-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9049560467"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18152109"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-osm-node-9049560470",
+      "name": "Fagalele Boys School",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.785926,
+        "lat": -14.341901
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-osm-node-9049560470-1",
+        "pago-pago-pago-pago-osm-node-9049560470-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9049560470"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q14962112"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-osm-node-9049637848",
+      "name": "Masefau Defensive Fortifications",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.630255,
+        "lat": -14.257335
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-osm-node-9049637848-1",
+        "pago-pago-pago-pago-osm-node-9049637848-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9049637848"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20203083"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-osm-way-1205108937",
+      "name": "Utulei Beach Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.6813,
+        "lat": -14.277009
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-osm-way-1205108937-1",
+        "pago-pago-pago-pago-osm-way-1205108937-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1205108937"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-osm-way-253635520",
+      "name": "Veterans Memorial Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.722308,
+        "lat": -14.333588
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-osm-way-253635520-1",
+        "pago-pago-pago-pago-osm-way-253635520-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/253635520"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1637931"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-quiet-reflection",
+      "name": "Quiet reflection space (game venue)",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.70574033050517,
+        "lat": -14.276377920363725
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-quiet-reflection-1",
+        "pago-pago-pago-pago-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue pago-pago-quiet-reflection has no mapped place source record."
+      }
+    },
+    {
+      "id": "pago-pago-recreation",
+      "name": "Pago Pago Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.699722,
+        "lat": -14.2775
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-recreation-1",
+        "pago-pago-pago-pago-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pago-pago/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/359258660"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q21848610"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "pago-pago-transit",
+      "name": "City transit stop (game venue)",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -170.7039192694948,
+        "lat": -14.2754786
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "pago-pago-pago-pago-transit-1",
+        "pago-pago-pago-pago-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue pago-pago-transit has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "pago-pago-pago-pago-airport-pago-pago-airport-1",
+      "venueId": "pago-pago-airport-pago-pago-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-airport-pago-pago-airport-2",
+      "venueId": "pago-pago-airport-pago-pago-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-clinic-1",
+      "venueId": "pago-pago-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-clinic-2",
+      "venueId": "pago-pago-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-community-notices-1",
+      "venueId": "pago-pago-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-community-notices-2",
+      "venueId": "pago-pago-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-community-voting-game-1",
+      "venueId": "pago-pago-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-community-voting-game-2",
+      "venueId": "pago-pago-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-community-workshop-1",
+      "venueId": "pago-pago-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-community-workshop-2",
+      "venueId": "pago-pago-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-market-game-1",
+      "venueId": "pago-pago-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-market-game-2",
+      "venueId": "pago-pago-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-meal-stop-1",
+      "venueId": "pago-pago-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-meal-stop-2",
+      "venueId": "pago-pago-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-node-359258592-1",
+      "venueId": "pago-pago-osm-node-359258592",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-node-359258592-2",
+      "venueId": "pago-pago-osm-node-359258592",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-node-3844905202-1",
+      "venueId": "pago-pago-osm-node-3844905202",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-node-3844905202-2",
+      "venueId": "pago-pago-osm-node-3844905202",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-node-4791141236-1",
+      "venueId": "pago-pago-osm-node-4791141236",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-node-4791141236-2",
+      "venueId": "pago-pago-osm-node-4791141236",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-node-9049560467-1",
+      "venueId": "pago-pago-osm-node-9049560467",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-node-9049560467-2",
+      "venueId": "pago-pago-osm-node-9049560467",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-node-9049560470-1",
+      "venueId": "pago-pago-osm-node-9049560470",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-node-9049560470-2",
+      "venueId": "pago-pago-osm-node-9049560470",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-node-9049637848-1",
+      "venueId": "pago-pago-osm-node-9049637848",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-node-9049637848-2",
+      "venueId": "pago-pago-osm-node-9049637848",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-way-1205108937-1",
+      "venueId": "pago-pago-osm-way-1205108937",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-way-1205108937-2",
+      "venueId": "pago-pago-osm-way-1205108937",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-way-253635520-1",
+      "venueId": "pago-pago-osm-way-253635520",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-osm-way-253635520-2",
+      "venueId": "pago-pago-osm-way-253635520",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-quiet-reflection-1",
+      "venueId": "pago-pago-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-quiet-reflection-2",
+      "venueId": "pago-pago-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-recreation-1",
+      "venueId": "pago-pago-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-recreation-2",
+      "venueId": "pago-pago-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-transit-1",
+      "venueId": "pago-pago-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    },
+    {
+      "id": "pago-pago-pago-pago-transit-2",
+      "venueId": "pago-pago-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pago-pago/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "pago-pago-airport-pago-pago-airport",
+    "pago-pago-clinic",
+    "pago-pago-community-notices",
+    "pago-pago-community-voting-game",
+    "pago-pago-community-workshop",
+    "pago-pago-market-game",
+    "pago-pago-meal-stop",
+    "pago-pago-osm-node-359258592",
+    "pago-pago-osm-node-3844905202",
+    "pago-pago-osm-node-4791141236",
+    "pago-pago-osm-node-9049560467",
+    "pago-pago-osm-node-9049560470",
+    "pago-pago-osm-node-9049637848",
+    "pago-pago-osm-way-1205108937",
+    "pago-pago-osm-way-253635520",
+    "pago-pago-quiet-reflection",
+    "pago-pago-recreation",
+    "pago-pago-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "72aa44272a9d0119537447f26caecff9b98a5d812b892a17190eb26c0177d358",
+    "contentSha256": "9085b263a288b418b2d8517d34faa45892ce1af08547d9f7c3275305944fe03d"
+  }
+}

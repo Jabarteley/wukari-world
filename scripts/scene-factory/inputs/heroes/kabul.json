@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "kabul",
+  "url": "/assets/scene-heroes/kabul.glb",
+  "sha256": "5aa6597edc2d7d5625ec574828b9699afbfbf74fd73f72aae7b4d8130b61a2d8",
+  "rawBytes": 26368,
+  "brotliBytes": 18078,
+  "triangles": 696,
+  "parts": [
+    {
+      "node": "kabul",
+      "triangles": 696,
+      "bounds": {
+        "min": [
+          -3.86366606,
+          0,
+          -3.04999995
+        ],
+        "max": [
+          3.863665983781,
+          3.364405754031,
+          3.050078504631
+        ]
+      },
+      "footprint": [
+        -3.86366606,
+        -3.04999995,
+        3.863665983781,
+        3.050078504631
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "4ecd94f61a64f4cf5481b966491528b66c62c39dd43c48e7003b72828ff66be9"
+  },
+  "inputs": {
+    "rawSha256": "407926a2a97cd7a2e52fda0b195ee7394e560e63b554c6c00a4c05870349ff67",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "kabul",
+      "country": "af",
+      "name": "Kabul City Centre",
+      "category": "building",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/node/1392109020"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=kabul]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "retail-building",
+      "parameters": {
+        "width": 8.6,
+        "depth": 6.1,
+        "height": 3.7,
+        "seed": 181172,
+        "palette": [
+          "#d3cec2",
+          "#646a6b",
+          "#a0a895",
+          "#8c7568",
+          "#6d8f9c",
+          "#b0a489",
+          "#e7e8df",
+          "#344b59"
+        ]
+      },
+      "evidence": "Exact candidate/name alias match and shop=mall support feature identity/category. Object node/1392109020, version 5, timestamp 2021-08-13T18:11:54Z; response SHA256 1afcd6ee95165e59ce6795e1ee17a100fdd71cbacf93e5bb656270bc31399913. Source path: src/game/cities/kabul/places.ts. Original simple retail-building massing, entrance and opaque glazing panels. No signature facade, brand, sign, surveyed dimensions, floor count or precise building footprint are claimed. The shop tag establishes a retail complex; this is a schematic architectural symbol, not certification of a standalone mapped building polygon. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "south-asia"
+      }
+    },
+    "styleSha256": "64cbc90bfc05b51139a91eabe0f981c4f47d02ed2689be22193361f6b66af12d"
+  }
+}

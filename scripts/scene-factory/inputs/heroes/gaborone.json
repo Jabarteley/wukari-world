@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "gaborone",
+  "url": "/assets/scene-heroes/gaborone.glb",
+  "sha256": "c4f979c516fd29d08c9d8d01e3b1415bf7367c950cf33e5c0b0f9ff94df145fb",
+  "rawBytes": 30124,
+  "brotliBytes": 20321,
+  "triangles": 1416,
+  "parts": [
+    {
+      "node": "gaborone",
+      "triangles": 1416,
+      "bounds": {
+        "min": [
+          -2.75,
+          0,
+          -1.75
+        ],
+        "max": [
+          2.749999971784,
+          2.1999328459439997,
+          1.7501525792479997
+        ]
+      },
+      "footprint": [
+        -2.75,
+        -1.75,
+        2.749999971784,
+        1.7501525792479997
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "77c197c984f3067b1066ab995e02fba73daf0f4c8533f47ca13695efee08736a"
+  },
+  "inputs": {
+    "rawSha256": "ef592c4de5ce261f8a81ddc10eee33fec398e11c7d4e901191e691b4448e9f9c",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "gaborone",
+      "country": "bw",
+      "name": "Three Dikgosi Monument",
+      "category": "monument",
+      "sourceUrls": [
+        "https://dailynews.gov.bw/news-detail/47630",
+        "https://dailynews.gov.bw/news-detail/39378"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=gaborone]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 6,
+        "depth": 4,
+        "height": 3,
+        "seed": 6100,
+        "palette": [
+          "#dbcdb6",
+          "#51483c",
+          "#8f8a74",
+          "#af593f",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "three-figures"
+      },
+      "evidence": "Botswana DailyNews reports the Three Dikgosi monument in Gaborone and describes a presidential wreath-laying there. This supports a public monument identity; no construction date or sculpture geometry is asserted. Government reporting identifies three chiefs and their statues. Three original abstract standing figures are symbols; no portrait, sculptural pose or costume is copied. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "southern-africa"
+      }
+    },
+    "styleSha256": "5c70b0ac4457ed4bbc33f60d3b022c2c69fb229a06c76f3d1957b73b32767af3"
+  }
+}

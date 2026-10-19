@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "baghdad",
+    "name": "Baghdad",
+    "state": {
+      "id": "iq-baghdad",
+      "name": "Baghdad"
+    },
+    "country": {
+      "id": "iq",
+      "name": "Iraq"
+    },
+    "point": {
+      "lon": 44.3872213,
+      "lat": 33.3061701
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/iraq-261011.osm.pbf",
+      "https://ourairports.com/airports/ORBI/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/baghdad/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/baghdad/facts.ts",
+        "sha256": "4678a6360fde7c273f58fa3f728ca87803ceb5a3a122899d3b04493bf2e61912"
+      },
+      {
+        "path": "src/game/cities/baghdad/index.ts",
+        "sha256": "4a79af4b0699322b407581ef2548d01b0e5ba93a86a46d8969e53ef7fa743070"
+      },
+      {
+        "path": "src/game/cities/baghdad/places.ts",
+        "sha256": "f4628203b37b374778e0fb55e0589843448162b59cf4955570aba39e1313830c"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "baghdad-airport-baghdad-airport",
+      "name": "Baghdad International Airport / New Al Muthana Air Base",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.2346,
+        "lat": 33.262501
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-airport-baghdad-airport-1",
+        "baghdad-baghdad-airport-baghdad-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "baghdad-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-clinic",
+      "name": "مستشفى الحسين العسكري",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.433082,
+        "lat": 33.305413
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-clinic-1",
+        "baghdad-baghdad-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1077574466"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q123707941"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-community-notices",
+      "name": "Supreme Judicial Council of Iraq",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.372908,
+        "lat": 33.301471
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-community-notices-1",
+        "baghdad-baghdad-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/463067663"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12239043"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-community-voting-game",
+      "name": "Liberation Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.408328,
+        "lat": 33.327767
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-community-voting-game-1",
+        "baghdad-baghdad-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7894353482"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6541016"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-community-workshop",
+      "name": "American University of Iraq - Baghdad",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.256078,
+        "lat": 33.284066
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-community-workshop-1",
+        "baghdad-baghdad-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7958720685"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q107675529"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-market-game",
+      "name": "Mansour Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.352804,
+        "lat": 33.320299
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-market-game-1",
+        "baghdad-baghdad-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1167428601"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28714949"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-meal-stop",
+      "name": "Shabandar Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.388061,
+        "lat": 33.340345
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-meal-stop-1",
+        "baghdad-baghdad-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/928718264"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20424692"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-node-11597386428",
+      "name": "Muhammad al-Jawad Shrine",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.3381,
+        "lat": 33.380137
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-node-11597386428-1",
+        "baghdad-baghdad-osm-node-11597386428-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11597386428"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25088"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-node-6411927106",
+      "name": "Tell Ishchali",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.584054,
+        "lat": 33.302916
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-node-6411927106-1",
+        "baghdad-baghdad-osm-node-6411927106-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6411927106"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3338309"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-relation-20951269",
+      "name": "Al-Madina Sports Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.455642,
+        "lat": 33.354503
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-relation-20951269-1",
+        "baghdad-baghdad-osm-relation-20951269-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/20951269"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q56377009"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-way-1208663973",
+      "name": "Abu Hanifah Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.35855,
+        "lat": 33.372052
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-way-1208663973-1",
+        "baghdad-baghdad-osm-way-1208663973-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1208663973"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q334716"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-way-1287507333",
+      "name": "مستشفى ابن النفيس لطب وجراحة القلب والصدر والاوعية الدموية",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.428249,
+        "lat": 33.318128
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-way-1287507333-1",
+        "baghdad-baghdad-osm-way-1287507333-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1287507333"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28716215"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-way-331568741",
+      "name": "Dur-Kurigalzu ziggurat",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.202254,
+        "lat": 33.353759
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-way-331568741-1",
+        "baghdad-baghdad-osm-way-331568741-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/331568741"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q622719"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-way-4493601",
+      "name": "University of Baghdad",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.381597,
+        "lat": 33.272733
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-way-4493601-1",
+        "baghdad-baghdad-osm-way-4493601-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/4493601"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q550376"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-way-82012284",
+      "name": "Um Al Khanzeer Island",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.368424,
+        "lat": 33.286895
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-way-82012284-1",
+        "baghdad-baghdad-osm-way-82012284-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/82012284"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q26841397"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-way-82643837",
+      "name": "Zawra Tower",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.376687,
+        "lat": 33.309679
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-way-82643837-1",
+        "baghdad-baghdad-osm-way-82643837-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/82643837"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q40376491"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-way-82665090",
+      "name": "Ibn Sina Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.405773,
+        "lat": 33.311221
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-way-82665090-1",
+        "baghdad-baghdad-osm-way-82665090-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/82665090"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5984266"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-way-82992750",
+      "name": "ام الطبول",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.344339,
+        "lat": 33.286956
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-way-82992750-1",
+        "baghdad-baghdad-osm-way-82992750-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/82992750"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12204308"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-way-832799038",
+      "name": "Baghdad Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.364373,
+        "lat": 33.311912
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-way-832799038-1",
+        "baghdad-baghdad-osm-way-832799038-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/832799038"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28715019"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-way-83672623",
+      "name": "University of Technology",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.44723,
+        "lat": 33.312022
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-way-83672623-1",
+        "baghdad-baghdad-osm-way-83672623-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/83672623"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4120423"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-way-83673023",
+      "name": "Zawraa Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.378206,
+        "lat": 33.314293
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-way-83673023-1",
+        "baghdad-baghdad-osm-way-83673023-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/83673023"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12207349"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-osm-way-85931827",
+      "name": "جامعة البكر",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.395771,
+        "lat": 33.376534
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-osm-way-85931827-1",
+        "baghdad-baghdad-osm-way-85931827-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/85931827"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12204410"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-quiet-reflection",
+      "name": "جامع الكبيسي",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.309831,
+        "lat": 33.246141
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-quiet-reflection-1",
+        "baghdad-baghdad-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4246078297"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12204283"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-recreation",
+      "name": "Baghdad tourism island",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.343656,
+        "lat": 33.443241
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-recreation-1",
+        "baghdad-baghdad-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/844680048"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12205434"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "baghdad-transit",
+      "name": "Allawi bus station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.385365,
+        "lat": 33.323131
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "baghdad-baghdad-transit-1",
+        "baghdad-baghdad-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/baghdad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/82809426"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q110738349"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.3872213,
+        "lat": 33.3061701
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "baghdad-baghdad-airport-baghdad-airport-1",
+      "venueId": "baghdad-airport-baghdad-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-airport-baghdad-airport-2",
+      "venueId": "baghdad-airport-baghdad-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-clinic-1",
+      "venueId": "baghdad-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-clinic-2",
+      "venueId": "baghdad-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-community-notices-1",
+      "venueId": "baghdad-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-community-notices-2",
+      "venueId": "baghdad-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-community-voting-game-1",
+      "venueId": "baghdad-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-community-voting-game-2",
+      "venueId": "baghdad-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-community-workshop-1",
+      "venueId": "baghdad-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-community-workshop-2",
+      "venueId": "baghdad-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-market-game-1",
+      "venueId": "baghdad-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-market-game-2",
+      "venueId": "baghdad-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-meal-stop-1",
+      "venueId": "baghdad-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-meal-stop-2",
+      "venueId": "baghdad-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-node-11597386428-1",
+      "venueId": "baghdad-osm-node-11597386428",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-node-11597386428-2",
+      "venueId": "baghdad-osm-node-11597386428",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-node-6411927106-1",
+      "venueId": "baghdad-osm-node-6411927106",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-node-6411927106-2",
+      "venueId": "baghdad-osm-node-6411927106",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-relation-20951269-1",
+      "venueId": "baghdad-osm-relation-20951269",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-relation-20951269-2",
+      "venueId": "baghdad-osm-relation-20951269",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-1208663973-1",
+      "venueId": "baghdad-osm-way-1208663973",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-1208663973-2",
+      "venueId": "baghdad-osm-way-1208663973",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-1287507333-1",
+      "venueId": "baghdad-osm-way-1287507333",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-1287507333-2",
+      "venueId": "baghdad-osm-way-1287507333",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-331568741-1",
+      "venueId": "baghdad-osm-way-331568741",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-331568741-2",
+      "venueId": "baghdad-osm-way-331568741",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-4493601-1",
+      "venueId": "baghdad-osm-way-4493601",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-4493601-2",
+      "venueId": "baghdad-osm-way-4493601",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-82012284-1",
+      "venueId": "baghdad-osm-way-82012284",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-82012284-2",
+      "venueId": "baghdad-osm-way-82012284",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-82643837-1",
+      "venueId": "baghdad-osm-way-82643837",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-82643837-2",
+      "venueId": "baghdad-osm-way-82643837",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-82665090-1",
+      "venueId": "baghdad-osm-way-82665090",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-82665090-2",
+      "venueId": "baghdad-osm-way-82665090",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-82992750-1",
+      "venueId": "baghdad-osm-way-82992750",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-82992750-2",
+      "venueId": "baghdad-osm-way-82992750",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-832799038-1",
+      "venueId": "baghdad-osm-way-832799038",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-832799038-2",
+      "venueId": "baghdad-osm-way-832799038",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-83672623-1",
+      "venueId": "baghdad-osm-way-83672623",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-83672623-2",
+      "venueId": "baghdad-osm-way-83672623",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-83673023-1",
+      "venueId": "baghdad-osm-way-83673023",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-83673023-2",
+      "venueId": "baghdad-osm-way-83673023",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-85931827-1",
+      "venueId": "baghdad-osm-way-85931827",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-osm-way-85931827-2",
+      "venueId": "baghdad-osm-way-85931827",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-quiet-reflection-1",
+      "venueId": "baghdad-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-quiet-reflection-2",
+      "venueId": "baghdad-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-recreation-1",
+      "venueId": "baghdad-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-recreation-2",
+      "venueId": "baghdad-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-transit-1",
+      "venueId": "baghdad-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    },
+    {
+      "id": "baghdad-baghdad-transit-2",
+      "venueId": "baghdad-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/baghdad/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "baghdad-airport-baghdad-airport",
+    "baghdad-clinic",
+    "baghdad-community-notices",
+    "baghdad-community-voting-game",
+    "baghdad-community-workshop",
+    "baghdad-market-game",
+    "baghdad-meal-stop",
+    "baghdad-osm-node-11597386428",
+    "baghdad-osm-node-6411927106",
+    "baghdad-osm-relation-20951269",
+    "baghdad-osm-way-1208663973",
+    "baghdad-osm-way-1287507333",
+    "baghdad-osm-way-331568741",
+    "baghdad-osm-way-4493601",
+    "baghdad-osm-way-82012284",
+    "baghdad-osm-way-82643837",
+    "baghdad-osm-way-82665090",
+    "baghdad-osm-way-82992750",
+    "baghdad-osm-way-832799038",
+    "baghdad-osm-way-83672623",
+    "baghdad-osm-way-83673023",
+    "baghdad-osm-way-85931827",
+    "baghdad-quiet-reflection",
+    "baghdad-recreation",
+    "baghdad-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "81bbf619095a018d8b1f939c8a74f0a51c1bba4c72ee50bc990ed91f001d7c3e",
+    "contentSha256": "01dbd7abc59ffa4ac75e596622c69fcab5e9701acf00b7e70785f9c070bcecb9"
+  }
+}

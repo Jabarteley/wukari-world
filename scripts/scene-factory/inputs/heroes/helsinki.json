@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "helsinki",
+  "url": "/assets/scene-heroes/helsinki.glb",
+  "sha256": "8dcc67676252ad21c81df0cd04eb1a0d8ad86cee9128901d684c0b6196feb4f1",
+  "rawBytes": 39684,
+  "brotliBytes": 28085,
+  "triangles": 1904,
+  "parts": [
+    {
+      "node": "helsinki",
+      "triangles": 1904,
+      "bounds": {
+        "min": [
+          -3.20924783,
+          0,
+          -2.34188366
+        ],
+        "max": [
+          3.2092480148470006,
+          2.400030857934,
+          2.3418200465949996
+        ]
+      },
+      "footprint": [
+        -3.20924783,
+        -2.34188366,
+        3.2092480148470006,
+        2.3418200465949996
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "1903f4df212e148c0a6e8a5951aa26f0fdedc808ad54d25c4ef00b01c17d2093",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "helsinki",
+      "country": "fi",
+      "name": "Merikylpylänpuisto",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://paatokset.hel.fi/fi/asia/hel-2019-000604?paatos=a5eaedac-3d7b-4821-9b04-0d222c5842fc"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=helsinki]",
+      "sourceLicence": "unknown; factual evidence only, no external geometry/image licence inferred.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8,
+        "depth": 6,
+        "height": 2.4,
+        "seed": 11336169,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "open-park"
+      },
+      "evidence": "City decision identifies Merikylpylänpuisto in Lauttasaari and beach/kiosk area. Inherited direct primary read recorded in R4: Direct city decision page opened; lines inspected. Source artifact SHA256 ec5e9e5faaa619cc69dcb1856b6160ea45951eaa528958abe2e715f1c46326e5. Repository source: src/game/cities/helsinki/places.ts. Original schematic landscape only: dimensions, palette, counts, slope, vegetation shapes and layout are art direction. A park is not interpreted as forest or a pond. Riverbank uses open water and one simple bare bank with no inferred species or surveyed channel. No exact anchor overlap, water level, current access or ownership claim. Geometry original procedural AGPL-3.0-or-later; production approval pending.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

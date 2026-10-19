@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "observedAt": "2026-10-18T06:17:44.859042+00:00",
+  "url": "https://joinallworld.com/api/health",
+  "httpStatus": 200,
+  "expectedSourceSha": "678b6bbe50900561d712ebe35f4932e48227d3b5",
+  "expectedBuildId": "joinallworld-678b6bbe50900561d712ebe35f4",
+  "body": {
+    "ok": true,
+    "build": "joinallworld-9eab3816db3f1cdc2fc3e567191",
+    "relay": true,
+    "companionAi": true,
+    "serverTime": 1792304264960,
+    "transport": "cloudflare",
+    "buildId": "joinallworld-9eab3816db3f1cdc2fc3e567191"
+  },
+  "headers": {
+    "Content-Type": "application/json",
+    "Cache-Control": "no-store"
+  },
+  "responseSha256": "5cd0b0b1e14442ef22d55fbf5a105f7df3fbff886720d6ab39717c134975f926",
+  "activeBuildMatches": false
+}

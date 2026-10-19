@@ -1,0 +1,2115 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "andorra-la-vella",
+    "name": "Andorra la Vella",
+    "state": {
+      "id": "ad",
+      "name": "Andorra la Vella"
+    },
+    "country": {
+      "id": "ad",
+      "name": "Andorra"
+    },
+    "point": {
+      "lon": 1.5212467,
+      "lat": 42.5069391
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/andorra-261011.osm.pbf",
+      "https://ourairports.com/airports/AD-ALV/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/andorra-la-vella/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/andorra-la-vella/facts.ts",
+        "sha256": "92d42e75fde74c0c56d43334d0190752acffbcb65647f5042ca0f2554014860c"
+      },
+      {
+        "path": "src/game/cities/andorra-la-vella/index.ts",
+        "sha256": "1e726628e1c19a65a1064a154afb1971b813d09ac6902d6924675ff624febd97"
+      },
+      {
+        "path": "src/game/cities/andorra-la-vella/places.ts",
+        "sha256": "f9b56082443d446033fcee37476f32ec40d995f3beadb7e4a5cc960b27f1208c"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "andorra-la-vella-airport-andorra-la-vella-airport",
+      "name": "Andorra la Vella Heliport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.53365,
+        "lat": 42.511227
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-airport-andorra-la-vella-airport-1",
+        "andorra-la-vella-andorra-la-vella-airport-andorra-la-vella-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "andorra-la-vella-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-clinic",
+      "name": "Hospital of Our Lady of Meritxell",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.533933,
+        "lat": 42.511468
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-clinic-1",
+        "andorra-la-vella-andorra-la-vella-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/194554955"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q47993296"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-community-notices",
+      "name": "Govern d'Andorra",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.522112,
+        "lat": 42.506611
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-community-notices-1",
+        "andorra-la-vella-andorra-la-vella-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4456947592"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11918003"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-community-voting-game",
+      "name": "De Sant Serni De Canillo",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.597895,
+        "lat": 42.567471
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-community-voting-game-1",
+        "andorra-la-vella-andorra-la-vella-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/545322380"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-community-workshop",
+      "name": "Universitat d'Andorra",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.490301,
+        "lat": 42.465162
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-community-workshop-1",
+        "andorra-la-vella-andorra-la-vella-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/270902310"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q648838"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-market-game",
+      "name": "Pyrénées Hyper-Centre",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.731887,
+        "lat": 42.543632
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-market-game-1",
+        "andorra-la-vella-andorra-la-vella-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/54858984"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5596036"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-meal-stop",
+      "name": "Refugi de Sorteny",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.564168,
+        "lat": 42.62255
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-meal-stop-1",
+        "andorra-la-vella-andorra-la-vella-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5736767209"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3931665"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-node-10089764818",
+      "name": "Port de Cabús",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.419953,
+        "lat": 42.546523
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-node-10089764818-1",
+        "andorra-la-vella-andorra-la-vella-osm-node-10089764818-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10089764818"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-node-1894423912",
+      "name": "Restaurant Refugi del Llac de Pessons",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.687885,
+        "lat": 42.526001
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-node-1894423912-1",
+        "andorra-la-vella-andorra-la-vella-osm-node-1894423912-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1894423912"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-node-321679777",
+      "name": "la Rabassa",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.52072,
+        "lat": 42.435343
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-node-321679777-1",
+        "andorra-la-vella-andorra-la-vella-osm-node-321679777-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/321679777"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3212119"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-node-4516461789",
+      "name": "Madriu-Perafita-Claror Valley",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.602945,
+        "lat": 42.489646
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-node-4516461789-1",
+        "andorra-la-vella-andorra-la-vella-osm-node-4516461789-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4516461789"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q332800"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-node-6698440905",
+      "name": "Jardins de Juberri",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.491446,
+        "lat": 42.437477
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-node-6698440905-1",
+        "andorra-la-vella-andorra-la-vella-osm-node-6698440905-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6698440905"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-way-194556039",
+      "name": "Epizen",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.481502,
+        "lat": 42.447404
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-way-194556039-1",
+        "andorra-la-vella-andorra-la-vella-osm-way-194556039-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/194556039"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-way-202614660",
+      "name": "Museu Casa Rull",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.514213,
+        "lat": 42.532358
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-way-202614660-1",
+        "andorra-la-vella-andorra-la-vella-osm-way-202614660-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/202614660"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2124368"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-way-202616749",
+      "name": "Sant Andreu d’Arinsal",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.484028,
+        "lat": 42.572125
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-way-202616749-1",
+        "andorra-la-vella-andorra-la-vella-osm-way-202616749-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/202616749"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5397724"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-way-202617257",
+      "name": "Museu Etnogràfic Casa Cristo",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.582377,
+        "lat": 42.535144
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-way-202617257-1",
+        "andorra-la-vella-andorra-la-vella-osm-way-202617257-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/202617257"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5047802"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-way-202640608",
+      "name": "Església de Sant Corneli i Sant Cebrià d'Ordino",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.532874,
+        "lat": 42.556864
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-way-202640608-1",
+        "andorra-la-vella-andorra-la-vella-osm-way-202640608-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/202640608"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q21077406"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-way-352338250",
+      "name": "Centre Comercial Pyrénées Andorra",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.524108,
+        "lat": 42.508284
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-way-352338250-1",
+        "andorra-la-vella-andorra-la-vella-osm-way-352338250-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/352338250"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5596036"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-way-361846817",
+      "name": "Plaça del Poble",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.522262,
+        "lat": 42.506648
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-way-361846817-1",
+        "andorra-la-vella-andorra-la-vella-osm-way-361846817-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/361846817"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18005708"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-way-385230804",
+      "name": "Centre Mèdic Grau",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.696549,
+        "lat": 42.53161
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-way-385230804-1",
+        "andorra-la-vella-andorra-la-vella-osm-way-385230804-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/385230804"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-way-908107551",
+      "name": "Mirador Roc del Quer",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.591038,
+        "lat": 42.567153
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-way-908107551-1",
+        "andorra-la-vella-andorra-la-vella-osm-way-908107551-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/908107551"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q66384866"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-osm-way-968544460",
+      "name": "Cadran solaire de Tristaina",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.47731,
+        "lat": 42.640702
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-osm-way-968544460-1",
+        "andorra-la-vella-andorra-la-vella-osm-way-968544460-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/968544460"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q115654232"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-quiet-reflection",
+      "name": "Sant Pere del Tarter",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.653176,
+        "lat": 42.578701
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-quiet-reflection-1",
+        "andorra-la-vella-andorra-la-vella-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/202636510"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5397740"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-recreation",
+      "name": "Parc Central",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.525839,
+        "lat": 42.505965
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-recreation-1",
+        "andorra-la-vella-andorra-la-vella-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/6275507"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7136369"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "andorra-la-vella-transit",
+      "name": "National Bus Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.521022,
+        "lat": 42.504558
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "andorra-la-vella-andorra-la-vella-transit-1",
+        "andorra-la-vella-andorra-la-vella-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/andorra-la-vella/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/604030704"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q98387430"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.5212466999999998,
+        "lat": 42.5069391
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "andorra-la-vella-andorra-la-vella-airport-andorra-la-vella-airport-1",
+      "venueId": "andorra-la-vella-airport-andorra-la-vella-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-airport-andorra-la-vella-airport-2",
+      "venueId": "andorra-la-vella-airport-andorra-la-vella-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-clinic-1",
+      "venueId": "andorra-la-vella-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-clinic-2",
+      "venueId": "andorra-la-vella-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-community-notices-1",
+      "venueId": "andorra-la-vella-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-community-notices-2",
+      "venueId": "andorra-la-vella-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-community-voting-game-1",
+      "venueId": "andorra-la-vella-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-community-voting-game-2",
+      "venueId": "andorra-la-vella-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-community-workshop-1",
+      "venueId": "andorra-la-vella-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-community-workshop-2",
+      "venueId": "andorra-la-vella-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-market-game-1",
+      "venueId": "andorra-la-vella-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-market-game-2",
+      "venueId": "andorra-la-vella-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-meal-stop-1",
+      "venueId": "andorra-la-vella-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-meal-stop-2",
+      "venueId": "andorra-la-vella-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-node-10089764818-1",
+      "venueId": "andorra-la-vella-osm-node-10089764818",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-node-10089764818-2",
+      "venueId": "andorra-la-vella-osm-node-10089764818",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-node-1894423912-1",
+      "venueId": "andorra-la-vella-osm-node-1894423912",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-node-1894423912-2",
+      "venueId": "andorra-la-vella-osm-node-1894423912",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-node-321679777-1",
+      "venueId": "andorra-la-vella-osm-node-321679777",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-node-321679777-2",
+      "venueId": "andorra-la-vella-osm-node-321679777",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-node-4516461789-1",
+      "venueId": "andorra-la-vella-osm-node-4516461789",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-node-4516461789-2",
+      "venueId": "andorra-la-vella-osm-node-4516461789",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-node-6698440905-1",
+      "venueId": "andorra-la-vella-osm-node-6698440905",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-node-6698440905-2",
+      "venueId": "andorra-la-vella-osm-node-6698440905",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-194556039-1",
+      "venueId": "andorra-la-vella-osm-way-194556039",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-194556039-2",
+      "venueId": "andorra-la-vella-osm-way-194556039",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-202614660-1",
+      "venueId": "andorra-la-vella-osm-way-202614660",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-202614660-2",
+      "venueId": "andorra-la-vella-osm-way-202614660",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-202616749-1",
+      "venueId": "andorra-la-vella-osm-way-202616749",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-202616749-2",
+      "venueId": "andorra-la-vella-osm-way-202616749",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-202617257-1",
+      "venueId": "andorra-la-vella-osm-way-202617257",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-202617257-2",
+      "venueId": "andorra-la-vella-osm-way-202617257",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-202640608-1",
+      "venueId": "andorra-la-vella-osm-way-202640608",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-202640608-2",
+      "venueId": "andorra-la-vella-osm-way-202640608",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-352338250-1",
+      "venueId": "andorra-la-vella-osm-way-352338250",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-352338250-2",
+      "venueId": "andorra-la-vella-osm-way-352338250",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-361846817-1",
+      "venueId": "andorra-la-vella-osm-way-361846817",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-361846817-2",
+      "venueId": "andorra-la-vella-osm-way-361846817",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-385230804-1",
+      "venueId": "andorra-la-vella-osm-way-385230804",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-385230804-2",
+      "venueId": "andorra-la-vella-osm-way-385230804",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-908107551-1",
+      "venueId": "andorra-la-vella-osm-way-908107551",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-908107551-2",
+      "venueId": "andorra-la-vella-osm-way-908107551",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-968544460-1",
+      "venueId": "andorra-la-vella-osm-way-968544460",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-osm-way-968544460-2",
+      "venueId": "andorra-la-vella-osm-way-968544460",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-quiet-reflection-1",
+      "venueId": "andorra-la-vella-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-quiet-reflection-2",
+      "venueId": "andorra-la-vella-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-recreation-1",
+      "venueId": "andorra-la-vella-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-recreation-2",
+      "venueId": "andorra-la-vella-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-transit-1",
+      "venueId": "andorra-la-vella-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    },
+    {
+      "id": "andorra-la-vella-andorra-la-vella-transit-2",
+      "venueId": "andorra-la-vella-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/andorra-la-vella/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "andorra-la-vella-airport-andorra-la-vella-airport",
+    "andorra-la-vella-clinic",
+    "andorra-la-vella-community-notices",
+    "andorra-la-vella-community-voting-game",
+    "andorra-la-vella-community-workshop",
+    "andorra-la-vella-market-game",
+    "andorra-la-vella-meal-stop",
+    "andorra-la-vella-osm-node-10089764818",
+    "andorra-la-vella-osm-node-1894423912",
+    "andorra-la-vella-osm-node-321679777",
+    "andorra-la-vella-osm-node-4516461789",
+    "andorra-la-vella-osm-node-6698440905",
+    "andorra-la-vella-osm-way-194556039",
+    "andorra-la-vella-osm-way-202614660",
+    "andorra-la-vella-osm-way-202616749",
+    "andorra-la-vella-osm-way-202617257",
+    "andorra-la-vella-osm-way-202640608",
+    "andorra-la-vella-osm-way-352338250",
+    "andorra-la-vella-osm-way-361846817",
+    "andorra-la-vella-osm-way-385230804",
+    "andorra-la-vella-osm-way-908107551",
+    "andorra-la-vella-osm-way-968544460",
+    "andorra-la-vella-quiet-reflection",
+    "andorra-la-vella-recreation",
+    "andorra-la-vella-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "3fdc4061ab9eb01ce74a4af26b2be63e77f33b19fae48cb82d56bfbc83010109",
+    "contentSha256": "90e7a22ad49bcbae54e05126c01b4c9fa47885074ab6b1bee23b8de4d7f1799d"
+  }
+}

@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "san-juan",
+    "name": "San Juan",
+    "state": {
+      "id": "pr-san-juan",
+      "name": "San Juan"
+    },
+    "country": {
+      "id": "pr",
+      "name": "Puerto Rico"
+    },
+    "point": {
+      "lon": -66.116666,
+      "lat": 18.465299
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/north-america/us/puerto-rico-261011.osm.pbf",
+      "https://ourairports.com/airports/TJSJ/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/san-juan/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/san-juan/facts.ts",
+        "sha256": "e15f6ab97a3266a361028570a03c2ea688fd6740eff3d2108ede20b24e1c73f3"
+      },
+      {
+        "path": "src/game/cities/san-juan/index.ts",
+        "sha256": "2efef224375d0e5ba92adb01a514b6528f63970481f977a35ee6e5a8a14eae78"
+      },
+      {
+        "path": "src/game/cities/san-juan/places.ts",
+        "sha256": "e566324ac14f174f6e4c83aa9c9cf6364d6d4e331d7700f701e47b56c11bdd5a"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.116666,
+        "lat": 18.465299
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "san-juan-airport-san-juan-airport",
+      "name": "Luis Munoz Marin International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.001801,
+        "lat": 18.4394
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-airport-san-juan-airport-1",
+        "san-juan-san-juan-airport-san-juan-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "san-juan-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-clinic",
+      "name": "Professional Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.09772,
+        "lat": 18.362522
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-clinic-1",
+        "san-juan-san-juan-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/308741708"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7247983"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-community-notices",
+      "name": "Área de Embellecimiento y Ornato",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.070601,
+        "lat": 18.42815
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-community-notices-1",
+        "san-juan-san-juan-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/369424125"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3708607"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-community-voting-game",
+      "name": "Casa Alcaldía de Bayamón",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.15578,
+        "lat": 18.396174
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-community-voting-game-1",
+        "san-juan-san-juan-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/338720301"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4874266"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-community-workshop",
+      "name": "Caribbean University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.168634,
+        "lat": 18.383892
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-community-workshop-1",
+        "san-juan-san-juan-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/727594582"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5039438"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-market-game",
+      "name": "San Patricio Plaza",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.105511,
+        "lat": 18.409101
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-market-game-1",
+        "san-juan-san-juan-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/57960816"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7415089"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-meal-stop",
+      "name": "Loverbar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.052178,
+        "lat": 18.399345
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-meal-stop-1",
+        "san-juan-san-juan-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/365141850"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q108568569"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-node-357273264",
+      "name": "Estadio Manuel Carrasquillo Herpen",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -65.994787,
+        "lat": 18.418503
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-node-357273264-1",
+        "san-juan-san-juan-osm-node-357273264-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/357273264"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q49487491"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-node-4727907289",
+      "name": "La Casita Blanca",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.053698,
+        "lat": 18.443385
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-node-4727907289-1",
+        "san-juan-san-juan-osm-node-4727907289-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4727907289"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q123757799"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-node-4892514142",
+      "name": "Universidad Teólogica del Caribe",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.010675,
+        "lat": 18.37388
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-node-4892514142-1",
+        "san-juan-san-juan-osm-node-4892514142-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4892514142"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4903273"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-way-1204253618",
+      "name": "San Juan Puerto Rico Temple",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.029285,
+        "lat": 18.385733
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-way-1204253618-1",
+        "san-juan-san-juan-osm-way-1204253618-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1204253618"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q60776594"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-way-196598864",
+      "name": "Museo de Arte de Puerto Rico",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.066182,
+        "lat": 18.448441
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-way-196598864-1",
+        "san-juan-san-juan-osm-way-196598864-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/196598864"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6940766"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-way-197848164",
+      "name": "Universidad del Sagrado Corazón",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.058495,
+        "lat": 18.44176
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-way-197848164-1",
+        "san-juan-san-juan-osm-way-197848164-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/197848164"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7894348"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-way-198390426",
+      "name": "Polytechnic University of Puerto Rico",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.055886,
+        "lat": 18.422358
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-way-198390426-1",
+        "san-juan-san-juan-osm-way-198390426-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/198390426"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1798894"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-way-203588975",
+      "name": "Fortín San Juan de la Cruz",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.136408,
+        "lat": 18.466357
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-way-203588975-1",
+        "san-juan-san-juan-osm-way-203588975-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/203588975"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5350970"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-way-255583481",
+      "name": "San Cathedral Basilica of Saint John the Baptist",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.1177,
+        "lat": 18.465731
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-way-255583481-1",
+        "san-juan-san-juan-osm-way-255583481-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/255583481"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5052384"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-way-301913181",
+      "name": "Estadio Hiram Bithorn Sosa",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.072976,
+        "lat": 18.416819
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-way-301913181-1",
+        "san-juan-san-juan-osm-way-301913181-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/301913181"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1369267"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-way-336398987",
+      "name": "VA Healthcare Río Piedras",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.079373,
+        "lat": 18.390812
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-way-336398987-1",
+        "san-juan-san-juan-osm-way-336398987-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/336398987"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q104480719"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-way-421147595",
+      "name": "Puente Histórico de Trujillo Alto (Nº 427)",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.003702,
+        "lat": 18.35752
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-way-421147595-1",
+        "san-juan-san-juan-osm-way-421147595-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/421147595"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25006814"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-way-528579414",
+      "name": "Estadio Roberto Clemente Walker",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -65.949324,
+        "lat": 18.37683
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-way-528579414-1",
+        "san-juan-san-juan-osm-way-528579414-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/528579414"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7351649"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-way-55788712",
+      "name": "Coliseo Roberto Clemente Walker",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.075409,
+        "lat": 18.41593
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-way-55788712-1",
+        "san-juan-san-juan-osm-way-55788712-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/55788712"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2457627"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-osm-way-60449170",
+      "name": "Parque Dolores Cruz",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.171746,
+        "lat": 18.429008
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-osm-way-60449170-1",
+        "san-juan-san-juan-osm-way-60449170-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/60449170"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q49539797"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-quiet-reflection",
+      "name": "Capilla Nuestra Señora de Lourdes",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.085145,
+        "lat": 18.456417
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-quiet-reflection-1",
+        "san-juan-san-juan-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/295445063"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7068585"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-recreation",
+      "name": "San Juan National Historic Site",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.121698,
+        "lat": 18.467825
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-recreation-1",
+        "san-juan-san-juan-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/9489434"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q281149"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-juan-transit",
+      "name": "Hato Rey",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.060126,
+        "lat": 18.429224
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-juan-san-juan-transit-1",
+        "san-juan-san-juan-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-juan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5356336924"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5681716"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "san-juan-san-juan-airport-san-juan-airport-1",
+      "venueId": "san-juan-airport-san-juan-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-airport-san-juan-airport-2",
+      "venueId": "san-juan-airport-san-juan-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-clinic-1",
+      "venueId": "san-juan-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-clinic-2",
+      "venueId": "san-juan-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-community-notices-1",
+      "venueId": "san-juan-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-community-notices-2",
+      "venueId": "san-juan-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-community-voting-game-1",
+      "venueId": "san-juan-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-community-voting-game-2",
+      "venueId": "san-juan-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-community-workshop-1",
+      "venueId": "san-juan-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-community-workshop-2",
+      "venueId": "san-juan-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-market-game-1",
+      "venueId": "san-juan-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-market-game-2",
+      "venueId": "san-juan-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-meal-stop-1",
+      "venueId": "san-juan-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-meal-stop-2",
+      "venueId": "san-juan-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-node-357273264-1",
+      "venueId": "san-juan-osm-node-357273264",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-node-357273264-2",
+      "venueId": "san-juan-osm-node-357273264",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-node-4727907289-1",
+      "venueId": "san-juan-osm-node-4727907289",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-node-4727907289-2",
+      "venueId": "san-juan-osm-node-4727907289",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-node-4892514142-1",
+      "venueId": "san-juan-osm-node-4892514142",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-node-4892514142-2",
+      "venueId": "san-juan-osm-node-4892514142",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-1204253618-1",
+      "venueId": "san-juan-osm-way-1204253618",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-1204253618-2",
+      "venueId": "san-juan-osm-way-1204253618",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-196598864-1",
+      "venueId": "san-juan-osm-way-196598864",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-196598864-2",
+      "venueId": "san-juan-osm-way-196598864",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-197848164-1",
+      "venueId": "san-juan-osm-way-197848164",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-197848164-2",
+      "venueId": "san-juan-osm-way-197848164",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-198390426-1",
+      "venueId": "san-juan-osm-way-198390426",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-198390426-2",
+      "venueId": "san-juan-osm-way-198390426",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-203588975-1",
+      "venueId": "san-juan-osm-way-203588975",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-203588975-2",
+      "venueId": "san-juan-osm-way-203588975",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-255583481-1",
+      "venueId": "san-juan-osm-way-255583481",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-255583481-2",
+      "venueId": "san-juan-osm-way-255583481",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-301913181-1",
+      "venueId": "san-juan-osm-way-301913181",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-301913181-2",
+      "venueId": "san-juan-osm-way-301913181",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-336398987-1",
+      "venueId": "san-juan-osm-way-336398987",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-336398987-2",
+      "venueId": "san-juan-osm-way-336398987",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-421147595-1",
+      "venueId": "san-juan-osm-way-421147595",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-421147595-2",
+      "venueId": "san-juan-osm-way-421147595",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-528579414-1",
+      "venueId": "san-juan-osm-way-528579414",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-528579414-2",
+      "venueId": "san-juan-osm-way-528579414",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-55788712-1",
+      "venueId": "san-juan-osm-way-55788712",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-55788712-2",
+      "venueId": "san-juan-osm-way-55788712",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-60449170-1",
+      "venueId": "san-juan-osm-way-60449170",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-osm-way-60449170-2",
+      "venueId": "san-juan-osm-way-60449170",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-quiet-reflection-1",
+      "venueId": "san-juan-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-quiet-reflection-2",
+      "venueId": "san-juan-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-recreation-1",
+      "venueId": "san-juan-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-recreation-2",
+      "venueId": "san-juan-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-transit-1",
+      "venueId": "san-juan-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    },
+    {
+      "id": "san-juan-san-juan-transit-2",
+      "venueId": "san-juan-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-juan/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "san-juan-airport-san-juan-airport",
+    "san-juan-clinic",
+    "san-juan-community-notices",
+    "san-juan-community-voting-game",
+    "san-juan-community-workshop",
+    "san-juan-market-game",
+    "san-juan-meal-stop",
+    "san-juan-osm-node-357273264",
+    "san-juan-osm-node-4727907289",
+    "san-juan-osm-node-4892514142",
+    "san-juan-osm-way-1204253618",
+    "san-juan-osm-way-196598864",
+    "san-juan-osm-way-197848164",
+    "san-juan-osm-way-198390426",
+    "san-juan-osm-way-203588975",
+    "san-juan-osm-way-255583481",
+    "san-juan-osm-way-301913181",
+    "san-juan-osm-way-336398987",
+    "san-juan-osm-way-421147595",
+    "san-juan-osm-way-528579414",
+    "san-juan-osm-way-55788712",
+    "san-juan-osm-way-60449170",
+    "san-juan-quiet-reflection",
+    "san-juan-recreation",
+    "san-juan-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "601960721987523f4c1fab508cf90d55a45cb710f90152bbe36bbe472103f075",
+    "contentSha256": "d3e9aff6c2780416d0d40e01f19d643e5e81a021c44d074502d94a88ad733e42"
+  }
+}

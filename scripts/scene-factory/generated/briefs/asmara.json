@@ -1,0 +1,2079 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "asmara",
+    "name": "Asmara",
+    "state": {
+      "id": "er-asmara",
+      "name": "Asmara"
+    },
+    "country": {
+      "id": "er",
+      "name": "Eritrea"
+    },
+    "point": {
+      "lon": 38.9326763,
+      "lat": 15.3389667
+    }
+  },
+  "style": {
+    "region": "east-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/eritrea-261011.osm.pbf",
+      "https://ourairports.com/airports/HHAS/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/asmara/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/asmara/facts.ts",
+        "sha256": "21ce5754ffb9f6be48260857cb439c14a891bd25320f002d28d7a49a8605b09b"
+      },
+      {
+        "path": "src/game/cities/asmara/index.ts",
+        "sha256": "b65cc149279e2d35a1c143cea861ac01ea071ca6ecdea78d10728302e9bddfd0"
+      },
+      {
+        "path": "src/game/cities/asmara/places.ts",
+        "sha256": "f253fc444753b6149fc4918ab6330a20b50cbd476f8a77f2c34ba6fdaac55d71"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "asmara-airport-asmara-airport",
+      "name": "Asmara International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.910702,
+        "lat": 15.2919
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-airport-asmara-airport-1",
+        "asmara-asmara-airport-asmara-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "asmara-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-clinic",
+      "name": "St Mary's Psychiatric Hospital Sembel",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.899364,
+        "lat": 15.301387
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-clinic-1",
+        "asmara-asmara-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/319528084"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-community-notices",
+      "name": "Ministry of Education",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.935855,
+        "lat": 15.336014
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-community-notices-1",
+        "asmara-asmara-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/278141933"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q136562462"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-community-voting-game",
+      "name": "Asmara Muncipality",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.941298,
+        "lat": 15.336062
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-community-voting-game-1",
+        "asmara-asmara-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/120789690"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-community-workshop",
+      "name": "Eritrea Institute of Technology",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.773851,
+        "lat": 15.240672
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-community-workshop-1",
+        "asmara-asmara-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/529703008"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5389588"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-market-game",
+      "name": "Medeber Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.945354,
+        "lat": 15.344181
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-market-game-1",
+        "asmara-asmara-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/278140690"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-meal-stop",
+      "name": "Wide Hiyab Snack Bar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.089359,
+        "lat": 15.445279
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-meal-stop-1",
+        "asmara-asmara-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5152477752"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-node-1834089661",
+      "name": "Bar Durfo",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.989238,
+        "lat": 15.357634
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-node-1834089661-1",
+        "asmara-asmara-osm-node-1834089661-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1834089661"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-node-6360893186",
+      "name": "Restaurant with view over 2 valleys",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.035432,
+        "lat": 15.330371
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-node-6360893186-1",
+        "asmara-asmara-osm-node-6360893186-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6360893186"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-node-7075366286",
+      "name": "Stadion",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.085722,
+        "lat": 15.444231
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-node-7075366286-1",
+        "asmara-asmara-osm-node-7075366286-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7075366286"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-way-120789231",
+      "name": "St Mariam",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.944426,
+        "lat": 15.339853
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-way-120789231-1",
+        "asmara-asmara-osm-way-120789231-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/120789231"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-way-120789247",
+      "name": "Covered Market for fruits",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.939519,
+        "lat": 15.339455
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-way-120789247-1",
+        "asmara-asmara-osm-way-120789247-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/120789247"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-way-120789704",
+      "name": "Covered Market - fruits, vegetables, bags",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.941652,
+        "lat": 15.340136
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-way-120789704-1",
+        "asmara-asmara-osm-way-120789704-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/120789704"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-way-145347060",
+      "name": "University of Asmara",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.92799,
+        "lat": 15.343179
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-way-145347060-1",
+        "asmara-asmara-osm-way-145347060-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/145347060"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1707483"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-way-278139357",
+      "name": "Fiat Tagliero",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.925974,
+        "lat": 15.328439
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-way-278139357-1",
+        "asmara-asmara-osm-way-278139357-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/278139357"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1410651"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-way-278139845",
+      "name": "Nation Museum of Eritrea",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.927201,
+        "lat": 15.33349
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-way-278139845-1",
+        "asmara-asmara-osm-way-278139845-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/278139845"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1968666"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-way-355197149",
+      "name": "Cicero Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.921208,
+        "lat": 15.349273
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-way-355197149-1",
+        "asmara-asmara-osm-way-355197149-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/355197149"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-way-457538564",
+      "name": "Dem Sebai",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.76776,
+        "lat": 15.412423
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-way-457538564-1",
+        "asmara-asmara-osm-way-457538564-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/457538564"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q108079271"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-way-714628474",
+      "name": "Teachers' Institute",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.917621,
+        "lat": 15.350747
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-way-714628474-1",
+        "asmara-asmara-osm-way-714628474-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/714628474"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-way-783951928",
+      "name": "Godaif Community Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.92307,
+        "lat": 15.306021
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-way-783951928-1",
+        "asmara-asmara-osm-way-783951928-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/783951928"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-way-790417508",
+      "name": "Halibet Referral Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.939066,
+        "lat": 15.313146
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-way-790417508-1",
+        "asmara-asmara-osm-way-790417508-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/790417508"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-osm-way-93787841",
+      "name": "Saint Joseph's Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.937907,
+        "lat": 15.33674
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-osm-way-93787841-1",
+        "asmara-asmara-osm-way-93787841-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/93787841"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2061047"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-quiet-reflection",
+      "name": "Kidane Meheret Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.936816,
+        "lat": 15.340953
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-quiet-reflection-1",
+        "asmara-asmara-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/120666025"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28800021"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-recreation",
+      "name": "ኮመሰራታ ሓማሴን",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.938092,
+        "lat": 15.334897
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-recreation-1",
+        "asmara-asmara-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6261029019"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "asmara-transit",
+      "name": "Asmara",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.949346,
+        "lat": 15.338864
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "asmara-asmara-transit-1",
+        "asmara-asmara-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/asmara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1092407340"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3968917"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.9326763,
+        "lat": 15.3389667
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "asmara-asmara-airport-asmara-airport-1",
+      "venueId": "asmara-airport-asmara-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-airport-asmara-airport-2",
+      "venueId": "asmara-airport-asmara-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-clinic-1",
+      "venueId": "asmara-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-clinic-2",
+      "venueId": "asmara-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-community-notices-1",
+      "venueId": "asmara-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-community-notices-2",
+      "venueId": "asmara-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-community-voting-game-1",
+      "venueId": "asmara-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-community-voting-game-2",
+      "venueId": "asmara-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-community-workshop-1",
+      "venueId": "asmara-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-community-workshop-2",
+      "venueId": "asmara-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-market-game-1",
+      "venueId": "asmara-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-market-game-2",
+      "venueId": "asmara-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-meal-stop-1",
+      "venueId": "asmara-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-meal-stop-2",
+      "venueId": "asmara-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-node-1834089661-1",
+      "venueId": "asmara-osm-node-1834089661",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-node-1834089661-2",
+      "venueId": "asmara-osm-node-1834089661",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-node-6360893186-1",
+      "venueId": "asmara-osm-node-6360893186",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-node-6360893186-2",
+      "venueId": "asmara-osm-node-6360893186",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-node-7075366286-1",
+      "venueId": "asmara-osm-node-7075366286",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-node-7075366286-2",
+      "venueId": "asmara-osm-node-7075366286",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-120789231-1",
+      "venueId": "asmara-osm-way-120789231",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-120789231-2",
+      "venueId": "asmara-osm-way-120789231",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-120789247-1",
+      "venueId": "asmara-osm-way-120789247",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-120789247-2",
+      "venueId": "asmara-osm-way-120789247",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-120789704-1",
+      "venueId": "asmara-osm-way-120789704",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-120789704-2",
+      "venueId": "asmara-osm-way-120789704",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-145347060-1",
+      "venueId": "asmara-osm-way-145347060",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-145347060-2",
+      "venueId": "asmara-osm-way-145347060",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-278139357-1",
+      "venueId": "asmara-osm-way-278139357",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-278139357-2",
+      "venueId": "asmara-osm-way-278139357",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-278139845-1",
+      "venueId": "asmara-osm-way-278139845",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-278139845-2",
+      "venueId": "asmara-osm-way-278139845",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-355197149-1",
+      "venueId": "asmara-osm-way-355197149",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-355197149-2",
+      "venueId": "asmara-osm-way-355197149",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-457538564-1",
+      "venueId": "asmara-osm-way-457538564",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-457538564-2",
+      "venueId": "asmara-osm-way-457538564",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-714628474-1",
+      "venueId": "asmara-osm-way-714628474",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-714628474-2",
+      "venueId": "asmara-osm-way-714628474",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-783951928-1",
+      "venueId": "asmara-osm-way-783951928",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-783951928-2",
+      "venueId": "asmara-osm-way-783951928",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-790417508-1",
+      "venueId": "asmara-osm-way-790417508",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-790417508-2",
+      "venueId": "asmara-osm-way-790417508",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-93787841-1",
+      "venueId": "asmara-osm-way-93787841",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-osm-way-93787841-2",
+      "venueId": "asmara-osm-way-93787841",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-quiet-reflection-1",
+      "venueId": "asmara-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-quiet-reflection-2",
+      "venueId": "asmara-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-recreation-1",
+      "venueId": "asmara-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-recreation-2",
+      "venueId": "asmara-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-transit-1",
+      "venueId": "asmara-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    },
+    {
+      "id": "asmara-asmara-transit-2",
+      "venueId": "asmara-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/asmara/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "asmara-airport-asmara-airport",
+    "asmara-clinic",
+    "asmara-community-notices",
+    "asmara-community-voting-game",
+    "asmara-community-workshop",
+    "asmara-market-game",
+    "asmara-meal-stop",
+    "asmara-osm-node-1834089661",
+    "asmara-osm-node-6360893186",
+    "asmara-osm-node-7075366286",
+    "asmara-osm-way-120789231",
+    "asmara-osm-way-120789247",
+    "asmara-osm-way-120789704",
+    "asmara-osm-way-145347060",
+    "asmara-osm-way-278139357",
+    "asmara-osm-way-278139845",
+    "asmara-osm-way-355197149",
+    "asmara-osm-way-457538564",
+    "asmara-osm-way-714628474",
+    "asmara-osm-way-783951928",
+    "asmara-osm-way-790417508",
+    "asmara-osm-way-93787841",
+    "asmara-quiet-reflection",
+    "asmara-recreation",
+    "asmara-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "c89ae4397ccfa3c53fc6370c20e1908c61058c965971971f24dade020e8a14e0",
+    "contentSha256": "41479f275c734c24b475dd7b213518d17209a78e9e0f78389c76de2a26e7cd21"
+  }
+}

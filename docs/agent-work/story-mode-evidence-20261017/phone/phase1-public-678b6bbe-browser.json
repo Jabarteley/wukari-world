@@ -1,0 +1,105 @@
+{
+  "releaseRevision": "678b6bbe50900561d712ebe35f4932e48227d3b5",
+  "requestedScope": "Read-only unauthenticated public landing responsive startup confirmation",
+  "result": "unauthenticated-responsive-landing-pass",
+  "attempt": {
+    "origin": "https://joinallworld.com/",
+    "ownedTab": "460562436",
+    "title": "Allworld: a digital world you can live in",
+    "mainModule": "https://joinallworld.com/assets/app-104e4ab.js",
+    "mainStylesheetLink": "https://joinallworld.com/assets/app-1053440.css",
+    "viewportWidth": 390,
+    "documentWidth": 390,
+    "authentication": "Existing Chrome session automatically restored Admin; not unauthenticated acceptance.",
+    "visibleError": "internal_error",
+    "errorScope": "Visible in automatically restored authenticated Admin; no failing request URL/status or console exception captured, no root-cause inference.",
+    "visibleBuild": "joinallworld-678b6bbe50900561d712ebe35f4",
+    "cleanup": "Only newly owned Chrome436 closed; viewport override reset; existing tabs/cookies/profile preserved."
+  },
+  "isolatedAttempt": {
+    "surface": "iab",
+    "error": "Browser is not available: iab",
+    "currentInventory": "Only Chrome3, Anthony profile; no documented isolated-context method available in browser API."
+  },
+  "screenshots": [],
+  "limitations": [
+    "Original Chrome attempt inherited Admin; visible internal_error retained as separate authenticated observation, not reproduced on Incognito landing.",
+    "No Play/signup/login/location/gameplay actions taken; authenticated Story journeys not repeated.",
+    "Responsive desktop viewport inspection, not phone hardware performance.",
+    "No browser network status trace captured; no claim that every request succeeded.",
+    "No source/server/config/cookie/profile changes; only task-created window removed."
+  ],
+  "incognito": {
+    "tab": "460562447",
+    "entry": "Native Chrome Cmd+Shift+N then URL; Incognito indicator and Welcome landing verified before documented tab binding. No extension settings changed.",
+    "origin": "https://joinallworld.com/",
+    "at390": {
+      "scripts": [
+        "/assets/app-104e4ab.js",
+        "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092"
+      ],
+      "scrollWidth": 390,
+      "styles": [
+        "/assets/app-1053440.css",
+        "/assets/useAccountLite-ee43545.css",
+        "/assets/accountEntry-2aa9fc3.css",
+        "/assets/BonusLine-daec22f.css",
+        "/assets/QuickStartApp-a4413b6.css",
+        "/assets/shell-kit-a0d49f4.css",
+        "/assets/startApp-0892505.css",
+        "/assets/controls-89b08fa.css",
+        "/assets/SheetBody-1d75c87.css",
+        "/assets/wallpapers-8653aca.css",
+        "/assets/HelpBody-8475d5e.css",
+        "/assets/PhoneDevice-92594ae.css",
+        "/assets/LazyList-bae97f3.css",
+        "/assets/map-ac1e55a.css",
+        "/assets/levelMenu-d1b9a3f.css",
+        "/assets/TextField-5b18edc.css",
+        "/assets/HowItWorks-a72851d.css",
+        "/assets/JobsApp-547d88d.css",
+        "/assets/GroceriesApp-8284ead.css",
+        "/assets/buy-c6adbba.css",
+        "/assets/SettleNotice-349c8c7.css",
+        "/assets/LookStage-0c7d647.css",
+        "/assets/look-ui-5c23f76.css",
+        "/assets/BoutiqueApp-3998202.css"
+      ],
+      "text": "Allworld\n\n1 in Allworld now · 284 cities, 243 countries and territories\n\nA digital world you can live in\n\n284 real-world places to explore. Free, in your browser, no download.\n\nPlay now\nSign up free\nLog in\n\nNo password, no e-mail to start.\nMake my character first\n\nLaunch bonus: the first 10,000 players to sign up get at least ₦1,000,000 in the game. 9,970 left.\n\nLive in a real city\nWork and earn\nOpen a shop for your real business\nFriends, voice and games\nFind my city\nWorked out on this device. Your position is never sent or stored.\nConnect an AI agent\nSource code · AGPL",
+      "title": "Allworld: a digital world you can live in",
+      "width": 390
+    },
+    "at320": {
+      "heading": "A digital world you can live in",
+      "scrollWidth": 320,
+      "width": 320
+    },
+    "consoleWarningsErrors": [],
+    "visibleHardError": false,
+    "mainModule": "https://joinallworld.com/assets/app-104e4ab.js",
+    "styleEvidence": "Stylesheet links observed and actual styled landing pixels reviewed. No separate HTTP status trace captured.",
+    "versionBoundary": "Exact merged revision/build adoption supplied by parent health verification. This independent browser check confirms actual app104e4ab module; landing itself shows no build identifier.",
+    "captures": [
+      {
+        "file": "phase1-public-678b6bbe-390.png",
+        "width": 390,
+        "height": 844,
+        "sha256": "c85c2711538a93d122c8531da2096b6b229bc7338071353ee86444aa05133fad"
+      },
+      {
+        "file": "phase1-public-678b6bbe-320.png",
+        "width": 320,
+        "height": 740,
+        "sha256": "2f3cb4cbd9af52b61db94752017c3c4186aa2d19a614a81e92f279408ae5e612"
+      }
+    ],
+    "nativeWindowCapture": {
+      "file": "phase1-public-678b6bbe-incognito-native.jpg",
+      "sha256": "57c059deeebfd251b70a87dc51794a789f8647213ee47a69921da7b2a24b56fc",
+      "format": "JPEG",
+      "method": "Original native cua app getScreenshot bytes; no crop/resize/conversion"
+    },
+    "captureMethod": "Original CDP Page.captureScreenshot PNG bytes,fromSurface:true,captureBeyondViewport:false; IHDR dimensions and SHA256 checked.",
+    "cleanup": "Viewport reset; only task-owned Incognito tab/window closed."
+  }
+}

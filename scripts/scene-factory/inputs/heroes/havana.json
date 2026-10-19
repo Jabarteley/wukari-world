@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "havana",
+  "url": "/assets/scene-heroes/havana.glb",
+  "sha256": "7104334d8fffe80006da65e9cf7c1f9ebf5fc44e1196e61bff89391ea5290f2a",
+  "rawBytes": 23176,
+  "brotliBytes": 17253,
+  "triangles": 440,
+  "parts": [
+    {
+      "node": "havana",
+      "triangles": 440,
+      "bounds": {
+        "min": [
+          -1.09240687,
+          0,
+          -0.759312272
+        ],
+        "max": [
+          1.0924798968720002,
+          2.499999993132,
+          0.759335102208
+        ]
+      },
+      "footprint": [
+        -1.09240687,
+        -0.759312272,
+        1.0924798968720002,
+        0.759335102208
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "01a88791d3d792b9a1077a7e52ee7bf3bc64c4adcc6a4e538a9397d92cc4503c",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "havana",
+      "country": "cu",
+      "name": "Mercado Agropecuario",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/node/3903174200"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=havana]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181121,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object node/3903174200, version 4, timestamp 2022-02-03T18:41:39Z; response SHA256 ee4d7ddb534675f78c29958e066c5636d16fc9651f9a8a4632c07c5b5a90ad17. Source path: src/game/cities/havana/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

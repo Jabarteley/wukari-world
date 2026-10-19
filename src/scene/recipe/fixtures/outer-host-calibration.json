@@ -1,0 +1,114 @@
+{
+  "schema": "allworld-accepted-outer-host-calibration",
+  "version": 1,
+  "sourceReport": {
+    "path": "docs/agent-work/story-mode-evidence-20261017/phone/phase2-calibration-sign-resize-20261018-browser.json",
+    "sha256": "4da3a1799c13d55d8665b3b81384febc3125ad143fc5e5fb2486fb8e27a4d1e5"
+  },
+  "three": "180",
+  "sourcePins": {
+    "scripts/scene-factory/runtime-sample.ts": {
+      "sha256": "7156e47866bae8c2b92535719ab1f36c2e638628617429f65fee9b481fc7a45d",
+      "bytes": 24775
+    },
+    "scripts/vite/three-shared-morphs.ts": {
+      "sha256": "506b69f9cd4149f1cd1cdbd845f43aea17e33d07102c76cbf202259b593b41a9",
+      "bytes": 3456
+    },
+    "src/scene/look.ts": {
+      "sha256": "0636d74ae35452e7c53a315aee498d947d94f877305a9c091f29c15baf03f463",
+      "bytes": 11653
+    },
+    "src/scene/recipe/measure-outer-host.ts": {
+      "sha256": "65ebcaaea1791f7cb772d5e17949b0791e14e44efc2e71b73ad648ca1ebdeb35",
+      "bytes": 6709
+    },
+    "src/scene/recipe/sample/index.html": {
+      "sha256": "6dba773dd492ccfdbe5beb3475e5088e4718e662b354f87827c71ff86843fe2e",
+      "bytes": 3689
+    },
+    "src/scene/recipe/sample/client.ts": {
+      "sha256": "7ae6d004d02d89442ad6a6b33cea3ee2a8728a4729bfce4490efb83cfc65684a",
+      "bytes": 18887
+    },
+    "package-lock.json": {
+      "sha256": "0df1a57f859e27b3b00ca7cec515aea5d74795605af18b5e2559e2788bcdeeaa",
+      "bytes": 66281
+    },
+    "node_modules/three/package.json": {
+      "sha256": "aa42494664dba4cf76d89c6975ee38321a402f09a048672e190bad6f13beec93",
+      "bytes": 4635
+    },
+    "node_modules/three/build/three.module.js": {
+      "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a",
+      "bytes": 603113
+    },
+    "node_modules/three/src/renderers/webgl/WebGLBackground.js": {
+      "sha256": "da1770f82c1bd112215cdbfaf6374dbdbfda91e8349879c61dd090aa67571bf5",
+      "bytes": 7809
+    },
+    "node_modules/three/src/renderers/WebGLRenderer.js": {
+      "sha256": "35cea4871231c3fddc3517dcd03fc876bdb8f9e73f1a77042b35e3de0498c4cd",
+      "bytes": 102861
+    }
+  },
+  "calibration": {
+    "schema": "allworld-outer-host-calibration",
+    "version": 1,
+    "ground": {
+      "triangles": 144,
+      "meshes": 1,
+      "mainPasses": 2,
+      "shadowPasses": 0
+    },
+    "background": {
+      "triangles": 2,
+      "meshes": 1,
+      "mainPasses": 1,
+      "shadowPasses": 0
+    },
+    "total": {
+      "triangles": 146,
+      "meshes": 2,
+      "mainPasses": 3,
+      "shadowPasses": 0
+    },
+    "frame": {
+      "sceneId": "a8a75b4d-560f-4cd1-87c1-c34f123ee1b1",
+      "draws": [
+        {
+          "objectId": "f3325198-6424-46ca-aac5-dfa3959c018f",
+          "geometryId": "6c4bce86-3ce4-4543-a9fb-8b9642775735",
+          "name": "",
+          "material": "BackgroundMaterial",
+          "main": true,
+          "calls": 1,
+          "triangles": 2
+        },
+        {
+          "objectId": "8d1a3b12-8f76-4021-a372-84458aa3126c",
+          "geometryId": "8340940b-cd1e-4f7f-b16b-0933522df75c",
+          "name": "ground",
+          "material": "",
+          "main": true,
+          "calls": 1,
+          "triangles": 144
+        },
+        {
+          "objectId": "8d1a3b12-8f76-4021-a372-84458aa3126c",
+          "geometryId": "8340940b-cd1e-4f7f-b16b-0933522df75c",
+          "name": "ground",
+          "material": "",
+          "main": true,
+          "calls": 1,
+          "triangles": 144
+        }
+      ],
+      "mainCalls": 3,
+      "shadowCalls": 0,
+      "submittedTriangles": 290,
+      "rendererMainCalls": 3,
+      "rendererMainTriangles": 290
+    }
+  }
+}

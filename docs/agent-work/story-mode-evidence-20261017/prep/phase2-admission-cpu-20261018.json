@@ -1,0 +1,91 @@
+{
+  "schema": "story-phase2-admission-cpu-candidate-v1",
+  "observedAtUtc": "2026-10-18T20:53:34.128503+00:00",
+  "sourceBase": "4b8505053d64f34f4ecff08a58587f294318648d",
+  "status": "verified-candidate-awaiting-protected-integration",
+  "ownedGuard": {
+    "path": "src/scene/recipe/runtime-host.ts",
+    "applied": true,
+    "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0",
+    "change": "Only visible pending native poses defer guard admission."
+  },
+  "protectedPatch": {
+    "path": "docs/agent-work/story-mode-evidence-20261017/prep/phase2-admission-protected-candidate-20261018.patch",
+    "sha256": "c0d007781d977d9c88aa81e35e2ad39197b1c81c8dc4885eb5e654a4f8c17e49",
+    "applied": false,
+    "paths": [
+      "src/scene/ambient/layer.ts",
+      "src/scene/venue-scenes.ts"
+    ],
+    "ownership": "Original user brief reserves scene-performance paths; exact exception pending."
+  },
+  "regression": {
+    "path": "src/scene/recipe/dynamic-population.test.ts",
+    "sha256": "63948b645d47cf79854031eff17015b4a1380fd16c04a31eec587ee1d07cd362",
+    "exit": 0,
+    "elapsedMs": 26724.580333,
+    "registeredIn": ".github/workflows/ci.yml existing scene-adapter check"
+  },
+  "candidate": {
+    "submissions": 3130,
+    "recipeSubmissions": 3113,
+    "maxRawRootGeometryDraws": 54,
+    "maxRawRootGeometryTriangles": 74511,
+    "maxActualRecipeEntryDraws": 53,
+    "maxConservativeRecipeEntryDraws": 53,
+    "reservedExternalDraws": 3,
+    "maxConservativeWholeHostDraws": 56,
+    "visiblePendingDeferredFrames": 14,
+    "errors": [],
+    "queuedAfterDispose": 0,
+    "controls": [
+      "same mandatory recipe root retained",
+      "canonical two regulars retained",
+      "self native geometry retained",
+      "crowdList players first and friend-first network order",
+      "retained resolved placements exact",
+      "bounded optional network prefix",
+      "three repeated wakes",
+      "hot appearance",
+      "fresh reentry root; old root detached",
+      "authored Kano control",
+      "zero callbacks after disposal"
+    ]
+  },
+  "baseline": {
+    "originalBrowserReceipt": "docs/agent-work/story-mode-evidence-20261017/phone/phase2-world-4b850-20261018-browser.json",
+    "originalBrowserSha256": "8c602c0672ad0a245dd2b7e4c4cf5514139ad532aa804ea75245e1e63d94c2f5",
+    "stricterCaptureExit": 1,
+    "reason": "Current=true/checking=false. Six effectively hidden pending native pose roots incorrectly suppressed guard readmission; visible loading/reservations were zero."
+  },
+  "protectedSourceHashesUnchanged": {
+    "src/scene/venue-scenes.ts": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439",
+    "src/scene/ambient/layer.ts": "4cc74da050f58bbc901f7a9cbae0191141d1a257364bce2b9fc433d0b80e976e",
+    "src/scene/ambient/hub.ts": "38d1625619ebf07666758036d8840d1d1c1bb0b072408bbaac7bcc32f52c92a9",
+    "src/scene/body/static-extras.ts": "bb709d6fb370c4cba4c9367370c5adfa4d992adaca5dcf41b849cd26d63bbf03",
+    "src/scene/models/runtime-host.ts": "033e4c24bcae21094adf2865bc898c9cdb30d00f9765280cdae0d52220a06a80",
+    "src/venue-world.ts": "64bc12dc2c736e28315757c1cf7d9647e34d1e4f73789483a9c962e676764420",
+    "src/scene/street-life/draw.ts": "faca81e656e43646f6e1c4b4a2162254b0c4e1f422796bbfcad7e6619e73fcb5",
+    "src/scene/street-life/native-people.ts": "dc3b2a809cef7e0f6dd6f54e2a54fec89bf50287e29bda86c39abd3ad18d71ad"
+  },
+  "rawProof": {
+    "receiptPath": "/tmp/recipe-admission-guard-20261018/receipt.json",
+    "receiptSha256": "3172ea99b9bcb43cdd2ad162239656fb5ee8b5c5a5a72c0b47bcaa55247bc4ea",
+    "candidatePath": "/tmp/recipe-admission-guard-20261018/candidate/candidate.json",
+    "candidateSha256": "3540028b67bb828f8d06903cf38076b58dce078f45d5f2ce99f3f8e0ef447417"
+  },
+  "pendingGates": [
+    "protected ownership exception",
+    "complete integrated typecheck",
+    "canonical source/recipe witness refresh",
+    "exact-source CI and byte gates",
+    "corrected-artifact browser journeys",
+    "PR merge and release/live adoption"
+  ],
+  "limits": [
+    "Actual checked-in CPU geometry with renderer, DOM and image descriptor stubs. No pixel, GPU or physical-phone proof.",
+    "The shared candidate is tested through temporary source substitution and remains unapplied. The owned guard alone is not claimed to complete the repair.",
+    "Recipe-only resident priority preserves supplied real regulars and stable guest order/coordinates; it cannot restore rows already removed upstream.",
+    "Existing budget caps and the final refusal guard remain unchanged."
+  ]
+}

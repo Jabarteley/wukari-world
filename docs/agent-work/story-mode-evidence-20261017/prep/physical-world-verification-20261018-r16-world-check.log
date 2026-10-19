@@ -1,0 +1,5 @@
+
+> joinallworld@0.1.0 scenes:check
+> node --max-old-space-size=512 --experimental-strip-types scripts/scene-factory/scenes.ts check
+
+{"command":"check","planned":1436,"written":0,"deleted":0,"unchanged":1436,"manifestSha256":"af22bdc227d2d5683520fa8cb2c1ec004dbee109515918cc77ac9e4a49c5a53d"}

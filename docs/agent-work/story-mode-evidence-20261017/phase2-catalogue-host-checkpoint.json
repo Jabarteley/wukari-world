@@ -1,0 +1,45 @@
+{
+  "schema": "allworld-story-catalogue-integration-checkpoint",
+  "version": 1,
+  "sourceBase": "21a34d8d6ee75d91ac037b7400ca1ce9ddc66d61",
+  "checkedAt": "2026-10-18T06:40:56.035974+00:00",
+  "hostChecks": {
+    "pass": 4,
+    "fail": 0,
+    "durationMs": 5363.575666,
+    "logSha256": "786ce7ae14d04ee1b62b1b86a9a1615eff9d9a979a260eae346bee2d83826f81",
+    "command": "NODE_OPTIONS=--max-old-space-size=512 JOINALLWORLD_TOOLS=<existing-pinned-tooling> node --experimental-strip-types scripts/agent-slot.ts heavy -- node --experimental-strip-types --test --test-concurrency=1 server/scene-catalogue.test.ts deploy/scene-catalogue.edge.test.ts"
+  },
+  "sources": {
+    ".github/workflows/ci.yml": "0a32fd881933126f9a55f3507e8468b7a9d79760551ebcfdf3d10f5808569843",
+    "vite.config.ts": "669f136c1bb251022f9d80e908a1c6bd8f890b68c681f4f48f9a0e97e9f3c283",
+    "server/server.ts": "9b5bd7f05a7f881e07181d3b826c271f083262bb25d74e7351660d4a9a7de502",
+    "deploy/cloudflare-worker.ts": "fad51dd75af8cd91f3f6f2ab17918728e6a8a11390c36632390d815bedc4254a",
+    "server/scene-catalogue.ts": "4e01c6409b98ad4e56a9ff2a879e1ceb44bfe46dc1a4c4d397d980b10f097e96",
+    "server/scene-catalogue.test.ts": "87a03567bcef1424c21c79bdded3831860a7e097430c5b3638453675c0833acd",
+    "deploy/scene-catalogue.edge.test.ts": "3f7107fd130dfc0f75d06ffbc6bc15a246b701d6e217443cbc27a7b240fe432b",
+    "county/index.html": "524fa390a8a32c1112d3cbb527c96bc90bd7bcd2ae4eb3a3b18544b41c57d585",
+    "cities/index.html": "524fa390a8a32c1112d3cbb527c96bc90bd7bcd2ae4eb3a3b18544b41c57d585",
+    "cities/scenes/index.html": "524fa390a8a32c1112d3cbb527c96bc90bd7bcd2ae4eb3a3b18544b41c57d585",
+    "src/city-scene-catalog/campus.test.ts": "5e51bf538867c256e557af9d433f6d9cd004e4cfc30d884ee1489f6fdce81163",
+    "src/city-scene-catalog/campus.ts": "874de3a940b3549c4c82286bff729a5d12a010d161c6659c74b49426658f2174",
+    "src/city-scene-catalog/data.ts": "1d17740c241ce87cf57c51a83e78392b2454f103ec422066708b64ea2a59891e",
+    "src/city-scene-catalog/evidence.ts": "22a0e92f13a2fafbb6f71c1d3dcb17a500dc0ef411d2f49974ad36b12d2df936",
+    "src/city-scene-catalog/fingerprint.test.ts": "bf0d9efe2dfdd7aa81367041aa5e77aa8e83a0a1a89c8b4f87c7cdeb8f04168a",
+    "src/city-scene-catalog/fingerprint.ts": "25205009c0f2e8a3b6187bcb2e11f86bde9ba61fb8441cdf686359304c8d31e7",
+    "src/city-scene-catalog/lifetime.test.ts": "d39936d0be0ea6ae43f9746d3984fd3cc6b38744d0f3783631608a19e7577555",
+    "src/city-scene-catalog/lifetime.ts": "5435b2bb46fee901c2ab1bce287cf85abbceeefefe8031b4f6c9262730a61c7e",
+    "src/city-scene-catalog/main.ts": "718b03033dc28e008af54ab15029aa242b26604f9ad5614c516843de7297933a",
+    "src/city-scene-catalog/model.test.ts": "96e65a4178537cf21c7148f5eda931ca5a3aeee8e30cd8d0d37104db7736c738",
+    "src/city-scene-catalog/model.ts": "a7a4d1969f873bf0ef1384cc3481ece64a60f9ffc9592e94a16b27f179b82aab",
+    "src/city-scene-catalog/render-scene.ts": "39cf3a77c86f02f9396db5c7ab9fb9aa29993fab796a4b01a8c168a2fb82e6f2",
+    "src/city-scene-catalog/renderer.ts": "e0c7f8f4643989774d80296336da881cffe9a54d444c3f8410cecaa959988d4e",
+    "src/city-scene-catalog/style.css": "f78c98d4ec59dd22fab9ba8597746c491f97b7008b8ea93052a8e666ab907357"
+  },
+  "limitations": [
+    "Catalogue source-level focused coverage and prior normal typecheck are recorded separately in story-scene-catalog-20261018.md.",
+    "Hosted exact-head build, byte limits and browser journeys are pending.",
+    "No application build, new preview server or production mutation performed.",
+    "Factory/runtime drafts are excluded from this checkpoint."
+  ]
+}

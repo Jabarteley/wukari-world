@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import type { Object3D } from 'three'
 import { preloadCanonicalBodies } from '../scene/body/skinned.ts'
 import { preloadNativeStaticLod } from '../scene/body/native-static-lod.ts'
+import { imageHeaderBitmap, recipeGeometryCanvas } from '../scene/recipe/image-header-fixture.ts'
 
 const root = fileURLToPath(new URL('../../', import.meta.url))
 const origin = 'http://native-geometry.localhost/'
@@ -30,15 +31,7 @@ class GeometryImage {
 
 function geometryCanvas(tag: string) {
   if (tag !== 'canvas') throw new Error(`Unexpected geometry-test element ${tag}`)
-  return {
-    width: 1,
-    height: 1,
-    getContext: () => ({
-      drawImage() {},
-      getImageData: () => ({ data: new Uint8ClampedArray([128, 128, 128, 255]) }),
-      putImageData() {},
-    }),
-  }
+  return recipeGeometryCanvas()
 }
 
 /** Install local-asset and image-decoding substitutes for geometry-only Node tests. */
@@ -64,7 +57,7 @@ export function installNativeGeometryEnvironment(): () => void {
       }
       return originalFetch.call(globalThis, input, init)
     }),
-    replaceGlobal('createImageBitmap', async () => ({ width: 1, height: 1, close() {} })),
+    replaceGlobal('createImageBitmap', imageHeaderBitmap),
     replaceGlobal('document', {
       createElementNS(_namespace: string, tag: string) { return tag === 'img' ? new GeometryImage() : geometryCanvas(tag) },
       createElement: geometryCanvas,
@@ -101,7 +94,9 @@ export async function awaitNativeSceneGeometry(scene: { group: Object3D, walk: {
   const seen = new Set<Promise<unknown>>()
   const errors: string[] = []
   let idle = 0
-  for (let cycle = 0; cycle < 32 && idle < 2; cycle += 1) {
+  const deadline = Date.now() + 10_000
+  while (idle < 2) {
+    if (Date.now() >= deadline) throw new Error(`${label}: native geometry readiness timed out`)
     const tasks: Promise<unknown>[] = []
     scene.group.traverse(node => {
       const ready = node.userData.ready
@@ -116,7 +111,9 @@ export async function awaitNativeSceneGeometry(scene: { group: Object3D, walk: {
       const refresh = scene.group.userData.refreshCharacterCosts
       if (typeof refresh === 'function') refresh()
     } else {
-      idle += 1
+      let pending = false
+      scene.group.traverse(node => { if (node.userData.characterStatus === 'loading') pending = true })
+      idle = pending ? 0 : idle + 1
       await pause()
     }
   }

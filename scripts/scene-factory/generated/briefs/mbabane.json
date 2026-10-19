@@ -1,0 +1,1909 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "mbabane",
+    "name": "Mbabane",
+    "state": {
+      "id": "sz-hhohho",
+      "name": "Hhohho"
+    },
+    "country": {
+      "id": "sz",
+      "name": "Eswatini"
+    },
+    "point": {
+      "lon": 31.144663,
+      "lat": -26.325745
+    }
+  },
+  "style": {
+    "region": "southern-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap contributors and OurAirports dataset",
+    "sourceUrls": [
+      "https://ourairports.com/airports/FDSK/",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/mbabane/content.ts",
+        "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+      },
+      {
+        "path": "src/game/cities/mbabane/facts.ts",
+        "sha256": "de96d94ae7cf8c6449bb38272eda0f38fd23417539fd3623113bad14918e138e"
+      },
+      {
+        "path": "src/game/cities/mbabane/index.ts",
+        "sha256": "f66f421b27b0f715bb2bc21f4bce8f663867cc505024a4911313dbd119c45ea0"
+      },
+      {
+        "path": "src/game/cities/mbabane/places.ts",
+        "sha256": "27a62f16f6c4069cb232ecb4a1731656f8adafc1d3dd9b40c835ced243cb5de0"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.144663,
+        "lat": -26.325744999999998
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "mbabane-airport-mbabane-airport",
+      "name": "King Mswati III International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.716944,
+        "lat": -26.358611
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-airport-mbabane-airport-1",
+        "mbabane-mbabane-airport-mbabane-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "mbabane-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-baylor-childrens-clinic",
+      "name": "Baylor Childrens Clinic Eswatini",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.131624,
+        "lat": -26.318777
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-baylor-childrens-clinic-1",
+        "mbabane-mbabane-baylor-childrens-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/784173087"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-clinic",
+      "name": "Mbabane Government Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.143716,
+        "lat": -26.331497
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-clinic-1",
+        "mbabane-mbabane-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/393402376"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6799563"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-community-notices",
+      "name": "Public Service Pension Fund",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.141125,
+        "lat": -26.325426
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-community-notices-1",
+        "mbabane-mbabane-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4551203291"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-community-voting-game",
+      "name": "Mbabane City Council",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.144778,
+        "lat": -26.326566
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-community-voting-game-1",
+        "mbabane-mbabane-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/162142632"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-community-workshop",
+      "name": "Univeristy of Eswatini (Mbabane Campus)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.144558,
+        "lat": -26.333524
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-community-workshop-1",
+        "mbabane-mbabane-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1357139626"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-corner-plaza",
+      "name": "Corner Plaza Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.17556,
+        "lat": -26.398164
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-corner-plaza-1",
+        "mbabane-mbabane-corner-plaza-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/420018969"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-gobholo-cave",
+      "name": "Gobholo Cave",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.16932,
+        "lat": -26.357205
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-gobholo-cave-1",
+        "mbabane-mbabane-gobholo-cave-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1861576076"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-market-game",
+      "name": "Mbabane Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.143576,
+        "lat": -26.326778
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-market-game-1",
+        "mbabane-mbabane-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5399579030"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-mbabane-clinic",
+      "name": "Mbabane Clinic",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.134719,
+        "lat": -26.328366
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-mbabane-clinic-1",
+        "mbabane-mbabane-mbabane-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/784172577"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-mbabane-shopping-mall",
+      "name": "Mbabane Shopping Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.140029,
+        "lat": -26.326405
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-mbabane-shopping-mall-1",
+        "mbabane-mbabane-mbabane-shopping-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/162185813"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-meal-stop",
+      "name": "The Albert Millin",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.143355,
+        "lat": -26.319532
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-meal-stop-1",
+        "mbabane-mbabane-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4226607691"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-mvithiza-waterfall",
+      "name": "Mvithiza Waterfall",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.214049,
+        "lat": -26.262881
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-mvithiza-waterfall-1",
+        "mbabane-mbabane-mvithiza-waterfall-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1861477902"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-national-library",
+      "name": "Mbabane national library",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.145252,
+        "lat": -26.325967
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-national-library-1",
+        "mbabane-mbabane-national-library-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2170584"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-ngubhela-cave",
+      "name": "Ngubhela Cave",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.175701,
+        "lat": -26.263803
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-ngubhela-cave-1",
+        "mbabane-mbabane-ngubhela-cave-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1861608333"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-quiet-reflection",
+      "name": "Holy Resurrection church of Mbabane",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.14769,
+        "lat": -26.304439
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-quiet-reflection-1",
+        "mbabane-mbabane-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/425010324"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q27686614"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-recreation",
+      "name": "Coronation Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.141075,
+        "lat": -26.319487
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-recreation-1",
+        "mbabane-mbabane-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/162207260"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-sibebe-cave",
+      "name": "Sibebe Cave",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.174799,
+        "lat": -26.261834
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-sibebe-cave-1",
+        "mbabane-mbabane-sibebe-cave-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1861608362"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-sibebe-rock",
+      "name": "Sibebe Rock",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.168358,
+        "lat": -26.263605
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-sibebe-rock-1",
+        "mbabane-mbabane-sibebe-rock-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/9763850"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-sifundzani-library",
+      "name": "Sifundzani Library",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.13467,
+        "lat": -26.323223
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-sifundzani-library-1",
+        "mbabane-mbabane-sifundzani-library-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1010807491"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-sina-rock",
+      "name": "Sina Rock",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.211244,
+        "lat": -26.258455
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-sina-rock-1",
+        "mbabane-mbabane-sina-rock-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1861487378"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-swazi-plaza",
+      "name": "Swazi Plaza",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.141992,
+        "lat": -26.327748
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-swazi-plaza-1",
+        "mbabane-mbabane-swazi-plaza-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/480008855"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mbabane-transit",
+      "name": "Mbabane Bus Rank",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.141853,
+        "lat": -26.325893
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mbabane-mbabane-transit-1",
+        "mbabane-mbabane-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mbabane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/162185426"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "mbabane-mbabane-airport-mbabane-airport-1",
+      "venueId": "mbabane-airport-mbabane-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-airport-mbabane-airport-2",
+      "venueId": "mbabane-airport-mbabane-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-baylor-childrens-clinic-1",
+      "venueId": "mbabane-baylor-childrens-clinic",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-baylor-childrens-clinic-2",
+      "venueId": "mbabane-baylor-childrens-clinic",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-clinic-1",
+      "venueId": "mbabane-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-clinic-2",
+      "venueId": "mbabane-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-community-notices-1",
+      "venueId": "mbabane-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-community-notices-2",
+      "venueId": "mbabane-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-community-voting-game-1",
+      "venueId": "mbabane-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-community-voting-game-2",
+      "venueId": "mbabane-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-community-workshop-1",
+      "venueId": "mbabane-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-community-workshop-2",
+      "venueId": "mbabane-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-corner-plaza-1",
+      "venueId": "mbabane-corner-plaza",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-corner-plaza-2",
+      "venueId": "mbabane-corner-plaza",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-gobholo-cave-1",
+      "venueId": "mbabane-gobholo-cave",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-gobholo-cave-2",
+      "venueId": "mbabane-gobholo-cave",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-market-game-1",
+      "venueId": "mbabane-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-market-game-2",
+      "venueId": "mbabane-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-mbabane-clinic-1",
+      "venueId": "mbabane-mbabane-clinic",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-mbabane-clinic-2",
+      "venueId": "mbabane-mbabane-clinic",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-mbabane-shopping-mall-1",
+      "venueId": "mbabane-mbabane-shopping-mall",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-mbabane-shopping-mall-2",
+      "venueId": "mbabane-mbabane-shopping-mall",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-meal-stop-1",
+      "venueId": "mbabane-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-meal-stop-2",
+      "venueId": "mbabane-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-mvithiza-waterfall-1",
+      "venueId": "mbabane-mvithiza-waterfall",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-mvithiza-waterfall-2",
+      "venueId": "mbabane-mvithiza-waterfall",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-national-library-1",
+      "venueId": "mbabane-national-library",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-national-library-2",
+      "venueId": "mbabane-national-library",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-ngubhela-cave-1",
+      "venueId": "mbabane-ngubhela-cave",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-ngubhela-cave-2",
+      "venueId": "mbabane-ngubhela-cave",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-quiet-reflection-1",
+      "venueId": "mbabane-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-quiet-reflection-2",
+      "venueId": "mbabane-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-recreation-1",
+      "venueId": "mbabane-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-recreation-2",
+      "venueId": "mbabane-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-sibebe-cave-1",
+      "venueId": "mbabane-sibebe-cave",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-sibebe-cave-2",
+      "venueId": "mbabane-sibebe-cave",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-sibebe-rock-1",
+      "venueId": "mbabane-sibebe-rock",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-sibebe-rock-2",
+      "venueId": "mbabane-sibebe-rock",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-sifundzani-library-1",
+      "venueId": "mbabane-sifundzani-library",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-sifundzani-library-2",
+      "venueId": "mbabane-sifundzani-library",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-sina-rock-1",
+      "venueId": "mbabane-sina-rock",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-sina-rock-2",
+      "venueId": "mbabane-sina-rock",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-swazi-plaza-1",
+      "venueId": "mbabane-swazi-plaza",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-swazi-plaza-2",
+      "venueId": "mbabane-swazi-plaza",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-transit-1",
+      "venueId": "mbabane-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    },
+    {
+      "id": "mbabane-mbabane-transit-2",
+      "venueId": "mbabane-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mbabane/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "mbabane-airport-mbabane-airport",
+    "mbabane-baylor-childrens-clinic",
+    "mbabane-clinic",
+    "mbabane-community-notices",
+    "mbabane-community-voting-game",
+    "mbabane-community-workshop",
+    "mbabane-corner-plaza",
+    "mbabane-gobholo-cave",
+    "mbabane-market-game",
+    "mbabane-mbabane-clinic",
+    "mbabane-mbabane-shopping-mall",
+    "mbabane-meal-stop",
+    "mbabane-mvithiza-waterfall",
+    "mbabane-national-library",
+    "mbabane-ngubhela-cave",
+    "mbabane-quiet-reflection",
+    "mbabane-recreation",
+    "mbabane-sibebe-cave",
+    "mbabane-sibebe-rock",
+    "mbabane-sifundzani-library",
+    "mbabane-sina-rock",
+    "mbabane-swazi-plaza",
+    "mbabane-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "98d570134ffced5c797dddca68277f0b8c1c68f084153ea660b393abcf839d9c",
+    "contentSha256": "cb537d60d42832514270eb2f832eacd0dfac2875742ef822992e8f3c03f35b16"
+  }
+}

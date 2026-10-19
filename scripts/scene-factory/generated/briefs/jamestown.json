@@ -1,0 +1,1637 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "jamestown",
+    "name": "Jamestown",
+    "state": {
+      "id": "sh-jamestown",
+      "name": "Jamestown"
+    },
+    "country": {
+      "id": "sh",
+      "name": "St Helena"
+    },
+    "point": {
+      "lon": -5.7160872,
+      "lat": -15.9277296
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/saint-helena-ascension-and-tristan-da-cunha-261011.osm.pbf",
+      "https://ourairports.com/airports/FHSH/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/jamestown/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/jamestown/facts.ts",
+        "sha256": "695080535acd8f225fd3e88db6fd460085fb021cf6403a554f4e17dfefce7aa8"
+      },
+      {
+        "path": "src/game/cities/jamestown/index.ts",
+        "sha256": "c766d5fd042f2dc11335a1148b22d4878f01898524c1d5968a73b5dbeeedbf1a"
+      },
+      {
+        "path": "src/game/cities/jamestown/places.ts",
+        "sha256": "065d6b32b5fb3e50e08bd79e65072a239a734ded277d29890e664bfccf3db0e2"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record.",
+      "Venue jamestown-community-workshop has no mapped place source record.",
+      "Venue jamestown-market-game has no mapped place source record.",
+      "Venue jamestown-transit has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.7160872000000005,
+        "lat": -15.9277296
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "jamestown-airport-jamestown-airport",
+      "name": "Saint Helena International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.646066,
+        "lat": -15.958898
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-airport-jamestown-airport-1",
+        "jamestown-jamestown-airport-jamestown-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "jamestown-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-clinic",
+      "name": "General Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.711344,
+        "lat": -15.934116
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-clinic-1",
+        "jamestown-jamestown-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1231084281"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q31842272"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-community-notices",
+      "name": "The Castle",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.717852,
+        "lat": -15.924344
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-community-notices-1",
+        "jamestown-jamestown-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/254448018"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7721573"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-community-voting-game",
+      "name": "Law Courts",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.717876,
+        "lat": -15.924815
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-community-voting-game-1",
+        "jamestown-jamestown-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/552579257"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-community-workshop",
+      "name": "Community workshop (game venue)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.7160872000000005,
+        "lat": -15.926830279636274
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-community-workshop-1",
+        "jamestown-jamestown-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue jamestown-community-workshop has no mapped place source record."
+      }
+    },
+    {
+      "id": "jamestown-market-game",
+      "name": "Market game (game venue)",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.716997730505183,
+        "lat": -15.926830279636274
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-market-game-1",
+        "jamestown-jamestown-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue jamestown-market-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "jamestown-meal-stop",
+      "name": "Mantis St. Helena",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.717877,
+        "lat": -15.925423
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-meal-stop-1",
+        "jamestown-jamestown-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10591540340"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-osm-node-11755023051",
+      "name": "The Departures Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.648645,
+        "lat": -15.96236
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-osm-node-11755023051-1",
+        "jamestown-jamestown-osm-node-11755023051-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11755023051"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-osm-node-13908472202",
+      "name": "Jacob's Ladder Viewpoint",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.719869,
+        "lat": -15.92613
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-osm-node-13908472202-1",
+        "jamestown-jamestown-osm-node-13908472202-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13908472202"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-osm-node-1568670948",
+      "name": "High Knoll Fort",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.716695,
+        "lat": -15.943733
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-osm-node-1568670948-1",
+        "jamestown-jamestown-osm-node-1568670948-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1568670948"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5755803"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-osm-way-146163203",
+      "name": "Castle Gardens",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.717515,
+        "lat": -15.924834
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-osm-way-146163203-1",
+        "jamestown-jamestown-osm-way-146163203-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/146163203"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-osm-way-254448055",
+      "name": "Saint James' Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.718073,
+        "lat": -15.925255
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-osm-way-254448055-1",
+        "jamestown-jamestown-osm-way-254448055-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/254448055"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7401394"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-osm-way-35798100",
+      "name": "Longwood House",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.683039,
+        "lat": -15.949957
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-osm-way-35798100-1",
+        "jamestown-jamestown-osm-way-35798100-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/35798100"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q578060"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-osm-way-550478777",
+      "name": "Plantation House",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.720793,
+        "lat": -15.955595
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-osm-way-550478777-1",
+        "jamestown-jamestown-osm-way-550478777-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/550478777"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15266979"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-osm-way-552579270",
+      "name": "Tasty Bites",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.721189,
+        "lat": -15.928257
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-osm-way-552579270-1",
+        "jamestown-jamestown-osm-way-552579270-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/552579270"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-osm-way-754718688",
+      "name": "Baptist Chapel",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.715645,
+        "lat": -15.984866
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-osm-way-754718688-1",
+        "jamestown-jamestown-osm-way-754718688-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/754718688"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28000352"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-quiet-reflection",
+      "name": "St. Paul’s Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.720258,
+        "lat": -15.956855
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-quiet-reflection-1",
+        "jamestown-jamestown-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/556912651"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7402008"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-recreation",
+      "name": "Domaine du Pavillon des Briars",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.709651,
+        "lat": -15.943399
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-recreation-1",
+        "jamestown-jamestown-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jamestown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/455727922"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jamestown-transit",
+      "name": "City transit stop (game venue)",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -5.715176669494818,
+        "lat": -15.9277296
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "jamestown-jamestown-transit-1",
+        "jamestown-jamestown-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue jamestown-transit has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "jamestown-jamestown-airport-jamestown-airport-1",
+      "venueId": "jamestown-airport-jamestown-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-airport-jamestown-airport-2",
+      "venueId": "jamestown-airport-jamestown-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-clinic-1",
+      "venueId": "jamestown-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-clinic-2",
+      "venueId": "jamestown-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-community-notices-1",
+      "venueId": "jamestown-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-community-notices-2",
+      "venueId": "jamestown-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-community-voting-game-1",
+      "venueId": "jamestown-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-community-voting-game-2",
+      "venueId": "jamestown-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-community-workshop-1",
+      "venueId": "jamestown-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-community-workshop-2",
+      "venueId": "jamestown-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-market-game-1",
+      "venueId": "jamestown-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-market-game-2",
+      "venueId": "jamestown-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-meal-stop-1",
+      "venueId": "jamestown-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-meal-stop-2",
+      "venueId": "jamestown-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-node-11755023051-1",
+      "venueId": "jamestown-osm-node-11755023051",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-node-11755023051-2",
+      "venueId": "jamestown-osm-node-11755023051",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-node-13908472202-1",
+      "venueId": "jamestown-osm-node-13908472202",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-node-13908472202-2",
+      "venueId": "jamestown-osm-node-13908472202",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-node-1568670948-1",
+      "venueId": "jamestown-osm-node-1568670948",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-node-1568670948-2",
+      "venueId": "jamestown-osm-node-1568670948",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-way-146163203-1",
+      "venueId": "jamestown-osm-way-146163203",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-way-146163203-2",
+      "venueId": "jamestown-osm-way-146163203",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-way-254448055-1",
+      "venueId": "jamestown-osm-way-254448055",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-way-254448055-2",
+      "venueId": "jamestown-osm-way-254448055",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-way-35798100-1",
+      "venueId": "jamestown-osm-way-35798100",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-way-35798100-2",
+      "venueId": "jamestown-osm-way-35798100",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-way-550478777-1",
+      "venueId": "jamestown-osm-way-550478777",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-way-550478777-2",
+      "venueId": "jamestown-osm-way-550478777",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-way-552579270-1",
+      "venueId": "jamestown-osm-way-552579270",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-way-552579270-2",
+      "venueId": "jamestown-osm-way-552579270",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-way-754718688-1",
+      "venueId": "jamestown-osm-way-754718688",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-osm-way-754718688-2",
+      "venueId": "jamestown-osm-way-754718688",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-quiet-reflection-1",
+      "venueId": "jamestown-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-quiet-reflection-2",
+      "venueId": "jamestown-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-recreation-1",
+      "venueId": "jamestown-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-recreation-2",
+      "venueId": "jamestown-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-transit-1",
+      "venueId": "jamestown-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    },
+    {
+      "id": "jamestown-jamestown-transit-2",
+      "venueId": "jamestown-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jamestown/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "jamestown-airport-jamestown-airport",
+    "jamestown-clinic",
+    "jamestown-community-notices",
+    "jamestown-community-voting-game",
+    "jamestown-community-workshop",
+    "jamestown-market-game",
+    "jamestown-meal-stop",
+    "jamestown-osm-node-11755023051",
+    "jamestown-osm-node-13908472202",
+    "jamestown-osm-node-1568670948",
+    "jamestown-osm-way-146163203",
+    "jamestown-osm-way-254448055",
+    "jamestown-osm-way-35798100",
+    "jamestown-osm-way-550478777",
+    "jamestown-osm-way-552579270",
+    "jamestown-osm-way-754718688",
+    "jamestown-quiet-reflection",
+    "jamestown-recreation",
+    "jamestown-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "062fa83c58fe678393ad0587576cfa2b259cd813f211e9330228f597add32e8f",
+    "contentSha256": "6d6ea670c2dff07154699d2ed7596ffa0c57de798978597cb09a37772cdb54a3"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "ibadan",
+  "url": "/assets/scene-heroes/ibadan.glb",
+  "sha256": "54ec41a8630aec12e55e51dc31ed28852ef9f81956cb9d620a6a6a479e78b90f",
+  "rawBytes": 26960,
+  "brotliBytes": 18156,
+  "triangles": 680,
+  "parts": [
+    {
+      "node": "ibadan",
+      "triangles": 680,
+      "bounds": {
+        "min": [
+          -2.14406776,
+          0,
+          -0.896610141
+        ],
+        "max": [
+          2.1440678089999996,
+          2.299935741,
+          0.8965911519999998
+        ]
+      },
+      "footprint": [
+        -2.14406776,
+        -0.896610141,
+        2.1440678089999996,
+        0.8965911519999998
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "6fc43fa5cc7c3140c288e04db270c62da48fbee42a6e3123f4b055512f6b539d"
+  },
+  "inputs": {
+    "rawSha256": "e9b2f819b8f47002e1b72494ac455492cf6b3290eebad9e50e163aa1c92ea7c7",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "ibadan",
+      "country": "ng",
+      "name": "Bodija Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://oyostate.gov.ng/market-leaders-hausa-community-commends-makinde-on-enviromental-campaign/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-final20-primary-r5.json#records[city_id=ibadan]; hero-inputs-r4.md final decisions",
+      "sourceLicence": "OpenStreetMap ODbL1.0 for exact object facts where cited; other source text rights unknown. No external image, map, mesh, texture, floor plan or geometry is reused.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 6,
+        "depth": 5,
+        "height": 2.3,
+        "seed": 6300,
+        "palette": [
+          "#c7b58d",
+          "#685748",
+          "#718b61",
+          "#bd7f55",
+          "#679aa7",
+          "#bdad83",
+          "#e1ddd0",
+          "#35444a"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Direct state-government article identifies Bodija Market during visits to markets in Ibadan, lines83–87. This replaces the unreadable indexed-only enforcement lead. Original schematic category interpretation only. Dimensions, palette and layout are art direction, not surveyed measurements. Empty trade displays do not infer local merchandise, precise current access or operation. No production or external-rights approval.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "yoruba-southwest"
+      }
+    },
+    "styleSha256": "6bca7f81e5a0566559c88554f069e4e0f246ddca068d86b1efc31b249d7c8ee5"
+  }
+}

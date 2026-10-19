@@ -1,0 +1,1866 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "maputo",
+    "name": "Maputo",
+    "state": {
+      "id": "mz-maputo",
+      "name": "Maputo"
+    },
+    "country": {
+      "id": "mz",
+      "name": "Mozambique"
+    },
+    "point": {
+      "lon": 32.56745,
+      "lat": -25.966213
+    }
+  },
+  "style": {
+    "region": "swahili-coast",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap contributors and OurAirports dataset",
+    "sourceUrls": [
+      "https://ourairports.com/airports/FQMA/",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/maputo/content.ts",
+        "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+      },
+      {
+        "path": "src/game/cities/maputo/facts.ts",
+        "sha256": "50b3560ffa3c863ba53117cc42d7957414ab6be8ff8b9a85992189d1902fadb2"
+      },
+      {
+        "path": "src/game/cities/maputo/index.ts",
+        "sha256": "39349bc5f9fed9a248736e8e867c90681b84b8e8f7b76e4ceef934e19adbaac0"
+      },
+      {
+        "path": "src/game/cities/maputo/places.ts",
+        "sha256": "e7475c99b5e83a7b46fb96628baae0de81f10657f228372798cd5976b3422a46"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.56745,
+        "lat": -25.966212999999996
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "maputo-airport-maputo-airport",
+      "name": "Maputo Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.572601,
+        "lat": -25.920799
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-airport-maputo-airport-1",
+        "maputo-maputo-airport-maputo-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "maputo-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-clinic",
+      "name": "Centro de Saúde de Polana Cimento",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.594458,
+        "lat": -25.962972
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-clinic-1",
+        "maputo-maputo-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/255778036"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-community-notices",
+      "name": "Tribunal Supremo",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.574508,
+        "lat": -25.971943
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-community-notices-1",
+        "maputo-maputo-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/3272897"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-community-voting-game",
+      "name": "Feira Popular",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.575453,
+        "lat": -25.976116
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-community-voting-game-1",
+        "maputo-maputo-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/253632621"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-community-workshop",
+      "name": "Complexo Pedagógico UEM",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.599537,
+        "lat": -25.951021
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-community-workshop-1",
+        "maputo-maputo-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/245797539"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-costa-do-sol-stadium",
+      "name": "Campo do Costa do Sol",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.616144,
+        "lat": -25.941288
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-costa-do-sol-stadium-1",
+        "maputo-maputo-costa-do-sol-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/688152569"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2862460"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-craft-market",
+      "name": "Mercado de Artesanato, florese gastronomia de Maputo",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.595561,
+        "lat": -25.96875
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-craft-market-1",
+        "maputo-maputo-craft-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5473218294"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-fish-market",
+      "name": "Mercado do Peixe",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.628734,
+        "lat": -25.935058
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-fish-market-1",
+        "maputo-maputo-fish-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5679798736"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-fishing-museum",
+      "name": "Museu da Pesca",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.569233,
+        "lat": -25.975093
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-fishing-museum-1",
+        "maputo-maputo-fishing-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/254818895"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q27941734"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-interfranca",
+      "name": "InterFranca",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.580088,
+        "lat": -25.969041
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-interfranca-1",
+        "maputo-maputo-interfranca-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/253852587"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-mafalala-market",
+      "name": "Mercado Municipal da Mafalala",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.569861,
+        "lat": -25.955026
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-mafalala-market-1",
+        "maputo-maputo-mafalala-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/529705365"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-mafalala-museum",
+      "name": "Museu Mafalala",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.571706,
+        "lat": -25.951863
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-mafalala-museum-1",
+        "maputo-maputo-mafalala-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/538907956"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-market-game",
+      "name": "Mercado de Xiquelene",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.607195,
+        "lat": -25.925723
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-market-game-1",
+        "maputo-maputo-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/252085439"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-maxaquene-stadium",
+      "name": "Estadío de Maxaquene",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.577957,
+        "lat": -25.974499
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-maxaquene-stadium-1",
+        "maputo-maputo-maxaquene-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/701768009"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2209011"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-meal-stop",
+      "name": "Café Continental",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.571153,
+        "lat": -25.973102
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-meal-stop-1",
+        "maputo-maputo-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2356208798"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-national-art-museum",
+      "name": "Museu Nacional de Arte",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.571739,
+        "lat": -25.966706
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-national-art-museum-1",
+        "maputo-maputo-national-art-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/255757248"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q27941729"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-natural-history-museum",
+      "name": "Museu da História Natural",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.587155,
+        "lat": -25.97717
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-natural-history-museum-1",
+        "maputo-maputo-natural-history-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/242989733"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-quiet-reflection",
+      "name": "Mesquita da Baixa",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.567955,
+        "lat": -25.971789
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-quiet-reflection-1",
+        "maputo-maputo-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/242985514"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19594942"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-recreation",
+      "name": "Praça da Independência",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.573605,
+        "lat": -25.968588
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-recreation-1",
+        "maputo-maputo-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/955322535"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18638923"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-revolution-museum",
+      "name": "Museu da Revolução",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.567791,
+        "lat": -25.962637
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-revolution-museum-1",
+        "maputo-maputo-revolution-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6938172991"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q27941743"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-scala-cinema",
+      "name": "Scala",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.571636,
+        "lat": -25.972693
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-scala-cinema-1",
+        "maputo-maputo-scala-cinema-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/250552691"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20859834"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maputo-transit",
+      "name": "Maputo Central Railway Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.564078,
+        "lat": -25.970837
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "maputo-maputo-transit-1",
+        "maputo-maputo-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maputo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/248970809"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2672929"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "maputo-maputo-airport-maputo-airport-1",
+      "venueId": "maputo-airport-maputo-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-airport-maputo-airport-2",
+      "venueId": "maputo-airport-maputo-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-clinic-1",
+      "venueId": "maputo-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-clinic-2",
+      "venueId": "maputo-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-community-notices-1",
+      "venueId": "maputo-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-community-notices-2",
+      "venueId": "maputo-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-community-voting-game-1",
+      "venueId": "maputo-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-community-voting-game-2",
+      "venueId": "maputo-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-community-workshop-1",
+      "venueId": "maputo-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-community-workshop-2",
+      "venueId": "maputo-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-costa-do-sol-stadium-1",
+      "venueId": "maputo-costa-do-sol-stadium",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-costa-do-sol-stadium-2",
+      "venueId": "maputo-costa-do-sol-stadium",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-craft-market-1",
+      "venueId": "maputo-craft-market",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-craft-market-2",
+      "venueId": "maputo-craft-market",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-fish-market-1",
+      "venueId": "maputo-fish-market",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-fish-market-2",
+      "venueId": "maputo-fish-market",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-fishing-museum-1",
+      "venueId": "maputo-fishing-museum",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-fishing-museum-2",
+      "venueId": "maputo-fishing-museum",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-interfranca-1",
+      "venueId": "maputo-interfranca",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-interfranca-2",
+      "venueId": "maputo-interfranca",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-mafalala-market-1",
+      "venueId": "maputo-mafalala-market",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-mafalala-market-2",
+      "venueId": "maputo-mafalala-market",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-mafalala-museum-1",
+      "venueId": "maputo-mafalala-museum",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-mafalala-museum-2",
+      "venueId": "maputo-mafalala-museum",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-market-game-1",
+      "venueId": "maputo-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-market-game-2",
+      "venueId": "maputo-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-maxaquene-stadium-1",
+      "venueId": "maputo-maxaquene-stadium",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-maxaquene-stadium-2",
+      "venueId": "maputo-maxaquene-stadium",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-meal-stop-1",
+      "venueId": "maputo-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-meal-stop-2",
+      "venueId": "maputo-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-national-art-museum-1",
+      "venueId": "maputo-national-art-museum",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-national-art-museum-2",
+      "venueId": "maputo-national-art-museum",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-natural-history-museum-1",
+      "venueId": "maputo-natural-history-museum",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-natural-history-museum-2",
+      "venueId": "maputo-natural-history-museum",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-quiet-reflection-1",
+      "venueId": "maputo-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-quiet-reflection-2",
+      "venueId": "maputo-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-recreation-1",
+      "venueId": "maputo-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-recreation-2",
+      "venueId": "maputo-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-revolution-museum-1",
+      "venueId": "maputo-revolution-museum",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-revolution-museum-2",
+      "venueId": "maputo-revolution-museum",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-scala-cinema-1",
+      "venueId": "maputo-scala-cinema",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-scala-cinema-2",
+      "venueId": "maputo-scala-cinema",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-transit-1",
+      "venueId": "maputo-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    },
+    {
+      "id": "maputo-maputo-transit-2",
+      "venueId": "maputo-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maputo/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "maputo-airport-maputo-airport",
+    "maputo-clinic",
+    "maputo-community-notices",
+    "maputo-community-voting-game",
+    "maputo-community-workshop",
+    "maputo-costa-do-sol-stadium",
+    "maputo-craft-market",
+    "maputo-fish-market",
+    "maputo-fishing-museum",
+    "maputo-interfranca",
+    "maputo-mafalala-market",
+    "maputo-mafalala-museum",
+    "maputo-market-game",
+    "maputo-maxaquene-stadium",
+    "maputo-meal-stop",
+    "maputo-national-art-museum",
+    "maputo-natural-history-museum",
+    "maputo-quiet-reflection",
+    "maputo-recreation",
+    "maputo-revolution-museum",
+    "maputo-scala-cinema",
+    "maputo-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "db0ef2f29e78b1a4e26cf622f8b9212124d39eec04944f0e899d73ffed44d3c2",
+    "contentSha256": "2e19569ccbb3cfc209caccd131b422488b295a7b3852d13dd3d784f4bbb5f728"
+  }
+}

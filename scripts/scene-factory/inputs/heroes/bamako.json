@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "bamako",
+  "url": "/assets/scene-heroes/bamako.glb",
+  "sha256": "4f93ef0e2ec85a53df1a406747230d9463ff1a0c698272d55fa6a43412080762",
+  "rawBytes": 27012,
+  "brotliBytes": 16631,
+  "triangles": 744,
+  "parts": [
+    {
+      "node": "bamako",
+      "triangles": 744,
+      "bounds": {
+        "min": [
+          -2.71253586,
+          0,
+          -1.92723346
+        ],
+        "max": [
+          2.712535642134,
+          2.5001092499,
+          1.9272396087199999
+        ]
+      },
+      "footprint": [
+        -2.71253586,
+        -1.92723346,
+        2.712535642134,
+        1.9272396087199999
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "a58b37da529de79efa1ea1ce63b91a2ae8d506bd87023606bdcbc29b83eac837"
+  },
+  "inputs": {
+    "rawSha256": "31aa33bc3711b40ea9360fac3927f2d5d4b18e6c3cb48868579ad6d7285d0ddc",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "bamako",
+      "country": "ml",
+      "name": "Grand Marché",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/201954582"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=bamako]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181060,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object way/201954582, version 3, timestamp 2021-09-02T07:56:21Z; response SHA256 3f1a11469d13a3b18cee973182dce8228a68768bf32f279bd2047971cc204a2f. Source path: src/game/cities/bamako/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "sahel-francophone"
+      }
+    },
+    "styleSha256": "b72986c35ea5cc9b735e39261dba1208a3c62e668ecfc9928cfbe75dfa02d146"
+  }
+}

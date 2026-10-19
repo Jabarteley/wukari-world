@@ -1,0 +1,31 @@
+✔ a blocked Home doorway is handled without walking or requesting a transition (5.997666ms)
+✔ third-person camera solids follow stable identity changes without re-entering the scene or waking idle work (1.306041ms)
+✔ idle venue performs zero renders after native readiness; each host change draws one immediate frame (1387.8055ms)
+✔ an idle venue with a crowd renders zero frames; the crowd, the player and the lighting each cost one frame when they change (964.256584ms)
+✔ leaving a venue disposes its scene; home shows the player’s avatar and guests under its clock lighting (543.545125ms)
+✔ a supplied scene without a lighting preset restores host defaults after an outdoor venue (13.904625ms)
+✔ HUD insets re-centre the scene with one frame per change, never by themselves, and keep name tags on the canvas (19.620167ms)
+✔ only the motion loop owns recurring frames; finite native preparation and the sample readiness harness may request bounded frames (203.705083ms)
+✔ RELEASE GATE: idle → zero frames; walking → frames; after arrival → flat again; tab hidden → the loop stops (2474.158083ms)
+✔ camera: drag eases and stops; zoom keys and wheel dolly towards the avatar; recentre restores; keys elsewhere do nothing (147.293166ms)
+✔ arrows and W A S D walk in the camera’s frame; walls and furniture stop the avatar; Shift jogs (1614.523625ms)
+✔ spots and walking stay coherent: taps walk first, the panel walks instead of teleporting, dwell selects once, activities lock (7429.157125ms)
+✔ walking moves transforms only: hundreds of frames of walking, turning and zooming build no geometry (764.385041ms)
+✔ arriving from above (the end of the map's dive): the camera starts high and comes down to the composed view, then the loop stops (31.890708ms)
+✔ reduced motion snaps: a tap puts the avatar there in one frame and the camera never eases (14.866166ms)
+✔ home: furniture is solid, a tap on the floor walks there, and Buy mode keeps its own taps (1019.126542ms)
+✔ EVERY VENUE: spawn on free floor, walk to every spot and back out, orbit all the way round, zoom to both limits — and the loop always stops (39554.425833ms)
+✔ raised spots: the avatar climbs the declared way up, stands at the deck’s height, and a walking key takes the same way down first (518.700167ms)
+✔ in sight: zoomed in behind a tree the camera is held in or the tree is ghosted — eased, then at rest; the wide view is never pulled (4093.075708ms)
+✔ other players stand where they report, ease when they move (bounded frames, then idle), and are simply there with reduced motion (470.470833ms)
+✔ markers and people: a click on a marker’s ring picks the marker even with someone in front of it; hovering names what a click would pick (1507.064708ms)
+✔ where the avatar stands is reported in presence units, on request and while walking; walkBy is the keyboard way to move (105.0595ms)
+✔ game tables can be walked up to: a tap walks there and opens it on arrival, resting beside one opens it once, and it costs no idle frame (5054.104583ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 68549.410083

@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "abuja",
+  "url": "/assets/scene-heroes/abuja.glb",
+  "sha256": "aa339e2f2c3a9d284f75c2b9f883b8b31d0636b9aba0890504d2aa52875a29cb",
+  "rawBytes": 31100,
+  "brotliBytes": 19523,
+  "triangles": 1048,
+  "parts": [
+    {
+      "node": "abuja",
+      "triangles": 1048,
+      "bounds": {
+        "min": [
+          -2.325212,
+          0,
+          -1.84851706
+        ],
+        "max": [
+          2.3252118573760003,
+          2.499925710304,
+          1.848432236128
+        ]
+      },
+      "footprint": [
+        -2.325212,
+        -1.84851706,
+        2.3252118573760003,
+        1.848432236128
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "fc52fcd31a6a0f6232071f06ba078fc350a270ad2e48d4d2becdff31e3e24959"
+  },
+  "inputs": {
+    "rawSha256": "e9a623b26988aed4947666667530cbc94cf7bb7a0f00bd98a539b8f66eda35a4",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "abuja",
+      "country": "ng",
+      "name": "Arts and Craft Village",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.fcta.gov.ng/faq/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=abuja]",
+      "sourceLicence": "unknown; factual evidence only, no external geometry/image licence inferred.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 2990920,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "FCTA describes the Arts and Craft Village as a place for craft display, exhibition and sales. FCTA FAQ arts/crafts question: sales, display, exhibition and location behind Silverbird Cinema. Direct page read. Source artifact SHA256 ec5e9e5faaa619cc69dcb1856b6160ea45951eaa528958abe2e715f1c46326e5. Repository source: src/game/cities/abuja/landmarks.ts. Original schematic category interpretation only: dimensions, palette, item counts and layout are art direction. No surveyed geometry, copied photograph, exact species, current access, ownership or current operation is asserted. Empty counters/racks/awnings indicate trade without a claim about actual stalls or goods. Geometry original procedural AGPL-3.0-or-later; production approval pending.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "gulf-guinea"
+      }
+    },
+    "styleSha256": "2fdffb74f7375d9e1754151b92a51e85d0f902aaa4e0c8a647b3a33364eccaa9"
+  }
+}

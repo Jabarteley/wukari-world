@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "sofia",
+    "name": "Sofia",
+    "state": {
+      "id": "bg-sofia",
+      "name": "Sofia"
+    },
+    "country": {
+      "id": "bg",
+      "name": "Bulgaria"
+    },
+    "point": {
+      "lon": 23.3217359,
+      "lat": 42.6977028
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/bulgaria-261011.osm.pbf",
+      "https://ourairports.com/airports/LBSF/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/sofia/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/sofia/facts.ts",
+        "sha256": "5b727b9362e4d0711ea5dc5e07fcbcbf129369f6fcb139682e4c57ffc53215ba"
+      },
+      {
+        "path": "src/game/cities/sofia/index.ts",
+        "sha256": "cd21486710c8838f1d8946cf92c2a308555582ee079fa1c015c30c3af766732b"
+      },
+      {
+        "path": "src/game/cities/sofia/places.ts",
+        "sha256": "1747e53effd416391e33537eb667b3f4e4f6dd319a69a5d007ef99e9eef64106"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.3217359,
+        "lat": 42.6977028
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "sofia-airport-sofia-airport",
+      "name": "Sofia Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.417671,
+        "lat": 42.696357
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-airport-sofia-airport-1",
+        "sofia-sofia-airport-sofia-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "sofia-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-clinic",
+      "name": "ДПБ за лечение на наркомании и алкохолизъм",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.186016,
+        "lat": 42.672915
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-clinic-1",
+        "sofia-sofia-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/335394232"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q114066158"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-community-notices",
+      "name": "Regional Court - Kostinbrod",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.201163,
+        "lat": 42.809284
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-community-notices-1",
+        "sofia-sofia-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/213428184"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q140638803"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-community-voting-game",
+      "name": "Kapitan Petko Voivoda Sq.",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.49773,
+        "lat": 42.541518
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-community-voting-game-1",
+        "sofia-sofia-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9586161523"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q136500687"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-community-workshop",
+      "name": "University of finance, business and entrepreneurship",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.267481,
+        "lat": 42.670697
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-community-workshop-1",
+        "sofia-sofia-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/255130835"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12275347"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-market-game",
+      "name": "Sofia Ring Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.352588,
+        "lat": 42.624306
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-market-game-1",
+        "sofia-sofia-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/170658898"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12294461"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-meal-stop",
+      "name": "Под липите",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.335484,
+        "lat": 42.681763
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-meal-stop-1",
+        "sofia-sofia-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/302808867"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30152391"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-node-1406576355",
+      "name": "Кладнишка крепост",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.195533,
+        "lat": 42.569555
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-node-1406576355-1",
+        "sofia-sofia-osm-node-1406576355-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1406576355"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11083771"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-node-14109563211",
+      "name": "СБАЛОТ „Витоша“",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.334229,
+        "lat": 42.642325
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-node-14109563211-1",
+        "sofia-sofia-osm-node-14109563211-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/14109563211"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12289355"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-node-3001939533",
+      "name": "Kamen del",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.276586,
+        "lat": 42.611985
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-node-3001939533-1",
+        "sofia-sofia-osm-node-3001939533-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3001939533"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6356657"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-node-3114348357",
+      "name": "Pyramids of Katina",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.330449,
+        "lat": 42.846266
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-node-3114348357-1",
+        "sofia-sofia-osm-node-3114348357-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3114348357"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12284491"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-node-6221811642",
+      "name": "Vazov's Oak",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.14107,
+        "lat": 42.706234
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-node-6221811642-1",
+        "sofia-sofia-osm-node-6221811642-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6221811642"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q106524710"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-relation-16476740",
+      "name": "УМБАЛ „Лозенец“",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.311072,
+        "lat": 42.66377
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-relation-16476740-1",
+        "sofia-sofia-osm-relation-16476740-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/16476740"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12297238"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-way-1001043616",
+      "name": "Мадарска градинка",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.313092,
+        "lat": 42.687649
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-way-1001043616-1",
+        "sofia-sofia-osm-way-1001043616-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1001043616"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12285541"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-way-111605510",
+      "name": "SkyCity",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.367778,
+        "lat": 42.679724
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-way-111605510-1",
+        "sofia-sofia-osm-way-111605510-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/111605510"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3657203"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-way-1523767655",
+      "name": "State University of Library Studies and Information Technologies",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.387777,
+        "lat": 42.657649
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-way-1523767655-1",
+        "sofia-sofia-osm-way-1523767655-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1523767655"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1622169"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-way-179145803",
+      "name": "West Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.259244,
+        "lat": 42.706066
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-way-179145803-1",
+        "sofia-sofia-osm-way-179145803-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/179145803"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12280325"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-way-207570571",
+      "name": "Стадион \"Драгалевци\"",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.30906,
+        "lat": 42.637048
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-way-207570571-1",
+        "sofia-sofia-osm-way-207570571-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/207570571"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25487575"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-way-258411873",
+      "name": "Германски манастир \"Св. Иван Рилски\"",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.446841,
+        "lat": 42.599378
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-way-258411873-1",
+        "sofia-sofia-osm-way-258411873-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/258411873"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12276949"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-way-292960618",
+      "name": "Lokomotiv Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.314692,
+        "lat": 42.737601
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-way-292960618-1",
+        "sofia-sofia-osm-way-292960618-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/292960618"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1572672"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-way-315468410",
+      "name": "Technical University of Sofia",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.35467,
+        "lat": 42.655972
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-way-315468410-1",
+        "sofia-sofia-osm-way-315468410-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/315468410"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2303775"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-osm-way-409292553",
+      "name": "Seslavtsi Monastery St Nicholas",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.523373,
+        "lat": 42.798425
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-osm-way-409292553-1",
+        "sofia-sofia-osm-way-409292553-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/409292553"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12293654"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-quiet-reflection",
+      "name": "Балшенски манастир \"Св. Теодор Стратилат\"",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.279601,
+        "lat": 42.857245
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-quiet-reflection-1",
+        "sofia-sofia-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/726636079"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20499746"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-recreation",
+      "name": "Park „St. St. Peter & Pavel“",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.2938,
+        "lat": 42.696253
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-recreation-1",
+        "sofia-sofia-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/21397443"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q98503098"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sofia-transit",
+      "name": "Obelya",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.276103,
+        "lat": 42.740688
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "sofia-sofia-transit-1",
+        "sofia-sofia-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sofia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/281144692"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2622634"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "sofia-sofia-airport-sofia-airport-1",
+      "venueId": "sofia-airport-sofia-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-airport-sofia-airport-2",
+      "venueId": "sofia-airport-sofia-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-clinic-1",
+      "venueId": "sofia-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-clinic-2",
+      "venueId": "sofia-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-community-notices-1",
+      "venueId": "sofia-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-community-notices-2",
+      "venueId": "sofia-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-community-voting-game-1",
+      "venueId": "sofia-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-community-voting-game-2",
+      "venueId": "sofia-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-community-workshop-1",
+      "venueId": "sofia-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-community-workshop-2",
+      "venueId": "sofia-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-market-game-1",
+      "venueId": "sofia-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-market-game-2",
+      "venueId": "sofia-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-meal-stop-1",
+      "venueId": "sofia-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-meal-stop-2",
+      "venueId": "sofia-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-node-1406576355-1",
+      "venueId": "sofia-osm-node-1406576355",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-node-1406576355-2",
+      "venueId": "sofia-osm-node-1406576355",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-node-14109563211-1",
+      "venueId": "sofia-osm-node-14109563211",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-node-14109563211-2",
+      "venueId": "sofia-osm-node-14109563211",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-node-3001939533-1",
+      "venueId": "sofia-osm-node-3001939533",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-node-3001939533-2",
+      "venueId": "sofia-osm-node-3001939533",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-node-3114348357-1",
+      "venueId": "sofia-osm-node-3114348357",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-node-3114348357-2",
+      "venueId": "sofia-osm-node-3114348357",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-node-6221811642-1",
+      "venueId": "sofia-osm-node-6221811642",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-node-6221811642-2",
+      "venueId": "sofia-osm-node-6221811642",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-relation-16476740-1",
+      "venueId": "sofia-osm-relation-16476740",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-relation-16476740-2",
+      "venueId": "sofia-osm-relation-16476740",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-1001043616-1",
+      "venueId": "sofia-osm-way-1001043616",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-1001043616-2",
+      "venueId": "sofia-osm-way-1001043616",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-111605510-1",
+      "venueId": "sofia-osm-way-111605510",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-111605510-2",
+      "venueId": "sofia-osm-way-111605510",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-1523767655-1",
+      "venueId": "sofia-osm-way-1523767655",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-1523767655-2",
+      "venueId": "sofia-osm-way-1523767655",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-179145803-1",
+      "venueId": "sofia-osm-way-179145803",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-179145803-2",
+      "venueId": "sofia-osm-way-179145803",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-207570571-1",
+      "venueId": "sofia-osm-way-207570571",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-207570571-2",
+      "venueId": "sofia-osm-way-207570571",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-258411873-1",
+      "venueId": "sofia-osm-way-258411873",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-258411873-2",
+      "venueId": "sofia-osm-way-258411873",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-292960618-1",
+      "venueId": "sofia-osm-way-292960618",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-292960618-2",
+      "venueId": "sofia-osm-way-292960618",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-315468410-1",
+      "venueId": "sofia-osm-way-315468410",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-315468410-2",
+      "venueId": "sofia-osm-way-315468410",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-409292553-1",
+      "venueId": "sofia-osm-way-409292553",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-osm-way-409292553-2",
+      "venueId": "sofia-osm-way-409292553",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-quiet-reflection-1",
+      "venueId": "sofia-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-quiet-reflection-2",
+      "venueId": "sofia-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-recreation-1",
+      "venueId": "sofia-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-recreation-2",
+      "venueId": "sofia-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-transit-1",
+      "venueId": "sofia-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    },
+    {
+      "id": "sofia-sofia-transit-2",
+      "venueId": "sofia-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sofia/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "sofia-airport-sofia-airport",
+    "sofia-clinic",
+    "sofia-community-notices",
+    "sofia-community-voting-game",
+    "sofia-community-workshop",
+    "sofia-market-game",
+    "sofia-meal-stop",
+    "sofia-osm-node-1406576355",
+    "sofia-osm-node-14109563211",
+    "sofia-osm-node-3001939533",
+    "sofia-osm-node-3114348357",
+    "sofia-osm-node-6221811642",
+    "sofia-osm-relation-16476740",
+    "sofia-osm-way-1001043616",
+    "sofia-osm-way-111605510",
+    "sofia-osm-way-1523767655",
+    "sofia-osm-way-179145803",
+    "sofia-osm-way-207570571",
+    "sofia-osm-way-258411873",
+    "sofia-osm-way-292960618",
+    "sofia-osm-way-315468410",
+    "sofia-osm-way-409292553",
+    "sofia-quiet-reflection",
+    "sofia-recreation",
+    "sofia-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "3e85d32070930b2c82d834a1d7c6262fdc0a2f712b5db167ec40eb4ee0cd124c",
+    "contentSha256": "a5a8729db5b7f430a27bdb6c9fc91a5a0b215eba1fa7d0b9977d11b144ba0591"
+  }
+}

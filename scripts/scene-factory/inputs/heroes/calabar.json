@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "calabar",
+  "url": "/assets/scene-heroes/calabar.glb",
+  "sha256": "f5ad74f10ec38c9c228779ea9b55ed07f731a6af00dca32ddbe7e0f08b654de2",
+  "rawBytes": 32332,
+  "brotliBytes": 19705,
+  "triangles": 1152,
+  "parts": [
+    {
+      "node": "calabar",
+      "triangles": 1152,
+      "bounds": {
+        "min": [
+          -3,
+          0,
+          -1.34780169
+        ],
+        "max": [
+          2.999999973687,
+          2.090093380323,
+          1.34767531704
+        ]
+      },
+      "footprint": [
+        -3,
+        -1.34780169,
+        2.999999973687,
+        1.34767531704
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "29d7cfc3953c4039dcb93540d585dbaf0415a2e3c8070300d5da9fc4f160a4a1"
+  },
+  "inputs": {
+    "rawSha256": "2f49d620880fb3df2735de4689ceb53f424bb2130b0735cec00528a31d024fc4",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "calabar",
+      "country": "ng",
+      "name": "Watt Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://news.crossriverstate.gov.ng/criver-commerce-commissioner-rallies-market-unions-pledges-support-for-governor-otus-reelection/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-final20-primary-r5.json#records[city_id=calabar]; hero-inputs-r4.md final decisions",
+      "sourceLicence": "OpenStreetMap ODbL1.0 for exact object facts where cited; other source text rights unknown. No external image, map, mesh, texture, floor plan or geometry is reused.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 6,
+        "depth": 5,
+        "height": 2.3,
+        "seed": 6302,
+        "palette": [
+          "#c7b58d",
+          "#685748",
+          "#718b61",
+          "#bd7f55",
+          "#679aa7",
+          "#bdad83",
+          "#e1ddd0",
+          "#35444a"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "A state news report on Calabar market leadership identifies the president of Watt Market and discusses market infrastructure. Original schematic category interpretation only. Dimensions, palette and layout are art direction, not surveyed measurements. Empty trade displays do not infer local merchandise, precise current access or operation. No production or external-rights approval.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "niger-delta"
+      }
+    },
+    "styleSha256": "1902dd85951c318abbc7c314dd156b4b99571d7c04678c0b6d3eb727b98a78a4"
+  }
+}

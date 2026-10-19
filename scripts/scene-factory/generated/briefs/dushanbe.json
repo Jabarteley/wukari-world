@@ -1,0 +1,2091 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "dushanbe",
+    "name": "Dushanbe",
+    "state": {
+      "id": "tj-dushanbe",
+      "name": "Dushanbe"
+    },
+    "country": {
+      "id": "tj",
+      "name": "Tajikistan"
+    },
+    "point": {
+      "lon": 68.785433,
+      "lat": 38.5767045
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/tajikistan-261011.osm.pbf",
+      "https://ourairports.com/airports/UTDD/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/dushanbe/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/dushanbe/facts.ts",
+        "sha256": "af11de8c1fe8250afd2ec8737214ac8d3b22d4f3cbd3fdc648c11731c50ba285"
+      },
+      {
+        "path": "src/game/cities/dushanbe/index.ts",
+        "sha256": "4fe500912ab26033fea2cf6042451d9f018a8f9c47603c83ed40d3ce41a73317"
+      },
+      {
+        "path": "src/game/cities/dushanbe/places.ts",
+        "sha256": "c2f8270e2742375b0b682e6bfe5b9e762500eb4ccee8c416e9da1128047434c5"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "dushanbe-airport-dushanbe-airport",
+      "name": "Dushanbe International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.822977,
+        "lat": 38.543746
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-airport-dushanbe-airport-1",
+        "dushanbe-dushanbe-airport-dushanbe-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "dushanbe-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-clinic",
+      "name": "роддом рудаки",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.790094,
+        "lat": 38.441334
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-clinic-1",
+        "dushanbe-dushanbe-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9027926117"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-community-notices",
+      "name": "Supreme Assembly",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.787949,
+        "lat": 38.573651
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-community-notices-1",
+        "dushanbe-dushanbe-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/528417507"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2011165"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-community-voting-game",
+      "name": "МВД",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.730308,
+        "lat": 38.592212
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-community-voting-game-1",
+        "dushanbe-dushanbe-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13526356871"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-community-workshop",
+      "name": "Tajik Agrarian University Shirinsho Shotemur",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.787333,
+        "lat": 38.610879
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-community-workshop-1",
+        "dushanbe-dushanbe-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/993587672"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q650473"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-market-game",
+      "name": "Darvoz",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.743465,
+        "lat": 38.513828
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-market-game-1",
+        "dushanbe-dushanbe-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13526286670"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-meal-stop",
+      "name": "Алмос",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.004456,
+        "lat": 38.557624
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-meal-stop-1",
+        "dushanbe-dushanbe-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2357110559"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-node-12064585531",
+      "name": "Панҷ дег",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.873291,
+        "lat": 38.552027
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-node-12064585531-1",
+        "dushanbe-dushanbe-osm-node-12064585531-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12064585531"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-node-405093878",
+      "name": "Victory Park",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.814074,
+        "lat": 38.581596
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-node-405093878-1",
+        "dushanbe-dushanbe-osm-node-405093878-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/405093878"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16684899"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-node-4467243189",
+      "name": "Маркази саломати",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.788203,
+        "lat": 38.492927
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-node-4467243189-1",
+        "dushanbe-dushanbe-osm-node-4467243189-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4467243189"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-node-5563662637",
+      "name": "Ошхонаи Оби шифо",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.732505,
+        "lat": 38.442629
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-node-5563662637-1",
+        "dushanbe-dushanbe-osm-node-5563662637-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5563662637"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-node-9655730217",
+      "name": "climbing place",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.756846,
+        "lat": 38.712804
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-node-9655730217-1",
+        "dushanbe-dushanbe-osm-node-9655730217-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9655730217"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-way-105572713",
+      "name": "Mevlana Yakub Charki Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.784058,
+        "lat": 38.587831
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-way-105572713-1",
+        "dushanbe-dushanbe-osm-way-105572713-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/105572713"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12123152"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-way-247152234",
+      "name": "Tajik State University of Commerce",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.758211,
+        "lat": 38.531761
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-way-247152234-1",
+        "dushanbe-dushanbe-osm-way-247152234-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/247152234"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2507812"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-way-27154229",
+      "name": "РКТБ №3 \"Мачитон\"",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.975519,
+        "lat": 38.572434
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-way-27154229-1",
+        "dushanbe-dushanbe-osm-way-27154229-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/27154229"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-way-42488771",
+      "name": "Hisar Fortress",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.592496,
+        "lat": 38.484837
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-way-42488771-1",
+        "dushanbe-dushanbe-osm-way-42488771-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/42488771"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q63983571"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-way-482515768",
+      "name": "stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.93839,
+        "lat": 38.509448
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-way-482515768-1",
+        "dushanbe-dushanbe-osm-way-482515768-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/482515768"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-way-486255310",
+      "name": "Майдони вазишӣ",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.901365,
+        "lat": 38.623451
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-way-486255310-1",
+        "dushanbe-dushanbe-osm-way-486255310-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/486255310"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-way-486297646",
+      "name": "Tajik State Pedagogical University named after S. Aini",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.785513,
+        "lat": 38.593449
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-way-486297646-1",
+        "dushanbe-dushanbe-osm-way-486297646-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/486297646"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2617399"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-way-521097387",
+      "name": "Park Khayyam",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.771928,
+        "lat": 38.598523
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-way-521097387-1",
+        "dushanbe-dushanbe-osm-way-521097387-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/521097387"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16274504"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-way-574403086",
+      "name": "Tajik National University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.77318,
+        "lat": 38.589865
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-way-574403086-1",
+        "dushanbe-dushanbe-osm-way-574403086-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/574403086"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1528756"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-osm-way-623245028",
+      "name": "Бозори Балх",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.720861,
+        "lat": 38.540932
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-osm-way-623245028-1",
+        "dushanbe-dushanbe-osm-way-623245028-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/623245028"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-quiet-reflection",
+      "name": "St. Nicholas Orthodox Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.816718,
+        "lat": 38.566417
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-quiet-reflection-1",
+        "dushanbe-dushanbe-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/610952154"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13032586"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-recreation",
+      "name": "Rudaki Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.781547,
+        "lat": 38.575552
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-recreation-1",
+        "dushanbe-dushanbe-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/520892162"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16638695"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dushanbe-transit",
+      "name": "Dushanbe",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.799684,
+        "lat": 38.556879
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dushanbe-dushanbe-transit-1",
+        "dushanbe-dushanbe-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dushanbe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/252791512"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11695326"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 68.78543300000001,
+        "lat": 38.57670449999999
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "dushanbe-dushanbe-airport-dushanbe-airport-1",
+      "venueId": "dushanbe-airport-dushanbe-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-airport-dushanbe-airport-2",
+      "venueId": "dushanbe-airport-dushanbe-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-clinic-1",
+      "venueId": "dushanbe-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-clinic-2",
+      "venueId": "dushanbe-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-community-notices-1",
+      "venueId": "dushanbe-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-community-notices-2",
+      "venueId": "dushanbe-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-community-voting-game-1",
+      "venueId": "dushanbe-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-community-voting-game-2",
+      "venueId": "dushanbe-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-community-workshop-1",
+      "venueId": "dushanbe-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-community-workshop-2",
+      "venueId": "dushanbe-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-market-game-1",
+      "venueId": "dushanbe-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-market-game-2",
+      "venueId": "dushanbe-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-meal-stop-1",
+      "venueId": "dushanbe-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-meal-stop-2",
+      "venueId": "dushanbe-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-node-12064585531-1",
+      "venueId": "dushanbe-osm-node-12064585531",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-node-12064585531-2",
+      "venueId": "dushanbe-osm-node-12064585531",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-node-405093878-1",
+      "venueId": "dushanbe-osm-node-405093878",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-node-405093878-2",
+      "venueId": "dushanbe-osm-node-405093878",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-node-4467243189-1",
+      "venueId": "dushanbe-osm-node-4467243189",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-node-4467243189-2",
+      "venueId": "dushanbe-osm-node-4467243189",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-node-5563662637-1",
+      "venueId": "dushanbe-osm-node-5563662637",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-node-5563662637-2",
+      "venueId": "dushanbe-osm-node-5563662637",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-node-9655730217-1",
+      "venueId": "dushanbe-osm-node-9655730217",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-node-9655730217-2",
+      "venueId": "dushanbe-osm-node-9655730217",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-105572713-1",
+      "venueId": "dushanbe-osm-way-105572713",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-105572713-2",
+      "venueId": "dushanbe-osm-way-105572713",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-247152234-1",
+      "venueId": "dushanbe-osm-way-247152234",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-247152234-2",
+      "venueId": "dushanbe-osm-way-247152234",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-27154229-1",
+      "venueId": "dushanbe-osm-way-27154229",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-27154229-2",
+      "venueId": "dushanbe-osm-way-27154229",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-42488771-1",
+      "venueId": "dushanbe-osm-way-42488771",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-42488771-2",
+      "venueId": "dushanbe-osm-way-42488771",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-482515768-1",
+      "venueId": "dushanbe-osm-way-482515768",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-482515768-2",
+      "venueId": "dushanbe-osm-way-482515768",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-486255310-1",
+      "venueId": "dushanbe-osm-way-486255310",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-486255310-2",
+      "venueId": "dushanbe-osm-way-486255310",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-486297646-1",
+      "venueId": "dushanbe-osm-way-486297646",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-486297646-2",
+      "venueId": "dushanbe-osm-way-486297646",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-521097387-1",
+      "venueId": "dushanbe-osm-way-521097387",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-521097387-2",
+      "venueId": "dushanbe-osm-way-521097387",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-574403086-1",
+      "venueId": "dushanbe-osm-way-574403086",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-574403086-2",
+      "venueId": "dushanbe-osm-way-574403086",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-623245028-1",
+      "venueId": "dushanbe-osm-way-623245028",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-osm-way-623245028-2",
+      "venueId": "dushanbe-osm-way-623245028",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-quiet-reflection-1",
+      "venueId": "dushanbe-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-quiet-reflection-2",
+      "venueId": "dushanbe-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-recreation-1",
+      "venueId": "dushanbe-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-recreation-2",
+      "venueId": "dushanbe-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-transit-1",
+      "venueId": "dushanbe-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    },
+    {
+      "id": "dushanbe-dushanbe-transit-2",
+      "venueId": "dushanbe-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dushanbe/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "dushanbe-airport-dushanbe-airport",
+    "dushanbe-clinic",
+    "dushanbe-community-notices",
+    "dushanbe-community-voting-game",
+    "dushanbe-community-workshop",
+    "dushanbe-market-game",
+    "dushanbe-meal-stop",
+    "dushanbe-osm-node-12064585531",
+    "dushanbe-osm-node-405093878",
+    "dushanbe-osm-node-4467243189",
+    "dushanbe-osm-node-5563662637",
+    "dushanbe-osm-node-9655730217",
+    "dushanbe-osm-way-105572713",
+    "dushanbe-osm-way-247152234",
+    "dushanbe-osm-way-27154229",
+    "dushanbe-osm-way-42488771",
+    "dushanbe-osm-way-482515768",
+    "dushanbe-osm-way-486255310",
+    "dushanbe-osm-way-486297646",
+    "dushanbe-osm-way-521097387",
+    "dushanbe-osm-way-574403086",
+    "dushanbe-osm-way-623245028",
+    "dushanbe-quiet-reflection",
+    "dushanbe-recreation",
+    "dushanbe-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "e61b6f123f6239e6c9876feba478ba0f91b60b21ac6ba45af14426ce40e96580",
+    "contentSha256": "913b80b5086e769df0179bbe12936c52d5aa4f2dff563c72921a9b2382210aba"
+  }
+}

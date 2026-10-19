@@ -1,0 +1,1665 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "yola",
+    "name": "Yola",
+    "state": {
+      "id": "adamawa",
+      "name": "Adamawa"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 12.483333333333,
+      "lat": 9.2
+    }
+  },
+  "style": {
+    "region": "sahel-north",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/yola/content.ts",
+        "sha256": "d3ea3239225908a29ffe935231a9cbb215e8c3c26e10c03d3ccf0ed43c8bc6e6"
+      },
+      {
+        "path": "src/game/cities/yola/index.ts",
+        "sha256": "6a29e97c18c9e986b8bc38b6ccdde0118052a4b6c278d67c579749226d314ae1"
+      },
+      {
+        "path": "src/game/cities/yola/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/yola/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for yola.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "adamawa-ministry-tourism-arts-culture",
+      "name": "Adamawa state Ministry of Tourism, Arts and Culture",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.459881383006936,
+        "lat": 9.252941050586339
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-adamawa-ministry-tourism-arts-culture-1",
+        "yola-adamawa-ministry-tourism-arts-culture-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "american-university-of-nigeria",
+      "name": "American University of Nigeria",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.5007604,
+        "lat": 9.1913456
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-american-university-of-nigeria-1",
+        "yola-american-university-of-nigeria-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "emirates-museum-yola",
+      "name": "The Emirates Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4785188,
+        "lat": 9.2075378
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-emirates-museum-yola-1",
+        "yola-emirates-museum-yola-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "fmc-yola",
+      "name": "Federal Medical Centre, Yola",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.478150580049329,
+        "lat": 9.209787006905033
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-fmc-yola-1",
+        "yola-fmc-yola-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "gorilla-park-yola",
+      "name": "Gorilla Park Yola",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4632389,
+        "lat": 9.2157418
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-gorilla-park-yola-1",
+        "yola-gorilla-park-yola-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.44768672722196,
+        "lat": 9.2506325494028
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "jimeta-ultra-modern-market",
+      "name": "Jimeta ultra modern market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4376647,
+        "lat": 9.2723609
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-jimeta-ultra-modern-market-1",
+        "yola-jimeta-ultra-modern-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "karew-jimeta-market",
+      "name": "Karew Jimeta Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.443260908557328,
+        "lat": 9.243456834247775
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-karew-jimeta-market-1",
+        "yola-karew-jimeta-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "keystone-bank-yola",
+      "name": "Keystone Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4866155,
+        "lat": 9.2053274
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-keystone-bank-yola-1",
+        "yola-keystone-bank-yola-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "lamido-palace-yola",
+      "name": "Lamido Palace",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4790328,
+        "lat": 9.2074207
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-lamido-palace-yola-1",
+        "yola-lamido-palace-yola-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "mauth-yola",
+      "name": "Modibbo Adama University Teaching Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4914568,
+        "lat": 9.1936627
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-mauth-yola-1",
+        "yola-mauth-yola-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "mubi-park-motor-park",
+      "name": "Mubi Park Motor Park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.450882,
+        "lat": 9.2843583
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-mubi-park-motor-park-1",
+        "yola-mubi-park-motor-park-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "musa-barbing-salon",
+      "name": "Musa Barbing Salon",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4157779,
+        "lat": 9.2762309
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-musa-barbing-salon-1",
+        "yola-musa-barbing-salon-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "national-museum-yola",
+      "name": "National Museum, Yola",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.49539,
+        "lat": 9.203496
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-national-museum-yola-1",
+        "yola-national-museum-yola-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "st-theresas-cathedral-yola",
+      "name": "St. Theresa’s Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.44519,
+        "lat": 9.27244
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-st-theresas-cathedral-yola-1",
+        "yola-st-theresas-cathedral-yola-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "yahuza-suya-spot",
+      "name": "Yahuza Suya Spot Yola",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4553553,
+        "lat": 9.2447577
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-yahuza-suya-spot-1",
+        "yola-yahuza-suya-spot-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "yola-central-mosque",
+      "name": "Yola Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.478134075941778,
+        "lat": 9.207787208342364
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-yola-central-mosque-1",
+        "yola-yola-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "yola-market",
+      "name": "Yola Market, Adamawa",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.482655934584434,
+        "lat": 9.204179504899427
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-yola-market-1",
+        "yola-yola-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "yola-mosque",
+      "name": "Yola Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4778939,
+        "lat": 9.2077256
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-yola-mosque-1",
+        "yola-yola-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    },
+    {
+      "id": "yola-race-course",
+      "name": "Yola Race Course",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4907395,
+        "lat": 9.2146987
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yola-yola-race-course-1",
+        "yola-yola-race-course-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yola."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "yola-adamawa-ministry-tourism-arts-culture-1",
+      "venueId": "adamawa-ministry-tourism-arts-culture",
+      "name": "Audu Jatau",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-adamawa-ministry-tourism-arts-culture-2",
+      "venueId": "adamawa-ministry-tourism-arts-culture",
+      "name": "Laraba Yohanna",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-american-university-of-nigeria-1",
+      "venueId": "american-university-of-nigeria",
+      "name": "Ruth Garba",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-american-university-of-nigeria-2",
+      "venueId": "american-university-of-nigeria",
+      "name": "Gyang Tanko",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-emirates-museum-yola-1",
+      "venueId": "emirates-museum-yola",
+      "name": "Musa Yohanna",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-emirates-museum-yola-2",
+      "venueId": "emirates-museum-yola",
+      "name": "Talatu Bulus",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-fmc-yola-1",
+      "venueId": "fmc-yola",
+      "name": "Ruth Musa",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-fmc-yola-2",
+      "venueId": "fmc-yola",
+      "name": "Gyang Danjuma",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-gorilla-park-yola-1",
+      "venueId": "gorilla-park-yola",
+      "name": "Ruth Tanko",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-gorilla-park-yola-2",
+      "venueId": "gorilla-park-yola",
+      "name": "Gyang Dung",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-jimeta-ultra-modern-market-1",
+      "venueId": "jimeta-ultra-modern-market",
+      "name": "Ruth Gyang",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-jimeta-ultra-modern-market-2",
+      "venueId": "jimeta-ultra-modern-market",
+      "name": "Gyang Musa",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-karew-jimeta-market-1",
+      "venueId": "karew-jimeta-market",
+      "name": "Musa Ibrahim",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-karew-jimeta-market-2",
+      "venueId": "karew-jimeta-market",
+      "name": "Talatu Ishaku",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-keystone-bank-yola-1",
+      "venueId": "keystone-bank-yola",
+      "name": "Musa Ishaku",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-keystone-bank-yola-2",
+      "venueId": "keystone-bank-yola",
+      "name": "Talatu Pam",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-lamido-palace-yola-1",
+      "venueId": "lamido-palace-yola",
+      "name": "Ruth Dung",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-lamido-palace-yola-2",
+      "venueId": "lamido-palace-yola",
+      "name": "Gyang Bako",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-mauth-yola-1",
+      "venueId": "mauth-yola",
+      "name": "Musa Adamu",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-mauth-yola-2",
+      "venueId": "mauth-yola",
+      "name": "Talatu Jatau",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-mubi-park-motor-park-1",
+      "venueId": "mubi-park-motor-park",
+      "name": "Esther Tanko",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-mubi-park-motor-park-2",
+      "venueId": "mubi-park-motor-park",
+      "name": "Yakubu Dung",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-musa-barbing-salon-1",
+      "venueId": "musa-barbing-salon",
+      "name": "Ruth Bako",
+      "role": "Stylist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-musa-barbing-salon-2",
+      "venueId": "musa-barbing-salon",
+      "name": "Gyang Garba",
+      "role": "Client",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-national-museum-yola-1",
+      "venueId": "national-museum-yola",
+      "name": "Ruth Gambo",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-national-museum-yola-2",
+      "venueId": "national-museum-yola",
+      "name": "Gyang Gyang",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-st-theresas-cathedral-yola-1",
+      "venueId": "st-theresas-cathedral-yola",
+      "name": "Musa Audu",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-st-theresas-cathedral-yola-2",
+      "venueId": "st-theresas-cathedral-yola",
+      "name": "Talatu Ibrahim",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-yahuza-suya-spot-1",
+      "venueId": "yahuza-suya-spot",
+      "name": "Esther Danjuma",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-yahuza-suya-spot-2",
+      "venueId": "yahuza-suya-spot",
+      "name": "Yakubu Gambo",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-yola-central-mosque-1",
+      "venueId": "yola-central-mosque",
+      "name": "Musa Pam",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-yola-central-mosque-2",
+      "venueId": "yola-central-mosque",
+      "name": "Talatu Audu",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-yola-market-1",
+      "venueId": "yola-market",
+      "name": "Musa Bulus",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-yola-market-2",
+      "venueId": "yola-market",
+      "name": "Talatu Adamu",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-yola-mosque-1",
+      "venueId": "yola-mosque",
+      "name": "Ruth Danjuma",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-yola-mosque-2",
+      "venueId": "yola-mosque",
+      "name": "Gyang Gambo",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-yola-race-course-1",
+      "venueId": "yola-race-course",
+      "name": "Musa Jatau",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    },
+    {
+      "id": "yola-yola-race-course-2",
+      "venueId": "yola-race-course",
+      "name": "Talatu Yohanna",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yola/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "adamawa-ministry-tourism-arts-culture",
+    "american-university-of-nigeria",
+    "emirates-museum-yola",
+    "fmc-yola",
+    "gorilla-park-yola",
+    "jimeta-ultra-modern-market",
+    "karew-jimeta-market",
+    "keystone-bank-yola",
+    "lamido-palace-yola",
+    "mauth-yola",
+    "mubi-park-motor-park",
+    "musa-barbing-salon",
+    "national-museum-yola",
+    "st-theresas-cathedral-yola",
+    "yahuza-suya-spot",
+    "yola-central-mosque",
+    "yola-market",
+    "yola-mosque",
+    "yola-race-course"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "d67a1e2d20674cbb88aabf7e53c295a383c8a09fbadd0d593faeceed80eadcf7",
+    "contentSha256": "ea5bf25d53f052e674e46465018c0e077b8878f74dc2db5c04d0499ab8109474"
+  }
+}

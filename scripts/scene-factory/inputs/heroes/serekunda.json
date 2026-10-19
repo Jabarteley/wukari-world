@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "serekunda",
+  "url": "/assets/scene-heroes/serekunda.glb",
+  "sha256": "a1c7adc1a1431655428f7a07e66f6c33c38186b40a3fef4638f59626a5892354",
+  "rawBytes": 31188,
+  "brotliBytes": 19739,
+  "triangles": 976,
+  "parts": [
+    {
+      "node": "serekunda",
+      "triangles": 976,
+      "bounds": {
+        "min": [
+          -1.8892858,
+          0,
+          -1.84000015
+        ],
+        "max": [
+          1.8892857157400005,
+          2.2999398861600002,
+          1.8400881796800002
+        ]
+      },
+      "footprint": [
+        -1.8892858,
+        -1.84000015,
+        1.8892857157400005,
+        1.8400881796800002
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "fc52fcd31a6a0f6232071f06ba078fc350a270ad2e48d4d2becdff31e3e24959"
+  },
+  "inputs": {
+    "rawSha256": "1470703681b55f3307f097e6d42f3f9bb152a637fad3bbc081ff27853cf81dff",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "serekunda",
+      "country": "gm",
+      "name": "Serrekunda Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://visitthegambia.com/wp-content/uploads/2017/08/Official-country-guide.pdf"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-final20-primary-r5.json#records[city_id=serekunda]; hero-inputs-r4.md final decisions",
+      "sourceLicence": "OpenStreetMap ODbL1.0 for exact object facts where cited; other source text rights unknown. No external image, map, mesh, texture, floor plan or geometry is reused.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 6,
+        "depth": 5,
+        "height": 2.3,
+        "seed": 6317,
+        "palette": [
+          "#c7b58d",
+          "#685748",
+          "#718b61",
+          "#bd7f55",
+          "#679aa7",
+          "#bdad83",
+          "#e1ddd0",
+          "#35444a"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Downloaded and parsed official Gambia Tourism Board Country Guide2022: publisher on PDF pages1/3; named Serrekunda Market on PDF page66, distinct Banjul and Serrekunda market stops on page47. PDF SHA256 d32a45d9291f822306c807d18e9db9b530dbfa8fb162379e28471cfad394742a. The named locality identifies city association; exact polygon not asserted. Replaces the rejected Banjul Albert Market. Original schematic category interpretation only. Dimensions, palette and layout are art direction, not surveyed measurements. Empty trade displays do not infer local merchandise, precise current access or operation. No production or external-rights approval.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "gulf-guinea"
+      }
+    },
+    "styleSha256": "2fdffb74f7375d9e1754151b92a51e85d0f902aaa4e0c8a647b3a33364eccaa9"
+  }
+}

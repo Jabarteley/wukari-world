@@ -1,0 +1,1215 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "lokoja",
+    "name": "Lokoja",
+    "state": {
+      "id": "kogi",
+      "name": "Kogi"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 6.7441666666667,
+      "lat": 7.8019444444444
+    }
+  },
+  "style": {
+    "region": "gulf-guinea",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/lokoja/content.ts",
+        "sha256": "e671069da1077450af7050a67c1c2b5836c89754ad5bdaf484349df6b1555bbd"
+      },
+      {
+        "path": "src/game/cities/lokoja/index.ts",
+        "sha256": "c4fbfde786de31a8535103c0623dab3175e27c2643ba22a41da13c248e2283c9"
+      },
+      {
+        "path": "src/game/cities/lokoja/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/lokoja/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for lokoja.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "children-amusement-park",
+      "name": "Children Amusement",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.7392824,
+        "lat": 7.803086
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lokoja-children-amusement-park-1",
+        "lokoja-children-amusement-park-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lokoja."
+      }
+    },
+    {
+      "id": "federal-medical-centre-lokoja",
+      "name": "Federal Medical Centre",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.7415676,
+        "lat": 7.799937
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lokoja-federal-medical-centre-lokoja-1",
+        "lokoja-federal-medical-centre-lokoja-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lokoja."
+      }
+    },
+    {
+      "id": "federal-university-lokoja",
+      "name": "Federal University Lokoja",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.7319975,
+        "lat": 7.7921375
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lokoja-federal-university-lokoja-1",
+        "lokoja-federal-university-lokoja-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lokoja."
+      }
+    },
+    {
+      "id": "gtbank-lokoja",
+      "name": "Guarantee Trust Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.7378001,
+        "lat": 7.7956903
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lokoja-gtbank-lokoja-1",
+        "lokoja-gtbank-lokoja-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lokoja."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.44850535,
+        "lat": 8.25882455
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lokoja."
+      }
+    },
+    {
+      "id": "kgirs-lokoja",
+      "name": "KGIRS",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.7443786,
+        "lat": 7.8000832
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lokoja-kgirs-lokoja-1",
+        "lokoja-kgirs-lokoja-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lokoja."
+      }
+    },
+    {
+      "id": "kogi-state-specialist-hospital",
+      "name": "Kogi State Specialist Hospital, Lokoja",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.7314804,
+        "lat": 7.7936162
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lokoja-kogi-state-specialist-hospital-1",
+        "lokoja-kogi-state-specialist-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lokoja."
+      }
+    },
+    {
+      "id": "lokoja-anglican-church",
+      "name": "Anglican church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.7462493,
+        "lat": 7.8141755
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lokoja-lokoja-anglican-church-1",
+        "lokoja-lokoja-anglican-church-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lokoja."
+      }
+    },
+    {
+      "id": "lokoja-central-masjid",
+      "name": "Lokoja Central Masjid",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.7479257,
+        "lat": 7.8155733
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lokoja-lokoja-central-masjid-1",
+        "lokoja-lokoja-central-masjid-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lokoja."
+      }
+    },
+    {
+      "id": "lokoja-central-mosque",
+      "name": "Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.6832001,
+        "lat": 7.8541941
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lokoja-lokoja-central-mosque-1",
+        "lokoja-lokoja-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lokoja."
+      }
+    },
+    {
+      "id": "lokoja-international-stadium",
+      "name": "Lokoja International Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.6978784,
+        "lat": 7.8148717
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lokoja-lokoja-international-stadium-1",
+        "lokoja-lokoja-international-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lokoja."
+      }
+    },
+    {
+      "id": "lokoja-national-museum",
+      "name": "Lokoja National Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.7407125,
+        "lat": 7.804661
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lokoja-lokoja-national-museum-1",
+        "lokoja-lokoja-national-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lokoja."
+      }
+    },
+    {
+      "id": "lokoja-old-market",
+      "name": "Old Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.7488564,
+        "lat": 7.8153022
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lokoja-lokoja-old-market-1",
+        "lokoja-lokoja-old-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lokoja."
+      }
+    },
+    {
+      "id": "maigaris-palace",
+      "name": "Maigari's Palace",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.7445569,
+        "lat": 7.8153075
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lokoja-maigaris-palace-1",
+        "lokoja-maigaris-palace-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lokoja."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "lokoja-children-amusement-park-1",
+      "venueId": "children-amusement-park",
+      "name": "Salamatu Audu",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-children-amusement-park-2",
+      "venueId": "children-amusement-park",
+      "name": "Haruna Garba",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-federal-medical-centre-lokoja-1",
+      "venueId": "federal-medical-centre-lokoja",
+      "name": "Salamatu Jatau",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-federal-medical-centre-lokoja-2",
+      "venueId": "federal-medical-centre-lokoja",
+      "name": "Haruna Musa",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-federal-university-lokoja-1",
+      "venueId": "federal-university-lokoja",
+      "name": "Salamatu Pam",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-federal-university-lokoja-2",
+      "venueId": "federal-university-lokoja",
+      "name": "Haruna Bako",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-gtbank-lokoja-1",
+      "venueId": "gtbank-lokoja",
+      "name": "Salamatu Ibrahim",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-gtbank-lokoja-2",
+      "venueId": "gtbank-lokoja",
+      "name": "Haruna Tanko",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-kgirs-lokoja-1",
+      "venueId": "kgirs-lokoja",
+      "name": "Samaila Tanko",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-kgirs-lokoja-2",
+      "venueId": "kgirs-lokoja",
+      "name": "Naomi Adamu",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-kogi-state-specialist-hospital-1",
+      "venueId": "kogi-state-specialist-hospital",
+      "name": "Samaila Danjuma",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-kogi-state-specialist-hospital-2",
+      "venueId": "kogi-state-specialist-hospital",
+      "name": "Naomi Ishaku",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-lokoja-anglican-church-1",
+      "venueId": "lokoja-anglican-church",
+      "name": "Samaila Bako",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-lokoja-anglican-church-2",
+      "venueId": "lokoja-anglican-church",
+      "name": "Naomi Yohanna",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-lokoja-central-masjid-1",
+      "venueId": "lokoja-central-masjid",
+      "name": "Samaila Musa",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-lokoja-central-masjid-2",
+      "venueId": "lokoja-central-masjid",
+      "name": "Naomi Ibrahim",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-lokoja-central-mosque-1",
+      "venueId": "lokoja-central-mosque",
+      "name": "Salamatu Ishaku",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-lokoja-central-mosque-2",
+      "venueId": "lokoja-central-mosque",
+      "name": "Haruna Dung",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-lokoja-international-stadium-1",
+      "venueId": "lokoja-international-stadium",
+      "name": "Samaila Gyang",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-lokoja-international-stadium-2",
+      "venueId": "lokoja-international-stadium",
+      "name": "Naomi Audu",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-lokoja-national-museum-1",
+      "venueId": "lokoja-national-museum",
+      "name": "Samaila Garba",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-lokoja-national-museum-2",
+      "venueId": "lokoja-national-museum",
+      "name": "Naomi Bulus",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-lokoja-old-market-1",
+      "venueId": "lokoja-old-market",
+      "name": "Salamatu Bulus",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-lokoja-old-market-2",
+      "venueId": "lokoja-old-market",
+      "name": "Haruna Gambo",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-maigaris-palace-1",
+      "venueId": "maigaris-palace",
+      "name": "Salamatu Adamu",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    },
+    {
+      "id": "lokoja-maigaris-palace-2",
+      "venueId": "maigaris-palace",
+      "name": "Haruna Gyang",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lokoja/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "children-amusement-park",
+    "federal-medical-centre-lokoja",
+    "federal-university-lokoja",
+    "gtbank-lokoja",
+    "kgirs-lokoja",
+    "kogi-state-specialist-hospital",
+    "lokoja-anglican-church",
+    "lokoja-central-masjid",
+    "lokoja-central-mosque",
+    "lokoja-international-stadium",
+    "lokoja-national-museum",
+    "lokoja-old-market",
+    "maigaris-palace"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "de2b8827dc6b603162c704cb0d0e7aa30abbfa2056f41186e1e0388a884a14fc",
+    "contentSha256": "d6de88cce3d33069c1a87a9c66f9c98134181d9cc9d941b8e8a1fb3982c2cea8"
+  }
+}

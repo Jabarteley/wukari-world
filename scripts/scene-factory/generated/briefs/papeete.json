@@ -1,0 +1,2079 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "papeete",
+    "name": "Papeete",
+    "state": {
+      "id": "pf-papeete",
+      "name": "Papeete"
+    },
+    "country": {
+      "id": "pf",
+      "name": "French Polynesia"
+    },
+    "point": {
+      "lon": -149.5659964,
+      "lat": -17.5373835
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/australia-oceania/polynesie-francaise-261011.osm.pbf",
+      "https://ourairports.com/airports/NTAA/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/papeete/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/papeete/facts.ts",
+        "sha256": "49cc4a3d5bb3d5796fb30849caf3be561e405bd315ef17f2edf49f319339a3ff"
+      },
+      {
+        "path": "src/game/cities/papeete/index.ts",
+        "sha256": "c6bef7cb0aa957f302a196f760266b235e60d09b94234be245613fd9c9169663"
+      },
+      {
+        "path": "src/game/cities/papeete/places.ts",
+        "sha256": "5fa7b648b5e1312ddabcdef8be5528c5f753881af02d032b1fc0dfbbe9330504"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.5659964,
+        "lat": -17.5373835
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "papeete-airport-papeete-airport",
+      "name": "Fa'a'ā International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.606936,
+        "lat": -17.553472
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-airport-papeete-airport-1",
+        "papeete-papeete-airport-papeete-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "papeete-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-clinic",
+      "name": "Hopital psychiatrique de Taaone",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.545571,
+        "lat": -17.531081
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-clinic-1",
+        "papeete-papeete-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/10242033"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-community-notices",
+      "name": "Présidence de la Polynésie française",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.569408,
+        "lat": -17.54436
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-community-notices-1",
+        "papeete-papeete-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/643967637"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q27553873"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-community-voting-game",
+      "name": "Mairie de Arue",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.518256,
+        "lat": -17.525145
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-community-voting-game-1",
+        "papeete-papeete-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/10088377"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-community-workshop",
+      "name": "University of French Polynesia",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.607898,
+        "lat": -17.576906
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-community-workshop-1",
+        "papeete-papeete-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/283649950"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1695245"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-market-game",
+      "name": "Centre commercial",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.491601,
+        "lat": -17.506411
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-market-game-1",
+        "papeete-papeete-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/204556920"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-meal-stop",
+      "name": "Snack Resto Paea Manate",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.591653,
+        "lat": -17.670342
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-meal-stop-1",
+        "papeete-papeete-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1422600001"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-node-1422688771",
+      "name": "Marae",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.43472,
+        "lat": -17.643584
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-node-1422688771-1",
+        "papeete-papeete-osm-node-1422688771-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1422688771"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q186685"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-node-2554433116",
+      "name": "Concept Grill",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.613335,
+        "lat": -17.604477
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-node-2554433116-1",
+        "papeete-papeete-osm-node-2554433116-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2554433116"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-node-6781735685",
+      "name": "Captage 1000 sources",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.468233,
+        "lat": -17.585244
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-node-6781735685-1",
+        "papeete-papeete-osm-node-6781735685-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6781735685"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-node-6904941337",
+      "name": "Rampe parapente",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.532971,
+        "lat": -17.608811
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-node-6904941337-1",
+        "papeete-papeete-osm-node-6904941337-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6904941337"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-node-9695866739",
+      "name": "Rohotu",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.584956,
+        "lat": -17.706006
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-node-9695866739-1",
+        "papeete-papeete-osm-node-9695866739-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9695866739"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-relation-10242577",
+      "name": "Musée de Tahiti et des Îles",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.613628,
+        "lat": -17.631789
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-relation-10242577-1",
+        "papeete-papeete-osm-relation-10242577-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/10242577"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1955713"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-way-204556995",
+      "name": "Phare de la Pointe Vénus",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.494347,
+        "lat": -17.495065
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-way-204556995-1",
+        "papeete-papeete-osm-way-204556995-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/204556995"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3378497"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-way-204557043",
+      "name": "Marché de Arue",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.532282,
+        "lat": -17.524235
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-way-204557043-1",
+        "papeete-papeete-osm-way-204557043-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/204557043"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-way-32774088",
+      "name": "Cathédrale Notre-Dame de Papeete",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.567002,
+        "lat": -17.540269
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-way-32774088-1",
+        "papeete-papeete-osm-way-32774088-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/32774088"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2942287"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-way-41444450",
+      "name": "Stade Pater",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.551965,
+        "lat": -17.539885
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-way-41444450-1",
+        "papeete-papeete-osm-way-41444450-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/41444450"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1551354"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-way-730928869",
+      "name": "O belvédère",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.529291,
+        "lat": -17.564302
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-way-730928869-1",
+        "papeete-papeete-osm-way-730928869-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/730928869"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-way-734682036",
+      "name": "Papeete Tahiti Temple",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.556163,
+        "lat": -17.536628
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-way-734682036-1",
+        "papeete-papeete-osm-way-734682036-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/734682036"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q925963"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-way-740564751",
+      "name": "CFPA",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.605064,
+        "lat": -17.634113
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-way-740564751-1",
+        "papeete-papeete-osm-way-740564751-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/740564751"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-way-740565283",
+      "name": "C.C.",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.614487,
+        "lat": -17.618205
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-way-740565283-1",
+        "papeete-papeete-osm-way-740565283-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/740565283"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-osm-way-895747028",
+      "name": "Parc Outuaraea",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.597017,
+        "lat": -17.54855
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-osm-way-895747028-1",
+        "papeete-papeete-osm-way-895747028-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/895747028"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-quiet-reflection",
+      "name": "Église Sainte Anne",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.425353,
+        "lat": -17.511891
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-quiet-reflection-1",
+        "papeete-papeete-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/548581484"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q38419069"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-recreation",
+      "name": "Parc naturel Te Faa Iti",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.429533,
+        "lat": -17.58189
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-recreation-1",
+        "papeete-papeete-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7065226769"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "papeete-transit",
+      "name": "Gare Maritime",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -149.568582,
+        "lat": -17.534669
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "papeete-papeete-transit-1",
+        "papeete-papeete-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/papeete/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4934736239"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "papeete-papeete-airport-papeete-airport-1",
+      "venueId": "papeete-airport-papeete-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-airport-papeete-airport-2",
+      "venueId": "papeete-airport-papeete-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-clinic-1",
+      "venueId": "papeete-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-clinic-2",
+      "venueId": "papeete-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-community-notices-1",
+      "venueId": "papeete-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-community-notices-2",
+      "venueId": "papeete-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-community-voting-game-1",
+      "venueId": "papeete-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-community-voting-game-2",
+      "venueId": "papeete-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-community-workshop-1",
+      "venueId": "papeete-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-community-workshop-2",
+      "venueId": "papeete-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-market-game-1",
+      "venueId": "papeete-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-market-game-2",
+      "venueId": "papeete-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-meal-stop-1",
+      "venueId": "papeete-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-meal-stop-2",
+      "venueId": "papeete-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-node-1422688771-1",
+      "venueId": "papeete-osm-node-1422688771",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-node-1422688771-2",
+      "venueId": "papeete-osm-node-1422688771",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-node-2554433116-1",
+      "venueId": "papeete-osm-node-2554433116",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-node-2554433116-2",
+      "venueId": "papeete-osm-node-2554433116",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-node-6781735685-1",
+      "venueId": "papeete-osm-node-6781735685",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-node-6781735685-2",
+      "venueId": "papeete-osm-node-6781735685",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-node-6904941337-1",
+      "venueId": "papeete-osm-node-6904941337",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-node-6904941337-2",
+      "venueId": "papeete-osm-node-6904941337",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-node-9695866739-1",
+      "venueId": "papeete-osm-node-9695866739",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-node-9695866739-2",
+      "venueId": "papeete-osm-node-9695866739",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-relation-10242577-1",
+      "venueId": "papeete-osm-relation-10242577",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-relation-10242577-2",
+      "venueId": "papeete-osm-relation-10242577",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-204556995-1",
+      "venueId": "papeete-osm-way-204556995",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-204556995-2",
+      "venueId": "papeete-osm-way-204556995",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-204557043-1",
+      "venueId": "papeete-osm-way-204557043",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-204557043-2",
+      "venueId": "papeete-osm-way-204557043",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-32774088-1",
+      "venueId": "papeete-osm-way-32774088",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-32774088-2",
+      "venueId": "papeete-osm-way-32774088",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-41444450-1",
+      "venueId": "papeete-osm-way-41444450",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-41444450-2",
+      "venueId": "papeete-osm-way-41444450",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-730928869-1",
+      "venueId": "papeete-osm-way-730928869",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-730928869-2",
+      "venueId": "papeete-osm-way-730928869",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-734682036-1",
+      "venueId": "papeete-osm-way-734682036",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-734682036-2",
+      "venueId": "papeete-osm-way-734682036",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-740564751-1",
+      "venueId": "papeete-osm-way-740564751",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-740564751-2",
+      "venueId": "papeete-osm-way-740564751",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-740565283-1",
+      "venueId": "papeete-osm-way-740565283",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-740565283-2",
+      "venueId": "papeete-osm-way-740565283",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-895747028-1",
+      "venueId": "papeete-osm-way-895747028",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-osm-way-895747028-2",
+      "venueId": "papeete-osm-way-895747028",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-quiet-reflection-1",
+      "venueId": "papeete-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-quiet-reflection-2",
+      "venueId": "papeete-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-recreation-1",
+      "venueId": "papeete-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-recreation-2",
+      "venueId": "papeete-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-transit-1",
+      "venueId": "papeete-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    },
+    {
+      "id": "papeete-papeete-transit-2",
+      "venueId": "papeete-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/papeete/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "papeete-airport-papeete-airport",
+    "papeete-clinic",
+    "papeete-community-notices",
+    "papeete-community-voting-game",
+    "papeete-community-workshop",
+    "papeete-market-game",
+    "papeete-meal-stop",
+    "papeete-osm-node-1422688771",
+    "papeete-osm-node-2554433116",
+    "papeete-osm-node-6781735685",
+    "papeete-osm-node-6904941337",
+    "papeete-osm-node-9695866739",
+    "papeete-osm-relation-10242577",
+    "papeete-osm-way-204556995",
+    "papeete-osm-way-204557043",
+    "papeete-osm-way-32774088",
+    "papeete-osm-way-41444450",
+    "papeete-osm-way-730928869",
+    "papeete-osm-way-734682036",
+    "papeete-osm-way-740564751",
+    "papeete-osm-way-740565283",
+    "papeete-osm-way-895747028",
+    "papeete-quiet-reflection",
+    "papeete-recreation",
+    "papeete-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "3089aea872b98fb805bf17aa3e9c856ac10750774030302d620e684b478b525d",
+    "contentSha256": "c6209085f03c242bd13705cdc00aafff7c23ba6d669870bfa34aba7cbc7365ea"
+  }
+}

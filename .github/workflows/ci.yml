@@ -71,18 +71,23 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: story-bundle-${{ github.sha }}
+          include-hidden-files: true
           path: |
             dist/assets/*.js
             dist/assets/*.css
             dist/.vite/manifest.json
             dist/index.html
+            dist/county/index.html
+            dist/cities/index.html
+            dist/cities/scenes/index.html
+            dist/assets/scene-factory/**
           retention-days: 3
+      - run: npm run test:smoke
       - run: npm run size:download
       - run: npm run cartridge:check
       - name: Refuse retired character assets in the production bundle
         run: |
           node --input-type=module -e "import {readdirSync} from 'node:fs'; const files=readdirSync('dist',{recursive:true}); const retired=files.filter(p=>/(?:base-body-|mpfb-body-|mpfb-lod-|canonical-crowd-body)/.test(p)); if(retired.length) throw Error('Retired character assets emitted: '+retired.join(', ')); console.log('Production bundle contains no retired character body assets');"
-      - run: npm run test:smoke
       - name: Native character integration regressions
         run: |
           node --experimental-strip-types --test --test-concurrency=1 src/quick-start/model.test.ts src/app/features/start/startModels.test.ts src/game/look-options.test.ts src/scene/street-life/near.test.ts src/scene/street-life/near-draw.test.ts
@@ -158,7 +163,7 @@ jobs:
         run: >-
           node --experimental-strip-types --import ./scripts/node-scene-css.ts
           --test --test-concurrency=1
-          src/scene/city-scenes.test.ts src/map3d/geo/atlas.test.ts
+          src/scene/city-scenes.test.ts src/scene/recipe/dynamic-population.test.ts src/map3d/geo/atlas.test.ts
 
       - name: Existing map renderer, water and startup checks
         if: ${{ !cancelled() && steps.build.outcome == 'success' }}
@@ -203,7 +208,7 @@ jobs:
       - id: root-install
         run: npm ci --no-audit --no-fund
       - name: Generate runtime content assets
-        run: npm run cities:assets && npm run words:assets
+        run: npm run cities:assets && npm run words:assets && npm run progression:assets
       - name: Business quote and identity-safe retry checks
         run: >-
           node --experimental-strip-types --test --test-concurrency=1

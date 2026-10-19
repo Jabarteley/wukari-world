@@ -1,0 +1,2067 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "belize-city",
+    "name": "Belize City",
+    "state": {
+      "id": "bz-belize-city",
+      "name": "Belize City"
+    },
+    "country": {
+      "id": "bz",
+      "name": "Belize"
+    },
+    "point": {
+      "lon": -88.1988737,
+      "lat": 17.5002768
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america/belize-261011.osm.pbf",
+      "https://ourairports.com/airports/MZBZ/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/belize-city/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/belize-city/facts.ts",
+        "sha256": "5c4f5c599ea0bae50a2475ed702929d2cae04e62b4f372d25473f0e6079fda6e"
+      },
+      {
+        "path": "src/game/cities/belize-city/index.ts",
+        "sha256": "52761d788aecb312ebb1f85836a9246fee2937f52dafb0f00f776ca18adce44a"
+      },
+      {
+        "path": "src/game/cities/belize-city/places.ts",
+        "sha256": "fc8d608df225645ec794d83c210033b6ce0268a2e66146b49a1708056b1caf5d"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "belize-city-airport-belize-city-airport",
+      "name": "Philip S. W. Goldson International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.303556,
+        "lat": 17.539951
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-airport-belize-city-airport-1",
+        "belize-city-belize-city-airport-belize-city-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "belize-city-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-clinic",
+      "name": "Karl Heusner Memorial Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.195678,
+        "lat": 17.507199
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-clinic-1",
+        "belize-city-belize-city-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/295699807"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6371904"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-community-notices",
+      "name": "National Meteorological Service of Belize",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.313002,
+        "lat": 17.53429
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-community-notices-1",
+        "belize-city-belize-city-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4732408021"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-community-voting-game",
+      "name": "Belize City Hall",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.186928,
+        "lat": 17.494872
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-community-voting-game-1",
+        "belize-city-belize-city-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/295592929"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-community-workshop",
+      "name": "Central America Health Sciences University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.351836,
+        "lat": 17.584981
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-community-workshop-1",
+        "belize-city-belize-city-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/963695037"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-market-game",
+      "name": "Craft Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.182965,
+        "lat": 17.494363
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-market-game-1",
+        "belize-city-belize-city-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3789147573"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-meal-stop",
+      "name": "ABC Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.378454,
+        "lat": 17.649085
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-meal-stop-1",
+        "belize-city-belize-city-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2580450445"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-node-12596381963",
+      "name": "Di Plaze",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.291856,
+        "lat": 17.469107
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-node-12596381963-1",
+        "belize-city-belize-city-osm-node-12596381963-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12596381963"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-node-7047979386",
+      "name": "Tomb of Baron Bliss",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.181436,
+        "lat": 17.491485
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-node-7047979386-1",
+        "belize-city-belize-city-osm-node-7047979386-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7047979386"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q766319"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-relation-8504547",
+      "name": "Kukumba Beach",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.24807,
+        "lat": 17.470708
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-relation-8504547-1",
+        "belize-city-belize-city-osm-relation-8504547-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/8504547"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-way-1015283263",
+      "name": "Albert Hoy Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.195598,
+        "lat": 17.492124
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-way-1015283263-1",
+        "belize-city-belize-city-osm-way-1015283263-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1015283263"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-way-1119389631",
+      "name": "Belize Healthcare Partners Limited",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.203923,
+        "lat": 17.512834
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-way-1119389631-1",
+        "belize-city-belize-city-osm-way-1119389631-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1119389631"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-way-113653382",
+      "name": "Digi Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.187631,
+        "lat": 17.507321
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-way-113653382-1",
+        "belize-city-belize-city-osm-way-113653382-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/113653382"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-way-259179297",
+      "name": "Museum of Belize",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.183471,
+        "lat": 17.498086
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-way-259179297-1",
+        "belize-city-belize-city-osm-way-259179297-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/259179297"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16979616"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-way-259180757",
+      "name": "Holy Redeemer Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.187047,
+        "lat": 17.496349
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-way-259180757-1",
+        "belize-city-belize-city-osm-way-259180757-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/259180757"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4163667"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-way-295702030",
+      "name": "University of Belize (Education Campus)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.200896,
+        "lat": 17.511775
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-way-295702030-1",
+        "belize-city-belize-city-osm-way-295702030-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/295702030"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-way-295702032",
+      "name": "University of the West Indies",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.199563,
+        "lat": 17.510236
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-way-295702032-1",
+        "belize-city-belize-city-osm-way-295702032-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/295702032"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-way-375230999",
+      "name": "Wilton Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.196247,
+        "lat": 17.485473
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-way-375230999-1",
+        "belize-city-belize-city-osm-way-375230999-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/375230999"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-way-375289101",
+      "name": "St. Martin de Porres Catholic Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.201084,
+        "lat": 17.498934
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-way-375289101-1",
+        "belize-city-belize-city-osm-way-375289101-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/375289101"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q21010247"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-way-376017484",
+      "name": "Manatee Lookout Restaurant & Bar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.282693,
+        "lat": 17.54492
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-way-376017484-1",
+        "belize-city-belize-city-osm-way-376017484-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/376017484"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-way-961547974",
+      "name": "Belize Medical Associates",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.194122,
+        "lat": 17.510053
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-way-961547974-1",
+        "belize-city-belize-city-osm-way-961547974-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/961547974"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-osm-way-961896200",
+      "name": "Central America Health Sciences Belize Medical College",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.353737,
+        "lat": 17.585726
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-osm-way-961896200-1",
+        "belize-city-belize-city-osm-way-961896200-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/961896200"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-quiet-reflection",
+      "name": "St. John's Anglican Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.187797,
+        "lat": 17.48874
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-quiet-reflection-1",
+        "belize-city-belize-city-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/130793100"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4163413"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-recreation",
+      "name": "Buttonwood Bay Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.2129,
+        "lat": 17.513901
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-recreation-1",
+        "belize-city-belize-city-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/376110638"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "belize-city-transit",
+      "name": "Belize City => Corozal Town",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.193427,
+        "lat": 17.49409
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "belize-city-belize-city-transit-1",
+        "belize-city-belize-city-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/belize-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9817874415"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -88.1988737,
+        "lat": 17.5002768
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "belize-city-belize-city-airport-belize-city-airport-1",
+      "venueId": "belize-city-airport-belize-city-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-airport-belize-city-airport-2",
+      "venueId": "belize-city-airport-belize-city-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-clinic-1",
+      "venueId": "belize-city-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-clinic-2",
+      "venueId": "belize-city-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-community-notices-1",
+      "venueId": "belize-city-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-community-notices-2",
+      "venueId": "belize-city-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-community-voting-game-1",
+      "venueId": "belize-city-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-community-voting-game-2",
+      "venueId": "belize-city-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-community-workshop-1",
+      "venueId": "belize-city-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-community-workshop-2",
+      "venueId": "belize-city-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-market-game-1",
+      "venueId": "belize-city-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-market-game-2",
+      "venueId": "belize-city-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-meal-stop-1",
+      "venueId": "belize-city-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-meal-stop-2",
+      "venueId": "belize-city-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-node-12596381963-1",
+      "venueId": "belize-city-osm-node-12596381963",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-node-12596381963-2",
+      "venueId": "belize-city-osm-node-12596381963",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-node-7047979386-1",
+      "venueId": "belize-city-osm-node-7047979386",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-node-7047979386-2",
+      "venueId": "belize-city-osm-node-7047979386",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-relation-8504547-1",
+      "venueId": "belize-city-osm-relation-8504547",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-relation-8504547-2",
+      "venueId": "belize-city-osm-relation-8504547",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-1015283263-1",
+      "venueId": "belize-city-osm-way-1015283263",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-1015283263-2",
+      "venueId": "belize-city-osm-way-1015283263",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-1119389631-1",
+      "venueId": "belize-city-osm-way-1119389631",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-1119389631-2",
+      "venueId": "belize-city-osm-way-1119389631",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-113653382-1",
+      "venueId": "belize-city-osm-way-113653382",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-113653382-2",
+      "venueId": "belize-city-osm-way-113653382",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-259179297-1",
+      "venueId": "belize-city-osm-way-259179297",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-259179297-2",
+      "venueId": "belize-city-osm-way-259179297",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-259180757-1",
+      "venueId": "belize-city-osm-way-259180757",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-259180757-2",
+      "venueId": "belize-city-osm-way-259180757",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-295702030-1",
+      "venueId": "belize-city-osm-way-295702030",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-295702030-2",
+      "venueId": "belize-city-osm-way-295702030",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-295702032-1",
+      "venueId": "belize-city-osm-way-295702032",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-295702032-2",
+      "venueId": "belize-city-osm-way-295702032",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-375230999-1",
+      "venueId": "belize-city-osm-way-375230999",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-375230999-2",
+      "venueId": "belize-city-osm-way-375230999",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-375289101-1",
+      "venueId": "belize-city-osm-way-375289101",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-375289101-2",
+      "venueId": "belize-city-osm-way-375289101",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-376017484-1",
+      "venueId": "belize-city-osm-way-376017484",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-376017484-2",
+      "venueId": "belize-city-osm-way-376017484",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-961547974-1",
+      "venueId": "belize-city-osm-way-961547974",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-961547974-2",
+      "venueId": "belize-city-osm-way-961547974",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-961896200-1",
+      "venueId": "belize-city-osm-way-961896200",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-osm-way-961896200-2",
+      "venueId": "belize-city-osm-way-961896200",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-quiet-reflection-1",
+      "venueId": "belize-city-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-quiet-reflection-2",
+      "venueId": "belize-city-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-recreation-1",
+      "venueId": "belize-city-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-recreation-2",
+      "venueId": "belize-city-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-transit-1",
+      "venueId": "belize-city-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    },
+    {
+      "id": "belize-city-belize-city-transit-2",
+      "venueId": "belize-city-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/belize-city/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "belize-city-airport-belize-city-airport",
+    "belize-city-clinic",
+    "belize-city-community-notices",
+    "belize-city-community-voting-game",
+    "belize-city-community-workshop",
+    "belize-city-market-game",
+    "belize-city-meal-stop",
+    "belize-city-osm-node-12596381963",
+    "belize-city-osm-node-7047979386",
+    "belize-city-osm-relation-8504547",
+    "belize-city-osm-way-1015283263",
+    "belize-city-osm-way-1119389631",
+    "belize-city-osm-way-113653382",
+    "belize-city-osm-way-259179297",
+    "belize-city-osm-way-259180757",
+    "belize-city-osm-way-295702030",
+    "belize-city-osm-way-295702032",
+    "belize-city-osm-way-375230999",
+    "belize-city-osm-way-375289101",
+    "belize-city-osm-way-376017484",
+    "belize-city-osm-way-961547974",
+    "belize-city-osm-way-961896200",
+    "belize-city-quiet-reflection",
+    "belize-city-recreation",
+    "belize-city-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "c48c2e5b5ddb6192cc42b6d36377da092dadca6d4ca5dc87202dda912ae556b8",
+    "contentSha256": "2dd4e755b0c3ee86135162ef6ff3d8b2ad336ac63460911c48d75a6bf4f1f9f0"
+  }
+}

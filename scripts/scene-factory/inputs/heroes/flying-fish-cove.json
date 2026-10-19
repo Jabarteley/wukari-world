@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "flying-fish-cove",
+  "url": "/assets/scene-heroes/flying-fish-cove.glb",
+  "sha256": "bb581ab534063a7b870bad9e7d763ec25a82e76101e015068abf39d3cd1d1f48",
+  "rawBytes": 39728,
+  "brotliBytes": 27842,
+  "triangles": 1904,
+  "parts": [
+    {
+      "node": "flying-fish-cove",
+      "triangles": 1904,
+      "bounds": {
+        "min": [
+          -3.70000005,
+          0,
+          -2.5
+        ],
+        "max": [
+          3.6999999159090002,
+          2.573716645654,
+          2.5001830936100005
+        ]
+      },
+      "footprint": [
+        -3.70000005,
+        -2.5,
+        3.6999999159090002,
+        2.5001830936100005
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "cefa6c51ee31ce61b7730e7b3f7388481cef8e610c8ac7a4213a34859aea6951",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "flying-fish-cove",
+      "country": "cx",
+      "name": "Drumsite Park",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/747451092"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=flying-fish-cove]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8,
+        "depth": 5.5,
+        "height": 2.6,
+        "seed": 181259,
+        "palette": [
+          "#b9bca1",
+          "#6b604e",
+          "#607953",
+          "#8b9b70",
+          "#6e868d",
+          "#c0b18d",
+          "#d9dfd4",
+          "#415044"
+        ],
+        "composition": "open-park"
+      },
+      "evidence": "Exact candidate/name alias match and leisure=park support feature identity/category. Object way/747451092, version 2, timestamp 2024-01-20T01:03:01Z; response SHA256 de3846976740ba22bab5d4e8431ff29e1f223f56405120f2baa757d44aa667b2. Source path: src/game/cities/flying-fish-cove/places.ts. Original park vegetation and clearing fragment. Tree count, species, placement and dimensions are art direction; no pond, building or copied landscape plan is added. Natural-feature is the existing schema route for the vegetated park fragment, not a claim that the designed park is wilderness. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

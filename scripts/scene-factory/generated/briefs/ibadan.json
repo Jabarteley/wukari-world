@@ -1,0 +1,1965 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "ibadan",
+    "name": "Ibadan",
+    "state": {
+      "id": "oyo",
+      "name": "Oyo State"
+    },
+    "country": {
+      "id": "ng",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 3.95,
+      "lat": 7.38
+    }
+  },
+  "style": {
+    "region": "yoruba-southwest",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/ibadan/content.ts",
+        "sha256": "5be6afaefb1df27891366f0958d0136a3141f9b162083b7c27c418e86246f02c"
+      },
+      {
+        "path": "src/game/cities/ibadan/index.ts",
+        "sha256": "70547591f8f64710cc98f68cc467c7537432ff8793523119c778e0724bb393f0"
+      },
+      {
+        "path": "src/game/cities/ibadan/rules.ts",
+        "sha256": "4c4d4d6932cf8da1e4864e36898e7ea71f65e9f39f978e75411bafa8802b6df5"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for ibadan.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "agodi-gardens",
+      "name": "Agodi Gardens",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.8982644,
+        "lat": 7.4093254
+      },
+      "spots": [
+        {
+          "id": "garden",
+          "name": "Garden lawn"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "garden",
+          "name": "Garden lawn",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-agodi-gardens-1",
+        "ibadan-agodi-gardens-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": "garden",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "bodija-market",
+      "name": "Bodija Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9157404,
+        "lat": 7.4359015
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Foodstuff aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Foodstuff aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-bodija-market-1",
+        "ibadan-bodija-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": "foodstuff",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "bowers-tower",
+      "name": "Bower’s Tower",
+      "kind": "hilltop",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.896598,
+        "lat": 7.392036
+      },
+      "spots": [
+        {
+          "id": "top",
+          "name": "Tower viewpoint"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "top",
+          "name": "Tower viewpoint",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-bowers-tower-1",
+        "ibadan-bowers-tower-2"
+      ],
+      "scene": {
+        "kind": "hilltop",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "challenge-interchange",
+      "name": "Orita Challenge Interchange",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.8793,
+        "lat": 7.3482
+      },
+      "spots": [
+        {
+          "id": "platform",
+          "name": "Bus stop"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "platform",
+          "name": "Bus stop",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-challenge-interchange-1",
+        "ibadan-challenge-interchange-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": "bus-park",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "cocoa-house",
+      "name": "Cocoa House",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.8788769,
+        "lat": 7.3880524
+      },
+      "spots": [
+        {
+          "id": "lobby",
+          "name": "Ground-floor lobby"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "lobby",
+          "name": "Ground-floor lobby",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-cocoa-house-1",
+        "ibadan-cocoa-house-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "tower",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "dugbe-amala",
+      "name": "Dugbe Amala Joint",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.88062,
+        "lat": 7.38716
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-dugbe-amala-1",
+        "ibadan-dugbe-amala-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "dugbe-market",
+      "name": "Dugbe Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.88040447,
+        "lat": 7.3870279
+      },
+      "spots": [
+        {
+          "id": "arcade",
+          "name": "Market arcade"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arcade",
+          "name": "Market arcade",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-dugbe-market-1",
+        "ibadan-dugbe-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": "street",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "eleyele-lake",
+      "name": "Eleyele Reservoir",
+      "kind": "lakeside",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.8687741,
+        "lat": 7.4333509
+      },
+      "spots": [
+        {
+          "id": "shore",
+          "name": "Reservoir edge"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "shore",
+          "name": "Reservoir edge",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-eleyele-lake-1",
+        "ibadan-eleyele-lake-2"
+      ],
+      "scene": {
+        "kind": "lakeside",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "gbagi-market",
+      "name": "Gbagi New International Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9558975,
+        "lat": 7.39337
+      },
+      "spots": [
+        {
+          "id": "cloth",
+          "name": "Cloth row"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "cloth",
+          "name": "Cloth row",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-gbagi-market-1",
+        "ibadan-gbagi-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": "cloth",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9157404,
+        "lat": 7.4359015
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "ibadan-airport",
+      "name": "Ibadan Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9794357,
+        "lat": 7.3637424
+      },
+      "spots": [
+        {
+          "id": "terminal",
+          "name": "Terminal"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "terminal",
+          "name": "Terminal",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-ibadan-airport-1",
+        "ibadan-ibadan-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "iita-forest",
+      "name": "IITA Forest Reserve",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.8875769,
+        "lat": 7.4951861
+      },
+      "spots": [
+        {
+          "id": "trail",
+          "name": "Forest trail"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "trail",
+          "name": "Forest trail",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-iita-forest-1",
+        "ibadan-iita-forest-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": "forest",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "iwo-road-interchange",
+      "name": "Iwo Road Interchange",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9444816,
+        "lat": 7.40288
+      },
+      "spots": [
+        {
+          "id": "platform",
+          "name": "Bus platform"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "platform",
+          "name": "Bus platform",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-iwo-road-interchange-1",
+        "ibadan-iwo-road-interchange-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": "bus-park",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "lead-city",
+      "name": "Lead City University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.87577,
+        "lat": 7.32637
+      },
+      "spots": [
+        {
+          "id": "lab",
+          "name": "Digital lab"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "lab",
+          "name": "Digital lab",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-lead-city-1",
+        "ibadan-lead-city-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "campus",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "lekan-salami-stadium",
+      "name": "Lekan Salami Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.8853064,
+        "lat": 7.3963017
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-lekan-salami-stadium-1",
+        "ibadan-lekan-salami-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": "stadium",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "mapo-hall",
+      "name": "Mapo Hall",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.8969774,
+        "lat": 7.3759998
+      },
+      "spots": [
+        {
+          "id": "steps",
+          "name": "Mapo steps"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "steps",
+          "name": "Mapo steps",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-mapo-hall-1",
+        "ibadan-mapo-hall-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": "hill-hall",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "mapo-polling",
+      "name": "Mapo Civic Polling Centre",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.89706,
+        "lat": 7.37586
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Election officials"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Election officials",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ibadan-mapo-polling-1",
+        "ibadan-mapo-polling-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "mokola-salon",
+      "name": "Mokola Salon",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.8902,
+        "lat": 7.4006
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-mokola-salon-1",
+        "ibadan-mokola-salon-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "moniya-station",
+      "name": "Obafemi Awolowo Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.896621,
+        "lat": 7.559368
+      },
+      "spots": [
+        {
+          "id": "platform",
+          "name": "Rail platform"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "platform",
+          "name": "Rail platform",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-moniya-station-1",
+        "ibadan-moniya-station-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": "rail",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "national-museum",
+      "name": "National Museum of Unity",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.868776,
+        "lat": 7.384937
+      },
+      "spots": [
+        {
+          "id": "gallery",
+          "name": "Unity gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "gallery",
+          "name": "Unity gallery",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-national-museum-1",
+        "ibadan-national-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": "gallery",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "polytechnic",
+      "name": "The Polytechnic, Ibadan",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.8837345,
+        "lat": 7.4369114
+      },
+      "spots": [
+        {
+          "id": "quad",
+          "name": "Main campus"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "quad",
+          "name": "Main campus",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-polytechnic-1",
+        "ibadan-polytechnic-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "campus",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "uch",
+      "name": "University College Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9037086,
+        "lat": 7.4028275
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-uch-1",
+        "ibadan-uch-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "ui-campus",
+      "name": "University of Ibadan",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9068,
+        "lat": 7.4412
+      },
+      "spots": [
+        {
+          "id": "court",
+          "name": "University Court"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "court",
+          "name": "University Court",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ibadan-ui-campus-1",
+        "ibadan-ui-campus-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "ui-chapel",
+      "name": "Chapel of the Resurrection",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.899173,
+        "lat": 7.447812
+      },
+      "spots": [
+        {
+          "id": "hall",
+          "name": "Chapel hall"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "hall",
+          "name": "Chapel hall",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ibadan-ui-chapel-1",
+        "ibadan-ui-chapel-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    },
+    {
+      "id": "ui-mosque",
+      "name": "University of Ibadan Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.89843,
+        "lat": 7.447241
+      },
+      "spots": [
+        {
+          "id": "hall",
+          "name": "Prayer hall"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "hall",
+          "name": "Prayer hall",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ibadan-ui-mosque-1",
+        "ibadan-ui-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ibadan."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "ibadan-agodi-gardens-1",
+      "venueId": "agodi-gardens",
+      "name": "Yetunde Akinola",
+      "role": "Tour guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-agodi-gardens-2",
+      "venueId": "agodi-gardens",
+      "name": "Gboyega Olatunji",
+      "role": "History teacher",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-bodija-market-1",
+      "venueId": "bodija-market",
+      "name": "Modupe Oyekan",
+      "role": "Produce trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-bodija-market-2",
+      "venueId": "bodija-market",
+      "name": "Akeem Alabi",
+      "role": "Yam seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-bowers-tower-1",
+      "venueId": "bowers-tower",
+      "name": "Funmi Adegoke",
+      "role": "Garden keeper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-bowers-tower-2",
+      "venueId": "bowers-tower",
+      "name": "Segun Awolowo",
+      "role": "Ayo player",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-challenge-interchange-1",
+      "venueId": "challenge-interchange",
+      "name": "Dupe Oladimeji",
+      "role": "Market commuter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-challenge-interchange-2",
+      "venueId": "challenge-interchange",
+      "name": "Sunday Akinpelu",
+      "role": "Route marshal",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-cocoa-house-1",
+      "venueId": "cocoa-house",
+      "name": "Kemi Afolayan",
+      "role": "Office administrator",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-cocoa-house-2",
+      "venueId": "cocoa-house",
+      "name": "Yinka Ojo",
+      "role": "Account officer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-dugbe-amala-1",
+      "venueId": "dugbe-amala",
+      "name": "Abiola Olaniyan",
+      "role": "Food server",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-dugbe-amala-2",
+      "venueId": "dugbe-amala",
+      "name": "Lanre Amoo",
+      "role": "Lunch regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-dugbe-market-1",
+      "venueId": "dugbe-market",
+      "name": "Kikelomo Falana",
+      "role": "Cloth trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-dugbe-market-2",
+      "venueId": "dugbe-market",
+      "name": "Folarin Akande",
+      "role": "Shopkeeper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-eleyele-lake-1",
+      "venueId": "eleyele-lake",
+      "name": "Titilayo Aremu",
+      "role": "Lakeside visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-eleyele-lake-2",
+      "venueId": "eleyele-lake",
+      "name": "Jide Arowolo",
+      "role": "Fisher",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-gbagi-market-1",
+      "venueId": "gbagi-market",
+      "name": "Morounkeji Bakare",
+      "role": "Textile wholesaler",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-gbagi-market-2",
+      "venueId": "gbagi-market",
+      "name": "Tunde Babalola",
+      "role": "Market porter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-ibadan-airport-1",
+      "venueId": "ibadan-airport",
+      "name": "Morenike Akinfenwa",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-ibadan-airport-2",
+      "venueId": "ibadan-airport",
+      "name": "Kayode Olabisi",
+      "role": "Ground staff",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-iita-forest-1",
+      "venueId": "iita-forest",
+      "name": "Doyin Adepoju",
+      "role": "Forest guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-iita-forest-2",
+      "venueId": "iita-forest",
+      "name": "Bayo Olusola",
+      "role": "Bird watcher",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-iwo-road-interchange-1",
+      "venueId": "iwo-road-interchange",
+      "name": "Olamide Abiodun",
+      "role": "Micra driver",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-iwo-road-interchange-2",
+      "venueId": "iwo-road-interchange",
+      "name": "Rasheed Ismail",
+      "role": "Bus dispatcher",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-lead-city-1",
+      "venueId": "lead-city",
+      "name": "Tola Adebayo",
+      "role": "Software student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-lead-city-2",
+      "venueId": "lead-city",
+      "name": "Wale Oyewole",
+      "role": "Project mentor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-lekan-salami-stadium-1",
+      "venueId": "lekan-salami-stadium",
+      "name": "Nike Adesina",
+      "role": "Supporters-club member",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-lekan-salami-stadium-2",
+      "venueId": "lekan-salami-stadium",
+      "name": "Rotimi Ogundipe",
+      "role": "Youth coach",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-mapo-hall-1",
+      "venueId": "mapo-hall",
+      "name": "Temitope Salami",
+      "role": "Civic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-mapo-hall-2",
+      "venueId": "mapo-hall",
+      "name": "Muyiwa Ajayi",
+      "role": "Photographer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-mapo-polling-1",
+      "venueId": "mapo-polling",
+      "name": "Bisola Adekunle",
+      "role": "Election observer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-mapo-polling-2",
+      "venueId": "mapo-polling",
+      "name": "Dapo Olawale",
+      "role": "Registration officer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-mokola-salon-1",
+      "venueId": "mokola-salon",
+      "name": "Sade Balogun",
+      "role": "Hair stylist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-mokola-salon-2",
+      "venueId": "mokola-salon",
+      "name": "Taiwo Ojo",
+      "role": "Neighbourhood customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-moniya-station-1",
+      "venueId": "moniya-station",
+      "name": "Adeola Adesokan",
+      "role": "Rail passenger",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-moniya-station-2",
+      "venueId": "moniya-station",
+      "name": "Lukman Adewale",
+      "role": "Station attendant",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-national-museum-1",
+      "venueId": "national-museum",
+      "name": "Peju Oladele",
+      "role": "Museum educator",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-national-museum-2",
+      "venueId": "national-museum",
+      "name": "Dele Oyeniyi",
+      "role": "Artist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-polytechnic-1",
+      "venueId": "polytechnic",
+      "name": "Bimpe Oladipo",
+      "role": "Engineering student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-polytechnic-2",
+      "venueId": "polytechnic",
+      "name": "Seyi Adediran",
+      "role": "Workshop technologist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-uch-1",
+      "venueId": "uch",
+      "name": "Ronke Ogunleye",
+      "role": "Ward nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-uch-2",
+      "venueId": "uch",
+      "name": "Femi Lawal",
+      "role": "Patient liaison",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-ui-campus-1",
+      "venueId": "ui-campus",
+      "name": "Aderonke Adeyemi",
+      "role": "Postgraduate student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-ui-campus-2",
+      "venueId": "ui-campus",
+      "name": "Kunle Akinyemi",
+      "role": "Campus guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-ui-chapel-1",
+      "venueId": "ui-chapel",
+      "name": "Bukola Olumide",
+      "role": "Choir member",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-ui-chapel-2",
+      "venueId": "ui-chapel",
+      "name": "Leke Fashola",
+      "role": "University librarian",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-ui-mosque-1",
+      "venueId": "ui-mosque",
+      "name": "Rukayat Yusuf",
+      "role": "Student volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    },
+    {
+      "id": "ibadan-ui-mosque-2",
+      "venueId": "ui-mosque",
+      "name": "Kazeem Bello",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ibadan/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "dugbe-amala",
+    "ibadan-airport",
+    "mapo-polling",
+    "mokola-salon",
+    "uch",
+    "ui-chapel",
+    "ui-mosque"
+  ],
+  "preservedVenueIds": [
+    "agodi-gardens",
+    "bodija-market",
+    "bowers-tower",
+    "challenge-interchange",
+    "cocoa-house",
+    "dugbe-market",
+    "eleyele-lake",
+    "gbagi-market",
+    "iita-forest",
+    "iwo-road-interchange",
+    "lead-city",
+    "lekan-salami-stadium",
+    "mapo-hall",
+    "moniya-station",
+    "national-museum",
+    "polytechnic",
+    "ui-campus"
+  ],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "dd821c978d744746d9837dbd8e9ee5313d87e2103e3fd331d59b7167c9862881",
+    "contentSha256": "d4b1ae2b08ecfa216b69275e771c1fa3eda90c9fa1cdc50c724faa4fcacf6093"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "london",
+  "url": "/assets/scene-heroes/london.glb",
+  "sha256": "c69a04e1f8b88048e9c2e1bb9cc6f61ce720fc15f7fb57f4238ad619e9e9d006",
+  "rawBytes": 27952,
+  "brotliBytes": 17833,
+  "triangles": 788,
+  "parts": [
+    {
+      "node": "london",
+      "triangles": 788,
+      "bounds": {
+        "min": [
+          -1.90953064,
+          0,
+          -0.79419893
+        ],
+        "max": [
+          1.909530706622,
+          2.499884873416,
+          0.794221018476
+        ]
+      },
+      "footprint": [
+        -1.90953064,
+        -0.79419893,
+        1.909530706622,
+        0.794221018476
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "71676c27dc7aa828be2bf337cfdfc67ca4b934f18395497ee6ecc4a8ad59df37",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "london",
+      "country": "gb",
+      "name": "Walthamstow Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/relation/11370057"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=london]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181191,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object relation/11370057, version 2, timestamp 2020-08-01T01:47:11Z; response SHA256 39551d6745b178a7ec369e8e90c271ca4f96b15faa8376906bf783cbc78d0724. Source path: src/game/cities/london/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

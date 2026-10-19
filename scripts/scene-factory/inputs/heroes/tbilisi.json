@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "tbilisi",
+  "url": "/assets/scene-heroes/tbilisi.glb",
+  "sha256": "bf97912c0ef48a10dd5ad4f11c5951895241263c2d5bb4d655341ee0cca1436e",
+  "rawBytes": 30628,
+  "brotliBytes": 19398,
+  "triangles": 1000,
+  "parts": [
+    {
+      "node": "tbilisi",
+      "triangles": 1000,
+      "bounds": {
+        "min": [
+          -3.78951621,
+          0,
+          -2.30255389
+        ],
+        "max": [
+          3.7895161313970003,
+          3.700000040682,
+          2.3027849953449997
+        ]
+      },
+      "footprint": [
+        -3.78951621,
+        -2.30255389,
+        3.7895161313970003,
+        2.3027849953449997
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "a5bac5396a5aaca8ac4427bd861965e56e6bee89c675f6b40de2fcbffaf8731f",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "tbilisi",
+      "country": "ge",
+      "name": "Merani Shopping Gallery",
+      "category": "building",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/242179594"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=tbilisi]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "retail-building",
+      "parameters": {
+        "width": 8.6,
+        "depth": 6.1,
+        "height": 3.7,
+        "seed": 181154,
+        "palette": [
+          "#d3cec2",
+          "#646a6b",
+          "#a0a895",
+          "#8c7568",
+          "#6d8f9c",
+          "#b0a489",
+          "#e7e8df",
+          "#344b59"
+        ]
+      },
+      "evidence": "Exact candidate/name alias match and shop=mall support feature identity/category. Object way/242179594, version 13, timestamp 2025-12-06T07:49:35Z; response SHA256 ccc0cd0f318d6e59fc97055300a33205191046ab6b95ef8aaecdf13802b91c15. Source path: src/game/cities/tbilisi/places.ts. Original simple retail-building massing, entrance and opaque glazing panels. No signature facade, brand, sign, surveyed dimensions, floor count or precise building footprint are claimed. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

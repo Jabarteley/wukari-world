@@ -1,0 +1,1965 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "awka",
+    "name": "Awka",
+    "state": {
+      "id": "anambra",
+      "name": "Anambra"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 7.0774372,
+      "lat": 6.218947
+    }
+  },
+  "style": {
+    "region": "igbo-southeast",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/awka/content.ts",
+        "sha256": "098439d3aca72b6b41893f1a975b993061f8716e212d37b4591370ea4ef3074f"
+      },
+      {
+        "path": "src/game/cities/awka/index.ts",
+        "sha256": "36670773b10bfc1a26d7d7a2388bb4023ff233c8b00674f753a3b80bc66e0320"
+      },
+      {
+        "path": "src/game/cities/awka/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/awka/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for awka.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "anambra-ministry-of-works",
+      "name": "Anambra State Ministry of Works and Infrastructure",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.06052,
+        "lat": 6.202495
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-anambra-ministry-of-works-1",
+        "awka-anambra-ministry-of-works-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "anambra-state-house-of-assembly",
+      "name": "Anambra State House Of Assembly",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.079166510660087,
+        "lat": 6.234009374645353
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-anambra-state-house-of-assembly-1",
+        "awka-anambra-state-house-of-assembly-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "archbishop-ibezim-college-of-education",
+      "name": "Archbishop Alexander Ibezim COE, Anambra",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.064646,
+        "lat": 6.197921
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-archbishop-ibezim-college-of-education-1",
+        "awka-archbishop-ibezim-college-of-education-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "awka-central-mosque",
+      "name": "Awka Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.082093,
+        "lat": 6.222111
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-awka-central-mosque-1",
+        "awka-awka-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "awka-city-stadium",
+      "name": "Awka City Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0639,
+        "lat": 6.2153
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-awka-city-stadium-1",
+        "awka-awka-city-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "burger-chicken-awka",
+      "name": "Burger Chicken and Co",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0822078,
+        "lat": 6.2290806
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-burger-chicken-awka-1",
+        "awka-burger-chicken-awka-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "christ-the-king-hospital-awka",
+      "name": "Christ The King Hospital, Awka",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.065078877100833,
+        "lat": 6.2180581589739194
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-christ-the-king-hospital-awka-1",
+        "awka-christ-the-king-hospital-awka-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "diamond-pizza-awka",
+      "name": "Diamond Pizza & Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0744467,
+        "lat": 6.2269592
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-diamond-pizza-awka-1",
+        "awka-diamond-pizza-awka-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "ecwa-awka",
+      "name": "Evangelical Church Winning All (ECWA)",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0546024,
+        "lat": 6.2040136
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-ecwa-awka-1",
+        "awka-ecwa-awka-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "eke-awka-main-market",
+      "name": "Eke Awka Main Market, Awka",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.068651,
+        "lat": 6.207937
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-eke-awka-main-market-1",
+        "awka-eke-awka-main-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "ekwueme-square-awka",
+      "name": "Ekwueme Square",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.080277777777778,
+        "lat": 6.235
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor point"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor point",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-ekwueme-square-awka-1",
+        "awka-ekwueme-square-awka-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "first-bank-awka",
+      "name": "First Bank Nigeria, Awka",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.065756,
+        "lat": 6.197951
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-first-bank-awka-1",
+        "awka-first-bank-awka-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "gideons-barber-shop-awka",
+      "name": "Gideon's Barber Shop",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0473132,
+        "lat": 6.2015611
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-gideons-barber-shop-awka-1",
+        "awka-gideons-barber-shop-awka-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.078709344768183,
+        "lat": 6.189824925497666
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "lords-chosen-awka",
+      "name": "The Lord's Chosen Charismatic Revival Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0730346,
+        "lat": 6.2258995
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-lords-chosen-awka-1",
+        "awka-lords-chosen-awka-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "mayfresh-savings-loans-awka",
+      "name": "Mayfresh Savings & Loans",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.065482873637312,
+        "lat": 6.220533580521804
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-mayfresh-savings-loans-awka-1",
+        "awka-mayfresh-savings-loans-awka-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "old-timber-market-awka",
+      "name": "Old Timber Market Awka",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.068109,
+        "lat": 6.214308
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-old-timber-market-awka-1",
+        "awka-old-timber-market-awka-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "ora-palace-okpuno",
+      "name": "Ora Palace Okpuno",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.06029,
+        "lat": 6.235806
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-ora-palace-okpuno-1",
+        "awka-ora-palace-okpuno-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "paul-university-awka",
+      "name": "Paul University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.066149276719996,
+        "lat": 6.199168536723552
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-paul-university-awka-1",
+        "awka-paul-university-awka-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "regina-caeli-hospital-awka",
+      "name": "Regina Caeli Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.1028834,
+        "lat": 6.2231834
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-regina-caeli-hospital-awka-1",
+        "awka-regina-caeli-hospital-awka-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "st-patricks-cathedral-awka",
+      "name": "St Patrick’s Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.072622,
+        "lat": 6.222774
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-st-patricks-cathedral-awka-1",
+        "awka-st-patricks-cathedral-awka-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "star-sunny-motor-park-awka",
+      "name": "Star Sunny Motor Park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.085041,
+        "lat": 6.233808
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-star-sunny-motor-park-awka-1",
+        "awka-star-sunny-motor-park-awka-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "uzondu-microfinance-bank-awka",
+      "name": "Uzondu Microfinance Bank Limited",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0687750958092535,
+        "lat": 6.209138845035552
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-uzondu-microfinance-bank-awka-1",
+        "awka-uzondu-microfinance-bank-awka-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    },
+    {
+      "id": "vcs-gate-awka",
+      "name": "VC's Gate",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.1098235,
+        "lat": 6.2426919
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "awka-vcs-gate-awka-1",
+        "awka-vcs-gate-awka-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for awka."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "awka-anambra-ministry-of-works-1",
+      "venueId": "anambra-ministry-of-works",
+      "name": "Adaeze Ibe",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-anambra-ministry-of-works-2",
+      "venueId": "anambra-ministry-of-works",
+      "name": "Mazi Onyeka",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-anambra-state-house-of-assembly-1",
+      "venueId": "anambra-state-house-of-assembly",
+      "name": "Ikenna Okeke",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-anambra-state-house-of-assembly-2",
+      "venueId": "anambra-state-house-of-assembly",
+      "name": "Obiageli Okonkwo",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-archbishop-ibezim-college-of-education-1",
+      "venueId": "archbishop-ibezim-college-of-education",
+      "name": "Adaeze Okonkwo",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-archbishop-ibezim-college-of-education-2",
+      "venueId": "archbishop-ibezim-college-of-education",
+      "name": "Chinedu Nnadi",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-awka-central-mosque-1",
+      "venueId": "awka-central-mosque",
+      "name": "Adaeze Okafor",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-awka-central-mosque-2",
+      "venueId": "awka-central-mosque",
+      "name": "Mazi Chinedu",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-awka-city-stadium-1",
+      "venueId": "awka-city-stadium",
+      "name": "Adaeze Obi",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-awka-city-stadium-2",
+      "venueId": "awka-city-stadium",
+      "name": "Chinedu Anyanwu",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-burger-chicken-awka-1",
+      "venueId": "burger-chicken-awka",
+      "name": "Adaeze Chukwu",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-burger-chicken-awka-2",
+      "venueId": "burger-chicken-awka",
+      "name": "Chinedu Nwosu",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-christ-the-king-hospital-awka-1",
+      "venueId": "christ-the-king-hospital-awka",
+      "name": "Adaeze Ugwu",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-christ-the-king-hospital-awka-2",
+      "venueId": "christ-the-king-hospital-awka",
+      "name": "Chinedu Mbah",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-diamond-pizza-awka-1",
+      "venueId": "diamond-pizza-awka",
+      "name": "Ikenna Anyanwu",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-diamond-pizza-awka-2",
+      "venueId": "diamond-pizza-awka",
+      "name": "Obiageli Ibe",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-ecwa-awka-1",
+      "venueId": "ecwa-awka",
+      "name": "Ikenna Nnadi",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-ecwa-awka-2",
+      "venueId": "ecwa-awka",
+      "name": "Obiageli Agu",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-eke-awka-main-market-1",
+      "venueId": "eke-awka-main-market",
+      "name": "Ikenna Nwachukwu",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-eke-awka-main-market-2",
+      "venueId": "eke-awka-main-market",
+      "name": "Mama Uzoamaka",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-ekwueme-square-awka-1",
+      "venueId": "ekwueme-square-awka",
+      "name": "Nkechi Chukwu",
+      "role": "Site attendant",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-ekwueme-square-awka-2",
+      "venueId": "ekwueme-square-awka",
+      "name": "Mazi Tobenna",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-first-bank-awka-1",
+      "venueId": "first-bank-awka",
+      "name": "Ikenna Onwuka",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-first-bank-awka-2",
+      "venueId": "first-bank-awka",
+      "name": "Obiageli Okafor",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-gideons-barber-shop-awka-1",
+      "venueId": "gideons-barber-shop-awka",
+      "name": "Nkechi Eze",
+      "role": "Stylist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-gideons-barber-shop-awka-2",
+      "venueId": "gideons-barber-shop-awka",
+      "name": "Onyeka Nwachukwu",
+      "role": "Client",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-lords-chosen-awka-1",
+      "venueId": "lords-chosen-awka",
+      "name": "Adaeze Eze",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-lords-chosen-awka-2",
+      "venueId": "lords-chosen-awka",
+      "name": "Chinedu Nwachukwu",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-mayfresh-savings-loans-awka-1",
+      "venueId": "mayfresh-savings-loans-awka",
+      "name": "Nkechi Obi",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-mayfresh-savings-loans-awka-2",
+      "venueId": "mayfresh-savings-loans-awka",
+      "name": "Mazi Ugochukwu",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-old-timber-market-awka-1",
+      "venueId": "old-timber-market-awka",
+      "name": "Adaeze Agu",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-old-timber-market-awka-2",
+      "venueId": "old-timber-market-awka",
+      "name": "Chinedu Okoro",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-ora-palace-okpuno-1",
+      "venueId": "ora-palace-okpuno",
+      "name": "Emeka Anyanwu",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-ora-palace-okpuno-2",
+      "venueId": "ora-palace-okpuno",
+      "name": "Uzoamaka Ibe",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-paul-university-awka-1",
+      "venueId": "paul-university-awka",
+      "name": "Ikenna Okoro",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-paul-university-awka-2",
+      "venueId": "paul-university-awka",
+      "name": "Mama Ebere",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-regina-caeli-hospital-awka-1",
+      "venueId": "regina-caeli-hospital-awka",
+      "name": "Ikenna Nwosu",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-regina-caeli-hospital-awka-2",
+      "venueId": "regina-caeli-hospital-awka",
+      "name": "Obiageli Obi",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-st-patricks-cathedral-awka-1",
+      "venueId": "st-patricks-cathedral-awka",
+      "name": "Ikenna Mbah",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-st-patricks-cathedral-awka-2",
+      "venueId": "st-patricks-cathedral-awka",
+      "name": "Mama Obiageli",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-star-sunny-motor-park-awka-1",
+      "venueId": "star-sunny-motor-park-awka",
+      "name": "Emeka Nnadi",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-star-sunny-motor-park-awka-2",
+      "venueId": "star-sunny-motor-park-awka",
+      "name": "Mama Ogechi",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-uzondu-microfinance-bank-awka-1",
+      "venueId": "uzondu-microfinance-bank-awka",
+      "name": "Emeka Mbah",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-uzondu-microfinance-bank-awka-2",
+      "venueId": "uzondu-microfinance-bank-awka",
+      "name": "Obiageli Chukwu",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-vcs-gate-awka-1",
+      "venueId": "vcs-gate-awka",
+      "name": "Nkechi Okafor",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    },
+    {
+      "id": "awka-vcs-gate-awka-2",
+      "venueId": "vcs-gate-awka",
+      "name": "Chinedu Okeke",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/awka/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "anambra-ministry-of-works",
+    "anambra-state-house-of-assembly",
+    "archbishop-ibezim-college-of-education",
+    "awka-central-mosque",
+    "awka-city-stadium",
+    "burger-chicken-awka",
+    "christ-the-king-hospital-awka",
+    "diamond-pizza-awka",
+    "ecwa-awka",
+    "eke-awka-main-market",
+    "ekwueme-square-awka",
+    "first-bank-awka",
+    "gideons-barber-shop-awka",
+    "lords-chosen-awka",
+    "mayfresh-savings-loans-awka",
+    "old-timber-market-awka",
+    "ora-palace-okpuno",
+    "paul-university-awka",
+    "regina-caeli-hospital-awka",
+    "st-patricks-cathedral-awka",
+    "star-sunny-motor-park-awka",
+    "uzondu-microfinance-bank-awka",
+    "vcs-gate-awka"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "e3ad865daa0b8c998b462e834f055a5139ad4e6d5b3deac941fc66e3fd89a376",
+    "contentSha256": "e63acd46c47d9ce9e95a196c0d9f3ef241df624ddb01be6f10acc116bb46c9ba"
+  }
+}

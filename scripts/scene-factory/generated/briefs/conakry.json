@@ -1,0 +1,2095 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "conakry",
+    "name": "Conakry",
+    "state": {
+      "id": "gn-conakry",
+      "name": "Conakry"
+    },
+    "country": {
+      "id": "gn",
+      "name": "Guinea"
+    },
+    "point": {
+      "lon": -13.6998434,
+      "lat": 9.5170602
+    }
+  },
+  "style": {
+    "region": "gulf-guinea",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/guinea-261011.osm.pbf",
+      "https://ourairports.com/airports/GUCY/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/conakry/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/conakry/facts.ts",
+        "sha256": "b9cee378b78921631901337bbf4d689a3f3978aa995b4f431e6a67df432f919b"
+      },
+      {
+        "path": "src/game/cities/conakry/index.ts",
+        "sha256": "4be5cc7e584e3f0b185e70dd8169563e312ba6cde1826cd2c38e841a360b92b6"
+      },
+      {
+        "path": "src/game/cities/conakry/places.ts",
+        "sha256": "dcbf7178bb420838c183996cff291afaa9bd6024fd5713d2a1920334300baaf6"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "conakry-airport-conakry-airport",
+      "name": "Ahmed Sékou Touré International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.612,
+        "lat": 9.57689
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-airport-conakry-airport-1",
+        "conakry-conakry-airport-conakry-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "conakry-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-clinic",
+      "name": "Ignace Deen Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.705006,
+        "lat": 9.506883
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-clinic-1",
+        "conakry-conakry-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/549652805"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5992123"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-community-notices",
+      "name": "Palais Roi Mohamed V",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.715622,
+        "lat": 9.505428
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-community-notices-1",
+        "conakry-conakry-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/552008196"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17332853"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-community-voting-game",
+      "name": "Maison des jeunes",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.793429,
+        "lat": 9.463222
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-community-voting-game-1",
+        "conakry-conakry-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7020605620"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-community-workshop",
+      "name": "Université Kofi Annan de Guinée",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.637968,
+        "lat": 9.615801
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-community-workshop-1",
+        "conakry-conakry-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/338945649"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3551423"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-market-game",
+      "name": "Marché de Bonfi",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.642841,
+        "lat": 9.559246
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-market-game-1",
+        "conakry-conakry-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/505452428"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-meal-stop",
+      "name": "L'Avenue",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.686136,
+        "lat": 9.523854
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-meal-stop-1",
+        "conakry-conakry-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2272771392"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-node-10024259768",
+      "name": "Restaurant SansFrancisco",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.592905,
+        "lat": 9.664699
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-node-10024259768-1",
+        "conakry-conakry-osm-node-10024259768-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10024259768"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-node-6813943851",
+      "name": "Plage Soro",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.76732,
+        "lat": 9.50375
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-node-6813943851-1",
+        "conakry-conakry-osm-node-6813943851-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6813943851"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-node-7289060001",
+      "name": "Alimentation Générale DIALLO et Frère",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.572472,
+        "lat": 9.634382
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-node-7289060001-1",
+        "conakry-conakry-osm-node-7289060001-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7289060001"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-node-8007052060",
+      "name": "restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.598265,
+        "lat": 9.582314
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-node-8007052060-1",
+        "conakry-conakry-osm-node-8007052060-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8007052060"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-relation-7829658",
+      "name": "Stade Général Lansana Conté",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.626771,
+        "lat": 9.624417
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-relation-7829658-1",
+        "conakry-conakry-osm-relation-7829658-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/7829658"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3495980"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-way-217953079",
+      "name": "Université Gamal Abdel Nasser de Conakry",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.676967,
+        "lat": 9.544306
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-way-217953079-1",
+        "conakry-conakry-osm-way-217953079-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/217953079"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2496012"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-way-291396458",
+      "name": "Clinique Ambroise Paré",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.690115,
+        "lat": 9.529476
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-way-291396458-1",
+        "conakry-conakry-osm-way-291396458-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/291396458"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5133868"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-way-338672791",
+      "name": "Stade du 28 septembre",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.673954,
+        "lat": 9.545933
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-way-338672791-1",
+        "conakry-conakry-osm-way-338672791-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/338672791"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3031607"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-way-338977493",
+      "name": "Donka Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.682228,
+        "lat": 9.535944
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-way-338977493-1",
+        "conakry-conakry-osm-way-338977493-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/338977493"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5296214"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-way-39240323",
+      "name": "Monument du 22 novembre 1970",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.69052,
+        "lat": 9.521498
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-way-39240323-1",
+        "conakry-conakry-osm-way-39240323-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/39240323"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6906858"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-way-504460776",
+      "name": "UNC",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.633856,
+        "lat": 9.615712
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-way-504460776-1",
+        "conakry-conakry-osm-way-504460776-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/504460776"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q60038331"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-way-504471379",
+      "name": "Keyce Academy - Ecole Française de Guinée",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.65713,
+        "lat": 9.593577
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-way-504471379-1",
+        "conakry-conakry-osm-way-504471379-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/504471379"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-way-550010888",
+      "name": "Stade de la mission",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.703667,
+        "lat": 9.512227
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-way-550010888-1",
+        "conakry-conakry-osm-way-550010888-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/550010888"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q42913875"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-way-552008098",
+      "name": "Musée national de Guinée",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.70911,
+        "lat": 9.504614
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-way-552008098-1",
+        "conakry-conakry-osm-way-552008098-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/552008098"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16887490"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-osm-way-616434324",
+      "name": "Centre commercial poukou",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.62427,
+        "lat": 9.591704
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-osm-way-616434324-1",
+        "conakry-conakry-osm-way-616434324-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/616434324"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-quiet-reflection",
+      "name": "Cathédrale Sainte-Marie",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.715444,
+        "lat": 9.510176
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-quiet-reflection-1",
+        "conakry-conakry-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/549242648"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4255937"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-recreation",
+      "name": "forêt classé de Dabompa",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.546077,
+        "lat": 9.659176
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-recreation-1",
+        "conakry-conakry-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/38662471"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "conakry-transit",
+      "name": "Simbaya",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.601861,
+        "lat": 9.618035
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "conakry-conakry-transit-1",
+        "conakry-conakry-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/conakry/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3457242829"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -13.699843399999999,
+        "lat": 9.5170602
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "conakry-conakry-airport-conakry-airport-1",
+      "venueId": "conakry-airport-conakry-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-airport-conakry-airport-2",
+      "venueId": "conakry-airport-conakry-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-clinic-1",
+      "venueId": "conakry-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-clinic-2",
+      "venueId": "conakry-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-community-notices-1",
+      "venueId": "conakry-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-community-notices-2",
+      "venueId": "conakry-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-community-voting-game-1",
+      "venueId": "conakry-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-community-voting-game-2",
+      "venueId": "conakry-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-community-workshop-1",
+      "venueId": "conakry-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-community-workshop-2",
+      "venueId": "conakry-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-market-game-1",
+      "venueId": "conakry-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-market-game-2",
+      "venueId": "conakry-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-meal-stop-1",
+      "venueId": "conakry-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-meal-stop-2",
+      "venueId": "conakry-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-node-10024259768-1",
+      "venueId": "conakry-osm-node-10024259768",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-node-10024259768-2",
+      "venueId": "conakry-osm-node-10024259768",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-node-6813943851-1",
+      "venueId": "conakry-osm-node-6813943851",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-node-6813943851-2",
+      "venueId": "conakry-osm-node-6813943851",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-node-7289060001-1",
+      "venueId": "conakry-osm-node-7289060001",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-node-7289060001-2",
+      "venueId": "conakry-osm-node-7289060001",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-node-8007052060-1",
+      "venueId": "conakry-osm-node-8007052060",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-node-8007052060-2",
+      "venueId": "conakry-osm-node-8007052060",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-relation-7829658-1",
+      "venueId": "conakry-osm-relation-7829658",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-relation-7829658-2",
+      "venueId": "conakry-osm-relation-7829658",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-217953079-1",
+      "venueId": "conakry-osm-way-217953079",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-217953079-2",
+      "venueId": "conakry-osm-way-217953079",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-291396458-1",
+      "venueId": "conakry-osm-way-291396458",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-291396458-2",
+      "venueId": "conakry-osm-way-291396458",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-338672791-1",
+      "venueId": "conakry-osm-way-338672791",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-338672791-2",
+      "venueId": "conakry-osm-way-338672791",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-338977493-1",
+      "venueId": "conakry-osm-way-338977493",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-338977493-2",
+      "venueId": "conakry-osm-way-338977493",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-39240323-1",
+      "venueId": "conakry-osm-way-39240323",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-39240323-2",
+      "venueId": "conakry-osm-way-39240323",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-504460776-1",
+      "venueId": "conakry-osm-way-504460776",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-504460776-2",
+      "venueId": "conakry-osm-way-504460776",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-504471379-1",
+      "venueId": "conakry-osm-way-504471379",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-504471379-2",
+      "venueId": "conakry-osm-way-504471379",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-550010888-1",
+      "venueId": "conakry-osm-way-550010888",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-550010888-2",
+      "venueId": "conakry-osm-way-550010888",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-552008098-1",
+      "venueId": "conakry-osm-way-552008098",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-552008098-2",
+      "venueId": "conakry-osm-way-552008098",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-616434324-1",
+      "venueId": "conakry-osm-way-616434324",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-osm-way-616434324-2",
+      "venueId": "conakry-osm-way-616434324",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-quiet-reflection-1",
+      "venueId": "conakry-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-quiet-reflection-2",
+      "venueId": "conakry-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-recreation-1",
+      "venueId": "conakry-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-recreation-2",
+      "venueId": "conakry-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-transit-1",
+      "venueId": "conakry-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    },
+    {
+      "id": "conakry-conakry-transit-2",
+      "venueId": "conakry-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/conakry/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "conakry-airport-conakry-airport",
+    "conakry-clinic",
+    "conakry-community-notices",
+    "conakry-community-voting-game",
+    "conakry-community-workshop",
+    "conakry-market-game",
+    "conakry-meal-stop",
+    "conakry-osm-node-10024259768",
+    "conakry-osm-node-6813943851",
+    "conakry-osm-node-7289060001",
+    "conakry-osm-node-8007052060",
+    "conakry-osm-relation-7829658",
+    "conakry-osm-way-217953079",
+    "conakry-osm-way-291396458",
+    "conakry-osm-way-338672791",
+    "conakry-osm-way-338977493",
+    "conakry-osm-way-39240323",
+    "conakry-osm-way-504460776",
+    "conakry-osm-way-504471379",
+    "conakry-osm-way-550010888",
+    "conakry-osm-way-552008098",
+    "conakry-osm-way-616434324",
+    "conakry-quiet-reflection",
+    "conakry-recreation",
+    "conakry-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "31f7456cebafb2d71308b961479b087de2ab94d8a669334f441022c630e4e66e",
+    "contentSha256": "21e39cbe6fc1ace0f060ac5d768e18bc32276cacde1faed715d700142fac5808"
+  }
+}

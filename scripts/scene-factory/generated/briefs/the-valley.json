@@ -1,0 +1,1633 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "the-valley",
+    "name": "The Valley",
+    "state": {
+      "id": "ai-the-valley",
+      "name": "The Valley"
+    },
+    "country": {
+      "id": "ai",
+      "name": "Anguilla"
+    },
+    "point": {
+      "lon": -63.0517759,
+      "lat": 18.2145861
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "https://ourairports.com/airports/TQPF/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/the-valley/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/the-valley/facts.ts",
+        "sha256": "44c0ca4a6433bb51175108daed841a49ef4d2f033b5fce643786aa2713f8780b"
+      },
+      {
+        "path": "src/game/cities/the-valley/index.ts",
+        "sha256": "5776fc71e86559e50d2878a3d90ecc0782302a6197d747f994249337f54e166e"
+      },
+      {
+        "path": "src/game/cities/the-valley/places.ts",
+        "sha256": "d47f760f21def603b4abedffa53a654ddbe1cee9862cfa69e72b7cf03a3d05e3"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record.",
+      "Venue the-valley-community-workshop has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.051775899999996,
+        "lat": 18.2145861
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "the-valley-airport-the-valley-airport",
+      "name": "Clayton J. Lloyd International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.05383,
+        "lat": 18.204773
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-airport-the-valley-airport-1",
+        "the-valley-the-valley-airport-the-valley-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "the-valley-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-clinic",
+      "name": "Princess Alexandra Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.04832,
+        "lat": 18.219522
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-clinic-1",
+        "the-valley-the-valley-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/360806409"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q59260753"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-community-notices",
+      "name": "Public Utilities Commission",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.055641,
+        "lat": 18.213379
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-community-notices-1",
+        "the-valley-the-valley-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3690523267"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-community-voting-game",
+      "name": "National Health Insurance",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.050564,
+        "lat": 18.212397
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-community-voting-game-1",
+        "the-valley-the-valley-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/360643395"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-community-workshop",
+      "name": "Community workshop (game venue)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.051775899999996,
+        "lat": 18.215485420363724
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-community-workshop-1",
+        "the-valley-the-valley-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue the-valley-community-workshop has no mapped place source record."
+      }
+    },
+    {
+      "id": "the-valley-market-game",
+      "name": "Clarita Mason Shopping Centre",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.070816,
+        "lat": 18.203157
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-market-game-1",
+        "the-valley-the-valley-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2386468615"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-meal-stop",
+      "name": "Allan and Sue's Prickly Pear Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.17221,
+        "lat": 18.264252
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-meal-stop-1",
+        "the-valley-the-valley-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/200829135"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-osm-node-2107724413",
+      "name": "Lower West End Point",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.17254,
+        "lat": 18.160261
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-osm-node-2107724413-1",
+        "the-valley-the-valley-osm-node-2107724413-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2107724413"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-osm-node-3652964299",
+      "name": "Mary Elizabeth Recreation Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.046671,
+        "lat": 18.209345
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-osm-node-3652964299-1",
+        "the-valley-the-valley-osm-node-3652964299-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3652964299"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-osm-way-230276598",
+      "name": "South Hill Plaza",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.104636,
+        "lat": 18.189161
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-osm-way-230276598-1",
+        "the-valley-the-valley-osm-way-230276598-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/230276598"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-osm-way-360817333",
+      "name": "Wallblake House",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.054735,
+        "lat": 18.209562
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-osm-way-360817333-1",
+        "the-valley-the-valley-osm-way-360817333-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/360817333"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7963002"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-osm-way-361821807",
+      "name": "Madeariman Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.031158,
+        "lat": 18.254486
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-osm-way-361821807-1",
+        "the-valley-the-valley-osm-way-361821807-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/361821807"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-osm-way-362017267",
+      "name": "Heritage Collection Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.996783,
+        "lat": 18.236159
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-osm-way-362017267-1",
+        "the-valley-the-valley-osm-way-362017267-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/362017267"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65123628"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-osm-way-522219599",
+      "name": "WSC GROUP",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.064657,
+        "lat": 18.213313
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-osm-way-522219599-1",
+        "the-valley-the-valley-osm-way-522219599-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/522219599"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-osm-way-793135698",
+      "name": "Owen Mussington Playing Field",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.99083,
+        "lat": 18.239001
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-osm-way-793135698-1",
+        "the-valley-the-valley-osm-way-793135698-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/793135698"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-osm-way-839159058",
+      "name": "Celeste Restaraunt",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.134916,
+        "lat": 18.187708
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-osm-way-839159058-1",
+        "the-valley-the-valley-osm-way-839159058-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/839159058"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-quiet-reflection",
+      "name": "St. Gerard's Catholic Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.054435,
+        "lat": 18.210027
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-quiet-reflection-1",
+        "the-valley-the-valley-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/360815720"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24691673"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-recreation",
+      "name": "Ronald Webster Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.050557,
+        "lat": 18.217358
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-recreation-1",
+        "the-valley-the-valley-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/226917922"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q571349"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "the-valley-transit",
+      "name": "Blowing Point Ferry Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.093125,
+        "lat": 18.171454
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "the-valley-the-valley-transit-1",
+        "the-valley-the-valley-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/the-valley/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1236465390"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "the-valley-the-valley-airport-the-valley-airport-1",
+      "venueId": "the-valley-airport-the-valley-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-airport-the-valley-airport-2",
+      "venueId": "the-valley-airport-the-valley-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-clinic-1",
+      "venueId": "the-valley-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-clinic-2",
+      "venueId": "the-valley-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-community-notices-1",
+      "venueId": "the-valley-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-community-notices-2",
+      "venueId": "the-valley-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-community-voting-game-1",
+      "venueId": "the-valley-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-community-voting-game-2",
+      "venueId": "the-valley-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-community-workshop-1",
+      "venueId": "the-valley-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-community-workshop-2",
+      "venueId": "the-valley-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-market-game-1",
+      "venueId": "the-valley-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-market-game-2",
+      "venueId": "the-valley-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-meal-stop-1",
+      "venueId": "the-valley-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-meal-stop-2",
+      "venueId": "the-valley-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-node-2107724413-1",
+      "venueId": "the-valley-osm-node-2107724413",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-node-2107724413-2",
+      "venueId": "the-valley-osm-node-2107724413",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-node-3652964299-1",
+      "venueId": "the-valley-osm-node-3652964299",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-node-3652964299-2",
+      "venueId": "the-valley-osm-node-3652964299",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-way-230276598-1",
+      "venueId": "the-valley-osm-way-230276598",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-way-230276598-2",
+      "venueId": "the-valley-osm-way-230276598",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-way-360817333-1",
+      "venueId": "the-valley-osm-way-360817333",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-way-360817333-2",
+      "venueId": "the-valley-osm-way-360817333",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-way-361821807-1",
+      "venueId": "the-valley-osm-way-361821807",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-way-361821807-2",
+      "venueId": "the-valley-osm-way-361821807",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-way-362017267-1",
+      "venueId": "the-valley-osm-way-362017267",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-way-362017267-2",
+      "venueId": "the-valley-osm-way-362017267",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-way-522219599-1",
+      "venueId": "the-valley-osm-way-522219599",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-way-522219599-2",
+      "venueId": "the-valley-osm-way-522219599",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-way-793135698-1",
+      "venueId": "the-valley-osm-way-793135698",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-way-793135698-2",
+      "venueId": "the-valley-osm-way-793135698",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-way-839159058-1",
+      "venueId": "the-valley-osm-way-839159058",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-osm-way-839159058-2",
+      "venueId": "the-valley-osm-way-839159058",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-quiet-reflection-1",
+      "venueId": "the-valley-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-quiet-reflection-2",
+      "venueId": "the-valley-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-recreation-1",
+      "venueId": "the-valley-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-recreation-2",
+      "venueId": "the-valley-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-transit-1",
+      "venueId": "the-valley-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    },
+    {
+      "id": "the-valley-the-valley-transit-2",
+      "venueId": "the-valley-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/the-valley/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "the-valley-airport-the-valley-airport",
+    "the-valley-clinic",
+    "the-valley-community-notices",
+    "the-valley-community-voting-game",
+    "the-valley-community-workshop",
+    "the-valley-market-game",
+    "the-valley-meal-stop",
+    "the-valley-osm-node-2107724413",
+    "the-valley-osm-node-3652964299",
+    "the-valley-osm-way-230276598",
+    "the-valley-osm-way-360817333",
+    "the-valley-osm-way-361821807",
+    "the-valley-osm-way-362017267",
+    "the-valley-osm-way-522219599",
+    "the-valley-osm-way-793135698",
+    "the-valley-osm-way-839159058",
+    "the-valley-quiet-reflection",
+    "the-valley-recreation",
+    "the-valley-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "6721c8fa144589857912a511a2abaee8ae60ed36930c9633625ffa7ff55a03e9",
+    "contentSha256": "1349174feb763a1b637333122146036d38119dfe528f9077b342f73b21fe9cca"
+  }
+}

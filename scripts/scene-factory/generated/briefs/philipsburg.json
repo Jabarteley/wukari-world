@@ -1,0 +1,2063 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "philipsburg",
+    "name": "Philipsburg",
+    "state": {
+      "id": "sx",
+      "name": "Philipsburg"
+    },
+    "country": {
+      "id": "sx",
+      "name": "St Maarten (Dutch)"
+    },
+    "point": {
+      "lon": -63.0483073,
+      "lat": 18.0250713
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "https://ourairports.com/airports/TNCM/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/philipsburg/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/philipsburg/facts.ts",
+        "sha256": "420d3c084c5b9724a44d9302af29c1f464c5df530d6b6ae440aa9ab92705c358"
+      },
+      {
+        "path": "src/game/cities/philipsburg/index.ts",
+        "sha256": "e90c4e3d6709d842240778ab80e448b584b09653b54f94d2af4ed55ba8466872"
+      },
+      {
+        "path": "src/game/cities/philipsburg/places.ts",
+        "sha256": "dc62ce3d956b451b9c31bfb7538c5db9325da322d2344c4349b2ca96374ec177"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.048307300000005,
+        "lat": 18.0250713
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "philipsburg-airport-philipsburg-airport",
+      "name": "Princess Juliana International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.108898,
+        "lat": 18.041
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-airport-philipsburg-airport-1",
+        "philipsburg-philipsburg-airport-philipsburg-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "philipsburg-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-clinic",
+      "name": "Mental Health Foundation",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.066605,
+        "lat": 18.031676
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-clinic-1",
+        "philipsburg-philipsburg-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4990833539"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-community-notices",
+      "name": "Immigration and Border Protection Service Office",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.055994,
+        "lat": 18.03103
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-community-notices-1",
+        "philipsburg-philipsburg-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/261368964"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-community-voting-game",
+      "name": "Constitutional Court of Sint Maarten",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.045722,
+        "lat": 18.023871
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-community-voting-game-1",
+        "philipsburg-philipsburg-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/261373945"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q26678493"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-community-workshop",
+      "name": "University of Sint Maarten",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.044009,
+        "lat": 18.02659
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-community-workshop-1",
+        "philipsburg-philipsburg-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/43230761"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q720323"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-market-game",
+      "name": "Puerta Del Sol Plaza",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.091494,
+        "lat": 18.033438
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-market-game-1",
+        "philipsburg-philipsburg-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/158069802"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-meal-stop",
+      "name": "Hong Mian",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.042203,
+        "lat": 18.013284
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-meal-stop-1",
+        "philipsburg-philipsburg-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/366770416"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-node-12750078802",
+      "name": "Billy Bones Boat Exursions",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.042884,
+        "lat": 18.020539
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-node-12750078802-1",
+        "philipsburg-philipsburg-osm-node-12750078802-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12750078802"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-node-13841746696",
+      "name": "Maho Beach Airplane Spotting",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.120296,
+        "lat": 18.039293
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-node-13841746696-1",
+        "philipsburg-philipsburg-osm-node-13841746696-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13841746696"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-node-1927202186",
+      "name": "Fort Amsterdam",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.059369,
+        "lat": 18.014703
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-node-1927202186-1",
+        "philipsburg-philipsburg-osm-node-1927202186-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1927202186"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-node-3704027752",
+      "name": "Champagne",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.078997,
+        "lat": 18.036213
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-node-3704027752-1",
+        "philipsburg-philipsburg-osm-node-3704027752-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3704027752"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-node-6074914982",
+      "name": "Jet Blast Area",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.120395,
+        "lat": 18.039282
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-node-6074914982-1",
+        "philipsburg-philipsburg-osm-node-6074914982-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6074914982"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-relation-10372197",
+      "name": "Sint Maarten Medical Center | SMMC",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.066196,
+        "lat": 18.02651
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-relation-10372197-1",
+        "philipsburg-philipsburg-osm-relation-10372197-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/10372197"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-way-1417556522",
+      "name": "Emmancipation Roundabout",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.041055,
+        "lat": 18.024581
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-way-1417556522-1",
+        "philipsburg-philipsburg-osm-way-1417556522-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1417556522"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-way-261368991",
+      "name": "St. Martin of Tours' Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.04522,
+        "lat": 18.023201
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-way-261368991-1",
+        "philipsburg-philipsburg-osm-way-261368991-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/261368991"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q23712762"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-way-261373936",
+      "name": "Philipsburg Methodist Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.04754,
+        "lat": 18.024497
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-way-261373936-1",
+        "philipsburg-philipsburg-osm-way-261373936-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/261373936"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q113562417"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-way-363071670",
+      "name": "Cyrus Wathey Square",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.045885,
+        "lat": 18.023404
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-way-363071670-1",
+        "philipsburg-philipsburg-osm-way-363071670-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/363071670"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-way-363228766",
+      "name": "Yoda Guy Movie Exhibit",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.043134,
+        "lat": 18.02207
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-way-363228766-1",
+        "philipsburg-philipsburg-osm-way-363228766-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/363228766"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-way-367767346",
+      "name": "Look Out Bar & Snack",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.04835,
+        "lat": 18.045261
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-way-367767346-1",
+        "philipsburg-philipsburg-osm-way-367767346-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/367767346"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-way-368524649",
+      "name": "Windward Island Emergency Medical Services",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.066138,
+        "lat": 18.030023
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-way-368524649-1",
+        "philipsburg-philipsburg-osm-way-368524649-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/368524649"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-way-368560586",
+      "name": "Shop 4 Less",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.065009,
+        "lat": 18.033988
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-way-368560586-1",
+        "philipsburg-philipsburg-osm-way-368560586-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/368560586"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-osm-way-521520589",
+      "name": "The Wizzards Computer Repairs & Onsite Services",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.064058,
+        "lat": 18.045616
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-osm-way-521520589-1",
+        "philipsburg-philipsburg-osm-way-521520589-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/521520589"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-quiet-reflection",
+      "name": "Mary Star of the Sea Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.09735,
+        "lat": 18.038675
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-quiet-reflection-1",
+        "philipsburg-philipsburg-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/365536085"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q23712889"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-recreation",
+      "name": "Emilio Wilson Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.064356,
+        "lat": 18.042752
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-recreation-1",
+        "philipsburg-philipsburg-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/522407960"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "philipsburg-transit",
+      "name": "Anguilla-St. Maarten Ferry Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.112456,
+        "lat": 18.04625
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "philipsburg-philipsburg-transit-1",
+        "philipsburg-philipsburg-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/philipsburg/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6149141167"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "philipsburg-philipsburg-airport-philipsburg-airport-1",
+      "venueId": "philipsburg-airport-philipsburg-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-airport-philipsburg-airport-2",
+      "venueId": "philipsburg-airport-philipsburg-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-clinic-1",
+      "venueId": "philipsburg-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-clinic-2",
+      "venueId": "philipsburg-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-community-notices-1",
+      "venueId": "philipsburg-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-community-notices-2",
+      "venueId": "philipsburg-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-community-voting-game-1",
+      "venueId": "philipsburg-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-community-voting-game-2",
+      "venueId": "philipsburg-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-community-workshop-1",
+      "venueId": "philipsburg-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-community-workshop-2",
+      "venueId": "philipsburg-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-market-game-1",
+      "venueId": "philipsburg-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-market-game-2",
+      "venueId": "philipsburg-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-meal-stop-1",
+      "venueId": "philipsburg-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-meal-stop-2",
+      "venueId": "philipsburg-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-node-12750078802-1",
+      "venueId": "philipsburg-osm-node-12750078802",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-node-12750078802-2",
+      "venueId": "philipsburg-osm-node-12750078802",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-node-13841746696-1",
+      "venueId": "philipsburg-osm-node-13841746696",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-node-13841746696-2",
+      "venueId": "philipsburg-osm-node-13841746696",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-node-1927202186-1",
+      "venueId": "philipsburg-osm-node-1927202186",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-node-1927202186-2",
+      "venueId": "philipsburg-osm-node-1927202186",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-node-3704027752-1",
+      "venueId": "philipsburg-osm-node-3704027752",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-node-3704027752-2",
+      "venueId": "philipsburg-osm-node-3704027752",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-node-6074914982-1",
+      "venueId": "philipsburg-osm-node-6074914982",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-node-6074914982-2",
+      "venueId": "philipsburg-osm-node-6074914982",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-relation-10372197-1",
+      "venueId": "philipsburg-osm-relation-10372197",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-relation-10372197-2",
+      "venueId": "philipsburg-osm-relation-10372197",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-1417556522-1",
+      "venueId": "philipsburg-osm-way-1417556522",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-1417556522-2",
+      "venueId": "philipsburg-osm-way-1417556522",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-261368991-1",
+      "venueId": "philipsburg-osm-way-261368991",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-261368991-2",
+      "venueId": "philipsburg-osm-way-261368991",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-261373936-1",
+      "venueId": "philipsburg-osm-way-261373936",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-261373936-2",
+      "venueId": "philipsburg-osm-way-261373936",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-363071670-1",
+      "venueId": "philipsburg-osm-way-363071670",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-363071670-2",
+      "venueId": "philipsburg-osm-way-363071670",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-363228766-1",
+      "venueId": "philipsburg-osm-way-363228766",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-363228766-2",
+      "venueId": "philipsburg-osm-way-363228766",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-367767346-1",
+      "venueId": "philipsburg-osm-way-367767346",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-367767346-2",
+      "venueId": "philipsburg-osm-way-367767346",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-368524649-1",
+      "venueId": "philipsburg-osm-way-368524649",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-368524649-2",
+      "venueId": "philipsburg-osm-way-368524649",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-368560586-1",
+      "venueId": "philipsburg-osm-way-368560586",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-368560586-2",
+      "venueId": "philipsburg-osm-way-368560586",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-521520589-1",
+      "venueId": "philipsburg-osm-way-521520589",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-osm-way-521520589-2",
+      "venueId": "philipsburg-osm-way-521520589",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-quiet-reflection-1",
+      "venueId": "philipsburg-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-quiet-reflection-2",
+      "venueId": "philipsburg-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-recreation-1",
+      "venueId": "philipsburg-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-recreation-2",
+      "venueId": "philipsburg-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-transit-1",
+      "venueId": "philipsburg-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    },
+    {
+      "id": "philipsburg-philipsburg-transit-2",
+      "venueId": "philipsburg-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/philipsburg/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "philipsburg-airport-philipsburg-airport",
+    "philipsburg-clinic",
+    "philipsburg-community-notices",
+    "philipsburg-community-voting-game",
+    "philipsburg-community-workshop",
+    "philipsburg-market-game",
+    "philipsburg-meal-stop",
+    "philipsburg-osm-node-12750078802",
+    "philipsburg-osm-node-13841746696",
+    "philipsburg-osm-node-1927202186",
+    "philipsburg-osm-node-3704027752",
+    "philipsburg-osm-node-6074914982",
+    "philipsburg-osm-relation-10372197",
+    "philipsburg-osm-way-1417556522",
+    "philipsburg-osm-way-261368991",
+    "philipsburg-osm-way-261373936",
+    "philipsburg-osm-way-363071670",
+    "philipsburg-osm-way-363228766",
+    "philipsburg-osm-way-367767346",
+    "philipsburg-osm-way-368524649",
+    "philipsburg-osm-way-368560586",
+    "philipsburg-osm-way-521520589",
+    "philipsburg-quiet-reflection",
+    "philipsburg-recreation",
+    "philipsburg-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "14c90059082ce8c6fcbb0739298239c9789d67b748d91f07e97ec2ff168ce0f1",
+    "contentSha256": "48152e18ea0a04e902bef33a87a02b53bc019f7c09cb5328bb1e42475a084593"
+  }
+}

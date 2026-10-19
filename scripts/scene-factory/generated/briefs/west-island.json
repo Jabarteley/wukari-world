@@ -1,0 +1,1305 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "west-island",
+    "name": "West Island",
+    "state": {
+      "id": "cc",
+      "name": "West Island"
+    },
+    "country": {
+      "id": "cc",
+      "name": "Cocos (Keeling) Islands"
+    },
+    "point": {
+      "lon": 96.8304486,
+      "lat": -12.1898479
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/australia-oceania/australia/cocos-islands-261011.osm.pbf",
+      "https://ourairports.com/airports/YPCC/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/west-island/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/west-island/facts.ts",
+        "sha256": "a6415fa41350a3e08dbbf8a08bf78df0b50a321c3bb11cd9209151668b2b6441"
+      },
+      {
+        "path": "src/game/cities/west-island/index.ts",
+        "sha256": "9887ea15cc0da27ed8fddcd303199d0303cb85a853d8a1478059769153fded12"
+      },
+      {
+        "path": "src/game/cities/west-island/places.ts",
+        "sha256": "6e0d17a539955e471ba0f6ccdcbab4b80ac32e1936c35b24c054650a7c5f004f"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record.",
+      "Venue west-island-clinic has no mapped place source record.",
+      "Venue west-island-community-notices has no mapped place source record.",
+      "Venue west-island-community-voting-game has no mapped place source record.",
+      "Venue west-island-community-workshop has no mapped place source record.",
+      "Venue west-island-market-game has no mapped place source record.",
+      "Venue west-island-quiet-reflection has no mapped place source record.",
+      "Venue west-island-recreation has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.8304486,
+        "lat": -12.1898479
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "west-island-airport-west-island-airport",
+      "name": "Cocos (Keeling) Islands Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.834103,
+        "lat": -12.192218
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-airport-west-island-airport-1",
+        "west-island-west-island-airport-west-island-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/west-island/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "west-island-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "west-island-clinic",
+      "name": "Clinic (game venue)",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.8304486,
+        "lat": -12.190747220363725
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-clinic-1",
+        "west-island-west-island-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue west-island-clinic has no mapped place source record."
+      }
+    },
+    {
+      "id": "west-island-community-notices",
+      "name": "Community notices (game venue)",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.8304486,
+        "lat": -12.18804925927255
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-community-notices-1",
+        "west-island-west-island-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue west-island-community-notices has no mapped place source record."
+      }
+    },
+    {
+      "id": "west-island-community-voting-game",
+      "name": "Community voting simulation (game venue)",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.83226966101036,
+        "lat": -12.1898479
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-community-voting-game-1",
+        "west-island-west-island-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue west-island-community-voting-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "west-island-community-workshop",
+      "name": "Community workshop (game venue)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.8304486,
+        "lat": -12.188948579636275
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-community-workshop-1",
+        "west-island-west-island-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue west-island-community-workshop has no mapped place source record."
+      }
+    },
+    {
+      "id": "west-island-market-game",
+      "name": "Market game (game venue)",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.82953806949482,
+        "lat": -12.188948579636275
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-market-game-1",
+        "west-island-west-island-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue west-island-market-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "west-island-meal-stop",
+      "name": "Salty's Airport Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.829211,
+        "lat": -12.188105
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-meal-stop-1",
+        "west-island-west-island-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/west-island/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3024003734"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "west-island-osm-node-4547647294",
+      "name": "Yacht Club",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.860786,
+        "lat": -12.193539
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-osm-node-4547647294-1",
+        "west-island-west-island-osm-node-4547647294-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/west-island/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4547647294"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "west-island-osm-node-4547647295",
+      "name": "Twiss Memorial",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.851145,
+        "lat": -12.204675
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-osm-node-4547647295-1",
+        "west-island-west-island-osm-node-4547647295-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/west-island/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4547647295"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "west-island-osm-way-1015047086",
+      "name": "Sula Sula Servery",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.819618,
+        "lat": -12.152783
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-osm-way-1015047086-1",
+        "west-island-west-island-osm-way-1015047086-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/west-island/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1015047086"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "west-island-osm-way-1204779092",
+      "name": "Muslim Cemetery",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.888983,
+        "lat": -12.106913
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-osm-way-1204779092-1",
+        "west-island-west-island-osm-way-1204779092-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/west-island/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1204779092"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "west-island-osm-way-198316207",
+      "name": "Surfer Girl Restaurant & Brewery",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.829837,
+        "lat": -12.189495
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-osm-way-198316207-1",
+        "west-island-west-island-osm-way-198316207-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/west-island/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/198316207"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "west-island-quiet-reflection",
+      "name": "Quiet reflection space (game venue)",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.82953806949482,
+        "lat": -12.190747220363725
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-quiet-reflection-1",
+        "west-island-west-island-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue west-island-quiet-reflection has no mapped place source record."
+      }
+    },
+    {
+      "id": "west-island-recreation",
+      "name": "Recreation area (game venue)",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.83135913050518,
+        "lat": -12.188948579636275
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-recreation-1",
+        "west-island-west-island-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue west-island-recreation has no mapped place source record."
+      }
+    },
+    {
+      "id": "west-island-transit",
+      "name": "Ferry to Home Island",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 96.884097,
+        "lat": -12.090456
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "west-island-west-island-transit-1",
+        "west-island-west-island-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/west-island/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3024982382"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "west-island-west-island-airport-west-island-airport-1",
+      "venueId": "west-island-airport-west-island-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-airport-west-island-airport-2",
+      "venueId": "west-island-airport-west-island-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-clinic-1",
+      "venueId": "west-island-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-clinic-2",
+      "venueId": "west-island-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-community-notices-1",
+      "venueId": "west-island-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-community-notices-2",
+      "venueId": "west-island-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-community-voting-game-1",
+      "venueId": "west-island-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-community-voting-game-2",
+      "venueId": "west-island-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-community-workshop-1",
+      "venueId": "west-island-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-community-workshop-2",
+      "venueId": "west-island-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-market-game-1",
+      "venueId": "west-island-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-market-game-2",
+      "venueId": "west-island-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-meal-stop-1",
+      "venueId": "west-island-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-meal-stop-2",
+      "venueId": "west-island-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-osm-node-4547647294-1",
+      "venueId": "west-island-osm-node-4547647294",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-osm-node-4547647294-2",
+      "venueId": "west-island-osm-node-4547647294",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-osm-node-4547647295-1",
+      "venueId": "west-island-osm-node-4547647295",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-osm-node-4547647295-2",
+      "venueId": "west-island-osm-node-4547647295",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-osm-way-1015047086-1",
+      "venueId": "west-island-osm-way-1015047086",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-osm-way-1015047086-2",
+      "venueId": "west-island-osm-way-1015047086",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-osm-way-1204779092-1",
+      "venueId": "west-island-osm-way-1204779092",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-osm-way-1204779092-2",
+      "venueId": "west-island-osm-way-1204779092",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-osm-way-198316207-1",
+      "venueId": "west-island-osm-way-198316207",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-osm-way-198316207-2",
+      "venueId": "west-island-osm-way-198316207",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-quiet-reflection-1",
+      "venueId": "west-island-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-quiet-reflection-2",
+      "venueId": "west-island-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-recreation-1",
+      "venueId": "west-island-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-recreation-2",
+      "venueId": "west-island-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-transit-1",
+      "venueId": "west-island-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    },
+    {
+      "id": "west-island-west-island-transit-2",
+      "venueId": "west-island-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/west-island/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "west-island-airport-west-island-airport",
+    "west-island-clinic",
+    "west-island-community-notices",
+    "west-island-community-voting-game",
+    "west-island-community-workshop",
+    "west-island-market-game",
+    "west-island-meal-stop",
+    "west-island-osm-node-4547647294",
+    "west-island-osm-node-4547647295",
+    "west-island-osm-way-1015047086",
+    "west-island-osm-way-1204779092",
+    "west-island-osm-way-198316207",
+    "west-island-quiet-reflection",
+    "west-island-recreation",
+    "west-island-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "6e10fb570853e1ac621ec0a7b3e213da2253b4242eb909bc944ff2a4f613d1c1",
+    "contentSha256": "ac725c7ce0e949f65b9397d0750fa5e3bd903d68c006572da7d3de684266583b"
+  }
+}

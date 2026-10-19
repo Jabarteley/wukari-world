@@ -16,6 +16,7 @@ import { RECONNECT_GRACE_MS } from './social/presence.ts';
 import { SHIFT_SECONDS } from '../src/game/content/jobs.ts';
 import { DEFAULT_LOOK } from '../src/game/content/traits.ts';
 import { peerTransferId } from './economy/effects.ts';
+import { nativeRecipeForLook } from '../src/character/native-migration.ts';
 
 const HOUR = 3600000;
 type Fixture = Awaited<ReturnType<typeof fixture>>;
@@ -299,9 +300,9 @@ test('who-is-here carries each player’s server-held look, and a watching socke
   watcher.ws.send(JSON.stringify({ type: 'people-list', cityId: 'lagos' }));
   const listing = await until(watcher, 'people');
   assert.deepEqual(listing.players.map((player) => [player.id, player.name, player.here]), [[bola.id, 'Bola', true]]);
-  assert.deepEqual(defined(listing.players[0]).look, look);
+  assert.deepEqual(defined(listing.players[0]).look, { ...look, native: nativeRecipeForLook(look) });
   assert.deepEqual(Object.keys(defined(listing.players[0])).sort(), ['friend', 'here', 'id', 'incoming', 'look', 'name', 'requested']);
-  assert.deepEqual((await get(f, '/api/social/people?city=lagos', bola)).players[0]?.look, DEFAULT_LOOK, 'Ada never created a character: she has the default look');
+  assert.deepEqual((await get(f, '/api/social/people?city=lagos', bola)).players[0]?.look, { ...DEFAULT_LOOK, native: nativeRecipeForLook(DEFAULT_LOOK) }, 'Ada never created a character: she has the default look');
   // Bola leaves for the Library: Ada's watching socket is nudged — with no member data — and re-reads.
   await f.action(bola.cookie, { type: 'travel', id: 'library', mode: 'trek' });
   assert.deepEqual(await until(watcher, 'people-changed'), { type: 'people-changed', cityId: 'lagos', venueId: 'park' });

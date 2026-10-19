@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "victoria",
+  "url": "/assets/scene-heroes/victoria.glb",
+  "sha256": "bf01ef0b409537272f493553befd95438638cfb1f0f047c21879ee5fa27a0479",
+  "rawBytes": 25224,
+  "brotliBytes": 17576,
+  "triangles": 608,
+  "parts": [
+    {
+      "node": "victoria",
+      "triangles": 608,
+      "bounds": {
+        "min": [
+          -2.39285707,
+          0,
+          -0.757142842
+        ],
+        "max": [
+          2.3928572737160003,
+          2.600112517452,
+          0.7571795139679999
+        ]
+      },
+      "footprint": [
+        -2.39285707,
+        -0.757142842,
+        2.3928572737160003,
+        0.7571795139679999
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "eb1da2ff73fd74822f0ec6ae91ad86f7f138d29bce17620a759c0240fa9f26aa"
+  },
+  "inputs": {
+    "rawSha256": "07a04a188863c8ba89329eb45cafc0f45f586c4155c4dbebd708f69c9ba9f1c2",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "victoria",
+      "country": "sc",
+      "name": "Sir Selwyn Selwyn-Clarke Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://admin.seychelles.com/sites/default/files/2024-02/Map%20of%20Mahe.pdf"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch1.json#cities[city_id=victoria]",
+      "sourceLicence": "unknown",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.8,
+        "depth": 5.5,
+        "height": 2.6,
+        "seed": 18101,
+        "palette": [
+          "#dfc79d",
+          "#695243",
+          "#68835b",
+          "#b66b4b",
+          "#547a89",
+          "#c9a146",
+          "#dedcd1",
+          "#3b4549"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "A Mahé map hosted by the Seychelles tourism administration labels Sir Selwyn Selwyn Clarke Market among attractions in the inset map of Victoria. An original activity fragment, not a replica of a modern market building. Merchandise, stall count, awnings, dimensions and circulation are illustrative art direction; no source-confirmed goods inventory is implied. Input round 1 uses only empty counters, racks and awnings. Previous merchandise choices are excluded from this proposal; no goods inventory or surveyed market layout is claimed.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "swahili-coast"
+      }
+    },
+    "styleSha256": "25ea3f7a02195f54183a5305029384bb7477246b319ad54b540ffac7f712b0c3"
+  }
+}

@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "bratislava",
+    "name": "Bratislava",
+    "state": {
+      "id": "sk-bratislava",
+      "name": "Bratislava"
+    },
+    "country": {
+      "id": "sk",
+      "name": "Slovakia"
+    },
+    "point": {
+      "lon": 17.1082867,
+      "lat": 48.1435026
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/slovakia-261011.osm.pbf",
+      "https://ourairports.com/airports/LZIB/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/bratislava/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/bratislava/facts.ts",
+        "sha256": "3d09b24dd051afd473ac9f89548ea8d51db6559168c2977aaa123ca30608e89c"
+      },
+      {
+        "path": "src/game/cities/bratislava/index.ts",
+        "sha256": "4c55e26d9f8febf3121cc0d5a77e039512303ff34f9c448540497a71f52edd6f"
+      },
+      {
+        "path": "src/game/cities/bratislava/places.ts",
+        "sha256": "7f6f6aa278d36b8e8bbd19d8c1912eb7dbc0fe0d705852213c1e123f90c2ce42"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "bratislava-airport-bratislava-airport",
+      "name": "M. R. Štefánik Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.2127,
+        "lat": 48.1702
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-airport-bratislava-airport-1",
+        "bratislava-bratislava-airport-bratislava-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "bratislava-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-clinic",
+      "name": "Psychiatrická nemocnica Philippa Pinela Pezinok",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.252359,
+        "lat": 48.315931
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-clinic-1",
+        "bratislava-bratislava-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/778564760"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q61951440"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-community-notices",
+      "name": "Mestský úrad v Šamoríne",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.308982,
+        "lat": 48.027974
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-community-notices-1",
+        "bratislava-bratislava-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/61630694"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q112103982"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-community-voting-game",
+      "name": "Námestie sv. Trojice",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.033216,
+        "lat": 48.273293
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-community-voting-game-1",
+        "bratislava-bratislava-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/8246322"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q113367655"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-community-workshop",
+      "name": "Fakulta sociálnych a ekonomických vied UK",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.174307,
+        "lat": 48.14994
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-community-workshop-1",
+        "bratislava-bratislava-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/799366809"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12765706"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-market-game",
+      "name": "Bory Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.033753,
+        "lat": 48.205744
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-market-game-1",
+        "bratislava-bratislava-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/8504516"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11159994"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-meal-stop",
+      "name": "UFO",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.104585,
+        "lat": 48.136866
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-meal-stop-1",
+        "bratislava-bratislava-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/378574918"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17513752"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-node-27672692",
+      "name": "Academy of the Police Force in Bratislava",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.16684,
+        "lat": 48.201758
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-node-27672692-1",
+        "bratislava-bratislava-osm-node-27672692-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/27672692"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11684709"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-node-302428961",
+      "name": "Dračí hrádok",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.111237,
+        "lat": 48.254856
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-node-302428961-1",
+        "bratislava-bratislava-osm-node-302428961-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/302428961"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12764903"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-relation-3416687",
+      "name": "Eberhard",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.297465,
+        "lat": 48.152814
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-relation-3416687-1",
+        "bratislava-bratislava-osm-relation-3416687-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/3416687"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12765124"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-way-1051649120",
+      "name": "štadión FC ŠTK 1914 Šamorín",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.321501,
+        "lat": 48.0402
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-way-1051649120-1",
+        "bratislava-bratislava-osm-way-1051649120-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1051649120"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7227337"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-way-1178108642",
+      "name": "Stadium FC Petržalka 1898",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.133442,
+        "lat": 48.119743
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-way-1178108642-1",
+        "bratislava-bratislava-osm-way-1178108642-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1178108642"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7596480"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-way-150644741",
+      "name": "Biely Kameň",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.19657,
+        "lat": 48.261147
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-way-150644741-1",
+        "bratislava-bratislava-osm-way-150644741-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/150644741"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3502157"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-way-15104547",
+      "name": "Vladimír Dzurilla Ice Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.150151,
+        "lat": 48.155549
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-way-15104547-1",
+        "bratislava-bratislava-osm-way-15104547-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/15104547"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12779405"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-way-170458693",
+      "name": "Kostol Ducha Svätého",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.975036,
+        "lat": 48.207242
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-way-170458693-1",
+        "bratislava-bratislava-osm-way-170458693-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/170458693"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12769527"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-way-216958979",
+      "name": "Lippayova záhrada",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.108736,
+        "lat": 48.152471
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-way-216958979-1",
+        "bratislava-bratislava-osm-way-216958979-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/216958979"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q27809719"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-way-23963145",
+      "name": "Národný onkologický ústav",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.089477,
+        "lat": 48.171824
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-way-23963145-1",
+        "bratislava-bratislava-osm-way-23963145-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23963145"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30531348"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-way-242774480",
+      "name": "Faculty of Mathematics, Physics and Informatics - Comenius University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.068919,
+        "lat": 48.151979
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-way-242774480-1",
+        "bratislava-bratislava-osm-way-242774480-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/242774480"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2368460"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-way-24985922",
+      "name": "Obchodné centrum Galéria",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.065095,
+        "lat": 48.17714
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-way-24985922-1",
+        "bratislava-bratislava-osm-way-24985922-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/24985922"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13537707"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-way-258662338",
+      "name": "Kostol sv. Anny",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.344932,
+        "lat": 48.2978
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-way-258662338-1",
+        "bratislava-bratislava-osm-way-258662338-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/258662338"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13425291"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-way-273342996",
+      "name": "Cirkevné konzervatórium v Bratislave",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.107323,
+        "lat": 48.0987
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-way-273342996-1",
+        "bratislava-bratislava-osm-way-273342996-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/273342996"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12764138"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-osm-way-5215299",
+      "name": "Market Hall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.126046,
+        "lat": 48.157416
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-osm-way-5215299-1",
+        "bratislava-bratislava-osm-way-5215299-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/5215299"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13537584"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-quiet-reflection",
+      "name": "Kostol svätého Michala",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.200221,
+        "lat": 48.03241
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-quiet-reflection-1",
+        "bratislava-bratislava-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/49293383"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13425316"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-recreation",
+      "name": "Zámocký Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.266891,
+        "lat": 48.291731
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-recreation-1",
+        "bratislava-bratislava-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/4345760"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65952450"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bratislava-transit",
+      "name": "Bratislava predmestie",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.135154,
+        "lat": 48.18522
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bratislava-bratislava-transit-1",
+        "bratislava-bratislava-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bratislava/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/668119151"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q9179063"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.1082867,
+        "lat": 48.1435026
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "bratislava-bratislava-airport-bratislava-airport-1",
+      "venueId": "bratislava-airport-bratislava-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-airport-bratislava-airport-2",
+      "venueId": "bratislava-airport-bratislava-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-clinic-1",
+      "venueId": "bratislava-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-clinic-2",
+      "venueId": "bratislava-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-community-notices-1",
+      "venueId": "bratislava-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-community-notices-2",
+      "venueId": "bratislava-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-community-voting-game-1",
+      "venueId": "bratislava-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-community-voting-game-2",
+      "venueId": "bratislava-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-community-workshop-1",
+      "venueId": "bratislava-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-community-workshop-2",
+      "venueId": "bratislava-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-market-game-1",
+      "venueId": "bratislava-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-market-game-2",
+      "venueId": "bratislava-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-meal-stop-1",
+      "venueId": "bratislava-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-meal-stop-2",
+      "venueId": "bratislava-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-node-27672692-1",
+      "venueId": "bratislava-osm-node-27672692",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-node-27672692-2",
+      "venueId": "bratislava-osm-node-27672692",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-node-302428961-1",
+      "venueId": "bratislava-osm-node-302428961",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-node-302428961-2",
+      "venueId": "bratislava-osm-node-302428961",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-relation-3416687-1",
+      "venueId": "bratislava-osm-relation-3416687",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-relation-3416687-2",
+      "venueId": "bratislava-osm-relation-3416687",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-1051649120-1",
+      "venueId": "bratislava-osm-way-1051649120",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-1051649120-2",
+      "venueId": "bratislava-osm-way-1051649120",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-1178108642-1",
+      "venueId": "bratislava-osm-way-1178108642",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-1178108642-2",
+      "venueId": "bratislava-osm-way-1178108642",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-150644741-1",
+      "venueId": "bratislava-osm-way-150644741",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-150644741-2",
+      "venueId": "bratislava-osm-way-150644741",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-15104547-1",
+      "venueId": "bratislava-osm-way-15104547",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-15104547-2",
+      "venueId": "bratislava-osm-way-15104547",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-170458693-1",
+      "venueId": "bratislava-osm-way-170458693",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-170458693-2",
+      "venueId": "bratislava-osm-way-170458693",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-216958979-1",
+      "venueId": "bratislava-osm-way-216958979",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-216958979-2",
+      "venueId": "bratislava-osm-way-216958979",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-23963145-1",
+      "venueId": "bratislava-osm-way-23963145",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-23963145-2",
+      "venueId": "bratislava-osm-way-23963145",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-242774480-1",
+      "venueId": "bratislava-osm-way-242774480",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-242774480-2",
+      "venueId": "bratislava-osm-way-242774480",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-24985922-1",
+      "venueId": "bratislava-osm-way-24985922",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-24985922-2",
+      "venueId": "bratislava-osm-way-24985922",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-258662338-1",
+      "venueId": "bratislava-osm-way-258662338",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-258662338-2",
+      "venueId": "bratislava-osm-way-258662338",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-273342996-1",
+      "venueId": "bratislava-osm-way-273342996",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-273342996-2",
+      "venueId": "bratislava-osm-way-273342996",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-5215299-1",
+      "venueId": "bratislava-osm-way-5215299",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-osm-way-5215299-2",
+      "venueId": "bratislava-osm-way-5215299",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-quiet-reflection-1",
+      "venueId": "bratislava-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-quiet-reflection-2",
+      "venueId": "bratislava-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-recreation-1",
+      "venueId": "bratislava-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-recreation-2",
+      "venueId": "bratislava-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-transit-1",
+      "venueId": "bratislava-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    },
+    {
+      "id": "bratislava-bratislava-transit-2",
+      "venueId": "bratislava-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bratislava/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "bratislava-airport-bratislava-airport",
+    "bratislava-clinic",
+    "bratislava-community-notices",
+    "bratislava-community-voting-game",
+    "bratislava-community-workshop",
+    "bratislava-market-game",
+    "bratislava-meal-stop",
+    "bratislava-osm-node-27672692",
+    "bratislava-osm-node-302428961",
+    "bratislava-osm-relation-3416687",
+    "bratislava-osm-way-1051649120",
+    "bratislava-osm-way-1178108642",
+    "bratislava-osm-way-150644741",
+    "bratislava-osm-way-15104547",
+    "bratislava-osm-way-170458693",
+    "bratislava-osm-way-216958979",
+    "bratislava-osm-way-23963145",
+    "bratislava-osm-way-242774480",
+    "bratislava-osm-way-24985922",
+    "bratislava-osm-way-258662338",
+    "bratislava-osm-way-273342996",
+    "bratislava-osm-way-5215299",
+    "bratislava-quiet-reflection",
+    "bratislava-recreation",
+    "bratislava-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "d8adb0876118fa73f2f9c98289e9722853a4f0cf90b1c34106bdf42e5176326a",
+    "contentSha256": "84a0f41ddbff06cc9ad090852fe28085f3dca1301ad2e9596c24c785fbf4ae84"
+  }
+}

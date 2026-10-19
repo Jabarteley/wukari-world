@@ -1,0 +1,32 @@
+{
+  "id": "maghreb",
+  "sourceUrls": [
+    "https://www.openstreetmap.org/way/273633418"
+  ],
+  "palette": [
+    "#eee5cd",
+    "#8a6850",
+    "#6d8055",
+    "#347c83",
+    "#70a0ae",
+    "#c78a43",
+    "#8b8980",
+    "#34414a"
+  ],
+  "roof": "flat",
+  "canopyHeight": 2.4,
+  "provenance": {
+    "referenceCity": "algiers",
+    "referenceFeature": "Marché Sidi M'Hamed",
+    "sourcePath": "src/game/cities/algiers/places.ts",
+    "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual identity only; no source geometry copied",
+    "sourceScope": "Mapped place identity and activity context only; does not substantiate palette, roof, dimensions or a region-wide architecture claim",
+    "verification": "Read repository source snapshot; live OSM element not independently re-fetched",
+    "artDirectionStatus": "proposal",
+    "artDirectionRationale": "A distinct readable palette for procedural props; roof is a gameplay canopy choice",
+    "unknowns": [
+      "Regional coverage and city overrides need integration review",
+      "Colour and roof selection have no measured reference basis"
+    ]
+  }
+}

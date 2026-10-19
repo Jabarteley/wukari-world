@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "damascus",
+  "url": "/assets/scene-heroes/damascus.glb",
+  "sha256": "0cf387da3fba51d06d78d5843ee21382609be89ea8c22f21982b1b78f60e92a1",
+  "rawBytes": 37604,
+  "brotliBytes": 23965,
+  "triangles": 1806,
+  "parts": [
+    {
+      "node": "damascus",
+      "triangles": 1806,
+      "bounds": {
+        "min": [
+          -3.79999995,
+          0,
+          -3.3499999
+        ],
+        "max": [
+          3.8000000264999994,
+          4.650088492,
+          3.3500428065
+        ]
+      },
+      "footprint": [
+        -3.79999995,
+        -3.3499999,
+        3.8000000264999994,
+        3.3500428065
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "4ecd94f61a64f4cf5481b966491528b66c62c39dd43c48e7003b72828ff66be9"
+  },
+  "inputs": {
+    "rawSha256": "4e393a43ce88fa5bab2c7566b580732296bcc86b729f014be9427dbe1fb3afc9",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "damascus",
+      "country": "sy",
+      "name": "Great Mosque of the Umayyads",
+      "category": "building",
+      "sourceUrls": [
+        "https://whc.unesco.org/en/list/20",
+        "https://archeologie.culture.gouv.fr/mosquee-omeyyades/en/buildings-forms-and-functions"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=damascus]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 8,
+        "depth": 7,
+        "height": 5,
+        "seed": 6108,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#af593f",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "courtyard-mosque"
+      },
+      "evidence": "UNESCO identifies the Great Mosque of the Umayyads as a monument of the Ancient City of Damascus. French Ministry of Culture research describes a porticoed courtyard, prayer hall and three minarets. Original reduced massing excludes mosaics, inscriptions and traced plans. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "south-asia"
+      }
+    },
+    "styleSha256": "64cbc90bfc05b51139a91eabe0f981c4f47d02ed2689be22193361f6b66af12d"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "dhaka",
+  "url": "/assets/scene-heroes/dhaka.glb",
+  "sha256": "24cee6d5342aab8d9772efe5aff7eefa39d2c9054d192719485907074afcf5f3",
+  "rawBytes": 26312,
+  "brotliBytes": 18024,
+  "triangles": 696,
+  "parts": [
+    {
+      "node": "dhaka",
+      "triangles": 696,
+      "bounds": {
+        "min": [
+          -3.97272706,
+          0,
+          -3.04999995
+        ],
+        "max": [
+          3.9727270170560005,
+          3.063628969344,
+          3.0500990172960005
+        ]
+      },
+      "footprint": [
+        -3.97272706,
+        -3.04999995,
+        3.9727270170560005,
+        3.0500990172960005
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "4ecd94f61a64f4cf5481b966491528b66c62c39dd43c48e7003b72828ff66be9"
+  },
+  "inputs": {
+    "rawSha256": "6ff10fb8d6079eb5a9a1a9114babf0303b250ef9c37f4a46d1a73736ae08f445",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "dhaka",
+      "country": "bd",
+      "name": "Jamuna Future Park",
+      "category": "building",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/586535435"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=dhaka]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "retail-building",
+      "parameters": {
+        "width": 8.6,
+        "depth": 6.1,
+        "height": 3.7,
+        "seed": 181171,
+        "palette": [
+          "#d3cec2",
+          "#646a6b",
+          "#a0a895",
+          "#8c7568",
+          "#6d8f9c",
+          "#b0a489",
+          "#e7e8df",
+          "#344b59"
+        ]
+      },
+      "evidence": "Exact candidate/name alias match and shop=mall support feature identity/category. Object way/586535435, version 12, timestamp 2026-02-09T09:44:22Z; response SHA256 aadd3465555fd91e88937afb4bcc889167dc4c5b74a8a09b87f45abd56ef4977. Source path: src/game/cities/dhaka/places.ts. Original simple retail-building massing, entrance and opaque glazing panels. No signature facade, brand, sign, surveyed dimensions, floor count or precise building footprint are claimed. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "south-asia"
+      }
+    },
+    "styleSha256": "64cbc90bfc05b51139a91eabe0f981c4f47d02ed2689be22193361f6b66af12d"
+  }
+}

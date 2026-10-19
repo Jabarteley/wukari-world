@@ -146,7 +146,8 @@ export interface VenueDiagnostics extends SceneDiagnostics {
   things: { id: string; kind: string; label: string; x: number; z: number; px: number; py: number; at: boolean }[]
   people: { id: string; kind: string; x: number; z: number; px: number; py: number }[]
   objects: { id: string; itemId: string; x: number; z: number; px: number; py: number }[]
-  characterModels: { name: string; foundation: string; detail: string }[]
+  runtime: { status: string | null; error: string | null }
+  characterModels: { id: string; name: string; foundation: string; detail: string; status: string | null; error: string | null; player: boolean }[]
   drawCalls: number | undefined
   triangles: number | undefined
   geometries: number | undefined
@@ -935,7 +936,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     keepInSight(); orbit.snap(); ghost.now = ghost.goal;
   }
   function zoom(direction: number) { orbit.zoomBy(direction > 0 ? ZOOM_STEP : 1 / ZOOM_STEP); redrawView(); }
-  function recentre() { orbit.reset(); redrawView(); }
+  function recentre() { orbit.reset(); if (current?.camera?.fit) frame(); redrawView(); }
 
   // ---- pointer: drag to look, pinch and wheel to zoom, tap to walk ---------------------------
   function releasePointers() {
@@ -1457,21 +1458,31 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     // comes back to with Recentre) is closer than that, so the figure they made is big enough to read:
     // about a tenth of a phone's height. Zooming out still reaches the whole-venue view and beyond.
     const preset = portrait ? view.portrait : view.landscape;
-    const whole = Math.hypot(preset[0], preset[1] - 0.7, preset[2]);
+    const presetDistance = Math.hypot(preset[0], preset[1] - 0.7, preset[2]);
+    let whole = presetDistance;
     const close = Math.min(1, ((portrait ? START_DISTANCE.portrait : height <= 520 ? START_DISTANCE.short : START_DISTANCE.wide) * (walk?.scale || 1) * (view.start || 1)) / whole);
-    closeness = 1 / close;
-    orbit.setBase([preset[0] * close, 0.7 + (preset[1] - 0.7) * close, preset[2] * close]);
-    // Close enough to see a face, far enough to see the whole venue. Exterior frontages
-    // can keep the camera in front; rooms retain free orbit and hide rear walls (lookIn).
-    orbit.setLimits({ near: 6.2 * (walk?.scale || 1), far: whole * 1.38, azimuth: view.azimuth ?? null });
     camera.fov = portrait ? 48 : 43;
-    camera.far = view.bounds ? Math.max(600 + whole * 1.38 + 50, whole * 1.38 + Math.hypot(view.bounds[3] - view.bounds[0], view.bounds[4] - view.bounds[1], view.bounds[5] - view.bounds[2])) : 360;
     // Centre the scene in what the HUD leaves free; on a wide screen also step back a little when little is left.
     const free = Math.max(160, height - insets.top - insets.bottom);
     camera.zoom = portrait ? 1 : Math.max(0.74, Math.min(1, free / (height * 0.6)));
     // Scenes are composed a little above the point the camera looks at (walls and props rise from the floor).
     const shift = insets.top || insets.bottom ? Math.round((insets.bottom - insets.top) / 2 - height * 0.06 * camera.zoom) : 0;
     if (shift && width > 0 && height > 0) camera.setViewOffset(width, height, 0, shift, width, height); else camera.clearViewOffset();
+    let baseScale = close;
+    closeness = view.fit ? 1 : 1 / close;
+    if (view.fit && walk) {
+      // Fit the reset view, independently of the previous zoom still easing in orbit.now.
+      const share = currentLocation === 'neighbourhood' ? 1 : uiMode === 'buy' ? 0 : followShare(1), centre = walk.centre;
+      const fitted = view.fit({ preset, pivot: [centre[0] + (walker.x - centre[0]) * share, centre[1] + (avatarY + 1.55 * walk.scale - centre[1]) * share, centre[2] + (walker.z - centre[2]) * share], player: [walker.x, avatarY, walker.z], scale: walk.scale,
+        width, height, fov: camera.fov, zoom: camera.zoom, shift, top: insets.top, bottom: insets.bottom, solids: walk.solids });
+      if (fitted !== null && Number.isFinite(fitted) && fitted > 0) { whole = fitted; baseScale = whole / presetDistance; }
+      else closeness = 1 / close;
+    }
+    orbit.setBase([preset[0] * baseScale, 0.7 + (preset[1] - 0.7) * baseScale, preset[2] * baseScale]);
+    // Close enough to see a face, far enough to see the whole venue. Exterior frontages
+    // can keep the camera in front; rooms retain free orbit and hide rear walls (lookIn).
+    orbit.setLimits({ near: 6.2 * (walk?.scale || 1), far: whole * 1.38, azimuth: view.azimuth ?? null });
+    camera.far = view.bounds ? Math.max(600 + whole * 1.38 + 50, whole * 1.38 + Math.hypot(view.bounds[3] - view.bounds[0], view.bounds[4] - view.bounds[1], view.bounds[5] - view.bounds[2])) : view.fit ? Math.max(360, whole * 2) : 360;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height, false);
     controls?.place({ top: insets.top, bottom: insets.bottom, wide: width > 1000, hintTop });
@@ -1647,10 +1658,11 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
         things: thingList.map((thing) => { current!.group.updateMatrixWorld(true); const at = screenOf(thing.x, thing.top * 0.5, thing.z, { x: 0, y: 0 }); return { id: thing.id, kind: thing.kind, label: thing.label, x: thing.x, z: thing.z, px: Math.round(at.x), py: Math.round(at.y), at: atThing === thing.id }; }),
         people: (walkOf()?.people() || []).map((person) => { const at = screenOf(person.x, person.top * 0.5, person.z, { x: 0, y: 0 }); return { id: person.id, kind: person.kind, x: person.x, z: person.z, px: Math.round(at.x), py: Math.round(at.y) }; }),
         objects: (current?.objects?.() || []).map((item) => { const at = screenOf(item.x, 0.35, item.z, { x: 0, y: 0 }); return { id: item.id, itemId: item.itemId, x: item.x, z: item.z, px: Math.round(at.x), py: Math.round(at.y) }; }),
+        runtime: { status: current?.group.userData.runtimeStatus == null ? null : String(current.group.userData.runtimeStatus), error: current?.group.userData.runtimeError == null ? null : String(current.group.userData.runtimeError) },
         characterModels: (() => {
-          const result: { name: string; foundation: string; detail: string }[] = [];
+          const result: VenueDiagnostics['characterModels'] = [];
           current?.group.traverseVisible(object => {
-            if (object.userData.characterFoundation) result.push({ name: object.name, foundation: String(object.userData.characterFoundation), detail: String(object.userData.characterDetail) });
+            if (object.userData.characterFoundation) result.push({ id: object.uuid, name: object.name, foundation: String(object.userData.characterFoundation), detail: String(object.userData.characterDetail), status: object.userData.characterStatus == null ? null : String(object.userData.characterStatus), error: object.userData.characterError == null ? null : String(object.userData.characterError), player: object === standIn.object || object === current?.playerBody });
           });
           return result;
         })(),

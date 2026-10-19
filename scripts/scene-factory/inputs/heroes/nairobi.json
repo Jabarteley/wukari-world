@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "nairobi",
+  "url": "/assets/scene-heroes/nairobi.glb",
+  "sha256": "29a4554a1bc61b17de46e56d15a4b0186c05f8303ca60bb6b58bf708adeb517b",
+  "rawBytes": 51108,
+  "brotliBytes": 26423,
+  "triangles": 2800,
+  "parts": [
+    {
+      "node": "nairobi",
+      "triangles": 2800,
+      "bounds": {
+        "min": [
+          -2.61500001,
+          0,
+          -1.85750008
+        ],
+        "max": [
+          2.6149997828369997,
+          2.446923543435,
+          1.8574182859429997
+        ]
+      },
+      "footprint": [
+        -2.61500001,
+        -1.85750008,
+        2.6149997828369997,
+        1.8574182859429997
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "73e9eb06fe0ab43dfa0d1b812e941952189a690143e715b30dcd38ad0c206753"
+  },
+  "inputs": {
+    "rawSha256": "0a3bf451af30f7b3baed0f4cc7ac425eb06722a61a039ded60c66d2cf40683ef",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "nairobi",
+      "country": "ke",
+      "name": "City Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/80754219",
+        "https://nairobi.go.ke/wp-content/uploads/NCC-Markets.pdf"
+      ],
+      "sourceRef": "src/game/cities/nairobi/places.ts#PLACES[5]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual identity only; no source geometry copied; County publication: Publisher reuse licence not established; only factual identity/category/date paraphrased; no prose, images, maps or geometry copied",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 6.8,
+        "depth": 4.9,
+        "height": 2.7,
+        "seed": 20261021,
+        "palette": [
+          "#e1dbbf",
+          "#785b45",
+          "#4f7652",
+          "#ad553e",
+          "#5b8191",
+          "#d2a744",
+          "#7b8382",
+          "#2c3630"
+        ],
+        "composition": "court"
+      },
+      "evidence": "Repository and cited primary source identify the named market. A continuous rear awning, side display and open double-sided produce island define a court. Composition and merchandise arrangement are original art direction, not source-confirmed goods, architecture or a surveyed market plan.",
+      "provenance": {
+        "sourcePath": "src/game/cities/nairobi/places.ts#PLACES[5]",
+        "authority": "Nairobi City County market register, PDF page 1, and repository OSM place record",
+        "restrictionRationale": "Kenya is outside the special three-country restriction; nevertheless only simple market primitives are proposed.",
+        "dimensionBasis": "Original stylized target bounds in metres; not surveyed or sourced dimensions",
+        "sourcedMeasurements": [],
+        "geometryOrigin": "Original boxes, cylinders and procedural low-poly primitives only; no external model or photograph",
+        "sourceGeometryLicence": "Not used; factual-source licences confer no imported geometry rights",
+        "regionProposal": "east-africa",
+        "currentInventoryRegion": "swahili-coast",
+        "placementStatus": "Decorative city reference; no accurate geographic placement or surveyed entrance claimed",
+        "unknowns": [
+          "Current building appearance and dimensions are not sourced",
+          "Inventory currently assigns Nairobi to swahili-coast; proposed city override is east-africa",
+          "New topology is a generic original composition; source confirms market identity only. No claim of authentic local merchandise or plan."
+        ],
+        "artDirection": {
+          "iteration": 4,
+          "composition": "court",
+          "dimensions": "Stylized target bounds only; no sourced measurements.",
+          "reviewStatus": "Prototype pending independent visual review; no production acceptance."
+        }
+      },
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "east-africa"
+      }
+    },
+    "styleSha256": "f601c6dd6761e42d3430bc70ff17d3aded24774a040bb41cce79bb16e6b400a3"
+  }
+}

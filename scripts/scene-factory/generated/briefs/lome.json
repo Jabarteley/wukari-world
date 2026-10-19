@@ -1,0 +1,1917 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "lome",
+    "name": "Lomé",
+    "state": {
+      "id": "tg-starter",
+      "name": "Lomé"
+    },
+    "country": {
+      "id": "tg",
+      "name": "Togo"
+    },
+    "point": {
+      "lon": 1.220811,
+      "lat": 6.133883
+    }
+  },
+  "style": {
+    "region": "gulf-guinea",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "Natural Earth, OpenStreetMap contributors and national aeronautical information sources",
+    "sourceUrls": [
+      "https://aim.asecna.aero/html/eAIP/FR-_15AD-2.DXXX-fr-FR.html",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: national aeronautical information sources",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/lome/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/lome/facts.ts",
+        "sha256": "0026176611227d4e363acddaf6feb7bb27e797e79239bfd1741f3fdfd21b0797"
+      },
+      {
+        "path": "src/game/cities/lome/index.ts",
+        "sha256": "d53c538e3fbc97ea750afad8239ff69a6497ecd67908b6abb223d882188bcf30"
+      },
+      {
+        "path": "src/game/cities/lome/places.ts",
+        "sha256": "5025b46bd542c4c05a17156bdb04989bd95a6cec470cc6eae8f4ac5ec1f0f661"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.2208110000000003,
+        "lat": 6.133883
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "lome-aflao-market",
+      "name": "Aflao Market",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.187228,
+        "lat": 6.117621
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-aflao-market-1",
+        "lome-lome-aflao-market-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/247234130"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-airport-lome-airport",
+      "name": "Aéroport International Gnassingbé Eyadema (AIGE)",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.254166667,
+        "lat": 6.165833333
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-airport-lome-airport-1",
+        "lome-lome-airport-lome-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "lome-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-centre-de-loisirs-boad",
+      "name": "Centre de loisirs BOAD",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.320757,
+        "lat": 6.16874
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-centre-de-loisirs-boad-1",
+        "lome-lome-centre-de-loisirs-boad-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/713380496"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-clinic",
+      "name": "CHU Tokoin",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.207788,
+        "lat": 6.145144
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-clinic-1",
+        "lome-lome-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/800972448"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-community-notices",
+      "name": "New Presidency of the Republic of Togo",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.222407,
+        "lat": 6.192526
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-community-notices-1",
+        "lome-lome-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2688600"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-community-voting-game",
+      "name": "Place de la Libération",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.223449,
+        "lat": 6.131335
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-community-voting-game-1",
+        "lome-lome-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/271470505"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-community-workshop",
+      "name": "University of Lomé",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.214498,
+        "lat": 6.176612
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-community-workshop-1",
+        "lome-lome-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/353542176"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-eglise-des-assemblees-chretiennes",
+      "name": "Église des Assemblées Chrétiennes",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.174878,
+        "lat": 6.183254
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-eglise-des-assemblees-chretiennes-1",
+        "lome-lome-eglise-des-assemblees-chretiennes-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/200062018"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-fauna-zoo",
+      "name": "Fauna Zoo",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.16614,
+        "lat": 6.173164
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-fauna-zoo-1",
+        "lome-lome-fauna-zoo-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/803593995"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-la-concorde",
+      "name": "La Concorde",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.202498,
+        "lat": 6.166167
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-la-concorde-1",
+        "lome-lome-la-concorde-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/200079264"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-marche-de-be",
+      "name": "Marché de Bè",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.243983,
+        "lat": 6.142789
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-marche-de-be-1",
+        "lome-lome-marche-de-be-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/409074626"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-marche-de-djidjole",
+      "name": "Marché de Djidjolé",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.200912,
+        "lat": 6.176521
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-marche-de-djidjole-1",
+        "lome-lome-marche-de-djidjole-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/227994837"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-market-game",
+      "name": "Assigamé",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.221539,
+        "lat": 6.125699
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-market-game-1",
+        "lome-lome-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/763961094"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-meal-stop",
+      "name": "La Casa",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.219843,
+        "lat": 6.135888
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-meal-stop-1",
+        "lome-lome-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/249639426"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-mosquee-de-totsi",
+      "name": "Mosquée de Totsi",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.188845,
+        "lat": 6.197048
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-mosquee-de-totsi-1",
+        "lome-lome-mosquee-de-totsi-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/375540462"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-mosquee-oumar-bno-abdoul-aziz",
+      "name": "Mosquée Oumar Bno Abdoul Aziz",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.184076,
+        "lat": 6.1865
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-mosquee-oumar-bno-abdoul-aziz-1",
+        "lome-lome-mosquee-oumar-bno-abdoul-aziz-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/230107279"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-quiet-reflection",
+      "name": "Sacred Heart Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.22639,
+        "lat": 6.124934
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-quiet-reflection-1",
+        "lome-lome-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/49711568"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q766138"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-recreation",
+      "name": "Palais de Lome",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.212294,
+        "lat": 6.120214
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-recreation-1",
+        "lome-lome-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/271450670"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-stade-de-kegue",
+      "name": "Stade de Kégué",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.23968,
+        "lat": 6.202177
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-stade-de-kegue-1",
+        "lome-lome-stade-de-kegue-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/49369646"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3082452"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-tinga",
+      "name": "Tinga",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.248689,
+        "lat": 6.201986
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-tinga-1",
+        "lome-lome-tinga-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1212043025"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-togo-national-museum",
+      "name": "Togo National Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.217966,
+        "lat": 6.130673
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-togo-national-museum-1",
+        "lome-lome-togo-national-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1708434315"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1960688"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-transit",
+      "name": "Gare routière de REX",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.227405,
+        "lat": 6.132351
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-transit-1",
+        "lome-lome-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/808130249"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lome-universite-des-sciences-et-technologies",
+      "name": "Université des Sciences et Technologies du Togo",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.172995,
+        "lat": 6.181172
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lome-lome-universite-des-sciences-et-technologies-1",
+        "lome-lome-universite-des-sciences-et-technologies-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/673091949"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3011796"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "lome-lome-aflao-market-1",
+      "venueId": "lome-aflao-market",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-aflao-market-2",
+      "venueId": "lome-aflao-market",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-airport-lome-airport-1",
+      "venueId": "lome-airport-lome-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-airport-lome-airport-2",
+      "venueId": "lome-airport-lome-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-centre-de-loisirs-boad-1",
+      "venueId": "lome-centre-de-loisirs-boad",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-centre-de-loisirs-boad-2",
+      "venueId": "lome-centre-de-loisirs-boad",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-clinic-1",
+      "venueId": "lome-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-clinic-2",
+      "venueId": "lome-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-community-notices-1",
+      "venueId": "lome-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-community-notices-2",
+      "venueId": "lome-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-community-voting-game-1",
+      "venueId": "lome-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-community-voting-game-2",
+      "venueId": "lome-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-community-workshop-1",
+      "venueId": "lome-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-community-workshop-2",
+      "venueId": "lome-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-eglise-des-assemblees-chretiennes-1",
+      "venueId": "lome-eglise-des-assemblees-chretiennes",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-eglise-des-assemblees-chretiennes-2",
+      "venueId": "lome-eglise-des-assemblees-chretiennes",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-fauna-zoo-1",
+      "venueId": "lome-fauna-zoo",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-fauna-zoo-2",
+      "venueId": "lome-fauna-zoo",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-la-concorde-1",
+      "venueId": "lome-la-concorde",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-la-concorde-2",
+      "venueId": "lome-la-concorde",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-marche-de-be-1",
+      "venueId": "lome-marche-de-be",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-marche-de-be-2",
+      "venueId": "lome-marche-de-be",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-marche-de-djidjole-1",
+      "venueId": "lome-marche-de-djidjole",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-marche-de-djidjole-2",
+      "venueId": "lome-marche-de-djidjole",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-market-game-1",
+      "venueId": "lome-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-market-game-2",
+      "venueId": "lome-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-meal-stop-1",
+      "venueId": "lome-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-meal-stop-2",
+      "venueId": "lome-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-mosquee-de-totsi-1",
+      "venueId": "lome-mosquee-de-totsi",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-mosquee-de-totsi-2",
+      "venueId": "lome-mosquee-de-totsi",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-mosquee-oumar-bno-abdoul-aziz-1",
+      "venueId": "lome-mosquee-oumar-bno-abdoul-aziz",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-mosquee-oumar-bno-abdoul-aziz-2",
+      "venueId": "lome-mosquee-oumar-bno-abdoul-aziz",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-quiet-reflection-1",
+      "venueId": "lome-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-quiet-reflection-2",
+      "venueId": "lome-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-recreation-1",
+      "venueId": "lome-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-recreation-2",
+      "venueId": "lome-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-stade-de-kegue-1",
+      "venueId": "lome-stade-de-kegue",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-stade-de-kegue-2",
+      "venueId": "lome-stade-de-kegue",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-tinga-1",
+      "venueId": "lome-tinga",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-tinga-2",
+      "venueId": "lome-tinga",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-togo-national-museum-1",
+      "venueId": "lome-togo-national-museum",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-togo-national-museum-2",
+      "venueId": "lome-togo-national-museum",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-transit-1",
+      "venueId": "lome-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-transit-2",
+      "venueId": "lome-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-universite-des-sciences-et-technologies-1",
+      "venueId": "lome-universite-des-sciences-et-technologies",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    },
+    {
+      "id": "lome-lome-universite-des-sciences-et-technologies-2",
+      "venueId": "lome-universite-des-sciences-et-technologies",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lome/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "lome-aflao-market",
+    "lome-airport-lome-airport",
+    "lome-centre-de-loisirs-boad",
+    "lome-clinic",
+    "lome-community-notices",
+    "lome-community-voting-game",
+    "lome-community-workshop",
+    "lome-eglise-des-assemblees-chretiennes",
+    "lome-fauna-zoo",
+    "lome-la-concorde",
+    "lome-marche-de-be",
+    "lome-marche-de-djidjole",
+    "lome-market-game",
+    "lome-meal-stop",
+    "lome-mosquee-de-totsi",
+    "lome-mosquee-oumar-bno-abdoul-aziz",
+    "lome-quiet-reflection",
+    "lome-recreation",
+    "lome-stade-de-kegue",
+    "lome-tinga",
+    "lome-togo-national-museum",
+    "lome-transit",
+    "lome-universite-des-sciences-et-technologies"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "6b6c732fd50ae074c5191a0186c2059e7989227498ef7d422c49988ba0b6fe37",
+    "contentSha256": "fd17cbe3e85833c91de60fd270dee6f2796743ce64a9ddbf22a5e5f48508243b"
+  }
+}

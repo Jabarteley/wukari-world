@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "ashmore",
+  "url": "/assets/scene-heroes/ashmore.glb",
+  "sha256": "2caa30a3bd0cbe66ec39c945c1707f4aa1536cd3fd02ca7e4e033220b829cc14",
+  "rawBytes": 23104,
+  "brotliBytes": 18924,
+  "triangles": 902,
+  "parts": [
+    {
+      "node": "ashmore",
+      "triangles": 902,
+      "bounds": {
+        "min": [
+          -3.4111526,
+          0,
+          -2.21724916
+        ],
+        "max": [
+          3.4111524609759996,
+          0.450156367632,
+          2.217269950928
+        ]
+      },
+      "footprint": [
+        -3.4111526,
+        -2.21724916,
+        3.4111524609759996,
+        2.217269950928
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "3c548f43f02b6f750cbd3eb46bd182b863dd8c85794e463bdf4fb8a511873e73",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "ashmore",
+      "country": "xa",
+      "name": "East Island low vegetated cay / dune relief",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://parksaustralia.gov.au/marine/pub/scientific-publications/REPORT-Keesingetal_2021_AshmoreReefSurvey_TerrestrialWeb.pdf"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-source-readiness-20261018.json#cities[city_id=ashmore]",
+      "sourceLicence": "unknown",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8.8,
+        "depth": 5.6,
+        "height": 0.45,
+        "seed": 18282,
+        "palette": [
+          "#d8c9a4",
+          "#8e8264",
+          "#667c4d",
+          "#9caa73",
+          "#4a929f",
+          "#a8c8b9",
+          "#dbe5d0",
+          "#405c61"
+        ],
+        "composition": "low-cay"
+      },
+      "evidence": "The report identifies East Island among Ashmore Reef's islands and reports it as low relief: 587 m maximum length, 340 m maximum width, 13.7 ha area, 4.2 m maximum elevation. It describes vegetation across the islands and dunes around the exterior with lower relief toward island centres; it also notes ongoing shoreline change and erosion on East Island's north edge. Original schematic fragment of the sourced feature class. Palette, contour, tree count, spacing and dimensions are art direction, not surveyed shape, species identification or measured geography. No current access is certified.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "athens",
+  "url": "/assets/scene-heroes/athens.glb",
+  "sha256": "439f5523037c5878a628e9f57ae58c791c0858fe407335647846f6ec547ebde0",
+  "rawBytes": 49112,
+  "brotliBytes": 24229,
+  "triangles": 2612,
+  "parts": [
+    {
+      "node": "athens",
+      "triangles": 2612,
+      "bounds": {
+        "min": [
+          -3.29254055,
+          0,
+          -2.79367065
+        ],
+        "max": [
+          3.2925405714040004,
+          4.000166472576001,
+          2.793780529188
+        ]
+      },
+      "footprint": [
+        -3.29254055,
+        -2.79367065,
+        3.2925405714040004,
+        2.793780529188
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "2b8098ece50a8c07dd81f161a6c91c1bdf7b7c54de4c84dde1e262a95c00820e",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "athens",
+      "country": "gr",
+      "name": "Acropolis of Athens",
+      "category": "monument",
+      "sourceUrls": [
+        "https://odysseus.culture.gr/h/3/gh355.jsp?obj_id=28548",
+        "https://www.ysma.gr/en/monuments/parthenon/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=athens]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 7,
+        "depth": 6,
+        "height": 4,
+        "seed": 6112,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#af593f",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "doric-temple"
+      },
+      "evidence": "The Ministry’s archaeological site record names the Acropolis of Athens. Acropolis Restoration Service identifies the Parthenon as a Doric temple with column entasis and architectural refinements. Hero is an original open-roof Doric fragment within the named Acropolis; reduced column count is not a reconstruction. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

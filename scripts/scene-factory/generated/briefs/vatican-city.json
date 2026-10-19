@@ -1,0 +1,1582 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "vatican-city",
+    "name": "Vatican City",
+    "state": {
+      "id": "va",
+      "name": "Vatican City"
+    },
+    "country": {
+      "id": "va",
+      "name": "Vatican City"
+    },
+    "point": {
+      "lon": 12.4528349,
+      "lat": 41.9034912
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/italy/centro-261011.osm.pbf",
+      "https://ourairports.com/airports/VA-0001/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/vatican-city/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/vatican-city/facts.ts",
+        "sha256": "c6734044d94ebe2f3059b406e71e04d3b90e9f6a8e39315ed33a2f30ff6399db"
+      },
+      {
+        "path": "src/game/cities/vatican-city/index.ts",
+        "sha256": "ecec7f6bbe02507254e517778798d9479f827ab693dbf46fa06af3aad21527e2"
+      },
+      {
+        "path": "src/game/cities/vatican-city/places.ts",
+        "sha256": "42f4be74ee751709f1bca539edaf3926a5a44b1e0663b624f1b471b6271cb519"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record.",
+      "Venue vatican-city-clinic has no mapped place source record.",
+      "Venue vatican-city-market-game has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4528349,
+        "lat": 41.9034912
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "vatican-city-airport-vatican-city-airport",
+      "name": "Eliporto Internazionale della Città del Vaticano",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4465,
+        "lat": 41.902
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-airport-vatican-city-airport-1",
+        "vatican-city-vatican-city-airport-vatican-city-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "vatican-city-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-clinic",
+      "name": "Clinic (game venue)",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4528349,
+        "lat": 41.90259187963627
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-clinic-1",
+        "vatican-city-vatican-city-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue vatican-city-clinic has no mapped place source record."
+      }
+    },
+    {
+      "id": "vatican-city-community-notices",
+      "name": "Financial Information Authority",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.452664,
+        "lat": 41.900786
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-community-notices-1",
+        "vatican-city-vatican-city-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2616072088"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q285093"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-community-voting-game",
+      "name": "Saint Peter's Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.457358,
+        "lat": 41.902229
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-community-voting-game-1",
+        "vatican-city-vatican-city-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/10044166"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q83425"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-community-workshop",
+      "name": "Pontifical Ethiopian College",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.449676,
+        "lat": 41.90239
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-community-workshop-1",
+        "vatican-city-vatican-city-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/30161132"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2120444"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-market-game",
+      "name": "Market game (game venue)",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.451924369494817,
+        "lat": 41.90439052036372
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-market-game-1",
+        "vatican-city-vatican-city-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue vatican-city-market-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "vatican-city-meal-stop",
+      "name": "Bistròt La Pigna",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.454765,
+        "lat": 41.905928
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-meal-stop-1",
+        "vatican-city-vatican-city-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1016871040"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-osm-node-10774102205",
+      "name": "Galleria delle Carte Geografiche",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.454207,
+        "lat": 41.904511
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-osm-node-10774102205-1",
+        "vatican-city-vatican-city-osm-node-10774102205-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10774102205"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q634691"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-osm-node-1272283718",
+      "name": "Punto panoramico di viale della Galea",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.45539,
+        "lat": 41.906344
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-osm-node-1272283718-1",
+        "vatican-city-vatican-city-osm-node-1272283718-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1272283718"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-osm-node-5108555139",
+      "name": "Dome of Saint Peter",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.453456,
+        "lat": 41.902166
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-osm-node-5108555139-1",
+        "vatican-city-vatican-city-osm-node-5108555139-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5108555139"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3699559"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-osm-node-5737556419",
+      "name": "Caffè delle carrozze",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.453647,
+        "lat": 41.905449
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-osm-node-5737556419-1",
+        "vatican-city-vatican-city-osm-node-5737556419-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5737556419"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-osm-way-111699749",
+      "name": "Saints Martin and Sebastian of the Swiss",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.456729,
+        "lat": 41.903349
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-osm-way-111699749-1",
+        "vatican-city-vatican-city-osm-way-111699749-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/111699749"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1644167"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-osm-way-111996197",
+      "name": "Saint Peregrin's Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.457024,
+        "lat": 41.904966
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-osm-way-111996197-1",
+        "vatican-city-vatican-city-osm-way-111996197-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/111996197"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3671583"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-osm-way-112137587",
+      "name": "Vatican Museums",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.452744,
+        "lat": 41.906268
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-osm-way-112137587-1",
+        "vatican-city-vatican-city-osm-way-112137587-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/112137587"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q182955"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-osm-way-44402133",
+      "name": "Pius IV House",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.452583,
+        "lat": 41.904158
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-osm-way-44402133-1",
+        "vatican-city-vatican-city-osm-way-44402133-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/44402133"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2291560"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-quiet-reflection",
+      "name": "Pauline Chapel",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.454744,
+        "lat": 41.90259
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-quiet-reflection-1",
+        "vatican-city-vatican-city-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/215302734"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1034868"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-recreation",
+      "name": "French Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.449664,
+        "lat": 41.903235
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-recreation-1",
+        "vatican-city-vatican-city-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/120654784"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vatican-city-transit",
+      "name": "Vatican City",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.45093,
+        "lat": 41.90088
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vatican-city-vatican-city-transit-1",
+        "vatican-city-vatican-city-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vatican-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2015144901"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q801683"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "vatican-city-vatican-city-airport-vatican-city-airport-1",
+      "venueId": "vatican-city-airport-vatican-city-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-airport-vatican-city-airport-2",
+      "venueId": "vatican-city-airport-vatican-city-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-clinic-1",
+      "venueId": "vatican-city-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-clinic-2",
+      "venueId": "vatican-city-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-community-notices-1",
+      "venueId": "vatican-city-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-community-notices-2",
+      "venueId": "vatican-city-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-community-voting-game-1",
+      "venueId": "vatican-city-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-community-voting-game-2",
+      "venueId": "vatican-city-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-community-workshop-1",
+      "venueId": "vatican-city-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-community-workshop-2",
+      "venueId": "vatican-city-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-market-game-1",
+      "venueId": "vatican-city-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-market-game-2",
+      "venueId": "vatican-city-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-meal-stop-1",
+      "venueId": "vatican-city-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-meal-stop-2",
+      "venueId": "vatican-city-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-node-10774102205-1",
+      "venueId": "vatican-city-osm-node-10774102205",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-node-10774102205-2",
+      "venueId": "vatican-city-osm-node-10774102205",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-node-1272283718-1",
+      "venueId": "vatican-city-osm-node-1272283718",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-node-1272283718-2",
+      "venueId": "vatican-city-osm-node-1272283718",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-node-5108555139-1",
+      "venueId": "vatican-city-osm-node-5108555139",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-node-5108555139-2",
+      "venueId": "vatican-city-osm-node-5108555139",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-node-5737556419-1",
+      "venueId": "vatican-city-osm-node-5737556419",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-node-5737556419-2",
+      "venueId": "vatican-city-osm-node-5737556419",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-way-111699749-1",
+      "venueId": "vatican-city-osm-way-111699749",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-way-111699749-2",
+      "venueId": "vatican-city-osm-way-111699749",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-way-111996197-1",
+      "venueId": "vatican-city-osm-way-111996197",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-way-111996197-2",
+      "venueId": "vatican-city-osm-way-111996197",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-way-112137587-1",
+      "venueId": "vatican-city-osm-way-112137587",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-way-112137587-2",
+      "venueId": "vatican-city-osm-way-112137587",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-way-44402133-1",
+      "venueId": "vatican-city-osm-way-44402133",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-osm-way-44402133-2",
+      "venueId": "vatican-city-osm-way-44402133",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-quiet-reflection-1",
+      "venueId": "vatican-city-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-quiet-reflection-2",
+      "venueId": "vatican-city-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-recreation-1",
+      "venueId": "vatican-city-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-recreation-2",
+      "venueId": "vatican-city-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-transit-1",
+      "venueId": "vatican-city-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    },
+    {
+      "id": "vatican-city-vatican-city-transit-2",
+      "venueId": "vatican-city-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vatican-city/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "vatican-city-airport-vatican-city-airport",
+    "vatican-city-clinic",
+    "vatican-city-community-notices",
+    "vatican-city-community-voting-game",
+    "vatican-city-community-workshop",
+    "vatican-city-market-game",
+    "vatican-city-meal-stop",
+    "vatican-city-osm-node-10774102205",
+    "vatican-city-osm-node-1272283718",
+    "vatican-city-osm-node-5108555139",
+    "vatican-city-osm-node-5737556419",
+    "vatican-city-osm-way-111699749",
+    "vatican-city-osm-way-111996197",
+    "vatican-city-osm-way-112137587",
+    "vatican-city-osm-way-44402133",
+    "vatican-city-quiet-reflection",
+    "vatican-city-recreation",
+    "vatican-city-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "c23262273e5052597eb278cbafbd6c013c2e2bc84fb3023ca8e7fe74a90aad4c",
+    "contentSha256": "cf55be804682d808ea0a12c42caa6ae5a37d900c94e1007060ef3fec78a9701c"
+  }
+}

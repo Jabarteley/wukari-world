@@ -1,0 +1,1890 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "jos",
+    "name": "Jos",
+    "state": {
+      "id": "plateau",
+      "name": "Plateau"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 8.8833333333333,
+      "lat": 9.9333333333333
+    }
+  },
+  "style": {
+    "region": "gulf-guinea",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/jos/content.ts",
+        "sha256": "e38418f2f884e178e3855abfb186e605b9b9573842d8de327c08376302a987b4"
+      },
+      {
+        "path": "src/game/cities/jos/index.ts",
+        "sha256": "a93baabe212494a0d9104668493b32745b6ec0672e4325bba8e8286aaad1ffb4"
+      },
+      {
+        "path": "src/game/cities/jos/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/jos/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for jos.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "angwan-rukuba-park",
+      "name": "Angwan Rukuba Park",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.9099534,
+        "lat": 9.9332034
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-angwan-rukuba-park-1",
+        "jos-angwan-rukuba-park-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "angwan-rukuba-polling-station",
+      "name": "Angwan Rukuba Market polling station",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.9092849,
+        "lat": 9.9334541
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Election officials"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Election officials",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-angwan-rukuba-polling-station-1",
+        "jos-angwan-rukuba-polling-station-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "baptist-college-of-theology",
+      "name": "Baptist College of Theology",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.9449136,
+        "lat": 9.9073329
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-baptist-college-of-theology-1",
+        "jos-baptist-college-of-theology-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "bingham-university-teaching-hospitals",
+      "name": "Bingham University Teaching Hospitals",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.8776825,
+        "lat": 9.9307653
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-bingham-university-teaching-hospitals-1",
+        "jos-bingham-university-teaching-hospitals-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "christ-methodist-cathedral",
+      "name": "Christ Methodist cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.88563,
+        "lat": 9.9258594
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-christ-methodist-cathedral-1",
+        "jos-christ-methodist-cathedral-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "de-bills-food",
+      "name": "De Bill's Food",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.8878188,
+        "lat": 9.9250944
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-de-bills-food-1",
+        "jos-de-bills-food-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "duke-and-duchess-executive-salon",
+      "name": "Duke and Duchess Executive Salon",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.904045,
+        "lat": 9.8651395
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-duke-and-duchess-executive-salon-1",
+        "jos-duke-and-duchess-executive-salon-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "first-bank-jos",
+      "name": "First Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.8621072,
+        "lat": 9.9576006
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-first-bank-jos-1",
+        "jos-first-bank-jos-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "gotul-peace-park",
+      "name": "Dr. T. K. Gotul Peace Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.8790261,
+        "lat": 9.966284
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-gotul-peace-park-1",
+        "jos-gotul-peace-park-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "grand-cereals-and-oil-mills",
+      "name": "Grand Cereals and Oil Mills Limited",
+      "kind": "refinery",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.8541511,
+        "lat": 9.7594243
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor point"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor point",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-grand-cereals-and-oil-mills-1",
+        "jos-grand-cereals-and-oil-mills-2"
+      ],
+      "scene": {
+        "kind": "refinery",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.905713184754456,
+        "lat": 9.938539036128374
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "inec-headquarters-jos",
+      "name": "INEC headquarters",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.8661912,
+        "lat": 9.8624095
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-inec-headquarters-jos-1",
+        "jos-inec-headquarters-jos-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "jos-central-mosque",
+      "name": "Muslim Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.8890892,
+        "lat": 9.9601145
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-jos-central-mosque-1",
+        "jos-jos-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "jos-main-market",
+      "name": "Jos Main Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.8931926,
+        "lat": 9.9203105
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-jos-main-market-1",
+        "jos-jos-main-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "jos-museum",
+      "name": "Jos Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.886564,
+        "lat": 9.9137199
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-jos-museum-1",
+        "jos-jos-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "juth",
+      "name": "Jos University Teaching Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.9607561,
+        "lat": 9.9079707
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-juth-1",
+        "jos-juth-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "kasuwan-mata",
+      "name": "Kasuwan Mata",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.9123024,
+        "lat": 9.9126116
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-kasuwan-mata-1",
+        "jos-kasuwan-mata-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "kyan-rikkos-village-head-palace",
+      "name": "Village Head palace Kyan Rikkos",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.9087457,
+        "lat": 9.9009499
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-kyan-rikkos-village-head-palace-1",
+        "jos-kyan-rikkos-village-head-palace-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "rwang-pam-township-stadium",
+      "name": "Rwang Pam Township Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.8840016,
+        "lat": 9.9276234
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-rwang-pam-township-stadium-1",
+        "jos-rwang-pam-township-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "sculpture-garden",
+      "name": "Sculpture Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.8804641,
+        "lat": 9.9645831
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Garden"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Garden",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-sculpture-garden-1",
+        "jos-sculpture-garden-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "st-lukes-anglican-church",
+      "name": "St Luke's Anglican church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.888205,
+        "lat": 9.9208835
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-st-lukes-anglican-church-1",
+        "jos-st-lukes-anglican-church-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "terminus-motor-park",
+      "name": "Terminus Motor Park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.893104,
+        "lat": 9.9192829
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-terminus-motor-park-1",
+        "jos-terminus-motor-park-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    },
+    {
+      "id": "university-of-jos",
+      "name": "University of Jos",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.8818511,
+        "lat": 9.9717593
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jos-university-of-jos-1",
+        "jos-university-of-jos-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jos."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "jos-angwan-rukuba-park-1",
+      "venueId": "angwan-rukuba-park",
+      "name": "Ibrahim Ibrahim",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-angwan-rukuba-park-2",
+      "venueId": "angwan-rukuba-park",
+      "name": "Hauwa Ishaku",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-angwan-rukuba-polling-station-1",
+      "venueId": "angwan-rukuba-polling-station",
+      "name": "Grace Gambo",
+      "role": "Election official",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-angwan-rukuba-polling-station-2",
+      "venueId": "angwan-rukuba-polling-station",
+      "name": "Bitrus Gyang",
+      "role": "Voter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-baptist-college-of-theology-1",
+      "venueId": "baptist-college-of-theology",
+      "name": "Ibrahim Ishaku",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-baptist-college-of-theology-2",
+      "venueId": "baptist-college-of-theology",
+      "name": "Hauwa Pam",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-bingham-university-teaching-hospitals-1",
+      "venueId": "bingham-university-teaching-hospitals",
+      "name": "Ibrahim Bulus",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-bingham-university-teaching-hospitals-2",
+      "venueId": "bingham-university-teaching-hospitals",
+      "name": "Hauwa Adamu",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-christ-methodist-cathedral-1",
+      "venueId": "christ-methodist-cathedral",
+      "name": "Musa Pam",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-christ-methodist-cathedral-2",
+      "venueId": "christ-methodist-cathedral",
+      "name": "Talatu Audu",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-de-bills-food-1",
+      "venueId": "de-bills-food",
+      "name": "Ibrahim Jatau",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-de-bills-food-2",
+      "venueId": "de-bills-food",
+      "name": "Hauwa Yohanna",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-duke-and-duchess-executive-salon-1",
+      "venueId": "duke-and-duchess-executive-salon",
+      "name": "Grace Tanko",
+      "role": "Stylist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-duke-and-duchess-executive-salon-2",
+      "venueId": "duke-and-duchess-executive-salon",
+      "name": "Bitrus Dung",
+      "role": "Client",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-first-bank-jos-1",
+      "venueId": "first-bank-jos",
+      "name": "Ruth Musa",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-first-bank-jos-2",
+      "venueId": "first-bank-jos",
+      "name": "Gyang Danjuma",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-gotul-peace-park-1",
+      "venueId": "gotul-peace-park",
+      "name": "Grace Danjuma",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-gotul-peace-park-2",
+      "venueId": "gotul-peace-park",
+      "name": "Bitrus Gambo",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-grand-cereals-and-oil-mills-1",
+      "venueId": "grand-cereals-and-oil-mills",
+      "name": "Musa Ishaku",
+      "role": "Works supervisor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-grand-cereals-and-oil-mills-2",
+      "venueId": "grand-cereals-and-oil-mills",
+      "name": "Talatu Pam",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-inec-headquarters-jos-1",
+      "venueId": "inec-headquarters-jos",
+      "name": "Musa Adamu",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-inec-headquarters-jos-2",
+      "venueId": "inec-headquarters-jos",
+      "name": "Talatu Jatau",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-jos-central-mosque-1",
+      "venueId": "jos-central-mosque",
+      "name": "Ruth Danjuma",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-jos-central-mosque-2",
+      "venueId": "jos-central-mosque",
+      "name": "Gyang Gambo",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-jos-main-market-1",
+      "venueId": "jos-main-market",
+      "name": "Grace Gyang",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-jos-main-market-2",
+      "venueId": "jos-main-market",
+      "name": "Bitrus Musa",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-jos-museum-1",
+      "venueId": "jos-museum",
+      "name": "Ibrahim Pam",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-jos-museum-2",
+      "venueId": "jos-museum",
+      "name": "Hauwa Audu",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-juth-1",
+      "venueId": "juth",
+      "name": "Grace Bako",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-juth-2",
+      "venueId": "juth",
+      "name": "Bitrus Garba",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-kasuwan-mata-1",
+      "venueId": "kasuwan-mata",
+      "name": "Grace Dung",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-kasuwan-mata-2",
+      "venueId": "kasuwan-mata",
+      "name": "Bitrus Bako",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-kyan-rikkos-village-head-palace-1",
+      "venueId": "kyan-rikkos-village-head-palace",
+      "name": "Grace Garba",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-kyan-rikkos-village-head-palace-2",
+      "venueId": "kyan-rikkos-village-head-palace",
+      "name": "Bitrus Tanko",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-rwang-pam-township-stadium-1",
+      "venueId": "rwang-pam-township-stadium",
+      "name": "Ibrahim Adamu",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-rwang-pam-township-stadium-2",
+      "venueId": "rwang-pam-township-stadium",
+      "name": "Hauwa Jatau",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-sculpture-garden-1",
+      "venueId": "sculpture-garden",
+      "name": "Ibrahim Audu",
+      "role": "Garden keeper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-sculpture-garden-2",
+      "venueId": "sculpture-garden",
+      "name": "Hauwa Ibrahim",
+      "role": "Evening walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-st-lukes-anglican-church-1",
+      "venueId": "st-lukes-anglican-church",
+      "name": "Ruth Garba",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-st-lukes-anglican-church-2",
+      "venueId": "st-lukes-anglican-church",
+      "name": "Gyang Tanko",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-terminus-motor-park-1",
+      "venueId": "terminus-motor-park",
+      "name": "Ibrahim Yohanna",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-terminus-motor-park-2",
+      "venueId": "terminus-motor-park",
+      "name": "Hauwa Bulus",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-university-of-jos-1",
+      "venueId": "university-of-jos",
+      "name": "Grace Musa",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    },
+    {
+      "id": "jos-university-of-jos-2",
+      "venueId": "university-of-jos",
+      "name": "Bitrus Danjuma",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jos/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "angwan-rukuba-park",
+    "angwan-rukuba-polling-station",
+    "baptist-college-of-theology",
+    "bingham-university-teaching-hospitals",
+    "christ-methodist-cathedral",
+    "de-bills-food",
+    "duke-and-duchess-executive-salon",
+    "first-bank-jos",
+    "gotul-peace-park",
+    "grand-cereals-and-oil-mills",
+    "inec-headquarters-jos",
+    "jos-central-mosque",
+    "jos-main-market",
+    "jos-museum",
+    "juth",
+    "kasuwan-mata",
+    "kyan-rikkos-village-head-palace",
+    "rwang-pam-township-stadium",
+    "sculpture-garden",
+    "st-lukes-anglican-church",
+    "terminus-motor-park",
+    "university-of-jos"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "973407db03426e55e373007213b945cc6a56b9dbe1dac7e7a6741e614f662898",
+    "contentSha256": "19a3d6b10c71b258249ea08c5da281f7e8d31697be20633b42b6c910312d1a34"
+  }
+}

@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { SCENE_CHARACTER_TRIANGLES, SCENE_DRAW_CALLS, SCENE_SCENERY_MESHES, SCENE_SCENERY_TRIANGLES, SCENE_TRIANGLES } from '../../budgets.ts';
+import { imageHeaderBitmap } from '../recipe/image-header-fixture.ts';
 /** Node-only asset boundary for scene tests. It loads the shipped native files while replacing only browser image decoding. */
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -29,7 +30,7 @@ globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
   return originalFetch(input, init);
 }) as typeof fetch;
 
-scope.createImageBitmap = async () => ({ width: 1, height: 1, close() {} });
+scope.createImageBitmap = imageHeaderBitmap;
 class FixtureImage {
   width = 1; height = 1;
   private listeners = new Map<string, (event: { target: FixtureImage }) => void>();

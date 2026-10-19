@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "dublin",
+  "url": "/assets/scene-heroes/dublin.glb",
+  "sha256": "f0962fd542e5b1c2c0779852fab09255151826d840eef0267beda7b872faeb58",
+  "rawBytes": 39660,
+  "brotliBytes": 27999,
+  "triangles": 1904,
+  "parts": [
+    {
+      "node": "dublin",
+      "triangles": 1904,
+      "bounds": {
+        "min": [
+          -3.45948768,
+          0,
+          -2.53370929
+        ],
+        "max": [
+          3.4594878282240002,
+          2.599842106368,
+          2.5337867194720003
+        ]
+      },
+      "footprint": [
+        -3.45948768,
+        -2.53370929,
+        3.4594878282240002,
+        2.5337867194720003
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "a14a13c14885b40752157b0d448ea994fdeac1115eefc19fabfb65f3503d9f28",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "dublin",
+      "country": "ie",
+      "name": "Phoenix Park",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://heritageireland.ie/visit/places-to-visit/phoenix-park/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch1.json#cities[city_id=dublin]",
+      "sourceLicence": "unknown",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8.4,
+        "depth": 5.6,
+        "height": 2.6,
+        "seed": 18083,
+        "palette": [
+          "#c6bd9d",
+          "#695e4d",
+          "#55734b",
+          "#738b59",
+          "#4e7184",
+          "#9d986c",
+          "#c7d5cf",
+          "#37443e"
+        ],
+        "composition": "open-park"
+      },
+      "evidence": "Heritage Ireland identifies Phoenix Park as a public park in Dublin and records its creation as a royal deer-hunting park in the 1660s. Original schematic fragment of the sourced feature class. Palette, contour, tree count, spacing and dimensions are art direction, not surveyed shape, species identification or measured geography. No current access is certified.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

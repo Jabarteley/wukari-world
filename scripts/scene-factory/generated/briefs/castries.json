@@ -1,0 +1,2067 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "castries",
+    "name": "Castries",
+    "state": {
+      "id": "lc-castries",
+      "name": "Castries"
+    },
+    "country": {
+      "id": "lc",
+      "name": "St Lucia"
+    },
+    "point": {
+      "lon": -60.9902359,
+      "lat": 14.0095966
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "https://ourairports.com/airports/TLPL/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/castries/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/castries/facts.ts",
+        "sha256": "fe731fbc707e98f9a726e52b3fe5291a4aaa2e5be49a361f310de2bb761cdf7b"
+      },
+      {
+        "path": "src/game/cities/castries/index.ts",
+        "sha256": "2537dd1447276379993e4f4f5940af3f90607f0da3907153690c101677577b21"
+      },
+      {
+        "path": "src/game/cities/castries/places.ts",
+        "sha256": "f7ac0f8faf6889274642249dcabca6bc760ca5f21d722c7d9e67324789631890"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "castries-airport-castries-airport",
+      "name": "Hewanorra International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.952599,
+        "lat": 13.7332
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-airport-castries-airport-1",
+        "castries-castries-airport-castries-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "castries-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-clinic",
+      "name": "Victoria Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.998652,
+        "lat": 14.009676
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-clinic-1",
+        "castries-castries-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/527244013"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7926785"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-community-notices",
+      "name": "Government House",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.997939,
+        "lat": 14.005718
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-community-notices-1",
+        "castries-castries-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/115572297"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5588888"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-community-voting-game",
+      "name": "Local Village Council Office",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.042439,
+        "lat": 13.940059
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-community-voting-game-1",
+        "castries-castries-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/396114466"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-community-workshop",
+      "name": "Spartan Health Science University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.971573,
+        "lat": 13.747934
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-community-workshop-1",
+        "castries-castries-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5204803061"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7573904"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-market-game",
+      "name": "Rising Sun",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.887228,
+        "lat": 13.912119
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-market-game-1",
+        "castries-castries-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4026130545"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-meal-stop",
+      "name": "Hummingbird Beach Resort",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.062209,
+        "lat": 13.85836
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-meal-stop-1",
+        "castries-castries-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1224753145"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-node-10017170962",
+      "name": "Oldest Baobab Tree",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.914843,
+        "lat": 13.809232
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-node-10017170962-1",
+        "castries-castries-osm-node-10017170962-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10017170962"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-node-10649346505",
+      "name": "Rainforest Adventures",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.921169,
+        "lat": 13.985667
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-node-10649346505-1",
+        "castries-castries-osm-node-10649346505-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10649346505"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-node-4027985616",
+      "name": "Morne Le Blanc Heritage Site",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.007218,
+        "lat": 13.770354
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-node-4027985616-1",
+        "castries-castries-osm-node-4027985616-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4027985616"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-node-5221676738",
+      "name": "Grande Riviere Secondary School",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.929801,
+        "lat": 13.933752
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-node-5221676738-1",
+        "castries-castries-osm-node-5221676738-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5221676738"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-node-6322922716",
+      "name": "Barre de L'Isle rainforest trail",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.957638,
+        "lat": 13.927
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-node-6322922716-1",
+        "castries-castries-osm-node-6322922716-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6322922716"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-node-7084016329",
+      "name": "St Lucia's farmer market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.02023,
+        "lat": 13.956419
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-node-7084016329-1",
+        "castries-castries-osm-node-7084016329-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7084016329"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-way-1430525424",
+      "name": "Grand Rivere Playing Field",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.952996,
+        "lat": 14.034627
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-way-1430525424-1",
+        "castries-castries-osm-way-1430525424-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1430525424"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-way-1479934483",
+      "name": "Canaries Village Square",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.068028,
+        "lat": 13.905628
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-way-1479934483-1",
+        "castries-castries-osm-way-1479934483-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1479934483"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-way-257640501",
+      "name": "Sulphur Springs",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.04647,
+        "lat": 13.838658
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-way-257640501-1",
+        "castries-castries-osm-way-257640501-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/257640501"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-way-353009951",
+      "name": "Village Inn",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.906111,
+        "lat": 13.862771
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-way-353009951-1",
+        "castries-castries-osm-way-353009951-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/353009951"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-way-353723748",
+      "name": "Savannes Bay",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.929808,
+        "lat": 13.765051
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-way-353723748-1",
+        "castries-castries-osm-way-353723748-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/353723748"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-way-396954377",
+      "name": "Owen King EU Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.009385,
+        "lat": 14.001387
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-way-396954377-1",
+        "castries-castries-osm-way-396954377-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/396954377"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-way-399244147",
+      "name": "Choiseul Fish Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.050393,
+        "lat": 13.774748
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-way-399244147-1",
+        "castries-castries-osm-way-399244147-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/399244147"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-way-434000880",
+      "name": "American International Medical University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.942297,
+        "lat": 14.077912
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-way-434000880-1",
+        "castries-castries-osm-way-434000880-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/434000880"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4744172"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-osm-way-576357922",
+      "name": "Daren Sammy Cricket Ground",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.932032,
+        "lat": 14.070299
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-osm-way-576357922-1",
+        "castries-castries-osm-way-576357922-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/576357922"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-quiet-reflection",
+      "name": "Minor Basilica of the Immaculate Conception",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.990123,
+        "lat": 14.008879
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-quiet-reflection-1",
+        "castries-castries-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/255580407"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5052198"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-recreation",
+      "name": "Derek Walcott Square",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.990813,
+        "lat": 14.008855
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-recreation-1",
+        "castries-castries-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/114732971"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5262425"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "castries-transit",
+      "name": "Castries Ferry Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.992742,
+        "lat": 14.011358
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "castries-castries-transit-1",
+        "castries-castries-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/castries/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1402576576"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -60.9902359,
+        "lat": 14.0095966
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "castries-castries-airport-castries-airport-1",
+      "venueId": "castries-airport-castries-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-airport-castries-airport-2",
+      "venueId": "castries-airport-castries-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-clinic-1",
+      "venueId": "castries-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-clinic-2",
+      "venueId": "castries-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-community-notices-1",
+      "venueId": "castries-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-community-notices-2",
+      "venueId": "castries-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-community-voting-game-1",
+      "venueId": "castries-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-community-voting-game-2",
+      "venueId": "castries-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-community-workshop-1",
+      "venueId": "castries-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-community-workshop-2",
+      "venueId": "castries-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-market-game-1",
+      "venueId": "castries-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-market-game-2",
+      "venueId": "castries-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-meal-stop-1",
+      "venueId": "castries-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-meal-stop-2",
+      "venueId": "castries-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-node-10017170962-1",
+      "venueId": "castries-osm-node-10017170962",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-node-10017170962-2",
+      "venueId": "castries-osm-node-10017170962",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-node-10649346505-1",
+      "venueId": "castries-osm-node-10649346505",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-node-10649346505-2",
+      "venueId": "castries-osm-node-10649346505",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-node-4027985616-1",
+      "venueId": "castries-osm-node-4027985616",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-node-4027985616-2",
+      "venueId": "castries-osm-node-4027985616",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-node-5221676738-1",
+      "venueId": "castries-osm-node-5221676738",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-node-5221676738-2",
+      "venueId": "castries-osm-node-5221676738",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-node-6322922716-1",
+      "venueId": "castries-osm-node-6322922716",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-node-6322922716-2",
+      "venueId": "castries-osm-node-6322922716",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-node-7084016329-1",
+      "venueId": "castries-osm-node-7084016329",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-node-7084016329-2",
+      "venueId": "castries-osm-node-7084016329",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-1430525424-1",
+      "venueId": "castries-osm-way-1430525424",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-1430525424-2",
+      "venueId": "castries-osm-way-1430525424",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-1479934483-1",
+      "venueId": "castries-osm-way-1479934483",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-1479934483-2",
+      "venueId": "castries-osm-way-1479934483",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-257640501-1",
+      "venueId": "castries-osm-way-257640501",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-257640501-2",
+      "venueId": "castries-osm-way-257640501",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-353009951-1",
+      "venueId": "castries-osm-way-353009951",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-353009951-2",
+      "venueId": "castries-osm-way-353009951",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-353723748-1",
+      "venueId": "castries-osm-way-353723748",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-353723748-2",
+      "venueId": "castries-osm-way-353723748",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-396954377-1",
+      "venueId": "castries-osm-way-396954377",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-396954377-2",
+      "venueId": "castries-osm-way-396954377",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-399244147-1",
+      "venueId": "castries-osm-way-399244147",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-399244147-2",
+      "venueId": "castries-osm-way-399244147",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-434000880-1",
+      "venueId": "castries-osm-way-434000880",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-434000880-2",
+      "venueId": "castries-osm-way-434000880",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-576357922-1",
+      "venueId": "castries-osm-way-576357922",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-osm-way-576357922-2",
+      "venueId": "castries-osm-way-576357922",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-quiet-reflection-1",
+      "venueId": "castries-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-quiet-reflection-2",
+      "venueId": "castries-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-recreation-1",
+      "venueId": "castries-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-recreation-2",
+      "venueId": "castries-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-transit-1",
+      "venueId": "castries-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    },
+    {
+      "id": "castries-castries-transit-2",
+      "venueId": "castries-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/castries/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "castries-airport-castries-airport",
+    "castries-clinic",
+    "castries-community-notices",
+    "castries-community-voting-game",
+    "castries-community-workshop",
+    "castries-market-game",
+    "castries-meal-stop",
+    "castries-osm-node-10017170962",
+    "castries-osm-node-10649346505",
+    "castries-osm-node-4027985616",
+    "castries-osm-node-5221676738",
+    "castries-osm-node-6322922716",
+    "castries-osm-node-7084016329",
+    "castries-osm-way-1430525424",
+    "castries-osm-way-1479934483",
+    "castries-osm-way-257640501",
+    "castries-osm-way-353009951",
+    "castries-osm-way-353723748",
+    "castries-osm-way-396954377",
+    "castries-osm-way-399244147",
+    "castries-osm-way-434000880",
+    "castries-osm-way-576357922",
+    "castries-quiet-reflection",
+    "castries-recreation",
+    "castries-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "d0001837cd1a0fc349ac141c4a7c30b05f86ee984c49b4cb9e4c71a5a8a06910",
+    "contentSha256": "ccc9b2f22841d180517b6ce2dac23caaedf4cc286f78189580a4bda23b2251ca"
+  }
+}

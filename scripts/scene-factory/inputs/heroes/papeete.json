@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "papeete",
+  "url": "/assets/scene-heroes/papeete.glb",
+  "sha256": "e7898d3d6ab60fa194664d8345a489983493bc596adff1e6b9342d574c98b3b6",
+  "rawBytes": 29416,
+  "brotliBytes": 19279,
+  "triangles": 880,
+  "parts": [
+    {
+      "node": "papeete",
+      "triangles": 880,
+      "bounds": {
+        "min": [
+          -2.0024271,
+          0,
+          -2.19255686
+        ],
+        "max": [
+          2.0023381477360007,
+          2.49996707752,
+          2.192556697924001
+        ]
+      },
+      "footprint": [
+        -2.0024271,
+        -2.19255686,
+        2.0023381477360007,
+        2.192556697924001
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "db79e00e99baf61eb611d3da963abfde16af4040fc134e97284da6f3294bccfc",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "papeete",
+      "country": "pf",
+      "name": "Marché municipal Mapuru a Paraita",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.papeete.pf/marche-municipal-mapuru-a-paraita/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-final40-primary-r3.json#records[city_id=papeete]",
+      "sourceLicence": "Unknown; factual text used only. No external geometry, photos or maps reused.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 6375359,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Papeete municipal page establishes the named market at its site. Select the trading activity, not its 1989 building. The 1847 market establishment date is not asserted as a building construction year. Direct primary text opened in this round: page paragraphs describing the market and history. Evidence artifact SHA256 6694bdd3e4c9b76c462cf1cf30a1d817fcf931346b3e93d3d651fc95c022e875. Repository source path: src/game/cities/papeete/places.ts. Original procedural fragment, not a surveyed site, full landmark replica or current-access/operation claim. Dimensions, colours, counts and layout are art direction, not sourced measurements. No external map, photograph, sculpture or mesh copied. Unknown source rights do not confer external geometry rights. Geometry AGPL-3.0-or-later; production and decoded geometry/byte approval remain pending.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

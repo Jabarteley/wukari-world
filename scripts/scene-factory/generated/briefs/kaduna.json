@@ -1,0 +1,1665 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "kaduna",
+    "name": "Kaduna",
+    "state": {
+      "id": "kaduna",
+      "name": "Kaduna"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 7.4402777777778,
+      "lat": 10.523055555556
+    }
+  },
+  "style": {
+    "region": "sahel-north",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/kaduna/content.ts",
+        "sha256": "08f223add6c22cbf249d66db4f172f549124091dbad5c9026f1bb425ccb4c928"
+      },
+      {
+        "path": "src/game/cities/kaduna/index.ts",
+        "sha256": "397e129730c93f7cb179167fa1cd5eb5f9878fadb8152bb14340839c02c53dd6"
+      },
+      {
+        "path": "src/game/cities/kaduna/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/kaduna/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for kaduna.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "ahmadu-bello-stadium",
+      "name": "Ahmadu Bello Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4282524,
+        "lat": 10.4998141
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-ahmadu-bello-stadium-1",
+        "kaduna-ahmadu-bello-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "arewa-house-museum",
+      "name": "Arewa House Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.446441583672294,
+        "lat": 10.553898479787794
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-arewa-house-museum-1",
+        "kaduna-arewa-house-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "chechinya-market",
+      "name": "Chechinya Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4259383,
+        "lat": 10.5205616
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-chechinya-market-1",
+        "kaduna-chechinya-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "giwa-hospital",
+      "name": "Giwa Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4331361,
+        "lat": 10.5430895
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-giwa-hospital-1",
+        "kaduna-giwa-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.445242869709071,
+        "lat": 10.555270705919371
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "kaduna-government-house",
+      "name": "Government House",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4172744,
+        "lat": 10.5279498
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-kaduna-government-house-1",
+        "kaduna-kaduna-government-house-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "kaduna-polytechnic",
+      "name": "Kaduna Polytechnic",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4164525,
+        "lat": 10.5225202
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-kaduna-polytechnic-1",
+        "kaduna-kaduna-polytechnic-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "kaduna-secretariat",
+      "name": "Kaduna Secretariat",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4397736,
+        "lat": 10.5222972
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-kaduna-secretariat-1",
+        "kaduna-kaduna-secretariat-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "kaduna-state-university",
+      "name": "Kaduna State University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4337,
+        "lat": 10.5036
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-kaduna-state-university-1",
+        "kaduna-kaduna-state-university-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "kaduna-war-memorial-stone",
+      "name": "Kaduna 2nd World War Memorial Stone",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4543993,
+        "lat": 10.5348971
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-kaduna-war-memorial-stone-1",
+        "kaduna-kaduna-war-memorial-stone-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "kawo-motor-park",
+      "name": "Kawo Motor Park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4482621,
+        "lat": 10.5855004
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-kawo-motor-park-1",
+        "kaduna-kawo-motor-park-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "love-garden",
+      "name": "Love Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4427806,
+        "lat": 10.6100211
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-love-garden-1",
+        "kaduna-love-garden-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "mafzee-collection-and-spa",
+      "name": "MAFZEE Collection and Spa",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4332581,
+        "lat": 10.5883497
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-mafzee-collection-and-spa-1",
+        "kaduna-mafzee-collection-and-spa-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "national-museum-kaduna",
+      "name": "National Museum Kaduna",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.43967,
+        "lat": 10.5607
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-national-museum-kaduna-1",
+        "kaduna-national-museum-kaduna-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "neuro-psychiatric-hospital-barnawa",
+      "name": "Federal Neuro-Psychiatric Hospital Barnawa",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4293294,
+        "lat": 10.4630718
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-neuro-psychiatric-hospital-barnawa-1",
+        "kaduna-neuro-psychiatric-hospital-barnawa-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "st-johns-catholic-church",
+      "name": "St Johns Catholic Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4529223,
+        "lat": 10.5159037
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-st-johns-catholic-church-1",
+        "kaduna-st-johns-catholic-church-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "sultan-bello-mosque",
+      "name": "Sultan Bello Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4455125,
+        "lat": 10.5508119
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-sultan-bello-mosque-1",
+        "kaduna-sultan-bello-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "television-market",
+      "name": "Television Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4302297,
+        "lat": 10.4500027
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-television-market-1",
+        "kaduna-television-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "unguwan-rimi-market",
+      "name": "Unguwan Rimi Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4637506,
+        "lat": 10.5275466
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-unguwan-rimi-market-1",
+        "kaduna-unguwan-rimi-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    },
+    {
+      "id": "zenith-bank-kaduna",
+      "name": "Zenith Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4319104,
+        "lat": 10.5226693
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kaduna-zenith-bank-kaduna-1",
+        "kaduna-zenith-bank-kaduna-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kaduna."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "kaduna-ahmadu-bello-stadium-1",
+      "venueId": "ahmadu-bello-stadium",
+      "name": "Amina Gwarzo",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-ahmadu-bello-stadium-2",
+      "venueId": "ahmadu-bello-stadium",
+      "name": "Ibrahim Suleiman",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-arewa-house-museum-1",
+      "venueId": "arewa-house-museum",
+      "name": "Lawal Abubakar",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-arewa-house-museum-2",
+      "venueId": "arewa-house-museum",
+      "name": "Fatima Yakubu",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-chechinya-market-1",
+      "venueId": "chechinya-market",
+      "name": "Kabiru Idris",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-chechinya-market-2",
+      "venueId": "chechinya-market",
+      "name": "Hajiya Zainab",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-giwa-hospital-1",
+      "venueId": "giwa-hospital",
+      "name": "Kabiru Magaji",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-giwa-hospital-2",
+      "venueId": "giwa-hospital",
+      "name": "Fatima Abubakar",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-kaduna-government-house-1",
+      "venueId": "kaduna-government-house",
+      "name": "Kabiru Salihu",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-kaduna-government-house-2",
+      "venueId": "kaduna-government-house",
+      "name": "Fatima Bello",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-kaduna-polytechnic-1",
+      "venueId": "kaduna-polytechnic",
+      "name": "Amina Bala",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-kaduna-polytechnic-2",
+      "venueId": "kaduna-polytechnic",
+      "name": "Ibrahim Danladi",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-kaduna-secretariat-1",
+      "venueId": "kaduna-secretariat",
+      "name": "Amina Mohammed",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-kaduna-secretariat-2",
+      "venueId": "kaduna-secretariat",
+      "name": "Malam Ibrahim",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-kaduna-state-university-1",
+      "venueId": "kaduna-state-university",
+      "name": "Kabiru Bello",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-kaduna-state-university-2",
+      "venueId": "kaduna-state-university",
+      "name": "Fatima Kabir",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-kaduna-war-memorial-stone-1",
+      "venueId": "kaduna-war-memorial-stone",
+      "name": "Halima Sadiq",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-kaduna-war-memorial-stone-2",
+      "venueId": "kaduna-war-memorial-stone",
+      "name": "Aliyu Bala",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-kawo-motor-park-1",
+      "venueId": "kawo-motor-park",
+      "name": "Kabiru Yakubu",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-kawo-motor-park-2",
+      "venueId": "kawo-motor-park",
+      "name": "Hajiya Maryam",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-love-garden-1",
+      "venueId": "love-garden",
+      "name": "Amina Tanko",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-love-garden-2",
+      "venueId": "love-garden",
+      "name": "Ibrahim Gwarzo",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-mafzee-collection-and-spa-1",
+      "venueId": "mafzee-collection-and-spa",
+      "name": "Amina Danladi",
+      "role": "Stylist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-mafzee-collection-and-spa-2",
+      "venueId": "mafzee-collection-and-spa",
+      "name": "Malam Aliyu",
+      "role": "Client",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-national-museum-kaduna-1",
+      "venueId": "national-museum-kaduna",
+      "name": "Halima Tanko",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-national-museum-kaduna-2",
+      "venueId": "national-museum-kaduna",
+      "name": "Malam Sani",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-neuro-psychiatric-hospital-barnawa-1",
+      "venueId": "neuro-psychiatric-hospital-barnawa",
+      "name": "Amina Umar",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-neuro-psychiatric-hospital-barnawa-2",
+      "venueId": "neuro-psychiatric-hospital-barnawa",
+      "name": "Ibrahim Sadiq",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-st-johns-catholic-church-1",
+      "venueId": "st-johns-catholic-church",
+      "name": "Kabiru Abubakar",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-st-johns-catholic-church-2",
+      "venueId": "st-johns-catholic-church",
+      "name": "Hajiya Fatima",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-sultan-bello-mosque-1",
+      "venueId": "sultan-bello-mosque",
+      "name": "Amina Sadiq",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-sultan-bello-mosque-2",
+      "venueId": "sultan-bello-mosque",
+      "name": "Ibrahim Bala",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-television-market-1",
+      "venueId": "television-market",
+      "name": "Kabiru Gambo",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-television-market-2",
+      "venueId": "television-market",
+      "name": "Fatima Magaji",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-unguwan-rimi-market-1",
+      "venueId": "unguwan-rimi-market",
+      "name": "Amina Suleiman",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-unguwan-rimi-market-2",
+      "venueId": "unguwan-rimi-market",
+      "name": "Ibrahim Mohammed",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-zenith-bank-kaduna-1",
+      "venueId": "zenith-bank-kaduna",
+      "name": "Kabiru Kabir",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    },
+    {
+      "id": "kaduna-zenith-bank-kaduna-2",
+      "venueId": "zenith-bank-kaduna",
+      "name": "Fatima Idris",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kaduna/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "ahmadu-bello-stadium",
+    "arewa-house-museum",
+    "chechinya-market",
+    "giwa-hospital",
+    "kaduna-government-house",
+    "kaduna-polytechnic",
+    "kaduna-secretariat",
+    "kaduna-state-university",
+    "kaduna-war-memorial-stone",
+    "kawo-motor-park",
+    "love-garden",
+    "mafzee-collection-and-spa",
+    "national-museum-kaduna",
+    "neuro-psychiatric-hospital-barnawa",
+    "st-johns-catholic-church",
+    "sultan-bello-mosque",
+    "television-market",
+    "unguwan-rimi-market",
+    "zenith-bank-kaduna"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "2dd6017b227d974a3890b3b03f995d36d79725680ec25d9b8d9637b2eccb6827",
+    "contentSha256": "3410f0e37b800329c8241575e51237e48255d9123c0dd10577b8476f3b2eac82"
+  }
+}

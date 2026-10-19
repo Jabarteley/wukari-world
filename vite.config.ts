@@ -285,9 +285,22 @@ export default defineConfig({
     minify: 'terser',
     // Keep one minifier worker on the shared development computer as well as one outer build lease.
     terserOptions: { maxWorkers: 1, compress: { passes: 3 }, format: { comments: false } },
-    modulePreload: { polyfill: false },
+    modulePreload: {
+      polyfill: false,
+      // UI bodies discover JavaScript through native imports. Keep their CSS preloads and the
+      // complete preload lists for the game shell, city data, maps and venue renderer.
+      resolveDependencies(file, dependencies, { hostType }) {
+        const uiBody = /(?:^|\/)[A-Z][A-Za-z0-9]*(?:App|Panel|Sheet|Tab|Chip|Modal|Card|Host|Banner|Bar|Notices|Notice|Nudge|Offer|Ask|Button|Actions|Progress|Entry|Toggle|Unsupported)-[a-f0-9]{7}\.js$/.test(file);
+        return hostType === 'js' && uiBody ? dependencies.filter(file => !file.endsWith('.js')) : dependencies;
+      },
+    },
     sourcemap: wantMaps ? 'hidden' : false,
-    rollupOptions: { treeshake: { moduleSideEffects: (id) => !id.endsWith('/src/scene/home-scene.ts') && !/\/src\/game\/wardrobe\/(catalogue|rules|look|view|prices)\.ts$/.test(id) && !id.endsWith('/src/game/table-stakes.ts') && !id.endsWith('/src/character/native-catalog.ts') && !id.endsWith('/src/character/native-migration.ts') }, input: { app: 'index.html', adminshell: 'adminshell.html', replay: 'replay.html' }, output: { hashCharacters: 'hex', chunkFileNames: 'assets/[name]-[hash:7].js', entryFileNames: 'assets/[name]-[hash:7].js', assetFileNames: 'assets/[name]-[hash:7][extname]', onlyExplicitManualChunks: true, manualChunks(id) {
+    rollupOptions: { treeshake: { moduleSideEffects: (id) => !id.endsWith('/src/scene/home-scene.ts') && !/\/src\/game\/wardrobe\/(catalogue|rules|look|view|prices)\.ts$/.test(id) && !id.endsWith('/src/game/table-stakes.ts') && !id.endsWith('/src/character/native-catalog.ts') && !id.endsWith('/src/character/native-migration.ts') }, input: { app: 'index.html', adminshell: 'adminshell.html', replay: 'replay.html', countries: 'county/index.html', cities: 'cities/index.html', cityScenes: 'cities/scenes/index.html' }, output: { hashCharacters: 'hex', chunkFileNames: 'assets/[name]-[hash:7].js', entryFileNames: 'assets/[name]-[hash:7].js', assetFileNames: 'assets/[name]-[hash:7][extname]', onlyExplicitManualChunks: true, manualChunks(id) {
+    const recipeCity = id.match(/\/src\/scene\/recipe\/cities\/([a-z0-9-]+)\.ts$/)
+    if (recipeCity) return `recipe-city-${recipeCity[1]}`
+    if (/\/src\/scene\/recipe\//.test(id)) return 'scene-recipes'
+    // The game and the independent inspector share this same host. Keep its existing byte boundary intact when both are entries.
+    if (/\/src\/(?:campus\/unilag\/world-adapter|scene\/venue-scenes|venue-world)\.ts$/.test(id)) return 'world-adapter'
     if (id === CITY_INDEX_ID) return 'city-index'
     if (/\/src\/game\/wardrobe\//.test(id)) return undefined
     // The stake rules are read by the server and by the Tables app only (the browser's growth system leaves 'tables.server' out): leave them to the import graph, never the engine.
@@ -338,6 +351,8 @@ export default defineConfig({
     if (/node_modules\/three\//.test(id)) return 'three'
     // The one-line component wrapper every compiled .vue file imports: beside Vue, which each of them imports as well, so the first page and the shell kit do not need a file of its own for it.
     if (id === '\0plugin-vue:export-helper') return 'vue'
+    // These small loading-page utilities are also shared by lazy entries; keep them in the existing first-paint chunk.
+    if (/\/src\/(storage-(key|city)|app\/state\/updateNotice)\.ts$/.test(id)) return 'vue'
     if (/node_modules\/@?vue\/|node_modules\/vue\//.test(id)) return 'vue'
     // Account metadata and tracking are shared by the lazy game/admin shells, not the loading page.
     // The campus rules are fetched when a life uses the campus (src/game/campus-gate.ts), not with the first page.
@@ -393,8 +408,9 @@ export default defineConfig({
     // Small modules every page uses, shared by the lazy panels and each needing no more than Vue and the engine: kept in the engine chunk
     // (already in the first download) instead of one file apiece, which would each carry its own header and lose what the others share when compressed.
     if (/\/src\/(geo\/frame|campus\/unilag\/(slices|volunteer)|app\/ui\/format|app\/features\/(commerce\/connectionReturn|account\/(accountLite|accountTrack)|hud\/coachModel|sim\/settingsModel|tour\/tourState|neighbourhood\/cityWalkState))\.ts$/.test(id)) return 'engine'
-    // The small shared pieces the game shell itself uses (buttons, sheet, skeleton rows, glyph text, the calls loader and the growth store): one file in the first download instead of six, each of which would carry its own header and lose what the others share when compressed. Lazy panels import them from here.
-    if (/\/src\/app\/(ui\/(BaseButton|BaseSheet|SkeletonRows)\.vue)(\?|$)/.test(id)) return 'shell-kit'
+    if (id.endsWith('/src/lazy-load.ts')) return 'engine'
+    // The shell's existing buttons, sheets and glyph helpers share one download across the game and the inspector.
+    if (/\/src\/app\/(?:ui\/(?:BaseButton|BaseSheet|SkeletonRows|GameIcon)\.vue|features\/kit\/GlyphText\.vue)(\?|$)/.test(id) || /\/src\/(?:ui\/(?:dom|icon-map|phone\/icons)|app\/(?:ui\/(?:glyphs|iconSvg)|features\/kit\/glyphText))\.ts$/.test(id)) return 'shell-kit'
     // Reading a world-feed answer into a city's money and the short money form (docs/CURRENCY.md): only the lazy feed module, the top bar's count-up and the civic boards use them; the writer (money.ts) is in the engine.
     if (/\/src\/game\/money-feed\.ts$/.test(id)) return undefined
     // The constitution's numbers and words (offices, quorums, levers): read only by the Politics screens, which are fetched on demand, and by the server.

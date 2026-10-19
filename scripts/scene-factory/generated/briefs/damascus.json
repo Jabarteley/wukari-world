@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "damascus",
+    "name": "Damascus",
+    "state": {
+      "id": "sy-damascus",
+      "name": "Damascus"
+    },
+    "country": {
+      "id": "sy",
+      "name": "Syria"
+    },
+    "point": {
+      "lon": 36.3095814,
+      "lat": 33.5130695
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/syria-261011.osm.pbf",
+      "https://ourairports.com/airports/OSDI/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/damascus/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/damascus/facts.ts",
+        "sha256": "9b0ffd54a37a7fef677df0a1c01c48c7af0a1d48910fed5672b742afafbc5217"
+      },
+      {
+        "path": "src/game/cities/damascus/index.ts",
+        "sha256": "9014099b52a7705563c9f2f893b1102934991ce5c3f95b36f34c7270eb542c6b"
+      },
+      {
+        "path": "src/game/cities/damascus/places.ts",
+        "sha256": "1a2c1007040a16058519e31bd04f59e0731ce60c2fca8b9a73fbaf6d4120384f"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "damascus-airport-damascus-airport",
+      "name": "Damascus International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.51559829711914,
+        "lat": 33.4114990234375
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-airport-damascus-airport-1",
+        "damascus-damascus-airport-damascus-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "damascus-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-clinic",
+      "name": "مستشفى المزة العسكري",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.254523,
+        "lat": 33.512091
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-clinic-1",
+        "damascus-damascus-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/18482507"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q122753154"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-community-notices",
+      "name": "Ministry of education",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.292071,
+        "lat": 33.525737
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-community-notices-1",
+        "damascus-damascus-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/842962557"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6866853"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-community-voting-game",
+      "name": "Abbassiyeen Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.318543,
+        "lat": 33.524192
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-community-voting-game-1",
+        "damascus-damascus-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/708301579"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12214992"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-community-workshop",
+      "name": "Higher Institute for Applied Sciences and Technology",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.312403,
+        "lat": 33.553887
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-community-workshop-1",
+        "damascus-damascus-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/842850104"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5758173"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-market-game",
+      "name": "Damasquino Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.27533,
+        "lat": 33.500621
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-market-game-1",
+        "damascus-damascus-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1194503849"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q63122405"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-meal-stop",
+      "name": "Bawabet Demashq",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.406842,
+        "lat": 33.439189
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-meal-stop-1",
+        "damascus-damascus-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1426370724"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4873751"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-node-1246877089",
+      "name": "Higher Institute of Dramatic Art",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.279421,
+        "lat": 33.51239
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-node-1246877089-1",
+        "damascus-damascus-osm-node-1246877089-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1246877089"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12193500"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-node-12989783743",
+      "name": "Sayyidah Zaynab Shrine",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.340884,
+        "lat": 33.44436
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-node-12989783743-1",
+        "damascus-damascus-osm-node-12989783743-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12989783743"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1111208"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-node-13386461392",
+      "name": "Tomb of Mu'awiya I",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.303113,
+        "lat": 33.502155
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-node-13386461392-1",
+        "damascus-damascus-osm-node-13386461392-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13386461392"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q181154"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-node-3245444438",
+      "name": "سوق السكرية",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.303032,
+        "lat": 33.508409
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-node-3245444438-1",
+        "damascus-damascus-osm-node-3245444438-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3245444438"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28924503"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-node-354573941",
+      "name": "Bab Kisan",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.315657,
+        "lat": 33.506537
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-node-354573941-1",
+        "damascus-damascus-osm-node-354573941-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/354573941"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4119844"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-relation-16920636",
+      "name": "Al Jala' Sports Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.253743,
+        "lat": 33.502027
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-relation-16920636-1",
+        "damascus-damascus-osm-relation-16920636-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/16920636"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4119334"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-relation-4614118",
+      "name": "Damascus University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.295802,
+        "lat": 33.546202
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-relation-4614118-1",
+        "damascus-damascus-osm-relation-4614118-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/4614118"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1351317"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-way-106775196",
+      "name": "Ibn Nafees Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.306771,
+        "lat": 33.547064
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-way-106775196-1",
+        "damascus-damascus-osm-way-106775196-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/106775196"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q60575998"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-way-1120153082",
+      "name": "Tomb of the Unknown Soldier",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.254783,
+        "lat": 33.526129
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-way-1120153082-1",
+        "damascus-damascus-osm-way-1120153082-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1120153082"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2898923"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-way-1121497973",
+      "name": "Al-Muhafaza Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.285346,
+        "lat": 33.496163
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-way-1121497973-1",
+        "damascus-damascus-osm-way-1121497973-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1121497973"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17511307"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-way-1486782802",
+      "name": "Sayyidah Ruqayya Shrine",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.307329,
+        "lat": 33.51327
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-way-1486782802-1",
+        "damascus-damascus-osm-way-1486782802-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1486782802"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3399936"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-way-166614282",
+      "name": "سوق الخجا",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.300058,
+        "lat": 33.516678
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-way-166614282-1",
+        "damascus-damascus-osm-way-166614282-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/166614282"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20387377"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-way-28869028",
+      "name": "Sebki Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.288403,
+        "lat": 33.519437
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-way-28869028-1",
+        "damascus-damascus-osm-way-28869028-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28869028"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12207348"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-way-351273248",
+      "name": "Tishreen Military Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.333406,
+        "lat": 33.56562
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-way-351273248-1",
+        "damascus-damascus-osm-way-351273248-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/351273248"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12243187"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-osm-way-5057870",
+      "name": "Jasmine Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.289157,
+        "lat": 33.505409
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-osm-way-5057870-1",
+        "damascus-damascus-osm-way-5057870-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/5057870"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11318928"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-quiet-reflection",
+      "name": "Nabi Habeel Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.106099,
+        "lat": 33.621262
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-quiet-reflection-1",
+        "damascus-damascus-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1830080283"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2622376"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-recreation",
+      "name": "Umayyads Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.269826,
+        "lat": 33.516936
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-recreation-1",
+        "damascus-damascus-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/30419151"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12207358"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "damascus-transit",
+      "name": "Hejaz Railway Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.294945,
+        "lat": 33.511234
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "damascus-damascus-transit-1",
+        "damascus-damascus-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/damascus/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28843859"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5701244"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.3095814,
+        "lat": 33.5130695
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "damascus-damascus-airport-damascus-airport-1",
+      "venueId": "damascus-airport-damascus-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-airport-damascus-airport-2",
+      "venueId": "damascus-airport-damascus-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-clinic-1",
+      "venueId": "damascus-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-clinic-2",
+      "venueId": "damascus-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-community-notices-1",
+      "venueId": "damascus-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-community-notices-2",
+      "venueId": "damascus-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-community-voting-game-1",
+      "venueId": "damascus-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-community-voting-game-2",
+      "venueId": "damascus-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-community-workshop-1",
+      "venueId": "damascus-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-community-workshop-2",
+      "venueId": "damascus-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-market-game-1",
+      "venueId": "damascus-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-market-game-2",
+      "venueId": "damascus-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-meal-stop-1",
+      "venueId": "damascus-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-meal-stop-2",
+      "venueId": "damascus-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-node-1246877089-1",
+      "venueId": "damascus-osm-node-1246877089",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-node-1246877089-2",
+      "venueId": "damascus-osm-node-1246877089",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-node-12989783743-1",
+      "venueId": "damascus-osm-node-12989783743",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-node-12989783743-2",
+      "venueId": "damascus-osm-node-12989783743",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-node-13386461392-1",
+      "venueId": "damascus-osm-node-13386461392",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-node-13386461392-2",
+      "venueId": "damascus-osm-node-13386461392",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-node-3245444438-1",
+      "venueId": "damascus-osm-node-3245444438",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-node-3245444438-2",
+      "venueId": "damascus-osm-node-3245444438",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-node-354573941-1",
+      "venueId": "damascus-osm-node-354573941",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-node-354573941-2",
+      "venueId": "damascus-osm-node-354573941",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-relation-16920636-1",
+      "venueId": "damascus-osm-relation-16920636",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-relation-16920636-2",
+      "venueId": "damascus-osm-relation-16920636",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-relation-4614118-1",
+      "venueId": "damascus-osm-relation-4614118",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-relation-4614118-2",
+      "venueId": "damascus-osm-relation-4614118",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-106775196-1",
+      "venueId": "damascus-osm-way-106775196",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-106775196-2",
+      "venueId": "damascus-osm-way-106775196",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-1120153082-1",
+      "venueId": "damascus-osm-way-1120153082",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-1120153082-2",
+      "venueId": "damascus-osm-way-1120153082",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-1121497973-1",
+      "venueId": "damascus-osm-way-1121497973",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-1121497973-2",
+      "venueId": "damascus-osm-way-1121497973",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-1486782802-1",
+      "venueId": "damascus-osm-way-1486782802",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-1486782802-2",
+      "venueId": "damascus-osm-way-1486782802",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-166614282-1",
+      "venueId": "damascus-osm-way-166614282",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-166614282-2",
+      "venueId": "damascus-osm-way-166614282",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-28869028-1",
+      "venueId": "damascus-osm-way-28869028",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-28869028-2",
+      "venueId": "damascus-osm-way-28869028",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-351273248-1",
+      "venueId": "damascus-osm-way-351273248",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-351273248-2",
+      "venueId": "damascus-osm-way-351273248",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-5057870-1",
+      "venueId": "damascus-osm-way-5057870",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-osm-way-5057870-2",
+      "venueId": "damascus-osm-way-5057870",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-quiet-reflection-1",
+      "venueId": "damascus-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-quiet-reflection-2",
+      "venueId": "damascus-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-recreation-1",
+      "venueId": "damascus-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-recreation-2",
+      "venueId": "damascus-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-transit-1",
+      "venueId": "damascus-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    },
+    {
+      "id": "damascus-damascus-transit-2",
+      "venueId": "damascus-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damascus/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "damascus-airport-damascus-airport",
+    "damascus-clinic",
+    "damascus-community-notices",
+    "damascus-community-voting-game",
+    "damascus-community-workshop",
+    "damascus-market-game",
+    "damascus-meal-stop",
+    "damascus-osm-node-1246877089",
+    "damascus-osm-node-12989783743",
+    "damascus-osm-node-13386461392",
+    "damascus-osm-node-3245444438",
+    "damascus-osm-node-354573941",
+    "damascus-osm-relation-16920636",
+    "damascus-osm-relation-4614118",
+    "damascus-osm-way-106775196",
+    "damascus-osm-way-1120153082",
+    "damascus-osm-way-1121497973",
+    "damascus-osm-way-1486782802",
+    "damascus-osm-way-166614282",
+    "damascus-osm-way-28869028",
+    "damascus-osm-way-351273248",
+    "damascus-osm-way-5057870",
+    "damascus-quiet-reflection",
+    "damascus-recreation",
+    "damascus-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "41e70976feb6f88e4b798a87862e630e06f3426b6aac1fa28b153f31c44a7803",
+    "contentSha256": "6dab525563d661dc9f33ca6592d7bfb7e827380398dd79325cbc2a6f8b992985"
+  }
+}

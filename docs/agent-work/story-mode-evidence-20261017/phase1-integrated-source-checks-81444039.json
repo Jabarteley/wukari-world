@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "startedAt": "2026-10-18T05:52:48.871172+00:00",
+  "sourceSha": "814440393f130fd4cb4469da96d4641db48e5aa0",
+  "heapMiB": 512,
+  "localApplicationBuild": false,
+  "clientArtifactHeldAt": "8a94130206815cf8905e7a48402a6e82a7c70f37",
+  "checks": [
+    {
+      "name": "combined-worker-five",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "--test",
+        "--test-reporter=tap",
+        "--test-name-pattern=^(Cloudflare: public IDs,|Cloudflare: settlement once|Cloudflare: real static HTML|Combined game on the Worker:|assets: a missing hashed file)",
+        "deploy/cloudflare.test.mjs"
+      ],
+      "exitCode": 0,
+      "durationMs": 8202.354,
+      "log": "phase1-combined-worker-five-81444039.log",
+      "pass": 5,
+      "fail": 0,
+      "skipped": 0,
+      "logSha256": "8bf7e1b375556ac1a608fd36439987fd37f423889279be7e2770b1732ee18cd5"
+    },
+    {
+      "name": "combined-spaces-host",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "--test",
+        "--test-concurrency=1",
+        "deploy/spaces-models.edge.test.ts",
+        "server/spaces-models.test.ts",
+        "src/spaces/glb.test.ts",
+        "server/registry.test.ts",
+        "src/types/protocol.test.ts",
+        "server/security-headers.test.ts",
+        "server/server.test.ts"
+      ],
+      "exitCode": 0,
+      "durationMs": 10416.832,
+      "log": "phase1-combined-spaces-host-81444039.log",
+      "pass": 70,
+      "fail": 0,
+      "skipped": 0,
+      "logSha256": "02e944a8b203d6936e4c59e895df7b84695df7e7924b9284c3d90080bd6b3188"
+    },
+    {
+      "name": "belize-sign",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "--test",
+        "--test-concurrency=1",
+        "src/scene/recipe/contract.test.ts",
+        "scripts/scene-factory/layout.test.ts",
+        "scripts/scene-factory/build.test.ts"
+      ],
+      "exitCode": 0,
+      "durationMs": 1157.034,
+      "log": "phase1-belize-sign-81444039.log",
+      "pass": 40,
+      "fail": 0,
+      "skipped": 0,
+      "logSha256": "24ad60b6a1fb6e43bdd0c0798404d904ecdf0415f9da1d4df6f641c192bef941"
+    }
+  ],
+  "finishedAt": "2026-10-18T05:53:08.660886+00:00",
+  "pass": true,
+  "tooling": {
+    "directory": "/Users/anthonyakpan/work/joinallworld/deploy/tooling",
+    "miniflare": "5.20261001.0-alpha",
+    "esbuild": "0.28.1",
+    "versionsMatchTrackedLock": true
+  },
+  "sourceFilesSha256": {
+    "src/game/journeys.ts": "1b84aded1b1f21a60febb77664bab729f37bc45abaeef9a24cfbeb93868bf11c",
+    "src/game/progression-slices.ts": "2a6cc46c68a180fbc606bbec7171a9d7d3a39e27287cbc64f2cc9876b1adff17",
+    "deploy/cloudflare-worker.ts": "c569fa3017b19a5f8bca38f40fd71fafe1293c1c80226f7aabf535f9d548a6ce",
+    "src/scene/recipe/contract.ts": "3a2185f88268ccd112b1209e7e9fcafc21dfc9d43a80b4643599df0023597d1b",
+    "scripts/scene-factory/layout.ts": "0b65558899a519f808f6d738a298b149f4905e5bebdfe1f6e946ca5dab367b67",
+    "scripts/scene-factory/layout.test.ts": "6d27c0eba790a961c8e1dc0e567b7f548f9f97e8330d78ee6ca91d13594cee08",
+    "scripts/scene-factory/build.ts": "25d30b2c0e4f32ec8582969939ac828dadcc3ca68f735a4c5e8a5f032fc98808",
+    "scripts/scene-factory/build.test.ts": "2043e35fb7b77b3c817cfe79594977d65e0b609cad4a265aed3b5eedba179a79"
+  }
+}

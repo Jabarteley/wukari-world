@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "malabo",
+  "url": "/assets/scene-heroes/malabo.glb",
+  "sha256": "097d954e101c15100b739d71dd36f4afae649d4ee22eac69f5cd355554ce05ed",
+  "rawBytes": 26480,
+  "brotliBytes": 18223,
+  "triangles": 696,
+  "parts": [
+    {
+      "node": "malabo",
+      "triangles": 696,
+      "bounds": {
+        "min": [
+          -3.51471901,
+          0,
+          -3.04999995
+        ],
+        "max": [
+          3.5147190887030004,
+          3.429119775672,
+          3.0500746058970005
+        ]
+      },
+      "footprint": [
+        -3.51471901,
+        -3.04999995,
+        3.5147190887030004,
+        3.0500746058970005
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "fc52fcd31a6a0f6232071f06ba078fc350a270ad2e48d4d2becdff31e3e24959"
+  },
+  "inputs": {
+    "rawSha256": "b1a4b8c2136d26175294376a878fbe1ce26d8c33894e27e70751b61f70e9a791",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "malabo",
+      "country": "gq",
+      "name": "VENTAGE",
+      "category": "building",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/node/8442109718"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=malabo]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "retail-building",
+      "parameters": {
+        "width": 8.6,
+        "depth": 6.1,
+        "height": 3.7,
+        "seed": 181092,
+        "palette": [
+          "#d3cec2",
+          "#646a6b",
+          "#a0a895",
+          "#8c7568",
+          "#6d8f9c",
+          "#b0a489",
+          "#e7e8df",
+          "#344b59"
+        ]
+      },
+      "evidence": "Exact candidate/name alias match and shop=mall support feature identity/category. Object node/8442109718, version 3, timestamp 2021-10-23T16:20:09Z; response SHA256 c988a2f58df9545f68071fe7eaf3a6899e1f9cbb075cdc219dacf384200f95d3. Source path: src/game/cities/malabo/places.ts. Original simple retail-building massing, entrance and opaque glazing panels. No signature facade, brand, sign, surveyed dimensions, floor count or precise building footprint are claimed. The shop tag establishes a retail complex; this is a schematic architectural symbol, not certification of a standalone mapped building polygon. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "gulf-guinea"
+      }
+    },
+    "styleSha256": "2fdffb74f7375d9e1754151b92a51e85d0f902aaa4e0c8a647b3a33364eccaa9"
+  }
+}

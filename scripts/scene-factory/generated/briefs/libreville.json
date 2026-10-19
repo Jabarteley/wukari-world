@@ -1,0 +1,1917 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "libreville",
+    "name": "Libreville",
+    "state": {
+      "id": "ga-libreville",
+      "name": "Libreville"
+    },
+    "country": {
+      "id": "ga",
+      "name": "Gabon"
+    },
+    "point": {
+      "lon": 9.46,
+      "lat": 0.39
+    }
+  },
+  "style": {
+    "region": "gulf-guinea",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap contributors and OurAirports dataset",
+    "sourceUrls": [
+      "https://ourairports.com/airports/FOOL/",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/libreville/content.ts",
+        "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+      },
+      {
+        "path": "src/game/cities/libreville/facts.ts",
+        "sha256": "0cef0ff68f026b66eb36bfc6780214ca864e77fbaebd7e76bb691f3f96d93769"
+      },
+      {
+        "path": "src/game/cities/libreville/index.ts",
+        "sha256": "97ac8d8991e697597541980b5891e8b5da818ea0f97eb3d73b4f30b3817df050"
+      },
+      {
+        "path": "src/game/cities/libreville/places.ts",
+        "sha256": "1359a8c28cc7107120ef0199fd230262ae516b21ba6f86af9a9e85c687de24c5"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.46,
+        "lat": 0.39000000000000057
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "libreville-airport-libreville-airport",
+      "name": "Libreville Leon M'ba International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.41214,
+        "lat": 0.458951
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-airport-libreville-airport-1",
+        "libreville-libreville-airport-libreville-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "libreville-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-arboretum-sibang",
+      "name": "Arboretum de Sibang",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.489817,
+        "lat": 0.415901
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-arboretum-sibang-1",
+        "libreville-libreville-arboretum-sibang-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/322816664"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-beach-park",
+      "name": "Beach Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.422304,
+        "lat": 0.423826
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-beach-park-1",
+        "libreville-libreville-beach-park-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12092129930"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-bibliotheque-nationale",
+      "name": "Bibliothèque Nationale",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.427284,
+        "lat": 0.414227
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-bibliotheque-nationale-1",
+        "libreville-libreville-bibliotheque-nationale-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/531996409"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q54530575"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-clinic",
+      "name": "Centre Hospitalier Universitaire de Libreville",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.447968,
+        "lat": 0.392003
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-clinic-1",
+        "libreville-libreville-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/410356077"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-community-notices",
+      "name": "Hôtel de Ville",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.444561,
+        "lat": 0.41047
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-community-notices-1",
+        "libreville-libreville-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2804205"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-community-voting-game",
+      "name": "Mémorial du Président Léon Mba",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.445744,
+        "lat": 0.391055
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-community-voting-game-1",
+        "libreville-libreville-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/455714475"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-community-workshop",
+      "name": "Omar Bongo University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.445312,
+        "lat": 0.418564
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-community-workshop-1",
+        "libreville-libreville-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/251369723"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3551470"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-galeries-tsika",
+      "name": "Galeries Tsika",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.438082,
+        "lat": 0.408038
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-galeries-tsika-1",
+        "libreville-libreville-galeries-tsika-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1252103887"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-mairie-nzeng-ayong",
+      "name": "Mairie de Nzeng Ayong",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.47159,
+        "lat": 0.423986
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-mairie-nzeng-ayong-1",
+        "libreville-libreville-mairie-nzeng-ayong-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1348678391"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-marche-nkembo",
+      "name": "Marché Municipal de Nkembo",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.454863,
+        "lat": 0.411846
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-marche-nkembo-1",
+        "libreville-libreville-marche-nkembo-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/270078850"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-marches-graine-cite-damas",
+      "name": "Marché Graine-Cité Damas",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.477481,
+        "lat": 0.3883
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-marches-graine-cite-damas-1",
+        "libreville-libreville-marches-graine-cite-damas-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11415014848"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-marches-graine-lac-bleu",
+      "name": "Marché GRAINE-Lac Bleu",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.446203,
+        "lat": 0.430331
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-marches-graine-lac-bleu-1",
+        "libreville-libreville-marches-graine-lac-bleu-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11414890074"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-market-game",
+      "name": "Marché Mont-Bouët",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.451915,
+        "lat": 0.401251
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-market-game-1",
+        "libreville-libreville-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/14082088074"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15983086"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-meal-stop",
+      "name": "Le Club House",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.417201,
+        "lat": 0.437891
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-meal-stop-1",
+        "libreville-libreville-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/602115307"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-national-art-museum",
+      "name": "Musée National des Arts et Traditions du Gabon",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.446487,
+        "lat": 0.383868
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-national-art-museum-1",
+        "libreville-libreville-national-art-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/456350870"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-palais-de-justice",
+      "name": "Palais de Justice",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.45236,
+        "lat": 0.425814
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-palais-de-justice-1",
+        "libreville-libreville-palais-de-justice-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/3381838"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-palais-des-congres",
+      "name": "Palais des Congrès Omar Bongo Ondimba",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.453336,
+        "lat": 0.433616
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-palais-des-congres-1",
+        "libreville-libreville-palais-des-congres-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1435653903"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-quiet-reflection",
+      "name": "Cathédrale Notre-Dame de L'Assomption",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.436296,
+        "lat": 0.402826
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-quiet-reflection-1",
+        "libreville-libreville-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/168570176"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11466397"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-recreation",
+      "name": "Les Jardins de la Peyrie",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.455706,
+        "lat": 0.401383
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-recreation-1",
+        "libreville-libreville-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/251363804"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-stade-omnisports",
+      "name": "Stade Omnisports",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.452659,
+        "lat": 0.392117
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-stade-omnisports-1",
+        "libreville-libreville-stade-omnisports-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/47294817"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-transit",
+      "name": "Gare Routière",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.451249,
+        "lat": 0.403235
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-transit-1",
+        "libreville-libreville-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1827907509"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "libreville-tsunami-parc",
+      "name": "Tsunami Parc",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.443913,
+        "lat": 0.405143
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "libreville-libreville-tsunami-parc-1",
+        "libreville-libreville-tsunami-parc-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/libreville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/652865991"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "libreville-libreville-airport-libreville-airport-1",
+      "venueId": "libreville-airport-libreville-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-airport-libreville-airport-2",
+      "venueId": "libreville-airport-libreville-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-arboretum-sibang-1",
+      "venueId": "libreville-arboretum-sibang",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-arboretum-sibang-2",
+      "venueId": "libreville-arboretum-sibang",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-beach-park-1",
+      "venueId": "libreville-beach-park",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-beach-park-2",
+      "venueId": "libreville-beach-park",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-bibliotheque-nationale-1",
+      "venueId": "libreville-bibliotheque-nationale",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-bibliotheque-nationale-2",
+      "venueId": "libreville-bibliotheque-nationale",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-clinic-1",
+      "venueId": "libreville-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-clinic-2",
+      "venueId": "libreville-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-community-notices-1",
+      "venueId": "libreville-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-community-notices-2",
+      "venueId": "libreville-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-community-voting-game-1",
+      "venueId": "libreville-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-community-voting-game-2",
+      "venueId": "libreville-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-community-workshop-1",
+      "venueId": "libreville-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-community-workshop-2",
+      "venueId": "libreville-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-galeries-tsika-1",
+      "venueId": "libreville-galeries-tsika",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-galeries-tsika-2",
+      "venueId": "libreville-galeries-tsika",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-mairie-nzeng-ayong-1",
+      "venueId": "libreville-mairie-nzeng-ayong",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-mairie-nzeng-ayong-2",
+      "venueId": "libreville-mairie-nzeng-ayong",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-marche-nkembo-1",
+      "venueId": "libreville-marche-nkembo",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-marche-nkembo-2",
+      "venueId": "libreville-marche-nkembo",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-marches-graine-cite-damas-1",
+      "venueId": "libreville-marches-graine-cite-damas",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-marches-graine-cite-damas-2",
+      "venueId": "libreville-marches-graine-cite-damas",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-marches-graine-lac-bleu-1",
+      "venueId": "libreville-marches-graine-lac-bleu",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-marches-graine-lac-bleu-2",
+      "venueId": "libreville-marches-graine-lac-bleu",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-market-game-1",
+      "venueId": "libreville-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-market-game-2",
+      "venueId": "libreville-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-meal-stop-1",
+      "venueId": "libreville-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-meal-stop-2",
+      "venueId": "libreville-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-national-art-museum-1",
+      "venueId": "libreville-national-art-museum",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-national-art-museum-2",
+      "venueId": "libreville-national-art-museum",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-palais-de-justice-1",
+      "venueId": "libreville-palais-de-justice",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-palais-de-justice-2",
+      "venueId": "libreville-palais-de-justice",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-palais-des-congres-1",
+      "venueId": "libreville-palais-des-congres",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-palais-des-congres-2",
+      "venueId": "libreville-palais-des-congres",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-quiet-reflection-1",
+      "venueId": "libreville-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-quiet-reflection-2",
+      "venueId": "libreville-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-recreation-1",
+      "venueId": "libreville-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-recreation-2",
+      "venueId": "libreville-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-stade-omnisports-1",
+      "venueId": "libreville-stade-omnisports",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-stade-omnisports-2",
+      "venueId": "libreville-stade-omnisports",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-transit-1",
+      "venueId": "libreville-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-transit-2",
+      "venueId": "libreville-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-tsunami-parc-1",
+      "venueId": "libreville-tsunami-parc",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    },
+    {
+      "id": "libreville-libreville-tsunami-parc-2",
+      "venueId": "libreville-tsunami-parc",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/libreville/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "libreville-airport-libreville-airport",
+    "libreville-arboretum-sibang",
+    "libreville-beach-park",
+    "libreville-bibliotheque-nationale",
+    "libreville-clinic",
+    "libreville-community-notices",
+    "libreville-community-voting-game",
+    "libreville-community-workshop",
+    "libreville-galeries-tsika",
+    "libreville-mairie-nzeng-ayong",
+    "libreville-marche-nkembo",
+    "libreville-marches-graine-cite-damas",
+    "libreville-marches-graine-lac-bleu",
+    "libreville-market-game",
+    "libreville-meal-stop",
+    "libreville-national-art-museum",
+    "libreville-palais-de-justice",
+    "libreville-palais-des-congres",
+    "libreville-quiet-reflection",
+    "libreville-recreation",
+    "libreville-stade-omnisports",
+    "libreville-transit",
+    "libreville-tsunami-parc"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "daaf1a104241491307c1d7733b4ca05051b5ff84d58936e3ba7e8ba4266e269f",
+    "contentSha256": "16494d47b93c80c7de9a5a5fe8e9dd08611160671d91240b66b6b1fd648652af"
+  }
+}

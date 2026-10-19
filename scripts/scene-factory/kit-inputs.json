@@ -1,0 +1,76 @@
+{
+  "schema": "allworld-scene-host-kits",
+  "version": 1,
+  "kits": [
+    {
+      "id": "niger-delta",
+      "asset": "scripts/scene-factory/inputs/kits/niger-delta.glb",
+      "report": "scripts/scene-factory/inputs/kits/niger-delta.json"
+    },
+    {
+      "id": "yoruba-southwest",
+      "asset": "scripts/scene-factory/inputs/kits/yoruba-southwest.glb",
+      "report": "scripts/scene-factory/inputs/kits/yoruba-southwest.json"
+    },
+    {
+      "id": "sahel-north",
+      "asset": "scripts/scene-factory/inputs/kits/sahel-north.glb",
+      "report": "scripts/scene-factory/inputs/kits/sahel-north.json"
+    },
+    {
+      "id": "igbo-southeast",
+      "asset": "scripts/scene-factory/inputs/kits/igbo-southeast.glb",
+      "report": "scripts/scene-factory/inputs/kits/igbo-southeast.json"
+    },
+    {
+      "id": "gulf-guinea",
+      "asset": "scripts/scene-factory/inputs/kits/gulf-guinea.glb",
+      "report": "scripts/scene-factory/inputs/kits/gulf-guinea.json"
+    },
+    {
+      "id": "sahel-francophone",
+      "asset": "scripts/scene-factory/inputs/kits/sahel-francophone.glb",
+      "report": "scripts/scene-factory/inputs/kits/sahel-francophone.json"
+    },
+    {
+      "id": "east-africa",
+      "asset": "scripts/scene-factory/inputs/kits/east-africa.glb",
+      "report": "scripts/scene-factory/inputs/kits/east-africa.json"
+    },
+    {
+      "id": "swahili-coast",
+      "asset": "scripts/scene-factory/inputs/kits/swahili-coast.glb",
+      "report": "scripts/scene-factory/inputs/kits/swahili-coast.json"
+    },
+    {
+      "id": "southern-africa",
+      "asset": "scripts/scene-factory/inputs/kits/southern-africa.glb",
+      "report": "scripts/scene-factory/inputs/kits/southern-africa.json"
+    },
+    {
+      "id": "maghreb",
+      "asset": "scripts/scene-factory/inputs/kits/maghreb.glb",
+      "report": "scripts/scene-factory/inputs/kits/maghreb.json"
+    },
+    {
+      "id": "western-europe",
+      "asset": "scripts/scene-factory/inputs/kits/western-europe.glb",
+      "report": "scripts/scene-factory/inputs/kits/western-europe.json"
+    },
+    {
+      "id": "east-asia",
+      "asset": "scripts/scene-factory/inputs/kits/east-asia.glb",
+      "report": "scripts/scene-factory/inputs/kits/east-asia.json"
+    },
+    {
+      "id": "south-asia",
+      "asset": "scripts/scene-factory/inputs/kits/south-asia.glb",
+      "report": "scripts/scene-factory/inputs/kits/south-asia.json"
+    },
+    {
+      "id": "americas-oceania",
+      "asset": "scripts/scene-factory/inputs/kits/americas-oceania.glb",
+      "report": "scripts/scene-factory/inputs/kits/americas-oceania.json"
+    }
+  ]
+}

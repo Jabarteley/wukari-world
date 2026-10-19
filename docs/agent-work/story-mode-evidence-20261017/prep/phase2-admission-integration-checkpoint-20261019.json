@@ -1,0 +1,175 @@
+{
+  "schema": "story-phase2-admission-integration-checkpoint-v1",
+  "observedAtUtc": "2026-10-18T23:11:43.009864+00:00",
+  "sourceBase": "d8be8602aa6d9c031e51111b91287ad191be68a5",
+  "includedMain": "cca675076a74633c33ad5740cd159a9d7a5aad77",
+  "status": "source-ready-for-hosted-candidate-build-local-gates-pending",
+  "approvedRuntimePatch": "c0d007781d977d9c88aa81e35e2ad39197b1c81c8dc4885eb5e654a4f8c17e49",
+  "sourcePins": {
+    ".github/workflows/ci.yml": "3a9473b0133caca299aae52a5cf21546e9fc04e645899b5897673484ef18e459",
+    "package.json": "50844625a58e94a6a9e9534849d23299103c8884f556d18dfe60bc7f1c988fdd",
+    "scripts/agent-slot.ts": "873fcf993506655018cffff78fc37b9dce92410ffba184bd92360aa9a77bb566",
+    "scripts/node-test-plan.ts": "6eed25555dd777e7aaded58019b37e61b773930c8c7a3d5cf012d409512d4960",
+    "scripts/scene-factory/scenes.ts": "89a8a5cbe7422196668dce0669912c19e320419d110663c7ef02c85a9e17cc68",
+    "scripts/scene-factory/world.ts": "91f48ca5d21200f01f3b7c919dece33acbcab4ee3e096b15b245cce7742cca06",
+    "src/app/features/companion/CompanionHost.vue": "2746be770e1081267aeef5cec1bcdbfa0adf902c83fc6d48f968dfa4f5cdb8cb",
+    "src/app/features/phone/sheetScope.test.ts": "ecf55394b8f1daf1280101ec22fd41d5ae4836a1a5b686b9468549d710bd82ff",
+    "src/app/features/start/CreatorApp.vue": "90b38b5b7d90014b6bbae09aa61e2efad4798cbe73cbb77caf093cfebd4d9346",
+    "src/app/features/start/creatorModel.test.ts": "10fe4fa1488151b069bbcb894a69b1a3462bac04fd4f900ea8cbe3dcb65cf469",
+    "src/app/features/start/creatorModel.ts": "84fb506a08e5d7a7b5a39d9f8706e77947ccd4fd43331101f7514b76bb3665ce",
+    "src/game/cities/allCities.test.ts": "272e9addf540c8f88d3faee2926098b2700ebc2d7736ef4ad3dfe37caf4e623c",
+    "src/scene/ambient/layer.test.ts": "f959fe8d44e321f1aa82e3104af34e4271e83d026f3841fabea7acb5bcb6392b",
+    "src/scene/ambient/layer.ts": "97756470eae716f4505370c5b41c19a2881e8fcea6feb3a069838e77c8f560ec",
+    "src/scene/city-scenes.test.ts": "9996c9e2e02e6fad698c65fdddb7fca216bf3e87dd498962c3216da4271945b6",
+    "src/scene/city-scenes.ts": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa",
+    "src/scene/recipe/camera-fit.test.ts": "336deffe4348f60dcc31b4d363655154ca1e75fa6a1f394293fc950103af3d97",
+    "src/scene/recipe/camera-fit.ts": "3f14542a2c3c1fc376f01d0fc575c5544238d5a968b5d489b59900f6c5cae74e",
+    "src/scene/recipe/camera.test.ts": "bbc151105eebe68caf12f1fac411334fc1d1cf403cac74558eab7c1400d8ae7a",
+    "src/scene/recipe/compile.ts": "02ba73cf13f87cd4862820a3bc1acab069a420c23d82b98f66894f9db2b8ae01",
+    "src/scene/recipe/contract.ts": "7a34b42b00172f70f390e465e46f01219670538c8e1e70f5b9f9de1a81a3c03e",
+    "src/scene/recipe/dynamic-population.test.ts": "63948b645d47cf79854031eff17015b4a1380fd16c04a31eec587ee1d07cd362",
+    "src/scene/recipe/measure-host.ts": "8e34fea93d3862f6049850f3ca28d3252ae72647279602037e58c55da356c930",
+    "src/scene/recipe/prefetch.ts": "e2bba622e17424b9fe0492a84a33b1f6337dee9aa0268ac8ac630515c862f4dc",
+    "src/scene/recipe/runtime-host.ts": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0",
+    "src/scene/types.ts": "9ebfd80b241ff199ac4d5d9ab7f2c21f3245fddd5d6f4e5890af83b916742117",
+    "src/scene/venue-scenes.ts": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da",
+    "src/venue-world.test.ts": "c1aa75d8ae2e3747be215b472998b3a1565d7a451b7eb09a6ae8892af410a01e",
+    "src/venue-world.ts": "64bc12dc2c736e28315757c1cf7d9647e34d1e4f73789483a9c962e676764420",
+    "vite.config.ts": "97d95fec70e265d2e4f207ac77200fd981081e318a230a33b150205096e2c69e",
+    "src/scene/body/native-test-fixture.ts": "3aee106be90992d135cfd5ef1d106c7cee9c6a0213970a964fcb68551dd6abc0"
+  },
+  "parentVerification": {
+    "canonicalSourcePins": 1223,
+    "focusedSourcePins": 30,
+    "changedGeneratedOutputHashes": 1135,
+    "worldOutputHashes": 1435,
+    "allMatched": true
+  },
+  "worldManifestSha256": "af22bdc227d2d5683520fa8cb2c1ec004dbee109515918cc77ac9e4a49c5a53d",
+  "worldOutputs": 1436,
+  "changedOutputs": 1135,
+  "passedSteps": [
+    {
+      "name": "host-refresh",
+      "command": [
+        "env",
+        "NODE_OPTIONS=--max-old-space-size=512 --max-semi-space-size=16",
+        "GOMAXPROCS=2",
+        "node",
+        "--experimental-strip-types",
+        "scripts/agent-slot.ts",
+        "heavy",
+        "--wait-ms",
+        "0",
+        "--",
+        "node",
+        "--experimental-strip-types",
+        "--import",
+        "./scripts/node-scene-css.ts",
+        "src/scene/recipe/measure-host.ts",
+        "--kits",
+        "scripts/scene-factory/kit-inputs.json",
+        "docs/agent-work/story-mode-evidence-20261017/prep/physical-host-refresh-20261018-r9.json",
+        "all",
+        "scripts/scene-factory/host-scenery.json"
+      ],
+      "startedUTC": "2026-10-18T23:01:01.997+00:00",
+      "endedUTC": "2026-10-18T23:01:14.245+00:00",
+      "elapsedSeconds": 12.248,
+      "exit": 0,
+      "status": "pass",
+      "log": "docs/agent-work/story-mode-evidence-20261017/prep/physical-world-verification-20261018-r16-host-refresh.log",
+      "logSha256": "a120d61540357b3957880e432b38348cabb1392f402a5f4f5fd47b67a9cb3f7e"
+    },
+    {
+      "name": "scenes-build",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 42.0,
+      "command": "NODE_OPTIONS=--max-old-space-size=512 --max-semi-space-size=16 GOMAXPROCS=2 node --experimental-strip-types scripts/agent-slot.ts heavy --wait-ms 0 -- npm run scenes:build",
+      "result": {
+        "planned": 1436,
+        "written": 1135,
+        "deleted": 0,
+        "unchanged": 301,
+        "manifestSha256": "af22bdc227d2d5683520fa8cb2c1ec004dbee109515918cc77ac9e4a49c5a53d"
+      },
+      "log": "docs/agent-work/story-mode-evidence-20261017/prep/physical-world-verification-20261018-r16-world-build.log",
+      "logSha256": "98cf5b899170825cf6370df06c94f08ac9f9ace976da886e2d4ec404beed0a62"
+    },
+    {
+      "name": "scenes-check",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 29.73,
+      "command": "NODE_OPTIONS=--max-old-space-size=512 --max-semi-space-size=16 GOMAXPROCS=2 node --experimental-strip-types scripts/agent-slot.ts heavy --wait-ms 0 -- npm run scenes:check",
+      "result": {
+        "planned": 1436,
+        "written": 0,
+        "deleted": 0,
+        "unchanged": 1436,
+        "manifestSha256": "af22bdc227d2d5683520fa8cb2c1ec004dbee109515918cc77ac9e4a49c5a53d"
+      },
+      "log": "docs/agent-work/story-mode-evidence-20261017/prep/physical-world-verification-20261018-r16-world-check.log",
+      "logSha256": "c6fa2cfcfd7d59a7ba36aadb294cb4270b340b4190facb77dcb6505e437b4b43"
+    },
+    {
+      "name": "scene-and-dynamic-population-regressions",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 88.5,
+      "command": "NODE_OPTIONS=--max-old-space-size=512 --max-semi-space-size=16 GOMAXPROCS=2 node --experimental-strip-types scripts/agent-slot.ts heavy --wait-ms 0 -- node --experimental-strip-types --import ./scripts/node-scene-css.ts --test --test-concurrency=1 src/scene/city-scenes.test.ts src/scene/recipe/dynamic-population.test.ts src/map3d/geo/atlas.test.ts",
+      "result": {
+        "tests": 60,
+        "passed": 60,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": "docs/agent-work/story-mode-evidence-20261017/prep/physical-world-verification-20261018-r16-scene-tests.log",
+      "logSha256": "281fa1d9fed6734066f4c9b7e6421b7c92641396c69c36439339ca2321b16df0"
+    },
+    {
+      "name": "venue-world-regressions",
+      "status": "passed",
+      "exitCode": 0,
+      "elapsedSeconds": 68.549,
+      "command": "NODE_OPTIONS=--max-old-space-size=512 --max-semi-space-size=16 GOMAXPROCS=2 node --experimental-strip-types scripts/agent-slot.ts heavy --wait-ms 0 -- node --experimental-strip-types --import ./scripts/node-scene-css.ts --test --test-concurrency=1 src/venue-world.test.ts",
+      "result": {
+        "tests": 23,
+        "passed": 23,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log": "docs/agent-work/story-mode-evidence-20261017/prep/physical-world-verification-20261018-r16-venue-world-test.log",
+      "logSha256": "6f5c0d516b6fe698651a8a39affaf31932aaa3080c6ef85cc6aa5c6d1f48a42a"
+    }
+  ],
+  "retainedFailures": [
+    {
+      "path": "docs/agent-work/story-mode-evidence-20261017/prep/physical-world-verification-20261018-r16.json",
+      "sha256": "f190c4061344db19946030666b76fc9be21896da101a6a99cf89129dab50a68b",
+      "failure": "ambient suite initially stopped on hardcoded1x1 Node image descriptor"
+    },
+    {
+      "path": "docs/agent-work/story-mode-evidence-20261017/prep/physical-world-verification-20261018-r17.json",
+      "sha256": "65add88bcbff11d67eeb09342a04769fd479fe217f7174f8f0d71106e05cbd74",
+      "failure": "after header-derived descriptor, ambient7/10 pass;3 population/budget assertions pending matched baseline diagnosis"
+    }
+  ],
+  "pending": [
+    "ambient baseline/candidate diagnosis",
+    "full allCities and typecheck",
+    "new exact-source CI and byte gates",
+    "corrected-artifact browser journeys",
+    "Phase2 PR merge and public release adoption"
+  ],
+  "limits": [
+    "CPU geometry and source checks are separate from rendered/GPU/browser evidence.",
+    "Publishing candidate source does not establish acceptance or release.",
+    "Canonical scene geometry/assets were not regenerated by the Node-only image descriptor correction."
+  ]
+}

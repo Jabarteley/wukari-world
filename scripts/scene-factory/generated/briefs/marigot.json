@@ -1,0 +1,1704 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "marigot",
+    "name": "Marigot",
+    "state": {
+      "id": "mf-marigot",
+      "name": "Marigot"
+    },
+    "country": {
+      "id": "mf",
+      "name": "St Martin (French)"
+    },
+    "point": {
+      "lon": -63.0848869,
+      "lat": 18.0668544
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "https://ourairports.com/airports/TFFG/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/marigot/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/marigot/facts.ts",
+        "sha256": "1d0f05de584e84f7a8eba68e1c257bf930da82bc8dd40671007526dab4cb2d7d"
+      },
+      {
+        "path": "src/game/cities/marigot/index.ts",
+        "sha256": "a4273e3f4f367b946117ad1a232b15d3c03e703522ee6b06bd2b1198e212b823"
+      },
+      {
+        "path": "src/game/cities/marigot/places.ts",
+        "sha256": "83552c43a081049568908d5611fb4524c43d694bccb7dd7b780206266b865d32"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.0848869,
+        "lat": 18.0668544
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "marigot-airport-marigot-airport",
+      "name": "Grand Case-l'Espérance Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.047444,
+        "lat": 18.100057
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-airport-marigot-airport-1",
+        "marigot-marigot-airport-marigot-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "marigot-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-clinic",
+      "name": "Hospital Louis Constant Fleming",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.073601,
+        "lat": 18.064552
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-clinic-1",
+        "marigot-marigot-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/524462591"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-community-notices",
+      "name": "Préfecture déléguée",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.084524,
+        "lat": 18.070501
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-community-notices-1",
+        "marigot-marigot-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/257664652"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-community-voting-game",
+      "name": "Réserve Naturelle de Saint-Martin",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.038319,
+        "lat": 18.111722
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-community-voting-game-1",
+        "marigot-marigot-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/323656342"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-community-workshop",
+      "name": "Médiathèque",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.073446,
+        "lat": 18.066286
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-community-workshop-1",
+        "marigot-marigot-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/323057986"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-market-game",
+      "name": "Centre Commercial Aventura",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.039977,
+        "lat": 18.095835
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-market-game-1",
+        "marigot-marigot-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/465741045"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-meal-stop",
+      "name": "Le Sand",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.115494,
+        "lat": 18.065308
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-meal-stop-1",
+        "marigot-marigot-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3983179937"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-osm-node-14181701799",
+      "name": "Baie de Cul de Sac",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.033018,
+        "lat": 18.110371
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-osm-node-14181701799-1",
+        "marigot-marigot-osm-node-14181701799-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/14181701799"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-osm-node-3276974411",
+      "name": "Observatoire aux Oiseaux",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.014481,
+        "lat": 18.06273
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-osm-node-3276974411-1",
+        "marigot-marigot-osm-node-3276974411-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3276974411"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-osm-node-3324470538",
+      "name": "Roche Gravée du Moho",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.040175,
+        "lat": 18.072592
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-osm-node-3324470538-1",
+        "marigot-marigot-osm-node-3324470538-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3324470538"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15953246"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-osm-node-3375689678",
+      "name": "Howell Center",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.080589,
+        "lat": 18.072022
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-osm-node-3375689678-1",
+        "marigot-marigot-osm-node-3375689678-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3375689678"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-osm-node-3969654359",
+      "name": "Observatoire des Oiseaux",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.02684,
+        "lat": 18.09528
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-osm-node-3969654359-1",
+        "marigot-marigot-osm-node-3969654359-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3969654359"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-osm-node-542412470",
+      "name": "Fort Louis",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.085376,
+        "lat": 18.070794
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-osm-node-542412470-1",
+        "marigot-marigot-osm-node-542412470-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/542412470"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3077924"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-osm-relation-9565439",
+      "name": "Pinel Island",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.014352,
+        "lat": 18.105884
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-osm-relation-9565439-1",
+        "marigot-marigot-osm-relation-9565439-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/9565439"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q21427420"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-osm-way-330812306",
+      "name": "Carroserie",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.066093,
+        "lat": 18.093944
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-osm-way-330812306-1",
+        "marigot-marigot-osm-way-330812306-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/330812306"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-osm-way-366902209",
+      "name": "Marina Royale",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.086383,
+        "lat": 18.06451
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-osm-way-366902209-1",
+        "marigot-marigot-osm-way-366902209-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/366902209"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-osm-way-399788872",
+      "name": "Pearch Bar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.01531,
+        "lat": 18.083605
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-osm-way-399788872-1",
+        "marigot-marigot-osm-way-399788872-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/399788872"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-quiet-reflection",
+      "name": "Église Saint-Joseph",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.031264,
+        "lat": 18.075028
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-quiet-reflection-1",
+        "marigot-marigot-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/354942727"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q42950059"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-recreation",
+      "name": "Lili's Tropical Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.07516,
+        "lat": 18.081306
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-recreation-1",
+        "marigot-marigot-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1335555796"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "marigot-transit",
+      "name": "Voyage de Standing",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -63.055251,
+        "lat": 18.103381
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "marigot-marigot-transit-1",
+        "marigot-marigot-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/marigot/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3694768574"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "marigot-marigot-airport-marigot-airport-1",
+      "venueId": "marigot-airport-marigot-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-airport-marigot-airport-2",
+      "venueId": "marigot-airport-marigot-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-clinic-1",
+      "venueId": "marigot-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-clinic-2",
+      "venueId": "marigot-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-community-notices-1",
+      "venueId": "marigot-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-community-notices-2",
+      "venueId": "marigot-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-community-voting-game-1",
+      "venueId": "marigot-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-community-voting-game-2",
+      "venueId": "marigot-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-community-workshop-1",
+      "venueId": "marigot-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-community-workshop-2",
+      "venueId": "marigot-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-market-game-1",
+      "venueId": "marigot-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-market-game-2",
+      "venueId": "marigot-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-meal-stop-1",
+      "venueId": "marigot-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-meal-stop-2",
+      "venueId": "marigot-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-node-14181701799-1",
+      "venueId": "marigot-osm-node-14181701799",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-node-14181701799-2",
+      "venueId": "marigot-osm-node-14181701799",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-node-3276974411-1",
+      "venueId": "marigot-osm-node-3276974411",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-node-3276974411-2",
+      "venueId": "marigot-osm-node-3276974411",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-node-3324470538-1",
+      "venueId": "marigot-osm-node-3324470538",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-node-3324470538-2",
+      "venueId": "marigot-osm-node-3324470538",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-node-3375689678-1",
+      "venueId": "marigot-osm-node-3375689678",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-node-3375689678-2",
+      "venueId": "marigot-osm-node-3375689678",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-node-3969654359-1",
+      "venueId": "marigot-osm-node-3969654359",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-node-3969654359-2",
+      "venueId": "marigot-osm-node-3969654359",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-node-542412470-1",
+      "venueId": "marigot-osm-node-542412470",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-node-542412470-2",
+      "venueId": "marigot-osm-node-542412470",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-relation-9565439-1",
+      "venueId": "marigot-osm-relation-9565439",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-relation-9565439-2",
+      "venueId": "marigot-osm-relation-9565439",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-way-330812306-1",
+      "venueId": "marigot-osm-way-330812306",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-way-330812306-2",
+      "venueId": "marigot-osm-way-330812306",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-way-366902209-1",
+      "venueId": "marigot-osm-way-366902209",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-way-366902209-2",
+      "venueId": "marigot-osm-way-366902209",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-way-399788872-1",
+      "venueId": "marigot-osm-way-399788872",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-osm-way-399788872-2",
+      "venueId": "marigot-osm-way-399788872",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-quiet-reflection-1",
+      "venueId": "marigot-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-quiet-reflection-2",
+      "venueId": "marigot-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-recreation-1",
+      "venueId": "marigot-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-recreation-2",
+      "venueId": "marigot-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-transit-1",
+      "venueId": "marigot-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    },
+    {
+      "id": "marigot-marigot-transit-2",
+      "venueId": "marigot-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/marigot/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "marigot-airport-marigot-airport",
+    "marigot-clinic",
+    "marigot-community-notices",
+    "marigot-community-voting-game",
+    "marigot-community-workshop",
+    "marigot-market-game",
+    "marigot-meal-stop",
+    "marigot-osm-node-14181701799",
+    "marigot-osm-node-3276974411",
+    "marigot-osm-node-3324470538",
+    "marigot-osm-node-3375689678",
+    "marigot-osm-node-3969654359",
+    "marigot-osm-node-542412470",
+    "marigot-osm-relation-9565439",
+    "marigot-osm-way-330812306",
+    "marigot-osm-way-366902209",
+    "marigot-osm-way-399788872",
+    "marigot-quiet-reflection",
+    "marigot-recreation",
+    "marigot-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "5460fa0367aa7178cde8b2768deca100ab99ab3585bfdefe5ac3ca5813aa3aa6",
+    "contentSha256": "c7bfd8b77cde84b759d3097f1479582ae2da855af108fa126e81f4dc606c2c17"
+  }
+}

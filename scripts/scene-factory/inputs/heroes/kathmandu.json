@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "kathmandu",
+  "url": "/assets/scene-heroes/kathmandu.glb",
+  "sha256": "e048867938784119309303fcd3f046f8824a5e05fed05431cd72b4dd00886abe",
+  "rawBytes": 34448,
+  "brotliBytes": 25377,
+  "triangles": 1488,
+  "parts": [
+    {
+      "node": "kathmandu",
+      "triangles": 1488,
+      "bounds": {
+        "min": [
+          -3.8499999,
+          0,
+          -2.5999999
+        ],
+        "max": [
+          3.8500000736040003,
+          2.57559664624,
+          2.6000733288320004
+        ]
+      },
+      "footprint": [
+        -3.8499999,
+        -2.5999999,
+        3.8500000736040003,
+        2.6000733288320004
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "4ecd94f61a64f4cf5481b966491528b66c62c39dd43c48e7003b72828ff66be9"
+  },
+  "inputs": {
+    "rawSha256": "8a35d6527a45fca0fbe5c2b1ea7246f1dcbe1dbade620bbf27155b2648a9635a",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "kathmandu",
+      "country": "np",
+      "name": "Ratna Park",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/28523872"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=kathmandu]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8,
+        "depth": 5.5,
+        "height": 2.6,
+        "seed": 181123,
+        "palette": [
+          "#b9bca1",
+          "#6b604e",
+          "#607953",
+          "#8b9b70",
+          "#6e868d",
+          "#c0b18d",
+          "#d9dfd4",
+          "#415044"
+        ],
+        "composition": "open-park"
+      },
+      "evidence": "Exact candidate/name alias match and leisure=park support feature identity/category. Object way/28523872, version 25, timestamp 2025-10-10T04:06:16Z; response SHA256 0d15b310fab3f728fc2ab18bb6c7e8e40fee29f269c620b5b7cfd4256463e48e. Source path: src/game/cities/kathmandu/places.ts. Original park vegetation and clearing fragment. Tree count, species, placement and dimensions are art direction; no pond, building or copied landscape plan is added. Natural-feature is the existing schema route for the vegetated park fragment, not a claim that the designed park is wilderness. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "south-asia"
+      }
+    },
+    "styleSha256": "64cbc90bfc05b51139a91eabe0f981c4f47d02ed2689be22193361f6b66af12d"
+  }
+}

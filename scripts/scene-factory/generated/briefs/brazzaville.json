@@ -1,0 +1,2197 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "brazzaville",
+    "name": "Brazzaville",
+    "state": {
+      "id": "cg-starter",
+      "name": "Brazzaville"
+    },
+    "country": {
+      "id": "cg",
+      "name": "Congo"
+    },
+    "point": {
+      "lon": 15.28,
+      "lat": -4.26
+    }
+  },
+  "style": {
+    "region": "gulf-guinea",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "Natural Earth, OpenStreetMap contributors and OurAirports dataset",
+    "sourceUrls": [
+      "https://ourairports.com/airports/FCBB/",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/brazzaville/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/brazzaville/facts.ts",
+        "sha256": "2486a5a541e64e88db2be7b1f1193bfd9353a74e69fbdccdda154c70178a72bd"
+      },
+      {
+        "path": "src/game/cities/brazzaville/index.ts",
+        "sha256": "f476aa2aaf92bdc3acf6210ef3671650f5c9203602533981178be87d3bdd3afb"
+      },
+      {
+        "path": "src/game/cities/brazzaville/places.ts",
+        "sha256": "aad867fe31f0a301ab1ba571245373d6555911376e7ebac03fc5e94407747aa4"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "brazzaville-airport-brazzaville-airport",
+      "name": "Maya-Maya International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.253,
+        "lat": -4.2517
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-airport-brazzaville-airport-1",
+        "brazzaville-brazzaville-airport-brazzaville-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "brazzaville-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-arts-and-crafts",
+      "name": "Manufacture d'Arts et d'Artisanat Congolais",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.257095,
+        "lat": -4.287029
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-arts-and-crafts-1",
+        "brazzaville-brazzaville-arts-and-crafts-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/694114716"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-brazza-mall",
+      "name": "Brazza Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.294119,
+        "lat": -4.242496
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-brazza-mall-1",
+        "brazzaville-brazzaville-brazza-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1381284135"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-brazza-memorial",
+      "name": "Mémorial Pierre Savorgnan de Brazza",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.27938,
+        "lat": -4.278489
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-brazza-memorial-1",
+        "brazzaville-brazzaville-brazza-memorial-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/370986946"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-clinic",
+      "name": "Centre Hospitalier Universitaire de Brazzaville (CHU-BZV)",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.269572,
+        "lat": -4.264932
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-clinic-1",
+        "brazzaville-brazzaville-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/368809377"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-community-notices",
+      "name": "Hôtel de Ville",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.27842,
+        "lat": -4.278963
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-community-notices-1",
+        "brazzaville-brazzaville-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/370986947"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-community-voting-game",
+      "name": "Mairie de Poto-Poto",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.284679,
+        "lat": -4.266647
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-community-voting-game-1",
+        "brazzaville-brazzaville-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3291519892"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-community-workshop",
+      "name": "Université Marien Ngouabi",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.248177,
+        "lat": -4.2771
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-community-workshop-1",
+        "brazzaville-brazzaville-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/368806390"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3551438"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-congo-gallery",
+      "name": "Musée galerie du bassin du Congo",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.291359,
+        "lat": -4.269257
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-congo-gallery-1",
+        "brazzaville-brazzaville-congo-gallery-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3725455994"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-felix-eboue-stadium",
+      "name": "Félix Éboué Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.285541,
+        "lat": -4.268943
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-felix-eboue-stadium-1",
+        "brazzaville-brazzaville-felix-eboue-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/48986326"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-grand-fleuve",
+      "name": "Grand Fleuve",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.282248,
+        "lat": -4.277185
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-grand-fleuve-1",
+        "brazzaville-brazzaville-grand-fleuve-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/477506458"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-isg-university",
+      "name": "Institut Supérieur de Gestion (I.S.G. - UMN)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.276141,
+        "lat": -4.273412
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-isg-university-1",
+        "brazzaville-brazzaville-isg-university-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/483285672"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-marien-ngouabi-esplanade",
+      "name": "Esplanade Marien Ngouabi",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.272803,
+        "lat": -4.27942
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-marien-ngouabi-esplanade-1",
+        "brazzaville-brazzaville-marien-ngouabi-esplanade-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/364766140"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-market-game",
+      "name": "Marché Poto-Poto",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.286213,
+        "lat": -4.263142
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-market-game-1",
+        "brazzaville-brazzaville-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3725889187"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-massamba-debat-stadium",
+      "name": "Stade Alphonse Massamba-Débat",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.248716,
+        "lat": -4.273405
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-massamba-debat-stadium-1",
+        "brazzaville-brazzaville-massamba-debat-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/325722883"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2743618"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-meal-stop",
+      "name": "Gourmandine",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.281328,
+        "lat": -4.270827
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-meal-stop-1",
+        "brazzaville-brazzaville-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3725418819"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-michel-dornano-gymnasium",
+      "name": "Gymnase Michel d'Ornano",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.265211,
+        "lat": -4.269772
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-michel-dornano-gymnasium-1",
+        "brazzaville-brazzaville-michel-dornano-gymnasium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/55685712"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-moukondo-market",
+      "name": "Marché Moukondo",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.267884,
+        "lat": -4.229405
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-moukondo-market-1",
+        "brazzaville-brazzaville-moukondo-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/766337897"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-national-library",
+      "name": "Bibliothèque National",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.262648,
+        "lat": -4.268763
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-national-library-1",
+        "brazzaville-brazzaville-national-library-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1026525114"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-nkombo-market",
+      "name": "Marché de Nkombo",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.252093,
+        "lat": -4.188638
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-nkombo-market-1",
+        "brazzaville-brazzaville-nkombo-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/595453407"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-palais-des-congres",
+      "name": "Palais des Congrès",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.258229,
+        "lat": -4.268576
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-palais-des-congres-1",
+        "brazzaville-brazzaville-palais-des-congres-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/55685714"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-place-rotary",
+      "name": "Place Rotary",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.253954,
+        "lat": -4.284242
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-place-rotary-1",
+        "brazzaville-brazzaville-place-rotary-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/364766149"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-protestant-university",
+      "name": "Université Protestante de Brazzaville",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.222041,
+        "lat": -4.305681
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-protestant-university-1",
+        "brazzaville-brazzaville-protestant-university-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1358118381"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-quiet-reflection",
+      "name": "Basilique Sainte-Anne",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.284532,
+        "lat": -4.268365
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-quiet-reflection-1",
+        "brazzaville-brazzaville-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/50491968"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2887058"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-recreation",
+      "name": "Esplanade des Droits de l'Homme",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.261062,
+        "lat": -4.281363
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-recreation-1",
+        "brazzaville-brazzaville-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/364766139"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-sacre-coeur",
+      "name": "Cathédrale Sacré-Cœur",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.273938,
+        "lat": -4.270191
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-sacre-coeur-1",
+        "brazzaville-brazzaville-sacre-coeur-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/731643099"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brazzaville-transit",
+      "name": "Gare CFCO",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.288272,
+        "lat": -4.269946
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "brazzaville-brazzaville-transit-1",
+        "brazzaville-brazzaville-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brazzaville/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3748007971"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.28,
+        "lat": -4.26
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "brazzaville-brazzaville-airport-brazzaville-airport-1",
+      "venueId": "brazzaville-airport-brazzaville-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-airport-brazzaville-airport-2",
+      "venueId": "brazzaville-airport-brazzaville-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-arts-and-crafts-1",
+      "venueId": "brazzaville-arts-and-crafts",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-arts-and-crafts-2",
+      "venueId": "brazzaville-arts-and-crafts",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-brazza-mall-1",
+      "venueId": "brazzaville-brazza-mall",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-brazza-mall-2",
+      "venueId": "brazzaville-brazza-mall",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-brazza-memorial-1",
+      "venueId": "brazzaville-brazza-memorial",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-brazza-memorial-2",
+      "venueId": "brazzaville-brazza-memorial",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-clinic-1",
+      "venueId": "brazzaville-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-clinic-2",
+      "venueId": "brazzaville-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-community-notices-1",
+      "venueId": "brazzaville-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-community-notices-2",
+      "venueId": "brazzaville-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-community-voting-game-1",
+      "venueId": "brazzaville-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-community-voting-game-2",
+      "venueId": "brazzaville-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-community-workshop-1",
+      "venueId": "brazzaville-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-community-workshop-2",
+      "venueId": "brazzaville-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-congo-gallery-1",
+      "venueId": "brazzaville-congo-gallery",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-congo-gallery-2",
+      "venueId": "brazzaville-congo-gallery",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-felix-eboue-stadium-1",
+      "venueId": "brazzaville-felix-eboue-stadium",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-felix-eboue-stadium-2",
+      "venueId": "brazzaville-felix-eboue-stadium",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-grand-fleuve-1",
+      "venueId": "brazzaville-grand-fleuve",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-grand-fleuve-2",
+      "venueId": "brazzaville-grand-fleuve",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-isg-university-1",
+      "venueId": "brazzaville-isg-university",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-isg-university-2",
+      "venueId": "brazzaville-isg-university",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-marien-ngouabi-esplanade-1",
+      "venueId": "brazzaville-marien-ngouabi-esplanade",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-marien-ngouabi-esplanade-2",
+      "venueId": "brazzaville-marien-ngouabi-esplanade",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-market-game-1",
+      "venueId": "brazzaville-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-market-game-2",
+      "venueId": "brazzaville-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-massamba-debat-stadium-1",
+      "venueId": "brazzaville-massamba-debat-stadium",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-massamba-debat-stadium-2",
+      "venueId": "brazzaville-massamba-debat-stadium",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-meal-stop-1",
+      "venueId": "brazzaville-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-meal-stop-2",
+      "venueId": "brazzaville-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-michel-dornano-gymnasium-1",
+      "venueId": "brazzaville-michel-dornano-gymnasium",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-michel-dornano-gymnasium-2",
+      "venueId": "brazzaville-michel-dornano-gymnasium",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-moukondo-market-1",
+      "venueId": "brazzaville-moukondo-market",
+      "name": "Merritt",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-moukondo-market-2",
+      "venueId": "brazzaville-moukondo-market",
+      "name": "Nova",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-national-library-1",
+      "venueId": "brazzaville-national-library",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-national-library-2",
+      "venueId": "brazzaville-national-library",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-nkombo-market-1",
+      "venueId": "brazzaville-nkombo-market",
+      "name": "Kendall",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-nkombo-market-2",
+      "venueId": "brazzaville-nkombo-market",
+      "name": "Lane",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-palais-des-congres-1",
+      "venueId": "brazzaville-palais-des-congres",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-palais-des-congres-2",
+      "venueId": "brazzaville-palais-des-congres",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-place-rotary-1",
+      "venueId": "brazzaville-place-rotary",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-place-rotary-2",
+      "venueId": "brazzaville-place-rotary",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-protestant-university-1",
+      "venueId": "brazzaville-protestant-university",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-protestant-university-2",
+      "venueId": "brazzaville-protestant-university",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-quiet-reflection-1",
+      "venueId": "brazzaville-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-quiet-reflection-2",
+      "venueId": "brazzaville-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-recreation-1",
+      "venueId": "brazzaville-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-recreation-2",
+      "venueId": "brazzaville-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-sacre-coeur-1",
+      "venueId": "brazzaville-sacre-coeur",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-sacre-coeur-2",
+      "venueId": "brazzaville-sacre-coeur",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-transit-1",
+      "venueId": "brazzaville-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    },
+    {
+      "id": "brazzaville-brazzaville-transit-2",
+      "venueId": "brazzaville-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brazzaville/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "brazzaville-airport-brazzaville-airport",
+    "brazzaville-arts-and-crafts",
+    "brazzaville-brazza-mall",
+    "brazzaville-brazza-memorial",
+    "brazzaville-clinic",
+    "brazzaville-community-notices",
+    "brazzaville-community-voting-game",
+    "brazzaville-community-workshop",
+    "brazzaville-congo-gallery",
+    "brazzaville-felix-eboue-stadium",
+    "brazzaville-grand-fleuve",
+    "brazzaville-isg-university",
+    "brazzaville-marien-ngouabi-esplanade",
+    "brazzaville-market-game",
+    "brazzaville-massamba-debat-stadium",
+    "brazzaville-meal-stop",
+    "brazzaville-michel-dornano-gymnasium",
+    "brazzaville-moukondo-market",
+    "brazzaville-national-library",
+    "brazzaville-nkombo-market",
+    "brazzaville-palais-des-congres",
+    "brazzaville-place-rotary",
+    "brazzaville-protestant-university",
+    "brazzaville-quiet-reflection",
+    "brazzaville-recreation",
+    "brazzaville-sacre-coeur",
+    "brazzaville-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "0745da20f56440c8afbc402f31cb7a4ff3df933d2fed24add7eedc5cda8db65f",
+    "contentSha256": "e76bf0b21da7ae558d39dca788bc5a64f209ecbbb96b2df710755a91f7013973"
+  }
+}

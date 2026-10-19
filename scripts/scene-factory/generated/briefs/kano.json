@@ -1,0 +1,2416 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "kano",
+    "name": "Kano",
+    "state": {
+      "id": "kano",
+      "name": "Kano State"
+    },
+    "country": {
+      "id": "ng",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 8.52,
+      "lat": 12
+    }
+  },
+  "style": {
+    "region": "sahel-north",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/kano/content.ts",
+        "sha256": "e5ca6b5db450bc5337f5e52e151b463d7b229bb755de1731d96a139d8efbfd25"
+      },
+      {
+        "path": "src/game/cities/kano/index.ts",
+        "sha256": "15e48737aef3febbea67e302e28a68542efaddf9d89054c5ba1c1621d5105e33"
+      },
+      {
+        "path": "src/game/cities/kano/rules.ts",
+        "sha256": "a0f57a1974386338858cfd12a83f004e98940eab33dfb50ef5cb870a22826d9c"
+      },
+      {
+        "path": "src/game/cities/kano/scenes.ts",
+        "sha256": "78d5799812d022f78f6a42a4bea43d39c36b6d0316478bd0ac85138d081c2ca4"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for kano.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "airport",
+      "name": "Mallam Aminu Kano International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5210497,
+        "lat": 12.0457085
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Terminal hall"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Terminal hall",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-airport-1",
+        "kano-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "buk-new",
+      "name": "Bayero University — New Campus",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.4251222,
+        "lat": 11.9704448
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Computer lab"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Computer lab",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-buk-new-1",
+        "kano-buk-new-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "kano-new-campus",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "buk-old",
+      "name": "Bayero University — Old Campus",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.4782432,
+        "lat": 11.9807581
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Lecture room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Lecture room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-buk-old-1",
+        "kano-buk-old-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "kano-old-campus",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "central-mosque",
+      "name": "Kano Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5176406,
+        "lat": 11.9948552
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Outer court"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Outer court",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-central-mosque-1",
+        "kano-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "kano-central-mosque",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "community-house",
+      "name": "Kano Community House",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.55362,
+        "lat": 12.0327
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Notice hall"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Notice hall",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-community-house-1",
+        "kano-community-house-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": "kano-community-hall",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "community-polling",
+      "name": "Kano Community Polling Room",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.55362,
+        "lat": 12.0327
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Polling room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Polling room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-community-polling-1",
+        "kano-community-polling-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "dala-hill",
+      "name": "Dala Hill",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5069739,
+        "lat": 12.0093051
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Hilltop"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Hilltop",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-dala-hill-1",
+        "kano-dala-hill-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": "kano-dala",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "dye-pits",
+      "name": "Kofar Mata Dye Pits",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.526098888888889,
+        "lat": 12.000853055555556
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Dye pits"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Dye pits",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-dye-pits-1",
+        "kano-dye-pits-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": "kano-dye-pits",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "film-workshop",
+      "name": "Sabon Gari Film Workshop",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.53824,
+        "lat": 12.0185
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Workshop set"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Workshop set",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-film-workshop-1",
+        "kano-film-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "kano-film-yard",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "goron-dutse",
+      "name": "Goron Dutse Hill",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.4944515,
+        "lat": 12.001466
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Rock trail"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Rock trail",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-goron-dutse-1",
+        "kano-goron-dutse-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": "kano-goron-dutse",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.51868,
+        "lat": 11.992
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "kofar-kabuga",
+      "name": "Kofar Kabuga — Historic Site",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.4814435,
+        "lat": 11.9873961
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Roadside"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Roadside",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-kofar-kabuga-1",
+        "kano-kofar-kabuga-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": "kano-kabuga-site",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "kofar-mata",
+      "name": "Kofar Mata",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5263759,
+        "lat": 12.0008285
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gate side"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gate side",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-kofar-mata-1",
+        "kano-kofar-mata-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": "kano-gate-mata",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "kofar-nassarawa",
+      "name": "Kofar Nassarawa",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5306777,
+        "lat": 11.9908895
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gate side"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gate side",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-kofar-nassarawa-1",
+        "kano-kofar-nassarawa-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": "kano-gate-nassarawa",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "kurmi-market",
+      "name": "Kurmi Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.51421,
+        "lat": 12.00239
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Market lanes"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Market lanes",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-kurmi-market-1",
+        "kano-kurmi-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": "kano-kurmi",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "kwari-market",
+      "name": "Kantin Kwari Textile Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.53087,
+        "lat": 12.00404
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Cloth rows"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Cloth rows",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-kwari-market-1",
+        "kano-kwari-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": "kano-kwari",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "museum",
+      "name": "Gidan Makama Museum",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5210264,
+        "lat": 11.9883725
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Museum court"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Museum court",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-museum-1",
+        "kano-museum-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "kano-museum",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "nassarawa-clinic",
+      "name": "Gama Community Clinic",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.55362,
+        "lat": 12.0327
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-nassarawa-clinic-1",
+        "kano-nassarawa-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "nassarawa-garden",
+      "name": "Gama Community Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.55362,
+        "lat": 12.0327
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Garden benches"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Garden benches",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-nassarawa-garden-1",
+        "kano-nassarawa-garden-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": "kano-garden",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "nassarawa-kitchen",
+      "name": "Gama Tuwo and Masa Kitchen",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.55362,
+        "lat": 12.0327
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Counter",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-nassarawa-kitchen-1",
+        "kano-nassarawa-kitchen-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "nassarawa-salon",
+      "name": "Gama Neighbourhood Salon",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.55362,
+        "lat": 12.0327
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Barber’s chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Barber’s chair",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-nassarawa-salon-1",
+        "kano-nassarawa-salon-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "nassarawa-savings",
+      "name": "Gama Savings Hall",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.55362,
+        "lat": 12.0327
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-nassarawa-savings-1",
+        "kano-nassarawa-savings-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "palace",
+      "name": "Gidan Rumfa — Exterior Gate",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.519661,
+        "lat": 11.9887528
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gate forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gate forecourt",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-palace-1",
+        "kano-palace-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": "kano-palace-gate",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "polo-ground",
+      "name": "Kano Polo Ground",
+      "kind": "gym",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5492967,
+        "lat": 12.0215466
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Field side"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Field side",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-polo-ground-1",
+        "kano-polo-ground-2"
+      ],
+      "scene": {
+        "kind": "gym",
+        "variant": "kano-polo",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "racecourse",
+      "name": "Kano Racecourse",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5538047,
+        "lat": 11.9974416
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Track rail"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Track rail",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-racecourse-1",
+        "kano-racecourse-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": "kano-racecourse",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "railway-station",
+      "name": "Kano Railway Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5394241,
+        "lat": 11.9994967
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Station forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Station forecourt",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-railway-station-1",
+        "kano-railway-station-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": "kano-railway",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "road-hub",
+      "name": "Kano Road Transport Hub",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.55362,
+        "lat": 12.0327
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Ticket hall"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Ticket hall",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-road-hub-1",
+        "kano-road-hub-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": "kano-motor-park",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "sabon-market",
+      "name": "Sabon Gari Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.53784,
+        "lat": 12.01314
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Market rows"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Market rows",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-sabon-market-1",
+        "kano-sabon-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": "kano-sabon-gari",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "stadium",
+      "name": "Sani Abacha Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5292741,
+        "lat": 11.9996585
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-stadium-1",
+        "kano-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": "kano-stadium",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    },
+    {
+      "id": "tea-garden",
+      "name": "Sabon Gari Tea and Suya Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.53824,
+        "lat": 12.0185
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Garden mats"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Garden mats",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kano-tea-garden-1",
+        "kano-tea-garden-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": "kano-tea-garden",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for kano."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "kano-airport-1",
+      "venueId": "airport",
+      "name": "Maimuna Idris",
+      "role": "Air traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-airport-2",
+      "venueId": "airport",
+      "name": "Habib Mohammed",
+      "role": "Terminal helper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-buk-new-1",
+      "venueId": "buk-new",
+      "name": "Nasiba Yusuf",
+      "role": "Coding student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-buk-new-2",
+      "venueId": "buk-new",
+      "name": "Suleiman Hassan",
+      "role": "Research learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-buk-old-1",
+      "venueId": "buk-old",
+      "name": "Zuwaira Ali",
+      "role": "Teaching student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-buk-old-2",
+      "venueId": "buk-old",
+      "name": "Abdullahi Garba",
+      "role": "Campus learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-central-mosque-1",
+      "venueId": "central-mosque",
+      "name": "Zainab Yusuf",
+      "role": "Visitor helper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-central-mosque-2",
+      "venueId": "central-mosque",
+      "name": "Usman Garba",
+      "role": "Architecture learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-community-house-1",
+      "venueId": "community-house",
+      "name": "Grace Luka",
+      "role": "Community organiser",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-community-house-2",
+      "venueId": "community-house",
+      "name": "Terseer Ior",
+      "role": "Information volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-community-polling-1",
+      "venueId": "community-polling",
+      "name": "Zainabu Mohammed",
+      "role": "Ballot helper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-community-polling-2",
+      "venueId": "community-polling",
+      "name": "Haruna Sule",
+      "role": "Community voter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-dala-hill-1",
+      "venueId": "dala-hill",
+      "name": "Rukayya Umar",
+      "role": "Hill visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-dala-hill-2",
+      "venueId": "dala-hill",
+      "name": "Yusuf Mohammed",
+      "role": "Sketching student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-dye-pits-1",
+      "venueId": "dye-pits",
+      "name": "Hauwa Salisu",
+      "role": "Dyeing learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-dye-pits-2",
+      "venueId": "dye-pits",
+      "name": "Abubakar Lawal",
+      "role": "Textile maker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-film-workshop-1",
+      "venueId": "film-workshop",
+      "name": "Tosin Adeyemi",
+      "role": "Film learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-film-workshop-2",
+      "venueId": "film-workshop",
+      "name": "Bassey Ekanem",
+      "role": "Production student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-goron-dutse-1",
+      "venueId": "goron-dutse",
+      "name": "Aisha Sule",
+      "role": "Neighbourhood walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-goron-dutse-2",
+      "venueId": "goron-dutse",
+      "name": "Aliyu Idris",
+      "role": "Landscape learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-kofar-kabuga-1",
+      "venueId": "kofar-kabuga",
+      "name": "Safiya Aminu",
+      "role": "History learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-kofar-kabuga-2",
+      "venueId": "kofar-kabuga",
+      "name": "Nura Ibrahim",
+      "role": "Neighbourhood visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-kofar-mata-1",
+      "venueId": "kofar-mata",
+      "name": "Halima Usman",
+      "role": "City walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-kofar-mata-2",
+      "venueId": "kofar-mata",
+      "name": "Ismail Adamu",
+      "role": "Textile student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-kofar-nassarawa-1",
+      "venueId": "kofar-nassarawa",
+      "name": "Binta Yakubu",
+      "role": "Gate visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-kofar-nassarawa-2",
+      "venueId": "kofar-nassarawa",
+      "name": "Bashir Suleiman",
+      "role": "Heritage student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-kurmi-market-1",
+      "venueId": "kurmi-market",
+      "name": "Hadiza Abdullahi",
+      "role": "Leather craft learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-kurmi-market-2",
+      "venueId": "kurmi-market",
+      "name": "Ibrahim Sani",
+      "role": "Market shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-kwari-market-1",
+      "venueId": "kwari-market",
+      "name": "Jamila Bello",
+      "role": "Textile trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-kwari-market-2",
+      "venueId": "kwari-market",
+      "name": "Ishaq Umar",
+      "role": "Tailoring learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-museum-1",
+      "venueId": "museum",
+      "name": "Maryam Hassan",
+      "role": "Museum visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-museum-2",
+      "venueId": "museum",
+      "name": "Musa Danjuma",
+      "role": "History student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-nassarawa-clinic-1",
+      "venueId": "nassarawa-clinic",
+      "name": "Nafisa Sule",
+      "role": "Clinic volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-nassarawa-clinic-2",
+      "venueId": "nassarawa-clinic",
+      "name": "Adam Abdullahi",
+      "role": "Nursing learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-nassarawa-garden-1",
+      "venueId": "nassarawa-garden",
+      "name": "Amina Bello",
+      "role": "Garden caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-nassarawa-garden-2",
+      "venueId": "nassarawa-garden",
+      "name": "Sani Ibrahim",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-nassarawa-kitchen-1",
+      "venueId": "nassarawa-kitchen",
+      "name": "Lubabatu Sani",
+      "role": "Kitchen cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-nassarawa-kitchen-2",
+      "venueId": "nassarawa-kitchen",
+      "name": "Mustapha Hassan",
+      "role": "Food neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-nassarawa-salon-1",
+      "venueId": "nassarawa-salon",
+      "name": "Hafsatu Garba",
+      "role": "Hair stylist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-nassarawa-salon-2",
+      "venueId": "nassarawa-salon",
+      "name": "Muktar Ali",
+      "role": "Salon neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-nassarawa-savings-1",
+      "venueId": "nassarawa-savings",
+      "name": "Bilqis Aminu",
+      "role": "Savings adviser",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-nassarawa-savings-2",
+      "venueId": "nassarawa-savings",
+      "name": "Imran Yusuf",
+      "role": "Finance learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-palace-1",
+      "venueId": "palace",
+      "name": "Fatima Musa",
+      "role": "Heritage learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-palace-2",
+      "venueId": "palace",
+      "name": "Kabiru Ali",
+      "role": "City visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-polo-ground-1",
+      "venueId": "polo-ground",
+      "name": "Hajara Umar",
+      "role": "Training partner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-polo-ground-2",
+      "venueId": "polo-ground",
+      "name": "Salisu Danjuma",
+      "role": "Polo learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-racecourse-1",
+      "venueId": "racecourse",
+      "name": "Rahma Salisu",
+      "role": "Sport visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-racecourse-2",
+      "venueId": "racecourse",
+      "name": "Bello Yakubu",
+      "role": "Event learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-railway-station-1",
+      "venueId": "railway-station",
+      "name": "Asma Abubakar",
+      "role": "Rail visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-railway-station-2",
+      "venueId": "railway-station",
+      "name": "Umar Farouk",
+      "role": "Transport learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-road-hub-1",
+      "venueId": "road-hub",
+      "name": "Sadiya Musa",
+      "role": "Route helper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-road-hub-2",
+      "venueId": "road-hub",
+      "name": "Ibrahim Dangana",
+      "role": "Waiting traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-sabon-market-1",
+      "venueId": "sabon-market",
+      "name": "Rabi Sani",
+      "role": "Produce seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-sabon-market-2",
+      "venueId": "sabon-market",
+      "name": "Mohammed Musa",
+      "role": "Market neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-stadium-1",
+      "venueId": "stadium",
+      "name": "Khadija Lawal",
+      "role": "Football supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-stadium-2",
+      "venueId": "stadium",
+      "name": "Aminu Ibrahim",
+      "role": "Sports announcer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-tea-garden-1",
+      "venueId": "tea-garden",
+      "name": "Nkechi Okafor",
+      "role": "Tea host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    },
+    {
+      "id": "kano-tea-garden-2",
+      "venueId": "tea-garden",
+      "name": "Samuel Audu",
+      "role": "Programme sound learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kano/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "airport",
+    "community-polling",
+    "nassarawa-clinic",
+    "nassarawa-kitchen",
+    "nassarawa-salon",
+    "nassarawa-savings"
+  ],
+  "preservedVenueIds": [
+    "buk-new",
+    "buk-old",
+    "central-mosque",
+    "community-house",
+    "dala-hill",
+    "dye-pits",
+    "film-workshop",
+    "goron-dutse",
+    "kofar-kabuga",
+    "kofar-mata",
+    "kofar-nassarawa",
+    "kurmi-market",
+    "kwari-market",
+    "museum",
+    "nassarawa-garden",
+    "palace",
+    "polo-ground",
+    "racecourse",
+    "railway-station",
+    "road-hub",
+    "sabon-market",
+    "stadium",
+    "tea-garden"
+  ],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "3f9cd663878f9d6e3ae2436d516ef45b47b4c6440175d5f7381ab1fdd0201843",
+    "contentSha256": "a43042624694345de7c79edc794584b1a1516ca8e149743aac63af1c58ef079f"
+  }
+}

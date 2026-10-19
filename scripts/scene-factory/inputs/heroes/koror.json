@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "koror",
+  "url": "/assets/scene-heroes/koror.glb",
+  "sha256": "373b86308b4451a747169e55e46f9b6d972f070446799b634be003e23d5cb9e1",
+  "rawBytes": 38768,
+  "brotliBytes": 27183,
+  "triangles": 1966,
+  "parts": [
+    {
+      "node": "koror",
+      "triangles": 1966,
+      "bounds": {
+        "min": [
+          -4,
+          0,
+          -2.58999991
+        ],
+        "max": [
+          3.9999999649159994,
+          2.0343038426319997,
+          2.5900037296159995
+        ]
+      },
+      "footprint": [
+        -4,
+        -2.58999991,
+        3.9999999649159994,
+        2.5900037296159995
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "c0e28a21fd0b7188f63135bbfe6473d91f4af8d1b9502c788dcea12fbe10ad2c",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "koror",
+      "country": "pw",
+      "name": "M-Dock Mangrove Shoreline",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://www.palaugov.pw/wp-content/uploads/2018/07/PECI-Relocation-Project.pdf"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-final8.json#cities[city_id=koror]",
+      "sourceLicence": "unknown",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "waterfront",
+      "parameters": {
+        "width": 8.4,
+        "depth": 5.2,
+        "height": 2.3,
+        "seed": 18124,
+        "palette": [
+          "#b8ada0",
+          "#686f72",
+          "#71817a",
+          "#9c8e7b",
+          "#486e83",
+          "#899fa7",
+          "#b8cbd0",
+          "#39494f"
+        ],
+        "composition": "open-lagoon"
+      },
+      "evidence": "A Republic of Palau-hosted environmental assessment places an existing mangrove-forest area and man-made shoreline at M-Dock in Medalaii Hamlet, Koror State. This is a Koror-local shoreline feature rather than an offshore Rock Islands substitute. Original schematic fragment of the sourced feature class. Palette, contour, tree count, spacing and dimensions are art direction, not surveyed shape, species identification or measured geography. No current access is certified. Mangrove roots are supported as a habitat motif; the original open-water contour is not a mapped lagoon or the full shoreline.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

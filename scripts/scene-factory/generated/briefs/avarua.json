@@ -1,0 +1,1913 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "avarua",
+    "name": "Avarua",
+    "state": {
+      "id": "ck-avarua",
+      "name": "Avarua"
+    },
+    "country": {
+      "id": "ck",
+      "name": "Cook Islands"
+    },
+    "point": {
+      "lon": -159.7708145,
+      "lat": -21.2074736
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/australia-oceania/cook-islands-261011.osm.pbf",
+      "https://ourairports.com/airports/NCRG/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/avarua/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/avarua/facts.ts",
+        "sha256": "dd3a708c7dfff71008c90fc71e5b515b55a3e7b0ffaf22942dd7038099617596"
+      },
+      {
+        "path": "src/game/cities/avarua/index.ts",
+        "sha256": "76f135c9882c04482efbfa0349a746509a16f00c7d367011cbcf10d01f5a22b2"
+      },
+      {
+        "path": "src/game/cities/avarua/places.ts",
+        "sha256": "69732458d35d805f68522f9fa098a2a564e291c3edb924cbf373b4c1284270ca"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue avarua-quiet-reflection has no mapped place source record.",
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "avarua-airport-avarua-airport",
+      "name": "Rarotonga International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.806,
+        "lat": -21.2027
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-airport-avarua-airport-1",
+        "avarua-avarua-airport-avarua-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "avarua-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-clinic",
+      "name": "Rarotonga Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.819982,
+        "lat": -21.212023
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-clinic-1",
+        "avarua-avarua-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/198974940"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q99521541"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-community-notices",
+      "name": "Infrastructure Cook Islands",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.828836,
+        "lat": -21.219923
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-community-notices-1",
+        "avarua-avarua-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4682743570"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-community-voting-game",
+      "name": "Parliament of the Cook Islands",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.806211,
+        "lat": -21.200569
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-community-voting-game-1",
+        "avarua-avarua-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/207000165"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-community-workshop",
+      "name": "Takamoa Theological College",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.772413,
+        "lat": -21.208949
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-community-workshop-1",
+        "avarua-avarua-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/207000207"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7677155"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-market-game",
+      "name": "Muri Night Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.732393,
+        "lat": -21.25719
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-market-game-1",
+        "avarua-avarua-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2936558679"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-meal-stop",
+      "name": "Cafe Puretu",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.743736,
+        "lat": -21.270685
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-meal-stop-1",
+        "avarua-avarua-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13521835939"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-osm-node-12237139801",
+      "name": "The Circles Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.790821,
+        "lat": -21.264178
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-osm-node-12237139801-1",
+        "avarua-avarua-osm-node-12237139801-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12237139801"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-osm-node-2100754933",
+      "name": "Whale and Wildlife Centre",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.792123,
+        "lat": -21.206356
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-osm-node-2100754933-1",
+        "avarua-avarua-osm-node-2100754933-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2100754933"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-osm-node-2111683565",
+      "name": "Clear View",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.763948,
+        "lat": -21.234727
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-osm-node-2111683565-1",
+        "avarua-avarua-osm-node-2111683565-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2111683565"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-osm-node-2148100832",
+      "name": "Good View of Needle",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.787017,
+        "lat": -21.238335
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-osm-node-2148100832-1",
+        "avarua-avarua-osm-node-2148100832-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2148100832"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-osm-node-2187931298",
+      "name": "Kaena",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.817397,
+        "lat": -21.256357
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-osm-node-2187931298-1",
+        "avarua-avarua-osm-node-2187931298-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2187931298"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-osm-node-6324434485",
+      "name": "National Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.769763,
+        "lat": -21.206789
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-osm-node-6324434485-1",
+        "avarua-avarua-osm-node-6324434485-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6324434485"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q108092245"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-osm-way-1079320783",
+      "name": "Cook Islands Tertiary and Training Institute Faculty of Hospitality and Services",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.728657,
+        "lat": -21.237622
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-osm-way-1079320783-1",
+        "avarua-avarua-osm-way-1079320783-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1079320783"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-osm-way-1079412410",
+      "name": "Muri Lagoon",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.727368,
+        "lat": -21.256001
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-osm-way-1079412410-1",
+        "avarua-avarua-osm-way-1079412410-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1079412410"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-osm-way-1081629061",
+      "name": "Nikao Social Centre",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.821578,
+        "lat": -21.206432
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-osm-way-1081629061-1",
+        "avarua-avarua-osm-way-1081629061-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1081629061"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-osm-way-196945531",
+      "name": "Punanga Nui Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.78252,
+        "lat": -21.205052
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-osm-way-196945531-1",
+        "avarua-avarua-osm-way-196945531-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/196945531"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-osm-way-201214783",
+      "name": "BCI Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.806875,
+        "lat": -21.205907
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-osm-way-201214783-1",
+        "avarua-avarua-osm-way-201214783-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/201214783"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q790237"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-osm-way-593816781",
+      "name": "CTIC Building Centre",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.786322,
+        "lat": -21.205107
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-osm-way-593816781-1",
+        "avarua-avarua-osm-way-593816781-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/593816781"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-osm-way-598519609",
+      "name": "University of Southern Pacific",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.772025,
+        "lat": -21.207673
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-osm-way-598519609-1",
+        "avarua-avarua-osm-way-598519609-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/598519609"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-quiet-reflection",
+      "name": "Quiet reflection space (game venue)",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.7717250305052,
+        "lat": -21.208372920363725
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-quiet-reflection-1",
+        "avarua-avarua-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue avarua-quiet-reflection has no mapped place source record."
+      }
+    },
+    {
+      "id": "avarua-recreation",
+      "name": "Raemaru Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.825267,
+        "lat": -21.230943
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-recreation-1",
+        "avarua-avarua-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/901216183"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "avarua-transit",
+      "name": "Cook's Corner Bus Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.777414,
+        "lat": -21.206319
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "avarua-avarua-transit-1",
+        "avarua-avarua-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/avarua/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2171160885"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -159.7708145,
+        "lat": -21.2074736
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "avarua-avarua-airport-avarua-airport-1",
+      "venueId": "avarua-airport-avarua-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-airport-avarua-airport-2",
+      "venueId": "avarua-airport-avarua-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-clinic-1",
+      "venueId": "avarua-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-clinic-2",
+      "venueId": "avarua-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-community-notices-1",
+      "venueId": "avarua-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-community-notices-2",
+      "venueId": "avarua-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-community-voting-game-1",
+      "venueId": "avarua-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-community-voting-game-2",
+      "venueId": "avarua-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-community-workshop-1",
+      "venueId": "avarua-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-community-workshop-2",
+      "venueId": "avarua-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-market-game-1",
+      "venueId": "avarua-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-market-game-2",
+      "venueId": "avarua-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-meal-stop-1",
+      "venueId": "avarua-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-meal-stop-2",
+      "venueId": "avarua-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-node-12237139801-1",
+      "venueId": "avarua-osm-node-12237139801",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-node-12237139801-2",
+      "venueId": "avarua-osm-node-12237139801",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-node-2100754933-1",
+      "venueId": "avarua-osm-node-2100754933",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-node-2100754933-2",
+      "venueId": "avarua-osm-node-2100754933",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-node-2111683565-1",
+      "venueId": "avarua-osm-node-2111683565",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-node-2111683565-2",
+      "venueId": "avarua-osm-node-2111683565",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-node-2148100832-1",
+      "venueId": "avarua-osm-node-2148100832",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-node-2148100832-2",
+      "venueId": "avarua-osm-node-2148100832",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-node-2187931298-1",
+      "venueId": "avarua-osm-node-2187931298",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-node-2187931298-2",
+      "venueId": "avarua-osm-node-2187931298",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-node-6324434485-1",
+      "venueId": "avarua-osm-node-6324434485",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-node-6324434485-2",
+      "venueId": "avarua-osm-node-6324434485",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-way-1079320783-1",
+      "venueId": "avarua-osm-way-1079320783",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-way-1079320783-2",
+      "venueId": "avarua-osm-way-1079320783",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-way-1079412410-1",
+      "venueId": "avarua-osm-way-1079412410",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-way-1079412410-2",
+      "venueId": "avarua-osm-way-1079412410",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-way-1081629061-1",
+      "venueId": "avarua-osm-way-1081629061",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-way-1081629061-2",
+      "venueId": "avarua-osm-way-1081629061",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-way-196945531-1",
+      "venueId": "avarua-osm-way-196945531",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-way-196945531-2",
+      "venueId": "avarua-osm-way-196945531",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-way-201214783-1",
+      "venueId": "avarua-osm-way-201214783",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-way-201214783-2",
+      "venueId": "avarua-osm-way-201214783",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-way-593816781-1",
+      "venueId": "avarua-osm-way-593816781",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-way-593816781-2",
+      "venueId": "avarua-osm-way-593816781",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-way-598519609-1",
+      "venueId": "avarua-osm-way-598519609",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-osm-way-598519609-2",
+      "venueId": "avarua-osm-way-598519609",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-quiet-reflection-1",
+      "venueId": "avarua-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-quiet-reflection-2",
+      "venueId": "avarua-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-recreation-1",
+      "venueId": "avarua-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-recreation-2",
+      "venueId": "avarua-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-transit-1",
+      "venueId": "avarua-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    },
+    {
+      "id": "avarua-avarua-transit-2",
+      "venueId": "avarua-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/avarua/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "avarua-airport-avarua-airport",
+    "avarua-clinic",
+    "avarua-community-notices",
+    "avarua-community-voting-game",
+    "avarua-community-workshop",
+    "avarua-market-game",
+    "avarua-meal-stop",
+    "avarua-osm-node-12237139801",
+    "avarua-osm-node-2100754933",
+    "avarua-osm-node-2111683565",
+    "avarua-osm-node-2148100832",
+    "avarua-osm-node-2187931298",
+    "avarua-osm-node-6324434485",
+    "avarua-osm-way-1079320783",
+    "avarua-osm-way-1079412410",
+    "avarua-osm-way-1081629061",
+    "avarua-osm-way-196945531",
+    "avarua-osm-way-201214783",
+    "avarua-osm-way-593816781",
+    "avarua-osm-way-598519609",
+    "avarua-quiet-reflection",
+    "avarua-recreation",
+    "avarua-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "46fb3259896e7dacb8280f0455cfd9eed2c139a8d639644953a847ea0b456f82",
+    "contentSha256": "5dd3285f09522ededa46663d0c78a4c0f2865b4e922bfa9a71c065fd819a96aa"
+  }
+}

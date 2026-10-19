@@ -1,0 +1,2135 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "pyongyang",
+    "name": "Pyongyang",
+    "state": {
+      "id": "kp-pyongyang",
+      "name": "Pyongyang"
+    },
+    "country": {
+      "id": "kp",
+      "name": "Korea (North)"
+    },
+    "point": {
+      "lon": 125.7526222,
+      "lat": 39.0196585
+    }
+  },
+  "style": {
+    "region": "east-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/north-korea-261011.osm.pbf",
+      "https://ourairports.com/airports/ZKPY/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/pyongyang/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/pyongyang/facts.ts",
+        "sha256": "2b0ee0b135e7d8b7d559db11bb56eac5e5b50896ac8b78caefd3a3dc404990bc"
+      },
+      {
+        "path": "src/game/cities/pyongyang/index.ts",
+        "sha256": "4911399a7b8ce53f7a68c9d32a68d1b7b99f043fe88e146b951e9bf1a1287e07"
+      },
+      {
+        "path": "src/game/cities/pyongyang/places.ts",
+        "sha256": "1b382cc9549be1b42e0215ceb245aed6aa6bb4d5a0c8437bc1c52f4fdd65333e"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.7526222,
+        "lat": 39.01965849999999
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "pyongyang-airport-pyongyang-airport",
+      "name": "Pyongyang Sunan International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.669998,
+        "lat": 39.224098
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-airport-pyongyang-airport-1",
+        "pyongyang-pyongyang-airport-pyongyang-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "pyongyang-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-clinic",
+      "name": "Pyongyang General Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.771519,
+        "lat": 39.029041
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-clinic-1",
+        "pyongyang-pyongyang-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/788102545"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q96400526"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-community-notices",
+      "name": "중앙검찰소",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.64546,
+        "lat": 39.017588
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-community-notices-1",
+        "pyongyang-pyongyang-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/964325525"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11271183"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-community-voting-game",
+      "name": "Pyongyang City People's Committee",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.747229,
+        "lat": 39.016675
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-community-voting-game-1",
+        "pyongyang-pyongyang-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/577053104"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16262566"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-community-workshop",
+      "name": "Kim Jong-il Political-Military University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.749684,
+        "lat": 39.139424
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-community-workshop-1",
+        "pyongyang-pyongyang-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/251911140"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q10855870"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-market-game",
+      "name": "Cheonnae Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.595944,
+        "lat": 38.943432
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-market-game-1",
+        "pyongyang-pyongyang-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1017177927"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-meal-stop",
+      "name": "Pyongyang Taedonggang Fish Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.771071,
+        "lat": 39.036607
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-meal-stop-1",
+        "pyongyang-pyongyang-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/725445234"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q116869735"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-node-3090689020",
+      "name": "Pyongyang Noodle Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.725275,
+        "lat": 38.976628
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-node-3090689020-1",
+        "pyongyang-pyongyang-osm-node-3090689020-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3090689020"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q116771189"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-relation-8310581",
+      "name": "Cheonseok Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.662428,
+        "lat": 38.995624
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-relation-8310581-1",
+        "pyongyang-pyongyang-osm-relation-8310581-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/8310581"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q116757504"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-way-1105308903",
+      "name": "Pyongyang University of Architecture",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.816787,
+        "lat": 39.022371
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-way-1105308903-1",
+        "pyongyang-pyongyang-osm-way-1105308903-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1105308903"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6808526"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-way-1112393994",
+      "name": "Sosan Football Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.691382,
+        "lat": 39.005359
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-way-1112393994-1",
+        "pyongyang-pyongyang-osm-way-1112393994-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1112393994"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7451630"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-way-184410022",
+      "name": "Kim Il-sung Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.757716,
+        "lat": 39.043811
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-way-184410022-1",
+        "pyongyang-pyongyang-osm-way-184410022-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/184410022"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1137515"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-way-23697980",
+      "name": "East Pyongyang Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.787853,
+        "lat": 39.015493
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-way-23697980-1",
+        "pyongyang-pyongyang-osm-way-23697980-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23697980"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5329205"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-way-300349055",
+      "name": "Kim Man-yu Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.785562,
+        "lat": 39.031898
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-way-300349055-1",
+        "pyongyang-pyongyang-osm-way-300349055-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/300349055"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11647845"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-way-403889844",
+      "name": "Pyongyang University of Railways",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.712671,
+        "lat": 39.061211
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-way-403889844-1",
+        "pyongyang-pyongyang-osm-way-403889844-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/403889844"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5953489"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-way-42416605",
+      "name": "Three Revolution Exhibition",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.756202,
+        "lat": 39.08053
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-way-42416605-1",
+        "pyongyang-pyongyang-osm-way-42416605-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/42416605"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17033224"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-way-427620999",
+      "name": "Pyongyang University of Science and Technology",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.704197,
+        "lat": 38.955367
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-way-427620999-1",
+        "pyongyang-pyongyang-osm-way-427620999-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/427620999"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q710126"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-way-427808616",
+      "name": "Tomb of King Tongmyong",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.922923,
+        "lat": 38.894782
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-way-427808616-1",
+        "pyongyang-pyongyang-osm-way-427808616-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/427808616"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q710524"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-way-518025824",
+      "name": "Ryongsong Residence",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.806021,
+        "lat": 39.116258
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-way-518025824-1",
+        "pyongyang-pyongyang-osm-way-518025824-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/518025824"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7385314"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-way-722791910",
+      "name": "Kumsusan Palace of the Sun",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.788878,
+        "lat": 39.063724
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-way-722791910-1",
+        "pyongyang-pyongyang-osm-way-722791910-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/722791910"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q606069"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-way-879112285",
+      "name": "Church of the Life-Giving Trinity",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.745858,
+        "lat": 38.982061
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-way-879112285-1",
+        "pyongyang-pyongyang-osm-way-879112285-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/879112285"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13188242"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-osm-way-974980487",
+      "name": "Kwangbopsa",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.82651,
+        "lat": 39.09162
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-osm-way-974980487-1",
+        "pyongyang-pyongyang-osm-way-974980487-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/974980487"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3200813"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-quiet-reflection",
+      "name": "Chilgol Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.675293,
+        "lat": 39.031885
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-quiet-reflection-1",
+        "pyongyang-pyongyang-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/832150487"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3585518"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-recreation",
+      "name": "Pyongyang Folklore Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.825204,
+        "lat": 39.060453
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-recreation-1",
+        "pyongyang-pyongyang-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1472420069"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q59344"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "pyongyang-transit",
+      "name": "Puhŭng",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 125.717726,
+        "lat": 39.008539
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "pyongyang-pyongyang-transit-1",
+        "pyongyang-pyongyang-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/pyongyang/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/532205266"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q717274"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "pyongyang-pyongyang-airport-pyongyang-airport-1",
+      "venueId": "pyongyang-airport-pyongyang-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-airport-pyongyang-airport-2",
+      "venueId": "pyongyang-airport-pyongyang-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-clinic-1",
+      "venueId": "pyongyang-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-clinic-2",
+      "venueId": "pyongyang-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-community-notices-1",
+      "venueId": "pyongyang-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-community-notices-2",
+      "venueId": "pyongyang-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-community-voting-game-1",
+      "venueId": "pyongyang-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-community-voting-game-2",
+      "venueId": "pyongyang-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-community-workshop-1",
+      "venueId": "pyongyang-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-community-workshop-2",
+      "venueId": "pyongyang-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-market-game-1",
+      "venueId": "pyongyang-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-market-game-2",
+      "venueId": "pyongyang-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-meal-stop-1",
+      "venueId": "pyongyang-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-meal-stop-2",
+      "venueId": "pyongyang-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-node-3090689020-1",
+      "venueId": "pyongyang-osm-node-3090689020",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-node-3090689020-2",
+      "venueId": "pyongyang-osm-node-3090689020",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-relation-8310581-1",
+      "venueId": "pyongyang-osm-relation-8310581",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-relation-8310581-2",
+      "venueId": "pyongyang-osm-relation-8310581",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-1105308903-1",
+      "venueId": "pyongyang-osm-way-1105308903",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-1105308903-2",
+      "venueId": "pyongyang-osm-way-1105308903",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-1112393994-1",
+      "venueId": "pyongyang-osm-way-1112393994",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-1112393994-2",
+      "venueId": "pyongyang-osm-way-1112393994",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-184410022-1",
+      "venueId": "pyongyang-osm-way-184410022",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-184410022-2",
+      "venueId": "pyongyang-osm-way-184410022",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-23697980-1",
+      "venueId": "pyongyang-osm-way-23697980",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-23697980-2",
+      "venueId": "pyongyang-osm-way-23697980",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-300349055-1",
+      "venueId": "pyongyang-osm-way-300349055",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-300349055-2",
+      "venueId": "pyongyang-osm-way-300349055",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-403889844-1",
+      "venueId": "pyongyang-osm-way-403889844",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-403889844-2",
+      "venueId": "pyongyang-osm-way-403889844",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-42416605-1",
+      "venueId": "pyongyang-osm-way-42416605",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-42416605-2",
+      "venueId": "pyongyang-osm-way-42416605",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-427620999-1",
+      "venueId": "pyongyang-osm-way-427620999",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-427620999-2",
+      "venueId": "pyongyang-osm-way-427620999",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-427808616-1",
+      "venueId": "pyongyang-osm-way-427808616",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-427808616-2",
+      "venueId": "pyongyang-osm-way-427808616",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-518025824-1",
+      "venueId": "pyongyang-osm-way-518025824",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-518025824-2",
+      "venueId": "pyongyang-osm-way-518025824",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-722791910-1",
+      "venueId": "pyongyang-osm-way-722791910",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-722791910-2",
+      "venueId": "pyongyang-osm-way-722791910",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-879112285-1",
+      "venueId": "pyongyang-osm-way-879112285",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-879112285-2",
+      "venueId": "pyongyang-osm-way-879112285",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-974980487-1",
+      "venueId": "pyongyang-osm-way-974980487",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-osm-way-974980487-2",
+      "venueId": "pyongyang-osm-way-974980487",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-quiet-reflection-1",
+      "venueId": "pyongyang-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-quiet-reflection-2",
+      "venueId": "pyongyang-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-recreation-1",
+      "venueId": "pyongyang-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-recreation-2",
+      "venueId": "pyongyang-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-transit-1",
+      "venueId": "pyongyang-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    },
+    {
+      "id": "pyongyang-pyongyang-transit-2",
+      "venueId": "pyongyang-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/pyongyang/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "pyongyang-airport-pyongyang-airport",
+    "pyongyang-clinic",
+    "pyongyang-community-notices",
+    "pyongyang-community-voting-game",
+    "pyongyang-community-workshop",
+    "pyongyang-market-game",
+    "pyongyang-meal-stop",
+    "pyongyang-osm-node-3090689020",
+    "pyongyang-osm-relation-8310581",
+    "pyongyang-osm-way-1105308903",
+    "pyongyang-osm-way-1112393994",
+    "pyongyang-osm-way-184410022",
+    "pyongyang-osm-way-23697980",
+    "pyongyang-osm-way-300349055",
+    "pyongyang-osm-way-403889844",
+    "pyongyang-osm-way-42416605",
+    "pyongyang-osm-way-427620999",
+    "pyongyang-osm-way-427808616",
+    "pyongyang-osm-way-518025824",
+    "pyongyang-osm-way-722791910",
+    "pyongyang-osm-way-879112285",
+    "pyongyang-osm-way-974980487",
+    "pyongyang-quiet-reflection",
+    "pyongyang-recreation",
+    "pyongyang-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "68e4443c14f95a181de1968ed608d32036b39111d0a8adb24fadc4620bf3567a",
+    "contentSha256": "31107f5466414239c0080fe763319fb708bc8fd0204fb26bdfb4823b89dcde4f"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "allworld-focused-check",
+  "version": 1,
+  "tests": 9,
+  "passed": 9,
+  "failed": 0,
+  "skipped": 0,
+  "durationMs": 253.087625,
+  "wrapperWallSeconds": 0.907,
+  "logSha256": "1f172bfcc2712f84b12d580fe02683109f569ba0120f0935947205390b06ba07",
+  "sources": {
+    "src/scene/recipe/prefetch.ts": "e550a3c54851b3fc87fa1fc9fa199309ff3e45c0924cd8de239408f535bb9072",
+    "src/scene/recipe/prefetch.test.ts": "a7e2af4e9d7d5de5bf104a44287dffa34111a69f910d2178148bfb1284524b93",
+    "src/app/state/idlePreload.ts": "a72c939eddb877270665e34d17bacb7e8f4be47f22ff91374c805ed06c0c1ed5",
+    "src/app/state/idlePreload.test.ts": "cd5bd2807d4a43a213c838995d3496be3c20f608ed149a9d34b016d9a4e6742e"
+  },
+  "scope": "Pure/injected queue and response stream behavior; generated registry, full typecheck, HTTP cache and actual browser remain open."
+}

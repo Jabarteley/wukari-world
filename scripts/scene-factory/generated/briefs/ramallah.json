@@ -1,0 +1,2107 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "ramallah",
+    "name": "Ramallah",
+    "state": {
+      "id": "ps-ramallah",
+      "name": "Ramallah"
+    },
+    "country": {
+      "id": "ps",
+      "name": "Palestine"
+    },
+    "point": {
+      "lon": 35.1952255,
+      "lat": 31.9030543
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/israel-and-palestine-261011.osm.pbf",
+      "https://ourairports.com/airports/ZDM/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/ramallah/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/ramallah/facts.ts",
+        "sha256": "a242ae83b650a29d518d957fdbe2cf9c14548a55f643ec36abcdd661dcaf2922"
+      },
+      {
+        "path": "src/game/cities/ramallah/index.ts",
+        "sha256": "6ebe4a7b71bd37860c7559e510450d12c104381e5ebd816a683bc393827f8bb4"
+      },
+      {
+        "path": "src/game/cities/ramallah/places.ts",
+        "sha256": "171613e4c64c92dc6fe9656a53b4409b73f36e960748a8867b9a9f68af0e7ddd"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.1952255,
+        "lat": 31.9030543
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "ramallah-airport-ramallah-airport",
+      "name": "Ramallah Heliport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.20756,
+        "lat": 31.91123
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-airport-ramallah-airport-1",
+        "ramallah-ramallah-airport-ramallah-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "ramallah-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-clinic",
+      "name": "مستشفى الشهيد ياسر عرفات الحكومي",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.173652,
+        "lat": 32.073837
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-clinic-1",
+        "ramallah-ramallah-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/684825570"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30081250"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-community-notices",
+      "name": "Palestinian Pension Authority",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.207023,
+        "lat": 31.92134
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-community-notices-1",
+        "ramallah-ramallah-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4294364595"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q98688103"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-community-voting-game",
+      "name": "Al Manara Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.204425,
+        "lat": 31.904944
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-community-voting-game-1",
+        "ramallah-ramallah-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1005833414"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4702795"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-community-workshop",
+      "name": "Birzeit University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.182041,
+        "lat": 31.959978
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-community-workshop-1",
+        "ramallah-ramallah-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/193255177"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q510029"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-market-game",
+      "name": "abu khalid market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.124302,
+        "lat": 32.017265
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-market-game-1",
+        "ramallah-ramallah-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9038402171"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-meal-stop",
+      "name": "Yafa Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.25927,
+        "lat": 31.761692
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-meal-stop-1",
+        "ramallah-ramallah-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/432261211"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-node-2675850287",
+      "name": "Tel A-Nasbe",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.216472,
+        "lat": 31.88578
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-node-2675850287-1",
+        "ramallah-ramallah-osm-node-2675850287-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2675850287"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7697543"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-node-432260801",
+      "name": "Selwad Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.262372,
+        "lat": 31.980229
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-node-432260801-1",
+        "ramallah-ramallah-osm-node-432260801-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/432260801"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-node-432262059",
+      "name": "Abo Maysar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.01956,
+        "lat": 31.945439
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-node-432262059-1",
+        "ramallah-ramallah-osm-node-432262059-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/432262059"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-node-432267397",
+      "name": "Lazarus Tomb",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.25568,
+        "lat": 31.771538
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-node-432267397-1",
+        "ramallah-ramallah-osm-node-432267397-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/432267397"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7818622"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-node-432274045",
+      "name": "Turmus Ayaa Sweet",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.287026,
+        "lat": 32.035759
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-node-432274045-1",
+        "ramallah-ramallah-osm-node-432274045-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/432274045"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-node-432281542",
+      "name": "Al Quds Open University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.199767,
+        "lat": 31.913366
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-node-432281542-1",
+        "ramallah-ramallah-osm-node-432281542-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/432281542"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1853678"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-node-432286032",
+      "name": "Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.097575,
+        "lat": 31.966559
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-node-432286032-1",
+        "ramallah-ramallah-osm-node-432286032-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/432286032"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-node-4753096643",
+      "name": "Khirbet Tel Ai",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.261228,
+        "lat": 31.916419
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-node-4753096643-1",
+        "ramallah-ramallah-osm-node-4753096643-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4753096643"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q403166"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-node-5133731942",
+      "name": "مجمع فلسطين الطبي",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.206037,
+        "lat": 31.898752
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-node-5133731942-1",
+        "ramallah-ramallah-osm-node-5133731942-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5133731942"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q42341656"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-way-253373054",
+      "name": "Istishari Arab Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.163039,
+        "lat": 31.93392
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-way-253373054-1",
+        "ramallah-ramallah-osm-way-253373054-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/253373054"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q55965644"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-way-257319379",
+      "name": "latin church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.199164,
+        "lat": 31.970594
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-way-257319379-1",
+        "ramallah-ramallah-osm-way-257319379-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/257319379"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q104683211"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-way-345024242",
+      "name": "Al-Quds University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.261014,
+        "lat": 31.755111
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-way-345024242-1",
+        "ramallah-ramallah-osm-way-345024242-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/345024242"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q310564"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-way-41819706",
+      "name": "Faisal Al-Husseini International Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.230225,
+        "lat": 31.847573
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-way-41819706-1",
+        "ramallah-ramallah-osm-way-41819706-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/41819706"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2916041"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-way-419484958",
+      "name": "Aboud Gardens",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.065054,
+        "lat": 32.017528
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-way-419484958-1",
+        "ramallah-ramallah-osm-way-419484958-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/419484958"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-osm-way-701954745",
+      "name": "Yasser Arafat",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.208863,
+        "lat": 31.91125
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-osm-way-701954745-1",
+        "ramallah-ramallah-osm-way-701954745-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/701954745"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q34211"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-quiet-reflection",
+      "name": "Basilique de la Manifestation du Seigneur",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.13526,
+        "lat": 31.840354
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-quiet-reflection-1",
+        "ramallah-ramallah-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1177037502"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1742712"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-recreation",
+      "name": "Mahmoud Darwish Museum (Al-Birweh Park)",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.191351,
+        "lat": 31.890725
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-recreation-1",
+        "ramallah-ramallah-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/231308770"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q61434689"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "ramallah-transit",
+      "name": "Ramallah Bus And Taxi Center Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.205619,
+        "lat": 31.904871
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ramallah-ramallah-transit-1",
+        "ramallah-ramallah-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ramallah/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/432275909"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "ramallah-ramallah-airport-ramallah-airport-1",
+      "venueId": "ramallah-airport-ramallah-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-airport-ramallah-airport-2",
+      "venueId": "ramallah-airport-ramallah-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-clinic-1",
+      "venueId": "ramallah-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-clinic-2",
+      "venueId": "ramallah-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-community-notices-1",
+      "venueId": "ramallah-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-community-notices-2",
+      "venueId": "ramallah-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-community-voting-game-1",
+      "venueId": "ramallah-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-community-voting-game-2",
+      "venueId": "ramallah-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-community-workshop-1",
+      "venueId": "ramallah-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-community-workshop-2",
+      "venueId": "ramallah-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-market-game-1",
+      "venueId": "ramallah-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-market-game-2",
+      "venueId": "ramallah-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-meal-stop-1",
+      "venueId": "ramallah-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-meal-stop-2",
+      "venueId": "ramallah-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-2675850287-1",
+      "venueId": "ramallah-osm-node-2675850287",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-2675850287-2",
+      "venueId": "ramallah-osm-node-2675850287",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-432260801-1",
+      "venueId": "ramallah-osm-node-432260801",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-432260801-2",
+      "venueId": "ramallah-osm-node-432260801",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-432262059-1",
+      "venueId": "ramallah-osm-node-432262059",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-432262059-2",
+      "venueId": "ramallah-osm-node-432262059",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-432267397-1",
+      "venueId": "ramallah-osm-node-432267397",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-432267397-2",
+      "venueId": "ramallah-osm-node-432267397",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-432274045-1",
+      "venueId": "ramallah-osm-node-432274045",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-432274045-2",
+      "venueId": "ramallah-osm-node-432274045",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-432281542-1",
+      "venueId": "ramallah-osm-node-432281542",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-432281542-2",
+      "venueId": "ramallah-osm-node-432281542",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-432286032-1",
+      "venueId": "ramallah-osm-node-432286032",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-432286032-2",
+      "venueId": "ramallah-osm-node-432286032",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-4753096643-1",
+      "venueId": "ramallah-osm-node-4753096643",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-4753096643-2",
+      "venueId": "ramallah-osm-node-4753096643",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-5133731942-1",
+      "venueId": "ramallah-osm-node-5133731942",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-node-5133731942-2",
+      "venueId": "ramallah-osm-node-5133731942",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-way-253373054-1",
+      "venueId": "ramallah-osm-way-253373054",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-way-253373054-2",
+      "venueId": "ramallah-osm-way-253373054",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-way-257319379-1",
+      "venueId": "ramallah-osm-way-257319379",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-way-257319379-2",
+      "venueId": "ramallah-osm-way-257319379",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-way-345024242-1",
+      "venueId": "ramallah-osm-way-345024242",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-way-345024242-2",
+      "venueId": "ramallah-osm-way-345024242",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-way-41819706-1",
+      "venueId": "ramallah-osm-way-41819706",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-way-41819706-2",
+      "venueId": "ramallah-osm-way-41819706",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-way-419484958-1",
+      "venueId": "ramallah-osm-way-419484958",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-way-419484958-2",
+      "venueId": "ramallah-osm-way-419484958",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-way-701954745-1",
+      "venueId": "ramallah-osm-way-701954745",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-osm-way-701954745-2",
+      "venueId": "ramallah-osm-way-701954745",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-quiet-reflection-1",
+      "venueId": "ramallah-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-quiet-reflection-2",
+      "venueId": "ramallah-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-recreation-1",
+      "venueId": "ramallah-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-recreation-2",
+      "venueId": "ramallah-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-transit-1",
+      "venueId": "ramallah-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    },
+    {
+      "id": "ramallah-ramallah-transit-2",
+      "venueId": "ramallah-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ramallah/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "ramallah-airport-ramallah-airport",
+    "ramallah-clinic",
+    "ramallah-community-notices",
+    "ramallah-community-voting-game",
+    "ramallah-community-workshop",
+    "ramallah-market-game",
+    "ramallah-meal-stop",
+    "ramallah-osm-node-2675850287",
+    "ramallah-osm-node-432260801",
+    "ramallah-osm-node-432262059",
+    "ramallah-osm-node-432267397",
+    "ramallah-osm-node-432274045",
+    "ramallah-osm-node-432281542",
+    "ramallah-osm-node-432286032",
+    "ramallah-osm-node-4753096643",
+    "ramallah-osm-node-5133731942",
+    "ramallah-osm-way-253373054",
+    "ramallah-osm-way-257319379",
+    "ramallah-osm-way-345024242",
+    "ramallah-osm-way-41819706",
+    "ramallah-osm-way-419484958",
+    "ramallah-osm-way-701954745",
+    "ramallah-quiet-reflection",
+    "ramallah-recreation",
+    "ramallah-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "4812b64c48b3494820ae6095da9d28a984a747687338b01920c1b18b640bd5b7",
+    "contentSha256": "32f135d164be538e6c2d81b4f07b81f4756a71cbd305cac8ced26f5db4752887"
+  }
+}

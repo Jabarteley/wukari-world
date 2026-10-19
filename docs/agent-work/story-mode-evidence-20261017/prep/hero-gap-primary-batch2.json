@@ -1,0 +1,1333 @@
+{
+  "schema_version": 1,
+  "purpose": "Primary-source gap triage batch 2 for parent review only; source leads are not accepted factual production inputs or asset approvals.",
+  "created_on": "2026-10-18",
+  "selection_policy": "The 42 genuine source-gap rows following batch 1, in exact hero-source-readiness queue order. One or more bounded targeted searches were used per thematic group; weak, offshore, regional, or tertiary-only leads remain unresolved or explicitly qualified.",
+  "source_pins_sha256": {
+    "docs/agent-work/story-mode-evidence-20261017/prep/hero-source-readiness-20261018.json": "19e904291c1fc81f981caeade4c2875683574797586685f4f0d7944794683d65",
+    "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch1.json": "1e20dfcf2016f99fd78871deda48df711fe5ecdb77b67103d25736347f670a78",
+    "docs/agent-work/story-mode-evidence-20261017/prep/scene-brief-inventory.json": "711719062e3dea27a9920ba82bed654229c03012dfffcb7ebef6c89bdc8a257b"
+  },
+  "coverage": {
+    "selected_city_count": 42,
+    "source_lead_count": 35,
+    "unresolved_count": 7,
+    "sequence_matches_readiness_after_batch1": true,
+    "coordinates_copied_from_scene_inventory": true,
+    "candidate_review_only": true
+  },
+  "rights_boundary": "Factual source leads do not grant permission to reuse source text, images, maps, or geometry. No licence, corporate status, asset rights, geometry rights, or production approval is claimed.",
+  "cities": [
+    {
+      "city_id": "kuala-lumpur",
+      "city_name": "Kuala Lumpur",
+      "country_iso": "my",
+      "coordinates": {
+        "lon": 101.6942371,
+        "lat": 3.1516964
+      },
+      "queue_position": 13,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Kuala Lumpur Forest Eco Park",
+        "category": "public natural feature",
+        "fact_paraphrase": "A natural urban forest reserve/eco-park is identified in Kuala Lumpur; page places it 3 km from the city centre.",
+        "source": {
+          "url": "https://www.forestry.gov.my/index.php/en/wp-kuala-lumpur/taman-eko-rimba-kuala-lumpur",
+          "title": "Taman Eko Rimba Kuala Lumpur",
+          "publisher": "Forestry Department of Peninsular Malaysia",
+          "page_locator": "Department page; identifies the Kuala Lumpur Forest Eco Park in Bukit Nanas Forest Reserve",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "kuwait-city",
+      "city_name": "Kuwait City",
+      "country_iso": "kw",
+      "coordinates": {
+        "lon": 47.9734174,
+        "lat": 29.3796532
+      },
+      "queue_position": 14,
+      "status": "unresolved-after-bounded-search",
+      "candidate": null,
+      "gap_reason": "No exact city-local primary-source feature was established within this bounded pass; do not infer a landmark from a broad Kuwait tourism reference.",
+      "research_limit": "Targeted primary-source searches were bounded; unresolved means this evidence batch does not establish a candidate, not that none exists."
+    },
+    {
+      "city_id": "manama",
+      "city_name": "Manama",
+      "country_iso": "bh",
+      "coordinates": {
+        "lon": 50.5822436,
+        "lat": 26.2235041
+      },
+      "queue_position": 15,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Bab Al Bahrain",
+        "category": "monument/market gateway",
+        "fact_paraphrase": "The authority places the named historic gate at the entrance of Manama Suq, Manama.",
+        "source": {
+          "url": "https://culture.gov.bh/en/visitingbahrain/CulturalTourism/Destinations/Name%2C10129%2Cen.php",
+          "title": "Bab Al Bahrain",
+          "publisher": "Bahrain Authority for Culture and Antiquities",
+          "page_locator": "Destination page; Bab Al Bahrain / Manama Suq",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "podgorica",
+      "city_name": "Podgorica",
+      "country_iso": "me",
+      "coordinates": {
+        "lon": 19.2621081,
+        "lat": 42.4415238
+      },
+      "queue_position": 16,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Gorica Hill",
+        "category": "natural feature",
+        "fact_paraphrase": "The city tourism organization identifies Gorica Hill as a natural monument in central Podgorica.",
+        "source": {
+          "url": "https://podgorica.travel/wp-content/uploads/2025/10/MICE-2025-Online.pdf",
+          "title": "Podgorica MICE 2025",
+          "publisher": "Tourism Organization of Podgorica",
+          "page_locator": "PDF; Gorica Hill section, page locator not reliably indexed",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "riyadh",
+      "city_name": "Riyadh",
+      "country_iso": "sa",
+      "coordinates": {
+        "lon": 46.7160104,
+        "lat": 24.638916
+      },
+      "queue_position": 17,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Al Masmak Palace",
+        "category": "monument/fortress",
+        "fact_paraphrase": "Official tourism page identifies Al Masmak Palace as an ancient palace in Riyadh.",
+        "source": {
+          "url": "https://www.visitsaudi.com/en/see/highlights/Al-Masmak-Fortress",
+          "title": "Al Masmak Fortress",
+          "publisher": "Saudi Tourism Authority / Visit Saudi",
+          "page_locator": "Destination page; Al Masmak Fortress",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "vientiane",
+      "city_name": "Vientiane",
+      "country_iso": "la",
+      "coordinates": {
+        "lon": 102.6133707,
+        "lat": 17.9640988
+      },
+      "queue_position": 18,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Pha That Luang",
+        "category": "monument",
+        "fact_paraphrase": "State news agency describes Pha That Luang as a Buddhist monument and national symbol in Vientiane.",
+        "source": {
+          "url": "https://kpl.gov.la/EN/Detail.aspx?id=106044",
+          "title": "Pha That Luang identified as national symbol",
+          "publisher": "Lao News Agency (KPL), state news agency",
+          "page_locator": "Article dated 2026-08-27; national monument / Vientiane attractions",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "yerevan",
+      "city_name": "Yerevan",
+      "country_iso": "am",
+      "coordinates": {
+        "lon": 44.5126233,
+        "lat": 40.1777112
+      },
+      "queue_position": 19,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Cascade Complex",
+        "category": "public architectural landmark",
+        "fact_paraphrase": "Official tourism portal lists Cascade Complex among Yerevan places to visit.",
+        "source": {
+          "url": "https://armenia.travel/places-to-go/yerevan/",
+          "title": "Yerevan",
+          "publisher": "Armenia Travel, official tourism portal",
+          "page_locator": "Yerevan destination page; Cascade Complex listing",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "damascus",
+      "city_name": "Damascus",
+      "country_iso": "sy",
+      "coordinates": {
+        "lon": 36.3095814,
+        "lat": 33.5130695
+      },
+      "queue_position": 20,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Great Mosque of the Umayyads",
+        "category": "monument",
+        "fact_paraphrase": "UNESCO identifies the Umayyad Mosque as a major monument in the Ancient City of Damascus.",
+        "source": {
+          "url": "https://whc.unesco.org/en/list/20",
+          "title": "Ancient City of Damascus",
+          "publisher": "UNESCO World Heritage Centre",
+          "page_locator": "World Heritage property page; Great Mosque of Umayyads description",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "panama-city",
+      "city_name": "Panama City",
+      "country_iso": "pa",
+      "coordinates": {
+        "lon": -79.5341802,
+        "lat": 8.9714493
+      },
+      "queue_position": 21,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Iglesia Metropolitana Santa María la Antigua",
+        "category": "monument",
+        "fact_paraphrase": "The Ministry’s heritage register locates the historic Casco Antiguo in Panama City and lists the Metropolitan Cathedral among its monuments.",
+        "source": {
+          "url": "https://sicultura.gob.pa/espacios-culturales/monumentos-sitios-declarados-patrimonio/conjunto-monumental-historico-del-casco-antiguo-de-la-ciudad-de-panama",
+          "title": "Conjunto Monumental Histórico del Casco Antiguo de la Ciudad de Panamá",
+          "publisher": "Ministry of Culture of Panama (MiCultura), SICultura",
+          "page_locator": "Heritage register page; lists San Felipe and named monuments including the cathedral",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "paramaribo",
+      "city_name": "Paramaribo",
+      "country_iso": "sr",
+      "coordinates": {
+        "lon": -55.1703941,
+        "lat": 5.8247628
+      },
+      "queue_position": 22,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Fort Zeelandia",
+        "category": "monument/fort",
+        "fact_paraphrase": "UNESCO lists Fort Zeelandia among named historic elements of Paramaribo’s inner city.",
+        "source": {
+          "url": "https://whc.unesco.org/en/list/940/",
+          "title": "Historic Inner City of Paramaribo",
+          "publisher": "UNESCO World Heritage Centre",
+          "page_locator": "World Heritage property page; Fort Zeelandia site element",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "prague",
+      "city_name": "Prague",
+      "country_iso": "cz",
+      "coordinates": {
+        "lon": 14.4212535,
+        "lat": 50.0874654
+      },
+      "queue_position": 23,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Charles Bridge",
+        "category": "monument/bridge",
+        "fact_paraphrase": "Official city tourism page dates the start of bridge construction to 1357 and completion to 1402.",
+        "source": {
+          "url": "https://prague.eu/en/objevujte/charles-bridge-karluv-most/",
+          "title": "Charles Bridge (Karlův most)",
+          "publisher": "Prague City Tourism",
+          "page_locator": "City tourism entry; history and construction period",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": {
+          "start_year": 1357,
+          "completion_year": 1402
+        },
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "delhi",
+      "city_name": "Delhi",
+      "country_iso": "in",
+      "coordinates": {
+        "lon": 77.2169781,
+        "lat": 28.6664535
+      },
+      "queue_position": 24,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Red Fort",
+        "category": "monument/fort",
+        "fact_paraphrase": "ASI’s protected-monuments list identifies Red Fort and records Red Fort, Delhi as its locality.",
+        "source": {
+          "url": "https://asi.nic.in/pdf/CPM_List.pdf",
+          "title": "Centrally Protected Monuments/Sites: State-wise and Circle-wise",
+          "publisher": "Archaeological Survey of India",
+          "page_locator": "Protected monuments list; Delhi Circle, Red Fort locality",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "kingstown",
+      "city_name": "Kingstown",
+      "country_iso": "vc",
+      "coordinates": {
+        "lon": -61.2279621,
+        "lat": 13.1561864
+      },
+      "queue_position": 25,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "St Vincent Botanic Gardens",
+        "category": "public garden/natural feature",
+        "fact_paraphrase": "The ministry identifies the Botanic Gardens in New Montrose and gives a Kingstown address; this is an urban-edge garden, not a claim that it lies at the centrepoint.",
+        "source": {
+          "url": "https://tourism.gov.vc/tourism/index.php/12-projects/projects/botanic-gardens?start=3",
+          "title": "Botanic Gardens",
+          "publisher": "Ministry of Tourism, St Vincent and the Grenadines",
+          "page_locator": "Government tourism page; location and contact address",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "athens",
+      "city_name": "Athens",
+      "country_iso": "gr",
+      "coordinates": {
+        "lon": 23.7348324,
+        "lat": 37.9755648
+      },
+      "queue_position": 26,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Acropolis of Athens",
+        "category": "monument/archaeological site",
+        "fact_paraphrase": "The Ministry’s archaeological site record names the Acropolis of Athens.",
+        "source": {
+          "url": "https://odysseus.culture.gr/h/3/gh355.jsp?obj_id=28548",
+          "title": "Acropolis of Athens",
+          "publisher": "Hellenic Ministry of Culture, Odysseus portal",
+          "page_locator": "Archaeological site record",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "baghdad",
+      "city_name": "Baghdad",
+      "country_iso": "iq",
+      "coordinates": {
+        "lon": 44.3872213,
+        "lat": 33.3061701
+      },
+      "queue_position": 27,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Al-Mutanabbi Street",
+        "category": "public market/street",
+        "fact_paraphrase": "The authority locates Al-Mutanabbi Street in old Baghdad and describes its book-market/cultural identity.",
+        "source": {
+          "url": "https://www.tourism.gov.iq/en/posts/1a38a5c5-c2ef-46fd-b6a0-d2a119b761aa",
+          "title": "Al-Mutanabbi Street",
+          "publisher": "Iraqi Tourism Authority",
+          "page_locator": "Tourism page; old Baghdad location and book-market identity",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "brussels",
+      "city_name": "Brussels",
+      "country_iso": "be",
+      "coordinates": {
+        "lon": 4.352493,
+        "lat": 50.8467372
+      },
+      "queue_position": 28,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Grand-Place",
+        "category": "public market square",
+        "fact_paraphrase": "The official city destination portal identifies Grand-Place in Brussels and its historical market-square role.",
+        "source": {
+          "url": "https://www.visit.brussels/en/visitors/venue-details.3743",
+          "title": "Grand-Place",
+          "publisher": "visit.brussels, official destination portal",
+          "page_locator": "Venue page; historical square and market activity",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "new-york",
+      "city_name": "New York",
+      "country_iso": "us",
+      "coordinates": {
+        "lon": -74.0060152,
+        "lat": 40.7127281
+      },
+      "queue_position": 29,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Central Park",
+        "category": "public park/natural feature",
+        "fact_paraphrase": "NPS identifies Central Park as an urban park in New York City.",
+        "source": {
+          "url": "https://www.nps.gov/places/central-park.htm",
+          "title": "Central Park",
+          "publisher": "National Park Service, U.S. Department of the Interior",
+          "page_locator": "NPS places page; New York City urban park",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "sydney",
+      "city_name": "Sydney",
+      "country_iso": "au",
+      "coordinates": {
+        "lon": 151.2082848,
+        "lat": -33.8698439
+      },
+      "queue_position": 30,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Royal Botanic Garden Sydney",
+        "category": "public garden/natural feature",
+        "fact_paraphrase": "The managing agency identifies the Royal Botanic Garden Sydney and states it was established in 1816.",
+        "source": {
+          "url": "https://www.botanicgardens.org.au/about-us",
+          "title": "About us",
+          "publisher": "Botanic Gardens of Sydney, NSW Government agency",
+          "page_locator": "Royal Botanic Garden Sydney section",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": {
+          "established_year": 1816
+        },
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "palikir",
+      "city_name": "Palikir",
+      "country_iso": "fm",
+      "coordinates": {
+        "lon": 158.1627143,
+        "lat": 6.920744
+      },
+      "queue_position": 31,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Palikir Capitol Complex",
+        "category": "government complex/architecture",
+        "fact_paraphrase": "The FSM government PIO says its office is located in the Palikir Capitol Complex. This supports complex identity/location, not a particular designed building.",
+        "source": {
+          "url": "https://personnel.gov.fm/disclaimer/",
+          "title": "Disclaimer",
+          "publisher": "FSM Public Information Office, Office of the President",
+          "page_locator": "Official page; identifies Palikir Capitol Complex location",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "qualified/limited: source supports locality or site broadly; exact feature/access and suitability need parent review",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "toronto",
+      "city_name": "Toronto",
+      "country_iso": "ca",
+      "coordinates": {
+        "lon": -79.3839347,
+        "lat": 43.6534817
+      },
+      "queue_position": 32,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "CN Tower",
+        "category": "public landmark/tower",
+        "fact_paraphrase": "The operator places the Tower in downtown Toronto and reports construction beginning in 1973 and public opening in 1976.",
+        "source": {
+          "url": "https://www.cntower.ca/history",
+          "title": "History",
+          "publisher": "CN Tower (official operator/source owner)",
+          "page_locator": "History page; downtown Toronto site and construction dates",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": {
+          "construction_start_year": 1973,
+          "opened_year": 1976
+        },
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "jakarta",
+      "city_name": "Jakarta",
+      "country_iso": "id",
+      "coordinates": {
+        "lon": 106.827168,
+        "lat": -6.1754049
+      },
+      "queue_position": 33,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Monumen Nasional (Monas)",
+        "category": "monument",
+        "fact_paraphrase": "Jakarta’s official portal locates Monas at Jalan Tugu Monas in Central Jakarta and calls it a monument.",
+        "source": {
+          "url": "https://www.jakarta.go.id/wisata-bersejarah",
+          "title": "Wisata Bersejarah",
+          "publisher": "Jakarta Provincial Government",
+          "page_locator": "Historical tourism page; Monas section",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": {
+          "construction_start_year": 1961
+        },
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "funafuti",
+      "city_name": "Funafuti",
+      "country_iso": "tv",
+      "coordinates": {
+        "lon": 179.1982548,
+        "lat": -8.5199633
+      },
+      "queue_position": 34,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "David’s Drill",
+        "category": "historic site/landmark",
+        "fact_paraphrase": "The government tourism page says the historic drilling site called David’s Drill can still be seen in Fongafale village.",
+        "source": {
+          "url": "https://tourism.gov.tv/womens-handicraft-centre/",
+          "title": "Women’s Handicraft Centre / Funafuti information",
+          "publisher": "Ministry of Tourism, Government of Tuvalu",
+          "page_locator": "Attraction/information page; David’s Drill / Fongafale village section",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "vatican-city",
+      "city_name": "Vatican City",
+      "country_iso": "va",
+      "coordinates": {
+        "lon": 12.4528349,
+        "lat": 41.9034912
+      },
+      "queue_position": 35,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Saint Peter’s Basilica",
+        "category": "public religious architecture",
+        "fact_paraphrase": "The Vatican’s official basilica site identifies the Basilica of Saint Peter in Vatican City.",
+        "source": {
+          "url": "https://basilicas.vatican.va/en/basilica-san-pietro.html",
+          "title": "Saint Peter’s Basilica",
+          "publisher": "Fabbrica di San Pietro / Vatican official site",
+          "page_locator": "Basilica page",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "gustavia",
+      "city_name": "Gustavia",
+      "country_iso": "bl",
+      "coordinates": {
+        "lon": -62.8508372,
+        "lat": 17.8957043
+      },
+      "queue_position": 36,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Governors’ House in Gustavia",
+        "category": "historic building/monument",
+        "fact_paraphrase": "The territorial tourism committee identifies the Governors’ House in Gustavia and notes its historic-monument listing; the architectural description does not establish reuse rights.",
+        "source": {
+          "url": "https://www.saintbarth-tourisme.com/discover",
+          "title": "Discover",
+          "publisher": "Saint Barthélemy Tourism Committee (CTTSB)",
+          "page_locator": "Governors’ House section; states building is in Gustavia and listed as historic monument since 1995",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": {
+          "built_year_approx": 1780
+        },
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "pristina",
+      "city_name": "Pristina",
+      "country_iso": "xk",
+      "coordinates": {
+        "lon": 21.1640849,
+        "lat": 42.6638771
+      },
+      "queue_position": 37,
+      "status": "unresolved-after-bounded-search",
+      "candidate": null,
+      "gap_reason": "The surfaced map source was a non-governmental informational map; no sufficiently direct municipal/heritage primary page was established.",
+      "research_limit": "Targeted primary-source searches were bounded; unresolved means this evidence batch does not establish a candidate, not that none exists."
+    },
+    {
+      "city_id": "stanley",
+      "city_name": "Stanley",
+      "country_iso": "fk",
+      "coordinates": {
+        "lon": -57.856525,
+        "lat": -51.6930616
+      },
+      "queue_position": 38,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Christ Church Cathedral",
+        "category": "monument/religious architecture",
+        "fact_paraphrase": "The archive-hosted historical brochure describes the cathedral’s foundation stone in Stanley in 1890 and consecration in 1892.",
+        "source": {
+          "url": "https://www.nationalarchives.gov.fk/jdownloads/People/Culture%20and%20Early%20History/R-CUL-ANN-1-4.%20Heritage%20Year%201992.%20Souvenir%20Brochure.pdf",
+          "title": "Heritage Year 1992 souvenir brochure",
+          "publisher": "Falkland Islands National Archives",
+          "page_locator": "PDF, page 8; Cathedral history and image caption",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": {
+          "foundation_year": 1890,
+          "consecration_year": 1892
+        },
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "the-valley",
+      "city_name": "The Valley",
+      "country_iso": "ai",
+      "coordinates": {
+        "lon": -63.0517759,
+        "lat": 18.2145861
+      },
+      "queue_position": 39,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Wallblake House",
+        "category": "historic building",
+        "fact_paraphrase": "Government tourism plan identifies Wallblake House in The Valley and says it was built in 1787.",
+        "source": {
+          "url": "https://gov.ai/document/Final_STMP2.pdf",
+          "title": "Sustainable Tourism Master Plan 2010–2020",
+          "publisher": "Government of Anguilla",
+          "page_locator": "Section 10.3.3, p. 91",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": {
+          "built_year": 1787
+        },
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "willemstad",
+      "city_name": "Willemstad",
+      "country_iso": "cw",
+      "coordinates": {
+        "lon": -68.9351307,
+        "lat": 12.1066695
+      },
+      "queue_position": 40,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Queen Emma Bridge",
+        "category": "public bridge/landmark",
+        "fact_paraphrase": "The official tourism portal describes the bridges as spanning historic Willemstad waterways and names the Queen Emma Bridge.",
+        "source": {
+          "url": "https://www.curacao.com/pt/article/bridges",
+          "title": "Bridges",
+          "publisher": "Curaçao tourism portal",
+          "page_locator": "Queen Emma Bridge section",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "hagatna",
+      "city_name": "Hagåtña",
+      "country_iso": "gu",
+      "coordinates": {
+        "lon": 144.7516191,
+        "lat": 13.4748148
+      },
+      "queue_position": 41,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Senator Angel LG Santos Memorial Park",
+        "category": "public memorial park/monument",
+        "fact_paraphrase": "The bureau itinerary calls the memorial park located in the heart of Hagåtña and describes its cultural stone pillars.",
+        "source": {
+          "url": "https://www.guamvisitorsbureau.com/docs/resources/press-kits/guam-sample-itineraries/tour-series-island-guam.pdf",
+          "title": "Hafa Adai Tour Series 1: Guam Island Tour",
+          "publisher": "Guam Visitors Bureau",
+          "page_locator": "PDF, itinerary stop 6",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "hamilton",
+      "city_name": "Hamilton",
+      "country_iso": "bm",
+      "coordinates": {
+        "lon": -64.7853167,
+        "lat": 32.2942679
+      },
+      "queue_position": 42,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Cenotaph at Cabinet Office",
+        "category": "public monument",
+        "fact_paraphrase": "Government page locates the Cabinet Office in Hamilton and identifies its grounds Cenotaph as a Bermuda war memorial.",
+        "source": {
+          "url": "https://www.gov.bm/articles/cabinet",
+          "title": "The Cabinet",
+          "publisher": "Government of Bermuda",
+          "page_locator": "Cabinet Office grounds section",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "kingston-nf",
+      "city_name": "Kingston",
+      "country_iso": "nf",
+      "coordinates": {
+        "lon": 167.9595733,
+        "lat": -29.0563564
+      },
+      "queue_position": 43,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Kingston and Arthur’s Vale Historic Area",
+        "category": "historic area/architecture",
+        "fact_paraphrase": "UNESCO map table lists the Kingston and Arthur’s Vale Historic Area on Norfolk Island with coordinates in the Kingston locality.",
+        "source": {
+          "url": "https://whc.unesco.org/en/list/1306/maps/",
+          "title": "Australian Convict Sites: map data",
+          "publisher": "UNESCO World Heritage Centre",
+          "page_locator": "Geographical data table; property 1306-001",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "oranjestad",
+      "city_name": "Oranjestad",
+      "country_iso": "aw",
+      "coordinates": {
+        "lon": -70.0371329,
+        "lat": 12.5201024
+      },
+      "queue_position": 44,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Fort Zoutman",
+        "category": "monument/fort",
+        "fact_paraphrase": "The tourism portal gives an Oranjestad address and says the fort was completed in 1798.",
+        "source": {
+          "url": "https://www.aruba.com/uk/explore/fort-zoutman-historical-museum",
+          "title": "Fort Zoutman Historical Museum",
+          "publisher": "Aruba tourism portal (source owner / destination organization)",
+          "page_locator": "Fort Zoutman entry; address and history",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": {
+          "completed_year": 1798
+        },
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "brades",
+      "city_name": "Brades",
+      "country_iso": "ms",
+      "coordinates": {
+        "lon": -62.2099434,
+        "lat": 16.7898749
+      },
+      "queue_position": 45,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Government Headquarters, Brades",
+        "category": "government complex/architecture",
+        "fact_paraphrase": "Government department page gives Government Headquarters, Brades as the department location. Supports a civic complex location, not a named façade or distinct historic building.",
+        "source": {
+          "url": "https://www.gov.ms/government/non-ministerial-departments/cabinet-secretariat/",
+          "title": "Cabinet Secretariat",
+          "publisher": "Government of Montserrat",
+          "page_locator": "Contact address / office location",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "qualified/limited: source supports locality or site broadly; exact feature/access and suitability need parent review",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "villa-las-estrellas",
+      "city_name": "Villa Las Estrellas",
+      "country_iso": "aq",
+      "coordinates": {
+        "lon": -58.965369,
+        "lat": -62.2004259
+      },
+      "queue_position": 46,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Villa Las Estrellas settlement",
+        "category": "research settlement; candidate needs exact feature",
+        "fact_paraphrase": "Chilean defence publication uses the named settlement Villa Las Estrellas for the Antarctic base context; location-specific public buildings/landforms are not identified in the extracted passage.",
+        "source": {
+          "url": "https://www.ssdefensa.gov.cl/media/2025/01/2017-libro-de-la-defensa-nacional-de-chile.pdf",
+          "title": "Libro de la Defensa Nacional de Chile",
+          "publisher": "Ministry of National Defense of Chile",
+          "page_locator": "Antarctic operations section; Villa Las Estrellas name appears in official text",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "qualified/limited: source supports locality or site broadly; exact feature/access and suitability need parent review",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "jamestown",
+      "city_name": "Jamestown",
+      "country_iso": "sh",
+      "coordinates": {
+        "lon": -5.7160872,
+        "lat": -15.9277296
+      },
+      "queue_position": 47,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Jacob’s Ladder",
+        "category": "public heritage feature/stair",
+        "fact_paraphrase": "Research report identifies Jacob’s Ladder as a prominent feature in Jamestown. This is credible location evidence but not an official site-owner record; parent should decide whether this meets primary-source policy.",
+        "source": {
+          "url": "https://data.jncc.gov.uk/data/509a16cf-156d-4c5d-bde7-5a57292999e4/ot-nca-sup-sat-31-sth-apr2019.pdf",
+          "title": "South Atlantic Natural Capital Project: Cultural ecosystem services in St Helena",
+          "publisher": "Joint Nature Conservation Committee / academic research report",
+          "page_locator": "Heritage section, figure/text discussing Jamestown",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "qualified/limited: source supports locality or site broadly; exact feature/access and suitability need parent review",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "mata-utu",
+      "city_name": "Mata Utu",
+      "country_iso": "wf",
+      "coordinates": {
+        "lon": -176.1740224,
+        "lat": -13.2820419
+      },
+      "queue_position": 48,
+      "status": "unresolved-after-bounded-search",
+      "candidate": null,
+      "gap_reason": "Search results surfaced the cathedral through tertiary material only; no official local/government/heritage source was confirmed.",
+      "research_limit": "Targeted primary-source searches were bounded; unresolved means this evidence batch does not establish a candidate, not that none exists."
+    },
+    {
+      "city_id": "adamstown",
+      "city_name": "Adamstown",
+      "country_iso": "pn",
+      "coordinates": {
+        "lon": -130.100205,
+        "lat": -25.066667
+      },
+      "queue_position": 49,
+      "status": "unresolved-after-bounded-search",
+      "candidate": null,
+      "gap_reason": "No exact city-local government or heritage source was established in this pass.",
+      "research_limit": "Targeted primary-source searches were bounded; unresolved means this evidence batch does not establish a candidate, not that none exists."
+    },
+    {
+      "city_id": "grytviken",
+      "city_name": "Grytviken",
+      "country_iso": "gs",
+      "coordinates": {
+        "lon": -36.5098,
+        "lat": -54.2806481
+      },
+      "queue_position": 50,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Main Store, Grytviken",
+        "category": "historic building",
+        "fact_paraphrase": "Government source places the Main Store at the heart of Grytviken and dates it to circa 1920; it reports it opened to visitors after restoration.",
+        "source": {
+          "url": "https://gov.gs/historic-former-whaling-building-has-opened-for-the-first-time/",
+          "title": "Historic Former Whaling Building Has Opened For The First Time",
+          "publisher": "Government of South Georgia & the South Sandwich Islands",
+          "page_locator": "Article, 2023-02-16",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": {
+          "built_year_approx": 1920
+        },
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "direct named source and location/category",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "port-aux-francais",
+      "city_name": "Port-aux-Français",
+      "country_iso": "tf",
+      "coordinates": {
+        "lon": 70.2199565,
+        "lat": -49.3497607
+      },
+      "queue_position": 51,
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Port-aux-Français permanent station",
+        "category": "research station/settlement",
+        "fact_paraphrase": "TAAF states the permanent Port-aux-Français station was created in 1950. The source supports settlement identity/location, not a particular public building.",
+        "source": {
+          "url": "https://taaf.fr/collectivites/presentation-des-territoires/les-iles-australes/",
+          "title": "Les îles Australes",
+          "publisher": "Administration des Terres australes et antarctiques françaises (TAAF)",
+          "page_locator": "Kerguelen section",
+          "author": "not identified in the accessible source record",
+          "published_date": "",
+          "access_date": "2026-10-18",
+          "source_excerpt": "",
+          "excerpt_word_count": 0,
+          "source_excerpt_note": "Paraphrase only; no direct quotation copied",
+          "license": "unknown"
+        },
+        "date_fact": {
+          "created_year": 1950
+        },
+        "rights_status": "unknown",
+        "geometry_or_photo_reuse": "not claimed; no external image, map, mesh or surveyed geometry used",
+        "provenance_confidence": "qualified/limited: source supports locality or site broadly; exact feature/access and suitability need parent review",
+        "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established."
+      }
+    },
+    {
+      "city_id": "saint-pierre",
+      "city_name": "Saint-Pierre",
+      "country_iso": "pm",
+      "coordinates": {
+        "lon": -56.1768672,
+        "lat": 46.7775497
+      },
+      "queue_position": 52,
+      "status": "unresolved-after-bounded-search",
+      "candidate": null,
+      "gap_reason": "No exact Saint-Pierre-local primary site source was established in this pass.",
+      "research_limit": "Targeted primary-source searches were bounded; unresolved means this evidence batch does not establish a candidate, not that none exists."
+    },
+    {
+      "city_id": "west-island",
+      "city_name": "West Island",
+      "country_iso": "cc",
+      "coordinates": {
+        "lon": 96.8304486,
+        "lat": -12.1898479
+      },
+      "queue_position": 53,
+      "status": "unresolved-after-bounded-search",
+      "candidate": null,
+      "gap_reason": "No exact West Island-local primary feature source was established; nearby island/reef context is not sufficient.",
+      "research_limit": "Targeted primary-source searches were bounded; unresolved means this evidence batch does not establish a candidate, not that none exists."
+    },
+    {
+      "city_id": "chagos",
+      "city_name": "Île Boddam",
+      "country_iso": "io",
+      "coordinates": {
+        "lon": 72.2049217,
+        "lat": -5.3574343
+      },
+      "queue_position": 54,
+      "status": "unresolved-after-bounded-search",
+      "candidate": null,
+      "gap_reason": "Île Boddam is an uninhabited outer-island identity; no source established a city-local public landmark, so do not substitute a regional feature.",
+      "research_limit": "Targeted primary-source searches were bounded; unresolved means this evidence batch does not establish a candidate, not that none exists."
+    }
+  ]
+}

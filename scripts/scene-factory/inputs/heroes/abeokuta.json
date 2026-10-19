@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "abeokuta",
+  "url": "/assets/scene-heroes/abeokuta.glb",
+  "sha256": "36cf92dd7ce88974970560e6e3a37e53ab2b525e8f93c7bfb31d19ca8e1d45f0",
+  "rawBytes": 31216,
+  "brotliBytes": 19638,
+  "triangles": 1048,
+  "parts": [
+    {
+      "node": "abeokuta",
+      "triangles": 1048,
+      "bounds": {
+        "min": [
+          -3.70000005,
+          0,
+          -2.81463552
+        ],
+        "max": [
+          3.6999999159090002,
+          2.4626014657960003,
+          2.8147485717490004
+        ]
+      },
+      "footprint": [
+        -3.70000005,
+        -2.81463552,
+        3.6999999159090002,
+        2.8147485717490004
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "6fc43fa5cc7c3140c288e04db270c62da48fbee42a6e3123f4b055512f6b539d"
+  },
+  "inputs": {
+    "rawSha256": "7d7d5748adb80f74e692f24a53a1b50a5ec31ed52bd9b0b30482aacf0c6eaac8",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "abeokuta",
+      "country": "ng",
+      "name": "Itoku Adire Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.channelstv.com/2023/03/17/inside-itoku-adire-market-culture-fashion-and-a-modern-challenge-community-report/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=abeokuta]",
+      "sourceLicence": "unknown; factual evidence only, no external geometry/image licence inferred.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 11946241,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Channels’ community report identifies Itoku as a market in Abeokuta and reports adire textile trade there. Original reporter account, Channels TV 2023-03-17, explicitly reports its visit to Itoku Market in Abeokuta. First-hand reportage is the primary evidence; no linked video/image copied. Source artifact SHA256 ec5e9e5faaa619cc69dcb1856b6160ea45951eaa528958abe2e715f1c46326e5. Repository source: src/game/cities/ogun/landmarks.ts. Original schematic category interpretation only: dimensions, palette, item counts and layout are art direction. No surveyed geometry, copied photograph, exact species, current access, ownership or current operation is asserted. Empty counters/racks/awnings indicate trade without a claim about actual stalls or goods. Geometry original procedural AGPL-3.0-or-later; production approval pending.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "yoruba-southwest"
+      }
+    },
+    "styleSha256": "6bca7f81e5a0566559c88554f069e4e0f246ddca068d86b1efc31b249d7c8ee5"
+  }
+}

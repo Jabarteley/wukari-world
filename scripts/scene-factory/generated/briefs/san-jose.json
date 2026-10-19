@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "san-jose",
+    "name": "San José",
+    "state": {
+      "id": "cr-san-jose",
+      "name": "San José"
+    },
+    "country": {
+      "id": "cr",
+      "name": "Costa Rica"
+    },
+    "point": {
+      "lon": -84.0796683,
+      "lat": 9.9327373
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america/costa-rica-261011.osm.pbf",
+      "https://ourairports.com/airports/MROC/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/san-jose/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/san-jose/facts.ts",
+        "sha256": "642622df4e10ad2c0ad0899059a49333193c49f1aa671575aeb3df564840eb60"
+      },
+      {
+        "path": "src/game/cities/san-jose/index.ts",
+        "sha256": "4db5258c85bba37ad78115d6d61ce4e60acf0f6ff34baedcf4d08f567afbe9b8"
+      },
+      {
+        "path": "src/game/cities/san-jose/places.ts",
+        "sha256": "f03205c792878c2bfd311be3d1a76768fb9b123cafea2365c34059fa2ab87afc"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.0796683,
+        "lat": 9.9327373
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "san-jose-airport-san-jose-airport",
+      "name": "Juan Santamaría International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.208801,
+        "lat": 9.99386
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-airport-san-jose-airport-1",
+        "san-jose-san-jose-airport-san-jose-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "san-jose-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-clinic",
+      "name": "Hospital San Rafael",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.210831,
+        "lat": 10.007038
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-clinic-1",
+        "san-jose-san-jose-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6742258"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5902895"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-community-notices",
+      "name": "Archivo Nacional",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.048192,
+        "lat": 9.922307
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-community-notices-1",
+        "san-jose-san-jose-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/13964947"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6970428"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-community-voting-game",
+      "name": "Plaza de la Cultura",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.076979,
+        "lat": 9.933562
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-community-voting-game-1",
+        "san-jose-san-jose-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6275464"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q9060977"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-community-workshop",
+      "name": "Instituto Tecnológico de Costa Rica",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -83.908807,
+        "lat": 9.853517
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-community-workshop-1",
+        "san-jose-san-jose-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/40819609"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5174858"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-market-game",
+      "name": "Mercado Central de San José",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.082007,
+        "lat": 9.93471
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-market-game-1",
+        "san-jose-san-jose-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/264040874"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7414518"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-meal-stop",
+      "name": "Isla Verde",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.12802,
+        "lat": 9.944028
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-meal-stop-1",
+        "san-jose-san-jose-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/381272433"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q111151270"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-node-10186229658",
+      "name": "Accidente aeréo Vuelo 32 de SANSA",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.149496,
+        "lat": 9.858914
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-node-10186229658-1",
+        "san-jose-san-jose-osm-node-10186229658-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10186229658"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7388664"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-node-1945457564",
+      "name": "Monumento al Pacto del Jocote",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.239895,
+        "lat": 10.008718
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-node-1945457564-1",
+        "san-jose-san-jose-osm-node-1945457564-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1945457564"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6057086"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-relation-10650174",
+      "name": "Universidad Nacional",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.108857,
+        "lat": 10.000328
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-relation-10650174-1",
+        "san-jose-san-jose-osm-relation-10650174-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/10650174"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q31867"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-relation-17706739",
+      "name": "Universidad Latina de Costa Rica",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.043757,
+        "lat": 9.933386
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-relation-17706739-1",
+        "san-jose-san-jose-osm-relation-17706739-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/17706739"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6496487"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-way-1001557950",
+      "name": "Estadio Ecológico",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.043997,
+        "lat": 9.944644
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-way-1001557950-1",
+        "san-jose-san-jose-osm-way-1001557950-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1001557950"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3371208"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-way-102243517",
+      "name": "Basílica de Nuestra Señora de Los Ángeles",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -83.912884,
+        "lat": 9.864104
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-way-102243517-1",
+        "san-jose-san-jose-osm-way-102243517-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/102243517"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3445644"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-way-201513043",
+      "name": "Hospital San Vicente de Paúl",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.121846,
+        "lat": 9.990409
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-way-201513043-1",
+        "san-jose-san-jose-osm-way-201513043-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/201513043"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20160787"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-way-25400008",
+      "name": "Hospital México",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.115257,
+        "lat": 9.952352
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-way-25400008-1",
+        "san-jose-san-jose-osm-way-25400008-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/25400008"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5404554"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-way-264042444",
+      "name": "Catedral Metropolitana de San José",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.078757,
+        "lat": 9.932783
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-way-264042444-1",
+        "san-jose-san-jose-osm-way-264042444-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/264042444"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6825031"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-way-301278166",
+      "name": "Bomberos de Costa Rica - Academia Nacional",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.045149,
+        "lat": 9.896306
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-way-301278166-1",
+        "san-jose-san-jose-osm-way-301278166-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/301278166"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q122237922"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-way-30173401",
+      "name": "Parque de Diversiones",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.129671,
+        "lat": 9.960069
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-way-30173401-1",
+        "san-jose-san-jose-osm-way-30173401-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/30173401"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5391259"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-way-305168533",
+      "name": "Plaza Cleto González Víquez",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.074167,
+        "lat": 9.92467
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-way-305168533-1",
+        "san-jose-san-jose-osm-way-305168533-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/305168533"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24478916"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-way-415630885",
+      "name": "Parque Okayama",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.056814,
+        "lat": 9.904948
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-way-415630885-1",
+        "san-jose-san-jose-osm-way-415630885-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/415630885"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6062452"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-way-617155310",
+      "name": "Estadio Alejandro Morera Soto",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.209158,
+        "lat": 10.021813
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-way-617155310-1",
+        "san-jose-san-jose-osm-way-617155310-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/617155310"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1369050"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-osm-way-76579523",
+      "name": "Estadio ST Center",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.082689,
+        "lat": 9.864048
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-osm-way-76579523-1",
+        "san-jose-san-jose-osm-way-76579523-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/76579523"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6116014"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-quiet-reflection",
+      "name": "San José Costa Rica Temple",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.184883,
+        "lat": 9.986405
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-quiet-reflection-1",
+        "san-jose-san-jose-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1301409416"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3846757"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-recreation",
+      "name": "Parque Metropolitano La Sabana",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.104057,
+        "lat": 9.935531
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-recreation-1",
+        "san-jose-san-jose-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/12657481"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3438120"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "san-jose-transit",
+      "name": "Atlántico",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -84.068881,
+        "lat": 9.934675
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "san-jose-san-jose-transit-1",
+        "san-jose-san-jose-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/san-jose/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/31420765"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65162391"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "san-jose-san-jose-airport-san-jose-airport-1",
+      "venueId": "san-jose-airport-san-jose-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-airport-san-jose-airport-2",
+      "venueId": "san-jose-airport-san-jose-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-clinic-1",
+      "venueId": "san-jose-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-clinic-2",
+      "venueId": "san-jose-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-community-notices-1",
+      "venueId": "san-jose-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-community-notices-2",
+      "venueId": "san-jose-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-community-voting-game-1",
+      "venueId": "san-jose-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-community-voting-game-2",
+      "venueId": "san-jose-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-community-workshop-1",
+      "venueId": "san-jose-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-community-workshop-2",
+      "venueId": "san-jose-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-market-game-1",
+      "venueId": "san-jose-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-market-game-2",
+      "venueId": "san-jose-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-meal-stop-1",
+      "venueId": "san-jose-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-meal-stop-2",
+      "venueId": "san-jose-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-node-10186229658-1",
+      "venueId": "san-jose-osm-node-10186229658",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-node-10186229658-2",
+      "venueId": "san-jose-osm-node-10186229658",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-node-1945457564-1",
+      "venueId": "san-jose-osm-node-1945457564",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-node-1945457564-2",
+      "venueId": "san-jose-osm-node-1945457564",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-relation-10650174-1",
+      "venueId": "san-jose-osm-relation-10650174",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-relation-10650174-2",
+      "venueId": "san-jose-osm-relation-10650174",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-relation-17706739-1",
+      "venueId": "san-jose-osm-relation-17706739",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-relation-17706739-2",
+      "venueId": "san-jose-osm-relation-17706739",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-1001557950-1",
+      "venueId": "san-jose-osm-way-1001557950",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-1001557950-2",
+      "venueId": "san-jose-osm-way-1001557950",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-102243517-1",
+      "venueId": "san-jose-osm-way-102243517",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-102243517-2",
+      "venueId": "san-jose-osm-way-102243517",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-201513043-1",
+      "venueId": "san-jose-osm-way-201513043",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-201513043-2",
+      "venueId": "san-jose-osm-way-201513043",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-25400008-1",
+      "venueId": "san-jose-osm-way-25400008",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-25400008-2",
+      "venueId": "san-jose-osm-way-25400008",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-264042444-1",
+      "venueId": "san-jose-osm-way-264042444",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-264042444-2",
+      "venueId": "san-jose-osm-way-264042444",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-301278166-1",
+      "venueId": "san-jose-osm-way-301278166",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-301278166-2",
+      "venueId": "san-jose-osm-way-301278166",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-30173401-1",
+      "venueId": "san-jose-osm-way-30173401",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-30173401-2",
+      "venueId": "san-jose-osm-way-30173401",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-305168533-1",
+      "venueId": "san-jose-osm-way-305168533",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-305168533-2",
+      "venueId": "san-jose-osm-way-305168533",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-415630885-1",
+      "venueId": "san-jose-osm-way-415630885",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-415630885-2",
+      "venueId": "san-jose-osm-way-415630885",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-617155310-1",
+      "venueId": "san-jose-osm-way-617155310",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-617155310-2",
+      "venueId": "san-jose-osm-way-617155310",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-76579523-1",
+      "venueId": "san-jose-osm-way-76579523",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-osm-way-76579523-2",
+      "venueId": "san-jose-osm-way-76579523",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-quiet-reflection-1",
+      "venueId": "san-jose-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-quiet-reflection-2",
+      "venueId": "san-jose-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-recreation-1",
+      "venueId": "san-jose-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-recreation-2",
+      "venueId": "san-jose-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-transit-1",
+      "venueId": "san-jose-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    },
+    {
+      "id": "san-jose-san-jose-transit-2",
+      "venueId": "san-jose-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/san-jose/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "san-jose-airport-san-jose-airport",
+    "san-jose-clinic",
+    "san-jose-community-notices",
+    "san-jose-community-voting-game",
+    "san-jose-community-workshop",
+    "san-jose-market-game",
+    "san-jose-meal-stop",
+    "san-jose-osm-node-10186229658",
+    "san-jose-osm-node-1945457564",
+    "san-jose-osm-relation-10650174",
+    "san-jose-osm-relation-17706739",
+    "san-jose-osm-way-1001557950",
+    "san-jose-osm-way-102243517",
+    "san-jose-osm-way-201513043",
+    "san-jose-osm-way-25400008",
+    "san-jose-osm-way-264042444",
+    "san-jose-osm-way-301278166",
+    "san-jose-osm-way-30173401",
+    "san-jose-osm-way-305168533",
+    "san-jose-osm-way-415630885",
+    "san-jose-osm-way-617155310",
+    "san-jose-osm-way-76579523",
+    "san-jose-quiet-reflection",
+    "san-jose-recreation",
+    "san-jose-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "10f654e3575983fa8393d15978b14f87eca17259aef15acc900b602571275724",
+    "contentSha256": "d0737a8a4a16b870f3f0690096cf5e6e7719fa5e575222974477748421806c56"
+  }
+}

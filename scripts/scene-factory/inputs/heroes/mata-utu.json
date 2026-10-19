@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "mata-utu",
+  "url": "/assets/scene-heroes/mata-utu.glb",
+  "sha256": "901b69e672f6cf85d91d797d11546f9176d1a5a628644a18aa497851cadd46ac",
+  "rawBytes": 18808,
+  "brotliBytes": 16137,
+  "triangles": 276,
+  "parts": [
+    {
+      "node": "mata-utu",
+      "triangles": 276,
+      "bounds": {
+        "min": [
+          -3.88059688,
+          0,
+          -2.5999999
+        ],
+        "max": [
+          3.8805966294589997,
+          0.522529234019,
+          2.6001845078210004
+        ]
+      },
+      "footprint": [
+        -3.88059688,
+        -2.5999999,
+        3.8805966294589997,
+        2.6001845078210004
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "c10059b94efc385661bd041c6c376f45cf70558802e167f74fc91a17ac57d827",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "mata-utu",
+      "country": "wf",
+      "name": "Mata Utu Lagoon Shore",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://www.wallis-et-futuna.gouv.fr/contenu/telechargement/11189/72236/file/202108_Etude_de_faisabilite%CC%81_aquaculture_WF.pdf",
+        "https://www.wallis-et-futuna.gouv.fr/index.php/Publications/Autres-dossiers-archives/Communiques-archives/Communiques/2022/Strategie-de-developpement-de-l-aquaculture-a-Wallis/%28theme%29/2"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-final8.json#cities[city_id=mata-utu]",
+      "sourceLicence": "unknown",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8.6,
+        "depth": 5.2,
+        "height": 0.55,
+        "seed": 18273,
+        "palette": [
+          "#b8ada0",
+          "#686f72",
+          "#71817a",
+          "#9c8e7b",
+          "#486e83",
+          "#899fa7",
+          "#b8cbd0",
+          "#39494f"
+        ],
+        "composition": "bare-coast"
+      },
+      "evidence": "A field-based aquaculture feasibility study identifies the coastal intertidal band around Wallis as especially pronounced from Fakautu to Mata Utu, with sand, mud, seagrass, and locally mangrove habitat. This establishes Mata Utu's own lagoon shore as the candidate natural feature. Original schematic fragment of the sourced feature class. Palette, contour, tree count, spacing and dimensions are art direction, not surveyed shape, species identification or measured geography. No current access is certified.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

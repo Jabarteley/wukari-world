@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "baku",
+  "url": "/assets/scene-heroes/baku.glb",
+  "sha256": "a23b4c11d1e27f06942f784cafbad01f804c36d3301aa27ddfd08bd81b3e1ce7",
+  "rawBytes": 24872,
+  "brotliBytes": 18566,
+  "triangles": 680,
+  "parts": [
+    {
+      "node": "baku",
+      "triangles": 680,
+      "bounds": {
+        "min": [
+          -2.29999995,
+          0,
+          -1.79999995
+        ],
+        "max": [
+          2.300080762926,
+          5.320000163763,
+          1.7999220310459998
+        ]
+      },
+      "footprint": [
+        -2.29999995,
+        -1.79999995,
+        2.300080762926,
+        1.7999220310459998
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "5b2cf100ea2e0a9dc6de4af227df0e86ae9b7aa108fdf3bb2bf97e532878e181",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "baku",
+      "country": "az",
+      "name": "Maiden Tower (Qız Qalası)",
+      "category": "monument",
+      "sourceUrls": [
+        "https://azerbaijan.az/en/related-information/2",
+        "https://files.preslib.az/projects/remz/pdf_en/atr_paytaxt.pdf"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=baku]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 5,
+        "depth": 4,
+        "height": 6,
+        "seed": 6102,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#af593f",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "masonry-ring-tower"
+      },
+      "evidence": "Azerbaijan’s government information page lists the Maiden Tower among monuments of Baku’s Old City and locates it in Icheri Sheher. The page gives disputed phases/dates, so this record does not select a single construction year. Presidential Library describes a cylindrical limestone tower with an eastern projection and eight internal tiers. Original simplified tier bands, slit windows and attached projection; no proposed historic purpose or exact dimensions. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

@@ -598,18 +598,24 @@ export function createMap3D(container: HTMLElement, { prebuilt = null, pack, ven
   }
   function syncChips() {
     if (!labelLayer) return;
-    const list = overlays.chips(), next = JSON.stringify(list.map((chip) => [chip.key, chip.text, chip.bg, chip.homes]));
+    const list = overlays.chips(), next = JSON.stringify(list.map((chip) => [chip.key, chip.text, chip.bg, chip.homes, chip.business, chip.photo]));
     if (next === chipKey) return;
     chipKey = next;
     for (const { node } of chips.values()) node.remove();
     chips.clear();
     for (const chip of list) {
-      const node = doc!.createElement('div');
+      const node = doc!.createElement(chip.business ? 'button' : 'div') as HTMLDivElement;
       node.className = `m3-chip is-${chip.kind}`;
       if (chip.label) { node.setAttribute('role', 'img'); node.setAttribute('aria-label', chip.label); }
       if (chip.bg) { node.style.background = chip.bg; node.style.color = chip.ink!; }
       const icon = doc!.createElement('span'); icon.className = 'm3-chip-icon'; icon.innerHTML = chip.glyph || '';
       node.append(icon);
+      // A business's board (docs/PROMOTE.md) is the one chip that is a button: its listing id (not player text) rides on it, a tap opens the business
+      // (the Map panel answers 'jaw:map-business'), and its photo is a small lazy image, nothing in the scene.
+      if (chip.business) {
+        node.removeAttribute('role'); node.setAttribute('type', 'button'); node.dataset.business = chip.business; node.classList.add('is-tap');
+        if (chip.photo) { const img = doc!.createElement('img'); img.className = 'm3-chip-photo'; img.alt = ''; img.loading = 'lazy'; img.width = img.height = 28; img.src = `/api/feed/media/${encodeURIComponent(chip.photo)}`; node.prepend(img); }
+      }
       // Player text goes in as text, never as markup, and is not a link or a button.
       if (chip.text) { const text = doc!.createElement('span'); text.className = 'm3-chip-text'; text.textContent = chip.text; node.append(text); }
       if (chip.homes?.length) {
@@ -857,7 +863,7 @@ export function createMap3D(container: HTMLElement, { prebuilt = null, pack, ven
   /** The player has taken the camera: it stops following the trip, and a dive on its way down gives way to them (the skip button is the dive host's). */
   function grab() { userMoved = true; tripCamera = false; following = false; dismissHint(); if (diving) { diving = null; endAerial(); } }
   function onPointerDown(event: PointerEvent) {
-    if ((event.target as HTMLElement).closest?.<HTMLElement>('[data-m3],[data-neighbour]')) return;   // the view buttons and the estate's homes are not a place to start a drag
+    if ((event.target as HTMLElement).closest?.<HTMLElement>('[data-m3],[data-neighbour],[data-business]')) return;   // the view buttons and the estate's homes are not a place to start a drag
     if (event.pointerType === 'mouse' && event.button > 2) return;
     if (event.button === 1) event.preventDefault();
     readBox();
@@ -999,6 +1005,8 @@ export function createMap3D(container: HTMLElement, { prebuilt = null, pack, ven
   function onClick(event: MouseEvent) {
     const control = (event.target as HTMLElement).closest?.<HTMLElement>('[data-m3]');
     if (control) { onControl(control.dataset.m3); return; }
+    const biz = (event.target as HTMLElement).closest?.<HTMLElement>('[data-business]');
+    if (biz) { window.dispatchEvent(new CustomEvent('jaw:map-business', { detail: { listing: biz.dataset.business } })); return; }
     const house = (event.target as HTMLElement).closest?.<HTMLElement>('[data-neighbour]');
     if (house) { onSelectNeighbour({ id: house.dataset.neighbour, name: house.dataset.name }); return; }
     const plate = (event.target as HTMLElement).closest?.<HTMLElement>('.m3-lga');
@@ -1079,7 +1087,7 @@ export function createMap3D(container: HTMLElement, { prebuilt = null, pack, ven
       const id = (event.target as HTMLElement).closest?.<HTMLElement>('.m3-label')?.dataset.venue;
       if (id) { focus(id); return; }
       // A double-click on bare ground zooms in one step about that spot (the touch twin is the second tap, see tap()).
-      if ((event.target as HTMLElement).closest?.('[data-m3],[data-neighbour],.m3-lga,.m3-person')) return;
+      if ((event.target as HTMLElement).closest?.('[data-m3],[data-neighbour],[data-business],.m3-lga,.m3-person')) return;
       const n = toNdc(local(event as MouseEvent)); readBox(); grab(); ladder.intent('in', 0.4);
       if (reach() === 'in' && Math.abs(Math.log(rig.zoomed(0.5).distance / rig.view.distance)) < 0.02) ladder.stepped('in', [n.x, n.y]); else motion({ ...rig.zoomed(0.5, n.x, n.y) }, 0.3);
     });

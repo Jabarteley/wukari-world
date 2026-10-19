@@ -18,6 +18,7 @@ import { forgetEarnPlayers } from '../earn/service.ts'
 import { forgetWorldEventPlayers } from '../world-events/data.ts'
 import { forgetDanfoPlayers } from '../danfo/service.ts'
 import { forgetLoopsPlayers } from '../shareloops/store.ts'
+import { forgetNeighbourhoodPlayers } from '../neighbourhood/service.ts'
 import { clearPlayerFamily } from '../social/family.ts'
 import { eraseLivingWorldProgress } from '../living-world/privacy.ts'
 import { eraseRealValue } from '../real-value/privacy.ts'
@@ -746,6 +747,7 @@ export function eraseData(ctx: RouteContext, db: Db, plan: ErasurePlan): Erasure
   forgetWorldEventPlayers(db, [...ids])
   forgetDanfoPlayers(db, ids)
   forgetLoopsPlayers(db, ids)
+  forgetNeighbourhoodPlayers(db, ids)
   eraseSpaces(db, ids)
   scrubTrustAndSupport(db, ids, accounts)
   scrubAdminCollections(db, ids, accounts)

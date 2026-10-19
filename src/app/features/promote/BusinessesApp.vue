@@ -11,10 +11,15 @@ import { encodePhoto } from '../feed/feedMedia.ts'
 import { CATEGORIES, PROMOTE, TIERS, naira } from '../../../promote/model.ts'
 import type { Tier } from '../../../promote/model.ts'
 import type { ListingView, PromoteMe } from '../../../types/promote.ts'
+import type { StreetView } from '../../../types/neighbourhood.ts'
+import ShopFront from './ShopFront.vue'
 
-const props = defineProps<{ params?: { tab?: string; paid?: string } | null }>()
+const props = defineProps<{ params?: { tab?: string; paid?: string; listing?: string } | null }>()
 const { game, shell } = useApp()
-const tab = ref<'directory' | 'mine'>(props.params?.tab === 'mine' ? 'mine' : 'directory')
+const tab = ref<'directory' | 'street' | 'mine'>(props.params?.tab === 'mine' ? 'mine' : props.params?.tab === 'street' || props.params?.listing ? 'street' : 'directory')
+// The business street: every live listing of the city as a shop front, by kind (GET /api/promote/street). A billboard's tap opens it with that business first.
+const street = ref<StreetView | null>(null)
+const opened = computed(() => street.value?.groups.flatMap((g) => g.listings).find((l) => l.id === props.params?.listing) ?? null)
 const listings = ref<ListingView[]>([]), category = ref(''), me = ref<PromoteMe | null>(null), busy = ref(false)
 const form = ref({ id: '', name: '', category: 'food', area: '', about: '', photo: '' as string })
 const boosting = ref<{ listing: string; tier: Tier; weeks: number; email: string; arcon: string } | null>(null), bank = ref<{ text: string; ref: string; amount: number } | null>(null)
@@ -23,9 +28,10 @@ type R<T> = ({ ok: true } & T) | { ok: false; reason: string }
 const call = async <T,>(path: string, body?: object): Promise<R<T>> => { try { return await game.fetchJson(path, body ? { method: 'POST', body } : undefined) } catch (e) { return { ok: false, reason: (e as { reason?: string }).reason ?? 'That did not go through.' } } }
 async function loadDirectory(): Promise<void> { const r = await call<{ listings: ListingView[] }>(`/api/promote/directory?city=${encodeURIComponent(game.view.value.cityId)}${category.value ? `&category=${category.value}` : ''}`); if (r.ok) listings.value = r.listings }
 async function loadMe(): Promise<void> { const r = await call<PromoteMe>('/api/promote/me'); if (r.ok) me.value = r }
-onMounted(() => { void loadDirectory(); void loadMe() })
+async function loadStreet(): Promise<void> { const r = await call<StreetView>(`/api/promote/street?city=${encodeURIComponent(game.view.value.cityId)}`); if (r.ok) street.value = r }
+onMounted(() => { void loadDirectory(); void loadMe(); void loadStreet() })
 watch(category, () => { void loadDirectory() })
-watch(() => game.view.value.connected, (on, was) => { if (on && !was) { void loadDirectory(); void loadMe() } })
+watch(() => game.view.value.connected, (on, was) => { if (on && !was) { void loadDirectory(); void loadMe(); void loadStreet() } })
 const prices = computed(() => me.value?.prices ?? { boost: TIERS.boost.price, spotlight: TIERS.spotlight.price })
 
 function edit(l: ListingView | null): void { form.value = l ? { id: l.id, name: l.name, category: l.category, area: l.area, about: l.about, photo: l.photo ?? '' } : { id: '', name: '', category: 'food', area: '', about: '', photo: '' }; tab.value = 'mine' }
@@ -66,9 +72,20 @@ const when = (ms?: number): string => (ms ? new Date(ms).toLocaleDateString(unde
 
 <template>
   <section class="feed" aria-label="Businesses" data-promote="app">
-    <nav class="feed-tabs"><button type="button" :class="{ 'is-on': tab === 'directory' }" @click="tab = 'directory'">Near you</button><button type="button" :class="{ 'is-on': tab === 'mine' }" @click="tab = 'mine'">My business</button></nav>
+    <nav class="feed-tabs"><button type="button" :class="{ 'is-on': tab === 'directory' }" @click="tab = 'directory'">Near you</button><button type="button" :class="{ 'is-on': tab === 'street' }" @click="tab = 'street'">Business street</button><button type="button" :class="{ 'is-on': tab === 'mine' }" @click="tab = 'mine'">My business</button></nav>
 
-    <template v-if="tab === 'directory'">
+    <template v-if="tab === 'street'">
+      <p class="social-note">The business street of {{ street?.cityName ?? 'your city' }}: every business open to customers, kind by kind. Those with a running boost come first, and also stand on the city's billboards.</p>
+      <ShopFront v-if="opened" :listing="opened" opened />
+      <p v-if="street && !street.total" class="feed-note">No businesses on the street yet. Be the first: it is free.</p>
+      <template v-for="g in street?.groups ?? []" :key="g.category">
+        <h3 class="street-group">{{ g.label }}</h3>
+        <ShopFront v-for="l in g.listings.filter((x) => x.id !== opened?.id)" :key="l.id" :listing="l" />
+      </template>
+      <button type="button" class="social-btn is-primary" @click="edit(null)">List my business, free</button>
+    </template>
+
+    <template v-else-if="tab === 'directory'">
       <p class="social-note">Real businesses and services in your city. Message them in the game, visit their shop, meet them in the world.</p>
       <select v-model="category" aria-label="Kind of business"><option value="">Everything</option><option v-for="[id, label] in CATEGORIES" :key="id" :value="id">{{ label }}</option></select>
       <p v-if="!listings.length" class="feed-note">No businesses listed here yet. Be the first: it is free.</p>

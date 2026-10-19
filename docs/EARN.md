@@ -25,6 +25,8 @@ Bachs when the player comes back from its page, when they open Earn, and on "Che
   a ticket. Buying one opens a Bachs checkout that is a **direct charge on the host's account** (`X-Account-Id`): the host is the
   merchant of record, the money lands in their Bachs balance, and Allworld's fee (5%, admin setting `earnTicketFee`) is taken by Bachs
   as the `platform_fee`. When Bachs confirms the payment the buyer is on the going list.
+  A monthly "Meet your neighbours" meetup ([NEIGHBOURHOOD.md](NEIGHBOURHOOD.md)) can be ticketed the same way; its tickets are sold only to people whose
+  location badge is in the meetup's local government.
 - **Gigs.** The poster of a gig someone is doing (or has done) can pay the worker in real money (₦500 to ₦500,000), once, the same way,
   with a 10% fee (`earnGigFee`). The game-money reward of a gig is unchanged.
 - **Confirmation.** Never from the browser: the server asks Bachs for the checkout and its payment (succeeded, in naira, for this

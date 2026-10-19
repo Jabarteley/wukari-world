@@ -111,3 +111,93 @@ test('business: erasure takes listings and pending orders; a paid order stays as
   assert.equal(stored.includes('ada@example.com'), false);
   assert.match(stored, /"status":"paid"/);
 });
+
+// ---- billboards and the business street (docs/PROMOTE.md, WOW-PLAN Phase 5) --------------------------------------------------------------------
+async function boosted(s: Awaited<ReturnType<typeof setup>>, who: Device, name: string, category: string, tier: 'boost' | 'spotlight' = 'boost', extra: Json = {}) {
+  const made = await s.call('/api/promote/listings', { name, category, area: 'Yaba', about: 'Good things, fairly priced', ...extra }, who.cookie);
+  await s.approve(made.listing.id);
+  const order = await s.call('/api/promote/order', { listing: made.listing.id, tier, weeks: 1, email: 'x@example.com' }, who.cookie);
+  assert.equal((await s.call('/api/promote/order/verify', { ref: order.order.ref }, who.cookie)).order.status, 'paid');
+  return made.listing.id as string;
+}
+
+test('billboards: a running Boost or Spotlight shows on its city\'s boards with name, kind and photo only; never a listing that is not live', async (t) => {
+  const s = await setup(t, { bachs: true });
+  const { call, account, f, promote, founder } = s;
+  const ada = await account('ada@example.com', 'Ada'), bola = await account('bola@example.com', 'Bola'), chidi = await account('chidi@example.com', 'Chidi'), dayo = await account('dayo@example.com', 'Dayo');
+  assert.deepEqual((await call('/api/promote/boards?city=lagos')).boards, [], 'nothing boosted yet');
+  const tailor = await boosted(s, ada, 'Ada Tailoring', 'fashion');
+  const phones = await boosted(s, bola, 'Bola Phones', 'tech', 'spotlight');
+  const lounge = await boosted(s, chidi, 'Moonlight Lounge and Bar', 'events');   // advertised in the feed, but not where young people pass
+  const unboosted = await call('/api/promote/listings', { name: 'Dayo Repairs', category: 'repairs' }, dayo.cookie);
+  await s.approve(unboosted.listing.id);
+  const shown = await call('/api/promote/boards?city=lagos');   // no session: a board is public
+  assert.equal(shown.status, 200);
+  assert.deepEqual(shown.boards.map((b: Json) => b.name).sort(), ['Ada Tailoring', 'Bola Phones'], 'only live and running; no nightlife words');
+  const one = shown.boards.find((b: Json) => b.id === tailor);
+  assert.deepEqual(Object.keys(one).sort(), ['area', 'category', 'categoryLabel', 'id', 'name', 'owner', 'tier'], 'name, kind and area: not the description');
+  assert.deepEqual([one.categoryLabel, one.tier, one.owner.name], ['Fashion and tailoring', 'boost', 'Ada']);
+  assert.equal(shown.boards.find((b: Json) => b.id === phones).tier, 'spotlight', 'a Spotlight is on its own city\'s boards too, at no new price');
+  assert.equal((await f.server.store.read((db) => promote.boards(db, null, 'abuja'))).length, 0, 'another city has its own boards');
+  assert.ok((await call('/api/feed/list?tab=city&city=lagos', undefined, dayo.cookie)).sponsored.some((x: Json) => x.id === lounge), 'the lounge is still a Sponsored card in the feed: only boards are stricter');
+  // A listing that is edited goes back to review: off the boards until it is read again.
+  const edited = await call('/api/promote/listings', { id: tailor, name: 'Ada Tailoring', category: 'fashion', about: 'Now with a new line' }, ada.cookie);
+  assert.equal(edited.listing.status, 'review', JSON.stringify(edited));
+  assert.deepEqual((await call('/api/promote/boards?city=lagos')).boards.map((b: Json) => b.name), ['Bola Phones']);
+  await s.approve(tailor);
+  assert.equal((await call('/api/promote/boards?city=lagos')).boards.length, 2);
+  // An edit the reviewer then refuses: the boost ends and so does the board.
+  await call('/api/promote/listings', { id: tailor, name: 'Ada Quick Loans', category: 'services' }, ada.cookie);
+  await f.server.store.transact((db) => promote.reviewed(db, tailor, { action: 'remove', category: 'scam', reason: 'Loans cannot be advertised.' }));
+  assert.deepEqual((await call('/api/promote/boards?city=lagos')).boards.map((b: Json) => b.name), ['Bola Phones']);
+  assert.equal((await call('/api/promote/me', undefined, ada.cookie)).orders[0].status, 'ended', 'the weeks that were left are not served');
+  // An admin removes the other: gone at once.
+  assert.equal((await call('/api/admin/promote/act', { listing: phones, action: 'remove', note: 'test' }, founder.cookie)).ok, true);
+  assert.deepEqual((await call('/api/promote/boards?city=lagos')).boards, []);
+  // When the weeks run out the board goes too.
+  const later = await boosted(s, dayo, 'Dayo Lessons', 'learning');
+  assert.equal((await call('/api/promote/boards?city=lagos')).boards.length, 1);
+  f.advance(8 * 86400000);
+  assert.deepEqual((await call('/api/promote/boards?city=lagos')).boards, []);
+  void later;
+});
+
+test('billboards: boosted businesses take turns when there are more than boards, a tap is counted by where it began, and the map fills only free boards', async (t) => {
+  const s = await setup(t, { bachs: true });
+  const { call, account, f, founder } = s;
+  const people = [await account('alice@example.com', 'Alice'), await account('bukky@example.com', 'Bukky'), await account('chike@example.com', 'Chike')];
+  const ids = [] as string[];
+  for (const [i, who] of people.entries()) ids.push(await boosted(s, who, `Shop ${i + 1}`, 'shops'));
+  const order = async () => (await call('/api/promote/boards?city=lagos')).boards.map((b: Json) => b.name);
+  const first = await order();
+  assert.equal(first.length, 3);
+  f.advance(600000);
+  const second = await order();
+  assert.notDeepEqual(second, first, 'ten minutes later the order has turned');
+  assert.deepEqual([...second].sort(), [...first].sort());
+  assert.equal((await call('/api/promote/contact', { listing: ids[0], via: 'board' })).ok, true);
+  await call('/api/promote/contact', { listing: ids[0], via: 'board' }); await call('/api/promote/contact', { listing: ids[0], via: 'street' }); await call('/api/promote/contact', { listing: ids[0], via: 'nonsense' });
+  const row = (await call('/api/admin/promote', undefined, founder.cookie)).listings.find((l: Json) => l.id === ids[0]);
+  assert.deepEqual([row.contacts, row.boardTaps, row.streetTaps], [2, 2, 1], 'a tap on a board is a tap; a message or a visit is a contact');
+});
+
+test('business street: every live listing of the city in a shop front, by kind, boosted first; nothing that is not live; no outside link', async (t) => {
+  const s = await setup(t, { bachs: true });
+  const { call, account, promote, f } = s;
+  const ada = await account('ada@example.com', 'Ada'), bola = await account('bola@example.com', 'Bola'), chidi = await account('chidi@example.com', 'Chidi');
+  const plain = await call('/api/promote/listings', { name: 'Iya Basira Foods', category: 'food', area: 'Yaba' }, bola.cookie);
+  await s.approve(plain.listing.id);
+  await boosted(s, ada, 'Mama Put Express', 'food');
+  const pending = await call('/api/promote/listings', { name: 'Not Yet Open', category: 'food' }, chidi.cookie);
+  const refused = await call('/api/promote/listings', { name: 'Quick Loans', category: 'services' }, chidi.cookie);
+  await f.server.store.transact((db) => promote.reviewed(db, refused.listing.id, { action: 'remove', category: 'scam', reason: 'No loans.' }));
+  const street = await call('/api/promote/street?city=lagos');
+  assert.equal(street.status, 200, 'public');
+  assert.deepEqual(street.groups.map((g: Json) => [g.category, g.listings.map((l: Json) => l.name)]), [['food', ['Mama Put Express', 'Iya Basira Foods']]], 'boosted first; nothing waiting or refused');
+  assert.equal(street.total, 2);
+  assert.equal(street.cityName, 'Lagos');
+  assert.equal(JSON.stringify(street).includes(pending.listing.id), false);
+  // The listing rules stay as they are: no phone numbers or links in a listing, so a shop front cannot carry a WhatsApp link.
+  for (const about of ['Order on wa.me/2348031234567', 'Chat https://wa.me/234803 now', 'WhatsApp 08031234567']) assert.equal((await call('/api/promote/listings', { name: 'Link Shop', category: 'shops', about }, chidi.cookie)).ok, false, about);
+  assert.ok(!/wa\.me|https?:/i.test(JSON.stringify(street)));
+});

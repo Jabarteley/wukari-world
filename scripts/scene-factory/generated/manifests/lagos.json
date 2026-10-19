@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "3fffc83003326ed459d5c8a012773583440d2d4c8baf283da146050303db9e48",
+      "sha256": "c0cb5ae36a511270f18f9cf2ec25bd4bd1be7bb3f208321cef7feb815e547c2b",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4928,7 +4928,7 @@
         },
         {
           "path": "src/venue-world.ts",
-          "sha256": "64bc12dc2c736e28315757c1cf7d9647e34d1e4f73789483a9c962e676764420"
+          "sha256": "f490c4b73fd3706efffe479124e5003ed1c84fad73046c5bb4bc8ea73f868914"
         }
       ],
       "value": {}

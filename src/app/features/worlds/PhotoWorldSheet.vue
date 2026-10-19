@@ -70,7 +70,7 @@ async function make(): Promise<void> {
   if (!ready || state.value === 'saving') return
   state.value = 'saving'; error.value = ''
   const title = name.value.trim().slice(0, 40) || 'My photo'
-  const fail = (reason: string): void => { error.value = reason; state.value = 'ready' }
+  const fail = (reason: string): void => { error.value = reason; state.value = 'ready'; track('photo_world', { step: 'failed', ground: ready.mesh.ground, seconds: Math.round((performance.now() - started) / 1000) }) }
   const sent = await modelUpload(new Blob([ready.glb as Uint8Array<ArrayBuffer>], { type: 'model/gltf-binary' }), title)
   if (!sent.ok) return fail(sent.reason)
   // A park-sized world with the photo in its middle (the 3D view centres a model on itself), so the whole scene stands inside it.

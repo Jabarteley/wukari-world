@@ -22,7 +22,7 @@
 
 ## Repository state
 
-- **Repo:** kromate/joinallworld, clone at ~/work/joinallworld
+- **Repo:** kromate/joinallworld, a separate clone (not the owner's main checkout)
 - **Host:** owner's Mac
 - **Branch / worktree:** `claude/photo-worlds`
 - **Base:** `5ca9ad22a`
@@ -45,7 +45,7 @@
 ### Immediate resume steps
 
 1. Rerun the failing files; open the PR; CI; merge; release.
-2. After the release: `OPERATOR_ENV=~/Documents/Allworld-notes/allworld-operator.env node --experimental-strip-types scripts/spaces/depth-assets.ts --operator https://joinallworld.com`, then `POST /api/mod/spaces/switch { photo: true }`, then try it in a private tab.
+2. After the release: `OPERATOR_ENV=<operator env file> node --experimental-strip-types scripts/spaces/depth-assets.ts --operator https://joinallworld.com`, then `POST /api/mod/spaces/switch { photo: true }`, then try it in a private tab.
 
 ## Release state
 

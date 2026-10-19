@@ -19,6 +19,9 @@
 import type * as THREE from 'three'
 import type { ThreeModule } from '../types.ts'
 import type { Post } from './post.ts'
+import { gradeFor } from './grade.ts'
+// A static import, with only the name used: a dynamic import() of this module would keep every export of it in the first download's engine chunk.
+import { cityRules } from '../../game/cities/registry.ts'
 
 /** Which parts of the fx chunk a device may use. Same names as `RenderTier.name` in src/scene/look.ts. */
 export type FxTier = 'phone' | 'wide' | 'high'
@@ -62,7 +65,7 @@ export async function loadFx(tier: FxTier, context?: FxContext): Promise<FxHost>
   // FX_IMPORTS: phases 1 to 3 add their lazy imports here. Rain, particles and feel for every tier; `if (fxUsesPost(tier))` around
   // anything that imports postprocessing or n8ao.
   if (fxUsesPost(tier) && context) {
-    const [{ createPost, postAoEnabled }, { gradeFor }, { cityRules }] = await Promise.all([import('./post.ts'), import('./grade.ts'), import('../../game/cities/registry.ts')])
+    const { createPost, postAoEnabled } = await import('./post.ts')
     const gradeNow = (now: number) => gradeFor(cityRules(context.cityId)?.climate, now)
     const size = context.renderer.getSize(new context.THREE.Vector2())
     const first = gradeNow(Date.now())

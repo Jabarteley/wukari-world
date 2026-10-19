@@ -69,10 +69,10 @@ History is sent by the client with each question (at most six turns; each is cut
 `POST {AI_GATEWAY_BASE_URL}/v1/chat/completions`, `Authorization: Bearer <key>`, JSON:
 
 ```json
-{ "model": "openai/gpt-5.6-luna", "messages": [{ "role": "system", "content": "..." }, { "role": "user", "content": "<player>...</player>" }],
+{ "model": "openai/gpt-6-luna", "messages": [{ "role": "system", "content": "..." }, { "role": "user", "content": "<player>...</player>" }],
   "max_tokens": 220, "temperature": 0.6, "stream": false,
   "providerOptions": { "gateway": { "user": "p_<32 hex of a salted SHA-256 of the player id>",
-    "tags": ["product:allworld", "feature:companion", "role:primary", "model:openai/gpt-5.6-luna"] } } }
+    "tags": ["product:allworld", "feature:companion", "role:primary", "model:openai/gpt-6-luna"] } } }
 ```
 
 The path, the bearer header and `providerOptions.gateway.{user, tags}` follow the gateway's OpenAI-compatible interface as documented when this was written; confirm them once against the gateway's current documentation or with the self-test below. The fallback request is identical with `role:fallback` and the fallback model. There is no `ai` SDK: it is one `fetch`.
@@ -108,7 +108,7 @@ All optional. Set on both hosts as environment values (Node: `.env`; Worker: sec
 | --- | --- | --- |
 | `AI_GATEWAY_API_KEY` | none | secret. Absent: the feature is off |
 | `AI_GATEWAY_BASE_URL` | `https://ai-gateway.vercel.sh` | https only |
-| `COMPANION_MODEL` | `openai/gpt-5.6-luna` | |
+| `COMPANION_MODEL` | `openai/gpt-6-luna` | |
 | `COMPANION_FALLBACK_MODEL` | `xai/grok-4.1-fast-non-reasoning` | asked once if the first fails (429, 5xx, timeout, wrong id, bad answer). A refused key (401/403) is not retried |
 | `COMPANION_AI` | on when a key exists | `off` switches it off |
 | `COMPANION_DAILY_REQUESTS` | 25000 | everybody together, rolling 24 hours |

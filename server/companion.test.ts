@@ -108,11 +108,11 @@ test('success: the exact request, the tags, a hashed user, and the key only in t
   assert.equal(seen.path, '/v1/chat/completions');
   assert.equal(seen.headers['authorization'], `Bearer ${KEY}`);
   const body = seen.body as { model: string; stream: boolean; max_tokens: number; temperature: number; messages: { role: string; content: string }[]; providerOptions: { gateway: { user: string; tags: string[] } } };
-  assert.equal(body.model, 'openai/gpt-5.6-luna');
+  assert.equal(body.model, 'openai/gpt-6-luna');
   assert.equal(body.stream, false);
   assert.equal(body.max_tokens, 220);
   assert.equal(typeof body.temperature, 'number');
-  assert.deepEqual(body.providerOptions.gateway.tags, ['product:allworld', 'feature:companion', 'role:primary', 'model:openai/gpt-5.6-luna']);
+  assert.deepEqual(body.providerOptions.gateway.tags, ['product:allworld', 'feature:companion', 'role:primary', 'model:openai/gpt-6-luna']);
   assert.match(body.providerOptions.gateway.user, /^p_[0-9a-f]{32}$/);
   assert.ok(!seen.raw.includes(ada.id) && !seen.raw.includes(KEY));
   assert.equal(body.messages[0]?.role, 'system');
@@ -147,7 +147,7 @@ test('every failure ends safely: 429 then fallback, 500 twice, malformed, auth, 
   const ada = await life('Ada');
   // The router rests a model that failed for a few minutes (a refused key rests its provider for ten): each case below starts after that.
   const rest = (): void => f.advance(11 * 60000);
-  gateway.plan((seen) => (seen.body['model'] === 'openai/gpt-5.6-luna' ? { status: 429 } : { reply: reply('Fallback here.') }));
+  gateway.plan((seen) => (seen.body['model'] === 'openai/gpt-6-luna' ? { status: 429 } : { reply: reply('Fallback here.') }));
   let got = await ask(ada, { message: 'what is a stall' });
   assert.deepEqual([got.via, got.text], ['fallback', 'Fallback here.']);
   assert.deepEqual(gateway.seen.map((s) => (s.body['providerOptions'] as { gateway: { tags: string[] } }).gateway.tags[2]), ['role:primary', 'role:fallback']);
@@ -407,11 +407,11 @@ test('operator self-test: ok, a refused key, a wrong model, a timeout; guarded b
   assert.equal((await fetch(f.base + '/api/mod/companion-test', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' })).status, 401);
   gateway.plan(() => ({ reply: 'ok' }));
   const good = (await mod('/api/mod/companion-test', true)).body;
-  assert.deepEqual([good['ok'], good['model'], good['usedFallback']], [true, 'openai/gpt-5.6-luna', false]);
+  assert.deepEqual([good['ok'], good['model'], good['usedFallback']], [true, 'openai/gpt-6-luna', false]);
   assert.equal((gateway.seen[0]!.body as { max_tokens: number }).max_tokens, 16);
   f.advance(11 * 60000); gateway.plan(() => ({ status: 401 }));
   assert.equal((await mod('/api/mod/companion-test', true)).body['error'], 'auth');
-  f.advance(11 * 60000); gateway.plan((seen) => (seen.body['model'] === 'openai/gpt-5.6-luna' ? { status: 404 } : { reply: 'ok' }));
+  f.advance(11 * 60000); gateway.plan((seen) => (seen.body['model'] === 'openai/gpt-6-luna' ? { status: 404 } : { reply: 'ok' }));
   const moved = (await mod('/api/mod/companion-test', true)).body;
   assert.deepEqual([moved['ok'], moved['usedFallback'], moved['primaryError']], [true, true, 'model_not_found']);
   f.advance(61 * 60000); gateway.plan(() => ({ status: 404 }));

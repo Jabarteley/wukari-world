@@ -14,7 +14,7 @@
 import { MODELS_ENV } from '../models/catalog.ts';
 export const COMPANION_ENV = Object.freeze(['AI_GATEWAY_API_KEY', 'AI_GATEWAY_BASE_URL', 'COMPANION_MODEL', 'COMPANION_FALLBACK_MODEL', 'COMPANION_AI', 'COMPANION_AI_REPHRASE', 'COMPANION_DAILY_REQUESTS', 'COMPANION_PLAYER_DAILY', 'COMPANION_PLAYER_BURST', 'COMPANION_MAX_OUTPUT_TOKENS', 'COMPANION_TIMEOUT_MS', 'COMPANION_PRICE_IN_PER_M', 'COMPANION_PRICE_OUT_PER_M', ...MODELS_ENV]);
 export const DEFAULT_BASE_URL = 'https://ai-gateway.vercel.sh';
-export const DEFAULT_MODEL = 'openai/gpt-5.6-luna';
+export const DEFAULT_MODEL = 'openai/gpt-6-luna';
 export const DEFAULT_FALLBACK_MODEL = 'xai/grok-4.1-fast-non-reasoning';
 /** US$ per million tokens of the default model at the time of writing. Used ONLY for the operator's estimated cost. */
 export const DEFAULT_PRICE_PER_M = Object.freeze({ input: 0.10, output: 0.50 });

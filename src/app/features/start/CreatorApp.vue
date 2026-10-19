@@ -415,7 +415,7 @@ onBeforeUnmount(() => {
             <StepLook v-else-if="cr.step === 'look'" :look="draft.look" :owned="wardrobe" :can-undo="cr.history.length > 0" :can-reset="cr.origin !== null && !sameLook(cr.origin, draft.look)" @replace="replaceLook" @undo="undo" @reset="reset" @shuffle="shuffle" @tab="onTab" />
             <StepSpirit v-else-if="cr.step === 'spirit'" :city="cr.city ?? view.cityId" :traits="draft.traits" :dream="draft.dream" @trait="pickTrait" @dream="pickDream" @random="randomSpirit" />
             <StepHome v-else-if="cr.step === 'home'" v-model="draft.area" :choosable="isNew" @ready="homeReady = $event" />
-            <StepReady v-else :city="cr.city ?? view.cityId" :name="draft.name" :look="draft.look" :traits="draft.traits" :dream="draft.dream" :area="areaName" @edit="go" />
+            <StepReady v-else :city="cr.city ?? view.cityId" :name="draft.name" :look="draft.look" :traits="draft.traits" :dream="draft.dream" :area="areaName" :can-card="!embedded" @edit="go" />
             <p v-if="canStay" class="cr-stay"><button type="button" class="cr-link" data-key="stay" :disabled="Boolean(cr.pending)" @click="finish(true)">Move in, but stay here for now</button></p>
           </div>
         </Transition>

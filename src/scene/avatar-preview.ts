@@ -14,6 +14,7 @@
  *   preview.rotate(radians)            turn the character (arrow keys do this when the canvas has focus)
  *   preview.resize()                   re-measure the host; one frame if the size changed
  *   preview.attach(host)               move the canvas into another host element
+ *   preview.snapshot()                 a copy of the figure, full length and facing front, drawn at once (a share card); null when nothing can be drawn
  *   preview.diagnostics()              { renderCount, frames, animating, live, lost, disposed, triangles, yaw, focus, lastRenderMs }
  *   preview.dispose()                  free the renderer, geometry, materials and the WebGL context
  *
@@ -81,6 +82,7 @@ export interface AvatarPreview {
   resize(): boolean;
   attach(target: HTMLElement | null | undefined): void;
   setLabel(text: unknown): void;
+  snapshot(): HTMLCanvasElement | null;
   diagnostics(): PreviewDiagnostics;
   dispose(): void;
 }
@@ -465,8 +467,27 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
     resize();
   }
 
+  /** The figure as it stands, full length and facing front, copied into a 2D canvas straight after a frame is drawn (a WebGL canvas is blank once the task ends). Whatever is on screen is drawn again afterwards. */
+  function snapshot(): HTMLCanvasElement | null {
+    if (disposed || lost || !size.width || !size.height) return null;
+    const keep = { shown, inset, focus, yaw };
+    shown = { ...FRAMES.body }; inset = 0; focus = 'body'; yaw = START_YAW;
+    try {
+      render();
+      const copy = document.createElement('canvas');
+      copy.width = canvas.width; copy.height = canvas.height;
+      const ctx = copy.getContext('2d');
+      if (!ctx || !copy.width) return null;
+      ctx.drawImage(canvas, 0, 0);
+      return copy;
+    } finally {
+      shown = keep.shown; inset = keep.inset; focus = keep.focus; yaw = keep.yaw;
+      render();
+    }
+  }
+
   const api: AvatarPreview = {
-    canvas, setLook, setFocus, setInset, rotate, turnBy, resize, attach,
+    canvas, setLook, setFocus, setInset, rotate, turnBy, resize, attach, snapshot,
     setLabel(text: unknown) { canvas.setAttribute?.('aria-label', String(text ?? '')); },
     diagnostics: () => ({ renderCount, frames, animating: tweens.size > 0 || frameId !== 0, live: previewStats.live, lost, disposed, triangles: renderer.info.render.triangles, yaw, focus, lastRenderMs: Math.round(lastMs * 10) / 10 }),
     dispose() {

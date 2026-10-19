@@ -6,8 +6,8 @@
 - **Owner:** Claude (open-source plan, phase 1)
 - **Model / effort:** Sonnet 5.5 / default
 - **Thread:** local (spawned by the coordinator)
-- **UTC updated:** 2026-10-19T00:00:00Z
-- **Status:** active
+- **UTC updated:** 2026-10-19T22:50:00Z
+- **Status:** ready-for-review
 - **Work state:** implementation
 
 ## Goal and boundaries
@@ -38,6 +38,10 @@
 - Hooks: `venue-scenes.ts`, `neighbourhood-scene.ts` (the street host), `home-scene.ts`; each one lazy `import('./fx/weather.ts')` and only when wet (or a grill/running generator in a venue).
 - `npm run typecheck` clean at `--max-old-space-size=6144` (3584 aborts in the `test` project with out-of-memory; not related to this work).
 - 24 failures in `src/scene/*.test.ts src/scene/ambient/*.test.ts src/venue-world*.test.ts` are identical on the base commit 090f1e97b (checked in a temporary worktree): character assets missing in this checkout.
+
+- Merged `origin/main` (7ec83aab5, the fx host). The hosts call `import('./fx/index.ts').then(fx => fx.loadFxHere())`; `index.ts` gained `weather` on `FxHost` and `loadFxHere()` (loads at the FX_IMPORTS marker).
+- CI on `claude/os-p1-weather` fails in prebuild at "host scenery.sourceFiles[1214] no longer matches its pinned SHA-256": `src/scene/venue-scenes.ts` is pinned by `scripts/scene-factory/host-scenery.json`, so ANY hook line there needs the scene-factory re-pin (`host-scenery.json` hash, then `npm run scenes:build`, then `npm run talk:build`: 570 files). Not done on the branch (integrator). Done on the throwaway branch `tmp/os-p1-weather-ci` (delete it after reading): CI run 39328077636 all jobs green, budgets: LOADING_RAW 90561/92000, LOADING_GZIP 35277/37000, STARTUP_RAW 613913/616000, STARTUP_GZIP 223116/223500, STARTUP_BROTLI 196286/196300, SCENE_HOST_RAW 82146/192000, SCENE_HOST_GZIP 31076/71000, FX_RAW 14628/400000, FX_GZIP 5781/120000 (all ok).
+- NOT verified in a real GL context: the GLSL (the browser slot was held by other agents for over an hour). Everything else is tested under Node. First thing to do with a browser: `/tmp/p1-demo` style page (esbuild bundle of `src/scene/fx/weather.ts`, a ground, a camera at [15, 19.8, 25.4], `weather.update({ wet: true })`, render) and check the console for shader compile errors.
 
 ### Immediate resume steps
 

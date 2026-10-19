@@ -1,0 +1,52 @@
+# Agent work record
+
+## Identity
+
+- **Work ID:** `20261020-os-phase2b-light`
+- **Owner:** Claude (open-source plan, Phase 2b)
+- **Model / effort:** Sonnet 5.5 / default
+- **Thread:** local
+- **UTC updated:** 2026-10-20T01:00:00Z
+- **Status:** `active`
+- **Work state:** `implementation`
+
+## Goal and boundaries
+
+- **Goal:** Light that comes from things (lamps, windows, signs at dusk and night, ground pools) and a wet ground, on the home street; then say whether `?post=1` now shows a difference worth its cost.
+- **In scope:** `src/scene/street/night-lights.ts` (+ test), `src/scene/street/light-pools.ts`, `src/scene/street/wet-ground.ts`, `src/scene/neighbourhood-scene.ts`, `src/scene/street-life/scenery.ts`, `shopfronts.ts`, `parts.ts` (small additions), `src/scene/models/scene-models.ts` (a per-building seed attribute), `src/game/conditions/look.ts` (sun warmth when wet), `src/scene/weather-query.ts` (`?outage=`), `scripts/evidence/views.ts` (+ test: `street-night` view), `docs/evidence/frames.md`, pictures.
+- **Out of scope / left out:** baked light map; new texture files; extra draw calls on the phone tier; venue street scenes and the map dive (the home street is what the harness and the critic scored).
+- **Pinned files:** none edited so far (props.ts, kit.ts, lighting.ts, look.ts, build.ts, venue-world.ts are pinned and untouched).
+- **Dependencies:** wave-1 critic `docs/evidence/critic-wave1-20261020.md`.
+
+## Repository state
+
+- **Repo:** joinallworld, worktree `Allworld-notes/work/os-p2b-light`
+- **Branch / worktree:** `claude/os-p2b-light`
+- **Base:** `53a738808`
+- **Port/process ownership:** dev:open on 5216 (mine; stop with the process I started when finished).
+
+## Progress
+
+### Done and exact evidence
+
+- `street-night` view added (21:00); `node --experimental-strip-types --test scripts/evidence/*.test.ts` 20 pass.
+- Before pictures and numbers on unchanged code: `docs/evidence/out/before-{post0,post1,wet}/` (git-ignored).
+
+### In progress / blockers
+
+- Emitters, pools, wet ground.
+
+### Immediate resume steps
+
+1. See the commits on the branch; rerun the shoot commands in the final report.
+
+## Release state
+
+- **Local implementation:** `active`
+- **Deployment:** `not-requested`
+
+## Checkpoint history
+
+| UTC | Status | Change or finding | Evidence | Next step |
+|---|---|---|---|---|
+| 2026-10-20T01:00:00Z | active | before pictures taken, view added | docs/evidence/out/before-* | build emitters |

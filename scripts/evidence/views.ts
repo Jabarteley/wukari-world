@@ -3,7 +3,7 @@
 // A view is: a city, the game actions that bring a fresh open-mode life to the place, the place the page must report when it
 // is there, and an in-game clock. Lagos time is UTC+1 all year, which is how the game reads the hour (src/game/clock.ts).
 
-export type ViewName = 'street-dusk' | 'kano-noon' | 'home-night';
+export type ViewName = 'street-dusk' | 'street-night' | 'kano-noon' | 'home-night';
 export type Band = 'day' | 'dusk' | 'night';
 
 /** One game action sent over HTTP before the browser opens, then waited for until it has finished. */
@@ -37,6 +37,11 @@ export const VIEWS: Readonly<Record<ViewName, ViewSpec>> = Object.freeze({
     name: 'street-dusk', title: 'A Lagos street at dusk', city: 'lagos', location: 'neighbourhood', band: 'dusk', clock: { hour: 18, minute: 30 }, path: '/', camera: 'street-pose',
     steps: [goHome, { type: 'home.door', payload: { direction: 'outside' } }],
     note: 'The home street (the street-life scene: traffic, passers-by, shopfronts) seen from the pavement, where the map dive lands. Open mode puts the new life in Agege, so this is not Yaba; the scene is the same code for every Lagos home.',
+  },
+  'street-night': {
+    name: 'street-night', title: 'A Lagos street at night', city: 'lagos', location: 'neighbourhood', band: 'night', clock: { hour: 21, minute: 0 }, path: '/', camera: 'street-pose',
+    steps: [goHome, { type: 'home.door', payload: { direction: 'outside' } }],
+    note: 'The same street and camera as street-dusk at 21:00, when lamps, windows and signs are meant to be the light (open-source plan phase 2b).',
   },
   'kano-noon': {
     name: 'kano-noon', title: 'A Kano venue at noon', city: 'kano', location: 'kurmi-market', band: 'day', clock: { hour: 12, minute: 0 }, path: '/',

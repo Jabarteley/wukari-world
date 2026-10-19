@@ -25,7 +25,7 @@ import type { SourceEvent } from '../game/attribution.ts'
 // ---- shares and the events calendar ---------------------------------------------------------------
 
 /** src/game/share-model.ts SHARE_KINDS. */
-export type ShareKind = 'invite' | 'house' | 'missions' | 'week' | 'table' | 'event' | 'wedding' | 'election' | 'news' | 'gist' | 'space'
+export type ShareKind = 'invite' | 'house' | 'missions' | 'week' | 'table' | 'event' | 'wedding' | 'election' | 'news' | 'gist' | 'space' | 'street'
 
 /**
  * What a share says (share-model.js cleanFacts): facts the server took from the sharer's own life.
@@ -63,6 +63,8 @@ export interface ShareFacts {
   headline: string
   /** The public record entry the headline came from (election, news); 0 for none. */
   record: number
+  /** The street a card leads to (street): `<city>/<local unit or district>` or a city alone, ids from the city's rules; '' for other kinds. */
+  place: string
 }
 
 /** One occurrence of a calendar event (src/game/calendar.ts describe): server ms; `key` is unique per occurrence. */
@@ -716,7 +718,7 @@ export const OUTREACH_MINE_KEYS = ['channel', 'comeback', 'email', 'live', 'push
 export const DIGEST_KEYS = ['caps', 'delivery', 'footer', 'greeting', 'lines', 'more', 'subject', 'tasks'] as const satisfies readonly (keyof (Digest & { delivery: 'dry-run' }))[]
 export const CALENDAR_OCCURRENCE_KEYS = ['blurb', 'end', 'icon', 'id', 'key', 'live', 'spray', 'start', 'table', 'title', 'venue', 'venueLabel'] as const satisfies readonly (keyof CalendarOccurrence)[]
 export const SHARE_FACTS_KEYS = [
-  'city', 'days', 'district', 'done', 'event', 'game', 'headline', 'kind', 'name', 'partner', 'record', 'stamps', 'tableId', 'title', 'total', 'venue', 'won',
+  'city', 'days', 'district', 'done', 'event', 'game', 'headline', 'kind', 'name', 'partner', 'place', 'record', 'stamps', 'tableId', 'title', 'total', 'venue', 'won',
 ] as const satisfies readonly (keyof ShareFacts)[]
 export const CONSENT_VIEW_KEYS = ['age', 'at', 'email', 'push'] as const satisfies readonly (keyof ConsentView)[]
 export const TABLE_SUMMARY_KEYS = [
@@ -731,6 +733,6 @@ export const GROWTH_METRICS_RESPONSE_KEYS = [
 export const OUTREACH_OPERATOR_RESPONSE_KEYS = [
   'comeback', 'email', 'log', 'previews', 'push', 'quietNow', 'rules', 'serverTime', 'whatsapp',
 ] as const satisfies readonly (keyof Ok<OutreachOperatorResponse>)[]
-export const SHARE_KINDS = ['invite', 'house', 'missions', 'week', 'table', 'event', 'wedding', 'election', 'news', 'gist', 'space'] as const satisfies readonly ShareKind[]
+export const SHARE_KINDS = ['invite', 'house', 'missions', 'week', 'table', 'event', 'wedding', 'election', 'news', 'gist', 'space', 'street'] as const satisfies readonly ShareKind[]
 export const CLIENT_SIGNALS = ['webgl-missing', 'opera-mini', 'save-data', 'slow-start', 'installed', 'share-sheet', 'share-fallback'] as const satisfies readonly ClientSignal[]
 export const FUNNEL_STEPS = ['onboarded', 'goal-1', 'settled', 'job', 'shift', 'goals-done', 'mission', 'table', 'day-two-work'] as const satisfies readonly FunnelStep[]

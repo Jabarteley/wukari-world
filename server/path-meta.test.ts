@@ -10,7 +10,8 @@ import { join } from 'node:path';
 import test from 'node:test';
 import { GAME_SLUGS, knownStateIds, openCitiesOf, openCityIds, placeFacts } from '../src/paths.ts';
 import { SITE_ORIGIN } from './host-context.ts';
-import { escapeHtml, metaFor, sitemapPaths, withPathMeta } from './path-meta.ts';
+import { escapeHtml, metaFor, preparePathMeta, sitemapPaths, withPathMeta } from './path-meta.ts';
+import { cityRules } from '../src/game/cities/registry.ts';
 import { inlineScriptHashes } from './security-headers.ts';
 import { siteFile } from './site-files.ts';
 import { fixture } from './test-fixture.ts';
@@ -96,6 +97,36 @@ test('a state with several open cities, and a capital that opened', () => {
   // Every state now has an open city, so /kaduna is Kaduna's city page rather than a state page that says it is coming.
   assert.equal(head(withPathMeta(INDEX, '/kaduna')).title, 'Live in Kaduna — Allworld');
   assert.equal(head(withPathMeta(INDEX, '/nigeria')).canonical, `${SITE_ORIGIN}/nigeria`);
+})
+
+test('a street and a visit: "Walk Yaba, Lagos on Allworld", "Visit Lagos on Allworld", names from the city\'s rules, never from the address', async () => {
+  await preparePathMeta('/street/lagos/yaba');
+  assert.ok(cityRules('lagos'), 'the rules are read before the head is written');
+  const yaba = head(withPathMeta(INDEX, '/street/lagos/yaba'));
+  assert.equal(yaba.title, 'Walk Yaba, Lagos on Allworld');
+  assert.match(yaba.description ?? '', /^Walk the streets of Yaba, Lagos: /);
+  assert.ok((yaba.description ?? '').length <= 155);
+  assert.deepEqual([yaba.canonical, yaba.ogUrl, yaba.robots, yaba.image], [`${SITE_ORIGIN}/street/lagos/yaba`, `${SITE_ORIGIN}/street/lagos/yaba`, 'index,follow', `${SITE_ORIGIN}/og/entry-cities.jpg`]);
+  assert.deepEqual([yaba.ogTitle, yaba.twTitle, yaba.ogDescription], [yaba.title, yaba.title, yaba.description]);
+  assert.equal(head(withPathMeta(INDEX, '/street/lagos/ikeja')).title, 'Walk Ikeja, Lagos on Allworld', 'a local unit names itself');
+  const visit = head(withPathMeta(INDEX, '/visit/lagos'));
+  assert.equal(visit.title, 'Visit Lagos on Allworld');
+  assert.match(visit.description ?? '', /London.*Lagos/);
+  assert.equal(visit.canonical, `${SITE_ORIGIN}/visit/lagos`);
+  // A place the city does not have is never written: the head is the city's visit. The address's own words never reach the page.
+  const made = withPathMeta(INDEX, '/street/lagos/send-money-now');
+  assert.equal(head(made).title, 'Visit Lagos on Allworld');
+  assert.equal(head(made).canonical, `${SITE_ORIGIN}/visit/lagos`);
+  assert.ok(!/send-money|Send Money/i.test(made));
+  // No open city: the generic rows (fixed words), and nothing at all from the address.
+  assert.equal(head(withPathMeta(INDEX, '/street')).title, 'Walk your own street on Allworld');
+  assert.equal(head(withPathMeta(INDEX, '/visit')).title, 'Visit home from London — Allworld');
+  assert.ok(!withPathMeta(INDEX, '/street/nowhere-town/x').includes('nowhere'));
+  assert.equal(head(withPathMeta(INDEX, '/politics')).title, 'Become governor of Lagos this week — Allworld');
+  assert.equal(head(withPathMeta(INDEX, '/politics')).image, `${SITE_ORIGIN}/og/card-election.png`);
+  // Waiting for the rules is bounded and never throws.
+  await preparePathMeta('/street/nowhere/x');
+  await preparePathMeta('/games');
 })
 
 test('unknown paths, panels and reserved ones: the default head and noindex', () => {
@@ -184,6 +215,13 @@ test('the Node host: the page for /games, /abuja and an unknown path, with the s
   assert.deepEqual([unknown.status, tag(body, 'robots'), title(body)], [200, 'noindex,follow', title(INDEX)]);
   const sitemap = await fetch(`${f.base}/sitemap.xml`);
   assert.ok((await sitemap.text()).includes('<loc>https://play.example/abuja</loc>'));
+  // A street: the host reads the city's rules first, so its head names the place.
+  for (const [path, expected] of [['/street/lagos/yaba', 'Walk Yaba, Lagos on Allworld'], ['/visit/lagos', 'Visit Lagos on Allworld']] as const) {
+    const response = await fetch(`${f.base}${path}`);
+    const page = await response.text();
+    assert.deepEqual([response.status, title(page), canonical(page)], [200, expected, `https://play.example${path}`], path);
+    assert.equal(response.headers.get('content-security-policy'), homePolicy, `${path}: the policy is the home page's`);
+  }
 })
 
 test('the entry page\'s /agents address is an exact match: the public agent pages under it keep their own handling', () => {

@@ -16,7 +16,8 @@
  * dive), the first-frames probe (createFrameProbe: slow frames bail out to today's cross-fade), the arrival variant (kind 'arrival': a
  * trip that ends in a new city, no flight), the scale match across the hand-off (spanKm, handoffSpan: the city map starts at the ground
  * width the atlas ended on), the city map's own path (swoopPlan/swoopView: straight down over the towers, then a swoop at the
- * destination) and the haze left over the city as the clouds part (hazeAt).
+ * destination) and the haze left over the city as the clouds part (hazeAt). And the entry page's backdrop (entryBackdrop, entryDivePlan):
+ * the same dive on a timer instead of a gesture, from space to the country to the city, driven by ./entry-dive.ts.
  */
 
 export const FLIGHT_MS = 1600, COVER_FROM_MS = 1000, REVEAL_MS = 3000, HOLD_MS = 2500, CAP_MS = 6000;
@@ -368,4 +369,30 @@ export function swoopView(plan: SwoopPlan, k: number): DiveView {
   if (!plan.street) return t >= 1 ? { ...plan.aerial } : between(plan.start, plan.aerial, t);
   if (t >= 1) return { ...plan.street };
   return t <= DESCENT_SHARE ? between(plan.start, plan.aerial, t / DESCENT_SHARE) : between(plan.aerial, plan.street, (t - DESCENT_SHARE) / (1 - DESCENT_SHARE));
+}
+
+// ---- the entry page's backdrop: the dive on a timer --------------------------------------------------------------------------------
+/** still: the entry page's own picture (save-data, a weak device); fade: the atlas already over the city, faded in (reduced motion); dive: the timed dive. */
+export type EntryBackdrop = 'still' | 'fade' | 'dive';
+/** The atlas is faded in over the picture this fast, and reduced motion gets nothing longer. */
+export const ENTRY_FADE_MS = 300;
+/** From space the world turns this long before the camera goes to the country, and stays on the country this long before the dive to the city. */
+export const ENTRY_WORLD_MS = 1400, ENTRY_COUNTRY_MS = 2400;
+/** Save-data and a weak device (diveTier: cut) keep the picture; reduced motion (on a device that could play it) gets the short fade. */
+export function entryBackdrop(hints: DeviceHints = {}): EntryBackdrop {
+  if (diveTier({ ...hints, reduced: false }) === 'cut') return 'still';
+  return hints.reduced ? 'fade' : 'dive';
+}
+/** One step of the backdrop: what the atlas is asked to do `at` ms after it is on screen. 'settle' is the city at once, with no flight. */
+export interface EntryStep { at: number; go: 'world' | 'country' | 'city' | 'settle' }
+/**
+ * The backdrop's path: nothing for the still; the city at once for the fade; for the dive, the world, then the country, then the dive to
+ * the city (the atlas's own flight and the clouds of ./dive-host.ts), a mid-range device the same path shorter. Pure, so the timings are a test.
+ * Nothing in it waits on the page: the steps are only ever started by the backdrop's own timers.
+ */
+export function entryDivePlan(backdrop: EntryBackdrop, tier: DiveTier = 'full'): readonly EntryStep[] {
+  if (backdrop === 'still') return [];
+  if (backdrop === 'fade') return [{ at: 0, go: 'settle' }];
+  const k = tier === 'lite' ? LITE : 1, world = Math.round(ENTRY_WORLD_MS * k), country = Math.round(ENTRY_COUNTRY_MS * k);
+  return [{ at: 0, go: 'world' }, { at: world, go: 'country' }, { at: world + country, go: 'city' }];
 }

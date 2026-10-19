@@ -27,6 +27,7 @@ This is the pattern the invite already used; the cards reuse it, so there is no 
 | `wedding` | both players' shown names, city | `card-wedding.png` | beside the sharer |
 | `election` | one `term` line of the public record | `card-election.png` | the Governor panel |
 | `news` | one `term`, `law`, `party` or `impeachment` line of the public record | `card-news.png` | the Governor panel |
+| `street` | a local unit or district of a city, or a city alone, named from the city's rules; the sharer's shown name | `entry-cities.jpg` | `/street/<city>/<place>` or `/visit/<city>` (the entry page with the dive, `docs/ENTRY.md`) |
 | `invite`, `house`, `missions`, `week`, `event` | as before | `allworld.jpg` | as before |
 
 * **Weddings of residents** (Phase 20, `server/residents/bonds.ts`). `POST /api/growth/share` with `{ kind: 'wedding', wedding: '<id>' }` makes the card of a
@@ -34,6 +35,11 @@ This is the pattern the invite already used; the cards reuse it, so there is no 
   how close anyone was. An unknown, unannounced or not yet opened wedding answers `nothing_to_share`; a malformed id answers 400. There is still no Share button
   in the game for it (a button would need a lazy panel). Players have no marriages yet: `kind: 'wedding'` without an id still answers "nothing to share"; when
   players can marry, their rules supply `{ partner }` in `factsFor`.
+* **Streets** ("Come and see Yaba on Allworld"). `POST /api/growth/share` with `{ kind: 'street', place: '<unit or district id>' }` (the
+  sharer's city) or `{ kind: 'street', city: '<city id>' }` (a city alone). The server names the place from the city's rules and refuses
+  one it does not have (`nothing_to_share`; a malformed id is 400). The facts carry `place` (`lagos/yaba`, or `abuja`) for the link; the card
+  says nothing of where the sharer lives. Offered from a local government's page (Share Ikeja) and from a community based on a real, open
+  city (Share place, `CrewsApp.vue`).
 * **News is generic.** `shareMoment(kind, n)` (`src/app/features/growth/shareMoment.ts`) shares any public item that has a stable
   number. The gist feed of the world-alive phase 8 can pass its own entries through the same kind (add its reader next to
   `publicEntry` in `server/growth/share.ts`).

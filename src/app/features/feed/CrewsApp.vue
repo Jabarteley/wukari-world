@@ -129,6 +129,9 @@ async function enterWorld(): Promise<void> {
 const link = computed(() => (current.value?.code ? `/c/${current.value.code}` : ''))
 async function share(): Promise<void> { if (current.value && (await shareLink(link.value, `Join ${current.value.name} on Allworld`)) === 'copied') toast('Link copied.') }
 const big = computed(() => Boolean(current.value && current.value.kind !== 'crew'))
+// A community based on a real, open city: "Share place" sends a street card of that city (growth/shareMoment.ts), linking to /visit/<city>.
+const sharedCity = computed(() => { const id = current.value?.place?.real ? current.value.place.city : null; return id && cityCatalogue().some((c) => c.id === id && c.open) ? id : null })
+function sharePlace(): void { if (sharedCity.value) void import('../growth/shareMoment.ts').then(({ shareStreet }) => { shareStreet({ city: sharedCity.value ?? undefined }, () => { toast('That could not be shared.', 'error') }) }) }
 </script>
 
 <template>
@@ -139,6 +142,7 @@ const big = computed(() => Boolean(current.value && current.value.kind !== 'crew
         <img v-if="current.cover" class="feed-media" :src="mediaUrl(current.cover)" alt="">
         <div class="feed-head"><span class="feed-crew-chip"><i :style="{ background: hex(current.colour) }" />{{ current.name }}</span><span class="feed-note">{{ current.kindLabel }} · {{ current.size }} / {{ current.cap }}{{ current.open ? ' · open to all' : ' · by link' }}</span></div>
         <p v-if="placeLine(current)" class="feed-note">{{ current.place?.real ? 'Based on' : 'An imagined place:' }} {{ placeLine(current) }}</p>
+        <button v-if="sharedCity" type="button" class="feed-pill" data-crew-share-place @click="sharePlace">Share place</button>
         <p v-if="current.about" class="feed-body">{{ current.about }}</p>
         <div class="feed-strip" style="margin-top:8px">
           <button v-for="m in current.members" :key="m.id" type="button" class="feed-person" @click="shell.open('person', { player: m.id, name: m.name })">

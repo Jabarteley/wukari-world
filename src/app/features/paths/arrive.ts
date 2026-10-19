@@ -8,7 +8,7 @@
 // Reserved addresses (the API, the build, invite and share links, files) are never touched; an unknown address is quietly replaced by `/`.
 import { watch } from 'vue'
 import { cachedCityContent, cityNetworkReady, loadCityNetwork } from '../../../game/cities/registry.ts'
-import { isReservedPath, parsePath, pathOf } from '../../../paths.ts'
+import { isReservedPath, parsePath, pathOf, streetPlace } from '../../../paths.ts'
 import { openAccount, openLogin, openSignup } from '../account/accountOpen.ts'
 import { useAccountLite } from '../account/useAccountLite.ts'
 import { useApp } from '../../state/app.ts'
@@ -33,6 +33,15 @@ function selectState(app: App, state: string): void {
   const stop = watch(app.scene.world, (next) => { if (next) { stop(); choose(next) } })
 }
 
+/**
+ * The event "Show on map" of a local unit's page sends (world/worldModel.ts focusMap), once the city map is drawn: on a fresh page its
+ * chunk is still on its way when the address is read. Given up after about ten seconds (the map then simply shows the whole city).
+ */
+function focusWhenDrawn(app: App, unit: string, tries = 40): void {
+  if (app.scene.city.value?.map) { setTimeout(() => window.dispatchEvent(new CustomEvent('jaw:map-focus', { detail: { lga: unit } })), 400); return }
+  if (tries > 0) setTimeout(() => { focusWhenDrawn(app, unit, tries - 1) }, 250)
+}
+
 function envOf(app: App): Env {
   const { game, shell } = app
   return {
@@ -46,6 +55,8 @@ function envOf(app: App): Env {
     gamesOpen: () => gamesOpen(app),
     mapOpen: () => mapOpen(app),
     hasVenue: (city, venue) => cachedCityContent(city)?.venues.some((item) => item.id === venue) ?? false,
+    unitOf: (city, place) => streetPlace(city, place)?.unit ?? null,
+    focusUnit: (unit) => { focusWhenDrawn(app, unit) },
     async openAccount(which) {
       const lite = useAccountLite()
       await lite.load()

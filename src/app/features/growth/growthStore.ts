@@ -51,7 +51,7 @@ export interface GrowthState {
 const fresh = (): GrowthState => ({ hello: null, at: 0, loading: false, error: null, sharing: null, busy: null, landing: null })
 
 /** What the second argument of share() may carry: the calendar event id, a table id, or a public record number. */
-export interface ShareExtra { event?: string; table?: string; record?: number; /** Where the share was started from (telemetry only; never sent to the server). */ surface?: string }
+export interface ShareExtra { event?: string; table?: string; record?: number; /** A street card's city and place (ids from the city's rules). */ city?: string; place?: string; /** Where the share was started from (telemetry only; never sent to the server). */ surface?: string }
 
 export interface GrowthDeps {
   fetchJson: FetchJson

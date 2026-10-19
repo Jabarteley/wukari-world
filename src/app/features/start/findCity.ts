@@ -1,10 +1,10 @@
-// "Find my city" on the landing, without a DOM: which open city a visitor is in, or the nearest one when they are somewhere that is
-// not open yet.
+// "Find my city" (and "Find my street") on the landing, without a DOM: which open city a visitor is in, and the local unit of it the
+// city pack puts them in, or the nearest open city when they are somewhere that is not open yet.
 //
 // LOCATION PRIVACY (the same rule as "Find my area", world/lgaCardModel.ts). The browser is asked for a position only when the
 // visitor taps the button, never before. The position is a local variable of one function: it is worked out against the city
 // registry's own coordinates and the city packs fetched to this device, and what comes out is a city id and a name. It is never
-// stored, logged, put in an event or sent: no request is made with it.
+// stored, logged, put in an event or sent: no request is made with it. The local unit comes out as an id and a name, nothing finer.
 import { nearestCities, nearestCity } from '../../../paths.ts'
 import { loadCityNetwork } from '../../../game/cities/registry.ts'
 import type { NearCity } from '../../../paths.ts'
@@ -13,7 +13,7 @@ import type { CityPackApi } from '../world/cityPack.ts'
 
 /** What the visitor is told: where they are, and the open city to start in. */
 export type CityFind =
-  | { kind: 'in'; city: string; name: string; line: string }
+  | { kind: 'in'; city: string; name: string; line: string; /** The local unit the city pack puts the device in (its id and name only). */ unit: { id: string; name: string } }
   | { kind: 'near'; city: string; name: string; place: string | null; line: string }
   | { kind: 'none'; line: string }
 
@@ -47,7 +47,8 @@ export async function findCity(deps: FindCityDeps = { geolocation: globalThis.na
     for (const near of nearestCities(at.lat, at.lon, LOOKED_INTO)) {
       if (!packs.has(near.id)) continue
       const pack = await packs.load(near.id)
-      if (pack && packs.resolve(pack, at.lat, at.lon)) return { kind: 'in', city: near.id, name: near.name, line: `You are in ${near.name} — start there?` }
+      const unit = pack ? packs.resolve(pack, at.lat, at.lon) : null
+      if (unit) return { kind: 'in', city: near.id, name: near.name, line: `You are in ${near.name} — start there?`, unit: { id: unit.id, name: unit.name } }
     }
     const open: NearCity | null = nearestCity(at.lat, at.lon)
     if (!open) return { kind: 'none', line: NO_CITY_LOCATION }

@@ -103,6 +103,8 @@ onMounted(async () => {
     scriptProblem(message, stopped) { scriptError.value = stopped ? message : `Your code: ${message}` },
   })
   loading.value = false
+  // The player's own character in place of the stand-in (the look they made in the game).
+  engine.setSelfLook(game.state.value.onboarding?.look, game.session.value?.id ?? 'you')
   startTogether()
   if (answer.world.kind === 'home' && !props.where.host) void loadStreet(answer.world)
   // The first world a player walks into says how: once per device.

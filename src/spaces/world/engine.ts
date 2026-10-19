@@ -35,6 +35,8 @@ export interface EngineEvents {
 }
 
 export interface Engine {
+  /** The player's own character (their look from the game) in place of the stand-in body; the stand-in stays if it cannot load. */
+  setSelfLook(look: unknown, seed: unknown): void
   /** The street round a home (docs/WORLDS.md phase 4): the road, the neighbours' houses and the address. */
   setStreet(info: import('./street3d.ts').StreetInfo): void
   /** A picture of what the player sees now, as WebP (a world's cover), or null when the device cannot draw one. */
@@ -366,6 +368,7 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
   }
   let closed = false
   let street: { group: InstanceType<typeof THREE.Group>; dispose(): void } | null = null
+  let selfFigure: InstanceType<typeof THREE.Object3D> | null = null
   const modelsReady = space.setModels(input.models, bytesOf)
   // A model house: loaded beside the first frames; the walker is moved to where it says, and the physics waits for its walls.
   const houseReady = space.setHouseModel(bytesOf).then((at) => {
@@ -476,6 +479,23 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
       // Once the models are drawn, so the script finds every one of them.
       if (next && next.code.trim()) void modelsReady.then(() => { if (run === scriptRun && !closed) script = runScript(next, { w: W, d: D }, scriptHost) })
     },
+    setSelfLook(look, seed) {
+      if (!look) return
+      // The game's own character, read from the scene's body code (never changed here): a still figure of the player's look.
+      void Promise.all([import('../../scene/kit.ts'), import('../../scene/body/canonical-crowd.ts')]).then(async ([{ createKit }, { createCanonicalStaticAvatar }]) => {
+        if (closed) return
+        const figure = createCanonicalStaticAvatar(createKit(), look, { seed, detail: 'lod' })
+        await figure.userData['ready']
+        if (closed || figure.userData['characterStatus'] !== 'ready') { (figure.userData['dispose'] as (() => void) | undefined)?.(); return }
+        const top = Number(figure.userData['top']) || 2.6
+        figure.scale.setScalar(1.75 / top)
+        figure.rotation.y = Math.PI
+        torso.visible = false; head.visible = false
+        figure.traverse((n) => { (n as InstanceType<typeof THREE.Mesh>).castShadow = true })
+        body.add(figure)
+        selfFigure = figure
+      }).catch(() => { /* the stand-in stays */ })
+    },
     setStreet(info) {
       void import('./street3d.ts').then(({ buildStreet }) => {
         if (closed) return
@@ -506,6 +526,7 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
     dispose() {
       closed = true
       street?.dispose(); street = null
+      ;(selfFigure?.userData['dispose'] as (() => void) | undefined)?.(); selfFigure = null
       script?.stop()
       script = null
       for (const peer of peers.values()) disposeGroup(peer.group)

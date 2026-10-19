@@ -28,6 +28,7 @@ import { homeTitleOf, spacesOf, type ModelEntry } from './store.ts';
 import { modelView } from './models.ts';
 import { worldsService } from './worlds.ts';
 import { homeHouseService, type HomeHouse } from './home-house.ts';
+import { sharesHome } from '../glue/data.ts';
 import type { LifeState } from '../../src/types/life.ts';
 import type { WorldView } from '../../src/types/spaces.ts';
 import type { Db, RouteContext, SessionRecord } from '../types.ts';
@@ -98,7 +99,7 @@ function build(ctx: RouteContext) {
       const seen = visits.homeProjection(db, session, host);
       if (!seen.ok) return no(seen.code, seen.reason);
       const home = seen.home, plot = plotOf(home.grid, home.owned), copy = copied(houses.houseOf(db, home.host.id), plot);
-      return { key: `home:${home.host.id}`, kind: 'home', title: homeTitleOf(db, home.host.id) || `${home.host.name.split(/\s+/)[0]}'s home`, owner: home.host, grid: home.grid, owned: home.owned, plot: copy?.plot ?? { w: plot.w, d: plot.d, floors: plot.floors }, style: home.style, items: copy ? [] : home.items.map((i) => ({ itemId: i.itemId, x: i.x, y: i.y, rot: i.rot, ...(i.floor ? { floor: i.floor } : {}) })), canEdit: false, ...(copy ? { house: copy.house } : {}) };
+      return { key: `home:${home.host.id}`, kind: 'home', title: homeTitleOf(db, home.host.id) || `${home.host.name.split(/\s+/)[0]}'s home`, owner: home.host, grid: home.grid, owned: home.owned, plot: copy?.plot ?? { w: plot.w, d: plot.d, floors: plot.floors }, style: home.style, items: copy ? [] : home.items.map((i) => ({ itemId: i.itemId, x: i.x, y: i.y, rot: i.rot, ...(i.floor ? { floor: i.floor } : {}) })), canEdit: sharesHome(db, home.host.id, session.publicId), ...(copy ? { house: copy.house } : {}) };
     }
     const cityId = characterCity(session), state = cityId ? session.cities?.[cityId]?.state as LifeState | undefined : undefined;
     if (!state) return no('no_home', 'Start your life in a city first.');

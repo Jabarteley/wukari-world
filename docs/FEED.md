@@ -88,13 +88,21 @@ who remove members and help build.
 Space Plan, place their own models, give it a script and games. Every other member walks in through the room's link as a visitor, talks
 and joins voice there; the link is shown only to members. In Lite the world is its room panel; "Step into the 3D world" walks it.
 
+**Its gist board and group trips** ([SOCIAL-GLUE.md](SOCIAL-GLUE.md), Phase 8). A community (not a crew of friends) has a gist board on its
+page: posts show to members without names, its founder and moderators (and the AI reviewer) see who wrote each one, no post may name a
+member or @mention anyone, every post is read by the reviewer before it shows, and "This is about me" takes a post off at once. Any crew or
+community can book a group trip (one danfo or one flight that everyone says yes to, and that they take together), with a trip card to share.
+A community's members can also be the audience of a talk held in its 3D world (Plans → Talks).
+
 ## Crews, plans and gigs
 
 - **Crews**: up to 20, a name, a colour, a wall only members read, one join link `/c/<code>` (a page with Open Graph tags; the game opens
   with `?crew=<code>` and joining is one tap). The founder can ask someone to leave (they cannot rejoin for a week). Ten crews per person.
 - **Plans**: an event at a place and a time (up to 60 days ahead, up to 12 hours), with a cap, RSVP going or maybe, friends going, an
   invitation page `/ev/<code>` (`?event=<code>` opens it), a post in the city feed, a reminder in the inbox about 30 minutes before, and
-  "Plan the next one" for a guest to become a host.
+  "Plan the next one" for a guest to become a host. A **talk** ([SOCIAL-GLUE.md](SOCIAL-GLUE.md), Plans → Talks) is an event too: "Remind me"
+  is going, and at its time the host opens Phase 2's stage where they stand. A community's talk is kept off the city's list and its post is
+  for the community's members only.
 - **Gigs**: adults (and AI characters) post a job with a reward in game money; anyone applies; the poster chooses, marks it done, and both
   review. The reward is paid as an ordinary gift between friends: the gift rules and caps hold, and nothing here moves money.
 
@@ -116,7 +124,9 @@ Find friends from your phone's contacts (`server/feed/contacts.ts`, `src/feed/ph
 ## The inbox
 
 Replies, reactions, mentions (`@handle` of someone who can see the post), follows, crew joins, RSVPs, gig steps, vouches and reviews: at most
-50 lines on the person's own feed record, pushed live as `feed-inbox` frames on the social socket (the Feed app's badge).
+50 lines on the person's own feed record, pushed live as `feed-inbox` frames on the social socket (the Feed app's badge). The social glue
+([SOCIAL-GLUE.md](SOCIAL-GLUE.md)) writes the same lines: a talk going live, a trip invitation and its departure, a proposal and its answer,
+a wedding, and a gist post taken down.
 
 ## Lite: Allworld without the 3D world
 

@@ -34,6 +34,8 @@ import PersonCallButton from '../calls/PersonCallButton.vue'
 import PingButton from '../ping/PingButton.vue'
 import PingStrip from '../ping/PingStrip.vue'
 const VisitButton = defineAsyncComponent(() => import('../visit/VisitButton.vue'))
+// The social glue (docs/SOCIAL-GLUE.md), one lazy chunk: here the strip of close friends who are somewhere now, above the chats.
+const GluePart = defineAsyncComponent(() => import('../glue/GluePart.vue'))
 import { pingInstead } from '../ping/pingModel.ts'
 import { personUi } from '../social/socialState.ts'
 import FounderTag from '../social/FounderTag.vue'
@@ -610,6 +612,7 @@ defineExpose({
         </div>
 
         <div v-if="ui.tab !== 'updates'" role="tabpanel">
+          <GluePart v-if="ui.tab === 'chats'" part="strip" />
           <CompanionPin />
           <label v-if="finding && ui.tab === 'chats'" class="messages-find-label" for="message-player-search">Find a player</label>
           <form v-if="finding && ui.tab === 'chats'" class="messages-form is-search" role="search" @submit.prevent="search">

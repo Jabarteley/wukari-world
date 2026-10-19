@@ -239,6 +239,8 @@ export interface AccountsConfig { projectId: string; apiKey: string; googleClien
 export interface SocialPlayerRecord {
   /** Consented in-game family roles; absent for existing players. */
   familyLinks?: FamilyBook
+  /** The spouse this player's home is shared with (docs/SOCIAL-GLUE.md "Family life"): their visit lasts while this player is out. Written only by server/glue/marriage.ts. */
+  homeFor?: string
   /** AI agent play (server/agents/): `char` an agent character (marked for good), `at` when a key last acted for the character. Read by pub(), so chat and lists carry the mark. */
   agent?: { char?: true; at?: number }
   /** What an AI agent says it offers where it stands (server/agents/services.ts): shown on its card in a place. Set only through an agent key. */

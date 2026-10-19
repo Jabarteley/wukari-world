@@ -13,8 +13,10 @@ import type { EventView } from '../../../types/feed.ts'
 
 // The area's noticeboard and its monthly meetup (docs/NEIGHBOURHOOD.md) are the Neighbours side of this app, fetched only when it is opened.
 const NoticeboardApp = defineAsyncComponent(() => import('../neighbourhood/NoticeboardApp.vue'))
+// Hosted talks on a stage (docs/SOCIAL-GLUE.md "Stage rooms"): the Talks side, fetched only when it is opened.
+const GluePart = defineAsyncComponent(() => import('../glue/GluePart.vue'))
 const props = defineProps<{ params?: { event?: string; code?: string; tab?: string } | null }>()
-const side = ref<'plans' | 'hood'>(props.params?.tab === 'neighbours' ? 'hood' : 'plans')
+const side = ref<'plans' | 'hood' | 'talks'>(props.params?.tab === 'neighbours' ? 'hood' : props.params?.tab === 'talks' ? 'talks' : 'plans')
 const { game, shell } = useApp()
 const api = feedApi((path, options) => game.fetchJson(path, options))
 const events = ref<EventView[]>([]), mine = ref<EventView[]>([]), open = ref<EventView | null>(null), busy = ref(false), making = ref(false)
@@ -69,8 +71,9 @@ const go = (e: EventView): void => { if (/square/i.test(e.place.label ?? '')) sh
 
 <template>
   <section class="feed" aria-label="Plans" data-feed="plans">
-    <nav v-if="!open" class="feed-tabs"><button type="button" :class="{ 'is-on': side === 'plans' }" @click="side = 'plans'">Plans</button><button type="button" :class="{ 'is-on': side === 'hood' }" @click="side = 'hood'">Neighbours</button></nav>
+    <nav v-if="!open" class="feed-tabs"><button type="button" :class="{ 'is-on': side === 'plans' }" @click="side = 'plans'">Plans</button><button type="button" :class="{ 'is-on': side === 'hood' }" @click="side = 'hood'">Neighbours</button><button type="button" :class="{ 'is-on': side === 'talks' }" data-glue="talks-tab" @click="side = 'talks'">Talks</button></nav>
     <NoticeboardApp v-if="!open && side === 'hood'" />
+    <GluePart v-else-if="!open && side === 'talks'" part="talks" />
     <template v-else-if="open">
       <button type="button" class="feed-pill" @click="open = null">← All plans</button>
       <div class="feed-card feed-form">

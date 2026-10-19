@@ -86,7 +86,7 @@ onCallFrame((raw) => {
     void loadEvent(true)
   } else if (frame.kind === 'stage') {
     if (frame.room === stageState.room) void loadStage(frame.room)
-  } else {
+  } else if (frame.kind === 'moment') {
     worldEvent.moment = { title: frame.title, name: frame.name, text: frame.text, ai: frame.ai === true, at: Date.now() }
   }
 })

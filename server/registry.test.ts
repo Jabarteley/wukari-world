@@ -120,6 +120,7 @@ test('route registry rejects duplicate and malformed routes at start-up and list
   NAMESPACES.push('/api/danfo/');
   NAMESPACES.push('/api/watch/', '/api/admin/watch');
   NAMESPACES.push('/api/world/detty');
+  NAMESPACES.push('/api/glue/');
   assert.equal(ROUTE_MODULES.length, NAMESPACES.length);
   ROUTE_MODULES.forEach((module, index) => {
     const own = Object.keys(module(ctx) || {});

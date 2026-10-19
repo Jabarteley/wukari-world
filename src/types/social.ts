@@ -321,6 +321,8 @@ export interface PersonCard extends PlayerRef, Whereabouts {
   thanks?: ThanksView
   /** An AI character's card, seen by a confirmed adult: whether it may flirt with them in public places, and whether that is because it is their Bae. */
   publicRomance?: { on: boolean; bae: boolean }
+  /** The married badge (docs/SOCIAL-GLUE.md "Family life"): who they are married to, since when. */
+  married?: import('./glue.ts').MarriedBadge
 }
 
 // ---- request bodies ------------------------------------------------------------------------------

@@ -274,6 +274,9 @@ import shareLoops from '../shareloops/routes.ts';
 import detty from './detty.ts';
 // Detty December (docs/DETTY-DECEMBER.md), on its own line so the list above stays one line per change.
 ROUTE_MODULES.push(detty);
+// Phase 8, the social glue (docs/SOCIAL-GLUE.md): close friends, talks, the gist board, group trips, family life.
+import glue from './glue.ts';
+ROUTE_MODULES.push(glue);
 const KEY = /^(GET|POST|PUT|PATCH|DELETE) (\/api\/[A-Za-z0-9\-_/:.]+)$/;
 
 /**

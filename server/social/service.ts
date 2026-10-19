@@ -74,6 +74,7 @@ import { cachedCityContent } from '../../src/game/cities/registry.ts';
 import { sessionCityIds } from '../city-content.ts';
 import { DREAMS, TRAITS } from '../../src/game/content/traits.ts';
 import { presenceOf, describeRoom } from './presence.ts';
+import { marriedBadge } from '../glue/data.ts';
 import { screenText } from '../moderation/text.ts';
 import { peerTransferId } from '../economy/effects.ts';
 import { pickSome, randomFrom, splitSpray } from './spray.ts';
@@ -854,7 +855,7 @@ function buildService(ctx: RouteContext) {
     if (house.closed !== undefined && house.closed <= t) delete house.closed;
     for (const [guest, visit] of Object.entries(house.guests)) {
       // A visit ends when it expires, when either blocks the other, and when the host is no longer at home.
-      if (visit.expires > t && s.players[guest] && !blockedEither(s, hostId, guest) && (hostAtHome(s, hostId, visit.cityId) || s.players[hostId]?.door?.out === true)) continue;
+      if (visit.expires > t && s.players[guest] && !blockedEither(s, hostId, guest) && (hostAtHome(s, hostId, visit.cityId) || s.players[hostId]?.door?.out === true || s.players[hostId]?.homeFor === guest)) continue;
       delete house.guests[guest]; changed = true;
       if (s.players[guest]?.visiting === hostId) s.players[guest].visiting = null;
       endedIn(s).push([hostId, guest, visit.cityId]);
@@ -1466,6 +1467,8 @@ function buildService(ctx: RouteContext) {
       const friend = areFriends(s, id, target);
       return yes('ok', { player: { ...pub(s, target), self: target === id, friend, requested: Boolean(p.out[target]), incoming: Boolean(p.in[target]), blocked: Boolean(p.blocked[target]),
         bae: p.bae === target, baeAsked: Boolean(s.players[target]!.baeIn[id]), ...whereabouts(target, friend), ...thanksView(s, id, target, friend),
+        // The married badge (docs/SOCIAL-GLUE.md): who they are married to and since when.
+        ...((married) => (married ? { married } : {}))(marriedBadge(db, target)),
         // Only a confirmed adult sees the switch, and only on an AI character's card.
         ...(target !== id && isAgentChar(s, target) && !notAdult(db, id) ? { publicRomance: { on: publicConsent(db, s, id, target), bae: p.bae === target } } : {}) } });
     },

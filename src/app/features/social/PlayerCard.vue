@@ -163,6 +163,7 @@ async function sendReport(): Promise<void> {
   <div v-else-if="card" :data-c-player="id">
     <div class="social-head people-who"><PlayerAvatar :name="card.name" :seed="id" :status="card.status" /><h3>{{ card.name }}<AiTag :who="card" /><FounderTag v-if="card.founder" /><ResidentBadge :id="id" /></h3></div>
     <p>Allworld character · <span class="social-presence" :class="`is-${presenceClass(card.status)}`">{{ presenceText(card, venueName, view.now, place) }}</span><template v-if="together"> · here with you</template><template v-if="card.bae"> · your Bae <GameIcon name="heart" inline /></template><template v-else-if="card.friend"> · Friend</template></p>
+    <p v-if="card.married" class="social-note" data-married>💍 Married to {{ card.married.to.name }} since {{ new Date(card.married.since).toLocaleDateString() }}</p>
     <PublicProfile mode="profile" :id="id" :name="card.name" />
     <button type="button" class="ui-button is-primary is-block" :disabled="card.blocked" @click="shell.open('messages', { to: id, name: card.name })">Chat</button>
     <span v-if="card.blocked" class="social-why">Unblock this player to chat.</span>

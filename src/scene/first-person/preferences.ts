@@ -9,6 +9,8 @@ export interface ViewPreferences {
   bob: boolean
   vignette: boolean
   snapTurn: boolean
+  /** Reduce shake and flashes: true or false is the player's choice; null follows the system's reduced-motion setting. */
+  reduceShake: boolean | null
 }
 
 export const VIEW_PREFERENCES_DEFAULTS: Readonly<ViewPreferences> = {
@@ -16,6 +18,7 @@ export const VIEW_PREFERENCES_DEFAULTS: Readonly<ViewPreferences> = {
   bob: false,
   vignette: false,
   snapTurn: false,
+  reduceShake: null,
 }
 
 type PreferenceStorage = Pick<Storage, 'getItem' | 'setItem'>
@@ -33,6 +36,7 @@ export function parseViewPreferences(value: unknown): ViewPreferences {
     bob: typeof saved.bob === 'boolean' ? saved.bob : VIEW_PREFERENCES_DEFAULTS.bob,
     vignette: typeof saved.vignette === 'boolean' ? saved.vignette : VIEW_PREFERENCES_DEFAULTS.vignette,
     snapTurn: typeof saved.snapTurn === 'boolean' ? saved.snapTurn : VIEW_PREFERENCES_DEFAULTS.snapTurn,
+    reduceShake: typeof saved.reduceShake === 'boolean' ? saved.reduceShake : VIEW_PREFERENCES_DEFAULTS.reduceShake,
   }
 }
 
@@ -106,3 +110,8 @@ function devicePreferences(): ViewPreferenceStore {
 export function readViewPreferences(): ViewPreferences { return devicePreferences().read() }
 export function setViewPreferences(patch: Partial<ViewPreferences>): boolean { return devicePreferences().set(patch) }
 export function onViewPreferencesChange(callback: () => void): () => void { return devicePreferences().onChange(callback) }
+
+/** Whether shake and flashes are off: the player's own choice, else the system's reduced-motion setting. */
+export function reduceShakeOn(preferences: Pick<ViewPreferences, 'reduceShake'>, systemReduced: boolean): boolean {
+  return preferences.reduceShake ?? systemReduced
+}

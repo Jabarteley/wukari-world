@@ -31,10 +31,16 @@
  * the offset eases away and the camera is back on the avatar. reset() clears it at once. Orbiting and zooming never
  * stop the follow: they turn and dolly about the pivot the avatar carries.
  *
+ * SHAKE. A big moment (src/scene/feel/) can kick(trauma) the camera: after the orbit has put the camera where it belongs, apply() moves
+ * it a little sideways and up by a sampled sine of the trauma (./feel/shake.ts), and step() keeps the frame loop going until the trauma
+ * is gone (well under a second). The shake moves the camera only: never the pivot, the goal or the avatar.
+ *
  * `goal` is what the player asked for; `now` eases after it in step(dt). step() returns true while
  * there is still a difference, which is what keeps the host's frame loop running — and false the
  * moment the camera has arrived, so the loop stops.
  */
+
+import { createShake } from './feel/shake.ts';
 
 export const PITCH_MIN = 0.1;                 // ≈ 6° above the ground
 export const PITCH_MAX = Math.PI / 2 - 0.07;  // ≈ 86°: nearly top-down
@@ -74,6 +80,8 @@ export interface Orbit {
   unwind(): void;
   follow(x: number, y: number, z: number): void;
   cap(distance: number): void;
+  /** Add camera-shake trauma (0..1); the host wakes its frame loop afterwards. */
+  kick(trauma: number): void;
   snap(): void;
   readonly settled: boolean;
   step(dt: number): boolean;
@@ -91,6 +99,9 @@ export function createOrbit(): Orbit {
   const goal: OrbitState = { yaw: 0, tilt: 0, zoom: 1, x: 0, y: 0.7, z: 0, px: 0, pz: 0, squeeze: 1 };
   const now: OrbitState = { yaw: 0, tilt: 0, zoom: 1, x: 0, y: 0.7, z: 0, px: 0, pz: 0, squeeze: 1 };
   let holding = 0;
+  const shake = createShake(), shakeOut = { x: 0, y: 0 };
+  /** How far the strongest shake moves the camera, as a share of its distance from the pivot. */
+  const SHAKE_REACH = 0.03;
 
   function constrain() {
     goal.tilt = clamp(base.elevation + goal.tilt, PITCH_MIN, PITCH_MAX) - base.elevation;
@@ -147,8 +158,9 @@ export function createOrbit(): Orbit {
     },
     /** Jump to the goal: no easing (a new venue, reduced motion, no frame loop). */
     snap() { now.yaw = goal.yaw; now.tilt = goal.tilt; now.zoom = goal.zoom; now.x = goal.x; now.y = goal.y; now.z = goal.z; now.px = goal.px; now.pz = goal.pz; now.squeeze = goal.squeeze; },
+    kick(trauma) { shake.kick(trauma); },
     get settled() {
-      return now.yaw === goal.yaw && now.tilt === goal.tilt && now.zoom === goal.zoom && now.x === goal.x && now.y === goal.y && now.z === goal.z && now.px === goal.px && now.pz === goal.pz && now.squeeze === goal.squeeze && holding === 0;
+      return shake.trauma === 0 && now.yaw === goal.yaw && now.tilt === goal.tilt && now.zoom === goal.zoom && now.x === goal.x && now.y === goal.y && now.z === goal.z && now.px === goal.px && now.pz === goal.pz && now.squeeze === goal.squeeze && holding === 0;
     },
     step(dt) {
       // Allocation-free: this runs every frame of the motion loop.
@@ -175,6 +187,7 @@ export function createOrbit(): Orbit {
         if (Math.abs(gap) < 0.003) now.squeeze = goal.squeeze;
         else { now.squeeze += gap * (1 - Math.exp(-(gap < 0 ? EASE.squeezeIn : EASE.squeezeOut) * dt)); moving = true; }
       }
+      if (shake.step(dt)) moving = true;
       return moving;
     },
     /** Absolute heading of the camera around the pivot right now (what "forward" is measured from). */
@@ -190,6 +203,15 @@ export function createOrbit(): Orbit {
       const flat = Math.cos(pitch) * distance;
       camera.position.set(now.x + now.px + Math.sin(azimuth) * flat, now.y + Math.sin(pitch) * distance, now.z + now.pz + Math.cos(azimuth) * flat);
       camera.lookAt(now.x + now.px, now.y, now.z + now.pz);
+      // The shake is added last, to the camera alone: it slides sideways (along the screen's right) and up, and keeps looking the same way.
+      if (shake.trauma > 0) {
+        const wobble = shake.offset(distance * SHAKE_REACH, shakeOut);
+        camera.position.set(
+          now.x + now.px + Math.sin(azimuth) * flat + Math.cos(azimuth) * wobble.x,
+          now.y + Math.sin(pitch) * distance + wobble.y,
+          now.z + now.pz + Math.cos(azimuth) * flat - Math.sin(azimuth) * wobble.x,
+        );
+      }
     },
   };
   return orbit;

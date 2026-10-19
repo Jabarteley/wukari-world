@@ -5,7 +5,7 @@
  * SPACE_HZ times a second, only when something changed: where the walker is, and from the host the models, the score and a line.
  * Every player has 600 socket frames a minute in all, so one combined tick it is.
  */
-import type { SpacePeerFrame, SpaceRoomFrame } from '../../types/spaces.ts'
+import type { SpacePeerFrame, SpaceRoomFrame, SpaceScreenFrame, SpaceScreenSetFrame } from '../../types/spaces.ts'
 
 export const SPACE_HZ = 6
 
@@ -13,8 +13,10 @@ export interface TogetherListener {
   room(frame: SpaceRoomFrame): void
   peer(frame: SpacePeerFrame): void
   problem(reason: string): void
+  /** What is on the space's screen (docs/WORLDS.md phase 2). */
+  screen?(frame: SpaceScreenFrame): void
 }
-export interface Together { send(tick: { p: number[]; o?: number[][]; s?: number; say?: number[] }): void; leave(): void }
+export interface Together { send(tick: { p: number[]; o?: number[][]; s?: number; say?: number[] }): void; screen(set: Omit<SpaceScreenSetFrame, 'type'>): void; leave(): void }
 
 export function joinTogether(where: { target: 'home' | 'room' | 'world'; host?: string; id?: string }, listener: TogetherListener): Together {
   let socket: WebSocket | null = null, left = false, retry = 0, lastSent = ''
@@ -28,6 +30,7 @@ export function joinTogether(where: { target: 'home' | 'room' | 'world'; host?: 
       if (frame['type'] === 'heartbeat') { if (ws.readyState === 1) ws.send('{"type":"heartbeat-ack"}'); return }
       if (frame['type'] === 'space-room') listener.room(frame as unknown as SpaceRoomFrame)
       else if (frame['type'] === 'space-peer') listener.peer(frame as unknown as SpacePeerFrame)
+      else if (frame['type'] === 'space-screen') listener.screen?.(frame as unknown as SpaceScreenFrame)
       else if (frame['type'] === 'error' && typeof frame['reason'] === 'string' && /^(space_|world_|visit_|not_admitted|home_)/.test(String(frame['code']))) listener.problem(frame['reason'])
     }
     ws.onclose = () => {
@@ -48,6 +51,7 @@ export function joinTogether(where: { target: 'home' | 'room' | 'world'; host?: 
       lastSent = text
       socket.send(text)
     },
+    screen(set) { if (socket && socket.readyState === 1) socket.send(JSON.stringify({ type: 'space-screen', ...set })) },
     leave() {
       left = true
       if (socket && socket.readyState === 1) socket.send('{"type":"space-leave"}')

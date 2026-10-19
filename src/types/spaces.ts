@@ -16,10 +16,10 @@ export interface ModelsMine { ok: true; code: 'ok'; on: boolean; ready: boolean;
 export interface PlacedModel { k: string; m: string; by: string; hash: string; x: number; y: number; z: number; ry: number; s: number; floor: number; loose?: true; name: string; size: [number, number, number]; triangles: number }
 export interface WorldItem { itemId: string; x: number; y: number; rot: number; floor?: number }
 /** A world's open ground (docs/WORLDS.md): there is no house; `ground` names its surface (src/spaces/worlds.ts WORLD_GROUNDS). */
-export interface WorldTerrain { ground: string; size: string; open: string; blurb: string }
-export interface WorldView { ok: true; code: 'ok'; world: { key: string; kind: 'home' | 'room' | 'world'; title: string; owner: { id: string; name: string }; grid: number; owned: boolean; plot: { w: number; d: number; floors: number }; style: object | null; items: WorldItem[]; canEdit: boolean; models: PlacedModel[]; mine: ModelView[]; limits: { placements: number; triangles: number }; scripts: boolean; script?: { code: string; lines: string[] }; terrain?: WorldTerrain } }
+export interface WorldTerrain { ground: string; size: string; open: string; blurb: string; sky: string; game?: { id: string; title: string } }
+export interface WorldView { ok: true; code: 'ok'; world: { key: string; kind: 'home' | 'room' | 'world'; title: string; owner: { id: string; name: string }; grid: number; owned: boolean; plot: { w: number; d: number; floors: number }; style: object | null; items: WorldItem[]; canEdit: boolean; models: PlacedModel[]; mine: ModelView[]; limits: { placements: number; triangles: number }; scripts: boolean; script?: { code: string; lines: string[] }; terrain?: WorldTerrain; screen?: boolean } }
 /** A world in a list (server/spaces/worlds.ts). `cover`: the first letters of its cover's hash (a cache key), or null without one. */
-export interface WorldCard { id: string; name: string; blurb: string; by: { id: string; name: string }; size: string; ground: string; open: string; visits: number; here: number; cover: string | null; at: number; updated: number; mine: boolean }
+export interface WorldCard { id: string; name: string; blurb: string; by: { id: string; name: string }; size: string; ground: string; open: string; sky: string; visits: number; here: number; cover: string | null; at: number; updated: number; mine: boolean; likes: number; liked: boolean; builder: boolean; builders?: { id: string; name: string }[]; game?: { id: string; title: string } }
 export interface WorldsList { ok: true; code: 'ok'; worlds: WorldCard[]; mine: number; limit: number }
 type ModelDone = Ok<{ ok: true; code: 'uploaded' | 'already' | 'renamed'; model: ModelView } | Refused>
 export interface HostView { kind: 'butler' | 'dj' | 'quizmaster' | 'gateman' | null; persona: string; on: boolean; name: string | null; kinds: { id: string; label: string; name: string }[] }
@@ -48,8 +48,10 @@ export interface SpacesHttpRoutes {
   'POST /api/spaces/apply': { body: Where & { plan: PackedPlan | SpacePlanV1; requestId: string }; response: Ok<{ ok: true; code: 'applied'; placed: number; spent: number; problems: SpaceProblem[] } | Refused>; errors: E | 'invalid_request_id' }
   'GET /api/spaces/worlds': { response: Ok<WorldsList | Refused>; errors: E }
   'POST /api/spaces/worlds': { body: { name: string; blurb?: string; size?: string; ground?: string; open?: string }; response: Ok<{ ok: true; code: 'created'; world: WorldCard } | Refused>; errors: E }
-  'POST /api/spaces/worlds/update': { body: { id: string; name?: string; blurb?: string; ground?: string; open?: string }; response: Ok<{ ok: true; code: 'saved'; world: WorldCard } | Refused>; errors: E }
+  'POST /api/spaces/worlds/update': { body: { id: string; name?: string; blurb?: string; ground?: string; open?: string; sky?: string; game?: string }; response: Ok<{ ok: true; code: 'saved'; world: WorldCard } | Refused>; errors: E }
   'POST /api/spaces/worlds/delete': { body: { id: string }; response: Ok<{ ok: true; code: 'deleted' } | Refused>; errors: E }
+  'POST /api/spaces/worlds/like': { body: { id: string; on: boolean }; response: Ok<{ ok: true; code: 'saved'; likes: number; liked: boolean } | Refused>; errors: E }
+  'POST /api/spaces/worlds/builders': { body: { id: string; builders: string[] }; response: Ok<{ ok: true; code: 'saved'; world: WorldCard } | Refused>; errors: E }
   'POST /api/spaces/worlds/cover': { body: Uint8Array; response: Ok<{ ok: true; code: 'saved'; cover: string } | Refused>; errors: E | 'type_not_accepted' | 'body_too_large' }
   'GET /api/spaces/world-cover/:id': { params: { id: string }; response: Ok<Record<string, never>>; errors: E | 'unknown_world' }
 }
@@ -59,7 +61,11 @@ export interface SpacesHttpRoutes {
 export interface SpaceJoinFrame { type: 'space-join'; target: SpaceTarget | 'world'; host?: string; id?: string }
 export interface SpaceTickFrame { type: 'space-tick'; p: number[]; o?: number[][]; s?: number; say?: number[] }
 export interface SpaceLeaveFrame { type: 'space-leave' }
-export type SpaceClientFrame = SpaceJoinFrame | SpaceTickFrame | SpaceLeaveFrame
+/** The host puts a video on the space's screen, plays, pauses or moves it (docs/WORLDS.md phase 2), or takes it off (`off`). */
+export interface SpaceScreenSetFrame { type: 'space-screen'; v?: string; play?: boolean; pos?: number; off?: true }
+export type SpaceClientFrame = SpaceJoinFrame | SpaceTickFrame | SpaceLeaveFrame | SpaceScreenSetFrame
 export interface SpaceRoomFrame { type: 'space-room'; key: string; you: string; host: string | null; members: { id: string; name: string }[] }
 export interface SpacePeerFrame { type: 'space-peer'; id: string; p: number[]; o?: number[][]; s?: number; say?: number[] }
-export type SpaceServerFrame = SpaceRoomFrame | SpacePeerFrame
+/** What is on the space's screen: the video id (null: nothing), whether it plays, where it was at `at` (server ms). */
+export interface SpaceScreenFrame { type: 'space-screen'; v: string | null; play: boolean; pos: number; at: number }
+export type SpaceServerFrame = SpaceRoomFrame | SpacePeerFrame | SpaceScreenFrame

@@ -7,21 +7,24 @@
  *   space-tick { p, o?, s?, say? }      at most SPACE_LIVE.hz a second: where I am [x, y, z, yaw]; from the host also the models
  *                                       [[index, x, y, z, qx, qy, qz, qw], …], the score and a line of the space's (index and numbers)
  *   space-leave {}
+ *   space-screen { v?, play?, pos?, off? }   the host's screen (docs/WORLDS.md phase 2; the `spacesScreen` setting): a YouTube id, playing or not, where
  *   → space-room { key, you, host, members: [{ id, name }] }   who is here, whenever that changes
  *   → space-peer { id, p, o?, s?, say? }                         one member's tick, to everyone else
+ *   → space-screen { v, play, pos, at }                          what is on the screen, to everyone, and to each newcomer
  *
  * The host is the space's owner when they are in it, else whoever came first; when the host leaves the next one takes over. Only
  * the host's models, score and lines are passed on. Nothing here is stored: a space's live state lives in this process's memory,
  * except a world's count of visits (server/spaces/worlds.ts), written when someone other than its maker joins.
  */
 import { SPACE_LIMITS_BY_KIND } from '../../src/spaces/worlds.ts';
+import { cleanScreen, screenPosition } from '../../src/spaces/screen.ts';
 import { worldService } from '../spaces/world.ts';
 import { worldsService } from '../spaces/worlds.ts';
 import type { RouteContext, WsConnection, WsHandlers } from '../types.ts';
 
 export const SPACE_LIVE = Object.freeze({ hz: 6, members: 16, objects: SPACE_LIMITS_BY_KIND.world.placements });
 
-interface Live { key: string; owner: string | null; host: string | null; sockets: Set<WsConnection> }
+interface Live { key: string; owner: string | null; host: string | null; sockets: Set<WsConnection>; screen?: { v: string; play: boolean; pos: number; at: number } }
 
 const finite = (value: unknown, limit: number): value is number => typeof value === 'number' && Number.isFinite(value) && Math.abs(value) <= limit;
 /** [x, y, z, yaw], in range, rounded to centimetres. */
@@ -91,9 +94,25 @@ export default function spacesSocket(ctx: RouteContext): WsHandlers {
         // The owner hosts their own space; otherwise the first one in keeps hosting.
         if (!live.host || ws.session.id === live.owner) live.host = ws.session.id;
         announce(live);
+        // A newcomer joins the screen where it is now, not where it was when the host last touched it.
+        if (live.screen) send(ws, { type: 'space-screen', ...live.screen, pos: screenPosition(live.screen, ctx.now()), at: ctx.now() });
         if (seen.kind === 'world' && seen.owner !== ws.session.id) await ctx.store.transact((db) => { worlds.visited(db, seen.key.slice(6), ws.session.id); }, { durable: false });
       },
       'space-leave': (ws) => { leave(ws); },
+      'space-screen': (ws, message) => {
+        const live = where.get(ws);
+        if (!live || !worlds.screenOn()) return;
+        if (live.host !== ws.session.id) throw refuse('space_not_host', 'Only the host can change the screen.');
+        if (!ctx.allow(`spaces:screen:${ws.session.id}`, 30)) return;
+        if (message.off === true) delete live.screen;
+        else {
+          const next = cleanScreen({ v: message.v ?? live.screen?.v, play: message.play ?? live.screen?.play ?? true, pos: message.pos ?? 0 });
+          if (!next) return;
+          live.screen = { ...next, at: ctx.now() };
+        }
+        const frame = live.screen ? { type: 'space-screen', ...live.screen } : { type: 'space-screen', v: null, play: false, pos: 0, at: ctx.now() };
+        for (const other of live.sockets) send(other, frame);
+      },
       'space-tick': (ws, message) => {
         const live = where.get(ws);
         if (!live) return;

@@ -101,6 +101,9 @@ export interface AppPolicy extends RequestFacts {
   admin?: boolean
 }
 
+/** The player of a space's screen (src/spaces/screen.ts embedUrl): YouTube's privacy-enhanced embed. */
+export const SCREEN_FRAME = 'https://www.youtube-nocookie.com';
+
 /** The Content-Security-Policy of the game's page. */
 export function appContentSecurityPolicy({ scriptHashes, telemetry = [], accounts = null, trustProviders, avatarAssets = false, admin = false, ...facts }: AppPolicy): string {
   const host = facts.host && /^[A-Za-z0-9.-]{1,253}(:\d{1,5})?$/.test(facts.host) ? facts.host : '';
@@ -127,7 +130,8 @@ export function appContentSecurityPolicy({ scriptHashes, telemetry = [], account
     "media-src 'self' blob:",
     "worker-src 'self' blob:",
     // A frame-src replaces default-src for frames, so it keeps 'self': a 3D space's script sandbox (/sandbox/space.html) is framed from here.
-    ...(extra['frame-src'].length ? [`frame-src ${["'self'", ...extra['frame-src']].join(' ')}`] : []),
+    // The screen in a space (docs/WORLDS.md phase 2) is YouTube's privacy-enhanced player and nothing else from YouTube: no script, no connect.
+    ...(admin ? (extra['frame-src'].length ? [`frame-src ${["'self'", ...extra['frame-src']].join(' ')}`] : []) : [`frame-src ${["'self'", SCREEN_FRAME, ...extra['frame-src']].join(' ')}`]),
     "manifest-src 'self'",
     "base-uri 'self'",
     "form-action 'self'",

@@ -2,12 +2,16 @@
 // Walk through a space in 3D (docs/SPACES-3D.md, phase 2): a home, a group room or a world (docs/WORLDS.md), its furniture and
 // the models players placed, in the realistic look. The owner (or a group member) can place their own models: choose one, tap a floor to put it there, turn
 // it, size it, lift it, and save. Full screen over the game; lazy (three and the engine load only when this opens).
-import { computed, onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
+import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
 import '../../../ui/controls.css'
 import { useApp } from '../../state/app.ts'
 import { modelBytes, modelUpload, scriptSave, worldCoverUpload, worldRead, worldSave, type ModelView, type PlacedModel, type WorldView, type WorldWhere } from './spacesClient.ts'
 import { WORLDS, worldLinkPath } from '../../../spaces/worlds.ts'
 import { track } from '../world/worldModel.ts'
+import { PROPS, PROP_IDS, PROP_OWNER, propModel, propOf, propView, type PropDef, type PropId } from '../../../spaces/props.ts'
+import { embedUrl, screenPosition, youtubeId, type ScreenState } from '../../../spaces/screen.ts'
+// A world's lite game (docs/WORLDS.md phase 3): the arena's own room, fetched only when someone presses Play.
+const LiteRoom = defineAsyncComponent(() => import('../arena/LiteRoom.vue'))
 import { checkGlb, GLB_LIMITS } from '../../../spaces/glb.ts'
 import { scriptNames, SCRIPT, TEMPLATES } from '../../../spaces/script.ts'
 import type { Placement } from '../../../spaces/layout.ts'
@@ -84,7 +88,7 @@ onMounted(async () => {
   layout.value = answer.world.models.map((p) => ({ ...p }))
   const { startEngine } = await import('../../../spaces/world/engine.ts')
   if (gone || !canvas.value) return
-  engine = startEngine(canvas.value, { grid: answer.world.grid, owned: answer.world.owned, style: answer.world.style as Record<string, number> | null, items: answer.world.items, models: layout.value, terrain: answer.world.terrain ? { ground: answer.world.terrain.ground } : null }, bytesOf, {
+  engine = startEngine(canvas.value, { grid: answer.world.grid, owned: answer.world.owned, style: answer.world.style as Record<string, number> | null, items: answer.world.items, models: layout.value, terrain: answer.world.terrain ? { ground: answer.world.terrain.ground, sky: answer.world.terrain.sky } : null }, bytesOf, {
     status(s) { floor.value = s.floor; floors.value = s.floors; view.value = s.view },
     picked(key) { selected.value = key; engine?.highlight(key) },
     tapped(at) { if (choosing.value) add(choosing.value, at); else if (picked.value) move(at) },
@@ -95,6 +99,15 @@ onMounted(async () => {
   })
   loading.value = false
   startTogether()
+  // The first world a player walks into says how: once per device.
+  try {
+    if (answer.world.kind === 'world' && !localStorage.getItem('aw-world-tip')) {
+      localStorage.setItem('aw-world-tip', '1')
+      note.value = 'Walk with the stick, drag to look round. Invite brings your friends here.'
+      const tip = note.value
+      window.setTimeout(() => { if (note.value === tip) note.value = '' }, 7000)
+    }
+  } catch { /* no storage: no tip */ }
   if (props.place && answer.world.canEdit) {
     // Straight from an upload: the model is put down in front of the player, chosen, ready to drag.
     if (!editing.value) toggleEdit()
@@ -142,6 +155,7 @@ async function startTogether(): Promise<void> {
       if (frame.say && lines[frame.say[0] ?? -1] !== undefined) showSaid(fillLine(lines[frame.say[0]!]!, frame.say.slice(1)))
     },
     problem(reason) { note.value = reason },
+    screen(frame) { applyScreen(frame.v ? { v: frame.v, play: frame.play, pos: frame.pos, at: Date.now() } : null) },
   })
   tickTimer = window.setInterval(() => {
     if (!engine || !together) return
@@ -161,6 +175,46 @@ function leave(): void {
   if (dirty.value && !globalThis.confirm?.('Leave without saving where your models stand?')) return
   emit('close')
 }
+// ---- The screen (docs/WORLDS.md phase 2): the host puts on a YouTube video or song, everyone here watches or listens in time.
+const screenOpen = ref(false)
+const screenLink = ref('')
+const screenState = ref<ScreenState | null>(null)
+const screenSrc = ref('')
+const screenHidden = ref(false)
+const tv = ref<HTMLIFrameElement | null>(null)
+let screenV = '', pauseOnLoad = false
+const screenCommand = (func: string, args: unknown[] = []): void => { tv.value?.contentWindow?.postMessage(JSON.stringify({ event: 'command', func, args }), 'https://www.youtube-nocookie.com') }
+/** Follow what the host says: a new video loads at the right second; the same one is moved and played or paused. */
+function applyScreen(state: ScreenState | null): void {
+  screenState.value = state
+  if (!state) { screenSrc.value = ''; screenV = ''; return }
+  const pos = screenPosition(state, Date.now())
+  if (state.v !== screenV) { screenV = state.v; pauseOnLoad = !state.play; screenSrc.value = embedUrl(state.v, pos, location.origin); screenHidden.value = false; return }
+  screenCommand('seekTo', [pos, true])
+  screenCommand(state.play ? 'playVideo' : 'pauseVideo')
+}
+function tvLoaded(): void { if (pauseOnLoad) { pauseOnLoad = false; window.setTimeout(() => screenCommand('pauseVideo'), 800) } }
+const screenNow = (): number => (screenState.value ? screenPosition(screenState.value, Date.now()) : 0)
+function putOnScreen(): void {
+  const v = youtubeId(screenLink.value)
+  if (!v) { note.value = 'Paste a YouTube or YouTube Music link.'; return }
+  together?.screen({ v, play: true, pos: 0 })
+  screenLink.value = ''
+  track('world_screen', { action: 'on' })
+}
+function screenPlay(play: boolean): void { together?.screen({ play, pos: screenNow() }) }
+function screenRestart(): void { together?.screen({ play: true, pos: 0 }) }
+function screenOff(): void { together?.screen({ off: true }) }
+
+// ---- Built-in shapes (src/spaces/props.ts): placed like a player's model, without uploading anything.
+function shapeModel(id: PropId): ModelView {
+  const v = propView(id)
+  return { id: propModel(id), by: PROP_OWNER, name: v.name, hash: '', bytes: 0, triangles: v.triangles, textures: 0, size: v.size, min: [-v.size[0] / 2, 0, -v.size[2] / 2], animations: 0, skinned: false, hidden: false, at: 0 }
+}
+function placeShape(id: PropId): void { choosing.value = shapeModel(id); placeInFront() }
+// ---- The world's lite game.
+const gameOpen = ref(false)
+
 /** A world's link, sent with the device's share sheet or copied. */
 async function invite(): Promise<void> {
   if (props.where.target !== 'world' || !props.where.id) return
@@ -226,6 +280,8 @@ async function add(model: ModelView, at: { x: number; y: number; z: number; floo
   if (!world.value) return
   if (layout.value.length >= world.value.limits.placements) { error.value = `A space holds at most ${world.value.limits.placements} of your models.`; return }
   const p: PlacedModel = { k: `p${(counter++).toString(36)}`, m: model.id, by: model.by, hash: model.hash, x: round(at.x), y: 0, z: round(at.z), ry: 0, s: 1, floor: at.floor, name: model.name, size: model.size, triangles: model.triangles }
+  const shape = propOf(model.id)
+  if (shape && (PROPS[shape] as PropDef).loose) p.loose = true
   layout.value = [...layout.value, p]
   choosing.value = null
   dirty.value = true
@@ -318,6 +374,30 @@ const round = (v: number): number => Math.round(v * 100) / 100
         </div>
         <p v-if="score !== null" class="ws-score" role="status">Score {{ score }}</p>
         <p v-if="here > 1" class="ws-here" role="status">{{ here }} here</p>
+        <div v-if="screenSrc" class="ws-tv" :class="{ 'is-hidden': screenHidden }">
+          <iframe ref="tv" :src="screenSrc" title="The screen" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" @load="tvLoaded" />
+        </div>
+        <div class="ws-left" role="group" aria-label="Screen and game">
+          <button v-if="world.screen" type="button" class="ws-pill" :class="{ 'is-on': screenOpen }" :aria-pressed="screenOpen" data-world="screen" @click="screenOpen = !screenOpen">Screen</button>
+          <button v-if="world.terrain?.game" type="button" class="ws-pill" data-world="game" @click="gameOpen = true">Play {{ world.terrain.game.title }}</button>
+        </div>
+        <section v-if="screenOpen" class="ws-panel ws-screen" aria-label="The screen">
+          <template v-if="hosting">
+            <label class="ws-hint" for="ws-screen-link">Watch or listen together: paste a YouTube or YouTube Music link.</label>
+            <input id="ws-screen-link" v-model="screenLink" class="ws-text" type="url" inputmode="url" placeholder="https://youtu.be/…" autocomplete="off" @keydown.enter.prevent="putOnScreen" />
+            <button type="button" class="ws-wide is-primary" :disabled="!screenLink.trim()" data-world="screen-on" @click="putOnScreen">Put it on</button>
+            <div v-if="screenState" class="ws-row ws-row-3">
+              <button type="button" @click="screenPlay(!screenState.play)">{{ screenState.play ? 'Pause' : 'Play' }}</button>
+              <button type="button" @click="screenRestart">Restart</button>
+              <button type="button" @click="screenOff">Off</button>
+            </div>
+          </template>
+          <p v-else class="ws-hint">{{ screenState ? 'The host controls the screen. Everyone here sees the same moment.' : 'The host has nothing on the screen yet.' }}</p>
+          <button v-if="screenSrc" type="button" class="ws-wide" @click="screenHidden = !screenHidden">{{ screenHidden ? 'Show the screen' : 'Hide the screen (keep the sound)' }}</button>
+        </section>
+        <div v-if="gameOpen && world.terrain?.game" class="ws-game">
+          <LiteRoom :intent="{ kind: 'create' }" :game="world.terrain.game.id" @close="gameOpen = false" />
+        </div>
         <p v-if="said" class="ws-said" role="status">{{ said }}</p>
         <button v-if="world.canEdit && world.scripts && !editing" type="button" class="ws-pill ws-code" :class="{ 'is-on': coding }" :aria-pressed="coding" @click="coding = !coding">Code</button>
         <section v-if="coding" class="ws-panel ws-coder" aria-label="This space's code">
@@ -359,6 +439,10 @@ const round = (v: number): number => Math.round(v * 100) / 100
               {{ busy ? 'Uploading…' : 'Upload a .glb' }}
               <input type="file" accept=".glb,model/gltf-binary" :disabled="busy" @change="uploadHere" />
             </label>
+            <p class="ws-hint">Shapes: no upload needed.</p>
+            <div class="ws-shapes" role="group" aria-label="Shapes">
+              <button v-for="id in PROP_IDS" :key="id" type="button" :data-shape="id" @click="placeShape(id)">{{ PROPS[id].label }}</button>
+            </div>
             <div v-if="world.mine.length" class="ws-models" role="group" aria-label="My models">
               <button v-for="m in world.mine" :key="m.id" type="button" :class="{ 'is-on': choosing?.id === m.id }" @click="choose(m)">{{ m.name }}</button>
             </div>
@@ -375,6 +459,15 @@ const round = (v: number): number => Math.round(v * 100) / 100
 </template>
 
 <style scoped>
+.ws-left { position: absolute; left: 12px; top: calc(max(8px, env(safe-area-inset-top)) + 96px); display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.ws-panel.ws-screen { left: 8px; right: auto; top: calc(max(8px, env(safe-area-inset-top)) + 232px); bottom: auto; max-height: calc(100vh - 360px); }
+.ws-tv { position: absolute; top: calc(max(8px, env(safe-area-inset-top)) + 58px); left: 50%; transform: translateX(-50%); width: min(440px, 64vw); aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45); }
+.ws-tv.is-hidden { width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.ws-tv iframe { width: 100%; height: 100%; border: 0; display: block; }
+.ws-game { position: absolute; inset: 0; z-index: 6; overflow: auto; background: #0e1217; }
+.ws-shapes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; }
+.ws-shapes button { min-height: 34px; padding: 0 4px; border: 0; border-radius: 9px; background: #eef1f4; color: #14181c; font: 600 12px var(--font); }
+
 .ws::backdrop { background: #000; }
 .ws { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: #a9c7de; overflow: hidden; touch-action: none; user-select: none; font-family: var(--font); }
 .ws-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }

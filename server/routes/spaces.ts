@@ -20,7 +20,7 @@
  *   POST /api/spaces/world/layout { target, id?, models }   where my models stand in it
  *   POST /api/spaces/world/script { target, id?, code, lines }   its own script (sandboxed on each visitor's device)
  *   GET  /api/spaces/worlds?list=mine|new|popular     worlds (server/spaces/worlds.ts, docs/WORLDS.md)
- *   POST /api/spaces/worlds { name, … } · /update { id, … } · /delete { id } · /cover?id= (body: image/webp)
+ *   POST /api/spaces/worlds { name, …, template? } · /update { id, … } · /delete { id } · /like { id, on } · /builders { id, builders } · /cover?id= (body: image/webp)
  *   GET  /api/spaces/world-cover/:id                  a world's cover picture
  */
 import { spacesService } from '../spaces/service.ts';
@@ -63,6 +63,8 @@ export default function spacesRoutes(ctx: RouteContext): Record<RouteKey, RouteH
     'POST /api/spaces/worlds': change((db, session, body) => worlds.create(db, session, body)),
     'POST /api/spaces/worlds/update': change((db, session, body) => worlds.update(db, session, body)),
     'POST /api/spaces/worlds/delete': change((db, session, body) => worlds.remove(db, session, body)),
+    'POST /api/spaces/worlds/like': change((db, session, body) => worlds.like(db, session, body)),
+    'POST /api/spaces/worlds/builders': change((db, session, body) => worlds.builders(db, session, body)),
     'POST /api/spaces/worlds/cover': async (request) => { await gate(request); return { body: await worlds.cover(request), renew: true }; },
     'GET /api/spaces/world-cover/:id': async (request) => {
       const id = await ctx.store.read((db) => request.requireSession(db).publicId);

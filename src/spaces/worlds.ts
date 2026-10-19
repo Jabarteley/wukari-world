@@ -19,13 +19,24 @@ export const WORLD_GROUNDS = Object.freeze({
   sand: { label: 'Sand', sky: '#c9d7e6' },
   stone: { label: 'Stone', sky: '#b8c6d2' },
   snow: { label: 'Snow', sky: '#d6e1ea' },
-  night: { label: 'Night', sky: '#1a2233' },
+  island: { label: 'Island', sky: '#bfe3f5' },
+  /** Kept for worlds made before the sky was its own choice: grass under the night sky. Not offered any more. */
+  night: { label: 'Night', sky: '#1a2233', hidden: true },
 })
 export type WorldGround = keyof typeof WORLD_GROUNDS
+
+/** The time of day over a world: the sky's colour and the sun. */
+export const WORLD_SKIES = Object.freeze({
+  day: { label: 'Day', sky: null, sun: '#fff4e5', light: 2.4, ambient: 0.9 },
+  sunset: { label: 'Sunset', sky: '#f2a65a', sun: '#ffb070', light: 1.7, ambient: 0.6 },
+  night: { label: 'Night', sky: '#141b2b', sun: '#9fb4ff', light: 0.7, ambient: 0.25 },
+})
+export type WorldSky = keyof typeof WORLD_SKIES
 
 /** Who may come in. */
 export const WORLD_OPEN = Object.freeze({
   everyone: { label: 'Everyone', line: 'Listed for all to find and join' },
+  friends: { label: 'Friends', line: 'Your friends see it and walk in' },
   link: { label: 'By link only', line: 'Only people you send the link' },
 })
 export type WorldOpen = keyof typeof WORLD_OPEN
@@ -49,9 +60,15 @@ export const WORLDS = Object.freeze({
   coverHeight: 360,
   /** Lists answer at most this many. */
   list: 40,
+  /** Friends a maker may let arrange their world with them. */
+  builders: 8,
+  /** Likes kept by name per world (the count goes on past it). */
+  likesKept: 5_000,
 })
 
-export interface WorldInput { name: string; blurb: string; size: WorldSize; ground: WorldGround; open: WorldOpen }
+export interface WorldInput { name: string; blurb: string; size: WorldSize; ground: WorldGround; open: WorldOpen; sky?: WorldSky }
+/** A lite game a world offers (src/arena/lite; server/spaces/games.ts): its id and title, chosen by the maker. */
+export interface WorldGame { id: string; title: string }
 export type WorldCheck = { ok: true; world: WorldInput } | { ok: false; code: string; reason: string }
 
 const oneLine = (value: unknown, max: number): string => (typeof value === 'string' ? value.replace(/\s+/g, ' ').trim().slice(0, max) : '')
@@ -68,7 +85,8 @@ export function cleanWorld(value: unknown, was?: WorldInput): WorldCheck {
   const size = r['size'] === undefined && was ? was.size : keyOf(r['size'], WORLD_SIZES, 'small')
   const ground = r['ground'] === undefined && was ? was.ground : keyOf(r['ground'], WORLD_GROUNDS, 'grass')
   const open = r['open'] === undefined && was ? was.open : keyOf(r['open'], WORLD_OPEN, 'link')
-  return { ok: true, world: { name, blurb, size, ground, open } }
+  const sky = r['sky'] === undefined && was ? was.sky ?? 'day' : keyOf(r['sky'], WORLD_SKIES, 'day')
+  return { ok: true, world: { name, blurb, size, ground, open, sky } }
 }
 
 /** The plot of a world: its size across and down, one floor. */

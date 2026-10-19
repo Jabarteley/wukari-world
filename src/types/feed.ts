@@ -10,8 +10,11 @@ export interface FeedPerson {
   /** AI-played (an agent character, or an agent acted for this character recently). */
   ai?: true
   friend?: true
-  /** The location badge: their device found itself in this city (never a position); `net` when the network's country agreed. */
-  located?: { city: string; name: string; net?: true }
+  /**
+   * The location badge: their device found itself in this city (never a position); `net` when the network's country agreed; `lga` and
+   * `lgaName` when the device also found the local government and the player chose to show it.
+   */
+  located?: { city: string; name: string; net?: true; lga?: string; lgaName?: string }
 }
 export interface FeedMedia { hash: string; type: 'jpeg' | 'png' | 'webp' | 'webm' | 'mp4'; w: number; h: number; ms?: number }
 export interface FeedPlace { city: string; cityName: string; venue?: string; label?: string }
@@ -42,7 +45,12 @@ export interface PostView {
   ai?: true
 }
 export interface NewsLine { n: number; at: number; city: string; text: string }
-export interface FeedPage { ok: true; tab: FeedTab | 'crew' | 'author'; posts: PostView[]; next: string | null; news?: NewsLine[]; sponsored?: (import('./promote.ts').ListingView & { order: string })[] }
+/**
+ * The line at the top of Near you: how many people set a badge in the viewer's badge city (and local government) this month. Counts only,
+ * never who. Absent for a viewer without a badge (the tab then reads like the city tab).
+ */
+export interface NearLine { city: string; cityName: string; n: number; lga?: string; lgaName?: string; lgaN?: number }
+export interface FeedPage { ok: true; tab: FeedTab | 'crew' | 'author'; posts: PostView[]; next: string | null; news?: NewsLine[]; near?: NearLine; sponsored?: (import('./promote.ts').ListingView & { order: string })[] }
 export interface Draft { n: number; at: number; city: string; kind: string; text: string }
 export interface InboxLine { at: number; kind: 'reply' | 'reaction' | 'follow' | 'crew' | 'rsvp' | 'gig' | 'vouch' | 'review' | 'mention' | 'moderation'; text: string; post?: string; from?: FeedPerson; seen?: true }
 export interface ProfileView extends FeedPerson {
@@ -72,9 +80,9 @@ export interface CrewView {
   owner: FeedPerson; members: FeedPerson[]; size: number; cap: number
   mine: boolean; owned: boolean; mod: boolean
   kind: import('../feed/model.ts').CommunityKind; kindLabel: string
-  place?: { city?: string; state?: string; country?: string; name?: string; real?: 1 }
+  place?: { city?: string; state?: string; country?: string; name?: string; real?: 1; lga?: string; lgaName?: string }
   open: boolean; mods: FeedPerson[]; cover?: string
-  /** Locals only: who may join (a location badge in its city, state or country), and whether the viewer's badge qualifies. */
+  /** Locals only: who may join (a location badge in its local government, city, state or country), and whether the viewer's badge qualifies. */
   locals?: import('../feed/model.ts').LocalScope; qualifies?: boolean
   /** The 3D world: its group's room; `link` (members only) is the room's address /r/… */
   world?: { room: string; builders: number; link?: string }
@@ -142,9 +150,9 @@ export interface FeedHttpRoutes {
   'GET /api/feed/communities': { query: { city?: string; kind?: string }; response: Ok<{ ok: true; communities: CrewView[] }>; errors: E }
   'POST /api/feed/crews/mod': { body: { id: string; member: string; on?: boolean }; response: Done<{ crew: CrewView }>; errors: E }
   'POST /api/feed/crews/locals': { body: { id: string; locals: import('../feed/model.ts').LocalScope | 'all' | null }; response: Done<{ crew: CrewView }>; errors: E }
-  'POST /api/feed/located': { body: { city?: string; on?: boolean }; response: Done<{ profile: ProfileView }>; errors: E }
+  'POST /api/feed/located': { body: { city?: string; lga?: string; on?: boolean }; response: Done<{ profile: ProfileView }>; errors: E }
   'POST /api/feed/crews/world': { body: { id: string; conv: string }; response: Done<{ crew: CrewView }>; errors: E }
-  'POST /api/feed/crews': { body: { name: string; colour?: string; about?: string; kind?: string; city?: string; state?: string; placeName?: string; open?: boolean; cover?: string; locals?: import('../feed/model.ts').LocalScope }; response: Done<{ crew: CrewView }>; errors: E }
+  'POST /api/feed/crews': { body: { name: string; colour?: string; about?: string; kind?: string; city?: string; state?: string; placeName?: string; lga?: string; open?: boolean; cover?: string; locals?: import('../feed/model.ts').LocalScope }; response: Done<{ crew: CrewView }>; errors: E }
   'POST /api/feed/crews/join': { body: { code?: string; id?: string }; response: Done<{ crew: CrewView }>; errors: E }
   'POST /api/feed/crews/leave': { body: { id: string; member?: string }; response: Done; errors: E }
   'GET /api/feed/crews/one': { query: { id: string }; response: Done<{ crew: CrewView }>; errors: E }

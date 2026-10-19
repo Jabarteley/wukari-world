@@ -13,10 +13,29 @@ export { COLOURS }
  * map; the position never leaves it. Optional, adults only, gone after `days`.
  */
 export const LOCATED = Object.freeze({ days: 90, perDay: 5, km: 25, accuracyM: 5000 })
-/** Who a community with a real place may let in: only people whose badge is in its city, its state, or its country. */
-export const LOCAL_SCOPES = ['city', 'state', 'country'] as const
+/**
+ * Who a community with a real place may let in: only people whose badge is in its local government (an `area`: the badge's optional
+ * local unit, docs/FEED.md "Near you"), its city, its state, or its country.
+ */
+export const LOCAL_SCOPES = ['lga', 'city', 'state', 'country'] as const
 export type LocalScope = (typeof LOCAL_SCOPES)[number]
 export const isLocalScope = (v: unknown): v is LocalScope => typeof v === 'string' && (LOCAL_SCOPES as readonly string[]).includes(v)
+/** The words of each scope in the "Who can join" choices. */
+export const LOCAL_SCOPE_LABEL: Readonly<Record<LocalScope, string>> = Object.freeze({ lga: 'Only people confirmed in this area', city: 'Only people confirmed in this city', state: 'Only people confirmed in this state', country: 'Only people confirmed in this country' })
+/**
+ * Near you (docs/FEED.md): how much a post weighs when its author's badge is in the viewer's local government (`lga`) or city (`city`,
+ * also a post placed in the viewer's badge city). Everything else weighs 1, so the world still shows, below the neighbours.
+ */
+export const NEAR = Object.freeze({ lga: 3, city: 1.6 })
+export type Nearness = keyof typeof NEAR
+/** A badge as the ranking reads it: a city id and, when the device found one, the local government's id. */
+export interface BadgePlace { city: string; lga?: string }
+/** How near an author (or an event's host, a gig's poster) is to the viewer: same local government, same city, or neither. */
+export function nearness(viewer: BadgePlace | null | undefined, other: BadgePlace | null | undefined, placedIn?: string): Nearness | null {
+  if (!viewer) return null
+  if (other && other.city === viewer.city && viewer.lga && other.lga === viewer.lga) return 'lga'
+  return (other && other.city === viewer.city) || placedIn === viewer.city ? 'city' : null
+}
 
 export const FEED = Object.freeze({
   body: 500, reply: 280, bio: 80, status: 60, place: 40,
@@ -38,7 +57,7 @@ export type Skill = typeof SKILLS[number]
 export type Visibility = 'public' | 'city' | 'friends' | 'crew'
 export const VISIBILITIES: readonly Visibility[] = Object.freeze(['public', 'city', 'friends', 'crew'])
 export type PostKind = 'text' | 'photo' | 'clip' | 'moment' | 'event' | 'gig' | 'recap'
-export type FeedTab = 'friends' | 'city' | 'world'
+export type FeedTab = 'near' | 'friends' | 'city' | 'world'
 export interface Refusal { ok: false; code: string; reason: string }
 const no = (code: string, reason: string): Refusal => ({ ok: false, code, reason })
 
@@ -126,16 +145,22 @@ export function allowedVisibility(want: unknown, { adult, media, publicMedia, cr
 }
 
 // ---- ranking --------------------------------------------------------------------------------------------------------------------
-export interface Rankable { at: number; replies: number; reactions: number; friend: boolean; mine: boolean; ai: boolean; kind: PostKind }
+export interface Rankable { at: number; replies: number; reactions: number; friend: boolean; mine: boolean; ai: boolean; kind: PostKind; /** Near you only. */ near?: Nearness | null }
 /**
- * The score of a candidate in the City and World tabs: newer first (half-life of six hours), lifted by replies and reactions (a few
- * count, many do not run away), and by a friend's hand. AI posts weigh a little less, so people stay on top. Friends is chronological.
+ * The score of a candidate in the Near you, City and World tabs: newer first (half-life of six hours), lifted by replies and reactions (a
+ * few count, many do not run away), by a friend's hand, and in Near you by how near its author is (NEAR). AI posts weigh a little less,
+ * so people stay on top. Friends is chronological.
  */
 export function score(post: Rankable, now: number): number {
   const ageHours = Math.max(0, now - post.at) / 3600000
   const fresh = Math.pow(0.5, ageHours / 6)
   const talk = Math.log2(1 + post.replies * 2 + post.reactions)
-  return fresh * (1 + 0.35 * talk) * (post.friend ? 1.6 : 1) * (post.ai ? 0.7 : 1) * (post.kind === 'moment' ? 0.9 : 1)
+  return fresh * (1 + 0.35 * talk) * (post.friend ? 1.6 : 1) * (post.ai ? 0.7 : 1) * (post.kind === 'moment' ? 0.9 : 1) * (post.near ? NEAR[post.near] : 1)
+}
+/** Plans and Work, near you first: the ones of your local government, then of your city, each group keeping its own order. */
+export function nearFirst<T>(items: readonly T[], near: (item: T) => Nearness | null): T[] {
+  const tier = (n: Nearness | null): number => (n === 'lga' ? 0 : n === 'city' ? 1 : 2)
+  return items.map((item, i) => [tier(near(item)), i, item] as const).sort((a, b) => a[0] - b[0] || a[1] - b[1]).map(([, , item]) => item)
 }
 export function rank<T extends Rankable>(posts: readonly T[], now: number): T[] {
   return posts.map((post) => [score(post, now), post] as const).sort((a, b) => b[0] - a[0] || b[1].at - a[1].at).map(([, post]) => post)
@@ -168,6 +193,12 @@ export function agoText(at: number, now: number): string {
   const h = Math.round(m / 60); if (h < 24) return `${h} h ago`
   const d = Math.round(h / 24); return d < 30 ? `${d} d ago` : `${Math.round(d / 30)} mo ago`
 }
+/** Where a badge says someone is: "Lagos Mainland, Lagos" with a local government, "Lagos" without. */
+export const badgePlaceText = (b: { name: string; lgaName?: string }): string => (b.lgaName ? `${b.lgaName}, ${b.name}` : b.name)
+/** The month a badge was set in (UTC, "2026-10"): the Near you counts start again each month. */
+export const monthOf = (at: number): string => new Date(at).toISOString().slice(0, 7)
+/** "214 people confirmed in Yaba this month" (a count, never a list of who). */
+export const confirmedText = (n: number, place: string, month = true): string => `${n.toLocaleString('en')} ${n === 1 ? 'person' : 'people'} confirmed in ${place}${month ? ' this month' : ''}`
 /** Follower counts are shown only from 100, so a small account is never compared. */
 export const followersText = (n: number): string => (n >= 100 ? `${n >= 10000 ? `${Math.round(n / 1000)}k` : n.toLocaleString('en')} followers` : '')
 export const visibilityWord: Readonly<Record<Visibility, string>> = Object.freeze({ public: 'Everyone', city: 'My city', friends: 'Friends', crew: 'Crew' })

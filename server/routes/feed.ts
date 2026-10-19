@@ -4,7 +4,8 @@
  *
  *   GET  /api/feed/me                          your profile, drafts (moments), inbox, crews; whether photos are on
  *   POST /api/feed/seen                        the inbox was read
- *   GET  /api/feed/list?tab=friends|city|world&city=&after=        a page of posts (city and world carry `news`: the gist)
+ *   GET  /api/feed/list?tab=near|friends|city|world&city=&after=   a page of posts (near, city and world carry `news`: the gist;
+ *                                              near, for a badge holder, its badge city's neighbours first and `near`: this month's counts)
  *   GET  /api/feed/crew?id=&after=             a crew's wall (members)          GET /api/feed/by?id=&after=   someone's posts
  *   GET  /api/feed/post?id=                    one post with every reply
  *   POST /api/feed/post    { body, vis?, crew?, media?, draft?, label? }        POST /api/feed/post/remove { id }
@@ -14,7 +15,8 @@
  *   GET  /api/feed/profile?id=<id|@handle|CODE> POST /api/feed/profile { bio?, status?, withPlace?, open? }   POST /api/feed/handle { handle }
  *   GET  /api/feed/code?code=                  what a friend, crew or event code is
  *   POST /api/feed/follow  { id, on }          GET /api/feed/suggestions        POST /api/feed/vouch { id, skill, on }
- *   POST /api/feed/crews   { name, colour?, about? }   POST /api/feed/crews/join { code }   POST /api/feed/crews/leave { id, member? }   GET /api/feed/crews/one?id=
+ *   POST /api/feed/located { city, lga? } | { on: false }   the location badge: a city and maybe one of its local units, never a position
+ *   POST /api/feed/crews   { name, colour?, about?, kind?, city?, lga?, locals? }   POST /api/feed/crews/join { code }   POST /api/feed/crews/leave { id, member? }   GET /api/feed/crews/one?id=
  *   GET  /api/feed/events?city=                POST /api/feed/events { title, about?, start, hours?, place?, cap?, cohosts? }
  *   GET  /api/feed/events/one?id=|code=        POST /api/feed/events/rsvp { id, answer: going|maybe|null }   POST /api/feed/events/cancel { id }
  *   GET  /api/feed/gigs?city=                  POST /api/feed/gigs { title, about?, reward }   POST /api/feed/gigs/act { id, op, worker?, stars?, text? }
@@ -35,6 +37,7 @@ import { crewPageHtml, eventPageHtml, goneHtml } from '../feed/pages.ts'
 import { cleanCode, FEED } from '../../src/feed/model.ts'
 import { CONTENT_TYPES, FAULT_WORDS, claimedType, cleanPicture } from '../social/images.ts'
 import { characterCity } from '../character.ts'
+import { loadCityRules } from '../../src/game/cities/registry.ts'
 import { growthOf } from '../growth/data.ts'
 import { count, noteActivated, notePosted } from '../growth/metrics.ts'
 import { requestOrigin } from '../execution-origin.ts'
@@ -106,6 +109,8 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
     if (asked && (asked === 'world' || ctx.cityIds.some((c) => c === asked))) return asked
     return ctx.store.read((db) => { const s = request.session(db); return (s && characterCity(s)) ?? ctx.cityIds[0] ?? 'lagos' })
   }
+  /** A body naming one of a city's local units: the city's rules are loaded first, so the service can check the unit is that city's. */
+  const unitsFor = async (b: Record<string, unknown>): Promise<void> => { if (typeof b.lga === 'string' && b.lga && typeof b.city === 'string') await loadCityRules(b.city).catch(() => null) }
   const counted = (name: string) => (db: Db): void => { count(growthOf(ctx, db), ctx.now(), name) }
   /** A person's first meaningful action in the feed (a post, a community, a "going"): once per life, and never an AI agent's (growth/metrics.ts noteActivated). */
   const activated = (request: RouteRequest, db: Db, s: SessionRecord): void => { noteActivated(growthOf(ctx, db), ctx.now(), s.publicId, requestOrigin(request, s)) }
@@ -164,7 +169,7 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
     'POST /api/feed/seen': async (request) => ({ body: await write(request, (db, s) => feed.seen(db, s)) }),
     'GET /api/feed/list': async (request) => {
       const tab = request.query.get('tab'), city = await cityOf(request)
-      if (tab !== 'friends' && tab !== 'city' && tab !== 'world') throw ctx.fail(400, 'invalid_tab')
+      if (tab !== 'near' && tab !== 'friends' && tab !== 'city' && tab !== 'world') throw ctx.fail(400, 'invalid_tab')
       const after = request.query.get('after')
       const page = await readAs(request, (db, viewer) => { const r = feed.read(db, viewer, { tab, city, after }); return r.ok && tab !== 'friends' && !after ? { ...r, sponsored: promote.sponsored(db, viewer, city, tab === 'world') } : r })
       // Sponsored cards shown are counted for the business (a number, nobody's name), after the answer.
@@ -233,14 +238,15 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
     },
     'POST /api/feed/contacts/forget': async (request) => ({ body: await ctx.store.transact((db) => contacts.forget(db, request.requireSession(db, { renew: true }).publicId)), headers: noStore }),
     'POST /api/feed/vouch': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.vouch(db, s, b)) } },
-    'POST /api/feed/crews': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.createCrew(db, s, b); if (r.ok) { counted('crew.made')(db); activated(request, db, s) } return r }), renew: true } },
+    'POST /api/feed/crews': async (request) => { const b = await body(request); await unitsFor(b); return { body: await write(request, (db, s) => { const r = feed.createCrew(db, s, b); if (r.ok) { counted('crew.made')(db); activated(request, db, s) } return r }), renew: true } },
     'POST /api/feed/crews/join': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.joinCrew(db, s, b); if (r.ok) { counted('crew.joined')(db); activated(request, db, s) } return r }), renew: true } },
     'POST /api/feed/crews/leave': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.leaveCrew(db, s, b)) } },
     'GET /api/feed/communities': async (request) => { const city = await cityOf(request); return { body: await readAs(request, (db, viewer) => feed.discover(db, viewer, city, request.query.get('kind'))), headers: noStore } },
     'POST /api/feed/crews/mod': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.setMod(db, s, b)) } },
     'POST /api/feed/crews/locals': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.setLocals(db, s, b)) } },
-    // The location badge: the city the device found itself in, never a position; the network's country only as the host saw it.
-    'POST /api/feed/located': async (request) => { const b = await body(request); const country = request.header?.('cf-ipcountry') ?? ''; return { body: await write(request, (db, s) => feed.setLocated(db, s, b, country)) } },
+    // The location badge: the city (and maybe the local government) the device found itself in, never a position; the network's country
+    // only as the host saw it.
+    'POST /api/feed/located': async (request) => { const b = await body(request); await unitsFor(b); const country = request.header?.('cf-ipcountry') ?? ''; return { body: await write(request, (db, s) => feed.setLocated(db, s, b, country)) } },
     'POST /api/feed/crews/world': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.attachWorld(db, s, b)) } },
     'GET /api/feed/crews/one': async (request) => ({ body: await readAs(request, (db, viewer) => feed.crew(db, viewer, request.query.get('id'))), headers: noStore }),
     'GET /api/feed/events': async (request) => { const city = await cityOf(request); return { body: await readAs(request, (db, viewer) => feed.events(db, viewer, city)), headers: noStore } },

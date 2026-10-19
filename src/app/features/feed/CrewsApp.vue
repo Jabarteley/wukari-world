@@ -2,7 +2,8 @@
 // Communities (docs/FEED.md, "Communities"): a crew of friends, or your own city, state, estate, campus, club or any community, based on
 // a real place of the world map or on one you imagined. Each has a wall only members read, one join link that previews in WhatsApp
 // (/c/<code>), moderators, and, once its founder makes it, a 3D world: a group chat whose room is built with AI Spaces (design it by
-// describing it, import a Space Plan, your own models, scripts and games), entered by every member through the room's link.
+// describing it, import a Space Plan, your own models, scripts and games), entered by every member through the room's link. A community of
+// a real city can also name one of its local governments (its area), and be kept for the people confirmed there: the neighbours.
 import '../../../ui/controls.css'
 import '../../../ui/panels/social.css'
 import './feed.css'
@@ -13,9 +14,9 @@ import PostCard from './PostCard.vue'
 import { feedApi, mediaUrl, uploadMedia } from './feedApi.ts'
 import { encodePhoto } from './feedMedia.ts'
 import { shareLink, whatsappUrl } from './feedShare.ts'
-import { COLOURS, COMMUNITY_KINDS, FEED, cleanCode } from '../../../feed/model.ts'
+import { COLOURS, COMMUNITY_KINDS, FEED, LOCAL_SCOPE_LABEL, cleanCode } from '../../../feed/model.ts'
 import type { CommunityKind, LocalScope } from '../../../feed/model.ts'
-import { cityCatalogue } from '../../../game/cities/registry.ts'
+import { cityCatalogue, loadCityRules } from '../../../game/cities/registry.ts'
 import { enterByLink, enterRoom } from '../places/placesStore.ts'
 import type { CrewView, PostView } from '../../../types/feed.ts'
 
@@ -26,8 +27,18 @@ type Tab = 'mine' | 'discover' | 'start'
 const tab = ref<Tab>('mine')
 const crews = ref<CrewView[]>([]), found = ref<CrewView[]>([]), current = ref<CrewView | null>(null), wall = ref<PostView[]>([]), preview = ref<CrewView | null>(null)
 const code = ref(props.params?.code ?? ''), text = ref(''), busy = ref(false), now = ref(Date.now()), kindFilter = ref('')
-const form = ref({ name: '', about: '', colour: COLOURS[0]?.id ?? 'gold', kind: 'crew' as CommunityKind, where: 'real' as 'real' | 'imagined' | 'none', city: '', placeName: '', open: true, cover: '', locals: '' as '' | LocalScope })
+const form = ref({ name: '', about: '', colour: COLOURS[0]?.id ?? 'gold', kind: 'crew' as CommunityKind, where: 'real' as 'real' | 'imagined' | 'none', city: '', lga: '', placeName: '', open: true, cover: '', locals: '' as '' | LocalScope })
 const search = ref('')
+/** The chosen city's local units (its local governments), for the optional area of a community; read from the city's rules when chosen. */
+const units = ref<{ id: string; name: string }[]>([])
+watch(() => form.value.city, async (city) => {
+  form.value.lga = ''; units.value = []
+  if (form.value.locals === 'lga') form.value.locals = ''
+  if (!city) return
+  const rules = await loadCityRules(city).catch(() => null)
+  if (form.value.city === city) units.value = (rules?.units ?? []).map((u) => ({ id: u.id, name: u.name }))
+})
+watch(() => form.value.lga, (lga) => { if (!lga && form.value.locals === 'lga') form.value.locals = '' })
 type Answer = { ok: boolean; crew?: CrewView; reason?: string }
 async function setLocals(value: string): Promise<void> {
   if (!current.value) return
@@ -38,7 +49,7 @@ const send = (path: string, body: object): Promise<Answer> => game.fetchJson<Ans
 const toast = (t: string, tone?: 'error'): void => game.toast(t, tone === 'error' ? 'error' : 'info')
 const hex = (id: string): string => COLOURS.find((c) => c.id === id)?.hex ?? '#d4a017'
 const places = computed(() => { const q = search.value.trim().toLowerCase(); return cityCatalogue().filter((c) => !q || c.name.toLowerCase().includes(q) || c.state.name.toLowerCase().includes(q) || (c.countryName ?? '').toLowerCase().includes(q)).slice(0, 40) })
-const placeLine = (c: CrewView): string => c.place ? [c.place.name ?? '', c.place.city ? (cityCatalogue().find((x) => x.id === c.place?.city)?.name ?? '') : '', c.place.state ?? '', c.place.country ?? ''].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i).join(', ') : ''
+const placeLine = (c: CrewView): string => c.place ? [c.place.name ?? '', c.place.lgaName ?? '', c.place.city ? (cityCatalogue().find((x) => x.id === c.place?.city)?.name ?? '') : '', c.place.state ?? '', c.place.country ?? ''].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i).join(', ') : ''
 
 async function load(): Promise<void> {
   const r = await api.me()
@@ -76,7 +87,7 @@ async function cover(event: Event): Promise<void> {
 async function create(): Promise<void> {
   const v = form.value
   busy.value = true
-  const r = await send('/api/feed/crews', { name: v.name, about: v.about, colour: v.colour, kind: v.kind, open: v.kind !== 'crew' && v.open, ...(v.cover ? { cover: v.cover } : {}), ...(v.kind !== 'crew' && v.where === 'real' && v.city ? { city: v.city, ...(v.locals ? { locals: v.locals } : {}) } : {}), ...(v.kind !== 'crew' && v.where === 'imagined' && v.placeName ? { placeName: v.placeName } : {}) })
+  const r = await send('/api/feed/crews', { name: v.name, about: v.about, colour: v.colour, kind: v.kind, open: v.kind !== 'crew' && v.open, ...(v.cover ? { cover: v.cover } : {}), ...(v.kind !== 'crew' && v.where === 'real' && v.city ? { city: v.city, ...(v.lga ? { lga: v.lga } : {}), ...(v.locals ? { locals: v.locals } : {}) } : {}), ...(v.kind !== 'crew' && v.where === 'imagined' && v.placeName ? { placeName: v.placeName } : {}) })
   busy.value = false
   if (!r.ok || !r.crew) { toast(r.reason ?? 'That did not go through.', 'error'); return }
   form.value = { ...form.value, name: '', about: '', placeName: '', cover: '' }
@@ -147,8 +158,8 @@ function sharePlace(): void { if (sharedCity.value) void import('../growth/share
         <img v-if="current.cover" class="feed-media" :src="mediaUrl(current.cover)" alt="">
         <div class="feed-head"><span class="feed-crew-chip"><i :style="{ background: hex(current.colour) }" />{{ current.name }}</span><span class="feed-note">{{ current.kindLabel }} · {{ current.size }} / {{ current.cap }}{{ current.open ? ' · open to all' : ' · by link' }}</span></div>
         <p v-if="placeLine(current)" class="feed-note">{{ current.place?.real ? 'Based on' : 'An imagined place:' }} {{ placeLine(current) }}</p>
-        <p v-if="current.locals" class="feed-note" data-feed="locals">📍 Locals only: people whose device confirmed they are in this {{ current.locals }}.<template v-if="!current.mine && !current.qualifies"> Get your location badge in My profile to join.</template></p>
-        <label v-if="current.owned && current.place?.real" class="feed-row">Who can join<select :value="current.locals ?? ''" @change="setLocals(($event.target as HTMLSelectElement).value)"><option value="">Anyone</option><option v-if="current.place?.city" value="city">Only people confirmed in its city</option><option value="state">Only people confirmed in its state</option><option value="country">Only people confirmed in its country</option></select></label>
+        <p v-if="current.locals" class="feed-note" data-feed="locals">📍 Locals only: people whose device confirmed they are in this {{ current.locals === 'lga' ? 'area' : current.locals }}.<template v-if="!current.mine && !current.qualifies"> Get your location badge in My profile to join.</template></p>
+        <label v-if="current.owned && current.place?.real" class="feed-row">Who can join<select :value="current.locals ?? ''" @change="setLocals(($event.target as HTMLSelectElement).value)"><option value="">Anyone</option><option v-if="current.place?.lga" value="lga">Only people confirmed in its area ({{ current.place.lgaName }})</option><option v-if="current.place?.city" value="city">Only people confirmed in its city</option><option value="state">Only people confirmed in its state</option><option value="country">Only people confirmed in its country</option></select></label>
         <button v-if="sharedCity" type="button" class="feed-pill" data-crew-share-place @click="sharePlace">Share place</button>
         <p v-if="current.about" class="feed-body">{{ current.about }}</p>
         <div class="feed-strip" style="margin-top:8px">
@@ -229,7 +240,8 @@ function sharePlace(): void { if (sharedCity.value) void import('../growth/share
           <template v-if="form.where === 'real'">
             <label>Find the city<input v-model="search" placeholder="Ibadan, Accra, Nairobi, London…"></label>
             <select v-model="form.city" aria-label="City"><option value="">Choose…</option><option v-for="c in places" :key="c.id" :value="c.id">{{ c.name }}, {{ c.state.name }}{{ c.countryName ? `, ${c.countryName}` : '' }}</option></select>
-            <label v-if="form.city">Who can join<select v-model="form.locals"><option value="">Anyone</option><option value="city">Only people confirmed in this city</option><option value="state">Only people confirmed in this state</option><option value="country">Only people confirmed in this country</option></select></label>
+            <label v-if="form.city && units.length">Its area (optional)<select v-model="form.lga"><option value="">The whole city</option><option v-for="u in units" :key="u.id" :value="u.id">{{ u.name }}</option></select></label>
+            <label v-if="form.city">Who can join<select v-model="form.locals"><option value="">Anyone</option><option v-if="form.lga" value="lga">{{ LOCAL_SCOPE_LABEL.lga }}</option><option value="city">{{ LOCAL_SCOPE_LABEL.city }}</option><option value="state">{{ LOCAL_SCOPE_LABEL.state }}</option><option value="country">{{ LOCAL_SCOPE_LABEL.country }}</option></select></label>
             <p v-if="form.locals" class="feed-note">People need a location badge (My profile → Location badge): their phone checks where they are, and the position is never sent. You need one in that place too.</p>
           </template>
           <label v-else-if="form.where === 'imagined'">Its name<input v-model="form.placeName" maxlength="40" placeholder="New Eko City"></label>

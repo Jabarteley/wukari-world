@@ -7,7 +7,7 @@
  *   cities[city]   the newest post, event and gig ids of a city
  *   handles[key]   -> author id         codes[CODE] -> { k, id }
  *   crews[id]      a crew               events[id] an event            gigs[id] a gig
- *   root           { v, seq, world: newest public post ids, reports: newest last }
+ *   root           { v, seq, world: newest public post ids, reports: newest last, here: this month's badge counts }
  * Never inside `social`: a post, a crew or an event is not a player's record and must not make every player's row bigger.
  * Everything is optional on read: a missing field is repaired where it is read.
  */
@@ -48,8 +48,11 @@ export interface AuthorRecord {
   vouches?: Partial<Record<Skill, string[]>>
   reviews?: { n: number; sum: number; recent: { by: string; stars: number; text: string; at: number }[] }
   gigsDone?: number
-  /** The location badge (docs/FEED.md): a city of the catalogue, when (server clock), `net` when the network's country agreed. Never a position. */
-  located?: { city: string; at: number; net?: 1 }
+  /**
+   * The location badge (docs/FEED.md): a city of the catalogue, when (server clock), `net` when the network's country agreed, and `lga`
+   * (one of that city's local units) when the device found it and the player showed it. Never a position.
+   */
+  located?: { city: string; at: number; net?: 1; lga?: string }
   locatedDay?: { day: string; n: number }
   /** Their own and RSVP'd events, and gigs posted, applied to or taken: newest last, at most 40 each. */
   events?: string[]; gigs?: string[]
@@ -64,13 +67,13 @@ export interface CrewRecord {
   id: string; name: string; colour: string; about: string; owner: string; members: string[]; code: string; at: number; kicked?: Record<string, number>; /** Removed by moderation: no page, no joining; members keep their wall. */ banned?: 1
   /** A community (absent: a crew of friends). */
   kind?: import('../../src/feed/model.ts').CommunityKind
-  /** Where it is: a real city or state of the catalogue (`real`), or a place someone imagined (`name` only). */
-  place?: { city?: string; state?: string; country?: string; name?: string; real?: 1 }
+  /** Where it is: a real city or state of the catalogue (`real`, with one of the city's local units as `lga`), or a place someone imagined (`name` only). */
+  place?: { city?: string; state?: string; country?: string; name?: string; real?: 1; lga?: string }
   /** Listed in the Discover directory, anyone may join without the link. */
   open?: 1
   /** Moderators besides the founder: they edit, remove members and build the world. */
   mods?: string[]
-  /** Locals only: joining needs a location badge in its city, state or country. */
+  /** Locals only: joining needs a location badge in its local government, city, state or country. */
   locals?: import('../../src/feed/model.ts').LocalScope
   /** Its world: a group chat the founder made, whose room is the community's 3D world (docs/SPACES-3D.md). */
   conv?: string
@@ -102,6 +105,11 @@ export interface FeedCollection {
   v: 1; seq: number; world: string[]; reports: ReportRecord[]
   /** Media hashes whose bytes the heartbeat deletes (erasure puts them here). */
   trash?: string[]
+  /**
+   * Near you's line (docs/FEED.md): how many badges were set this month (`m`, monthOf) per city (`lagos`) and local government
+   * (`lagos/ikeja`). Numbers only, never who; started again when the month changes. A person counts once, where their badge is now.
+   */
+  here?: { m: string; n: Record<string, number> }
   /** Moderation decisions, newest last, at most 500; `dn` counts them. */
   decisions?: DecisionRecord[]; dn?: number
   authors: Record<string, AuthorRecord>; posts: Record<string, PostRecord>; cities: Record<string, CityLists>

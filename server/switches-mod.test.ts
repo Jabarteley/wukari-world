@@ -20,6 +20,13 @@ test('operator switches: token only, listed settings only, booleans only; the ho
   assert.deepEqual([on.body.nysc, on.body.jamb, on.body.story, on.body.spacesAi], [true, true, true, true]);
   const values = await f.server.store.read((db) => settingsOf(f.server.context).list(db) as unknown as { key: string; value: unknown }[]);
   for (const key of ['nyscOn', 'jambOn', 'storyMode', 'spacesAi']) assert.equal(values.find((row) => row.key === key)?.value, true, key);
+  const more = await post('/api/mod/switches', { residents: true, residentsShadow: false, calls: true, houseAgents: true, chatPictures: true, feedMedia: true });
+  assert.equal(more.status, 200, JSON.stringify(more.body));
+  const read = await fetch(f.base + '/api/mod/switches', { headers: { authorization: `Bearer ${TOKEN}` } });
+  assert.equal(read.status, 200);
+  const now = await read.json() as Record<string, unknown>;
+  assert.deepEqual([now.nysc, now.residents, now.residentsShadow, now.calls, now.houseAgents, now.chatPictures, now.feedMedia], [true, true, false, true, true, true, true]);
+  assert.notEqual((await fetch(f.base + '/api/mod/switches')).status, 200, 'reading needs the token too');
   const house = await post('/api/mod/switches/house', { now: true });
   assert.equal(house.status, 200);
   assert.ok(house.body.ok === true || house.body.code === 'too_few', JSON.stringify(house.body));

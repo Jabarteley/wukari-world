@@ -2,7 +2,7 @@
  * OWNER: growth
  * THE PAGE'S SIDE OF DETTY DECEMBER (docs/DETTY-DECEMBER.md): one small public fetch (GET /api/world/detty, server/routes/detty.ts) kept for
  * FEED_MS, the check-in that lets the server record what it can see, and the venue scenes' hook that dresses a venue of Lagos, Accra or
- * Abuja while the season is on. Loaded on demand only: src/scene/venue-scenes.ts imports it for a venue of those three cities, the Events
+ * Abuja while the season is on. Loaded on demand only: the scene host (src/venue-world.ts) imports it for a venue of those three cities, the Events
  * app with itself. The props themselves (src/festivals/detty-skin.ts) are fetched only while the season is on. A failed fetch leaves the last
  * answer (or none); nothing here ever blocks a scene or throws.
  */
@@ -54,7 +54,7 @@ export async function mySeason(fetchJson: FetchJson = plainFetch): Promise<Detty
 /** The scene asks at most once a minute of server time; a check-in goes at most every CHECKIN_MS from this page (and on a new venue). */
 const SLOT_MS = 60000, CHECKIN_MS = 10 * 60000
 let lastCheckin = -Infinity
-/** What src/scene/venue-scenes.ts gives the hook: where to put the props and how to read the ground. */
+/** What the scene host (src/venue-world.ts) gives the hook: the shown venue's group, where to put the props and how to read the ground. */
 export interface SceneHost { THREE: typeof import('three'); group: { add(object: unknown): void }; cityId: string; venueId: string; place: () => SkinPlace | null; /** Draw once more: the props came or went while the scene was idle (kit.requestRender). */ redraw?: () => void }
 export interface SceneHook { tick(t: number): void; dispose(): void; /** For the tests: the plan in use. */ plan(): SkinPlan | null }
 
@@ -67,7 +67,7 @@ export function scenePlan(feed: DettyFeed | null, t: number, cityId: string, ven
 }
 
 /**
- * The hook a venue scene of a season city runs on every update (src/scene/venue-scenes.ts). Once a minute of server time it looks at the
+ * The hook a venue scene of a season city runs on every update (src/venue-world.ts, for the venue on screen). Once a minute of server time it looks at the
  * season: on, it loads the props for this venue (a weak phone gets the light plan) and checks in now and then; off, the props go.
  */
 export function sceneSkin(host: SceneHost, deps: { fetchJson?: FetchJson; light?: boolean; load?: () => Promise<typeof import('./detty-skin.ts')> } = {}): SceneHook {

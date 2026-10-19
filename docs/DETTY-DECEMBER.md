@@ -8,7 +8,7 @@ home from abroad, and a season card at the end. It switches itself on and off by
 | --- | --- |
 | The dates (and nothing else, for the entry page, the hosts and the scenes) | `src/festivals/detty-dates.ts` |
 | The rules and lists: cities and venues, nights, owambe Saturdays, drops, the Returnee rule, the card, the skin plan | `src/festivals/detty.ts` |
-| The page's side: the season fetch, the check-in, the venue scenes' hook | `src/festivals/detty-client.ts` |
+| The page's side: the season fetch, the check-in, the scene host's hook | `src/festivals/detty-client.ts` (called from `src/venue-world.ts`) |
 | The props (loaded only while the season is on) | `src/festivals/detty-skin.ts` |
 | The routes, the admin settings | `server/routes/detty.ts` |
 | The stored shape, the profile badge, export and erasure | `server/detty/store.ts` |
@@ -57,7 +57,7 @@ home from abroad, and a season card at the end. It switches itself on and off by
 
 ## What the server records, and how it knows
 
-`POST /api/world/detty/checkin` (the Events app on opening, and the venue scenes of the three cities at most every ten minutes and on
+`POST /api/world/detty/checkin` (the Events app on opening, and the scene host in the three cities at most every ten minutes and on
 arrival) **reads nothing from the request body**. During the season it looks only at stored records:
 
 * the city the character is in (`server/character.ts` `characterCity`): a season city goes on the card;
@@ -101,8 +101,9 @@ Admin → World → Settings (`server/admin/settings.ts`, registered by `server/
 ## Size
 
 Nothing in the first paint or the startup download but the word `detty` in the entry addresses (`src/app/features/start/pathAddress.ts`,
-+9 raw bytes). The venue scenes import the hook only for a venue of the three cities, and the props only while the season is on; the
-Events app imports its part when it opens. The entry page carries its own two-line copy of the December rule (a test keeps it equal to
++9 raw bytes). The scene host (`src/venue-world.ts`) imports the hook only for a venue of the three cities, and the props only while the
+season is on; the Events app imports its part when it opens. The scene builders (`src/scene/venue-scenes.ts` and the other sources the talk
+factory pins in `scripts/talk-factory/generated/world-manifest.json`) are untouched, so `npm run talk:check` passes and no talk bank changes. The entry page carries its own two-line copy of the December rule (a test keeps it equal to
 `detty-dates.ts`) so its chunk imports nothing more.
 
 ## Not done

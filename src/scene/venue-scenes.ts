@@ -443,21 +443,6 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     festive = next;
     return true;
   }
-  // Detty December (src/festivals/detty-client.ts, docs/DETTY-DECEMBER.md): in Lagos, Accra and Abuja a venue wears the season's props while it
-  // is on (1 to 31 December, or the admin's preview). The hook is fetched only for those three cities, the props only while the season is on.
-  let dettyHook: import('../festivals/detty-client.ts').SceneHook | null = null, dettyAsked = false;
-  function dettyTick(t: number): void {
-    if (dettyHook) { dettyHook.tick(t); return; }
-    // The three cities, written here so the scene chunk imports nothing for them (the hook checks again: isDettyCity).
-    if (dettyAsked || !['lagos', 'accra', 'abuja'].includes(cityId) || !venue?.id) return;
-    dettyAsked = true;
-    const venueId = venue.id;
-    void import('../festivals/detty-client.ts').then((lib) => {
-      if (disposed) return;
-      dettyHook = lib.sceneSkin({ THREE: kit.THREE, group, cityId, venueId, place: () => (grid ? { bounds: grid.bounds, heightAt: (x, z) => walk.heightAt(x, z) } : null), redraw: () => kit.requestRender?.() });
-      dettyHook.tick(t);
-    }).catch(() => { /* no season: the venue stays as it is */ });
-  }
   /** The preset in use: the mood's light for this time of day, as the city's conditions leave it and a festival dresses it. */
   const lit = (): Lighting => { const base = adjustLighting(lightingFor(mood, view.time), view.weather); return festive && festiveLib ? festiveLib.festiveLighting(base, festive) : base; };
   const hints: Record<string, string> = options.anchors && typeof options.anchors === 'object' ? options.anchors : {};
@@ -1301,7 +1286,6 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
         const weather = lookAt(cityId, venue, CITY_RULES[cityId]?.climate, state.t!);
         if (lookKey(weather) !== lookKey(view.weather)) { view.weather = weather; changed = true; }
         if (festiveChanged(state.t!)) changed = true;
-        dettyTick(state.t!);
       }
       const here = state.location == null || !venue?.id || state.location === venue.id;
       if (here && typeof state.spot === 'string' && state.spot !== view.spot) { anchorFor(state.spot); findRaised(); view.spot = state.spot; actors = true; }
@@ -1319,7 +1303,6 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     },
     dispose() {
       if (disposed) return;
-      dettyHook?.dispose(); dettyHook = null;
       release();
       disposed = true;
       shared.disposers.delete(entry.dispose);

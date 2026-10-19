@@ -15,6 +15,7 @@
 import { cleanLayout, type Placement, type SpaceLayout } from '../../src/spaces/layout.ts';
 import { cleanScript, type SpaceScript } from '../../src/spaces/script.ts';
 import { SPACE_LIMITS_BY_KIND, worldPlot, type SpaceKind } from '../../src/spaces/worlds.ts';
+import { propOf, propView } from '../../src/spaces/props.ts';
 import { screenText } from '../moderation/text.ts';
 import { plotOf } from '../../src/game/home-layout.ts';
 import { roomPlot } from '../../src/spaces/plan.ts';
@@ -64,7 +65,7 @@ function build(ctx: RouteContext) {
   };
   const nameOf = (db: Db, id: string): string => db.social?.players[id]?.name ?? 'Player';
 
-  type Where = { key: string; kind: SpaceKind; title: string; owner: { id: string; name: string }; grid: number; owned: boolean; plot: { w: number; d: number; floors: number }; style: object | null; items: { itemId: string; x: number; y: number; rot: number; floor?: number }[]; canEdit: boolean; terrain?: { ground: string; size: string; open: string; blurb: string } };
+  type Where = { key: string; kind: SpaceKind; title: string; owner: { id: string; name: string }; grid: number; owned: boolean; plot: { w: number; d: number; floors: number }; style: object | null; items: { itemId: string; x: number; y: number; rot: number; floor?: number }[]; canEdit: boolean; terrain?: { ground: string; size: string; open: string; blurb: string; sky: string; game?: { id: string; title: string } } };
   /** The space the caller asked for, if they may see it. */
   function where(db: Db, session: SessionRecord, query: URLSearchParams): Where | ReturnType<typeof no> {
     const target = query.get('target');
@@ -72,8 +73,9 @@ function build(ctx: RouteContext) {
       if (!worlds.on()) return no('worlds_off', 'Worlds are not switched on yet.');
       const world = worlds.entry(db, query.get('id'));
       if (!world) return no('unknown_world', 'That world is gone, or its link is wrong.');
+      if (!worlds.mayEnter(db, world, session.publicId)) return no('friends_only', `Only ${nameOf(db, world.by)}'s friends can come into this world.`);
       const plot = worldPlot(world.size);
-      return { key: `world:${world.id}`, kind: 'world', title: world.name, owner: { id: world.by, name: nameOf(db, world.by) }, grid: plot.w, owned: false, plot, style: null, items: [], canEdit: world.by === session.publicId, terrain: { ground: world.ground, size: world.size, open: world.open, blurb: world.blurb } };
+      return { key: `world:${world.id}`, kind: 'world', title: world.name, owner: { id: world.by, name: nameOf(db, world.by) }, grid: plot.w, owned: false, plot, style: null, items: (world.items ?? []).map((i) => ({ ...i })), canEdit: worlds.mayBuild(world, session.publicId), terrain: { ground: world.ground, size: world.size, open: world.open, blurb: world.blurb, sky: world.sky ?? 'day', ...(world.game ? { game: { ...world.game } } : {}) } };
     }
     if (target === 'room') {
       const seen = places.room(db, session, query.get('id'));
@@ -99,6 +101,8 @@ function build(ctx: RouteContext) {
   /** Placements whose model is still there; a hidden model shows only to its own owner. */
   function placed(db: Db, key: string, viewer: string) {
     return (layoutOf(db, key)?.models ?? []).flatMap((p) => {
+      const prop = propOf(p.m);
+      if (prop) return [{ ...p, ...propView(prop) }];
       const model = modelOf(db, p.by, p.m);
       if (!model || (model.hidden && p.by !== viewer)) return [];
       return [{ ...p, hash: model.hash, name: model.name, size: model.size, triangles: model.tris }];
@@ -122,7 +126,7 @@ function build(ctx: RouteContext) {
       const { key, canEdit, ...rest } = found;
       const mine = canEdit ? (allModels(db)[session.publicId] ?? []).filter((m) => !m.hidden).map((m) => modelView(m, session.publicId)) : [];
       const script = scriptsOn() ? scriptOf(db, key) : undefined;
-      return { ok: true, code: 'ok', world: { ...rest, key, canEdit, models: placed(db, key, session.publicId), mine, limits: SPACE_LIMITS_BY_KIND[found.kind], scripts: scriptsOn(), ...(script ? { script: { code: script.code, lines: [...script.lines] } } : {}) } };
+      return { ok: true, code: 'ok', world: { ...rest, key, canEdit, models: placed(db, key, session.publicId), mine, limits: SPACE_LIMITS_BY_KIND[found.kind], scripts: scriptsOn(), screen: worlds.screenOn(), ...(script ? { script: { code: script.code, lines: [...script.lines] } } : {}) } };
     },
     /** POST /api/spaces/world/script */
     saveScript(db: Db, session: SessionRecord, body: Record<string, unknown>) {
@@ -139,7 +143,7 @@ function build(ctx: RouteContext) {
       const checked = cleanScript(body, (text) => screenText(text, { contact: true, what: 'That line' })?.reason ?? null);
       if (!checked.ok) return checked;
       (col.scripts ??= {})[found.key] = { ...checked.script, at: ctx.now(), by: session.publicId };
-      if (found.kind === 'world') worlds.touched(db, found.owner.id === session.publicId ? found.key.slice(6) : '');
+      if (found.kind === 'world') worlds.touched(db, found.key.slice(6));
       return { ok: true as const, code: 'saved' as const, lines: checked.script.lines.length };
     },
     /** POST /api/spaces/world/layout */

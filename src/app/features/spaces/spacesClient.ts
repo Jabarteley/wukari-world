@@ -69,9 +69,15 @@ export const scriptSave = (api: Fetcher, where: WorldWhere, code: string, lines:
   call<{ ok: true; code: 'saved' | 'removed'; lines?: number }>(api, '/api/spaces/world/script', { target: where.target, ...(where.id ? { id: where.id } : {}), code, lines })
 
 // Worlds (docs/WORLDS.md; server/spaces/worlds.ts).
-export const worldsList = (api: Fetcher, which: 'mine' | 'new' | 'popular') => call<WorldsList>(api, `/api/spaces/worlds?list=${which}`)
-export const worldCreate = (api: Fetcher, body: { name: string; blurb: string; size: string; ground: string; open: string }) => call<{ ok: true; code: 'created'; world: WorldCard }>(api, '/api/spaces/worlds', body)
-export const worldUpdate = (api: Fetcher, body: { id: string; name?: string; blurb?: string; ground?: string; open?: string }) => call<{ ok: true; code: 'saved'; world: WorldCard }>(api, '/api/spaces/worlds/update', body)
+export const worldsList = (api: Fetcher, which: 'mine' | 'new' | 'popular' | 'friends') => call<WorldsList>(api, `/api/spaces/worlds?list=${which}`)
+export const worldCreate = (api: Fetcher, body: { name: string; blurb: string; size: string; ground: string; open: string; sky: string; template: string }) => call<{ ok: true; code: 'created'; world: WorldCard }>(api, '/api/spaces/worlds', body)
+export const worldUpdate = (api: Fetcher, body: { id: string; name?: string; blurb?: string; ground?: string; open?: string; sky?: string; game?: string }) => call<{ ok: true; code: 'saved'; world: WorldCard }>(api, '/api/spaces/worlds/update', body)
+export const worldLike = (api: Fetcher, id: string, on: boolean) => call<{ ok: true; code: 'saved'; likes: number; liked: boolean }>(api, '/api/spaces/worlds/like', { id, on })
+export const worldBuilders = (api: Fetcher, id: string, builders: string[]) => call<{ ok: true; code: 'saved'; world: WorldCard }>(api, '/api/spaces/worlds/builders', { id, builders })
+/** The lite games a world may offer: the built-in ones and those the player imported. */
+export const liteGames = (api: Fetcher) => call<{ ok: true; code: 'ok'; games: { id: string; title: string }[] }>(api, '/api/spaces/games')
+/** The player's friends, for choosing who builds with them. */
+export const myFriends = (api: Fetcher) => call<{ ok: true; code: 'ok'; friends: { id: string; name: string }[] }>(api, '/api/social/me?lite=1')
 export const worldDelete = (api: Fetcher, id: string) => call<{ ok: true; code: 'deleted' }>(api, '/api/spaces/worlds/delete', { id })
 /** A world's cover, with its hash's first letters so a new cover is a new address. */
 export const worldCoverUrl = (card: Pick<WorldCard, 'id' | 'cover'>): string | null => (card.cover ? `/api/spaces/world-cover/${card.id}?v=${card.cover}` : null)

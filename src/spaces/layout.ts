@@ -42,6 +42,8 @@ export interface Placement {
 }
 export interface SpaceLayout { models: Placement[]; at: number; by: string }
 
+import { propOf, propView, PROP_OWNER } from './props.ts'
+
 const KEY = /^[a-z0-9]{1,12}$/
 const MODEL = /^m[0-9a-z]{9}$/
 const HASH = /^[0-9a-f]{64}$/
@@ -71,18 +73,20 @@ export function cleanLayout(value: unknown, plot: PlotSize, placeable: (by: stri
     if (!raw || typeof raw !== 'object') return no('invalid_layout', 'The layout could not be read.')
     const r = raw as Record<string, unknown>
     const k = typeof r['k'] === 'string' && KEY.test(r['k']) ? r['k'] : null
-    const m = typeof r['m'] === 'string' && MODEL.test(r['m']) ? r['m'] : null
-    const by = typeof r['by'] === 'string' && UUIDISH.test(r['by']) ? r['by'] : null
+    // A built-in shape (src/spaces/props.ts) belongs to nobody: anyone who may arrange the space may place it.
+    const prop = propOf(r['m'])
+    const m = prop ? `p-${prop}` : typeof r['m'] === 'string' && MODEL.test(r['m']) ? r['m'] : null
+    const by = prop ? PROP_OWNER : typeof r['by'] === 'string' && UUIDISH.test(r['by']) ? r['by'] : null
     if (!k || !m || !by || keys.has(k)) return no('invalid_layout', 'The layout could not be read.')
     keys.add(k)
-    const model = placeable(by, m)
+    const model = prop ? { id: m, by, hash: '', triangles: propView(prop).triangles } : placeable(by, m)
     if (!model || model.hidden) return no('unknown_model', 'One of these models is gone or hidden. Remove it and save again.')
-    if (!mayUse(by, m)) return no('not_yours', 'You can place only your own models.')
+    if (!prop && !mayUse(by, m)) return no('not_yours', 'You can place only your own models.')
     const floor = typeof r['floor'] === 'number' && Number.isInteger(r['floor']) && r['floor'] >= 0 && r['floor'] < plot.floors ? r['floor'] : null
     const x = num(r['x'], -WORLD.margin, plot.w + WORLD.margin), z = num(r['z'], -WORLD.margin, plot.d + WORLD.margin)
     const y = num(r['y'], -1, WORLD.lift), ry = num(r['ry'], -3600, 3600), s = num(r['s'], WORLD.scale[0], WORLD.scale[1])
     if (floor === null || x === null || z === null || y === null || ry === null || s === null) return no('out_of_bounds', 'A model is outside the space or sized past the limits. Move it back and save again.')
-    if (HASH.test(model.hash) === false) return no('unknown_model', 'One of these models is gone. Remove it and save again.')
+    if (!prop && HASH.test(model.hash) === false) return no('unknown_model', 'One of these models is gone. Remove it and save again.')
     triangles += model.triangles
     models.push({ k, m, by, hash: model.hash, x, y, z, ry: ((ry % 360) + 360) % 360, s, floor, ...(r['loose'] === true ? { loose: true as const } : {}) })
   }

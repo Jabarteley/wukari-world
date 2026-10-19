@@ -32,7 +32,8 @@ test('the game page policy: only what the app needs, scripts by hash, never unsa
   assert.ok(!/unsafe-eval/.test(policy) && !/script-src[^;]*unsafe-inline/.test(policy));
   assert.equal(directive(policy, 'connect-src'), "connect-src 'self' wss://joinallworld.com https://cloudflareinsights.com");
   for (const wanted of ["default-src 'self'", "style-src 'self' 'unsafe-inline'", "img-src 'self' data: blob:", "font-src 'self'", "media-src 'self' blob:", "worker-src 'self' blob:", "manifest-src 'self'", "base-uri 'self'", "form-action 'self'", "object-src 'none'", "frame-ancestors 'none'", 'upgrade-insecure-requests']) assert.ok(policy.split('; ').includes(wanted), wanted);
-  assert.deepEqual(policy.match(/https?:\/\/[^\s;]+/g), ['https://static.cloudflareinsights.com', 'https://cloudflareinsights.com'], 'without telemetry the only outside hosts are the edge analytics beacon\'s two');
+  assert.deepEqual(policy.match(/https?:\/\/[^\s;]+/g), ['https://static.cloudflareinsights.com', 'https://cloudflareinsights.com', 'https://www.youtube-nocookie.com'], 'without telemetry the only outside hosts are the edge analytics beacon\'s two and the screen\'s player (frames only)');
+  assert.equal(directive(policy, 'frame-src'), "frame-src 'self' https://www.youtube-nocookie.com", 'the screen in a space is a frame, nothing more');
 });
 
 test('avatar decoding opts into Wasm and blob connections without allowing JavaScript eval or widening other pages', () => {
@@ -142,7 +143,7 @@ test('the Node host without telemetry: no outside host in the policy', async (t)
   await writeFile(join(dist, 'index.html'), INDEX);
   const f = await fixture(t, { distDir: dist, env: {}, log: () => {} });
   const response = await fetch(`${f.base}/`);
-  assert.deepEqual((response.headers.get('content-security-policy') as string).match(/https:\/\/[^\s;]+/g), ['https://static.cloudflareinsights.com', 'https://cloudflareinsights.com']);
+  assert.deepEqual((response.headers.get('content-security-policy') as string).match(/https:\/\/[^\s;]+/g), ['https://static.cloudflareinsights.com', 'https://cloudflareinsights.com', 'https://www.youtube-nocookie.com']);
   await response.arrayBuffer();
 });
 
@@ -153,17 +154,17 @@ test('accounts widen the policy only when configured: the identity endpoints, th
   const off = appHeaders(facts), none = appHeaders({ ...facts, accounts: null });
   assert.deepEqual(none, off, 'null is the same as unset');
   assert.equal(off['Cross-Origin-Opener-Policy'], 'same-origin');
-  assert.ok(!/googleapis|google\.com|frame-src/.test(off['Content-Security-Policy'] as string), 'unconfigured: exactly the strict policy');
+  assert.ok(!/googleapis|google\.com/.test(off['Content-Security-Policy'] as string), 'unconfigured: exactly the strict policy');
   const email = appHeaders({ ...facts, accounts: { projectId: 'demo-allworld-test', apiKey: 'k'.repeat(30), googleClientId: '' } });
   const emailPolicy = email['Content-Security-Policy'] as string;
   assert.equal(directive(emailPolicy, 'connect-src'), "connect-src 'self' wss://joinallworld.com https://cloudflareinsights.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com");
   assert.equal(directive(emailPolicy, 'script-src'), "script-src 'self' 'sha256-x' https://static.cloudflareinsights.com");
-  assert.equal(directive(emailPolicy, 'frame-src'), '');
+  assert.equal(directive(emailPolicy, 'frame-src'), "frame-src 'self' https://www.youtube-nocookie.com");
   assert.equal(email['Cross-Origin-Opener-Policy'], 'same-origin', 'no Google button, no popup');
   const google = appHeaders({ ...facts, accounts: { projectId: 'demo-allworld-test', apiKey: 'k'.repeat(30), googleClientId: ACCOUNTS_ENV.ACCOUNTS_GOOGLE_CLIENT_ID } });
   const policy = google['Content-Security-Policy'] as string;
   assert.equal(directive(policy, 'script-src'), "script-src 'self' 'sha256-x' https://static.cloudflareinsights.com https://accounts.google.com/gsi/client");
-  assert.equal(directive(policy, 'frame-src'), "frame-src 'self' https://accounts.google.com/gsi/");
+  assert.equal(directive(policy, 'frame-src'), "frame-src 'self' https://www.youtube-nocookie.com https://accounts.google.com/gsi/");
   assert.equal(directive(policy, 'style-src'), "style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style");
   assert.match(directive(policy, 'connect-src'), /https:\/\/accounts\.google\.com\/gsi\/$/);
   assert.equal(google['Cross-Origin-Opener-Policy'], 'same-origin-allow-popups');
@@ -183,7 +184,7 @@ test('the Node host: the page carries the strict policy until accounts are confi
   const csp = response.headers.get('content-security-policy') as string;
   assert.match(directive(csp, 'connect-src'), /https:\/\/identitytoolkit\.googleapis\.com https:\/\/securetoken\.googleapis\.com https:\/\/accounts\.google\.com\/gsi\/$/);
   assert.match(directive(csp, 'script-src'), /https:\/\/accounts\.google\.com\/gsi\/client$/);
-  assert.equal(directive(csp, 'frame-src'), "frame-src 'self' https://accounts.google.com/gsi/");
+  assert.equal(directive(csp, 'frame-src'), "frame-src 'self' https://www.youtube-nocookie.com https://accounts.google.com/gsi/");
   assert.equal(response.headers.get('cross-origin-opener-policy'), 'same-origin-allow-popups');
   const api = await fetch(`${on.base}/api/does-not-exist`); await api.arrayBuffer();
   assert.equal(api.headers.get('content-security-policy'), null, 'the API answers carry no page policy');

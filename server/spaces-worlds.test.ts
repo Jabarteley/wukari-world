@@ -27,7 +27,7 @@ async function setup(t: TestContext, { worlds = true }: { worlds?: boolean } = {
   t.after(() => rm(dir, { recursive: true, force: true }));
   const store = await createStore(dir, { log: () => {} });
   const at = (value: boolean) => ({ value, at: 1, by: 'test' });
-  await store.transact((db) => { (db as Record<string, unknown>)['adminSettings'] = { values: { spacesModels: at(true), spaces3d: at(true), spacesScripts: at(true), ...(worlds ? { spacesWorlds: at(true) } : {}) } }; });
+  await store.transact((db) => { (db as Record<string, unknown>)['adminSettings'] = { values: { spacesModels: at(true), spaces3d: at(true), spacesScripts: at(true), spacesScreen: at(true), ...(worlds ? { spacesWorlds: at(true) } : {}) } }; });
   const f = await fixture(t, { moderatorToken: OPERATOR, env: { ACCOUNTS_FIREBASE_PROJECT_ID: PROJECT, ACCOUNTS_FIREBASE_API_KEY: 'test-web-api-key-0000000000000000000000', FOUNDER_EMAIL_SHA256: emailHash(FOUNDER), NEW_SESSIONS_PER_ADDRESS: '1000' }, fetch: provider.fetch, store } as never);
   const call = async (path: string, body?: unknown, cookie?: string, type = 'model/gltf-binary'): Promise<Json> => {
     const raw = body instanceof Uint8Array;
@@ -49,7 +49,12 @@ async function setup(t: TestContext, { worlds = true }: { worlds?: boolean } = {
   const upload = async (d: Device, name = 'Chair') => { const r = await call(`/api/spaces/models?name=${name}`, CHAIR, d.cookie); assert.equal(r.ok, true, JSON.stringify(r)); return r.model; };
   const place = (model: Json, over: Json = {}) => ({ k: `p${Math.random().toString(36).slice(2, 8)}`, m: model.id, by: model.by, hash: model.hash, x: 2, y: 0, z: 2, ry: 90, s: 1, floor: 0, ...over });
   const make = async (d: Device, body: Json = {}) => { const r = await call('/api/spaces/worlds', { name: 'Ada park', ...body }, d.cookie); assert.equal(r.code, 'created', JSON.stringify(r)); return r.world as Json; };
-  return { f, call, account, upload, place, make };
+  const befriend = async (a: Device, b: Device) => {
+    const post = (path: string, body: Json, d: Device) => call(path, { clientId: f.id(), ...body }, d.cookie);
+    assert.equal((await post('/api/social/friends/request', { to: b.id, cityId: 'lagos' }, a)).ok, true);
+    assert.equal((await post('/api/social/friends/answer', { from: a.id, accept: true, cityId: 'lagos' }, b)).ok, true);
+  };
+  return { f, call, account, upload, place, make, befriend };
 }
 
 test('worlds: off until an operator turns it on', async (t) => {
@@ -80,7 +85,7 @@ test('worlds: made, listed, arranged by its maker, reached by anyone with its li
   assert.equal(seen.world.canEdit, true);
   assert.deepEqual(seen.world.plot, { w: 48, d: 48, floors: 1 });
   assert.deepEqual(seen.world.items, []);
-  assert.deepEqual(seen.world.terrain, { ground: 'sand', size: 'big', open: 'everyone', blurb: 'Bring a ball' });
+  assert.deepEqual(seen.world.terrain, { ground: 'sand', size: 'big', open: 'everyone', blurb: 'Bring a ball', sky: 'day' });
   assert.deepEqual(seen.world.limits, SPACE_LIMITS_BY_KIND.world);
   const bolas = await s.call(`/api/spaces/world?target=world&id=${park.id}`, undefined, bola.cookie);
   assert.equal(bolas.world.canEdit, false);
@@ -136,4 +141,108 @@ test('worlds: erasure takes a player\'s worlds, their layouts, scripts and cover
   assert.deepEqual(col.layouts ?? {}, {});
   assert.deepEqual(col.scripts ?? {}, {});
   assert.equal(col.modelTrash.length >= 2, true, 'the cover and the chair wait for the sweep');
+});
+
+test('worlds: a starter lays out shapes, furniture, a script and a ground; shapes are placed with no upload', async (t) => {
+  const s = await setup(t);
+  const ada = await s.account('ada@example.com', 'Ada');
+  const hunt = await s.make(ada, { name: 'Gem hunt', template: 'treasure', size: 'big' });
+  const seen = await s.call(`/api/spaces/world?target=world&id=${hunt.id}`, undefined, ada.cookie);
+  assert.equal(seen.world.models.filter((m: Json) => m.m === 'p-gem').length, 12);
+  assert.equal(seen.world.models[0].name, 'Gem');
+  assert.match(seen.world.script.code, /Gem/);
+  const island = await s.make(ada, { name: 'Isle', template: 'island' });
+  assert.equal(island.ground, 'island');
+  const hangout = await s.call(`/api/spaces/world?target=world&id=${(await s.make(ada, { name: 'Den', template: 'hangout' })).id}`, undefined, ada.cookie);
+  assert.ok(hangout.world.items.some((i: Json) => i.itemId === 'flat-tv'));
+  assert.equal(hangout.world.screen, true, 'the screen setting reaches the 3D screen');
+  // A shape is anyone's: placed by key alone, kept with its name and size.
+  const empty = await s.make(ada, { name: 'Blank' });
+  const shape = { k: 'q1', m: 'p-crate', by: 'allworld', hash: '', x: 3, y: 0, z: 3, ry: 0, s: 1, floor: 0, loose: true };
+  assert.equal((await s.call('/api/spaces/world/layout', { target: 'world', id: empty.id, models: [shape] }, ada.cookie)).code, 'saved');
+  const back = (await s.call(`/api/spaces/world?target=world&id=${empty.id}`, undefined, ada.cookie)).world.models[0];
+  assert.deepEqual([back.m, back.by, back.name, back.loose], ['p-crate', 'allworld', 'Crate', true]);
+  assert.equal((await s.call('/api/spaces/world/layout', { target: 'world', id: empty.id, models: [{ ...shape, m: 'p-dragon' }] }, ada.cookie)).code, 'invalid_layout');
+});
+
+test('worlds: friends-only worlds, the friends tab, likes and friends who build', async (t) => {
+  const s = await setup(t);
+  const ada = await s.account('ada@example.com', 'Ada'), bola = await s.account('bola@example.com', 'Bola'), chidi = await s.account('chidi@example.com', 'Chidi');
+  const den = await s.make(ada, { name: 'Ada den', open: 'friends' });
+  const hidden = await s.make(ada, { name: 'Ada secret', open: 'link' });
+  assert.equal((await s.call(`/api/spaces/world?target=world&id=${den.id}`, undefined, bola.cookie)).code, 'friends_only');
+  assert.equal((await s.call('/api/spaces/worlds?list=new', undefined, bola.cookie)).worlds.length, 0, 'not listed for everyone');
+  await s.befriend(ada, bola);
+  assert.equal((await s.call(`/api/spaces/world?target=world&id=${den.id}`, undefined, bola.cookie)).ok, true);
+  assert.deepEqual((await s.call('/api/spaces/worlds?list=friends', undefined, bola.cookie)).worlds.map((w: Json) => w.name), ['Ada den'], 'a link-only world stays off the friends tab');
+  assert.ok(hidden.id);
+  // Likes.
+  assert.equal((await s.call('/api/spaces/worlds/like', { id: den.id, on: true }, ada.cookie)).code, 'own_world');
+  assert.equal((await s.call('/api/spaces/worlds/like', { id: den.id, on: true }, chidi.cookie)).code, 'unknown_world', 'a friends-only world is not liked by a stranger');
+  const liked = await s.call('/api/spaces/worlds/like', { id: den.id, on: true }, bola.cookie);
+  assert.deepEqual([liked.likes, liked.liked], [1, true]);
+  assert.equal((await s.call('/api/spaces/worlds/like', { id: den.id, on: true }, bola.cookie)).likes, 1, 'twice is once');
+  assert.equal((await s.call('/api/spaces/worlds?list=mine', undefined, ada.cookie)).worlds.find((w: Json) => w.id === den.id).likes, 1);
+  assert.equal((await s.call('/api/spaces/worlds/like', { id: den.id, on: false }, bola.cookie)).likes, 0);
+  // Builders: friends only; a builder arranges and sees it in their own list.
+  assert.equal((await s.call('/api/spaces/worlds/builders', { id: den.id, builders: [chidi.id] }, ada.cookie)).code, 'friends_only');
+  const set = await s.call('/api/spaces/worlds/builders', { id: den.id, builders: [bola.id] }, ada.cookie);
+  assert.deepEqual(set.world.builders.map((b: Json) => b.name), ['Bola']);
+  assert.equal((await s.call(`/api/spaces/world?target=world&id=${den.id}`, undefined, bola.cookie)).world.canEdit, true);
+  const mineForBola = (await s.call('/api/spaces/worlds?list=mine', undefined, bola.cookie)).worlds;
+  assert.deepEqual(mineForBola.map((w: Json) => [w.name, w.mine, w.builder]), [['Ada den', false, true]]);
+  const shape = { k: 'b1', m: 'p-tree', by: 'allworld', hash: '', x: 3, y: 0, z: 3, ry: 0, s: 1, floor: 0 };
+  assert.equal((await s.call('/api/spaces/world/layout', { target: 'world', id: den.id, models: [shape] }, bola.cookie)).code, 'saved');
+  assert.equal((await s.call('/api/spaces/worlds/update', { id: den.id, name: 'Bola den' }, bola.cookie)).code, 'not_yours', 'building is not owning');
+  // A game to play in it.
+  const games = (await s.call('/api/spaces/games', undefined, ada.cookie)).games;
+  assert.ok(games.length > 0);
+  const withGame = await s.call('/api/spaces/worlds/update', { id: den.id, game: games[0].id }, ada.cookie);
+  assert.equal(withGame.world.game.id, games[0].id);
+  assert.equal((await s.call(`/api/spaces/world?target=world&id=${den.id}`, undefined, bola.cookie)).world.terrain.game.id, games[0].id);
+  assert.equal((await s.call('/api/spaces/worlds/update', { id: den.id, game: 'no-such-game' }, ada.cookie)).ok, false);
+  assert.equal((await s.call('/api/spaces/worlds/update', { id: den.id, game: '' }, ada.cookie)).world.game, undefined);
+});
+
+test('worlds: the screen: the host puts a video on, everyone follows, a newcomer joins at the right second; only the host changes it', async (t) => {
+  const s = await setup(t);
+  const ada = await s.account('ada@example.com', 'Ada'), bola = await s.account('bola@example.com', 'Bola'), chidi = await s.account('chidi@example.com', 'Chidi');
+  const park = await s.make(ada, { open: 'everyone' });
+  const open = async (who: Device) => {
+    const peer = await s.f.socket(who);
+    const frames: Json[] = [];
+    peer.ws.on('message', (data) => { const frame = JSON.parse(data.toString()); if (/^space-|^error$/.test(frame.type)) frames.push(frame); });
+    return { peer, frames, send: (frame: Json) => peer.ws.send(JSON.stringify(frame)) };
+  };
+  const settle = () => new Promise((resolve) => setTimeout(resolve, 80));
+  const a = await open(ada), b = await open(bola);
+  a.send({ type: 'space-join', target: 'world', id: park.id });
+  await settle();
+  b.send({ type: 'space-join', target: 'world', id: park.id });
+  await settle();
+  a.send({ type: 'space-screen', v: 'dQw4w9WgXcQ', play: true, pos: 0 });
+  await settle();
+  const seen = b.frames.findLast((f) => f.type === 'space-screen');
+  assert.deepEqual([seen?.v, seen?.play, seen?.pos], ['dQw4w9WgXcQ', true, 0]);
+  assert.ok(a.frames.some((f) => f.type === 'space-screen'), 'the host hears it too');
+  b.send({ type: 'space-screen', v: 'aaaaaaaaaaa', play: true, pos: 0 });
+  await settle();
+  assert.equal(b.frames.at(-1)?.code, 'space_not_host');
+  a.send({ type: 'space-screen', v: 'not a video', play: true, pos: 0 });
+  await settle();
+  assert.equal(b.frames.filter((f) => f.type === 'space-screen').length, 1, 'a bad id is dropped');
+  s.f.advance?.(30_000);
+  const c = await open(chidi);
+  c.send({ type: 'space-join', target: 'world', id: park.id });
+  await settle();
+  const late = c.frames.find((f) => f.type === 'space-screen');
+  assert.equal(late?.v, 'dQw4w9WgXcQ');
+  assert.ok(late && late.pos >= 0, 'the newcomer is told where it is now');
+  a.send({ type: 'space-screen', play: false, pos: 31 });
+  await settle();
+  const paused = c.frames.findLast((f) => f.type === 'space-screen');
+  assert.deepEqual([paused?.v, paused?.play, paused?.pos], ['dQw4w9WgXcQ', false, 31]);
+  a.send({ type: 'space-screen', off: true });
+  await settle();
+  assert.equal(c.frames.findLast((f) => f.type === 'space-screen')?.v, null);
 });

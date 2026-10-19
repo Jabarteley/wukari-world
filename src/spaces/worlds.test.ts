@@ -6,7 +6,8 @@ test('a world is checked: name, blurb, size, ground and who may come, with safe 
   const made = cleanWorld({ name: '  My   park ', blurb: 'x'.repeat(500), size: 'huge', ground: 'snow', open: 'everyone' })
   assert.equal(made.ok, true)
   if (!made.ok) return
-  assert.deepEqual(made.world, { name: 'My park', blurb: 'x'.repeat(WORLDS.blurb), size: 'huge', ground: 'snow', open: 'everyone' })
+  assert.deepEqual(made.world, { name: 'My park', blurb: 'x'.repeat(WORLDS.blurb), size: 'huge', ground: 'snow', open: 'everyone', sky: 'day' })
+  assert.equal(cleanWorld({ name: 'Dusk', sky: 'sunset', open: 'friends' }).ok && (cleanWorld({ name: 'Dusk', sky: 'sunset', open: 'friends' }) as { world: { sky: string; open: string } }).world.sky, 'sunset')
   assert.equal(cleanWorld({ name: 'A' }).ok, false)
   assert.equal(cleanWorld('nope').ok, false)
   const safe = cleanWorld({ name: 'Yard', size: 'enormous', ground: 'lava', open: 'public' })

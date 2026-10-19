@@ -9,6 +9,7 @@ dist/
 VERIFICATION.md
 /evidence/
 docs/evidence/out/
+docs/research/*/evidence/
 *.log
 dist-maps/
 *.map

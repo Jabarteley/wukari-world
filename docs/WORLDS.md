@@ -46,11 +46,23 @@ models needs `spacesModels` and the R2 bucket; covers share that store.
 `world_created { size, ground, open }`, `world_entered { mine, from }`, `world_shared { channel }` (src/telemetry/events.ts): words from
 fixed lists only, never a name or an id. Sent only when telemetry is configured and the player accepted (SECURITY.md, "Telemetry").
 
-## Next
+## The plan, in phases
 
-1. **A screen in a world** (`spacesScreen`): the host puts on a video or music (a YouTube link) and everyone in the world watches or
-   listens together, in time. The frame is `youtube-nocookie.com`, allowed in `frame-src` only for that page.
-2. **Starter worlds**: a treasure hunt (hidden loose models, a score, a winner line) and a race to the flag, as script starters.
-3. **The house on its street**: the 3D home shows the neighbours' houses either side and the street in front, from the estate the
-   player really lives in, so the 3D view is the same world as the map and the street.
-4. Friends-only worlds; co-builders; likes.
+| # | Phase | What ships | Setting | Depends on | Size |
+|---|---|---|---|---|---|
+| 1 | **Worlds** (PR #46) | Make a world, browse and join open ones, links, covers, up to 16 together, heavy limits | `spacesWorlds` | spaces3d live | done |
+| 2 | **A screen in a world** | The host puts on a YouTube video or music; everyone in the world watches or listens in time (play, pause, seek follow the host through the space socket; newcomers join at the right second). The frame is `youtube-nocookie.com`, allowed in `frame-src` only when the setting is on. | `spacesScreen` | 1; owner's yes to YouTube | 1 day |
+| 3 | **Starter worlds and games** | At "Make a world": Empty, Hangout, Treasure hunt (hidden loose models, a score, a winner line), Race to the flag. A world can also hold one of the Lite games players already import (server/spaces/games.ts), so a Candy-Crush-like puzzle lives in a world. | `spacesWorlds` | 1 | 1 day |
+| 4 | **The house on its street** | The 3D home shows the real street in front and the neighbours' houses either side, from the estate the player lives in, with the address on a sign and a "Go to the street" exit; the Houses hero says the address. The 3D view becomes the same world as the map and the street. | `spaces3d` | read-only estate data; no `src/street/**` edits | 2 days |
+| 5 | **Polish and heavy detail** | Bigger uploads for worlds (50 MB, 500,000 triangles a model), the player's real character instead of the capsule, ground shaping (hills, water), skyboxes, day and night, better touch controls, a first-run tour of a world. | per feature | 1; the character body is the NPC programme's: coordinate | ongoing, 1 week for the first cut |
+| 6 | **The social loop** | Friends-only worlds, co-builders, likes, a share card with the cover (growth share kind `world`), worlds on the feed, "a friend's world is live" notices, worlds of the week. | `spacesWorlds` | 1; feed phases (docs/SOCIAL-PLATFORM-PLAN.md) | 2 days |
+| 7 | **Analytics on** | PostHog is built (src/telemetry, SECURITY.md "Telemetry") but off live: `GET /api/telemetry/config` answers `enabled: false`. Switch-on: `TELEMETRY_ENV=production`, `POSTHOG_KEY=phc_…`, optionally `POSTHOG_HOST` (EU) as Worker secrets; in PostHog turn on "Discard client IP data". Then three dashboards: activation funnel, invite funnel, worlds funnel (`world_created` → `world_entered` → `world_shared`). | — | the owner's PostHog key and region | 0.5 day after the key |
+
+Order: 2, 3 and 7 first (a world with a screen and a game is the thing to market; analytics measures it), then 4, 6, 5.
+
+## Decisions for the owner
+
+1. YouTube for the shared screen (free, no storage, a Google frame in the page under `youtube-nocookie.com`) or own uploads (storage and transcoding cost)?
+2. PostHog: the project key, and US or EU cloud (`POSTHOG_HOST`). The key is public by design and goes on the Worker, never in the repository.
+3. Heavier worlds: raise per-model limits for worlds only (50 MB, 500,000 triangles), or keep the model limits and raise only the per-world total?
+4. Guests: may a guest (no account) make a world, or only sign-up players? Today a guest may; uploads already need a trusted account.

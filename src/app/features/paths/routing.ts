@@ -39,7 +39,7 @@ export interface Env {
   focusUnit(unit: string): void
 }
 
-const PANEL_OF: Readonly<Record<Exclude<PanelWord, 'signup' | 'login'>, string>> = { messages: 'messages', friends: 'people', invite: 'invite', business: 'business', jobs: 'jobs', help: 'help', sound: 'settings', politics: 'politics', records: 'politics', shops: 'showcase', services: 'showcase' }
+const PANEL_OF: Readonly<Record<Exclude<PanelWord, 'signup' | 'login'>, string>> = { messages: 'messages', friends: 'people', invite: 'invite', business: 'business', jobs: 'jobs', help: 'help', sound: 'settings', politics: 'politics', records: 'politics', shops: 'showcase', services: 'showcase', danfo: 'danfo' }
 
 /** The kind of shop My shop starts on for /shops and /services (the rows of src/entry-variants.ts). */
 const setupCategory = (panel: 'shops' | 'services'): string | undefined => ENTRY_VARIANTS.find((variant) => variant.id === panel)?.category

@@ -241,3 +241,22 @@ export function discardCapture(): void {
   generation++
   clearOutput(); captureSession.error = ''; captureSession.note = ''; captureSession.secondsLeft = 0
 }
+
+/**
+ * A photo or a clip made on this device by another part of the game (a danfo run's card and its replay, docs/DANFO.md) is put into
+ * Capture, so the same Share path marks it with the @handle and sends it. Replaces what Capture held; a clip opens marked, ready to share.
+ */
+export function adoptCapture({ photo = null, video = null, videoMs = 0 }: { photo?: Blob | null; video?: Blob | null; videoMs?: number }): boolean {
+  if (captureSession.busy || captureSession.recording || (!photo && !video)) return false
+  generation++
+  clearOutput(); captureSession.error = ''; captureSession.note = ''
+  try {
+    if (photo) { photoBlob = photo; captureSession.photoUrl = URL.createObjectURL(photo) }
+    if (video) {
+      videoBlob = video; captureSession.videoType = video.type; captureSession.videoMs = Math.max(0, Math.min(MAX_MS, Math.round(videoMs)))
+      captureSession.videoUrl = URL.createObjectURL(video); captureSession.autoShare = true
+    }
+  } catch { captureSession.error = 'This browser could not prepare the file.'; return false }
+  captureSession.note = video ? 'Your clip is ready. Share it, download it or discard it.' : 'Your card is ready. Share it, download it or discard it.'
+  return true
+}

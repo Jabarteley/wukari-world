@@ -5,6 +5,7 @@ import { definePanel } from '../../state/panels.ts'
 import type { VuePanel } from '../../types/panel.ts'
 import type { PracticePanelId } from './loadPracticePanel.ts'
 import { bodyLoader } from '../../state/panelBody.ts'
+import { phonePanel } from '../../state/panelFactories.ts'
 // One lazy gateway keeps both practice apps discoverable without loading either app from startup.
 const practiceGateway: Component = defineAsyncComponent(bodyLoader('living-world/PracticeGateway'))
 const practicePanel = (id: PracticePanelId, title: string, icon: string, order: number) => definePanel({
@@ -16,4 +17,6 @@ export const drivingPractice = practicePanel('driving-practice', 'Driving school
 export const barberPractice = practicePanel('barber-practice', 'Barber practice', '✂️', 34.6)
 export const clerkPractice = practicePanel('clerk-practice', 'Clerk practice', '📋', 34.7)
 export const justicePractice = practicePanel('justice-practice', 'Justice practice', '⚖️', 34.8)
-export const LIVING_WORLD_PANELS: readonly VuePanel[] = [drivingPractice, barberPractice, clerkPractice, justicePractice]
+// Drive a danfo: a job at the motor park (docs/DANFO.md). The app and the road load when it is opened.
+export const danfoDriver = phonePanel('danfo', 'Drive a danfo', bodyLoader('danfo/DanfoApp'), { short: 'Danfo', icon: '🚌', order: 10.2, group: 'money' })
+export const LIVING_WORLD_PANELS: readonly VuePanel[] = [drivingPractice, barberPractice, clerkPractice, justicePractice, danfoDriver]

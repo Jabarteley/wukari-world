@@ -78,7 +78,7 @@ export function linkModels(ctx: RouteContext): void {
   const router = routerOf(ctx);
   const number = (key: string, label: string, help: string, fallback: number, min: number, max: number): void => registerAdminSetting(ctx, { key, label, help, kind: 'number', min, max, default: () => fallback });
   for (const purpose of PURPOSES) {
-    const names: Record<Purpose, string> = { 'companion': 'the guide talking to a player', 'agent-talk': 'house agents talking to a person', 'resident': 'residents among themselves', 'safety': 'the safety check', 'moderation': 'the feed reviewer (reports and public photos)' };
+    const names: Record<Purpose, string> = { 'companion': 'the guide talking to a player', 'agent-talk': 'house agents talking to a person', 'resident': 'residents among themselves', 'safety': 'the safety check', 'moderation': 'the feed reviewer (reports and public photos)', 'newspaper': 'the city front page each morning' };
     registerAdminSetting(ctx, { key: LIST_SETTING[purpose], label: `Models: ${names[purpose]}`, kind: 'text', max: 1500,
       help: 'Free models first, then paid, as provider:model-id separated by commas (gateway or openrouter). Empty list: the default. A request with a person’s words only ever uses the paid ones.',
       default: () => formatList(purpose === 'companion' ? companionList(env) : DEFAULT_LISTS[purpose]) });

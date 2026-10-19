@@ -110,7 +110,7 @@ export type SocialBody = Record<string, unknown>;
 export type PushList = [string, SocialPushFrame][];
 export interface Refused { ok: false; code: string; reason: string }
 type BlockChange = ['block' | 'unblock', string, string] | ['forget', string];
-type VisitEnd = [string, string];
+type VisitEnd = [string, string, string?];
 /** The visits and block changes one transaction made, kept per collection copy (see endedIn). */
 interface Ended extends Array<VisitEnd> { blocks: BlockChange[]; material?: boolean; pushes: PushList; drops: Drops }
 /** Pictures to delete from the image store once the transaction has committed: by id, and every picture of a conversation. */
@@ -854,7 +854,7 @@ function buildService(ctx: RouteContext) {
       if (visit.expires > t && s.players[guest] && !blockedEither(s, hostId, guest) && (hostAtHome(s, hostId, visit.cityId) || s.players[hostId]?.door?.out === true)) continue;
       delete house.guests[guest]; changed = true;
       if (s.players[guest]?.visiting === hostId) s.players[guest].visiting = null;
-      endedIn(s).push([hostId, guest]);
+      endedIn(s).push([hostId, guest, visit.cityId]);
     }
     if (changed) syncHouseConv(s, hostId);
     if (house.party && house.party.until <= t) delete house.party;
@@ -936,9 +936,10 @@ function buildService(ctx: RouteContext) {
   function endVisit(s: SocialCollection, hostId: string, guest: string): boolean {
     const house = s.houses[hostId];
     if (!house?.guests[guest]) return false;
+    const where = house.guests[guest].cityId;
     delete house.guests[guest];
     if (s.players[guest]?.visiting === hostId) s.players[guest].visiting = null;
-    endedIn(s).push([hostId, guest]);
+    endedIn(s).push([hostId, guest, where]);
     syncHouseConv(s, hostId);
     pruneHouse(s, hostId);
     return true;
@@ -1182,7 +1183,7 @@ function buildService(ctx: RouteContext) {
     deliver<R>(result: R): Delivered<R> {
       // Visits that ended in the committed transaction: the room module drops those guests from the host's Home room now.
       const ended: unknown = typeof result === 'object' && result !== null ? Reflect.get(result, ENDED) : undefined;
-      for (const [hostId, guestId] of (ended ?? []) as VisitEnd[]) ctx.emit?.('visit-ended', { hostId, guestId });
+      for (const [hostId, guestId, cityId] of (ended ?? []) as VisitEnd[]) ctx.emit?.('visit-ended', { hostId, guestId, ...(cityId ? { cityId } : {}) });
       service.committed(result); // a store without the `committed` hook: apply the block changes now
       // Pictures that left their conversations in the committed transaction are taken out of the image store.
       const dropped: unknown = typeof result === 'object' && result !== null ? Reflect.get(result, DROPS) : undefined;

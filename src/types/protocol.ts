@@ -66,6 +66,7 @@ import type { FeedHttpRoutes } from './feed.ts'
 import type { PromoteHttpRoutes } from './promote.ts'
 import type { EarnHttpRoutes } from './earn.ts'
 import type { StoryHttpRoutes } from './story-http.ts'
+import type { ShareLoopsHttpRoutes } from './shareloops.ts'
 import type { StoryTalkView, StoryTalkTurn, TalkHistoryLine } from './story-talk.ts'
 
 // ---- shared primitives ---------------------------------------------------------------------------
@@ -299,6 +300,10 @@ export interface CoreHttpRoutes {
  */
 export interface HttpRoutes extends CoreHttpRoutes, SocialHttpRoutes, CivicHttpRoutes, SupportHttpRoutes, ModerationHttpRoutes, WorldHttpRoutes,
   GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, ProjectHttpRoutes, RetentionHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes, PublicProfileHttpRoutes, ArenaHttpRoutes, ClansHttpRoutes, StoryHttpRoutes, SpacesHttpRoutes, FeedHttpRoutes, PromoteHttpRoutes, EarnHttpRoutes {
+  'GET /api/loops/passport': ShareLoopsHttpRoutes['GET /api/loops/passport']
+  'GET /api/loops/wrapped': ShareLoopsHttpRoutes['GET /api/loops/wrapped']
+  'GET /api/loops/fame': ShareLoopsHttpRoutes['GET /api/loops/fame']
+  'GET /api/loops/frontpage': ShareLoopsHttpRoutes['GET /api/loops/frontpage']
   'GET /api/story/talk': { response: Ok<StoryTalkView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'character_required' | 'city_content_unavailable' | 'talk_venue_unavailable' }
   'POST /api/story/talk': { body: { npc: string; clientId: string; question: string; history?: TalkHistoryLine[] }; response: Ok<StoryTalkTurn>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | JsonBodyErrorCode | OnceErrorCode | 'character_required' | 'city_content_unavailable' | 'talk_venue_unavailable' | 'talk_regular_unavailable' | 'invalid_talk_request' | 'invalid_talk_history' }
   'GET /api/world/land': { query: { city: CityId }; response: Ok<LandView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'invalid_city' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' }
@@ -770,6 +775,7 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/story/help/seat', 'POST /api/story/help/errand', 'POST /api/story/help/end',
   'GET /api/story/signature', 'POST /api/story/signature',
   'GET /api/story/talk', 'POST /api/story/talk',
+  'GET /api/loops/passport', 'GET /api/loops/wrapped', 'GET /api/loops/fame', 'GET /api/loops/frontpage',
   'GET /api/spaces/status', 'POST /api/spaces/design', 'POST /api/spaces/check', 'POST /api/spaces/apply', 'GET /api/spaces/host', 'POST /api/spaces/host', 'GET /api/spaces/games', 'GET /api/spaces/game', 'POST /api/spaces/games',
   'GET /api/spaces/models', 'POST /api/spaces/models', 'POST /api/spaces/models/rename', 'POST /api/spaces/models/delete', 'POST /api/spaces/models/report', 'GET /api/spaces/model-file/:hash', 'GET /api/mod/spaces/models', 'POST /api/mod/spaces/models', 'POST /api/mod/spaces/switch', 'GET /api/spaces/world', 'POST /api/spaces/world/layout', 'POST /api/spaces/world/script',
   'GET /api/spaces/worlds', 'POST /api/spaces/worlds', 'POST /api/spaces/worlds/update', 'POST /api/spaces/worlds/delete', 'POST /api/spaces/worlds/like', 'POST /api/spaces/worlds/builders', 'POST /api/spaces/models/upload-link', 'POST /api/spaces/models/upload/:token', 'POST /api/spaces/house', 'POST /api/spaces/worlds/cover', 'GET /api/spaces/world-cover/:id',

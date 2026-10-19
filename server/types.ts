@@ -119,6 +119,8 @@ export interface SessionRecord {
    * (the device keeps a cache). Optional: absent until the player pins one. Written by server/routes/stages.ts, exported and erased with the character.
    */
   homeCity?: { city: string; name: string; tz: string }
+  /** Passport stamps (docs/SHARE-LOOPS.md): city id → server ms the character first arrived there. Written by server/shareloops/passport.ts stampPassport; erased with the character. */
+  passport?: Record<string, number>
   /**
    * Set only on a character that belongs to an account (server/accounts/service.ts): the account's id. Such a record
    * is filed under a key no browser holds — it is reached only through a device binding (`accountDevices`), and a
@@ -1253,7 +1255,8 @@ export interface ServerEvents {
   /** rooms.js: a connection's first real step in a venue (its position changed). Raised once per connection; the growth module notes the player's first meaningful action (growth/metrics.ts noteActivated). Never raised for an AI character: those hold no socket. */
   'player-walked': { id: string }
   /** social: a house visit ended; rooms.js drops that guest from the host's Home room. */
-  'visit-ended': { hostId: string; guestId: string }
+  /** `cityId`: where the visit was (absent from an older caller); the share loops count it (server/shareloops/fame.ts). */
+  'visit-ended': { hostId: string; guestId: string; cityId?: string }
   /** social: a player who came through `inviter`'s link was introduced to them (comeback mail looks at the inviter soon). */
   'invite-joined': { inviter: string; /** The player who joined (absent on a build that did not say). */ newcomer?: string }
   /** social: a block or unblock was committed. */

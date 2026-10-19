@@ -15,6 +15,7 @@ import { forgetFeedPlayers } from '../feed/service.ts'
 import { forgetContactsPlayers } from '../feed/contacts.ts'
 import { forgetPromotePlayers } from '../promote/service.ts'
 import { forgetEarnPlayers } from '../earn/service.ts'
+import { forgetLoopsPlayers } from '../shareloops/store.ts'
 import { clearPlayerFamily } from '../social/family.ts'
 import { eraseLivingWorldProgress } from '../living-world/privacy.ts'
 import { eraseRealValue } from '../real-value/privacy.ts'
@@ -235,7 +236,7 @@ function preflightSharedIntegrity(ctx: RouteContext, db: Db, actors: ReadonlySet
   const known = new Set([
     'version', 'sessions', 'archivedLives', 'social', 'civic', 'support', 'moderation', 'growth', 'visits', 'commerce', 'business', 'market', 'legacy',
     'trust', 'trustChecks', 'street', 'realValue', 'showcase', 'politics', 'campus', 'accounts', 'accountDevices', 'accountLog', 'walletEffects', 'livingWorld', 'clans',
-    'storyHelp', 'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', 'agentarena', 'oauth', 'arenadaily', 'spaces', '$store',
+    'storyHelp', 'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', 'agentarena', 'oauth', 'arenadaily', 'spaces', 'loops', '$store',
   ])
   const collectionNames = (db.$store as (typeof db.$store & { collectionNames?: () => readonly string[] }) | undefined)?.collectionNames?.() ?? []
   const names = new Set([...Object.keys(db), ...collectionNames])
@@ -736,6 +737,7 @@ export function eraseData(ctx: RouteContext, db: Db, plan: ErasurePlan): Erasure
   forgetContactsPlayers(db, ids)
   forgetPromotePlayers(db, ids)
   forgetEarnPlayers(db, ids)
+  forgetLoopsPlayers(db, ids)
   eraseSpaces(db, ids)
   scrubTrustAndSupport(db, ids, accounts)
   scrubAdminCollections(db, ids, accounts)

@@ -41,18 +41,21 @@ test('a call: start shows the AI-played character and its voice seed, a turn ans
   assert.deepEqual([started.status, started.name, started.ai, started.voiceSeed], [200, 'Mama Tolani', true, voiceSeedOf(AGENT)]);
   assert.equal(started.leftSeconds, 1200);
   const turn = (text: string) => w.post('/api/agents/call/turn', { call: started.call, text }, ada.cookie) as Promise<Turn>;
-  // A greeting is a written line: free, no model.
+  // On the phone even a greeting is the model's to phrase, so the agent talks like a person and not a desk.
   const hello = await turn('hello Mama');
   assert.equal(hello.status, 200);
-  assert.match(hello.text, /Ada/);
+  assert.equal(hello.text, 'Lagos is busy and bright today, my friend.');
   assert.equal(hello.voiceSeed, voiceSeedOf(AGENT));
-  assert.equal(seen.length, 0, 'no model request for a greeting');
-  // Open talk goes to a paid model with the person's words, and the answer is checked.
+  assert.equal(seen.length, 1, 'one model request for the greeting');
+  assert.match(JSON.parse(seen[0]!.body).messages[0].content, /private chat on the phone/, 'the texting voice');
+  // Open talk goes to a paid model with the person's words and the call so far, and the answer is checked.
   const open = await turn('tell me something about the city today');
   assert.equal(open.text, 'Lagos is busy and bright today, my friend.');
-  assert.equal(seen.length, 1);
-  assert.ok(seen[0]!.url.endsWith('/v1/chat/completions'));
-  assert.ok(!/free/.test(String(JSON.parse(seen[0]!.body).model)), 'a person’s words only go to a paid model');
+  assert.equal(seen.length, 2);
+  assert.ok(seen[1]!.url.endsWith('/v1/chat/completions'));
+  assert.ok(!/free/.test(String(JSON.parse(seen[1]!.body).model)), 'a person’s words only go to a paid model');
+  const asked = JSON.parse(seen[1]!.body).messages as { role: string; content: string }[];
+  assert.deepEqual(asked.slice(1).map((m) => [m.role, m.content]), [['user', 'hello Mama'], ['assistant', 'Lagos is busy and bright today, my friend.'], ['user', 'tell me something about the city today']], 'the call so far, then the new line');
   // "Are you an AI?" is answered by the game, and the agent never sees it.
   const ai = await turn('are you a real person?');
   assert.match(ai.text, /Mama Tolani is an AI agent/);

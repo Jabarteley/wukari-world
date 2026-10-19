@@ -72,8 +72,9 @@ const SprayPacket = defineAsyncComponent(() => import('./SprayPacket.vue'))
 import type { AttachChoice } from './AttachSheet.vue'
 import Lightbox from './Lightbox.vue'
 import { askedAboutNotifications, noteAskedAboutNotifications } from './notifyAsk.ts'
-// The chats with AI characters are kept on this phone (features/agents/agentContacts.ts) and open their own screen ('agent-chat').
-import { agentBook, filterAgentChats, recentChats } from '../agents/agentContacts.ts'
+// The chats with AI characters are kept on this phone (features/agents/agentContacts.ts), listed among the chats by time, and open their own screen ('agent-chat').
+import { agentBook, filterAgentChats, recentChats, withAiChats } from '../agents/agentContacts.ts'
+import type { AiChatRow } from '../agents/agentContacts.ts'
 
 const finding = ref(false)
 const props = defineProps<{ params?: unknown }>()
@@ -385,8 +386,9 @@ const groupCount = computed(() => me.value?.conversations.filter((item) => item.
 const toStart = computed(() => (ui.tab === 'chats' && listMode.value === 'all' && !chatFilter.value && me.value ? friendsToStart(me.value.friends, me.value.conversations) : []))
 function startWith(friend: { id: string; name: string }): void { setOpen(provisionalKey(friend.id)); ui.openName = friend.name }
 const unreadTotal = computed(() => onlyUnread(me.value?.conversations ?? []).length)
-/** The chats with AI characters, under the chats: newest first, searched with the same box. */
+/** The chats with AI characters, in the same list by time like any chat (pinned chats stay first), searched with the same box. */
 const aiChats = computed(() => (ui.tab === 'chats' && listMode.value === 'all' ? filterAgentChats(recentChats(agentBook.chats), chatFilter.value) : []))
+const listRows = computed<(Conversation | AiChatRow)[]>(() => (aiChats.value.length ? withAiChats(chatList.value, aiChats.value) : chatList.value))
 const aiLast = (lines: readonly { me: boolean; text: string }[]): string => { const line = lines.at(-1); return line ? `${line.me ? 'You: ' : ''}${line.text}` : '' }
 function openAiChat(item: { id: string; name: string; city: string }): void { shell.open('agent-chat', { id: item.id, name: item.name, city: item.city }) }
 const clockNow = computed(() => { void now.value; return game.serverNow() })
@@ -638,10 +640,14 @@ defineExpose({
             <button type="button" :aria-pressed="listMode === 'all'" @click="listMode = 'all'">All</button>
             <button type="button" :aria-pressed="listMode === 'unread'" @click="listMode = 'unread'">Unread<span v-if="unreadTotal" class="messages-badge is-quiet">{{ unreadTotal }}</span></button>
           </div>
-          <ListRows v-if="chatList.length" :label="ui.tab === 'groups' ? 'Groups' : 'Chats'">
-            <LazyList :items="chatList" :item-key="(chat: Conversation) => chat.id" :has-more="Boolean(me.conversationsMore?.next) && !chatFilter" :loading="chatsMore" :row-height="60" :label="ui.tab === 'groups' ? 'groups' : 'chats'" :key="ui.tab" :memory="ui.tab" @more="moreChats">
+          <ListRows v-if="listRows.length" :label="ui.tab === 'groups' ? 'Groups' : 'Chats'">
+            <LazyList :items="listRows" :item-key="(row: Conversation | AiChatRow) => row.id" :has-more="Boolean(me.conversationsMore?.next) && !chatFilter" :loading="chatsMore" :row-height="60" :label="ui.tab === 'groups' ? 'groups' : 'chats'" :key="ui.tab" :memory="ui.tab" @more="moreChats">
             <template #row="{ item }">
-            <ListRow as="button" :data-conv="item.id" :title="item.name" :unread="item.unread > 0" @click="openConversation(item.id)">
+            <ListRow v-if="item.kind === 'ai'" as="button" :data-agent-conv="item.chat.id" :title="item.chat.name" :sub="aiLast(item.chat.lines)" @click="openAiChat(item.chat)">
+              <template #icon><span class="messages-avatar"><RowMark :name="item.chat.name" :seed="item.chat.id" /></span></template>
+              <template #end><span class="messages-when"><small>{{ listTime(item.chat.at, clockNow, time) }}</small><span class="messages-ai" title="An AI plays this character">AI</span></span></template>
+            </ListRow>
+            <ListRow v-else as="button" :data-conv="item.id" :title="item.name" :unread="item.unread > 0" @click="openConversation(item.id)">
               <template #icon>
                 <span class="messages-avatar" :class="{ 'is-online': item.kind === 'dm' && presenceOf(item.with) === 'online' }">
                   <RowMark v-if="item.kind === 'group'" :name="item.name" :seed="item.id" />
@@ -663,16 +669,7 @@ defineExpose({
           <BaseButton v-if="!chatList.length && me.conversationsMore?.next && (!chatFilter || ui.tab === 'groups')" small :disabled="chatsMore" @click="moreChats">{{ chatsMore ? 'Loading more conversations…' : 'Load more conversations' }}</BaseButton>
           <p v-if="!chatList.length && !chatsMore && !group.open && ui.tab === 'groups' && chatFilter" class="messages-note" role="status">{{ me.conversationsMore?.next ? 'No matching groups in these conversations yet. Load more to keep searching.' : 'No matching groups. Try another search or create a group.' }}</p>
           <p v-else-if="!chatList.length && !chatsMore && !group.open && ui.tab === 'groups' && groupCount > 0" class="messages-note" role="status">No matching groups.</p>
-          <p v-else-if="!chatList.length && !chatsMore && !group.open && ui.tab === 'chats' && me.conversations.length" class="messages-note" role="status">No chat has that name.</p>
-          <template v-if="aiChats.length">
-            <SectionTitle>AI characters</SectionTitle>
-            <ListRows label="Chats with AI characters">
-              <ListRow v-for="item in aiChats" :key="item.id" as="button" :data-agent-conv="item.id" :title="item.name" :sub="aiLast(item.lines)" @click="openAiChat(item)">
-                <template #icon><span class="messages-avatar"><RowMark :name="item.name" :seed="item.id" /></span></template>
-                <template #end><span class="messages-when"><small>{{ listTime(item.at, clockNow, time) }}</small><span class="messages-ai" title="An AI plays this character">AI</span></span></template>
-              </ListRow>
-            </ListRows>
-          </template>
+          <p v-else-if="!listRows.length && !chatsMore && !group.open && ui.tab === 'chats' && me.conversations.length" class="messages-note" role="status">No chat has that name.</p>
           <template v-if="toStart.length">
             <SectionTitle>{{ me.conversations.length ? 'Friends to message' : 'Start a chat with a friend' }}</SectionTitle>
             <ListRows label="Friends to message">

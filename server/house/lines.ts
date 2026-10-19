@@ -22,8 +22,8 @@ type Voice = 'pidgin' | 'plain';
 const both = (pidgin: readonly string[], plain: readonly string[]): Record<Voice, readonly string[]> => ({ pidgin, plain });
 
 const GREET = both(
-  ['How far, {who}! Welcome. Wetin you dey find?', 'Welcome, {who}! Come, come, see wetin I get.', 'Good day, {who}. You are welcome here.'],
-  ['Hello, {who}! Welcome. What can I do for you?', 'Hi {who}, good to see you here.', 'Welcome, {who}! Ask me anything about this place.'],
+  ['How far, {who}! Welcome. How your day dey go?', 'Welcome, {who}! Come, come, see wetin I get.', 'Ah, {who}! Good to see you. How body?'],
+  ['Hey {who}! Good to see you. How is your day going?', 'Hi {who}, good to see you here.', 'Hello {who}! What brings you out today?'],
 );
 const AMBIENT: Record<Role, Record<Voice, readonly string[]>> = {
   seller: both(['Fresh cloth today! Come and see.', 'Price dey fair here, abeg come look.', 'Cloth, cloth! Good quality, good price.'], ['Fresh stock today. Come and have a look.', 'Fair prices here, take your time.', 'Come and see what is new today.']),
@@ -33,8 +33,8 @@ const AMBIENT: Record<Role, Record<Voice, readonly string[]>> = {
   mission: both(['I get small work for una. Ask me for a task.', 'Looking for helpers! Ask me for a task.'], ['I have small tasks for helpers. Ask me for one.', 'Looking for helpers! Ask me for a task.']),
 };
 const FALLBACK = both(
-  ['I hear you. Ask me about price, time, or the way.', 'Hmm, I no too understand. Ask me about price, time or the way.'],
-  ['I hear you. You can ask me about prices, opening hours or the way.', 'Not sure I follow. Try asking about prices, hours or directions.'],
+  ['Abeg, I no catch that one well. Talk am again?', 'Hmm, I no too understand. Explain am small for me?'],
+  ['Sorry, I did not quite catch that. Say it another way?', 'Hmm, I am not sure I follow. Tell me a bit more?'],
 );
 const PRESSURE = both(
   ['I hear you, but my price na my price. Make you make a fair offer.', 'No vex, I no fit just reduce like that. Tell me wetin you fit pay.', 'Abeg, a fair offer I go listen. Big story no go change am.'],

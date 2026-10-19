@@ -90,6 +90,19 @@ export function chatRows(lines: readonly ChatLine[], outgoing: readonly Outgoing
 }
 /** The chats whose name has the words typed (empty query: all), newest first. */
 export const filterAgentChats = (chats: readonly Chat[], query: string): Chat[] => { const q = query.trim().toLowerCase(); return q ? chats.filter((chat) => chat.name.toLowerCase().includes(q)) : [...chats] }
+/** A chat with an AI character as a row of the Messages list. */
+export interface AiChatRow { kind: 'ai'; id: string; chat: Chat }
+/** The Messages list with the AI chats in it, by time like any chat: pinned chats stay first, the AI chats (newest first) go in where their
+ *  last line falls, and the ones older than every loaded chat come last. */
+export function withAiChats<T extends { pinned?: boolean; last?: { at: number } | null }>(sorted: readonly T[], ai: readonly Chat[]): (T | AiChatRow)[] {
+  const rows: (T | AiChatRow)[] = [], waiting = [...ai].sort((a, b) => b.at - a.at)
+  for (const chat of sorted) {
+    if (!chat.pinned) while (waiting.length && waiting[0]!.at > (chat.last?.at ?? 0)) { const next = waiting.shift()!; rows.push({ kind: 'ai', id: `ai:${next.id}`, chat: next }) }
+    rows.push(chat)
+  }
+  for (const next of waiting) rows.push({ kind: 'ai', id: `ai:${next.id}`, chat: next })
+  return rows
+}
 /** What a row says under the name: "Selling books · Balogun Market, Lagos", or the city alone. */
 export function whereLine(agent: Pick<OnlineAgent, 'doing' | 'place' | 'cityName'>): string {
   const place = agent.place ? `${agent.place}, ${agent.cityName}` : agent.cityName

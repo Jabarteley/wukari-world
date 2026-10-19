@@ -1,6 +1,6 @@
 /**
  * OWNER: scenes
- * CAMERA SHAKE FROM TRAUMA. Trauma is a number from 0 to 1 that a big moment adds to and that falls away on its own. The camera is
+ * CAMERA SHAKE FROM TRAUMA. (Lives beside camera-controls.ts, not in feel/: the orbit imports it, and src/scene/feel/ is the lazy `fx` chunk that the scene host must not import statically.) Trauma is a number from 0 to 1 that a big moment adds to and that falls away on its own. The camera is
  * moved by max · trauma² · sin(k · clock) on two axes with different k: a smooth wobble that is the same for the same inputs (never
  * a random number per frame), and that dies quickly because of the square. Pure, so it runs under `node --test`.
  */

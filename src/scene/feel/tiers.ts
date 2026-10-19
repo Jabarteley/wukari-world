@@ -22,7 +22,7 @@ export interface TierSpec {
   burst: number
   /** How hard a chip or a coin pops, 0..1 (see ./pop.ts). */
   pop: number
-  /** Trauma added to the camera shake, 0..1 (see ./shake.ts). */
+  /** Trauma added to the camera shake, 0..1 (see ../camera-shake.ts). */
   trauma: number
 }
 

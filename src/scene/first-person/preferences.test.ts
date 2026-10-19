@@ -6,7 +6,6 @@ import {
   VIEW_PREFERENCES_KEY,
   createViewPreferenceStore,
   parseViewPreferences,
-  reduceShakeOn,
 } from './preferences.ts'
 
 test('parsing untrusted preferences validates every field independently', () => {
@@ -67,12 +66,9 @@ test('successful writes use the device key and cross-tab changes stop after unsu
   assert.equal(changes, 2)
 })
 
-test('reduce shake follows the system until the player chooses', () => {
+test('reduce shake defaults to following the system and only accepts true or false', () => {
   assert.equal(VIEW_PREFERENCES_DEFAULTS.reduceShake, null)
-  assert.equal(reduceShakeOn({ reduceShake: null }, true), true)
-  assert.equal(reduceShakeOn({ reduceShake: null }, false), false)
-  assert.equal(reduceShakeOn({ reduceShake: false }, true), false)
-  assert.equal(reduceShakeOn({ reduceShake: true }, false), true)
   assert.equal(parseViewPreferences({ reduceShake: true }).reduceShake, true)
+  assert.equal(parseViewPreferences({ reduceShake: false }).reduceShake, false)
   assert.equal(parseViewPreferences({ reduceShake: 1 }).reduceShake, null)
 })

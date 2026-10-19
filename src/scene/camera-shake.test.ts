@@ -1,7 +1,7 @@
 // Camera shake from trauma: decays to zero fast, identical inputs give identical output, offsets grow with the square of trauma.
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { K_X, K_Y, createShake, decayTrauma, shakeOffset } from './shake.ts'
+import { K_X, K_Y, createShake, decayTrauma, shakeOffset } from './camera-shake.ts'
 
 test('trauma 0.4 is gone within 600 ms at 60 and at 30 frames a second, and the offset is exactly zero then', () => {
   for (const fps of [60, 30, 20]) {

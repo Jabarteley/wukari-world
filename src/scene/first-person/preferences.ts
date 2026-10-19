@@ -110,8 +110,3 @@ function devicePreferences(): ViewPreferenceStore {
 export function readViewPreferences(): ViewPreferences { return devicePreferences().read() }
 export function setViewPreferences(patch: Partial<ViewPreferences>): boolean { return devicePreferences().set(patch) }
 export function onViewPreferencesChange(callback: () => void): () => void { return devicePreferences().onChange(callback) }
-
-/** Whether shake and flashes are off: the player's own choice, else the system's reduced-motion setting. */
-export function reduceShakeOn(preferences: Pick<ViewPreferences, 'reduceShake'>, systemReduced: boolean): boolean {
-  return preferences.reduceShake ?? systemReduced
-}

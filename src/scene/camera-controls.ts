@@ -32,7 +32,7 @@
  * stop the follow: they turn and dolly about the pivot the avatar carries.
  *
  * SHAKE. A big moment (src/scene/feel/) can kick(trauma) the camera: after the orbit has put the camera where it belongs, apply() moves
- * it a little sideways and up by a sampled sine of the trauma (./feel/shake.ts), and step() keeps the frame loop going until the trauma
+ * it a little sideways and up by a sampled sine of the trauma (./camera-shake.ts), and step() keeps the frame loop going until the trauma
  * is gone (well under a second). The shake moves the camera only: never the pivot, the goal or the avatar.
  *
  * `goal` is what the player asked for; `now` eases after it in step(dt). step() returns true while
@@ -40,7 +40,7 @@
  * moment the camera has arrived, so the loop stops.
  */
 
-import { createShake } from './feel/shake.ts';
+import { createShake } from './camera-shake.ts';
 
 export const PITCH_MIN = 0.1;                 // ≈ 6° above the ground
 export const PITCH_MAX = Math.PI / 2 - 0.07;  // ≈ 86°: nearly top-down

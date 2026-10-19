@@ -279,6 +279,9 @@ ROUTE_MODULES.push(detty);
 // Phase 8, the social glue (docs/SOCIAL-GLUE.md): close friends, talks, the gist board, group trips, family life.
 import glue from './glue.ts';
 ROUTE_MODULES.push(glue);
+// The operator's switches for features that ship off (server/routes/switches-mod.ts).
+import switchesMod from './switches-mod.ts';
+ROUTE_MODULES.push(switchesMod);
 const KEY = /^(GET|POST|PUT|PATCH|DELETE) (\/api\/[A-Za-z0-9\-_/:.]+)$/;
 
 /**

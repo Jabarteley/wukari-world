@@ -122,6 +122,7 @@ test('route registry rejects duplicate and malformed routes at start-up and list
   NAMESPACES.push('/api/minigames/');
   NAMESPACES.push('/api/world/detty');
   NAMESPACES.push('/api/glue/');
+  NAMESPACES.push('/api/mod/switches');
   assert.equal(ROUTE_MODULES.length, NAMESPACES.length);
   ROUTE_MODULES.forEach((module, index) => {
     const own = Object.keys(module(ctx) || {});

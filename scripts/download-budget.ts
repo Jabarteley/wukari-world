@@ -271,6 +271,10 @@ export function checks(dist: Dist, city = 'lagos', contentRows: readonly CityCon
   const host = hosts.length === 1 ? measure(dist, hosts) : null
   add('SCENE_HOST_RAW', host?.raw ?? null, 'shared scene chunk (world-adapter)')
   add('SCENE_HOST_GZIP', host?.gzip ?? null, 'shared scene chunk (world-adapter)')
+  const fxChunks = [...dist.keys()].filter((name) => /^assets\/fx-[\w-]{7}\.js$/.test(name))
+  const fx = fxChunks.length === 1 ? measure(dist, fxChunks) : null
+  add('FX_RAW', fx?.raw ?? null, 'lazy fx chunk (weather, particles, post-processing, feel)')
+  add('FX_GZIP', fx?.gzip ?? null, 'lazy fx chunk (weather, particles, post-processing, feel)')
   for (const [budget, { pattern, by }] of Object.entries(ASSET_PATTERNS) as [BudgetName, { pattern: RegExp; by: 'sum' | 'each' }][]) {
     const names = [...dist.keys()].filter((name) => pattern.test(name))
     const metric = BUDGETS[budget].unit === 'raw bytes' ? 'raw' : 'brotli'

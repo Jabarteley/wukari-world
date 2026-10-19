@@ -55,7 +55,7 @@ import { HAGGLE, decide, freshTalk, priceList, readOffer } from './haggle.ts';
 import type { PricedItem, Talk, Verdict } from './haggle.ts';
 import * as say from './lines.ts';
 import * as memory from './memory.ts';
-import { QUIZ, allowedNumbers, cleanReply, handsOver, intentOf, isRight, matchItem, matchVenue, promptFor, takesIt } from './talk.ts';
+import { QUIZ, allowedNumbers, cleanReply, handsOver, intentOf, invites, isRight, matchItem, matchVenue, promptFor, takesIt } from './talk.ts';
 import { deskOf } from './desk.ts';
 import { asksGossip, factGreeting, gossipLine } from './greet.ts';
 import { noteAiLine, spotFor } from './spot.ts';
@@ -76,6 +76,8 @@ const CENSUS_MS = 30000, LINGER_MS = 10 * 60000, AMBIENT_MS = [7 * 60000, 11 * 6
 const QUIZ_OPEN_MS = 90000, QUIZ_EVERY_MS = 8 * 60000;
 const PEOPLE_KEPT = 200;
 export const MODEL_TOKENS = 220;
+/** Asked when a model's line was refused by the word rules: once more, with the reason (a person's private chat or call only). */
+export const SAY_AGAIN = 'That reply could not be sent: it sounded like meeting somewhere or talking outside the game. Say it again in other words: where you are in the game and that they can find you there, without their words about coming over or their place.';
 export const ID_PREFIX = 'house.';
 export const DEFAULTS = Object.freeze({ on: true, busy: 2, quiet: 0, discount: HAGGLE.discountDefault, model: true, memory: true, memoryModel: true, memoryCalls: 300 });
 /** House agents cannot receive direct messages: a DM needs a stored character. The hook for when they have one is described in the header. */
@@ -592,17 +594,22 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
         places: intent === 'directions' ? around.slice(0, 12).map((place) => `${place.name} in ${place.district} (${place.status})`) : [],
         ...(mem && mem.facts.length ? { remembered: mem.facts } : {}), ...(mem && (mem.standing.points > 0 || mem.partner) ? { closeness: mem.standing.label } : {}), ...(mem?.partner ? { partner: true } : {}),
         direct: { history } }, from.name.slice(0, 24), said);
-      try {
-        const answer = await ask({ purpose: 'agent-talk', messages, maxTokens: MODEL_TOKENS, playerId: personKey(from.id), carriesPlayerWords: true, timeoutMs: 8000 });
-        if (answer.ok) {
-          const allowed = allowedNumbers(agent.items.map((entry) => entry.list), spec);
-          for (const place of around) for (const digits of place.status.match(/\d+/g) ?? []) allowed.add(digits);
-          for (const line of claims) for (const digits of line.match(/\d+/g) ?? []) allowed.add(digits);
+      const allowed = allowedNumbers(agent.items.map((entry) => entry.list), spec);
+      for (const place of around) for (const digits of place.status.match(/\d+/g) ?? []) allowed.add(digits);
+      for (const line of claims) for (const digits of line.match(/\d+/g) ?? []) allowed.add(digits);
+      // A reply the word rules refuse (most often an invitation's own words said back) is asked for once more, with the reason.
+      for (let attempt = 0; attempt < 2 && !viaModel; attempt++) {
+        try {
+          const answer = await ask({ purpose: 'agent-talk', messages: attempt === 0 ? messages : [...messages, { role: 'user', content: SAY_AGAIN }], maxTokens: MODEL_TOKENS, playerId: personKey(from.id), carriesPlayerWords: true, timeoutMs: 8000 });
+          if (!answer.ok) break;
           const clean = cleanReply(answer.text, { allowed, verdict: null, role: spec.role });
           if (clean !== null && agentWords(clean, { toMinor: true }).ok) { text = clean; viaModel = true; }
-        }
-      } catch { /* the written line stands */ }
+        } catch { break; }
+      }
     }
+    // Asked to come over and no model line could be said: where the agent is, in its own written words, rather than "I do not follow".
+    const words = agentWords(said);
+    if (!viaModel && useModel && (invites(said) || (!words.ok && words.code === 'agent_words_meet'))) text = say.atPost(spec, around.find((place) => spec.post.includes(place.id))?.name ?? cityName, seed);
     if (!text) text = written || say.fallback(spec, seed);
     if (!agentWords(text, { toMinor: true }).ok) { count().blocked += 1; text = say.fallback(spec, seed); }
     if (viaModel) count().model += 1; else count().written += 1;

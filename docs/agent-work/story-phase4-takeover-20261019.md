@@ -11,6 +11,12 @@
 
 Independently audit the Phase 4 source from `story/phase4-realism` (tested source `96e2e155`), finish the representative street-entry proof, fix what the audit found, and ship through the normal PR, CI and protected release. Out of scope: regenerating accepted models or banks, the paid dialogue probe, raising any budget, enabling the production Story setting, changing production saves, bindings or migrations. Free Roam stays the default.
 
+## Ownership, dependencies and next step
+
+- **Owned paths:** this record only. Source edits were limited to `src/app/features/story/StoryStreetWalk.vue` (merged in PR 52); everything else came from the earlier Story owner's Phase 4 source (`story/phase4-realism`) and was not edited.
+- **Dependencies:** the earlier owner's handoff (`codex/story-phase4-audit-handoff`, read only, never merged), the existing protected release workflow and its production credential (not accessed), and the admin `storyMode` setting (left off).
+- **Next executable step:** none is required for release. Optional follow-ups for the Story owner: add a V1 recipe-path test, a drift test for `streetWalkCoverage.generated.ts`, and decide whether to turn `storyMode` on in production.
+
 ## Delivery
 
 - Branch `story/phase4-takeover`: Phase 4 source plus current `main` (`3010cc17`, then `8cf336eff`), plus commit `eb068b2cb`.

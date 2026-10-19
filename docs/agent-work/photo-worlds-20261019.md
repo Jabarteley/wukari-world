@@ -6,9 +6,9 @@
 - **Owner:** Claude (integration session with the owner)
 - **Model / effort:** see session
 - **Thread:** local
-- **UTC updated:** 2026-10-19T13:30:00Z
-- **Status:** `active`
-- **Work state:** `implementation`
+- **UTC updated:** 2026-10-19T13:30:00Z (live 13:25Z)
+- **Status:** `complete`
+- **Work state:** `deployment`
 
 ## Goal and boundaries
 
@@ -38,19 +38,23 @@
 - Typecheck clean; build and `size:download` pass with no change to startup budgets; no `.wasm`/`.onnx` in `dist`.
 - R2 through wrangler failed (the OAuth login has no R2 write scope), so the operator route `POST /api/mod/spaces/depth/:name` stores the files on the live server after checking their SHA-256.
 
-### In progress / blockers
+### Live (19 Oct)
 
-- Full local `npm test`: a few unrelated failures under investigation (cartridges, Worker city references, crowd positions, agent access list, civic, digest); compare with main.
+- PR #54 merged as `d6c1655db`; release 39256737401 passed; `/api/health` shows `joinallworld-d6c1655db…`.
+- The three files stored through `POST /api/mod/spaces/depth/:name` (each answered `stored`); `spacesPhotoWorlds` switched on (200).
+- Private tab on joinallworld.com: the worlds list answers `photo: true`; `ort.mjs` and `ort.wasm` answer 200 with their types, kept a week; onnxruntime-web and the model ran on a test picture (depth 280×392) in 33 s including the first 41 MB download; the Worlds app shows Walk into a photo and tells a guest to sign in.
+- Release continuity: ok for both identities. Live smoke: blocked by the new-session limit for this network (rerun queued); not a code failure.
+- Local full `npm test`: the failures seen (agents doc list, multi-city saves, civic, comeback digest, cartridges, Worker city references, crowd positions) also fail on the base commit locally; CI's full plan passes on main.
 
-### Immediate resume steps
+### Next steps
 
-1. Rerun the failing files; open the PR; CI; merge; release.
-2. After the release: `OPERATOR_ENV=<operator env file> node --experimental-strip-types scripts/spaces/depth-assets.ts --operator https://joinallworld.com`, then `POST /api/mod/spaces/switch { photo: true }`, then try it in a private tab.
+- Owner: sign in on joinallworld.com, Phone → Worlds → Walk into a photo, pick a phone photo, walk in.
+- Later: 360° photos; a cover drawn for photo worlds.
 
 ## Release state
 
-- **Local implementation:** `active`
-- **Deployment:** `not-requested`
+- **Local implementation:** `verified-local`
+- **Deployment:** `verified` (behind `spacesPhotoWorlds`, on)
 
 ## Checkpoint history
 
@@ -58,3 +62,4 @@
 |---|---|---|---|---|
 | 2026-10-19T12:30Z | active | Registered; owner said "implement it" | — | build |
 | 2026-10-19T13:30Z | verified-local | Built and walked in the browser | tests above, screenshots in T3 browser artifacts | PR, release, files, switch |
+| 2026-10-19T13:25Z | live | d6c1655db live, files stored, setting on, model ran on live | release 39256737401, continuity ok | owner's signed-in try; smoke rerun |

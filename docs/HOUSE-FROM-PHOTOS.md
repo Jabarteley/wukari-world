@@ -1,62 +1,112 @@
-# Copy my real house: from photos to a house in the game
+# Copy my real house: your own AI builds it, the game hosts it
 
-A player takes a few photos of their real house. An AI turns them into a 3D house. The house stands on their plot in the game, they
-can open it in Blender to touch it up, and their friends come over to it. Owner's request, 19 Oct 2026: "model my real house by taking
-pictures and giving it to an AI model ... recreate the house in Blender or whatever tool ... import it to the game and invite my
-friends over."
+A player photographs their real house, outside and every room inside, and hands the photos to **their own AI** (Claude, ChatGPT, Codex,
+a local model) with the **Allworld house skill**. The skill tells the AI exactly what to do: read the photos, build the house in Blender,
+check it against the game's limits, and put it on the player's plot. Then the player invites friends over, as today.
 
-## Two ways to build it, and why both
+Owner's direction, 19 Oct 2026: "copy a script or skill and have their local AI or local sub handle it. This would lead to better
+models and games and save us the cost. The skill file would instruct the agent on what to do. They can be as detailed as possible
+about their house, with multiple pictures of the interior."
 
-| | A. Photo to plan (default) | B. Photo to model (detailed) |
-|---|---|---|
-| How | A vision model reads the photos and fills a house description: storeys, width and depth, roof shape, colours, windows per side, door, porch, fence and gate. The game builds the house from it with the clean geometry it already draws (`src/spaces/world/space.ts`). | Meshy's multi-image-to-3D API (the owner's account, `MESHY_API_KEY`) turns the photos into a textured .glb of the outside of the house. |
-| Looks | Straight walls and clean edges, in the game's style; the colours and shape of the real house, not its every detail. | Close to the photos, but generated meshes have soft, lumpy edges (the owner rejected that look for street buildings on 11 Oct). |
-| Inside | Real rooms the player walks into and furnishes; physics and stairs work. | A shell. The player walks round it; the inside is the game's own house, entered by the door. |
-| Edit | Change any field in a form, or in Blender after export. | Download the .glb, edit in Blender, upload it again. |
-| Cost and time | A fraction of a US cent, a few seconds. | Meshy credits per house, one to three minutes. Measured on the first runs. |
+## Why the player's own AI
 
-Recommendation: A for everyone, B as "More detail" for signed-up players, a few a day.
+- **Cost.** The player's subscription or local model does the expensive work (vision, modelling, many tries). Allworld pays only to
+  store and serve the .glb, as it does for any upload.
+- **Quality.** An agent with Blender and time can take 30 photos, measure rooms, model every wall and door, project the photos onto the
+  walls as textures, and try again until it looks right. A one-shot server call cannot.
+- **Privacy.** Photos of a real home stay on the player's computer. Only the finished model reaches the game.
+- **The same skill makes games.** The existing skill (`skills/allworld-spaces/`) already teaches an AI to design rooms and make lite
+  games; this adds houses and worlds, so players' AIs build the content.
 
-## The flow
+## Three ways in, cheapest for Allworld first
 
-1. Houses → **Copy my real house**. A sheet asks for one to four photos: the front (needed), a side, the back, and optionally a wide shot. Tips on screen: stand back, daylight, no people or car plates.
-2. On the phone, before anything is sent: each photo is shrunk to 1024 px and re-encoded as JPEG, which drops the location and camera data (EXIF).
-3. The server makes a job and answers at once. The sheet shows "Building your house…" and the player can close it; a notice says when it is ready.
-4. **A** returns a house description. The sheet shows the house built from it (the same photo-style picture the Houses page already draws), with a form to fix anything, then **Use this house**.
-5. **B** returns a .glb. It goes into My 3D models (it counts as one of the player's 30), and **Put it on my plot** sets it down where the house stands, with the game's own house hidden under it.
-6. **Open in Blender**: every model in My 3D models gets **Download .glb**. The player edits it in Blender (or any tool) and uploads it again with **Replace**: everywhere it stands updates.
-7. **Invite friends over**: the existing Invite on the Houses page and the 3D screen. Visitors see the copied house; the owner hosts, as today.
+| Way | Who it is for | What the AI produces | What the game does |
+|---|---|---|---|
+| **1. Full build** | Claude Code, Codex or a local agent on a computer with Blender | A finished `.glb` of the whole house, inside and out | Uploads it through the agent key, sets it as the house |
+| **2. Chat only** | Claude or ChatGPT in the app or browser, no Blender | A **house description** (JSON: storeys, rooms with sizes, doors, windows, roof, colours) | The player pastes it; the game builds the house from it with its own clean walls |
+| **3. In the game** (later, optional) | Players with no AI of their own | The same house description, made by Allworld's server from up to four photos | Same as 2; costs Allworld a fraction of a cent a house |
 
-## Implementation
+Ways 1 and 2 cost Allworld nothing beyond storage. Way 3 waits until 1 and 2 are live and measured.
+
+## The skill: `skills/allworld-house/`
+
+```
+skills/allworld-house/
+  SKILL.md                    what to do, step by step (below)
+  reference/
+    photos.md                 the photo checklist: front, back, both sides, roof line; every room from two corners; doors and windows close up; a tape-measure photo per room if possible
+    house-spec.md             the house description format with a worked example (generated from src/spaces/house-spec.ts; drift-tested)
+    limits.md                 the game's model limits and allowed glTF extensions (generated from src/spaces/glb.ts; drift-tested)
+    blender.md                scale (1 unit = 1 metre), origin at the front-left corner at ground level, +Y up in glTF, the spawn marker, export settings, how to stay under the limits (decimate, 2048 px textures, WebP, meshopt)
+    privacy.md                what never goes into a model: house numbers, street signs, faces, car plates, documents on walls
+  scripts/
+    build_house.py            Blender script: house.json → clean walls, floors, ceilings, stairs, door and window openings, roof, materials with UVs, the spawn marker; the AI then refines by hand
+    project_photos.py         Blender script: projects a chosen photo onto a wall as its texture
+    check_model.mjs           Node, no install: checks a .glb against limits.md exactly as the server does (same code, bundled)
+    upload.mjs                Node: asks the game for a one-time upload link with the agent key, sends the .glb, sets it as the house
+```
+
+**What SKILL.md tells the agent to do**
+
+1. Ask for the photos (send `reference/photos.md` to the player) and any measurements. Ask which floor is which and where the front door is.
+2. Read every photo. Write `house.json` (`reference/house-spec.md`): storeys, each room with its size and floor, doors, windows, stairs, roof, colours.
+3. **Chat-only AI:** stop here. Give the player `house.json` to paste in the game: Houses → Copy my real house → Paste a description.
+4. **Agent with Blender:** run `build_house.py house.json` in Blender (`blender --background --python`), then improve the model with the
+   photos: textures from `project_photos.py`, mouldings, the gate, the real roof. Keep it within `limits.md`. Put an empty named
+   `allworld_spawn` just outside the front door.
+5. Export `house.glb` (glTF binary, +Y up, WebP textures, meshopt or no compression, never Draco) and run `check_model.mjs house.glb` until it passes.
+6. Upload: `upload.mjs house.glb --as-house` with the player's agent key (Settings → Agents), or tell the player to upload it in Houses → My 3D models → Upload, then **Use as my house**.
+7. Optional: furniture as separate small models (`--as-model`) so the player can move them in the game.
+8. Tell the player to open Houses → Walk in, check it, and press **Invite**.
+
+## What the game must add
 
 **Shared (pure)**
-- `src/spaces/house-spec.ts` (new): `HouseSpecV1` (storeys 1 to 3; width and depth in metres within the plot; roof flat, gable or hip; wall, roof, door, window and trim colours as hex; windows per side; door side and offset; porch, balcony, fence, gate) and `cleanHouseSpec`, which clamps every field and fills safe defaults. Tests.
+- `src/spaces/house-spec.ts`: `HouseSpecV1` and `cleanHouseSpec` (storeys 1 to 3; rooms as rectangles in metres with a floor and a name; doors and windows on walls; stairs; roof flat, gable or hip; colours as hex). Checked against the player's plot. Tests.
+- `scripts/skills/build-skill-reference.ts` also writes `house-spec.md` and `limits.md`; the drift test covers them.
 
 **Server**
-- `server/models/router.ts`: `AskInput.images?` (JPEG bytes) for vision-capable paid models that keep no data; refused with "resting" when none is configured. Tests with a fake provider.
-- `server/spaces/house-scan.ts` (new): `POST /api/spaces/house-scan?mode=plan|model` (up to four JPEGs, 600 KB each), `GET /api/spaces/house-scan` (the player's jobs), `POST /api/spaces/house-scan/use { id }`. Jobs in `spaces.scans[id]` `{ by, mode, status, at, spec?, model?, why? }`. Photos are held only while the job runs and deleted when it ends; never stored with the player, never shown to anyone.
-  - Plan: one router call with the photos and a prompt that asks for `HouseSpecV1` JSON; `cleanHouseSpec` checks it.
-  - Model: Meshy multi-image-to-3D with a target of about 100,000 triangles; the server polls the task (on the heartbeat, as the model sweep does), downloads the .glb, runs `checkGlb` and stores it as the player's model through the existing upload path.
-- `spaces.homes[publicId].spec` (optional field): the house description in use. `server/spaces/world.ts` sends it with the home.
-- `POST /api/spaces/models/replace { id }` with a new .glb: same id, new hash, so every placement updates.
-- Limits: plan 5 a day, model 2 a day per player, a server-wide daily cap; model mode needs a trusted account (as uploads do). Settings `spacesHouseScan` and `spacesHouseScanModel`, off by default. `MESHY_API_KEY` as a Worker secret, read only by this module, never logged.
-- Erasure: scans and the spec go with the player (`eraseSpaces`).
+- **One-time upload link**: `POST /api/spaces/models/upload-link` (session or agent key) → `{ url, expires }`, valid 10 minutes, one use, bound to the player; `POST /api/spaces/models/upload/:token` takes the bytes with no cookie (the token is the permission). Same checks, limits and hourly cap as a normal upload. MCP tool `model_upload_link`.
+- **House model**: `POST /api/spaces/house-model { model | null }` sets or clears `spaces.homes[publicId].house = { m, by }` (optional field). MCP tool `set_house_model`; `list_my_models` for the agent.
+- **House description**: `POST /api/spaces/house-spec { spec | null }` stores `spaces.homes[publicId].spec`. MCP tool `set_house_spec`.
+- **Bigger limits for a house model** (owner's decision): today 20 MB and 200,000 triangles a model; a whole house with its rooms needs more. Proposal: a model used as a house may be 50 MB and 500,000 triangles, one per player.
+- `server/spaces/world.ts` sends `house` and `spec` with the home; visitors get them too.
 
-**Page**
-- `src/app/features/spaces/ScanSheet.vue` (new): photo picker with the four slots, shrink and re-encode, progress, the result and the form.
-- `src/spaces/world/space.ts`: build the outside from a `HouseSpecV1` when the home has one (storeys, footprint, roof shapes, window rows, porch, fence); the rooms inside follow the existing plan for that size.
-- `housePhoto.ts`: the Houses picture uses the spec, so the page shows the copied house.
-- My 3D models: **Download .glb** and **Replace**; Walk in 3D: **Use as my house** on a placed model hides the game's shell under it.
-- Events: `house_scan_started { mode }`, `house_scan_done { mode, ok }`, `house_scan_used { mode }`.
+**3D screen**
+- **House model mode**: the game's own house shell is not drawn; the model stands at the plot's corner; the walker starts at `allworld_spawn`.
+  Collision must follow the real mesh (a triangle mesh, as the shell has), not the convex hull placed models get today, or the house would be
+  one solid block. Game furniture is hidden in 3D in this mode; the player's own models still place as usual.
+- **House description mode**: `space.ts` builds the walls, rooms, doors, windows, stairs and roof from `HouseSpecV1` with the same clean
+  materials it uses now. The Houses picture (`housePhoto.ts`) follows.
 
-**Privacy (SECURITY.md gains a section)**
-- A real house can identify where someone lives. Photos are stripped of location on the phone, kept only while the job runs, and sent only to the configured model provider (and Meshy in model mode). The finished house is shown only where the player's game house already is. The sheet says this in plain words before the first photo.
+**App**
+- Houses → **Copy my real house** sheet with three cards:
+  - **With your own AI (free)**: "Copy the instructions" (a short prompt that names the skill's address), "Download the skill" (zip served from the game), "Make an agent key" (Settings → Agents), and a link to a one-page guide with screenshots.
+  - **Paste a description**: a box for `house.json`, checked by the server, shown as a picture before **Use this house**.
+  - **Let Allworld do it**: way 3, shown only when its setting is on.
+- My 3D models: **Use as my house** and **Download .glb** on each model.
+- Events: `house_skill_copied { what }`, `house_spec_used { from }`, `house_model_used {}`.
 
-## Checks before release
-- Unit tests for the spec, the router images path, the scan routes (fake provider, fake Meshy), replace and erasure.
-- On an open-mode server: three real houses photographed by the owner, both modes, timed and costed; the result walked in 3D with a second player visiting.
+**Settings** (off by default): `spacesHouseCopy` (the sheet, the spec and house-model modes), `spacesHouseScan` (way 3).
+
+**Docs**: `docs/SKILLS.md` gains the house skill; `docs/AGENTS.md` the new tools; `SECURITY.md` the upload link and the privacy of house models.
+
+## Worlds and games from the same skill
+
+`skills/allworld-spaces/` grows a **world** section: make a world through MCP (`create_world`), upload its models with the same upload link,
+save the layout and the world script (`reference/world-script.md`, the script API in docs/SPACES-3D.md), set the cover, and send the link.
+A player's AI can then build a treasure hunt, a race or an obby world end to end.
+
+## Order of work
+
+1. `HouseSpecV1`, the paste path and the description-built house (way 2): the cheapest complete loop. About 2 days.
+2. Upload link, house model mode with mesh collision, bigger house limits, Download .glb. About 2 days.
+3. The skill folder: SKILL.md, references, the two Blender scripts, check and upload scripts; tried end to end with Claude Code and Blender on the owner's own house photos. About 2 days.
+4. World section of the skill and the MCP world tools. About 1 day.
+5. Way 3 (server photos), only if 1 to 3 leave a gap.
 
 ## Decisions for the owner
-1. Default mode: A (clean, cheap) with B as "More detail", or B for everyone?
-2. Meshy credits: how many a day the game may spend, and whether model mode needs a paid boost later.
-3. Vision model: which provider the router may send house photos to (paid, keeps no data).
+
+1. House model limits: 50 MB and 500,000 triangles for one house model per player?
+2. Should the skill and its scripts be public (the repository is AGPL and public, so anyone can read them anyway) and linked from the landing page as a selling point ("build your real house with your own AI")?
+3. Way 3 later, or not at all?

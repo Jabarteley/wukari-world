@@ -24,7 +24,7 @@ export function startChatter(): void {
   const chatter = newChatter()
   const cityTalk = createCityTalk({ fetchView: () => game.fetchJson('/api/story/talk'), now: Date.now })
   const talkContext = (): CityTalkContext => ({
-    identity: game.session.value?.id ?? null, bornAt: game.state.value.onboarding.bornAt,
+    identity: game.session.value?.id ?? null, bornAt: game.state.value.onboarding.bornAt ?? Number.NaN,
     city: game.view.value.cityId, venue: game.state.value.location,
     enabled: game.view.value.story.enabled === true, connected: game.connected.value,
   })

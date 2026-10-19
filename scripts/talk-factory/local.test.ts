@@ -91,20 +91,21 @@ test('audited unsafe non-pilot venue identities use sourced generic display labe
     { city: { id: 'kingston', name: 'Kingston' }, place: KINGSTON_PLACES.find(place => place.key === 'osm-node-307991768'), greeting: 'Welcome to this walking place in Kingston.' },
   ] as const
   for (const row of cases) {
-    assert.ok(row.place)
+    const place = row.place
+    assert.ok(place)
     const binding = fixture({
       city: { ...row.city, source: 'actual-city' },
-      venue: { id: `${row.city.id}-${row.place.key}`, name: row.place.name, source: `OpenStreetMap ${row.place.osm}` },
+      venue: { id: `${row.city.id}-${place.key}`, name: place.name, source: `OpenStreetMap ${place.osm}` },
       facts: [
         { id: 'npc-role', text: 'Local guide', source: 'actual-role' },
-        { id: 'city-place-name-1', text: row.place.name, source: `OpenStreetMap ${row.place.osm}` },
-        { id: 'city-place-kind-1', text: row.place.kind, source: `OpenStreetMap ${row.place.osm}` },
+        { id: 'city-place-name-1', text: place.name, source: `OpenStreetMap ${place.osm}` },
+        { id: 'city-place-kind-1', text: place.kind, source: `OpenStreetMap ${place.osm}` },
       ],
     }), original = structuredClone(binding)
     const bank = compileLocalTalkBank(binding)
     assert.deepEqual(binding, original)
     assert.equal(bank.greet[0], row.greeting)
-    assert.equal(lines(bank).some(line => line.includes(row.place.name)), false)
+    assert.equal(lines(bank).some(line => line.includes(place.name)), false)
     assert.ok(lines(bank).some(line => line === `The ${row.city.name} map also shows ${row.city.id === 'jakarta' ? 'a food place' : 'a walking place'}.`))
   }
 })

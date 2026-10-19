@@ -1,0 +1,28 @@
+{
+  "sourceBase": "33cc51b1cfa3b470591d7f7c3863691b7a6c1143",
+  "changedPaths": 572,
+  "counts": {
+    "added": 284,
+    "modified": 4,
+    "deleted": 284
+  },
+  "focusedTests": 24,
+  "hashes": {
+    "canonical-receipt.json": "2f371fc931fb4ddbefbb94026bd9c6fc417777f50f2a62fb42209e2b11f995a8",
+    "execution.json": "bcd0ebc826d0a5701b1fc022e1a64d8b8fdf9f82faaa2de1284c27af79578383",
+    "exact-repair-delta.json": "2224d27bd800be79b8c35e865eefd1dcf68401e34065e6128fafd6f2053c7f77",
+    "source-after.json": "d0a8ed0def1cfc4bf7f408f19a356fb615f754b55e6477b7174ee9100fa5c998",
+    "repair-stage-allowlist.txt": "620fd262008a9a0ed05dd0ea20b9dde97db03e1c7233522dd22a17a2b7ae0b6d",
+    "talk-build.log": "0da81edb1de16711dd72cf8c7cde84d60875ad99932ea6635cfa8b126ec29eba",
+    "talk-check.log": "244d32ff2b73d1b6a45dfc165298aadb9ba3c87200a29d24b47ff31b53bb8666",
+    "affected-focused.log": "1bb4991bae0b00ad649c65e5d90db3fca0935c69d3a16360a835dfab970a17b8",
+    "old-canonical-summary.json": "47c414f24509cfc915e18e65ee9ac2d3b6360991944cf746c8c8d338b9b0b09f",
+    "new-canonical-summary.json": "0384ab073f9799c6fce8da374a944d1d20fe41d5e4f2d6e88265c79b01ac51bf",
+    "paid-pins-before.json": "a7bbc8c0ffd388954839a377e67dd0b44e0c7b8397e06a42df6e648963fadbda",
+    "ci-expected-outputs.json": "b55f59dd0f1abc5ecbc44b7d21e14b99417ef6443e4ae4d862cb9ec633251e48"
+  },
+  "ownRecordSha256": "6b4f914643f3933093cac812a82cdcdf54dca902733f2c45291e40231743c153",
+  "fullTypecheck": "pending hosted CI",
+  "resources": "heavy released",
+  "providerCallsThisRepair": 0
+}

@@ -51,8 +51,13 @@ test('returns through the exact mapped doorway only for the matching accepted ci
 test('recognises only a current accepted walk and explains public-store refusal conditions', () => {
   assert.equal(storyStreetWalkView(input({ currentVenueId: 'city-street', journey: walking() }))?.kind, 'walking')
   assert.equal(storyStreetWalkView(input({ currentVenueId: 'city-street', journey: walking('ibadan') })), null)
-  assert.equal(storyStreetWalkView(input({ connected: false }))?.reason, 'Reconnect to walk into the city.')
-  assert.equal(storyStreetWalkView(input({ activeAction: true }))?.reason, 'Finish or cancel your current activity first.')
-  assert.equal(storyStreetWalkView(input({ visiting: true }))?.reason, 'Finish this home visit before walking into the city.')
-  assert.equal(storyStreetWalkView(input({ pending: true }))?.reason, 'The street is changing. Please wait.')
+  const reasonOf = (fields: Partial<StoryStreetWalkInput>) => {
+    const view = storyStreetWalkView(input(fields))
+    assert.ok(view && view.kind === 'start')
+    return view.reason
+  }
+  assert.equal(reasonOf({ connected: false }), 'Reconnect to walk into the city.')
+  assert.equal(reasonOf({ activeAction: true }), 'Finish or cancel your current activity first.')
+  assert.equal(reasonOf({ visiting: true }), 'Finish this home visit before walking into the city.')
+  assert.equal(reasonOf({ pending: true }), 'The street is changing. Please wait.')
 })

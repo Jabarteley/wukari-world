@@ -1,0 +1,10 @@
+COVER_PROBE_WITNESS {"pid":96271,"base":"http://127.0.0.1:57424","authorId":"890368bc-e0f9-4e66-8f07-b0aa0ec0ef90","mediaHash":"3b29b596511cb97b17a29136d463e586c93db0376e19c8ec328d44d4288afa81","uploadedBytes":34,"refusedCode":"badge_needed","attachedCoverCount":1}
+✔ locals-only badge refusal preserves pending cover, then confirmed Lagos attaches it once (131.097458ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 890.722334

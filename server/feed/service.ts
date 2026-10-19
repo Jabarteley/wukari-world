@@ -567,10 +567,10 @@ function buildService(ctx: RouteContext) {
     if (real) place = { city: real.id, state: real.state.name, ...(real.countryName ? { country: real.countryName } : {}), real: 1 }
     else if (typeof body.state === 'string') { const st = cityCatalogue().find((x) => x.state.id === body.state); if (st) place = { state: st.state.name, ...(st.countryName ? { country: st.countryName } : {}), real: 1 } }
     if (!place && typeof body.placeName === 'string') { const pn = cleanLine(body.placeName, 40); if (pn) { const bad = screened(pn, 'The place'); if (bad) return bad; place = { name: pn } } }
-    let cover: string | undefined
-    if (typeof body.cover === 'string' && body.cover) { const m = (a.media ?? []).find((x) => x.hash === body.cover && x.use === 'post' && x.type !== 'webm' && x.type !== 'mp4'); if (m) { cover = m.hash; a.media = (a.media ?? []).filter((x) => x !== m) } }
     const locals = kind !== 'crew' && place?.real && isLocalScope(body.locals) && (body.locals !== 'city' || place.city) ? body.locals : undefined
     if (locals && !qualifies(place, locals, badgeOf(a))) return no('badge_needed', 'To keep it for locals, first confirm where you are in My profile: your own badge must be in that place.')
+    let cover: string | undefined
+    if (typeof body.cover === 'string' && body.cover) { const m = (a.media ?? []).find((x) => x.hash === body.cover && x.use === 'post' && x.type !== 'webm' && x.type !== 'mp4'); if (m) { cover = m.hash; a.media = (a.media ?? []).filter((x) => x !== m) } }
     const crew: CrewRecord = { id: newId(f, 'c'), name, colour, about, owner: id, members: [id], code: randomCode((c) => Object.hasOwn(f.codes, c)), at: now(), ...(kind !== 'crew' ? { kind } : {}), ...(place ? { place } : {}), ...(locals ? { locals } : {}), ...(body.open === true && kind !== 'crew' ? { open: 1 as const } : {}), ...(cover ? { cover } : {}) }
     f.crews[crew.id] = crew; f.codes[crew.code] = { k: 'crew', id: crew.id }
     ;(a.crews ??= []).push(crew.id); d.crews += 1

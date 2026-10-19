@@ -51,6 +51,10 @@
     "sha256": "8fd1f09d34e7107eba372003112e5fcd51bbf24b60744eff6fb43a6d371f6703",
     "bytes": 247645
   },
+  "admission-hook.mjs.txt": {
+    "sha256": "fcb1a9a27c5840d822b67cc3b7d7e52f9261e813a14342e6385a7ef9546904d9",
+    "bytes": 1920
+  },
   "seed-focused-corrected.receipt.json": {
     "sha256": "bf9ef4ca456b13362c77ce39ac49882693ed0b7335992e4126f8a25dff677b76",
     "bytes": 733
@@ -111,13 +115,13 @@
     "sha256": "0912f2826ad4f90819d6edf97a7c8dc118a3254918095db2f0a1b44f58f9c8bf",
     "bytes": 96040
   },
+  "manifest.736d9eeb.json": {
+    "sha256": "6652617411a7e19ac91e19779e61882f7cab0304bd40f0f465f33648d35cdb97",
+    "bytes": 4627
+  },
   "compare-content.py": {
     "sha256": "6b0bb75cd8700a5d28b6aebddff9d67d4e472857f6204824d8853432b8b5a571",
     "bytes": 5292
-  },
-  "admission-hook.mjs": {
-    "sha256": "fcb1a9a27c5840d822b67cc3b7d7e52f9261e813a14342e6385a7ef9546904d9",
-    "bytes": 1920
   },
   "content-compare.receipt.json": {
     "sha256": "701b82a571d118528f3bc6d12b4491aac88c094f2cda5cca546bd3b465d495de",

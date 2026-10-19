@@ -128,7 +128,7 @@ BUILD_ID=<release> SENTRY_AUTH_TOKEN=<token> SENTRY_ORG=<org slug> SENTRY_PROJEC
 
 The token comes from the environment and is never written anywhere; `--strip-only` deletes `dist-maps/` without uploading. Maps are never served in any case: the Node server and the Worker answer 404 for `*.map`.
 
-**manifest.webmanifest and sitemap.xml** are made by code (`server/site-files.ts`), served by both hosts, and are not files in `public/`: the release package admits only `html js css svg png jpg jpeg webp ico woff2 txt` assets. The sitemap names the public origin (`PUBLIC_ORIGIN`, else the request's host).
+**manifest.webmanifest and sitemap.xml** are made by code (`server/site-files.ts`), served by both hosts, and are not files in `public/`: the release package admits only `html js css svg png jpg jpeg webp ico woff2 txt` assets. The sitemap names the public origin (`PUBLIC_ORIGIN`, else the request's host). `/.well-known/assetlinks.json` (Digital Asset Links for the Play Store wrapper, [STORE.md](STORE.md)) is made the same way from the `PLAY_SIGNING_SHA256` setting (a Worker secret; one SHA-256 fingerprint or several separated by commas) and answers 404 while it is unset or malformed; the admin address does not serve it.
 
 **Release compatibility files.** `deploy/cloudflare-worker.js` and `deploy/cloudflare.test.mjs` are two thin shims over the `.ts` files: the release policy (kromate/allworld) names those paths. They can go when the policy is updated.
 

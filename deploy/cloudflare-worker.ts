@@ -49,7 +49,7 @@ import { roomVoiceRelay } from '../server/voice-relay.ts';
 import { DurableObject } from 'cloudflare:workers';
 import { openDevRefusal } from './open-dev-refusal.ts';
 import { oldCharacterLanding } from './legacy-bridge.ts';
-import { siteFile } from '../server/site-files.ts';
+import { PLAY_SIGNING_ENV, siteFile } from '../server/site-files.ts';
 import { ADMIN_HOST_ENV, ADMIN_ROBOTS, ADMIN_SHELL, adminAddress, adminHostName, adminHostRoute, isAdminHost } from '../server/admin/host.ts';
 import { withPathMeta } from '../server/path-meta.ts';
 import { sceneCataloguePage } from '../server/scene-catalogue.ts';
@@ -237,9 +237,9 @@ async function respond(request: Request, env: WorkerEnv): Promise<Response> {
     if (page.headers.get('x-allworld-page') !== 'none') return page;
     if (request.method === 'POST') return json(405, { error: 'method_not_allowed' });
   }
-  // The manifest and the sitemap are made by code (server/site-files.ts), not shipped as assets: the release package admits neither extension.
-  const site = siteFile(url.pathname, publicOrigin(env, url));
-  if (site) return new Response(request.method === 'HEAD' ? null : site.body, { status: 200, headers: { 'content-type': site.type, 'x-content-type-options': 'nosniff' } });
+  // The manifest, the sitemap and assetlinks.json are made by code (server/site-files.ts), not shipped as assets: the release package admits none of those names.
+  const site = siteFile(url.pathname, publicOrigin(env, url), env[PLAY_SIGNING_ENV]);
+  if (site) return new Response(request.method === 'HEAD' ? null : site.body, { status: site.status ?? 200, headers: { 'content-type': site.type, 'x-content-type-options': 'nosniff' } });
   // The script sandbox (public/sandbox/) has headers of its own: it is framed by the game's page and runs players' code. The asset
   // binding serves an .html file at its name without the extension, so that is the name asked for.
   if (isSandboxPath(assetPath)) {
@@ -303,6 +303,8 @@ export interface WorkerEnv {
   MODELS?: R2Models
   BUILD_ID?: string
   PUBLIC_ORIGIN?: string
+  /** The Play Store wrapper's signing certificate SHA-256 (server/site-files.ts, docs/STORE.md); a Worker secret. Unset: /.well-known/assetlinks.json is a 404. */
+  PLAY_SIGNING_SHA256?: string
   GOALMATIC_COMMERCE_API_URL?: string
   GOALMATIC_STORE_URL?: string
   COMMERCE_CHANNEL_ID?: string

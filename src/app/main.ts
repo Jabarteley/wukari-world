@@ -3,6 +3,7 @@ import { createApp } from 'vue'
 import BootScreen from './BootScreen.vue'
 import { loadGame } from './bootstrap.ts'
 import { isChunkLoadError, noteChunkFailure, watchForUpdates } from './state/updateNotice.ts'
+import { holdInstallOffer } from './features/start/installEvent.ts'
 
 const app = createApp(BootScreen, { load: loadGame })
 app.config.errorHandler = (error, _instance, info) => {
@@ -12,6 +13,8 @@ app.config.errorHandler = (error, _instance, info) => {
 window.addEventListener('vite:preloadError', () => { void noteChunkFailure() })
 app.mount('#app')
 watchForUpdates()
+// Chrome offers "install" once, early: kept here for the install bar that the game shows later, once per device (features/start/installPrompt.ts).
+holdInstallOffer()
 // A quick guess from the user agent; the real detection, the page marker and the tip are fetched only inside another app's browser.
 if (/Instagram|FBA[NV]|FB_IAB|FBIOS|musical_ly|Bytedance|TikTok|Snapchat|LinkedInApp|Twitter|; wv\)|(iPhone|iPad|iPod)(?!.*Safari\/)/i.test(navigator.userAgent)) {
   void import('./inAppMount.ts').then((m) => { m.mountInAppTip() }, () => undefined)

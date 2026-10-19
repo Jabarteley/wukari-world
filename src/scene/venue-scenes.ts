@@ -454,7 +454,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     const venueId = venue.id;
     void import('../festivals/detty-client.ts').then((lib) => {
       if (disposed) return;
-      dettyHook = lib.sceneSkin({ THREE: kit.THREE, group, cityId, venueId, place: () => (grid ? { bounds: grid.bounds, heightAt: (x, z) => walk.heightAt(x, z), adopt: (material) => kit.adopt(material) } : null), redraw: () => kit.requestRender?.() });
+      dettyHook = lib.sceneSkin({ THREE: kit.THREE, group, cityId, venueId, place: () => (grid ? { bounds: grid.bounds, heightAt: (x, z) => walk.heightAt(x, z) } : null), redraw: () => kit.requestRender?.() });
       dettyHook.tick(t);
     }).catch(() => { /* no season: the venue stays as it is */ });
   }

@@ -176,8 +176,9 @@ test('the skin is on only during the season, in the three cities, at the seasonâ
 test('the skin builds a few instanced meshes, and the scene hook adds it while on and takes it away when the season ends', async () => {
   const plan = skinFor(true, 'lagos', 'beach', 'park', false)!;
   const skin = buildSkin(THREE, plan, { bounds: [-12, -10, 12, 10] });
-  assert.ok(skin.drawCalls <= 6, `${skin.drawCalls} draw calls`);
-  assert.ok(skin.group.children.every((child) => (child as THREE.InstancedMesh).isInstancedMesh));
+  assert.ok(skin.drawCalls <= 7, `${skin.drawCalls} draw calls`);
+  assert.equal(skin.drawCalls, skin.group.children.length);
+  assert.ok(skin.group.children.every((child) => (child as THREE.InstancedMesh).isInstancedMesh || child.name === 'detty-wire'));
   assert.equal(skin.pieces, plan.bulbs + Math.max(2, Math.round(plan.bulbs / 6)) + plan.umbrellas * 3);
   for (const [, z] of perimeter([-12, -10, 12, 10], 36)) assert.ok(z < 10 - 0.5, 'never across the cameraâ€™s side');
   const light = buildSkin(THREE, skinFor(true, 'lagos', 'beach', 'park', true)!, { bounds: [-12, -10, 12, 10] });

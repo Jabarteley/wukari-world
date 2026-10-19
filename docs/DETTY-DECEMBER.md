@@ -38,7 +38,7 @@ home from abroad, and a season card at the end. It switches itself on and off by
     as soon as Accra has that venue (`accra-labadi-beach`), until then Kwame Nkrumah Memorial Park ("Park day"); in Abuja, Jabi Lake Park
     ("Lake day");
   * coloured beams over the back of the music venue (Afrika Shrine; Accra's National Theatre; Gwarinpa Evening Garden).
-  Every part is one instanced mesh with unlit colours (at most six draw calls, no lights, no shadows, no textures). A weak phone
+  Every part is one instanced mesh with unlit colours (at most seven draw calls, no lights, no shadows, no textures). A weak phone
   (`src/scene/body/gate.ts` `bodyAllowed` false: Data Saver, 2G, two cores or 2 GB) gets half the pieces. The scene asks once a minute of
   server time; when the season ends the props are taken away.
 * **A night every night** (Phone → Events, and the venue): from the admin-editable list, going round by the day of December. Defaults:

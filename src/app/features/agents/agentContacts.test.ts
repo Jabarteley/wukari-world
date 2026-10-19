@@ -1,7 +1,7 @@
 // The chat kept on the phone (agentContacts.ts): reading stored values back, adding lines, the rows the chat screen draws, contacts.
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { addLine, chatRows, filterAgentChats, historyOf, readChats, readContacts, recentChats, toggleContact, CHATS_MAX, LINES_MAX } from './agentContacts.ts'
+import { addLine, chatRows, filterAgentChats, historyOf, readChats, readContacts, recentChats, toggleContact, withAiChats, CHATS_MAX, LINES_MAX } from './agentContacts.ts'
 import type { Chat, ChatLine } from './agentContacts.ts'
 
 const who = { id: 'resident.lagos.tunji', name: 'Tunji Bello', city: 'lagos' }
@@ -49,4 +49,14 @@ test('a contact is kept or dropped with a tap, newest first', () => {
   assert.deepEqual(kept, [{ ...who, at: 5 }])
   assert.deepEqual(toggleContact(kept, who, 6), [])
   assert.equal(toggleContact(kept, { id: 'house.lagos.remi', name: 'Remi', city: 'lagos' }, 7)[0]?.id, 'house.lagos.remi')
+})
+
+test('the AI chats go into the Messages list by time: pinned chats first, older ones last', () => {
+  const conv = (id: string, when: number, pinned = false) => ({ id, last: { at: when }, ...(pinned ? { pinned } : {}) })
+  const chat = (id: string, when: number): Chat => ({ id, name: id, city: 'lagos', at: when, lines: [] })
+  const ids = (rows: readonly { id: string }[]): string[] => rows.map((row) => row.id)
+  const sorted = [conv('pinned', at(8), true), conv('kemi', at(10)), conv('dayo', at(9))]
+  assert.deepEqual(ids(withAiChats(sorted, [chat('tunji', at(9, 30)), chat('kofo', at(11)), chat('old', at(7))])), ['pinned', 'ai:kofo', 'kemi', 'ai:tunji', 'dayo', 'ai:old'])
+  assert.deepEqual(ids(withAiChats([], [chat('tunji', at(9))])), ['ai:tunji'])
+  assert.deepEqual(ids(withAiChats(sorted, [])), ['pinned', 'kemi', 'dayo'])
 })

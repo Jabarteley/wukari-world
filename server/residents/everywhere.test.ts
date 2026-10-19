@@ -456,7 +456,8 @@ test('a person writes or calls a resident directly: an answer in character that 
   assert.ok(answer && !answer.asleep && answer.text.length > 0, 'an answer');
   assert.equal(t.calls.length, before + 1, 'one model call');
   const prompt = t.calls.at(-1)!.messages.map((m) => m.content).join('\n');
-  assert.match(prompt, /talking with you on the phone/);
+  assert.match(prompt, /texting you on the phone/);
+  assert.match(prompt, /Do not sound like a help desk/);
   assert.match(prompt, /Earlier:/);
   assert.match(prompt, /Good morning, Ada\./);
   assert.match(prompt, /you are at .+ now and they are welcome to come/);

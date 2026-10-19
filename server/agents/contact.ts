@@ -103,8 +103,8 @@ export function contactRoutes(ctx: RouteContext, guard: (request: RouteRequest, 
       if (crisisWords(text)) return out(helpText(countryOfCity(city)), { help: true });
       if (asksIfAi(text)) return out(aiAnswer([name]), { game: true });
       if (house) {
-        const answered = await houseService(ctx).answerCall(agent, me, text);
-        return out(answered?.text ?? 'I am here. Say that again?');
+        const answered = await houseService(ctx).answerCall(agent, me, text, history);
+        return out(answered?.text ?? 'Sorry, I missed that. Say it again?');
       }
       const answered = await residentService(ctx).answerDirect(agent, me, text, history);
       if (!answered) throw Object.assign(ctx.fail(503, 'agent_unavailable'), { reason: `${name.split(' ')[0]} cannot answer right now. Try again later.` });

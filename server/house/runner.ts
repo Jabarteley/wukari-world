@@ -16,7 +16,8 @@
  *      written answer cannot give (an offer to phrase, directions, tonight, chat). router.ask({ purpose: 'agent-talk', carriesPlayerWords: true, maxTokens: 220 })
  *      so only paid models see a person's words, under the router's US$2 day stop and per-person caps. No key, no budget, a failed or an unsafe
  *      reply: the written line is said instead. The price is never the model's: haggle.ts decides it and talk.ts `cleanReply` throws a reply
- *      away that carries any other number.
+ *      away that carries any other number. A private chat or a phone call (`answerCall`) also asks the model for greetings, goodbyes and
+ *      hours, in a texting voice with the chat's last lines, so the agent talks like a person rather than a desk.
  *
  * MEMORY AND CLOSENESS (Phase 12, memory.ts, docs/AGENT-MEMORY.md). The one place this runner writes to the store, and only about a person who wrote to an agent:
  *   - each line a person writes to an agent may add closeness (one small lazy write, bounded by the wake limits above) and reads what the agent remembers;
@@ -545,12 +546,13 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
   }
 
   /**
-   * A line said to this agent ON A CALL (call-routes.ts): the same brain as a line in the venue, answered as text to the caller instead of into the room (the agent need not be
+   * A line said to this agent ON A CALL OR IN A PRIVATE CHAT (call-routes.ts, agents/contact.ts): the same brain as a line in the venue, answered as text to the caller instead of into the room (the agent need not be
    * standing anywhere). Rules first, then a paid model for what a written line cannot give, then the same safety as a venue reply: cleanReply and agentWords (always as to a person
    * who may be a minor: no flirting on a call). Haggling and tasks stay in the venue: on the phone an offer is answered with the list price and an invitation to the shop. Null for an id
-   * that is not a house agent.
+   * that is not a house agent. The model phrases anything but prices, offers and tasks, in a texting voice, with the chat's or the call's last
+   * lines (`history`, `me` true = said by the agent); the written line is said when there is no model, budget or clean reply.
    */
-  async function answerCall(agentId: string, from: { id: string; name: string }, body: string): Promise<{ text: string; viaModel: boolean; name: string; city: string } | null> {
+  async function answerCall(agentId: string, from: { id: string; name: string }, body: string, history: readonly { me: boolean; text: string }[] = []): Promise<{ text: string; viaModel: boolean; name: string; city: string } | null> {
     const info = agentInfo(agentId), spec = info ? castOf(info.city).find((entry) => `${ID_PREFIX}${info.city}.${entry.key}` === agentId) : undefined;
     if (!info || !spec) return null;
     const agent = agents.get(agentId) ?? build(info.city, spec, settings().discount);
@@ -571,12 +573,12 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
     } else if (intent === 'directions') written = '';
     else if (intent === 'tonight') { written = ''; claimsQuery = ''; }
     else claimsQuery = said.slice(0, 80);
-    if (intent === 'greet' || intent === 'bye' || intent === 'hours') useModel = false;
+    // A task is given in person, so its line stays written; greetings, goodbyes and hours are the model's to phrase, like any chat.
+    if (intent === 'mission') useModel = false;
     const mem = s.memory ? await bondTouch(agent, from.id, memory.gainFor(said, intent), t) : null;
     // A call is private: the person's own facts may be used, and gossip is still only the public gist.
     if (asksGossip(said)) { const told = gossipLine(spec.voice, await gistItems(agent.city), t, seed); count().written += 1; return { text: told.text, viaModel: false, name: spec.name, city: info.city }; }
     if (intent === 'greet' && mem?.facts.length) { const greeting = factGreeting(spec.voice, from.name, mem.facts, `${agentId}|${from.id}|${lagosDayKey(t)}`); if (greeting) written = greeting; }
-    if (mem && !useModel && intent === 'greet' && (mem.facts.length > 0 || mem.partner)) useModel = true;
     const cityName = cityRules(agent.city)?.name ?? agent.city;
     const around = places(agent.city, t);
     const claims = claimsQuery === null ? [] : await gistLines(agent.city, claimsQuery, claimsQuery === '');
@@ -588,7 +590,8 @@ export function houseOf(ctx: RouteContext, deps: HouseDeps = {}) {
       const hoursWords = `${formatHour(spec.hours.open)} to ${formatHour(spec.hours.close)}`;
       const messages = promptFor({ spec, cityName, list: agent.items, verdict: null, gist: claims, hours: hoursWords, intent,
         places: intent === 'directions' ? around.slice(0, 12).map((place) => `${place.name} in ${place.district} (${place.status})`) : [],
-        ...(mem && mem.facts.length ? { remembered: mem.facts } : {}), ...(mem && (mem.standing.points > 0 || mem.partner) ? { closeness: mem.standing.label } : {}), ...(mem?.partner ? { partner: true } : {}) }, from.name.slice(0, 24), said);
+        ...(mem && mem.facts.length ? { remembered: mem.facts } : {}), ...(mem && (mem.standing.points > 0 || mem.partner) ? { closeness: mem.standing.label } : {}), ...(mem?.partner ? { partner: true } : {}),
+        direct: { history } }, from.name.slice(0, 24), said);
       try {
         const answer = await ask({ purpose: 'agent-talk', messages, maxTokens: MODEL_TOKENS, playerId: personKey(from.id), carriesPlayerWords: true, timeoutMs: 8000 });
         if (answer.ok) {

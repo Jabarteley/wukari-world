@@ -35,6 +35,8 @@ export const DEFAULTS = Object.freeze({ on: true, playerMinutes: 20, totalMinute
 /** What the game says, in its own voice, when a session with AI characters has gone on a while. */
 export const BREAK_TEXT = 'You have been talking with AI characters for a while. This is a good time for a break: stretch, drink some water, or talk to someone you know.';
 const MAX_TEXT = 300;
+/** Lines of a call kept for the agent's next answer, and the most calls kept at once. */
+const CALL_LINES = 6, CALLS_HEARD = 500;
 
 const clamp = (value: unknown, least: number, most: number, fallback: number): number => (typeof value === 'number' && Number.isFinite(value) ? Math.max(least, Math.min(most, Math.round(value))) : fallback);
 const settingOf = (ctx: RouteContext, key: string): boolean | number | string | undefined => ctx.checks?.setting?.(key) ?? ctx.checks?.text?.(key);
@@ -84,6 +86,13 @@ export function callRoutes(ctx: RouteContext, guard: (request: RouteRequest, bod
   const callOf = (value: unknown): string => { if (typeof value !== 'string' || value.length < 8 || value.length > 80) throw ctx.fail(400, 'invalid_call'); return value; };
   const gone = (): Error => Object.assign(ctx.fail(410, 'call_ended'), { reason: 'The call has ended.' });
   const secondsLeft = (id: string): number => Math.max(0, callSettings(ctx).playerMinutes * 60 - ledger.secondsUsed(id));
+  // The last lines of each call (`me` true = said by the agent, as both services read it), so the agent answers the conversation and not one line at a time. Memory only, dropped when the call ends.
+  const heard = new Map<string, { me: boolean; text: string }[]>();
+  const remember = (call: string, said: string, reply: string): void => {
+    const lines = [...(heard.get(call) ?? []), { me: false, text: said.slice(0, 200) }, { me: true, text: reply.slice(0, 200) }].slice(-CALL_LINES);
+    heard.delete(call); heard.set(call, lines);
+    if (heard.size > CALLS_HEARD) heard.delete(heard.keys().next().value!);
+  };
 
   return {
     'GET /api/agents/call/config': async (request) => {
@@ -153,14 +162,18 @@ export function callRoutes(ctx: RouteContext, guard: (request: RouteRequest, bod
       // Before any agent or model sees the line: the game answers words of danger, and a sincere "are you an AI?".
       if (crisisWords(text)) return out(helpText(countryOfCity(spec.city)), { help: true });
       if (asksIfAi(text)) return out(aiAnswer([spec.name]));
-      const answered = spec.resident ? await residentService(ctx).answerDirect(found.agent, me, text) : await houseService(ctx).answerCall(found.agent, me, text);
-      return out(answered?.text ?? say.fallback(spec, seed));
+      const history = heard.get(call) ?? [];
+      const answered = spec.resident ? await residentService(ctx).answerDirect(found.agent, me, text, history) : await houseService(ctx).answerCall(found.agent, me, text, history);
+      const reply = answered?.text ?? say.fallback(spec, seed);
+      remember(call, text, reply);
+      return out(reply);
     },
     'POST /api/agents/call/end': async (request) => {
       const body = await request.json();
       await guard(request, body);
       const me = await who(request), call = callOf(body.call);
       if (ledger.find(me.id, call)) ledger.end(call);
+      heard.delete(call);
       return { body: { ok: true, leftSeconds: secondsLeft(me.id) }, headers: NO_STORE };
     },
   };

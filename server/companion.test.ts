@@ -355,25 +355,29 @@ test('a session with a started life is required', async (t) => {
   assert.equal((await ask(await life('Ada'), { message: 'hi' })).via, 'primary');
 });
 
-test('rephrase: only when switched on, and then the same checks apply', async (t) => {
-  const off = await harness(t);
+test('rephrase: on unless switched off, and then the same checks apply', async (t) => {
+  const off = await harness(t, { COMPANION_AI_REPHRASE: 'off' });
   const ada = await off.life('Ada');
   assert.equal((await off.ask(ada, { rephrase: true, localText: 'You have ₦100.' })).via, 'local');
   assert.equal(off.gateway.seen.length, 0);
   await off.gateway.stop();
 });
-test('rephrase on', async (t) => {
-  const { gateway, life, ask } = await harness(t, { COMPANION_AI_REPHRASE: 'on' });
+test('rephrase on by default: the brain\'s line in Lumo\'s words, as a reply to what the player said', async (t) => {
+  const { gateway, life, ask } = await harness(t);
   const ada = await life('Ada');
   gateway.plan(() => ({ reply: reply('You have ₦100 left. Nice.', ['open-bank']) }));
-  const got = await ask(ada, { rephrase: true, localText: 'You have ₦100.' });
+  const got = await ask(ada, { rephrase: true, localText: 'You have ₦100.', asked: 'how much money do I have' });
   assert.deepEqual([got.via, got.text, got.suggest], ['primary', 'You have ₦100 left. Nice.', []]);
+  assert.equal(sentMessages(gateway.seen.at(-1))[1]?.content, `The player said: ${wrapPlayerText('how much money do I have')}\nThe game's answer, to say in your own words: "You have ₦100."`);
+  const before = gateway.seen.length;
+  assert.equal((await ask(ada, { rephrase: true, localText: 'Talk to someone you trust.', asked: 'I want to kill myself' })).via, 'local', 'a crisis is never rephrased');
+  assert.equal(gateway.seen.length, before);
   gateway.plan(() => ({ reply: reply('You have ₦9,999.') }));
   assert.equal((await ask(ada, { rephrase: true, localText: 'You have ₦100.' })).via, 'local');
 });
 
 test('maximum rephrase input keeps its rules and authorized amount within the same full request bound', async (t) => {
-  const { gateway, life, ask } = await harness(t, { COMPANION_AI_REPHRASE: 'on' });
+  const { gateway, life, ask } = await harness(t);
   const ada = await life('Ada');
   const localText = 'You have ₦100. ' + 'x'.repeat(400);
   gateway.plan(() => ({ reply: reply('You have ₦100 left.', ['open-bank']) }));
@@ -381,7 +385,7 @@ test('maximum rephrase input keeps its rules and authorized amount within the sa
   const messages = sentMessages(gateway.seen[0]);
   assert.equal(messages.length, 2, 'rephrase still excludes history');
   assert.ok((messages[0]?.content ?? '').startsWith(RULES + '\n\n' + REPHRASE_RULES + '\n\n'));
-  assert.equal(messages[1]?.content, wrapPlayerText(cleanInput(localText)));
+  assert.equal(messages[1]?.content, `The game's answer, to say in your own words: "${cleanInput(localText)}"`);
   assert.equal(cleanInput(localText).length, 400);
   assert.ok(messages.reduce((length, item) => length + item.content.length, 0) <= 3600);
   assert.deepEqual([answer.text, answer.suggest], ['You have ₦100 left.', []]);

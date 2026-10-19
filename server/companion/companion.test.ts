@@ -5,7 +5,7 @@ import { COMPANION_NAME } from '../../src/app/features/companion/identity.ts';
 import { SUGGEST_IDS } from '../../src/app/features/companion/suggest.ts';
 import { RULES, systemPrompt, wrapPlayerText } from './prompt.ts';
 import { amountsIn, checkReply, parseModelReply } from './checks.ts';
-import { companionConfig, requestBody, DEFAULT_MODEL, DEFAULT_FALLBACK_MODEL } from './gateway.ts';
+import { companionConfig, requestBody, thinksFirst, DEFAULT_MODEL, DEFAULT_FALLBACK_MODEL } from './gateway.ts';
 import { roundedCash, firstName } from './context.ts';
 
 test('the system prompt keeps its rules', () => {
@@ -34,12 +34,13 @@ test('replies are read in every shape and checked', () => {
   assert.deepEqual(amountsIn('5k naira and N2m and ₦1,500.50'), ['5000', '5', '2000000', '2', '1501', '1,500.50'.replace(/,/g, '')]);
 });
 
-test('settings: absent key is off; bad values fall back; the key never shows in the settings object printed', () => {
+test('settings: absent key is off; bad values fall back; rephrase is on unless switched off; the key never shows in the settings object printed', () => {
   assert.equal(companionConfig(() => ''), null);
   const on = (extra: Record<string, string>) => companionConfig((name) => ({ AI_GATEWAY_API_KEY: 'k1', ...extra })[name] ?? '');
   assert.equal(on({ COMPANION_AI: 'off' }), null);
   const config = on({ COMPANION_TIMEOUT_MS: 'abc', COMPANION_MODEL: 'bad model', AI_GATEWAY_BASE_URL: 'http://insecure.example', COMPANION_DAILY_REQUESTS: '7' });
-  assert.deepEqual([config?.timeoutMs, config?.model, config?.fallbackModel, config?.baseUrl, config?.dailyRequests, config?.maxOutputTokens, config?.rephrase], [8000, DEFAULT_MODEL, DEFAULT_FALLBACK_MODEL, 'https://ai-gateway.vercel.sh', 7, 220, false]);
+  assert.deepEqual([config?.timeoutMs, config?.model, config?.fallbackModel, config?.baseUrl, config?.dailyRequests, config?.maxOutputTokens, config?.rephrase], [8000, DEFAULT_MODEL, DEFAULT_FALLBACK_MODEL, 'https://ai-gateway.vercel.sh', 7, 220, true]);
+  assert.equal(on({ COMPANION_AI_REPHRASE: 'off' })?.rephrase, false);
   assert.equal(on({ AI_GATEWAY_BASE_URL: 'https://gw.example/' })?.baseUrl, 'https://gw.example');
   assert.equal(on({ COMPANION_MODEL: 'xai/grok-5' })?.model, 'xai/grok-5');
   assert.deepEqual([on({})?.priceInPerM, on({})?.priceOutPerM], [0.1, 0.5]);
@@ -72,4 +73,13 @@ test('a 400 that names temperature or max_tokens is retried once without them', 
     assert.ok('temperature' in gate.seen[0]!.body && 'max_tokens' in gate.seen[0]!.body);
     assert.ok(!('temperature' in gate.seen[1]!.body) && !('max_tokens' in gate.seen[1]!.body) && 'max_completion_tokens' in gate.seen[1]!.body);
   } finally { await gate.stop(); }
+});
+
+test('GPT-5.x and GPT-6 are asked not to think first, so a short reply budget is never spent before a word is said; other models are not', () => {
+  assert.ok(thinksFirst('openai/gpt-6-luna') && thinksFirst('openai/gpt-5.6-luna') && thinksFirst('openai/gpt-6'));
+  assert.ok(!thinksFirst('xai/grok-4.1-fast-non-reasoning') && !thinksFirst('openai/gpt-4o-mini') && !thinksFirst('openai/gpt-60x'));
+  const config = { maxOutputTokens: 140 };
+  assert.deepEqual(requestBody(config, 'openai/gpt-6-luna', 'primary', [{ role: 'user', content: 'x' }], 'p_1').reasoning, { effort: 'none' });
+  assert.deepEqual(requestBody(config, 'openai/gpt-6-luna', 'primary', [{ role: 'user', content: 'x' }], 'p_1', true).reasoning, { effort: 'none' }, 'the plain retry too');
+  assert.equal(requestBody(config, 'xai/grok-4.1-fast-non-reasoning', 'fallback', [{ role: 'user', content: 'x' }], 'p_1').reasoning, undefined);
 });

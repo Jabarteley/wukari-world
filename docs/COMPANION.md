@@ -44,7 +44,7 @@ The in-game guide always has its own built-in replies (the deterministic brain).
 
 ### What happens to a question
 
-`POST /api/companion/ask` with `{ message, clientId, turnId?, history? }` (or `{ rephrase: true, localText, clientId }` when `COMPANION_AI_REPHRASE=on`). It needs a device session with a started life (guests are fine). The answer is always `{ ok: true, via, text, suggest, topic?, turnId? }`:
+`POST /api/companion/ask` with `{ message, clientId, turnId?, history? }` (or `{ rephrase: true, localText, asked?, clientId }`: the brain's own answer to `asked`, said again in Lumo's words; on unless `COMPANION_AI_REPHRASE=off`. The client asks it for every confident answer but a safety one, and keeps the brain's buttons). It needs a device session with a started life (guests are fine). The answer is always `{ ok: true, via, text, suggest, topic?, turnId? }`:
 
 | `via` | meaning |
 | --- | --- |
@@ -116,7 +116,7 @@ All optional. Set on both hosts as environment values (Node: `.env`; Worker: sec
 | `COMPANION_PLAYER_BURST` | 8 | per player per minute |
 | `COMPANION_MAX_OUTPUT_TOKENS` | 220 | |
 | `COMPANION_TIMEOUT_MS` | 8000 | the whole question, both tries: the first gets 60 percent, the fallback the rest |
-| `COMPANION_AI_REPHRASE` | off | `on` allows `{ rephrase: true, localText }` |
+| `COMPANION_AI_REPHRASE` | on | `off` refuses `{ rephrase: true, localText }`, so every confident answer is the brain's own line |
 | `COMPANION_PRICE_IN_PER_M`, `COMPANION_PRICE_OUT_PER_M` | 0.10, 0.50 | US$ per million tokens, used only for the operator's estimated cost. The defaults are the default model's prices at the time of writing; check the gateway dashboard |
 
 The live host needs: the secret `AI_GATEWAY_API_KEY`. Everything else has a default.

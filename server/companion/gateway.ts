@@ -61,7 +61,8 @@ export function companionConfig(env: (name: string) => string, anotherProvider =
   const model = (name: string, fallback: string): string => { const given = env(name).trim(); return MODEL_ID.test(given) ? given : fallback; };
   return {
     key, baseUrl, model: model('COMPANION_MODEL', DEFAULT_MODEL), fallbackModel: model('COMPANION_FALLBACK_MODEL', DEFAULT_FALLBACK_MODEL), enabled: true,
-    rephrase: env('COMPANION_AI_REPHRASE').trim().toLowerCase() === 'on',
+    // On unless switched off: the brain's own answers are said again in Lumo's voice, so a guide that knows the facts does not repeat itself word for word.
+    rephrase: env('COMPANION_AI_REPHRASE').trim().toLowerCase() !== 'off',
     dailyRequests: whole(env('COMPANION_DAILY_REQUESTS'), 25000, 1, 10000000), playerDaily: whole(env('COMPANION_PLAYER_DAILY'), 200, 1, 100000), playerBurst: whole(env('COMPANION_PLAYER_BURST'), 8, 1, 1000),
     maxOutputTokens: whole(env('COMPANION_MAX_OUTPUT_TOKENS'), 220, 16, 2000), timeoutMs: whole(env('COMPANION_TIMEOUT_MS'), 8000, 200, 30000),
     priceInPerM: price(env('COMPANION_PRICE_IN_PER_M'), DEFAULT_PRICE_PER_M.input), priceOutPerM: price(env('COMPANION_PRICE_OUT_PER_M'), DEFAULT_PRICE_PER_M.output),
@@ -79,11 +80,14 @@ type Fetcher = (url: string, init?: object) => Promise<unknown>;
 /** Where one request goes. `kind` picks the dialect: the Vercel gateway's own fields, or OpenRouter's. `feature` is the spend tag (server/models/ names the purpose). */
 export interface Target { key: string; baseUrl: string; maxOutputTokens: number; kind?: 'gateway' | 'openrouter'; feature?: string; /** The request carries a person's words: ask the provider not to keep or train on it. */ private?: boolean }
 
-export interface RequestBody { model: string; messages: readonly ChatMessage[]; max_tokens?: number; temperature?: number; max_completion_tokens?: number; stream: boolean; providerOptions?: { gateway: { user: string; tags: string[] } }; user?: string; provider?: { data_collection: string } }
+export interface RequestBody { model: string; messages: readonly ChatMessage[]; max_tokens?: number; temperature?: number; max_completion_tokens?: number; reasoning?: { effort: 'none' }; stream: boolean; providerOptions?: { gateway: { user: string; tags: string[] } }; user?: string; provider?: { data_collection: string } }
+/** OpenAI's GPT-5.x and GPT-6 models think before they answer, and the thinking counts against max_tokens: a short reply budget can be
+ *  spent before a word is said, and the answer comes back empty. Every request here is a short line in a game, so they are asked not to. */
+export const thinksFirst = (model: string): boolean => /^openai\/gpt-(5\.\d+|6)(-|$)/.test(model);
 /** The exact JSON body of a request. `providerOptions.gateway` carries the spend tags and the end-user id (the gateway's own fields). */
 export function requestBody(config: Pick<Target, 'maxOutputTokens'> & Partial<Target>, model: string, role: 'primary' | 'fallback', messages: readonly ChatMessage[], user: string, plain = false): RequestBody {
   // `plain`: the second try after a 400 that named these fields (some models take no temperature and want max_completion_tokens).
-  const base = { model, messages, ...(plain ? { max_completion_tokens: config.maxOutputTokens } : { max_tokens: config.maxOutputTokens, temperature: TEMPERATURE }), stream: false };
+  const base = { model, messages, ...(plain ? { max_completion_tokens: config.maxOutputTokens } : { max_tokens: config.maxOutputTokens, temperature: TEMPERATURE }), stream: false, ...(thinksFirst(model) ? { reasoning: { effort: 'none' as const } } : {}) };
   // OpenRouter: the end-user id is a plain field, and a request with a person's words may only go to providers that do not keep or train on it.
   if (config.kind === 'openrouter') return { ...base, user, ...(config.private ? { provider: { data_collection: 'deny' } } : {}) };
   return { ...base, providerOptions: { gateway: { user, tags: ['product:allworld', `feature:${config.feature ?? 'companion'}`, `role:${role}`, `model:${model}`] } } };

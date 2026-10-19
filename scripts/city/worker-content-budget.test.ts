@@ -25,7 +25,7 @@ test('the Worker contains city references under 500 bytes each and no city paylo
   })
   assert.deepEqual(forbidden, [], 'authored city directories and packed dictionary must stay outside the Worker')
   const bytes = (await stat(outfile)).size
-  assert.ok(bytes < 3_500_000, `Worker is ${bytes} bytes`)
+  assert.ok(bytes < 4_000_000, `Worker is ${bytes} bytes (the release guard's limit, scripts/guard-joinallworld-package.mjs)`)
   assert.equal(CITY_CONTENT_ASSETS.length, GENERATED_CITY_CATALOGUE_ROWS.length)
   const costs = CITY_CONTENT_ASSETS.map(row => {
     const catalogue = GENERATED_CITY_CATALOGUE_ROWS.find(city => city[0] === row.id)

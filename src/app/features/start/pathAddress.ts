@@ -13,5 +13,5 @@ export function entryVariantId(pathname: string): string | null {
 export const isEntryAddress = (pathname: string): boolean => entryVariantId(pathname) !== null
 export function isPathAddress(pathname: string): boolean {
   const path = pathname.replace(/\/+$/, '')
-  return path !== '' && path !== '/index.html' && !isEntryAddress(path) && !/^\/(v|s)\/[^/]+$/.test(path)
+  return path !== '' && path !== '/index.html' && !isEntryAddress(path) && !/^\/(v|s|w)\/[^/]+$/.test(path)
 }

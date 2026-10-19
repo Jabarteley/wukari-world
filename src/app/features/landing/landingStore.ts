@@ -183,13 +183,16 @@ export function createLanding(deps: LandingDeps, refs?: LandingRefs): Landing {
         // A clan invite (/?table=clan-xxxxxx, src/app/features/games/clansModel.ts) opens the Games app on the clan.
         const clanCode = /^clan-([a-hjkmnp-z]{6})$/.exec(table)?.[1]?.toUpperCase() ?? null
         if (clanCode) { deps.forgetTable(); deps.open('games', { clan: clanCode }) }
-        const gameRoom = clanCode === null && gameOfRoom(table) !== null
-        const exists = clanCode !== null || gameRoom || await deps.tableExists(table)
+        // A world's link (/w/<id>, docs/WORLDS.md, kept as world-<id>): the Worlds app opens on it and takes the player in.
+        const world = /^world-(w[0-9a-z]{12})$/.exec(table)?.[1] ?? null
+        if (world) { deps.forgetTable(); deps.open('worlds', { world }) }
+        const gameRoom = clanCode === null && world === null && gameOfRoom(table) !== null
+        const exists = clanCode !== null || world !== null || gameRoom || await deps.tableExists(table)
         if (!isCurrent()) return
         // A game room's code stays on the device until the room screen has really joined (src/arena/room.ts forgets it then): a reload in
         // between, with the dev server or a service worker update, must not lose the invitation. A table link is forgotten at once.
         if (gameRoom) deps.open('games', { room: table })
-        else if (clanCode === null) { deps.forgetTable(); if (exists) deps.open('tables', { table }) }
+        else if (clanCode === null && world === null) { deps.forgetTable(); if (exists) deps.open('tables', { table }) }
       }
       // An e-mail's button: one panel from the fixed list, opened once. A table link, which names its own panel, wins.
       if (go) {

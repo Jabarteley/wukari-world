@@ -427,7 +427,8 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     void import('./fx/index.ts').then((fx) => fx.loadFxHere()).then(({ tier, weather: fx }) => {
       if (gone) return;
       const half = ROOM / 2 + 0.3;
-      weatherFx = fx.createWeather({ THREE, parent: group, tier, time: homeTime, roofs: { boxes: [[-half, 0, -half, half, 3 * WALL_HEIGHT, half]], bounds: [-30, -30, 30, 30], buildings: true } });
+      // The whole house is cover at any height (the grid caps it): the room is a cutaway with no roof drawn, so drops above its roof line would read as rain in the room.
+      weatherFx = fx.createWeather({ THREE, parent: group, tier, time: homeTime, roofs: { boxes: [[-half, 0, -half, half, 1e6, half]], bounds: [-30, -30, 30, 30], buildings: true } });
       weatherFx.update(wetNow); onAmbient?.(true);
     }).catch(() => { weatherAsked = false; });
     return changed;

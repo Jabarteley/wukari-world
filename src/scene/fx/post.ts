@@ -82,7 +82,17 @@ export interface Post {
 }
 
 /**
- * Post-process ambient occlusion is on by default on the high tier. Measured on an M4 Pro at 1080p: the AO pass adds about 0.7 to 1.5 ms
+ * The stack itself is OFF by default until it earns its place: the wave-1 critic (docs/evidence/critic-wave1-20261020.md) could not see
+ * the ambient occlusion in the after picture and found nothing for the bloom to bloom, because lamps, windows and signs do not emit
+ * yet, so about 3 ms a frame bought a deeper sky and a faint vignette. `?post=1` turns it on for looking and for the next pass, which
+ * makes the emitters bright and shows the before/after pair at 2x before the default changes.
+ */
+export function postEnabled(win: { location?: { search?: string } } = globalThis): boolean {
+  try { return new URLSearchParams(win.location?.search || '').get('post') === '1'; } catch { return false; }
+}
+
+/**
+ * Post-process ambient occlusion is on by default when the stack is on. Measured on an M4 Pro at 1080p: the AO pass adds about 0.7 to 1.5 ms
  * and the whole stack about 3 ms; at 2x about 2.2 ms for AO and 3.7 ms for the stack (docs/agent-work/os-phase2-post-20261019.md), inside the
  * 3 ms and 5 ms gates. `?ao=0` turns it off (and, in look.ts, the baked AO too), for comparison and for a slow machine.
  */

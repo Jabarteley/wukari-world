@@ -60,7 +60,7 @@ export const fxUsesPost = (tier: FxTier): boolean => tier === 'high'
 
 /**
  * Load the fx parts this tier may use and return the host that owns them. Call `dispose` when the scene goes away.
- * The weather always; on the high tier, given a context, the post stack as well.
+ * The weather always; on the high tier, given a context and `?post=1` (post.ts postEnabled), the post stack as well.
  */
 export async function loadFx(tier: FxTier, context?: FxContext): Promise<FxHost> {
   let post: Post | null = null
@@ -68,7 +68,8 @@ export async function loadFx(tier: FxTier, context?: FxContext): Promise<FxHost>
   // FX_IMPORTS: rain, particles and feel for every tier; `if (fxUsesPost(tier))` around anything that imports postprocessing or n8ao.
   const weather = await import('./weather.ts')
   if (fxUsesPost(tier) && context) {
-    const { createPost, postAoEnabled } = await import('./post.ts')
+    const { createPost, postAoEnabled, postEnabled } = await import('./post.ts')
+    if (!postEnabled()) return { tier, weather, post: null, regrade, dispose() {} }
     const gradeNow = (now: number) => gradeFor(cityRules(context.cityId)?.climate, now)
     const size = context.renderer.getSize(new context.THREE.Vector2())
     const first = gradeNow(Date.now())

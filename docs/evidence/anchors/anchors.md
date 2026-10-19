@@ -25,7 +25,7 @@ Notes a critic should know:
 - **The street is the free starter house's street in Agege, not Yaba.** Open mode settles a new life in the first local
   government of the city (`server/open-dev/life.ts`) and a change of local government waits seven days. The street scene is the same
   code for every Lagos home, so this is the "Yaba street" the plan means, but nothing Yaba-specific is dressed on it. Integrator
-  request: an optional `ALLWORLD_OPEN_DEV_LGA` (for example `lagos-mainland`) in `server/open-dev/life.ts` would let the harness
+  request: an optional open-mode setting for the home local government (for example `lagos-mainland`), read in `server/open-dev/life.ts`, would let the harness
   stand in Yaba itself.
 - Kano's market at noon reads as a day scene; the game's text on the Kano HUD says the light is off around the district until
   12:45 AM, a real-time power cut, which does not change the scene's own light.

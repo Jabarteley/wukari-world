@@ -411,6 +411,9 @@ export interface SourceCampaign extends SourceCounts { source: string; medium: s
 /** One Lagos day of one campaign. */
 export interface SourceRow extends SourceCampaign { day: number; date: string }
 
+/** Activated / landed for one "source / medium / campaign": `landed` page opens, `activated` lives that did a first meaningful action (walked, posted, joined a community, said going). `rate` is a percent, or null when nothing landed. */
+export interface ActivationRow { source: string; medium: string; campaign: string; landed: number; activated: number; rate: number | null }
+
 /** Lives that were old enough, and how many were seen again on that day. `rate` is a percent, or null when there are none. */
 export interface ReturnCell { lives: number; returned: number; rate: number | null }
 export interface ReturnRow { d1: ReturnCell; d7: ReturnCell; d30: ReturnCell }
@@ -443,6 +446,8 @@ export interface GrowthMetricsResponse {
   sources: SourceRow[]
   /** The same, summed over the days shown, most landings first. */
   campaigns: SourceCampaign[]
+  /** Activation per source and campaign over the days kept, most landings first (server/growth/metrics.ts activationReport). */
+  activation: ActivationRow[]
   /** Day-1, day-7 and day-30 return by how a life arrived (ad source) and by whether it made a friend in its first two days. Aggregate only. */
   returns: ReturnSplit
   /** Of the followed lives at least eight days old, how many had three real friends within their first week (the social platform's north star). */
@@ -726,7 +731,7 @@ export const TABLE_STATE_FRAME_KEYS = [
   'clock', 'cityId', 'host', 'log', 'n', 'optionList', 'result', 'stakes', 'table', 'toMove', 'type', 'view', 'you',
 ] as const satisfies readonly (keyof TableStateFrame)[]
 export const GROWTH_METRICS_RESPONSE_KEYS = [
-  'analytics', 'campaigns', 'cohorts', 'days', 'funnel', 'generatedAt', 'northStar', 'retention', 'returns', 'serverTime', 'source', 'sources', 'timezone', 'totals', 'tracked',
+  'activation', 'analytics', 'campaigns', 'cohorts', 'days', 'funnel', 'generatedAt', 'northStar', 'retention', 'returns', 'serverTime', 'source', 'sources', 'timezone', 'totals', 'tracked',
 ] as const satisfies readonly (keyof Ok<GrowthMetricsResponse>)[]
 export const OUTREACH_OPERATOR_RESPONSE_KEYS = [
   'comeback', 'email', 'log', 'previews', 'push', 'quietNow', 'rules', 'serverTime', 'whatsapp',

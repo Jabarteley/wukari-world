@@ -52,7 +52,7 @@ import { createShare, findShare, sharePageHtml } from '../growth/share.ts';
 import { bonusConfig, claimedOf, publicOffer } from '../bonus/service.ts';
 import { referralService } from '../growth/referral.ts';
 import { isProbeSession } from '../protocol.ts';
-import { CLIENT_SIGNALS, count, countSource, prune, touch } from '../growth/metrics.ts';
+import { CLIENT_SIGNALS, count, countSource, noteActivated, prune, touch } from '../growth/metrics.ts';
 import { outreachService } from '../growth/outreach.ts';
 import { tablesService } from '../growth/tables.ts';
 import { oroService } from '../growth/oro.ts';
@@ -88,6 +88,17 @@ export default function growthRoutes(ctx: RouteContext): Record<RouteKey, RouteH
   (ctx.checks ??= {}).minor = (db: Db, publicId: string): boolean => typeof publicId === 'string' && ctx.collection(db, 'growth')?.players?.[publicId]?.consent?.age === 'minor';
   // Meetups need an explicit "18 or older" (server/trust/service.ts): not answering is not the same as being an adult.
   ctx.checks.adult = (db: Db, publicId: string): boolean => typeof publicId === 'string' && ctx.collection(db, 'growth')?.players?.[publicId]?.consent?.age === 'adult';
+
+  // A person's first real step in a venue (ws/rooms.ts 'player-walked') is a meaningful action: noted once per life (growth/metrics.ts noteActivated).
+  // Sockets belong to people only. Players already noted are remembered in memory so a reconnect writes nothing.
+  const walked = new Set<string>();
+  ctx.on?.('player-walked', ({ id }) => {
+    if (walked.has(id)) return;
+    if (walked.size >= 5000) walked.clear();
+    walked.add(id);
+    const work = ctx.store.transact((db) => { noteActivated(growthOf(ctx, db), ctx.now(), id); }, { durable: false }).catch(() => undefined);
+    ctx.waitUntil?.(work);
+  });
 
   /** Authenticate, rate limit, find the caller's created life in the city (never creating one), and run `call`. */
   const route = (call: (args: GrowthCall) => GrowthAnswer, { durable = true }: { durable?: boolean | ((result: GrowthAnswer) => boolean) } = {}): RouteHandler => async (request) => {

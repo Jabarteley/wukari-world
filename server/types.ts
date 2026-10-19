@@ -751,7 +751,7 @@ export interface GrowthMetricsRecord {
   days?: Record<string, Record<string, number>>
   cohorts?: Record<string, { size: number; r: Record<string, number> }>
   /** `src` (optional, added with the return split): the cleaned "source|medium|campaign" the life arrived by; `ret` a bit mask of the retention days seen (1, 7, 30 → bits 0, 1, 2); `fr` the Lagos day of its first real friend; `done` the same mask for the days already counted into `split`. */
-  lives?: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; cl?: number; ag?: number; po?: number; f3?: number; done?: number }>
+  lives?: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; cl?: number; ag?: number; po?: number; f3?: number; act?: number; done?: number }>
   /**
    * Day-1, day-7 and day-30 return by how a life arrived and by whether it made a friend in its first two days, counted once when
    * the life is old enough: { [cohortLagosDay]: { "src:<source|medium|campaign>" | "friend:yes" | "friend:no": { "1" | "7" | "30": [lives, returned] } } }.
@@ -762,8 +762,10 @@ export interface GrowthMetricsRecord {
   splitAt?: number
   /** Visits by campaign: { [lagosDay]: { "source|medium|campaign|content": counts } } (server/growth/metrics.ts). */
   sources?: Record<string, Record<string, SourceCounts>>
+  /** First meaningful actions by arrival words: { [cohortLagosDay]: { "source|medium|campaign": lives } }, counted once per life (noteActivated). Aggregate only. */
+  activation?: Record<string, Record<string, number>>
 }
-export type GrowthCityMetricsRecord = Omit<GrowthMetricsRecord, 'cities' | 'sources'>
+export type GrowthCityMetricsRecord = Omit<GrowthMetricsRecord, 'cities' | 'sources' | 'activation'>
 export interface GrowthCityTablesRecord {
   ratings?: Record<string, Partial<Record<TableGameId, { rating: number; played: number; won: number }>>>
 }
@@ -1248,6 +1250,8 @@ export interface ServerEvents {
   'venue-line': { room: string; group: string | null; from: { id: string; name: string; agent?: boolean }; body: string; /** The line's number in the place's book, so a reply can be addressed to it. */ seq?: number }
   /** rooms.js: a room's membership or a member's name changed. `cause` is who joined, left or was renamed. */
   'room-changed': { room: string; cityId: string; venueId: string; members: string[]; cause: string | null }
+  /** rooms.js: a connection's first real step in a venue (its position changed). Raised once per connection; the growth module notes the player's first meaningful action (growth/metrics.ts noteActivated). Never raised for an AI character: those hold no socket. */
+  'player-walked': { id: string }
   /** social: a house visit ended; rooms.js drops that guest from the host's Home room. */
   'visit-ended': { hostId: string; guestId: string }
   /** social: a player who came through `inviter`'s link was introduced to them (comeback mail looks at the inviter soon). */

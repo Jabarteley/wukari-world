@@ -5,8 +5,8 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useAdmin } from './useAdmin.ts'
 import { absolute, bytes, naira, relative, uptime } from './adminModel.ts'
-import { accountsPerDay, attentionOf, field, fillTone, lastDays, percent, returnCell, returning, series, shortDate, sizeTone, sourceLabel, trendOf } from './dashboardModel.ts'
-import type { Attention, DayRow, ReturnsRead } from './dashboardModel.ts'
+import { accountsPerDay, attentionOf, campaignRows, field, fillTone, lastDays, percent, returnCell, returning, series, shortDate, sizeTone, sourceLabel, trendOf } from './dashboardModel.ts'
+import type { ActivationRead, Attention, DayRow, ReturnsRead } from './dashboardModel.ts'
 import type { TestSessions } from '../../../types/admin.ts'
 import Spark from './charts/Spark.vue'
 import Trend from './charts/Trend.vue'
@@ -26,7 +26,7 @@ interface Dash {
   storage: { collections: Record<string, number>; rows: unknown; writes: number | null }; build: string; uptimeMs: number
   extra: { id: string; label: string; group?: string; cost: string; value: number | string | null }[]
 }
-interface Hist { returns?: ReturnsRead; asOf: number; startedOn: string | null; kept: number; days: DayRow[]; funnel: { today: { steps: FunnelRow[]; returned: { size: number; back: number; rate: number | null } }; week: { steps: FunnelRow[]; returned: { size: number; back: number; rate: number | null } } } }
+interface Hist { returns?: ReturnsRead; activation?: ActivationRead[]; asOf: number; startedOn: string | null; kept: number; days: DayRow[]; funnel: { today: { steps: FunnelRow[]; returned: { size: number; back: number; rate: number | null } }; week: { steps: FunnelRow[]; returned: { size: number; back: number; rate: number | null } } } }
 interface Eco {
   asOf: number; cashInCirculation: number; players: number; median: number; richest: { id: string; name: string; cash: number }[]; sessionsRead: number; truncated: boolean; cost: string
   faucets: { category: string; net: number }[]; sinks: { category: string; net: number }[]; adminMoney: { category: string; net: number }[]
@@ -55,6 +55,7 @@ onMounted(() => { void load(); void economy(); void loadTests(); timer = setInte
 onBeforeUnmount(() => clearInterval(timer))
 
 const days = computed(() => hist.value?.days ?? [])
+const campaigns = computed(() => campaignRows(hist.value?.activation, hist.value?.returns))
 const labels = computed(() => days.value.map((row) => shortDate(row.date)))
 const two = computed(() => lastDays(days.value, 14)), twoLabels = computed(() => two.value.map((row) => shortDate(row.date)))
 const newSeries = computed(() => series(two.value, (row) => row.new)), seenSeries = computed(() => series(two.value, (row) => row.seen))
@@ -141,6 +142,14 @@ const asOf = computed(() => (dash.value ? `as of ${absolute(dash.value.asOf)}, $
           <tr v-for="row in hist.returns.bySource" :key="sourceLabel(row)"><td>{{ sourceLabel(row) }}</td><td>{{ returnCell(row.d1) }}</td><td>{{ returnCell(row.d7) }}</td><td>{{ returnCell(row.d30) }}</td></tr>
         </tbody></table>
         <p class="adm-sub">{{ hist.returns.note }}</p>
+      </div>
+
+      <div v-if="campaigns.length" class="adm-card adm-scroll">
+        <h2>Adverts: activation and day-7 return, by campaign</h2>
+        <table class="adm-table"><caption class="adm-sr">For each campaign: the share of landings that did something in the world, and the share of players who were back on day 7</caption><thead><tr><th scope="col">Campaign</th><th scope="col">Activation</th><th scope="col">Day-7 return</th></tr></thead><tbody>
+          <tr v-for="row in campaigns" :key="row.label"><th scope="row">{{ row.label }}</th><td>{{ row.activation }}</td><td>{{ row.day7 }}</td></tr>
+        </tbody></table>
+        <p class="adm-sub">Activation: a person walked in the world, posted, joined a community or said they are going to an event, out of the page opens counted for the campaign (a reload counts as a landing, so it is a floor). Day-7 return: of the players who began under the campaign and are eight days old, the share seen again on day 7 itself. AI agents are never counted.</p>
       </div>
 
       <div class="adm-two">

@@ -14,3 +14,7 @@ dist-maps/
 
 # Downloaded source data for scripts/geo
 .cache/
+
+# Unique places programme
+scripts/places/.cache/
+scripts/places/out/

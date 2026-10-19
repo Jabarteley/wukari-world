@@ -47,7 +47,8 @@ scripts/places/
     "footprint": "rect|L|U|T|H|ring|oval|round|cross|irregular",
     "width_m": 180, "depth_m": 60,        // main mass, best estimate, real metres
     "storeys": 3, "height_m": 22,         // main mass; height_m is to roof top excluding spires/towers
-    "roof": "flat|gable|hip|shed|barrel|dome|multi-dome|tensile|sawtooth|pyramidal|mansard|stepped|none",
+    "roof": "flat|gable|hip|shed|barrel|dome|multi-dome|tensile|sawtooth|pyramidal|mansard|stepped|curved|wave|none",
+    "variant": "optional free text sub-type for the generator (e.g. pier, regional, twin-tower); generators must not require it",
     "wings": 2                            // optional: count of secondary masses
   },
   "facade": {
@@ -140,6 +141,10 @@ def build(brief: dict, style: dict, rng: random.Random, detail: int) -> list:  #
 - Materials: the lib exposes `lib.mat(slot)` for the global trim atlas (UV-mapped slots: wall finishes, glazing, roof, trims,
   ground) and colours via vertex colour `COLOR_0` (`lib.tint(obj, '#hex')`). No other images. LOD2 uses vertex colour only.
 - No lights, cameras, extras, empties or animation in exports.
+- Models carry NO baseColorTexture: the game binds the global `scripts/places/atlas/trim.webp` to material "trim" using `atlas/slots.json`.
+  Packing uses gltfpack with `-kv` so the UVs of the texture-less material survive.
+- Each model has a building object and an optional `-site` object (ground, trees, cars). The silhouette mask uses the building only;
+  the 120 m clamp applies to building and site together. `form.width_m/depth_m` describe the main mass only.
 
 ## Output and acceptance per model
 

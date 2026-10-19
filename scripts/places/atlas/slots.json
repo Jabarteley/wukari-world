@@ -1,0 +1,320 @@
+{
+ "schema": "allworld-trim-atlas",
+ "version": 1,
+ "size": 2048,
+ "gutter": 8,
+ "slots": {
+  "plain-render": {
+   "px": [
+    8,
+    8,
+    480,
+    480
+   ],
+   "tileM": [
+    4,
+    4
+   ],
+   "kind": "wall"
+  },
+  "rough-concrete": {
+   "px": [
+    504,
+    8,
+    480,
+    480
+   ],
+   "tileM": [
+    4,
+    4
+   ],
+   "kind": "wall"
+  },
+  "brick": {
+   "px": [
+    1000,
+    8,
+    480,
+    480
+   ],
+   "tileM": [
+    2,
+    2
+   ],
+   "kind": "wall"
+  },
+  "stone-blocks": {
+   "px": [
+    1496,
+    8,
+    480,
+    480
+   ],
+   "tileM": [
+    4,
+    4
+   ],
+   "kind": "wall"
+  },
+  "mud-render": {
+   "px": [
+    8,
+    504,
+    480,
+    480
+   ],
+   "tileM": [
+    4,
+    4
+   ],
+   "kind": "wall"
+  },
+  "metal-cladding": {
+   "px": [
+    504,
+    504,
+    480,
+    480
+   ],
+   "tileM": [
+    4,
+    4
+   ],
+   "kind": "wall"
+  },
+  "corrugated": {
+   "px": [
+    1768,
+    504,
+    224,
+    224
+   ],
+   "tileM": [
+    2,
+    2
+   ],
+   "kind": "roof"
+  },
+  "clay-tile": {
+   "px": [
+    8,
+    1000,
+    224,
+    224
+   ],
+   "tileM": [
+    2,
+    2
+   ],
+   "kind": "roof"
+  },
+  "slate": {
+   "px": [
+    248,
+    1000,
+    224,
+    224
+   ],
+   "tileM": [
+    2,
+    2
+   ],
+   "kind": "roof"
+  },
+  "metal-roof": {
+   "px": [
+    488,
+    1000,
+    224,
+    224
+   ],
+   "tileM": [
+    3,
+    3
+   ],
+   "kind": "roof"
+  },
+  "roof-flat": {
+   "px": [
+    728,
+    1000,
+    224,
+    224
+   ],
+   "tileM": [
+    4,
+    4
+   ],
+   "kind": "roof"
+  },
+  "timber": {
+   "px": [
+    968,
+    1000,
+    224,
+    224
+   ],
+   "tileM": [
+    1.6,
+    1.6
+   ],
+   "kind": "wall"
+  },
+  "paving": {
+   "px": [
+    1208,
+    1000,
+    224,
+    224
+   ],
+   "tileM": [
+    2,
+    2
+   ],
+   "kind": "ground"
+  },
+  "asphalt": {
+   "px": [
+    1448,
+    1000,
+    224,
+    224
+   ],
+   "tileM": [
+    4,
+    4
+   ],
+   "kind": "ground"
+  },
+  "grass": {
+   "px": [
+    1688,
+    1000,
+    224,
+    224
+   ],
+   "tileM": [
+    4,
+    4
+   ],
+   "kind": "ground"
+  },
+  "laterite": {
+   "px": [
+    8,
+    1240,
+    224,
+    224
+   ],
+   "tileM": [
+    4,
+    4
+   ],
+   "kind": "ground"
+  },
+  "sand": {
+   "px": [
+    248,
+    1240,
+    224,
+    224
+   ],
+   "tileM": [
+    4,
+    4
+   ],
+   "kind": "ground"
+  },
+  "glass-curtain": {
+   "px": [
+    1000,
+    504,
+    240,
+    288
+   ],
+   "tileM": [
+    3,
+    3.6
+   ],
+   "kind": "glazing"
+  },
+  "glass-punched": {
+   "px": [
+    1560,
+    504,
+    192,
+    256
+   ],
+   "tileM": [
+    1.2,
+    1.6
+   ],
+   "kind": "glazing"
+  },
+  "glass-shopfront": {
+   "px": [
+    1256,
+    504,
+    288,
+    288
+   ],
+   "tileM": [
+    3,
+    3
+   ],
+   "kind": "glazing"
+  },
+  "glass-ribbon": {
+   "px": [
+    488,
+    1240,
+    480,
+    128
+   ],
+   "tileM": [
+    4,
+    1.2
+   ],
+   "kind": "glazing"
+  },
+  "cornice": {
+   "px": [
+    984,
+    1240,
+    480,
+    64
+   ],
+   "tileM": [
+    4,
+    0.5
+   ],
+   "kind": "trim"
+  },
+  "frame": {
+   "px": [
+    1480,
+    1240,
+    224,
+    32
+   ],
+   "tileM": [
+    2,
+    0.3
+   ],
+   "kind": "trim"
+  },
+  "plain": {
+   "px": [
+    1720,
+    1240,
+    32,
+    32
+   ],
+   "tileM": [
+    1,
+    1
+   ],
+   "kind": "trim"
+  }
+ }
+}

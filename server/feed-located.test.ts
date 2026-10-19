@@ -71,3 +71,109 @@ test('locals only: a community of a real place admits people whose badge is in i
   const imagined = await post('/api/feed/crews', { name: 'New Eko', kind: 'city', placeName: 'New Eko', open: true, locals: 'city' }, ada);
   assert.equal(imagined.crew.locals, undefined, 'an imagined place has no locals');
 });
+
+test('the badge\'s local government: one of the city\'s own, shown with its name, never a position; a stranger\'s id is refused', async (t) => {
+  const { f, get, post, player } = await setup(t);
+  const ada = await player('Ada'), bola = await player('Bola');
+  assert.equal((await post('/api/feed/located', { city: 'lagos', lga: 'atlantis' }, ada)).code, 'unknown_area');
+  assert.equal((await post('/api/feed/located', { city: 'lagos', lga: 'dala' }, ada)).code, 'unknown_area', 'a local government of another city');
+  const on = await post('/api/feed/located', { city: 'lagos', lga: 'ikeja', lat: 6.6018, lon: 3.3515, accuracy: 25 }, ada);
+  assert.deepEqual(on.profile.located, { city: 'lagos', name: 'Lagos', lga: 'ikeja', lgaName: 'Ikeja' });
+  const stored = await f.server.store.read((db) => JSON.stringify((db as Record<string, unknown>).feed));
+  assert.equal(/6\.60|3\.35|lat|lon|accuracy/.test(stored), false, 'nothing like a position is kept, even if a client sends one');
+  assert.match(stored, /"lga":"ikeja"/);
+  assert.equal((await get(`/api/feed/profile?id=${ada.id}`, bola)).profile.located.lgaName, 'Ikeja');
+  const cityOnly = await post('/api/feed/located', { city: 'lagos' }, ada);
+  assert.deepEqual(cityOnly.profile.located, { city: 'lagos', name: 'Lagos' }, 'the city alone, when the player chose that');
+});
+
+test('Near you: neighbours first, then the city, then the world; this month\'s counts, each person once; without a badge it is the city tab', async (t) => {
+  const { f, get, post, player } = await setup(t);
+  const ada = await player('Ada'), bola = await player('Bola'), chidi = await player('Chidi'), dayo = await player('Dayo'), eve = await player('Eve');
+  await post('/api/feed/located', { city: 'lagos', lga: 'ikeja' }, ada);
+  await post('/api/feed/located', { city: 'lagos', lga: 'ikeja' }, bola);
+  await post('/api/feed/located', { city: 'lagos', lga: 'surulere' }, chidi);
+  await post('/api/feed/located', { city: 'ibadan' }, dayo);
+  const neighbour = (await post('/api/feed/post', { body: 'Ikeja market is busy today' }, bola)).post.id;
+  f.advance(2 * 3600000);
+  const cityPost = (await post('/api/feed/post', { body: 'Traffic on the bridge' }, chidi)).post.id;
+  f.advance(3600000);
+  const latest = (await post('/api/feed/post', { body: 'Hello everyone' }, eve)).post.id;
+  const order = (page: Record<string, any>): string[] => page.posts.map((p: Record<string, any>) => p.id).filter((id: string) => [neighbour, cityPost, latest].includes(id));
+  assert.deepEqual(order(await get('/api/feed/list?tab=world', ada)), [latest, cityPost, neighbour], 'the world tab: newest first');
+  const near = await get('/api/feed/list?tab=near', ada);
+  assert.equal(near.tab, 'near');
+  assert.equal(order(near)[0], neighbour, 'a neighbour in the same local government comes first, though older');
+  assert.deepEqual(near.near, { city: 'lagos', cityName: 'Lagos', n: 3, lga: 'ikeja', lgaName: 'Ikeja', lgaN: 2 });
+  assert.equal(JSON.stringify(near.near).includes(bola.id), false, 'counts, never who');
+  // Dayo's badge is in Ibadan: his Near you is Ibadan's (no posts there) and then the world, and his line counts Ibadan.
+  assert.deepEqual((await get('/api/feed/list?tab=near', dayo)).near, { city: 'ibadan', cityName: 'Ibadan', n: 1 });
+  // Eve has no badge: the city tab, with no counts line.
+  const plain = await get('/api/feed/list?tab=near', eve), city = await get('/api/feed/list?tab=city', eve);
+  assert.equal(plain.near, undefined);
+  assert.deepEqual(order(plain), order(city));
+  // Each person counts once a month, where their badge is now; removing it takes them off.
+  await post('/api/feed/located', { city: 'lagos', lga: 'ikeja' }, ada);
+  assert.equal((await get('/api/feed/list?tab=near', ada)).near.lgaN, 2, 'checking again does not count twice');
+  await post('/api/feed/located', { city: 'lagos', lga: 'surulere' }, bola);
+  const moved = (await get('/api/feed/list?tab=near', ada)).near;
+  assert.deepEqual([moved.n, moved.lgaN], [3, 1]);
+  await post('/api/feed/located', { on: false }, chidi);
+  assert.equal((await get('/api/feed/list?tab=near', ada)).near.n, 2);
+  const stored = await f.server.store.read((db) => JSON.stringify(((db as Record<string, any>).feed).here));
+  assert.equal(/[0-9a-f]{8}-/.test(stored), false, 'the counts hold no ids');
+  // A new month starts from nothing (Ada's badge still shows; it lasts 90 days). A write on the way keeps her session.
+  f.advance(20 * 86400000);
+  await post('/api/feed/seen', {}, ada);
+  f.advance(12 * 86400000);
+  const later = await get('/api/feed/list?tab=near', ada);
+  assert.deepEqual([later.near.n, later.near.lgaN], [0, 0]);
+  await post('/api/feed/located', { city: 'lagos', lga: 'ikeja' }, ada);
+  assert.deepEqual((await get('/api/feed/list?tab=near', ada)).near.lgaN, 1);
+  assert.equal((await get('/api/feed/list?tab=nearby', ada)).status, 400);
+});
+
+test('Plans and Work list what is near you first: your local government, then your city', async (t) => {
+  const { f, get, post, player } = await setup(t);
+  const ada = await player('Ada'), bola = await player('Bola'), eve = await player('Eve');
+  await post('/api/feed/located', { city: 'lagos', lga: 'ikeja' }, ada);
+  await post('/api/feed/located', { city: 'lagos', lga: 'ikeja' }, bola);
+  const far = (await post('/api/feed/events', { title: 'Beach day', start: f.now() + 2 * 3600000, place: 'Elegushi' }, eve)).event.id;
+  const near = (await post('/api/feed/events', { title: 'Street football', start: f.now() + 5 * 3600000, place: 'The pitch' }, bola)).event.id;
+  const named = (await post('/api/feed/events', { title: 'Book club', start: f.now() + 9 * 3600000, place: 'Ikeja City Mall' }, eve)).event.id;
+  const ids = (r: Record<string, any>, key: string): string[] => r[key].map((x: Record<string, any>) => x.id);
+  assert.deepEqual(ids(await get('/api/feed/events?city=lagos', eve), 'events'), [far, near, named], 'without a badge: soonest first');
+  assert.deepEqual(ids(await get('/api/feed/events?city=lagos', ada), 'events'), [near, named, far], 'a neighbour\'s event, and one at a place in Ikeja, first');
+  const g1 = (await post('/api/feed/gigs', { title: 'Paint my sign', reward: 500 }, bola)).gig.id;
+  const g2 = (await post('/api/feed/gigs', { title: 'Carry boxes', reward: 300 }, eve)).gig.id;
+  assert.deepEqual(ids(await get('/api/feed/gigs?city=lagos', eve), 'gigs'), [g2, g1], 'without a badge: newest first');
+  assert.deepEqual(ids(await get('/api/feed/gigs?city=lagos', ada), 'gigs'), [g1, g2], 'a neighbour\'s gig first');
+});
+
+test('neighbours: a community of one local government, kept for the people confirmed there', async (t) => {
+  const { post, player } = await setup(t);
+  const ada = await player('Ada'), bola = await player('Bola'), chidi = await player('Chidi');
+  await post('/api/feed/located', { city: 'lagos', lga: 'ikeja' }, ada);
+  assert.equal((await post('/api/feed/crews', { name: 'Ikeja Peeps', kind: 'area', city: 'lagos', lga: 'atlantis', open: true }, ada)).code, 'unknown_area');
+  const made = await post('/api/feed/crews', { name: 'Ikeja Peeps', kind: 'area', city: 'lagos', lga: 'ikeja', open: true, locals: 'lga' }, ada);
+  assert.equal(made.crew.locals, 'lga');
+  assert.equal(made.crew.place.lga, 'ikeja');
+  assert.equal(made.crew.place.lgaName, 'Ikeja');
+  assert.equal(made.crew.qualifies, true);
+  await post('/api/feed/located', { city: 'lagos', lga: 'surulere' }, chidi);
+  const refused = await post('/api/feed/crews/join', { id: made.crew.id }, chidi);
+  assert.equal(refused.code, 'locals_only');
+  assert.match(refused.reason, /Ikeja, Lagos/);
+  await post('/api/feed/located', { city: 'lagos' }, bola);
+  assert.equal((await post('/api/feed/crews/join', { id: made.crew.id }, bola)).code, 'locals_only', 'a city badge without the local government is not enough');
+  await post('/api/feed/located', { city: 'lagos', lga: 'ikeja' }, bola);
+  assert.equal((await post('/api/feed/crews/join', { id: made.crew.id }, bola)).crew.mine, true);
+  // The founder widens it to the city; the city scope still works as before.
+  assert.equal((await post('/api/feed/crews/locals', { id: made.crew.id, locals: 'city' }, ada)).crew.locals, 'city');
+  assert.equal((await post('/api/feed/crews/join', { id: made.crew.id }, chidi)).crew.mine, true);
+  assert.equal((await post('/api/feed/crews/locals', { id: made.crew.id, locals: 'lga' }, ada)).crew.locals, 'lga', 'and back to the area');
+  // A community of the whole city has no area to keep it for.
+  const whole = await post('/api/feed/crews', { name: 'Lagos Peeps', kind: 'city', city: 'lagos', open: true, locals: 'lga' }, ada);
+  assert.equal(whole.crew.locals, undefined);
+  assert.equal((await post('/api/feed/crews/locals', { id: whole.crew.id, locals: 'lga' }, ada)).code, 'invalid_scope');
+});

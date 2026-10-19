@@ -7,7 +7,7 @@ import { onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import PostCard from './PostCard.vue'
 import { feedApi, portraitUrl } from './feedApi.ts'
-import { SKILLS } from '../../../feed/model.ts'
+import { SKILLS, badgePlaceText } from '../../../feed/model.ts'
 import type { PostView, ProfileView } from '../../../types/feed.ts'
 
 const props = defineProps<{ id: string }>()
@@ -31,7 +31,7 @@ async function vouch(on: boolean, which = skill.value): Promise<void> { const r 
     <div class="feed-card">
       <div class="feed-head">
         <img v-if="profile.portrait" class="feed-portrait is-big" :src="portraitUrl(profile.id, profile.portrait)" alt="">
-        <div class="feed-who"><b v-if="profile.handle">@{{ profile.handle }}</b><small v-if="profile.followers">{{ profile.followers }}</small><small v-if="profile.located" class="feed-located">📍 In {{ profile.located.name }} · confirmed by their device<template v-if="profile.located.net"> and network</template></small></div>
+        <div class="feed-who"><b v-if="profile.handle">@{{ profile.handle }}</b><small v-if="profile.followers">{{ profile.followers }}</small><small v-if="profile.located" class="feed-located">📍 In {{ badgePlaceText(profile.located) }} · confirmed by their device<template v-if="profile.located.net"> and network</template></small></div>
         <button v-if="profile.followable" type="button" class="social-btn" :class="{ 'is-primary': !profile.following }" @click="follow(!profile.following)">{{ profile.following ? 'Following' : 'Follow' }}</button>
       </div>
       <p v-if="profile.bio" class="feed-body">{{ profile.bio }}</p>

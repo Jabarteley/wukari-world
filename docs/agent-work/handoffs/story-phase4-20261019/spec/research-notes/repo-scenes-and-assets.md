@@ -1,0 +1,49 @@
+# Repo pass: venue scenes, street layer, asset pipeline, budgets (HEAD e40e95e84, read-only)
+
+## Headline
+No city has a unique scene set. Of 284 cities, 244 foreign ones use the same ~22 procedural venue scenes (only sign text and lighting differ). 31 formula Nigerian capitals add a small parametric decoration. 9 Nigerian cities have hand-written variants; Lagos and Abuja have one Blender GLB runtime module each. A Blender pipeline exists only on unmerged branch origin/claude/viral-assets and was used for arena props only.
+
+## Scene contract
+- src/scene/types.ts: SceneDef {mood, accent?, camera?, walk?, markers?, runtime?{createHost, request, reservation{triangles, drawCalls}, bounds, support, entranceYaw}, build(b: Batch, ctx: SceneContext): SceneLayout}; SceneLayout {spots: Landmark[], crowd: [x,z,ry?,y?][], spare?, raised?}; Landmark {key, match?, x, y?, z, ry?, act?, approach?}; SceneContext {kind, venue, spots, variant, accent, label, cityId}; SceneOptions (venue.scene) {kind, variant, palette, time, spots, look, seed, anchors, design?: ParametricVenueDesign}; Batch API box/cyl/cone/ball/ico/quad/disc/geometry/at/light + walls()/seat(); SceneEntry (group, walk grid, camera, sky, anchors, setCrowd, stats, setHostBudget, dispose).
+- src/scene/venue-scenes.ts (1,346 lines): DEFS from venues-{outdoor,social,work,civic,transport}.ts; kinds park, buka, hub, club, office, market, gym, mall, beach, hospital, salon, rooftop, police, worship, radio, polling, viewing, shrine, walk, statehouse, airport, refinery, generic; ALIASES library/church/mosque. createEntry(): requires cityScenesReady(cityId); def = citySceneDef(city, kind, variant) ?? DEFS[kind] ?? DEFS.generic; build; decorateParametricVenue when options.design and no runtime GLB; resolveAnchors; walk grid; skyDome; crowd placement (MAX_CROWD 12). Lighting from lighting.ts LIGHTING[mood][time] + weather/festival. Scenes static, baked into few merged meshes (build.ts createBatch). setHostBudget at line ~1288 still clamps runtime scenes to 17,000/60.
+- src/scene/kit.ts: shared unit geometries, one material per colour (Lambert when matte). src/scene/props.ts (551 lines): ~45 procedural helpers (room ground table chair stool bench sofa counter stall speaker screen plant palm leafTree bush lampPost shelf bed laptop desk rug bottles pot crate column flag parasol ropeLine stringLights fence windowPane door glassPanel spotMarker gameTable kiosk tallTree car sign signBoard tree lamp).
+- src/scene/city-scenes.ts: FETCH parts ibadan, campus, viewpoint, ogun-signature, ogun-everyday, port-harcourt, abuja, nigeria-runtime, kano, parametric; CITY_PARTS map; other cities get parametric only when a venue has scene.design. Exports loadCityScenes, cityScenesReady, citySceneDef, sceneCityIds, CITY_KINDS, loadParametricScenes.
+- Authored variant files: venues-kano.ts 66 KB, kano-b 57 KB, fct 65 KB, fct-b 61 KB, rivers 64 KB, rivers-b 69 KB, ogun-a 65 KB, ogun-b 102 KB, ibadan-a 7.5 KB, ibadan-b 53 KB, campus 8.7 KB, viewpoint 8.6 KB. Built chunks: city-abuja-scenes 72 KB, ibadan 35 KB, kano 68 KB, ogun-a 36 KB, ogun-b 62 KB, port-harcourt 75 KB; world-adapter (shared host) 190 KB.
+- GLB runtime: src/scene/nigeria-runtime-scenes.ts NIGERIA_RUNTIME_SCENES {lagosMarket, abujaMosque}; reservation 4,174/10 and 4,942/8; files public/assets/nigeria-runtime: Broad Street near 1,007 KB, far 776 KB; Abuja mosque near 1,140 KB, far 971 KB (4.9 MB total; ~7.3 MB decoded textures per tier). Loader src/scene/models/runtime-module.ts MAX_FILE_BYTES 8 MiB, MAX_TEXTURE_BYTES 9 MiB; rejects multi-scene, cameras, animations, skins, lights. runtime-host.ts near when indoor or camera < 30 units.
+- Parametric: src/scene/parametric-venue.ts decorateParametricVenue, buildQuietParametricWorship; ParametricVenueDesign {palette{wall,roof,accent,ground}, roof flat|gable|hipped, sign facade|roadside, props <=2 of tree|bench|planter|stall|lamp, landmark? rock|hill|tower|gate|river} (src/types/content.ts). Formula cities: src/game/cities/<id>/scenes.ts -> buildFormulaScenes(CITY_SPEC) (src/game/cities/formula/scenes.ts).
+- Foreign city rendering: src/game/cities/paris/content.ts = buildDestinationContent(FACTS, PLACES) (src/game/cities/africa/contentBuilder.ts) fills slots airport, transit(hub), meal(buka), community(office), clinic(hospital), recreation(park), market, worship, polling, government(statehouse) with real OSM names; src/game/cities/contentBuilder.ts:116 scene = spec.scenes?.[id] ?? {kind}. No design, no variant.
+
+## Street layer (owned by the NPC/city thread)
+- src/street/frame.ts, types.ts: TILE_METRES 128, QUANTUM 100 cm, GROUND_CELL 2, MAX_TILE_BUILDINGS 320, MAX_RAW_TILE_BYTES 256 KiB; WireStreetTile v1 {city, version, tile, ground, roads, buildings, doors, signs?}; SourceKind mapped|authored|generated; far tiles 512 m (FAR_MAX_BROTLI 12,000). Device-side detail procedural: facade.ts grammar, surface.ts shader-painted windows, signs.ts Overture boards, traffic.ts (<=4 draw calls).
+- Inputs: scripts/street/prepare.ts MAPPED_AREAS {lagos: [lagos-island, yaba]}; compile-mapped.ts from scripts/geo/sources/<area>/osm-*.json (ODbL); places.ts Overture (CDLA-Permissive-2.0); publish.ts atomic manifests.
+- Packs: Lagos 60 MB (2,158 near, 1,448 far), Ibadan 42 MB (3,563 near). Only these two cities.
+- docs/research/procedural-city-plan-2026-10-16.md: keep Three.js; OSM/Overture/Google Open Buildings (CC BY 4.0)/Copernicus DEM; Google 3D Tiles forbidden; tiles are ODbL derivative DB; Blender role: one meshopt facade/prop kit under 300 KB instanced; hero landmarks <=4,000 tris / 60 KB; phone caps 120,000 tris / 60 calls; phases P0-P7, 7-9 engineer-weeks + 2-3 Blender days.
+- docs/NPC-ALIVE.md: ambient figures src/scene/ambient/, TIER_CAPS full {8,6,5,14} light {3,3,2,0}.
+
+## Asset pipeline
+- On main: docs/ASSET-PIPELINE.md missing (linked from CARTRIDGES.md); scripts/blender absent; scripts/assets has only bake-food.ts; no .blend; .py files are geo tooling without bpy. Blender 5.2.2 LTS installed at /Applications/Blender.app (viral STATUS.md).
+- On origin/claude/viral-assets (c254d4327): scripts/assets/blender/common.py (10 KB: primitives, join, bake_atlas Smart UV -> Cycles DIFFUSE+AO -> one sRGB atlas, GLB export, byte-reproducible), ring/goal/pitch/ball/preview.py; fetch-pack.ts (Kenney/GitHub/itch/Poly Pizza/own), prepare.ts (strip, metres, WebP <=1024 via cwebp, gltfpack 1.3 EXT_meshopt_compression; caps 3,000 tris/character, 1,500/prop), budget.ts (1.5 MB Brotli/game), credits.ts, glb.ts, pack-types.ts; wants/*.json, manifests/*.json; licences CC0/CC-BY/MIT/ours.
+- Other assets: docs/ASSETS.md Quaternius CC0 body; src/scene/street/assets/ 128 GLBs 7.8 MB near/far 3 palettes with street-kit.ts, models/gltf-source.ts (meshopt), models/scene-models.ts (merge by atlas, budgets, stand-ins); src/housing-studio/asset-manifest.ts 13 GLBs ~188 KB; src/models/** procedural library (15 vehicles, 11 buildings; only trip vehicles wired).
+
+## Budgets (src/budgets.ts)
+SCENE_SCENERY_TRIANGLES 15,000; SCENE_CHARACTER_TRIANGLES 72,000; SCENE_TRIANGLES 87,000; SCENE_DRAW_CALLS 60; SCENE_SCENERY_MESHES 13; SCENE_LIGHTS 4; CITY_TRIANGLES/DRAW_CALLS 90,000/40; HOUSES 10,000/9/16; STARTUP_RAW/GZIP 615,000/223,000; LOADING 92,000/37,000; SCENE_HOST_RAW/GZIP 192,000/71,000; FIRST_PAINT_BROTLI 36,800; STARTUP_BROTLI 195,600; STREET_TILE_BROTLI/TRIANGLES 60,000/25,000 (provisional, unmeasured); WARDROBE_ITEM 60,000/4,000/1024; BASE_BODY/CLIP_PACK 300,000/200,000. scripts/download-budget.ts ASSET_PATTERNS; no per-city venue-scene or GLB-pack Brotli cap today. MAX_CITY_CONTENT_ASSET_BYTES 5,000,000.
+
+## Factories
+- scripts/city/build-city.ts (`npm run cities:build -- <id>`): from spec.ts (CitySpec: places with kind, lon/lat, scene {roof,sign,props,landmark}, homePalette, cast) writes content.ts, scenes.ts, map.ts, rules.ts, geography.ts. 31 formula cities.
+- scripts/geo/build-destination-detail.ts: Overpass/Geofabrik + scripts/geo/destination-detail/<id>.ts (~244) -> places.ts, geometry.ts, terrain.ts.
+- scripts/city/build-content-assets.ts -> dist/assets/cities/<id>.<sha>.json (284 files, 34-152 KB, median 66.5 KB, 18.5 MB total).
+- src/game/cities: 288 dirs, 142 MB; median city 228 KB; Paris: content.ts 204 B, facts.ts 1.2 KB, places.ts 10 KB, geometry.ts 36 KB, terrain.ts 58 KB.
+- No generator writes scene code or GLBs.
+
+## Map and tiers
+- src/map3d/city-build.ts buildCity() 90,000 tris / 40 calls; CityPack type; Lagos hand-built, others createModulePack(); destinations createDestinationMap(); estates.ts 512 estates; houses.ts FAR/NEARER/CLOSE.
+- src/lightMode.ts (data saver, LIGHT_TIER pixelRatio 1, shadow 512, 30 fps); src/scene/look.ts renderTier(): PHONE_TIER (1.5, 1024 shadows), HIGH_TIER (2.5, env, bloom), WIDE_TIER; ?quality=, ?matte. Scene geometry does not change by tier.
+
+## Tests for every city
+- src/game/cities/allCities.test.ts: every venue of every city with 12 crowd <= 87,000 tris / 60 calls; footprints; full journey.
+- src/scene/city-scenes.test.ts: per-city download; every venue drawn from its own city download; shared chunk within SCENE_HOST; chunk list asserted EXACTLY ['city-abuja-scenes','city-ibadan-scenes','city-kano-scenes','city-ogun-scenes-a','city-ogun-scenes-b','city-port-harcourt-scenes'] (must become a pattern).
+- src/scene/scenes.test.ts: every kind builds, >1,500 tris, <=4 lights, finite attributes, disposes, spots on landmarks, no frame loops/timers.
+- src/scene/parametric-venue.test.ts: 15 kinds x every design within budget and reachable.
+
+## Gaps
+1. Scene contract is code; no data format a generator can emit except ParametricVenueDesign and the runtime GLB request. 2. Bespoke GLB per venue is too many bytes. 3. Need new budgets for recipes/kits/heroes and ASSET_PATTERNS; merge viral-assets bpy scripts. 4. Per-venue tests already gate new scenes automatically.

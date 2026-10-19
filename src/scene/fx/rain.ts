@@ -110,12 +110,12 @@ void main() {
   vec3 p = vec3(xz.x, 0.03, xz.y);
   vec3 toCam = cameraPosition - p;
   float dist = max(length(toCam), 0.001);
-  float grow = smoothstep(0.0, 0.18, life) * 0.2 + 0.03;
-  float s = grow * max(1.0, dist * 0.035);
+  float grow = smoothstep(0.0, 0.18, life) * 0.3 + 0.05;
+  float s = grow * max(1.0, dist * 0.06);
   vec3 right = normalize(vec3(toCam.z, 0.0, -toCam.x) + vec3(0.0001, 0.0, 0.0));
   vec3 pos = p + right * (position.x * s) + vec3(0.0, (position.y + 0.5) * s * 0.7, 0.0);
   float show = step(life, 0.3) * smoothstep(0.3, 0.05, life) * smoothstep(uSplashBox * 0.5, uSplashBox * 0.2, length(r)) * open;
-  vA = show * uFade * 0.6;
+  vA = show * uFade;
   vC = uTint + lightAt(xz) * 2.2;
   vUv = position.xy + 0.5;
   gl_Position = vA <= 0.003 ? vec4(0.0, 0.0, 2.0, 1.0) : projectionMatrix * viewMatrix * vec4(pos, 1.0);
@@ -127,7 +127,7 @@ varying vec3 vC;
 varying vec2 vUv;
 void main() {
   vec2 q = vUv - vec2(0.5, 0.0);
-  float ring = smoothstep(0.1, 0.0, abs(length(q * vec2(1.0, 1.6)) - 0.42));
+  float ring = smoothstep(0.2, 0.0, abs(length(q * vec2(1.0, 1.6)) - 0.4));
   float dots = step(0.5, fract(q.x * 9.0 + 0.25));
   gl_FragColor = vec4(vC, vA * ring * (dots * 0.6 + 0.4));
 }
@@ -190,7 +190,7 @@ export function createRain({ THREE, parent, tier, cover = null, lightmap = null,
     uFade: unit<THREE.IUniform<number>>(1),
     uFocus: unit<THREE.IUniform<THREE.Vector3>>(new THREE.Vector3()),
     uCamVel: unit<THREE.IUniform<THREE.Vector3>>(new THREE.Vector3()),
-    uTint: unit<THREE.IUniform<THREE.Vector3>>(new THREE.Vector3(...look.tint).multiplyScalar(0.3)),
+    uTint: unit<THREE.IUniform<THREE.Vector3>>(new THREE.Vector3(...look.tint).multiplyScalar(0.55)),
     uCover: unit<THREE.IUniform<THREE.Texture>>(coverTexture),
     uCoverRect: unit<THREE.IUniform<THREE.Vector4>>(hasCover
       ? new THREE.Vector4(cover!.x0, cover!.z0, 1 / (cover!.cols * cover!.cell), 1 / (cover!.rows * cover!.cell)) : new THREE.Vector4(0, 0, 1, 1)),
@@ -224,7 +224,7 @@ export function createRain({ THREE, parent, tier, cover = null, lightmap = null,
   const dropMaterial = material(DROP_VERTEX, DROP_FRAGMENT, {
     ...shared,
     uBox: unit(field.box), uHeight: unit(field.height), uFall: unit(field.fall), uSeed: unit(field.seed), uWind: unit(new THREE.Vector2(field.wind[0], field.wind[1])),
-    uWidth: unit(0.012), uAlpha: unit(look.alpha),
+    uWidth: unit(0.022), uAlpha: unit(look.alpha),
   })
   const splashMaterial = material(SPLASH_VERTEX, SPLASH_FRAGMENT, { ...shared, uSplashBox: unit(SPLASH_BOX), uPeriod: unit(SPLASH_PERIOD) })
   const dropGeometry = instanced(count), splashGeometry = instanced(splashCount)
@@ -269,7 +269,7 @@ export function createRain({ THREE, parent, tier, cover = null, lightmap = null,
     setActive(on) { group.visible = on },
     setLight(next) {
       const to = RAIN_LOOK[next]
-      shared.uTint.value.set(to.tint[0], to.tint[1], to.tint[2]).multiplyScalar(0.3)
+      shared.uTint.value.set(to.tint[0], to.tint[1], to.tint[2]).multiplyScalar(0.55)
       dropMaterial.uniforms.uAlpha!.value = to.alpha
     },
     setLightmap,

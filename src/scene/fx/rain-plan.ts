@@ -32,14 +32,14 @@ export interface RainField {
 /** A field for a place: a box wide enough for a venue floor, a cloud base at 20 m. */
 export const FIELD: Readonly<RainField> = Object.freeze({ box: 56, height: 30, fall: 17, wind: [3.3, 1.35] as const, seed: 1.3 })
 /** The same field with a box that suits the tier: a phone's few drops are kept closer together. */
-export const fieldFor = (tier: RainTier): RainField => ({ ...FIELD, box: tier === 'phone' ? 40 : tier === 'wide' ? 48 : FIELD.box })
+export const fieldFor = (tier: RainTier): RainField => ({ ...FIELD, box: tier === 'phone' ? 32 : tier === 'wide' ? 44 : FIELD.box })
 
 /** How the rain is painted by the light of the day: a colour that reads against the ground, and how much of it. Additive, so brighter at night. */
 export type RainLight = 'day' | 'dusk' | 'night'
 export const RAIN_LOOK: Readonly<Record<RainLight, { tint: readonly [number, number, number]; alpha: number }>> = Object.freeze({
-  day: { tint: [0.95, 0.97, 1.0], alpha: 0.5 },
-  dusk: { tint: [0.8, 0.85, 0.95], alpha: 0.5 },
-  night: { tint: [0.6, 0.68, 0.85], alpha: 0.6 },
+  day: { tint: [0.95, 0.97, 1.0], alpha: 0.75 },
+  dusk: { tint: [0.85, 0.88, 0.97], alpha: 0.8 },
+  night: { tint: [0.65, 0.72, 0.9], alpha: 0.8 },
 })
 
 /** The number of drops for a tier; nothing at all when it is not wet. */

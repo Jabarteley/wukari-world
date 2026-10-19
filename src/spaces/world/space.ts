@@ -16,6 +16,8 @@ import { WORLD } from '../layout.ts'
 import { WORLD_GROUNDS, WORLD_SKIES, type WorldGround, type WorldSky } from '../worlds.ts'
 import { propOf } from '../props.ts'
 import { propMesh } from './props3d.ts'
+import { buildSpecHouse, type SpecBuilt } from './spec-house.ts'
+import type { HouseSpecV1 } from '../house-spec.ts'
 import { THREE, disposeTree, parseModel } from './look.ts'
 import type { PlacedModel, WorldItem } from '../../types/spaces.ts'
 
@@ -110,11 +112,15 @@ export interface BuiltSpace {
   isShell(node: InstanceType<typeof THREE.Object3D>): boolean
   /** Ground and floors, for placing a model where the player taps. */
   surfaces(): InstanceType<typeof THREE.Object3D>[]
+  /** A model standing as the whole house (docs/HOUSE-FROM-PHOTOS.md): loaded, set on the plot's corner, solid; answers where to start (its `allworld_spawn`, or before its front). */
+  setHouseModel(bytesOf: (hash: string) => Promise<ArrayBuffer | null>): Promise<{ x: number; z: number; yaw: number } | null>
   dispose(): void
 }
 
 /** `terrain`: a world (docs/WORLDS.md): open ground of this surface and no house at all; the plot is its size. */
-export interface SpaceInput { grid: number; owned: boolean; style: Record<string, number> | null; items: readonly WorldItem[]; terrain?: { ground: string; sky?: string } | null }
+/** What a copied house is built from (server/spaces/home-house.ts): a description, or a model of the player's standing as the whole house. */
+export type SpaceHouse = { kind: 'spec'; spec: HouseSpecV1 } | { kind: 'model'; hash: string; size: [number, number, number] }
+export interface SpaceInput { grid: number; owned: boolean; style: Record<string, number> | null; items: readonly WorldItem[]; terrain?: { ground: string; sky?: string } | null; house?: SpaceHouse | null }
 /** The sky over a space: a world's ground names one; a home stands under the day sky. */
 export const skyOf = (input: Pick<SpaceInput, 'terrain'>): string => {
   const t = input.terrain
@@ -132,9 +138,20 @@ export const timeOf = (input: Pick<SpaceInput, 'terrain'>): WorldSky => {
 
 export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
   seed = 7
-  const plot = plotOf(input.grid, input.owned)
   const open = input.terrain ? (Object.hasOwn(WORLD_GROUNDS, input.terrain.ground) ? input.terrain.ground as WorldGround : 'grass') : null
-  const plan: HousePlan = open ? { plot, floors: [[]], stairs: [] } : planOf(plot)
+  // A copied house replaces the game's own: a description is built here; a model is loaded later (setHouseModel). Either has its own plot.
+  const spec = !open && input.house?.kind === 'spec' ? input.house.spec : null
+  const asModel = !open && input.house?.kind === 'model' ? input.house : null
+  const gamePlot = plotOf(input.grid, input.owned)
+  const plot = spec ? { ...gamePlot, w: spec.width, d: spec.depth, floors: spec.storeys }
+    : asModel ? { ...gamePlot, w: Math.max(gamePlot.w, Math.ceil(asModel.size[0])), d: Math.max(gamePlot.d, Math.ceil(asModel.size[2])), floors: Math.min(3, Math.max(1, Math.round(asModel.size[1] / 3))) }
+    : gamePlot
+  /** No game house: open ground, or a copied one. */
+  const bare = Boolean(open || spec || asModel)
+  const plan: HousePlan = open ? { plot, floors: [[]], stairs: [] }
+    : spec ? { plot, floors: Array.from({ length: spec.storeys }, (_, f) => spec.rooms.filter((r) => r.floor === f).map((r) => ({ label: r.name, x: r.x, y: r.z, w: r.w, h: r.d }))), stairs: [] }
+    : asModel ? { plot, floors: Array.from({ length: plot.floors }, () => []), stairs: [] }
+    : planOf(plot)
   const root = new THREE.Group()
   const style = input.style ?? {}
   const pick = (field: keyof typeof HOUSE_STYLE, fallback: string): string => (HOUSE_STYLE[field][style[field] ?? 0] as { hex?: string } | undefined)?.hex ?? fallback
@@ -200,7 +217,7 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
   }
 
   // Floors: each room in its own finish (wood, or the tiles of a wet room or a terrace), and the slab round a stairwell above.
-  for (let f = 0; f < plot.floors; f++) {
+  for (let f = 0; f < (bare && !open ? 0 : plot.floors); f++) {
     const y = f * H
     const base = new THREE.Mesh(box(plot.w * T + THICK * 2, 0.12, plot.d * T + THICK * 2), slabMat)
     const hole = slabOf(plan, f)
@@ -263,7 +280,7 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
     }
   }
   const door = open ? 0 : doorSlot(plot.grid), window = open ? 0 : windowSlot(plot.grid)
-  for (let f = 0; f < (open ? 0 : plot.floors); f++) {
+  for (let f = 0; f < (bare ? 0 : plot.floors); f++) {
     const y = f * H, group = floors[f]!, w = plot.w * T, d = plot.d * T
     // Windows on every side, one in each room's stretch of outside wall that is long enough; the game's own window on the top wall.
     const rooms = plan.floors[f] ?? []
@@ -323,7 +340,7 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
   // The roof: a flat slab with a low parapet in the house's roof colour, seen from the yard (inside, the ceilings close the rooms).
   const roof = new THREE.Group()
   roof.name = 'roof'
-  if (!open) {
+  if (!bare) {
     const top = (plot.floors - 1) * H + WALL, w = plot.w * T, d = plot.d * T, roofMat = material({ color: pick('roof', '#a85c40'), roughness: 0.8 })
     const slab = solid(new THREE.Mesh(box(w + 0.5, 0.18, d + 0.5), roofMat))
     slab.position.set(w / 2, top + 0.09, d / 2)
@@ -335,6 +352,19 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
     }
   }
   root.add(roof)
+  // A described house: its walls, rooms, stairs and roof in the floors' groups, so showing a floor works as it does for the game's.
+  let specBuilt: SpecBuilt | null = null
+  if (spec) {
+    specBuilt = buildSpecHouse(spec, maxAnisotropy)
+    specBuilt.floors.forEach((g, f) => floors[f]?.add(g))
+    specBuilt.ceilings.forEach((g, f) => ceilings[f]?.add(g))
+    roof.add(specBuilt.roof)
+    surfaces.push(...specBuilt.surfaces)
+  }
+  // A model standing as the house: in a group of its own, which the physics treats as the house's walls (a mesh, not a hull).
+  const houseGroup = new THREE.Group()
+  houseGroup.name = 'floor-house'
+  root.add(houseGroup)
 
   // Stairs: one flight per storey, steps rising along x in the flight's direction.
   for (const flight of plan.stairs) {
@@ -408,7 +438,7 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
 
   return {
     root, plan,
-    walls: (floor) => (open ? [] : bumpsOf(plan, floor).map((w) => ({ x0: w.x0 * T, y0: w.y0 * T, x1: w.x1 * T, y1: w.y1 * T })).concat(outerWallsOf(plot.w * T, plot.d * T, floor === 0 ? [door * T, (door + 1) * T] : null))),
+    walls: (floor) => (specBuilt ? specBuilt.walls[floor] ?? [] : bare ? [] : bumpsOf(plan, floor).map((w) => ({ x0: w.x0 * T, y0: w.y0 * T, x1: w.x1 * T, y1: w.y1 * T })).concat(outerWallsOf(plot.w * T, plot.d * T, floor === 0 ? [door * T, (door + 1) * T] : null))),
     blocks: (floor) => [...(blocking[floor] ?? []), ...modelBlocks.filter((b) => b.floor === floor).map((b) => b.rect)],
     show(floor, inside, outdoors = false) {
       roof.visible = outdoors
@@ -465,8 +495,29 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
       return true
     },
     surfaces: () => surfaces,
+    async setHouseModel(bytesOf) {
+      if (!asModel) return null
+      const bytes = await bytesOf(asModel.hash)
+      if (!bytes || gone) return null
+      const model = await parseModel(bytes, maxAnisotropy)
+      if (gone) { disposeTree(model.root); return null }
+      // Wherever its maker left the origin, the house stands with its front-left corner on the plot's corner, on the ground.
+      const bounds = new THREE.Box3().setFromObject(model.root)
+      model.root.position.set(-bounds.min.x, -bounds.min.y, -bounds.min.z)
+      houseGroup.add(model.root)
+      houseGroup.updateWorldMatrix(true, true)
+      let spawn: { x: number; z: number; yaw: number } | null = null
+      model.root.traverse((node) => {
+        const mesh = node as InstanceType<typeof THREE.Mesh>
+        if (mesh.isMesh) { mesh.castShadow = true; mesh.receiveShadow = true; const box = new THREE.Box3().setFromObject(mesh); mesh.userData['floor'] = Math.max(0, Math.min(plot.floors - 1, Math.round(box.min.y / H))); surfaces.push(mesh) }
+        if (node.name === 'allworld_spawn') { const p = node.getWorldPosition(new THREE.Vector3()); spawn = { x: p.x, z: p.z, yaw: Math.PI } }
+      })
+      const size = bounds.getSize(new THREE.Vector3())
+      return spawn ?? { x: size.x / 2, z: -3, yaw: Math.PI }
+    },
     dispose() {
       gone = true
+      specBuilt?.dispose()
       disposeTree(root)
       for (const g of geometries) g.dispose()
       for (const m of owned) m.dispose()

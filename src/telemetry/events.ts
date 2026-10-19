@@ -105,6 +105,8 @@ export const EVENTS: Record<string, EventSpec> = {
   world_created: { from: 'world', props: { size: 'string', ground: 'string', open: 'string', template: 'string' }, when: 'A player made a world (size: small | big | huge; ground: grass | sand | stone | snow | island; open: everyone | friends | link; template: empty | hangout | treasure | race | obby | island).', why: 'How many make worlds, and what kind.' },
   world_entered: { from: 'world', props: { mine: 'boolean', from: 'string' }, when: 'A world was opened in 3D (mine: the player’s own; from: mine | new | popular | link).', why: 'Do people go into worlds, and how do they find them?' },
   world_shared: { from: 'world', props: { channel: 'string' }, when: 'A world’s link was sent (channel: native | copy).', why: 'The top of the world-invite funnel.' },
+  house_skill_copied: { from: 'world', props: { what: 'string' }, when: 'Copy my real house: the instructions for the player\'s own AI were copied (what: prompt) or the skill opened (what: skill).', why: 'Do players hand their house to their own AI?' },
+  house_copy_used: { from: 'world', props: { kind: 'string' }, when: 'A copied house became the player\'s home (kind: spec | model).', why: 'How many real houses reach the game, and how.' },
   world_screen: { from: 'world', props: { action: 'string' }, when: 'The host put something on a space’s screen (action: on).', why: 'Is watching and listening together used?' },
   world_liked: { from: 'world', props: { on: 'boolean' }, when: 'A world was liked (on: true) or the like taken back.', why: 'Which worlds people value, beyond visits.' },
 

@@ -11,6 +11,7 @@ import { WORLD, type Placement } from '../layout.ts'
 import { SPACE_LIMITS_BY_KIND, WORLD_SKIES } from '../worlds.ts'
 import { createLook, aimSun, THREE } from './look.ts'
 import { buildSpace, skyOf, timeOf, type BuiltSpace, type SpaceInput } from './space.ts'
+import { specSpawn } from '../house-spec.ts'
 import { moveOf, step, WALKER, type Ground, type Walker } from './walk.ts'
 import type { Physics } from './physics.ts'
 import { playSound, runScript, type ScriptRunner } from './scripting.ts'
@@ -34,6 +35,10 @@ export interface EngineEvents {
 }
 
 export interface Engine {
+  /** The player's own character (their look from the game) in place of the stand-in body; the stand-in stays if it cannot load. */
+  setSelfLook(look: unknown, seed: unknown): void
+  /** The street round a home (docs/WORLDS.md phase 4): the road, the neighbours' houses and the address. */
+  setStreet(info: import('./street3d.ts').StreetInfo): void
   /** A picture of what the player sees now, as WebP (a world's cover), or null when the device cannot draw one. */
   snapshot(width: number, height: number): Promise<Blob | null>
   setStick(forward: number, right: number): void
@@ -113,7 +118,11 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
   }
   // Start in the yard facing the front door (the left wall), a little outside; in a world, near the middle looking across it.
   const doorZ = (plot.grid - 2 + 0.5) * WORLD.tile
-  const spawn = open ? { x: W / 2, z: D / 2 + Math.min(6, D / 4), yaw: 0 } : { x: -2, z: doorZ, yaw: -Math.PI / 2 }
+  // A described house is entered by its main door; a model house from before its front until it says where (allworld_spawn).
+  const spawn = open ? { x: W / 2, z: D / 2 + Math.min(6, D / 4), yaw: 0 }
+    : input.house?.kind === 'spec' ? specSpawn(input.house.spec)
+    : input.house?.kind === 'model' ? { x: W / 2, z: -3, yaw: Math.PI }
+    : { x: -2, z: doorZ, yaw: -Math.PI / 2 }
   let walker: Walker = { x: spawn.x, z: spawn.z, y: 0, floor: 0, yaw: spawn.yaw, pitch: -0.08 }
   let view: View = 'third', editing = false
   const camera = new THREE.PerspectiveCamera(phone ? 70 : 62, 1, 0.05, 200)
@@ -358,9 +367,19 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
     physics.setModels(objects.filter((o) => !o.userData['loose']).map(keyed), objects.filter((o) => o.userData['loose']).map(keyed))
   }
   let closed = false
+  let street: { group: InstanceType<typeof THREE.Group>; dispose(): void } | null = null
+  let selfFigure: InstanceType<typeof THREE.Object3D> | null = null
   const modelsReady = space.setModels(input.models, bytesOf)
+  // A model house: loaded beside the first frames; the walker is moved to where it says, and the physics waits for its walls.
+  const houseReady = space.setHouseModel(bytesOf).then((at) => {
+    if (!at || closed) return
+    spawn.x = at.x; spawn.z = at.z; spawn.yaw = at.yaw
+    walker = { ...walker, x: at.x, z: at.z, y: 0, yaw: at.yaw }
+    physics?.place({ x: at.x, y: 0, z: at.z })
+  }).catch(() => {})
   void import('./physics.ts').then(async ({ startPhysics }) => {
     const started = await startPhysics()
+    await houseReady
     if (closed) { started.dispose(); return }
     started.addStatic(space.root, (node) => !space.isShell(node) || node.name === 'models')
     started.addBoxes(space.furnitureBoxes())
@@ -460,6 +479,31 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
       // Once the models are drawn, so the script finds every one of them.
       if (next && next.code.trim()) void modelsReady.then(() => { if (run === scriptRun && !closed) script = runScript(next, { w: W, d: D }, scriptHost) })
     },
+    setSelfLook(look, seed) {
+      if (!look) return
+      // The game's own character, read from the scene's body code (never changed here): a still figure of the player's look.
+      void Promise.all([import('../../scene/kit.ts'), import('../../scene/body/canonical-crowd.ts')]).then(async ([{ createKit }, { createCanonicalStaticAvatar }]) => {
+        if (closed) return
+        const figure = createCanonicalStaticAvatar(createKit(), look, { seed, detail: 'lod' })
+        await figure.userData['ready']
+        if (closed || figure.userData['characterStatus'] !== 'ready') { (figure.userData['dispose'] as (() => void) | undefined)?.(); return }
+        const top = Number(figure.userData['top']) || 2.6
+        figure.scale.setScalar(1.75 / top)
+        figure.rotation.y = Math.PI
+        torso.visible = false; head.visible = false
+        figure.traverse((n) => { (n as InstanceType<typeof THREE.Mesh>).castShadow = true })
+        body.add(figure)
+        selfFigure = figure
+      }).catch(() => { /* the stand-in stays */ })
+    },
+    setStreet(info) {
+      void import('./street3d.ts').then(({ buildStreet }) => {
+        if (closed) return
+        street?.dispose(); if (street) look.scene.remove(street.group)
+        street = buildStreet(W, D, info)
+        look.scene.add(street.group)
+      })
+    },
     inFront() { return { x: walker.x - Math.sin(walker.yaw) * 1.5, z: walker.z - Math.cos(walker.yaw) * 1.5, floor: walker.floor } },
     async snapshot(width, height) {
       // Drawn on the screen's own canvas (so the tone mapping and colours are the ones the player sees), at the cover's shape, and
@@ -481,6 +525,8 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
     },
     dispose() {
       closed = true
+      street?.dispose(); street = null
+      ;(selfFigure?.userData['dispose'] as (() => void) | undefined)?.(); selfFigure = null
       script?.stop()
       script = null
       for (const peer of peers.values()) disposeGroup(peer.group)

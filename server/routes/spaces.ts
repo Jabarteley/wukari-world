@@ -22,6 +22,9 @@
  *   GET  /api/spaces/worlds?list=mine|new|popular     worlds (server/spaces/worlds.ts, docs/WORLDS.md)
  *   POST /api/spaces/worlds { name, …, template? } · /update { id, … } · /delete { id } · /like { id, on } · /builders { id, builders } · /cover?id= (body: image/webp)
  *   GET  /api/spaces/world-cover/:id                  a world's cover picture
+ *   POST /api/spaces/models/upload-link { name, house?, use? }   a one-time address for a player's own AI to send a .glb to (10 minutes)
+ *   POST /api/spaces/models/upload/:token  (body: the .glb)        that upload, with no cookie; `use: 'house'` sets it as the house
+ *   POST /api/spaces/house { spec } | { model } | { clear }       what the home is built from (server/spaces/home-house.ts)
  */
 import { spacesService } from '../spaces/service.ts';
 import { gamesService } from '../spaces/games.ts';
@@ -29,10 +32,11 @@ import { hostService } from '../spaces/host.ts';
 import { modelsService } from '../spaces/models.ts';
 import { worldService } from '../spaces/world.ts';
 import { worldsService } from '../spaces/worlds.ts';
+import { homeHouseService } from '../spaces/home-house.ts';
 import type { RouteContext, RouteHandler, RouteKey } from '../types.ts';
 
 export default function spacesRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
-  const spaces = spacesService(ctx), hosts = hostService(ctx), games = gamesService(ctx), models = modelsService(ctx), world = worldService(ctx), worlds = worldsService(ctx);
+  const spaces = spacesService(ctx), hosts = hostService(ctx), games = gamesService(ctx), models = modelsService(ctx), world = worldService(ctx), worlds = worldsService(ctx), house = homeHouseService(ctx);
   const limited = (publicId: string): void => { if (!ctx.allow(`spaces:http:${publicId}`, 30)) throw ctx.fail(429, 'rate_limited'); };
   const gate = async (request: Parameters<RouteHandler>[0]): Promise<void> => { limited(await ctx.store.read((db) => request.requireSession(db).publicId)); };
   const change = (fn: (db: Parameters<typeof models.rename>[0], session: Parameters<typeof models.rename>[1], body: Record<string, unknown>) => object): RouteHandler => async (request) => {
@@ -44,6 +48,18 @@ export default function spacesRoutes(ctx: RouteContext): Record<RouteKey, RouteH
     'GET /api/spaces/models': async (request) => { await gate(request); return { body: await ctx.store.read((db) => models.mine(db, request.requireSession(db))) }; },
     'POST /api/spaces/models': async (request) => { await gate(request); return { body: await models.upload(request), renew: true }; },
     'POST /api/spaces/models/rename': change((db, session, body) => models.rename(db, session, body)),
+    'POST /api/spaces/models/upload-link': change((db, session, body) => models.uploadLink(db, session, body)),
+    // The one-time link carries the permission (no cookie: the player's own AI sends it); limited per link and per player.
+    'POST /api/spaces/models/upload/:token': async (request) => {
+      if (!ctx.allow(`spaces:upload-by-link:${request.ip}`, 30, 3_600_000)) throw ctx.fail(429, 'rate_limited');
+      return { body: await models.uploadByLink(request, (db, by, id) => house.useModel(db, by, id)) };
+    },
+    // A detailed house description (40 rooms, 120 windows) is larger than the usual 8 KiB body.
+    'POST /api/spaces/house': async (request) => {
+      await gate(request);
+      const body = await request.json(64_000);
+      return { body: await ctx.store.transact((db) => house.set(db, request.requireSession(db, { renew: true }), body)), renew: true };
+    },
     'POST /api/spaces/models/delete': change((db, session, body) => models.remove(db, session, body)),
     'POST /api/spaces/models/report': change((db, session, body) => models.report(db, session, body)),
     // Fetched once per model by every visitor of a space: its own, roomier limit.

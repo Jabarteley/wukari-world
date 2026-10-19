@@ -49,7 +49,7 @@ export function adminHostRoute(method: string, pathname: string): AdminHostRoute
     if (pathname === '/api/account' || pathname.startsWith('/api/account/') || pathname.startsWith('/api/admin/')) return 'api';
     return 'notfound';
   }
-  if (pathname === '/socket' || pathname === '/manifest.webmanifest' || pathname === '/sitemap.xml' || pathname === '/sw.js' || pathname.startsWith('/s/') || pathname.startsWith('/e/')) return 'notfound';
+  if (pathname === '/socket' || pathname === '/manifest.webmanifest' || pathname === '/sitemap.xml' || pathname === '/sw.js' || pathname.startsWith('/.well-known/') || pathname.startsWith('/s/') || pathname.startsWith('/e/')) return 'notfound';
   if (method !== 'GET' && method !== 'HEAD') return 'method';
   if (pathname === '/robots.txt') return 'robots';
   if (pathname.startsWith('/assets/') || pathname === '/favicon.svg') return 'asset';

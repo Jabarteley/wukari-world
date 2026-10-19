@@ -8,6 +8,7 @@ import { isEntryAddress } from './features/start/pathAddress.ts'
 import { watch } from 'vue'
 import { useApp } from './state/app.ts'
 import { isNewDevice } from './features/start/warmLanding.ts'
+import { INSTALL_ASKED_KEY } from './features/start/installPlan.ts'
 
 export function startExtras(diagnostics: boolean): void {
   if (diagnostics) void import('./diagnostics.ts').then(({ showDiagnostics }) => { showDiagnostics() })
@@ -37,6 +38,8 @@ export function startAfterReady(): void {
   void import('../game/dilemma-pack.ts').catch(() => undefined)
   void import('./chatter/start.ts').then(({ startChatter }) => { startChatter() }, () => undefined)
   void import('./chatter/ambient.ts').then(({ startAmbient }) => { startAmbient() }, () => undefined)
+  // "Add Allworld to your phone", once per device after a first session in the game: fetched only for a device that has not been asked (features/start/installPrompt.ts).
+  try { if (globalThis.localStorage?.getItem(INSTALL_ASKED_KEY) === null) void import('./features/start/installPrompt.ts').then(({ startInstallPrompt }) => { startInstallPrompt() }, () => undefined) } catch { /* no storage: no bar */ }
   // A tab that stood in a place before a reload goes back to it (a few lines unless there is one to go back to).
   try { if (globalThis.sessionStorage?.getItem('allworld-place') || globalThis.sessionStorage?.getItem('allworld-place-link')) void import('./features/places/placeEntry.ts').then((module) => { module.startPlaceEntry() }, () => undefined) } catch { /* no storage: nothing was kept */ }
 }

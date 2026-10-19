@@ -108,19 +108,32 @@ test('smoke is one mesh and one draw call for every source, nothing without a so
 
 test('weather: dry and nothing to smoke draws nothing and wakes nothing', () => {
   const root = parent(), weather = createWeather({ THREE, parent: root, tier: 'phone' })
-  weather.update({ wet: false }, [])
+  weather.update({ wet: false, outage: false, generator: false })
   assert.equal(weather.drawCalls, 0)
   assert.equal(root.children.length, 0, 'not even built')
   assert.equal(weather.wake(), false)
   assert.equal(weather.step(0.1), false)
 })
 
+test('weather: a roof the host knows about reaches the rain as a cover texture; the street\'s houses count from the roof down', () => {
+  const venue = createWeather({ THREE, parent: parent(), tier: 'phone', roofs: { boxes: [[-6, 5.9, -6, 6, 6.3, 6]], bounds: [-30, -30, 30, 30] } })
+  venue.update({ wet: true, outage: false, generator: false })
+  assert.equal((venue.rain!.drops.material as THREE.ShaderMaterial).uniforms.uHasCover!.value, 1)
+  const street = createWeather({ THREE, parent: parent(), tier: 'phone', roofs: { boxes: [[10, 0, -5, 20, 7, 3]], bounds: [0, -19, 40, 14], buildings: true } })
+  street.update({ wet: true, outage: false, generator: false })
+  assert.equal((street.rain!.drops.material as THREE.ShaderMaterial).uniforms.uHasCover!.value, 1)
+  const bare = createWeather({ THREE, parent: parent(), tier: 'phone' })
+  bare.update({ wet: true, outage: false, generator: false })
+  assert.equal((bare.rain!.drops.material as THREE.ShaderMaterial).uniforms.uHasCover!.value, 0)
+  for (const w of [venue, street, bare]) w.dispose()
+})
+
 test('weather: wet builds the rain once, the window opens and closes, settle is a still frame, dry hides it again', () => {
   const root = parent(), weather = createWeather({ THREE, parent: root, tier: 'phone' })
-  weather.update({ wet: true })
+  weather.update({ wet: true, outage: false, generator: false })
   const rain = weather.rain!
   assert.ok(rain)
-  weather.update({ wet: true })
+  weather.update({ wet: true, outage: false, generator: false })
   assert.equal(weather.rain, rain, 'built once')
   assert.equal(weather.drawCalls, 2)
   assert.equal(weather.awake, false, 'nothing asks for frames on its own')
@@ -136,7 +149,7 @@ test('weather: wet builds the rain once, the window opens and closes, settle is 
   weather.wake(); weather.step(0.5); weather.settle()
   assert.equal(rain.seconds, STILL_SECONDS)
   assert.equal(weather.awake, false)
-  weather.update({ wet: false })
+  weather.update({ wet: false, outage: false, generator: false })
   assert.equal(rain.active, false)
   assert.equal(weather.drawCalls, 0)
   weather.dispose()
@@ -145,13 +158,17 @@ test('weather: wet builds the rain once, the window opens and closes, settle is 
 
 test('weather: a room with a ceiling draws no rain, only its smoke; a changed source list rebuilds the smoke', () => {
   const root = parent(), weather = createWeather({ THREE, parent: root, tier: 'phone', open: false })
-  weather.update({ wet: true }, [{ kind: 'grill', x: 0, y: 1.7, z: 0 }])
+  const grill = { landmarks: [{ key: 'grill', x: 0, z: 0 }] }
+  weather.update({ wet: true, outage: false, generator: false }, grill)
   assert.equal(weather.rain, null)
   assert.equal(weather.drawCalls, 1)
   const first = weather.smoke
-  weather.update({ wet: true }, [{ kind: 'grill', x: 0, y: 1.7, z: 0 }])
+  weather.update({ wet: true, outage: false, generator: false }, grill)
   assert.equal(weather.smoke, first, 'the same sources keep the same smoke')
-  weather.update({ wet: true }, [])
+  weather.update({ wet: true, outage: true, generator: true }, { ...grill, behind: { x: 1, z: -11 } })
+  assert.equal(weather.drawCalls, 1, 'a running generator adds a source to the same one draw call')
+  assert.equal(weather.smoke!.sources, 2)
+  weather.update({ wet: true, outage: false, generator: false }, {})
   assert.equal(weather.smoke, null)
   assert.equal(weather.wake(), false)
   weather.dispose()

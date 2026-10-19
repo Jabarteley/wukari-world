@@ -1,8 +1,9 @@
 // The roof and awning heightmap (cover.ts): what counts as cover, the grid, the recorder that sits in a venue's batch chain.
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { CAP, CELL, coverFromBoxes, coverFromBuildings, coverRecorder, createCover, isCover } from './cover.ts'
-import type { Box6 } from './cover.ts'
+import { CAP, CELL, coverFromBoxes, coverFromBuildings, createCover } from './cover.ts'
+import { coverRecorder, isCover } from '../roof-record.ts'
+import type { Box6 } from '../roof-record.ts'
 import type { Batch } from '../types.ts'
 import { underCover } from './rain-plan.ts'
 

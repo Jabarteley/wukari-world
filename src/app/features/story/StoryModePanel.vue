@@ -7,6 +7,7 @@ import BaseButton from '../../ui/BaseButton.vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import SectionTitle from '../../ui/SectionTitle.vue'
 import CoopCard from './CoopCard.vue'
+import StoryTalkCard from './StoryTalkCard.vue'
 import SignatureGame from './SignatureGame.vue'
 import { setStoryHelpFocus, signaturePanelId, unlockedCityCount } from './storyUi.ts'
 
@@ -121,6 +122,7 @@ function openSignature(): void {
       <ul><li v-for="receipt in story.helped" :key="receipt.id"><span><b>{{ receipt.label }} Roots keepsake</b><small>You helped a friend complete a challenge.</small></span><strong>{{ new Date(receipt.completedAt).toLocaleDateString() }}</strong></li></ul>
     </details>
 
+    <StoryTalkCard />
     <CoopCard />
   </section>
 </template>

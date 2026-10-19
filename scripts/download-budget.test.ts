@@ -4,6 +4,7 @@ import { randomBytes } from 'node:crypto'
 import test from 'node:test'
 import { addSizes, checks, cityIds, closure, firstPaintFiles, groupOf, lazyGroups, pageAssets, sizeOf, staticImports, startupFiles } from './download-budget.ts'
 import type { Dist } from './download-budget.ts'
+import type { CityContentAssetManifestRow } from '../src/game/cities/content-asset.ts'
 
 const bytes = (text: string): Uint8Array => Buffer.from(text)
 // Random data does not compress, so a file's brotli size is close to its length: sizes in the tests can be set by length.
@@ -65,7 +66,7 @@ test('a small build is inside every budget it can measure; budgets with no artif
   assert.equal(byName.FIRST_PAINT_BROTLI, 'ok')
   assert.equal(byName.STARTUP_BROTLI, 'ok')
   assert.equal(byName.SCENE_HOST_RAW, 'ok')
-  for (const name of ['BASE_BODY_BROTLI', 'CLIP_PACK_BROTLI', 'WARDROBE_ITEM_BROTLI', 'STREET_TILE_BROTLI']) assert.equal(byName[name], 'not measured', name)
+  for (const name of ['BASE_BODY_BROTLI', 'CLIP_PACK_BROTLI', 'WARDROBE_ITEM_BROTLI', 'STREET_TILE_BROTLI', 'TALK_INDEX_BYTES', 'TALK_CITY_PACK_BYTES']) assert.equal(byName[name], 'not measured', name)
 })
 
 test('a budget that is exceeded is reported over', () => {
@@ -86,6 +87,22 @@ test('a budget that is exceeded is reported over', () => {
   assert.ok((byName.WARDROBE_ITEM_BROTLI?.measured ?? 0) > 60_000)
 })
 
+test('talk index and each immutable city pack have independent raw-byte budgets', () => {
+  const digest = 'b'.repeat(64), pack = bytes('p'.repeat(5_000_001))
+  const reference = { city: 'accra', path: `/assets/talk-banks/accra-${digest}.json`, sha256: digest, bytes: pack.byteLength, banks: 1 }
+  const indexText = JSON.stringify({ schema: 'allworld-talk-index', version: 1, cities: [reference] })
+  const index = bytes(indexText + ' '.repeat(256_001 - indexText.length))
+  const dist = build({
+    'assets/talk-banks/index.json': index,
+    [`assets/talk-banks/accra-${digest}.json`]: pack,
+  })
+  const measured = Object.fromEntries(checks(dist).map(item => [item.budget, item]))
+  assert.equal(measured.TALK_INDEX_BYTES?.measured, 256_001)
+  assert.equal(measured.TALK_INDEX_BYTES?.status, 'over')
+  assert.equal(measured.TALK_CITY_PACK_BYTES?.measured, 5_000_001)
+  assert.equal(measured.TALK_CITY_PACK_BYTES?.status, 'over')
+})
+
 test('scene packs enforce raw city bytes even for compressible text, and separate kit and hero Brotli caps', () => {
   const digest = 'a'.repeat(64)
   const dist = build({
@@ -100,3 +117,49 @@ test('scene packs enforce raw city bytes even for compressible text, and separat
   assert.equal(measured.HERO_BROTLI?.status, 'over')
   assert.equal(measured.STARTUP_BROTLI?.status, 'ok', 'lazy scene packs do not enter startup')
 });
+
+const cityRow = (id: string, data: Uint8Array): CityContentAssetManifestRow => {
+  const sha256 = 'a'.repeat(64)
+  return { id, path: `/assets/cities/${id}.${sha256}.json`, sha256, bytes: data.byteLength }
+}
+const talkPack = (id: string, data: Uint8Array): Record<string, Uint8Array> => {
+  const sha256 = 'b'.repeat(64), path = `/assets/talk-banks/${id}-${sha256}.json`
+  const index = bytes(JSON.stringify({ schema: 'allworld-talk-index', version: 1, cities: [{ city: id, path, sha256, bytes: data.byteLength, banks: 1 }] }))
+  return { 'assets/talk-banks/index.json': index, [path.slice(1)]: data }
+}
+
+test('combined city download cap catches only the sum while every individual file stays within its own cap', () => {
+  const content = bytes('x'.repeat(4_000_000)), recipe = bytes('r'.repeat(100_000)), talk = bytes('t'.repeat(900_001)), row = cityRow('lagos', content)
+  assert.ok(content.byteLength <= 5_000_000 && recipe.byteLength <= 120_000 && talk.byteLength <= 5_000_000)
+  const result = checks(build({ [row.path.slice(1)]: content, 'assets/recipe-city-lagos-abcdef0.js': recipe, ...talkPack('lagos', talk) }), 'lagos', [row])
+  const combined = result.find(item => item.budget === 'CITY_CONTENT_RECIPE_TALK_BYTES')
+  assert.deepEqual([combined?.measured, combined?.status], [5_000_001, 'over'])
+  assert.equal(result.find(item => item.budget === 'CITY_SCENE_RECIPES_BYTES')?.status, 'ok')
+  assert.equal(result.find(item => item.budget === 'TALK_CITY_PACK_BYTES')?.status, 'ok')
+})
+
+test('combined city download cap includes exactly five million raw bytes', () => {
+  const content = bytes('x'.repeat(4_000_000)), recipe = bytes('r'.repeat(100_000)), talk = bytes('t'.repeat(900_000)), row = cityRow('lagos', content)
+  const result = checks(build({ [row.path.slice(1)]: content, 'assets/recipe-city-lagos-abcdef0.js': recipe, ...talkPack('lagos', talk) }), 'lagos', [row])
+  const combined = result.find(item => item.budget === 'CITY_CONTENT_RECIPE_TALK_BYTES')
+  assert.deepEqual([combined?.measured, combined?.status], [5_000_000, 'ok'])
+})
+
+test('city membership uses exact IDs, permits absent categories, and does not merge slug prefixes', () => {
+  const port = noise(100), harbor = noise(200), recipe = noise(50)
+  const rows = [cityRow('port', port), cityRow('port-harcourt', harbor)]
+  const result = checks(build({
+    [rows[0]!.path.slice(1)]: port,
+    [rows[1]!.path.slice(1)]: harbor,
+    'assets/recipe-city-port-harcourt-abcdef0.js': recipe,
+  }), 'lagos', rows)
+  const combined = result.find(item => item.budget === 'CITY_CONTENT_RECIPE_TALK_BYTES')
+  assert.deepEqual([combined?.measured, combined?.status, combined?.detail.includes('port-harcourt')], [250, 'ok', true])
+})
+
+test('combined city accounting fails closed on duplicate IDs and unknown asset membership', () => {
+  const row = cityRow('port', noise(10))
+  assert.throws(() => checks(build(), 'lagos', [row, row]), /Invalid or duplicate city content manifest row/)
+  assert.throws(() => checks(build({ 'assets/recipe-city-port-harcourt-abcdef0.js': noise(10) }), 'lagos', [row]), /Unknown, duplicate, or ambiguous city recipe/)
+  assert.throws(() => checks(build({ ...talkPack('port-harcourt', noise(10)) }), 'lagos', [row]), /Unknown, duplicate, or ambiguous Talk city reference/)
+})

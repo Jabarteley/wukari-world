@@ -139,12 +139,13 @@ test('a setting can lower the cap but the code never lets it pass US$2', async (
   assert.equal(w.calls.length, 0);
 });
 
-test('without usage in the answer the cost is estimated from the characters', async () => {
+test('without usage in the answer the conservative reservation remains a budget debit', async () => {
   const w = world({ plan: () => ({ usage: null, text: 'x'.repeat(400) }), settings: { modelsCompanion: 'openai/gpt-5.6-luna' } });
   const got = await w.router.ask({ ...say('companion', { carriesPlayerWords: true }), messages: [{ role: 'user', content: 'y'.repeat(800) }] });
   assert.ok(got.ok && got.usage === null);
-  // 200 tokens in at US$0.10 and 100 out at US$0.50 per million: 20 + 50 millionths.
-  assert.equal(got.ok && got.costMicro, 70);
+  // 800 UTF-8 bytes + 64 framing allowance, and all 100 permitted output tokens.
+  assert.equal(got.ok && got.costMicro, 137);
+  assert.equal(w.router.today().ledger.estimatedMicro, 137);
 });
 
 test('per-person caps: requests a day and paid spend a day; other people are not affected', async () => {
@@ -208,7 +209,8 @@ test('every model failing is a refusal the caller handles; a key refused stops t
   assert.equal(got.ok ? 'ok' : got.why, 'failed');
   assert.equal(w.calls.length, 2);
   assert.equal(w.router.today().reservedMicro, 0);
-  assert.equal(w.router.today().ledger.micro, 0, 'a failed request costs nothing');
+  assert.ok(w.router.today().ledger.micro > 0, 'ambiguous paid failures retain conservative debits');
+  assert.equal(w.router.today().ledger.estimatedMicro, w.router.today().ledger.micro);
   const bad = world({ plan: () => ({ status: 401 }), settings: { modelsCompanion: 'openai/gpt-5.6-luna, xai/grok-4.1-fast-non-reasoning' } });
   await bad.router.ask(say('companion', { carriesPlayerWords: true }));
   assert.equal(bad.calls.length, 1, 'the same key would fail again');

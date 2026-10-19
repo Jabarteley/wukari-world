@@ -27,6 +27,8 @@ import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { BUDGETS, describeBudget, withinBudget } from '../src/budgets.ts'
 import type { BudgetName } from '../src/budgets.ts'
+import { CITY_CONTENT_ASSETS } from '../src/game/cities/content-assets.generated.ts'
+import type { CityContentAssetManifestRow } from '../src/game/cities/content-asset.ts'
 
 /** Files of a build by path under dist/ ('index.html', 'assets/app-AbCd1234.js'). */
 export type Dist = ReadonlyMap<string, Uint8Array>
@@ -156,6 +158,8 @@ export const ASSET_PATTERNS: Partial<Record<BudgetName, { pattern: RegExp; by: '
   WARDROBE_ITEM_BROTLI: { pattern: /(^|\/)wardrobe\/[^/]+\.(glb|gltf)$/, by: 'each' },
   STREET_TILE_BROTLI: { pattern: /(^|\/)(street-)?tiles?\/[^/]+\.(glb|gltf|bin)$/, by: 'each' },
   CITY_SCENE_RECIPES_BYTES: { pattern: /^assets\/recipe-city-[a-z0-9]+(?:-[a-z0-9]+)*-[a-f0-9]{7}\.js$/, by: 'each' },
+  TALK_INDEX_BYTES: { pattern: /^assets\/talk-banks\/index\.json$/, by: 'each' },
+  TALK_CITY_PACK_BYTES: { pattern: /^assets\/talk-banks\/[a-z][a-z0-9-]*-[a-f0-9]{64}\.json$/, by: 'each' },
   SCENE_KIT_BROTLI: { pattern: /^assets\/scene-factory\/kits\/[a-z][a-z0-9-]*-[a-f0-9]{64}\.glb$/, by: 'each' },
   HERO_BROTLI: { pattern: /^assets\/scene-factory\/heroes\/[a-z][a-z0-9-]*-[a-f0-9]{64}\.glb$/, by: 'each' },
 }
@@ -164,8 +168,76 @@ export interface Check { budget: BudgetName; measured: number | null; detail: st
 
 const JS = /\.js$/
 
+export interface CityDownloadMeasurement { city: string; bytes: number; files: readonly string[] }
+
+const CITY_ID = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/
+const SHA256 = /^[a-f0-9]{64}$/
+
+/** Join only exact city IDs from the generated content manifest, recipe filenames and Talk index. */
+export function combinedCityDownloads(dist: Dist, contentRows: readonly CityContentAssetManifestRow[] = CITY_CONTENT_ASSETS): CityDownloadMeasurement[] {
+  const contentIds = new Set<string>(), content = new Map<string, { path: string; bytes: number }>()
+  for (const row of contentRows) {
+    const expectedPath = `/assets/cities/${row.id}.${row.sha256}.json`
+    if (!CITY_ID.test(row.id) || !SHA256.test(row.sha256) || row.path !== expectedPath || !Number.isSafeInteger(row.bytes) || row.bytes <= 0 || contentIds.has(row.id)) {
+      throw new Error(`Invalid or duplicate city content manifest row: ${row.id}`)
+    }
+    contentIds.add(row.id)
+    const distPath = row.path.slice(1), data = dist.get(distPath)
+    if (data) {
+      if (data.byteLength !== row.bytes) throw new Error(`City content byte mismatch for ${row.id}: manifest ${row.bytes}, dist ${data.byteLength}`)
+      content.set(row.id, { path: distPath, bytes: data.byteLength })
+    }
+  }
+  for (const path of dist.keys()) {
+    if (!path.startsWith('assets/cities/')) continue
+    const match = /^assets\/cities\/([a-z][a-z0-9]*(?:-[a-z0-9]+)*)\.([a-f0-9]{64})\.json$/.exec(path)
+    if (!match || !contentIds.has(match[1] as string) || content.get(match[1] as string)?.path !== path) throw new Error(`Unknown or ambiguous city content asset: ${path}`)
+  }
+
+  const recipes = new Map<string, { path: string; bytes: number }>()
+  for (const [path, data] of dist) {
+    if (!path.startsWith('assets/recipe-city-')) continue
+    const match = /^assets\/recipe-city-([a-z][a-z0-9]*(?:-[a-z0-9]+)*)-([a-f0-9]{7})\.js$/.exec(path)
+    const city = match?.[1]
+    if (!city || !contentIds.has(city) || recipes.has(city)) throw new Error(`Unknown, duplicate, or ambiguous city recipe: ${path}`)
+    recipes.set(city, { path, bytes: data.byteLength })
+  }
+
+  const talk = new Map<string, { path: string; bytes: number }>()
+  const indexPath = 'assets/talk-banks/index.json', indexBytes = dist.get(indexPath)
+  const talkPaths = [...dist.keys()].filter(path => path.startsWith('assets/talk-banks/') && path !== indexPath)
+  if (indexBytes) {
+    let parsed: unknown
+    try { parsed = JSON.parse(Buffer.from(indexBytes).toString('utf8')) as unknown }
+    catch { throw new Error('Invalid Talk asset index JSON') }
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) throw new Error('Invalid Talk asset index envelope')
+    const index = parsed as Record<string, unknown>
+    if (Object.keys(index).length !== 3 || index.schema !== 'allworld-talk-index' || index.version !== 1 || !Array.isArray(index.cities)) throw new Error('Invalid Talk asset index envelope')
+    for (const value of index.cities) {
+      if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Invalid Talk city reference')
+      const row = value as Record<string, unknown>
+      const city = row.city
+      if (Object.keys(row).length !== 5 || typeof city !== 'string' || !CITY_ID.test(city) || !contentIds.has(city) || talk.has(city)
+        || typeof row.sha256 !== 'string' || !SHA256.test(row.sha256) || row.path !== `/assets/talk-banks/${city}-${row.sha256}.json`
+        || typeof row.bytes !== 'number' || !Number.isSafeInteger(row.bytes) || row.bytes <= 0
+        || typeof row.banks !== 'number' || !Number.isSafeInteger(row.banks) || row.banks <= 0 || row.banks > 10_000) throw new Error(`Unknown, duplicate, or ambiguous Talk city reference: ${String(city)}`)
+      const path = (row.path as string).slice(1), data = dist.get(path)
+      if (!data || data.byteLength !== row.bytes) throw new Error(`Missing or mismatched indexed Talk pack for ${city}`)
+      talk.set(city, { path, bytes: data.byteLength })
+    }
+    for (const path of talkPaths) if (![...talk.values()].some(row => row.path === path)) throw new Error(`Unindexed Talk pack: ${path}`)
+  } else if (talkPaths.length) throw new Error(`Talk city packs exist without ${indexPath}`)
+
+  const cities = new Set([...content.keys(), ...recipes.keys(), ...talk.keys()])
+  return [...cities].sort().map(city => {
+    const files = [content.get(city)?.path, recipes.get(city)?.path, talk.get(city)?.path].filter((path): path is string => !!path)
+    const bytes = (content.get(city)?.bytes ?? 0) + (recipes.get(city)?.bytes ?? 0) + (talk.get(city)?.bytes ?? 0)
+    return { city, bytes, files }
+  })
+}
+
 /** Every named budget this report can measure from the build, in the order they are printed. */
-export function checks(dist: Dist, city = 'lagos'): Check[] {
+export function checks(dist: Dist, city = 'lagos', contentRows: readonly CityContentAssetManifestRow[] = CITY_CONTENT_ASSETS): Check[] {
   const found: Omit<Check, 'status'>[] = []
   const add = (budget: BudgetName, measured: number | null, detail: string): void => { found.push({ budget, measured, detail }) }
   const paint = firstPaintFiles(dist)
@@ -189,6 +261,9 @@ export function checks(dist: Dist, city = 'lagos'): Check[] {
     const sizes = names.map((name) => measure(dist, [name])[metric])
     add(budget, names.length ? (by === 'sum' ? sizes.reduce((a, b) => a + b, 0) : Math.max(...sizes)) : null, names.length ? `${names.length} file(s) matching ${pattern}` : `no file matches ${pattern}`)
   }
+  const cityDownloads = combinedCityDownloads(dist, contentRows)
+  const largestCity = cityDownloads.reduce<CityDownloadMeasurement | null>((best, row) => !best || row.bytes > best.bytes ? row : best, null)
+  add('CITY_CONTENT_RECIPE_TALK_BYTES', largestCity?.bytes ?? null, largestCity ? `largest city ${largestCity.city}: ${largestCity.files.join(', ')}` : 'no city content, recipe or Talk assets in this build')
   return found.map((item) => ({ ...item, status: item.measured === null ? 'not measured' : withinBudget(BUDGETS[item.budget], item.measured) ? 'ok' : 'over' }))
 }
 

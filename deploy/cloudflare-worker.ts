@@ -66,6 +66,8 @@ import type { SqliteStorage, SqlStorageLike } from './cf-types.ts';
 import { createCallRelay } from '../server/call-relay.ts';
 import { relayTestAuthorized, mintCloudflareIce, TURN_DAILY_MINT_LIMIT } from './turn-provider.ts';
 import { buildRoutes, ROUTE_MODULES } from '../server/routes/index.ts';
+import { installStoryTalkAssets } from '../server/story/talk-service.ts';
+import { hostTalkAssets } from '../server/story/talk-assets.ts';
 import { trustHeaderConfig } from '../server/trust/config.ts';
 import { createCommerceGateway } from '../server/commerce/goalmatic.ts';
 import { streetAssetText } from '../server/street/asset-body.ts';
@@ -549,6 +551,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
         validateMemberships: async () => {}, refreshNames: () => {}, roomStillValid: () => false, revalidate: async () => {},
       },
     };
+    installStoryTalkAssets(context, hostTalkAssets(path => env.ASSETS.fetch(new Request(`https://allworld-assets.invalid${path}`, { redirect: 'manual' }))));
     this.handlers = buildSocketHandlers(context);
     this.routes = buildRoutes(context, [...ROUTE_MODULES, telemetryRoutes]);
     this.telemetry.attach(context);

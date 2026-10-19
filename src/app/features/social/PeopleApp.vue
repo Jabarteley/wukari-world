@@ -23,6 +23,8 @@ import GateNote from './GateNote.vue'
 import PlayerAvatar from './PlayerAvatar.vue'
 // The founder's view of every player: its own chunk, read only when it is shown.
 const PlayersList = defineAsyncComponent(() => import('./PlayersList.vue'))
+// Close friends (docs/SOCIAL-GLUE.md): who sees where you are in the game, and where the ones who share with you are now.
+const GluePart = defineAsyncComponent(() => import('../glue/GluePart.vue'))
 import { closenessText, presenceClass, STALE_MS, staleSteps, venueNameOf } from './socialWords.ts'
 import { peopleUi } from './socialState.ts'
 import { useSocialScreen } from './useSocialScreen.ts'
@@ -99,6 +101,7 @@ function openVenueChat(): void { shell.close(); app.community.toggle(true) }
     <GateNote v-if="gate" :gate="gate" :action="action?.label ?? null" @action="runAction" @retry="retryLoad" />
     <template v-else-if="state.me">
       <BaseButton @click="shell.open('contacts')">Find a player by name</BaseButton>
+      <GluePart part="close" />
       <div v-if="state.me.requests.in.length || state.me.friends.length" class="social-list">
         <div v-for="request in state.me.requests.in" :key="`r${request.id}`" class="social-row is-ask">
           <PlayerAvatar :name="request.name" :seed="request.id" />

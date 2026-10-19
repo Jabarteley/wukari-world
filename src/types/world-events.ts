@@ -50,3 +50,5 @@ export type WorldLiveFrame =
   | { type: 'world-live'; kind: 'event'; week: number; count: number; percent: number; phase: Phase }
   | { type: 'world-live'; kind: 'stage'; room: string; rev: number }
   | { type: 'world-live'; kind: 'moment'; title: string; name: string; text: string; ai?: true }
+  /** The social glue (docs/SOCIAL-GLUE.md): something of mine changed (close friends, a trip, a proposal, a talk went live); read it again. */
+  | { type: 'world-live'; kind: 'glue'; what: 'close' | 'trip' | 'family' | 'talk' }

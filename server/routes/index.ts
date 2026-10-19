@@ -268,6 +268,9 @@ export const ROUTE_MODULES: RouteModule[] = [core, auth, social, civic, support,
 import danfo from './danfo.ts';
 ROUTE_MODULES.push(danfo);
 import shareLoops from '../shareloops/routes.ts';
+// Phase 8, the social glue (docs/SOCIAL-GLUE.md): close friends, talks, the gist board, group trips, family life.
+import glue from './glue.ts';
+ROUTE_MODULES.push(glue);
 const KEY = /^(GET|POST|PUT|PATCH|DELETE) (\/api\/[A-Za-z0-9\-_/:.]+)$/;
 
 /**

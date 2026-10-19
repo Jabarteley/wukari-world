@@ -19,6 +19,7 @@ import { forgetWorldEventPlayers } from '../world-events/data.ts'
 import { forgetDanfoPlayers } from '../danfo/service.ts'
 import { forgetLoopsPlayers } from '../shareloops/store.ts'
 import { forgetNeighbourhoodPlayers } from '../neighbourhood/service.ts'
+import { forgetGluePlayers } from '../glue/forget.ts'
 import { clearPlayerFamily } from '../social/family.ts'
 import { eraseLivingWorldProgress } from '../living-world/privacy.ts'
 import { eraseRealValue } from '../real-value/privacy.ts'
@@ -244,6 +245,7 @@ function preflightSharedIntegrity(ctx: RouteContext, db: Db, actors: ReadonlySet
     'spotAi', 'aiRoles', 'aiContinuity', // erased by server/house/erase.ts eraseAiLife
   ])
   known.add('danfo') // runs, crews, days and boards: forgetDanfoPlayers (server/danfo/service.ts)
+  known.add('glue') // close friends, talks, gist posts, trips, marriages: forgetGluePlayers (server/glue/forget.ts)
   const collectionNames = (db.$store as (typeof db.$store & { collectionNames?: () => readonly string[] }) | undefined)?.collectionNames?.() ?? []
   const names = new Set([...Object.keys(db), ...collectionNames])
   for (const name of names) {
@@ -748,6 +750,7 @@ export function eraseData(ctx: RouteContext, db: Db, plan: ErasurePlan): Erasure
   forgetDanfoPlayers(db, ids)
   forgetLoopsPlayers(db, ids)
   forgetNeighbourhoodPlayers(db, ids)
+  forgetGluePlayers(db, ids)
   eraseSpaces(db, ids)
   scrubTrustAndSupport(db, ids, accounts)
   scrubAdminCollections(db, ids, accounts)

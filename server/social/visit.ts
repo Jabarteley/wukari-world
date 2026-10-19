@@ -38,6 +38,7 @@
 import { homeMementos } from '../../src/game/mementos.ts';
 import { ACHIEVEMENTS } from '../../src/game/content/achievements.ts';
 import { characterCity } from '../character.ts';
+import { sharesHome } from '../glue/data.ts';
 import { readPlot, samePlot, sameStreet } from '../world/street.ts';
 import { hasPlace } from '../../src/game/systems/estate.ts';
 import { homeOf } from '../../src/game/content/housing.ts';
@@ -105,14 +106,16 @@ function build(ctx: RouteContext) {
     if (house?.guests[id]) return yes('inside', { house: kit.houseView(s, hostId, id), duplicate: true });
     const refusal = ctx.checks?.muted?.(id);
     if (refusal) return no(refusal.code, refusal.reason);
-    if (house?.closed !== undefined && house.closed > t) return no('door_shut', `${name} has closed the door for now.`);
+    // A spouse whose partner offered this home as theirs (docs/SOCIAL-GLUE.md "Family life") comes in as to their own home.
+    const spouse = sharesHome(db, hostId, id);
+    if (!spouse && house?.closed !== undefined && house.closed > t) return no('door_shut', `${name} has closed the door for now.`);
     if ((house?.barred?.[id] ?? 0) > t || (link?.removed?.[id] !== undefined)) return no('barred', `${name} asked you to leave. You can knock again later.`);
     if (Object.keys(house?.guests ?? {}).length >= capacity) return no('house_full', `${name}’s home is full (${capacity} friends are inside).`);
     const home = hostHome(s, hostId);
     let cityId: CityId | null = home.state === 'home' ? home.cityId : null;
     if (cityId === null) {
       // A home with nobody in it is open only to a friend of a host who chose "Friends can visit while I am out", and never through a link or an invitation.
-      if (via !== 'friend' || target.door?.out !== true || kit.doorFor(s, hostId, id) !== 'walk+') return notHome(name, home.state);
+      if (!spouse && (via !== 'friend' || target.door?.out !== true || kit.doorFor(s, hostId, id) !== 'walk+')) return notHome(name, home.state);
       cityId = mainHomeCity(db, hostId);
       if (cityId === null) return notHome(name, 'out');
     }
@@ -141,7 +144,7 @@ function build(ctx: RouteContext) {
       if (done.ok && !('duplicate' in done)) { const book = peekBook(db); if (book) delete book.invites[inviteKey(hostId, id)]; }
       return { ...done, push };
     }
-    const how = kit.doorFor(s, hostId, id);
+    const how = sharesHome(db, hostId, id) ? 'walk+' : kit.doorFor(s, hostId, id);
     if (how === 'closed') return no(target.door?.who === 'nobody' ? 'door_closed' : 'door_shut', target.door?.who === 'nobody' ? `${target.name} is not taking visitors right now.` : `${target.name} has closed the door for now.`);
     if (how === 'invited') return no('only_invited', `${target.name} only lets in people they invite.`);
     if (how === 'knock') {
@@ -178,7 +181,7 @@ function build(ctx: RouteContext) {
       // Any home the host lives in is shown, their own house or a rented one: a guest who came in sees what is in it.
       if (!target || target.expiresAt <= now() || !state || state.estate.city !== city) return no('home_unavailable', 'This home is unavailable.');
       const homeNow = state.location === 'home' && !isDeparting(state) && kit.hostAtHome(s, hostId, city);
-      const allowedWhileOut = visit.link === undefined && kit.ordinary(s, hostId, id) && s.players[hostId]?.door?.out === true && kit.doorFor(s, hostId, id) === 'walk+';
+      const allowedWhileOut = visit.link === undefined && ((kit.ordinary(s, hostId, id) && s.players[hostId]?.door?.out === true && kit.doorFor(s, hostId, id) === 'walk+') || sharesHome(db, hostId, id));
       if (!homeNow && !allowedWhileOut) return no('visit_ended', 'The host left home, so this visit has ended.');
       const items: VisitHomeItem[] = state.home.items.map(item => ({ id: item.id, itemId: item.itemId, x: item.x, y: item.y, rot: item.rot, ...('floor' in item && typeof item.floor === 'number' && Number.isInteger(item.floor) && item.floor >= 0 ? { floor: item.floor } : {}) }));
       const home: VisitHomeProjection = { host: { id: hostId, name: target.name }, city, plot: state.estate.plot ? { ...state.estate.plot } : null, owned: state.estate.living === 'own', grid: homeOf(state, HOUSE_DESIGNS, housesFor(city)).grid, style: { ...state.estate.style }, items };

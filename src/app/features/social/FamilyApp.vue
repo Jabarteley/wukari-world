@@ -12,6 +12,8 @@ import PlayerAvatar from './PlayerAvatar.vue'
 import { useSocialScreen } from './useSocialScreen.ts'
 import { useFamily } from './useFamily.ts'
 const PersonCallButton = defineAsyncComponent(() => import('../calls/PersonCallButton.vue'))
+// Marriage between two adult players and a shared home (docs/SOCIAL-GLUE.md "Family life"): its own chunk.
+const GluePart = defineAsyncComponent(() => import('../glue/GluePart.vue'))
 defineProps<{ params?: unknown }>()
 const { view, client, state, shell, cannot } = useSocialScreen()
 const { data, error, loading, pending, canRetry, load, send, retrySend } = useFamily(client)
@@ -95,6 +97,7 @@ const role = (slot: FamilyId): string => view.value.social.family.find(member =>
       <div class="family-actions"><BaseButton variant="primary" :disabled="pending || !picked" :reason="reason" @click="invite">Send invitation</BaseButton><BaseButton :disabled="pending" @click="choosing = null">Cancel</BaseButton></div>
     </section>
     <section v-if="removal" ref="confirmation" class="family-notice" aria-label="Confirm leaving family role"><p>End this role? The original game character returns. Your friendship and chat stay unchanged.</p><div class="family-actions"><BaseButton variant="danger" :disabled="pending" :reason="reason" @click="unlink">End role</BaseButton><BaseButton :disabled="pending" @click="removal = null">Keep role</BaseButton></div></section>
+    <GluePart part="marriage" />
     <footer><p v-if="npcCount">{{ called }} of {{ npcCount }} game characters checked in today. Game-family streak: {{ view.social.streak }} days. A game-character call takes {{ view.social.familyCall.duration }} seconds. Their first daily call gives +{{ view.social.familyCall.social }} Social and +{{ view.social.familyCall.mood }} mood.</p><p>Real-player calls ring the person and follow their call settings. Invitations and unanswered calls earn no check-in rewards.</p></footer>
   </div>
 </template>

@@ -7,7 +7,7 @@
 import '../../../ui/controls.css'
 import '../../../ui/panels/social.css'
 import './feed.css'
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import PlayerAvatar from '../social/PlayerAvatar.vue'
 import PostCard from './PostCard.vue'
@@ -19,6 +19,8 @@ import type { CommunityKind, LocalScope } from '../../../feed/model.ts'
 import { cityCatalogue, loadCityRules } from '../../../game/cities/registry.ts'
 import { enterByLink, enterRoom } from '../places/placesStore.ts'
 import type { CrewView, PostView } from '../../../types/feed.ts'
+// The gist board and group trips of a community (docs/SOCIAL-GLUE.md), fetched when a community is opened.
+const GluePart = defineAsyncComponent(() => import('../glue/GluePart.vue'))
 
 const props = defineProps<{ params?: { code?: string; crew?: string } | null }>()
 const { game, shell } = useApp()
@@ -175,6 +177,7 @@ function sharePlace(): void { if (sharedCity.value) void import('../growth/share
           <a class="feed-pill" :href="whatsappUrl(link, `Join ${current.name} on Allworld`)" target="_blank" rel="noopener">WhatsApp</a>
           <button type="button" class="feed-pill" @click="leave()">Leave</button>
         </div>
+        <GluePart v-if="current.mine" part="community" :crew="current" />
       </div>
 
       <div class="feed-card feed-form" data-feed="world">

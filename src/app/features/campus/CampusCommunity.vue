@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Community: the events that are on, the faculty quiz, clubs, discoveries, the penalty shoot-out
 // and the shared board.
-import { computed } from 'vue'
+import { computed, defineAsyncComponent, ref } from 'vue'
 import CampusBoard from './CampusBoard.vue'
 import CampusCard from './CampusCard.vue'
 import CampusControl from './CampusControl.vue'
@@ -12,6 +12,9 @@ import { at, clubReason, discoveryReason, onCampus, penaltyReason, quizReason, t
 import { useCampus } from './useCampus.ts'
 
 const { state, connected, blocked, community, act } = useCampus()
+// The campus gist board (docs/SOCIAL-GLUE.md): current students read it, adults post, no names; fetched when opened.
+const GluePart = defineAsyncComponent(() => import('../glue/GluePart.vue'))
+const gist = ref(false)
 const eligible = computed(() => community.value?.eligible === true)
 const events = computed(() => community.value?.events ?? [])
 const quiz = computed(() => community.value?.quiz ?? null)
@@ -64,6 +67,12 @@ const union = computed(() => at(state.value, 'student-union'))
   </CampusCard>
 
   <CampusBoard />
+
+  <CampusCard icon="🗣️" heading="Campus gist board">
+    <p>Gist from current students. Other students do not see who wrote a post; the moderators do. No names of people.</p>
+    <template #extra><button type="button" class="social-btn" data-glue="campus-gist" :aria-expanded="gist" @click="gist = !gist">{{ gist ? 'Close the board' : 'Open the board' }}</button></template>
+  </CampusCard>
+  <GluePart v-if="gist" part="board" board="campus:unilag" />
 
   <ProjectBoard v-if="union" />
   <CampusCard v-else icon="🤝" heading="Shared project at Student Union">

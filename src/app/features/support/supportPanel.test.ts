@@ -143,5 +143,7 @@ test('feedback is one tap away: the board from Lite, the 3D menu, Settings, Help
   assert.match(src('../panels.ts'), /phonePanel\('feedback', 'Feedback'.*order: 1, group: 'life'/)
   assert.match(src('../panels.ts'), /phonePanel\('support', 'Report a problem'/)
   assert.deepEqual(parsePath('/feedback'), { kind: 'panel', panel: 'feedback' })
+  const { NATIVE_PANELS } = await import('../panels.ts')
+  assert.ok(NATIVE_PANELS.some((panel) => panel.id === 'feedback' && panel.placement === 'phone'), 'the Feedback app is registered on the phone')
   assert.equal(CATEGORY_LABELS.idea, 'An idea or feedback')
 })

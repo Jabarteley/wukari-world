@@ -8,8 +8,9 @@
  * Computer: W A S D or the arrows walk, Shift runs, dragging looks. While editing, a tap on a floor puts the chosen model there.
  */
 import { WORLD, type Placement } from '../layout.ts'
+import { SPACE_LIMITS_BY_KIND } from '../worlds.ts'
 import { createLook, aimSun, THREE } from './look.ts'
-import { buildSpace, type BuiltSpace, type SpaceInput } from './space.ts'
+import { buildSpace, skyOf, type BuiltSpace, type SpaceInput } from './space.ts'
 import { moveOf, step, WALKER, type Ground, type Walker } from './walk.ts'
 import type { Physics } from './physics.ts'
 import { playSound, runScript, type ScriptRunner } from './scripting.ts'
@@ -33,6 +34,8 @@ export interface EngineEvents {
 }
 
 export interface Engine {
+  /** A picture of what the player sees now, as WebP (a world's cover), or null when the device cannot draw one. */
+  snapshot(width: number, height: number): Promise<Blob | null>
   setStick(forward: number, right: number): void
   /** Jump (with physics). */
   jump(): void
@@ -66,14 +69,18 @@ export interface Engine {
 
 export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { models: readonly PlacedModel[] }, bytesOf: (hash: string) => Promise<ArrayBuffer | null>, events: EngineEvents): Engine {
   const phone = globalThis.matchMedia?.('(pointer: coarse)').matches ?? false
-  const look = createLook(canvas, { quality: phone ? 'normal' : 'high', background: '#a9c7de' })
+  const sky = skyOf(input), open = Boolean(input.terrain)
+  const look = createLook(canvas, { quality: phone ? 'normal' : 'high', background: sky })
   const maxAniso = look.renderer.capabilities.getMaxAnisotropy()
   const space: BuiltSpace = buildSpace(input, maxAniso)
   look.scene.add(space.root)
   const { plot } = space.plan
   const W = plot.w * WORLD.tile, D = plot.d * WORLD.tile
   aimSun(look, new THREE.Vector3(W / 2, 0, D / 2), Math.max(W, D) * 0.8 + 2)
-  look.scene.fog = new THREE.Fog('#a9c7de', 30, 90)
+  // A world may be wide: the fog opens up with it, and by night the sun is low and the sky dark.
+  const far = open ? Math.max(90, Math.max(W, D) * 1.6) : 90
+  look.scene.fog = new THREE.Fog(sky, far / 3, far)
+  if (input.terrain?.ground === 'night') { look.sun.intensity = 0.7; look.sun.color.set('#9fb4ff'); look.scene.environmentIntensity = 0.25 }
 
   // Warm light in each room of the floor the walker is on (no shadows: the sun and the room image do those).
   const lights: InstanceType<typeof THREE.PointLight>[] = []
@@ -102,15 +109,16 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
     walls: (f) => space.walls(f), blocks: (f) => space.blocks(f), stairs: space.plan.stairs.map((s) => ({ ...s })),
     bounds: [-WORLD.margin + 0.5, -WORLD.margin + 0.5, W + WORLD.margin - 0.5, D + WORLD.margin - 0.5], floors: plot.floors,
   }
-  // Start in the yard facing the front door (the left wall), a little outside.
+  // Start in the yard facing the front door (the left wall), a little outside; in a world, near the middle looking across it.
   const doorZ = (plot.grid - 2 + 0.5) * WORLD.tile
-  let walker: Walker = { x: -2, z: doorZ, y: 0, floor: 0, yaw: -Math.PI / 2, pitch: -0.08 }
+  const spawn = open ? { x: W / 2, z: D / 2 + Math.min(6, D / 4), yaw: 0 } : { x: -2, z: doorZ, yaw: -Math.PI / 2 }
+  let walker: Walker = { x: spawn.x, z: spawn.z, y: 0, floor: 0, yaw: spawn.yaw, pitch: -0.08 }
   let view: View = 'third', editing = false
   const camera = new THREE.PerspectiveCamera(phone ? 70 : 62, 1, 0.05, 200)
   const keys = new Set<string>()
   let stick = { forward: 0, right: 0 }
   let lastFloor = -1, lastOutdoors: boolean | null = null
-  const outdoorsAt = (x: number, z: number): boolean => x < 0 || z < 0 || x > W || z > D
+  const outdoorsAt = (x: number, z: number): boolean => open || x < 0 || z < 0 || x > W || z > D
 
   const report = (): void => { events.status({ floor: walker.floor, floors: plot.floors, view }) }
   const resize = (): void => {
@@ -208,7 +216,7 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
   const blockers = (): InstanceType<typeof THREE.Object3D>[] => space.root.children.filter((c) => c.name.startsWith('floor-') && c.visible)
   const camTarget = new THREE.Vector3(), camWant = new THREE.Vector3()
   const clock = new THREE.Clock()
-  let frame = 0
+  let frame = 0, sunFrame = 0
   const tick = (): void => {
     frame = requestAnimationFrame(tick)
     const dt = Math.min(clock.getDelta(), 0.1)
@@ -224,11 +232,13 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
     if (physics) {
       const at = physics.walk({ x: move.dx, z: move.dz }, dt, jumping || keys.has(' '))
       jumping = false
-      if (at.y < -10) physics.place({ x: -2, y: 0, z: doorZ })
+      if (at.y < -10) physics.place({ x: spawn.x, y: 0, z: spawn.z })
       walker = { ...walker, x: at.x, y: at.y, z: at.z, floor: Math.max(0, Math.min(plot.floors - 1, Math.round(at.y / WORLD.storey))) }
     } else if (move.dx || move.dz) walker = { ...step(ground, walker, move.dx, move.dz), yaw: walker.yaw, pitch: walker.pitch }
     const outdoors = outdoorsAt(walker.x, walker.z)
     if (walker.floor !== lastFloor || outdoors !== lastOutdoors) { lastFloor = walker.floor; lastOutdoors = outdoors; space.show(walker.floor, view === 'first', outdoors); lightRooms(walker.floor); report() }
+    // In a wide world the sun's shadow box follows the walker, so shadows stay sharp wherever they are.
+    if (open && (sunFrame = (sunFrame + 1) % 20) === 0) aimSun(look, new THREE.Vector3(walker.x, 0, walker.z), 14)
 
     body.position.set(walker.x, walker.y, walker.z)
     body.rotation.y = walker.yaw
@@ -410,7 +420,7 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
         lastSentPose.set(key, text)
         rows.push(row)
       })
-      return rows.slice(0, 40)
+      return rows.slice(0, SPACE_LIMITS_BY_KIND.world.placements)
     },
     followModels(order, rows) {
       for (const [i, x, y, z, qx, qy, qz, qw] of rows) {
@@ -449,6 +459,24 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
       if (next && next.code.trim()) void modelsReady.then(() => { if (run === scriptRun && !closed) script = runScript(next, { w: W, d: D }, scriptHost) })
     },
     inFront() { return { x: walker.x - Math.sin(walker.yaw) * 1.5, z: walker.z - Math.cos(walker.yaw) * 1.5, floor: walker.floor } },
+    async snapshot(width, height) {
+      // Drawn on the screen's own canvas (so the tone mapping and colours are the ones the player sees), at the cover's shape, and
+      // copied off in the same task, before the browser composites; then the canvas goes back to its size.
+      const was = look.renderer.getSize(new THREE.Vector2()), ratio = look.renderer.getPixelRatio()
+      try {
+        const shot = new THREE.PerspectiveCamera(camera.fov, width / height, camera.near, camera.far)
+        shot.position.copy(camera.position); shot.quaternion.copy(camera.quaternion)
+        look.renderer.setPixelRatio(1)
+        look.renderer.setSize(width, height, false)
+        look.renderer.render(look.scene, shot)
+        const sheet = document.createElement('canvas')
+        sheet.width = width; sheet.height = height
+        sheet.getContext('2d')!.drawImage(canvas, 0, 0, width, height)
+        look.renderer.setPixelRatio(ratio)
+        look.renderer.setSize(was.x, was.y, false)
+        return await new Promise<Blob | null>((resolve) => sheet.toBlob(resolve, 'image/webp', 0.82))
+      } catch { look.renderer.setPixelRatio(ratio); look.renderer.setSize(was.x, was.y, false); return null }
+    },
     dispose() {
       closed = true
       script?.stop()

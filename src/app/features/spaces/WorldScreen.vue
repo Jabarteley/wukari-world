@@ -1,11 +1,13 @@
 <script setup lang="ts">
-// Walk through a space in 3D (docs/SPACES-3D.md, phase 2): a home or a group room, its furniture and the models players placed,
-// in the realistic look. The owner (or a group member) can place their own models: choose one, tap a floor to put it there, turn
+// Walk through a space in 3D (docs/SPACES-3D.md, phase 2): a home, a group room or a world (docs/WORLDS.md), its furniture and
+// the models players placed, in the realistic look. The owner (or a group member) can place their own models: choose one, tap a floor to put it there, turn
 // it, size it, lift it, and save. Full screen over the game; lazy (three and the engine load only when this opens).
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
 import '../../../ui/controls.css'
 import { useApp } from '../../state/app.ts'
-import { modelBytes, modelUpload, scriptSave, worldRead, worldSave, type ModelView, type PlacedModel, type WorldView, type WorldWhere } from './spacesClient.ts'
+import { modelBytes, modelUpload, scriptSave, worldCoverUpload, worldRead, worldSave, type ModelView, type PlacedModel, type WorldView, type WorldWhere } from './spacesClient.ts'
+import { WORLDS, worldLinkPath } from '../../../spaces/worlds.ts'
+import { track } from '../world/worldModel.ts'
 import { checkGlb, GLB_LIMITS } from '../../../spaces/glb.ts'
 import { scriptNames, SCRIPT, TEMPLATES } from '../../../spaces/script.ts'
 import type { Placement } from '../../../spaces/layout.ts'
@@ -15,7 +17,8 @@ import type { Together } from '../../../spaces/world/together.ts'
 
 /** `place`: a model to put down in front of the player as soon as the space is built (just uploaded, or chosen in My 3D models). */
 const props = defineProps<{ where: WorldWhere; place?: ModelView | null }>()
-const emit = defineEmits<{ close: [] }>()
+/** `saved`: a world's layout was saved and its cover drawn (the Worlds app refreshes its list). */
+const emit = defineEmits<{ close: []; saved: [] }>()
 const { game } = useApp()
 
 const canvas = ref<HTMLCanvasElement | null>(null)
@@ -81,7 +84,7 @@ onMounted(async () => {
   layout.value = answer.world.models.map((p) => ({ ...p }))
   const { startEngine } = await import('../../../spaces/world/engine.ts')
   if (gone || !canvas.value) return
-  engine = startEngine(canvas.value, { grid: answer.world.grid, owned: answer.world.owned, style: answer.world.style as Record<string, number> | null, items: answer.world.items, models: layout.value }, bytesOf, {
+  engine = startEngine(canvas.value, { grid: answer.world.grid, owned: answer.world.owned, style: answer.world.style as Record<string, number> | null, items: answer.world.items, models: layout.value, terrain: answer.world.terrain ? { ground: answer.world.terrain.ground } : null }, bytesOf, {
     status(s) { floor.value = s.floor; floors.value = s.floors; view.value = s.view },
     picked(key) { selected.value = key; engine?.highlight(key) },
     tapped(at) { if (choosing.value) add(choosing.value, at); else if (picked.value) move(at) },
@@ -157,6 +160,22 @@ async function startTogether(): Promise<void> {
 function leave(): void {
   if (dirty.value && !globalThis.confirm?.('Leave without saving where your models stand?')) return
   emit('close')
+}
+/** A world's link, sent with the device's share sheet or copied. */
+async function invite(): Promise<void> {
+  if (props.where.target !== 'world' || !props.where.id) return
+  const url = `${location.origin}${worldLinkPath(props.where.id)}`, title = `${world.value?.title ?? 'My world'} on Allworld`
+  try {
+    if (typeof navigator.share === 'function') { await navigator.share({ title, url }); track('world_shared', { channel: 'native' }); return }
+  } catch (error) { if ((error as { name?: string }).name === 'AbortError') return }
+  try { await navigator.clipboard.writeText(url); note.value = 'Link copied. Send it to a friend.'; track('world_shared', { channel: 'copy' }) } catch { note.value = url }
+}
+/** A world's cover: what its maker sees now, drawn by the engine and kept on the server beside the world. */
+async function cover(): Promise<void> {
+  if (!engine || props.where.target !== 'world' || !props.where.id) return
+  const picture = await engine.snapshot(WORLDS.coverWidth, WORLDS.coverHeight)
+  if (!picture || picture.size > WORLDS.coverBytes || gone) return
+  await worldCoverUpload(props.where.id, picture)
 }
 function jump(): void { engine?.jump() }
 function useTemplate(id: string): void {
@@ -268,6 +287,7 @@ async function save(): Promise<void> {
   if (!answer.ok) { error.value = answer.reason; return }
   dirty.value = false
   note.value = answer.placed ? `Saved. ${answer.placed} model${answer.placed === 1 ? '' : 's'} in this space.` : 'Saved.'
+  if (world.value?.kind === 'world') { await cover(); if (!gone) emit('saved') }
 }
 const round = (v: number): number => Math.round(v * 100) / 100
 </script>
@@ -278,6 +298,7 @@ const round = (v: number): number => Math.round(v * 100) / 100
       <header class="ws-top">
         <button type="button" class="ws-pill" @click="leave">Leave</button>
         <h2 class="ws-title">{{ world?.title ?? 'Loading…' }}</h2>
+        <button v-if="world?.kind === 'world'" type="button" class="ws-pill" data-world="invite" @click="invite">Invite</button>
         <button v-if="world" type="button" class="ws-pill" :aria-label="view === 'first' ? 'Switch to third person' : 'Switch to first person'" @click="toggleView">{{ view === 'first' ? '1st' : '3rd' }}</button>
       </header>
       <p v-if="floors > 1" class="ws-floor" role="status">{{ floor === 0 ? 'Ground floor' : `Floor ${floor}` }}</p>

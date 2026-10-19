@@ -16,7 +16,7 @@ export interface TogetherListener {
 }
 export interface Together { send(tick: { p: number[]; o?: number[][]; s?: number; say?: number[] }): void; leave(): void }
 
-export function joinTogether(where: { target: 'home' | 'room'; host?: string; id?: string }, listener: TogetherListener): Together {
+export function joinTogether(where: { target: 'home' | 'room' | 'world'; host?: string; id?: string }, listener: TogetherListener): Together {
   let socket: WebSocket | null = null, left = false, retry = 0, lastSent = ''
   const connect = (): void => {
     const ws = socket = new WebSocket(`${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/socket`)

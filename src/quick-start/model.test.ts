@@ -175,6 +175,8 @@ test('one landing: a link’s share code and table are read by shape, and the re
   assert.deepEqual(linkParts('/', `?join=${host}&ref=abcdef0123&table=buka-corner`), { ref: 'abcdef0123', table: 'buka-corner' });
   assert.deepEqual(linkParts('/s/abcdef0123', ''), { ref: 'abcdef0123', table: null }, 'a host that serves the game for /s/<code> still lands the code');
   assert.deepEqual(linkParts('/', '?s=abcdef0123'), { ref: 'abcdef0123', table: null }, 'the older query form');
+  assert.deepEqual(linkParts('/w/wabc123def456', ''), { ref: null, table: 'world-wabc123def456' }, 'a world’s link (docs/WORLDS.md) rides as a table');
+  assert.equal(linkParts('/w/short', '?world=wabc123def456').table, null, 'only the path form, only a real id');
   for (const search of ['?ref=<script>', '?ref=ABCDEF0123', '?ref=short', '?table=../../etc', '?table=Buka', `?table=${'a'.repeat(41)}`, '?ref=abcdef0123x-']) {
     assert.deepEqual(linkParts('/', search), { ref: null, table: null }, search);
   }

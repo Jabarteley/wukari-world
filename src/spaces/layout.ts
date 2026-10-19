@@ -60,10 +60,10 @@ export type LayoutCheck = { ok: true; models: Placement[]; triangles: number } |
  * Check a layout someone wants to save. `placeable(by, id)` answers what the server knows about a model (or null when it is gone);
  * `mayUse(by)` whether this editor may place that owner's models here (their own, or ones already in this space).
  */
-export function cleanLayout(value: unknown, plot: PlotSize, placeable: (by: string, id: string) => PlaceableModel | null, mayUse: (by: string, id: string) => boolean): LayoutCheck {
+export function cleanLayout(value: unknown, plot: PlotSize, placeable: (by: string, id: string) => PlaceableModel | null, mayUse: (by: string, id: string) => boolean, limits: { placements: number; triangles: number } = WORLD): LayoutCheck {
   const no = (code: string, reason: string): LayoutCheck => ({ ok: false, code, reason })
   if (!Array.isArray(value)) return no('invalid_layout', 'The layout could not be read.')
-  if (value.length > WORLD.placements) return no('too_many', `A space holds at most ${WORLD.placements} of your models.`)
+  if (value.length > limits.placements) return no('too_many', `A space holds at most ${limits.placements} of your models.`)
   const models: Placement[] = []
   const keys = new Set<string>()
   let triangles = 0
@@ -86,7 +86,7 @@ export function cleanLayout(value: unknown, plot: PlotSize, placeable: (by: stri
     triangles += model.triangles
     models.push({ k, m, by, hash: model.hash, x, y, z, ry: ((ry % 360) + 360) % 360, s, floor, ...(r['loose'] === true ? { loose: true as const } : {}) })
   }
-  if (triangles > WORLD.triangles) return no('too_heavy', `These models add up to ${triangles.toLocaleString('en')} triangles. A space can show ${WORLD.triangles.toLocaleString('en')}: remove some or use lighter models.`)
+  if (triangles > limits.triangles) return no('too_heavy', `These models add up to ${triangles.toLocaleString('en')} triangles. A space can show ${limits.triangles.toLocaleString('en')}: remove some or use lighter models.`)
   return { ok: true, models, triangles }
 }
 

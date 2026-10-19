@@ -51,6 +51,8 @@ export const statement = phonePanel('statement', 'Statement', bodyLoader('money/
 export const invest = phonePanel('invest', 'Invest', bodyLoader('money/InvestApp'), { order: 50, group: 'money' })
 
 export const houses = phonePanel('houses', 'Houses', bodyLoader('home/HousesApp'), { order: 30, group: 'life' })
+// Worlds a player makes and the ones others opened (docs/WORLDS.md); the app says so when worlds are not switched on.
+export const worlds = phonePanel('worlds', 'Worlds', bodyLoader('worlds/WorldsApp'), { order: 31, group: 'life' })
 
 export const landPanel = phonePanel('land', 'My land', bodyLoader('neighbourhood/LandPanel'), { icon: 'home', order: 30.5, group: 'life' })
 
@@ -112,4 +114,4 @@ export const buy = lazyPanel('buy', 'Buy', 'nav', bodyLoader('home/BuyMode'), {
   enabled: (state) => social.me?.visiting ? 'Leave the visit before rearranging your furniture' : state.stories?.running ? 'End your scene before rearranging furniture' : state.location === 'home' || 'Go home to buy furniture',
 })
 
-export const NATIVE_PANELS: readonly VuePanel[] = [captureChip, placesPanel, gistPanel, landPanel, stories, storyChip, neighbourhoodPanel, capture, bank, messages, support, jobs, career, statement, invest, houses, cars, groceries, health, goals, profile, needs, skills, settings, boutique, healthChip, weatherChip, goalChip, settleChip, homeChip, buy, homeItem, ...PASSPORT_PANELS, ...CIVIC_APPS, ...CIVIC_HUD, ...GROWTH_PANELS, ...GROWTH_HUD_PANELS, ...TABLES_PANELS, ...GAMES_PANELS, ...CAMPUS_PANELS, ...WORLD_PANELS, ...SOCIAL_PANELS, ...START_PANELS, ...TRAVEL_PANELS, ...ACCOUNT_PANELS, ...BUSINESS_PANELS, ...MARKET_PANELS, ...SHOWCASE_PANELS, ...COMMERCE_PANELS, ...POLITICS_PANELS, ...ADMIN_PANELS, ...LIVING_WORLD_PANELS, ...FEED_PANELS]
+export const NATIVE_PANELS: readonly VuePanel[] = [captureChip, placesPanel, gistPanel, landPanel, stories, storyChip, neighbourhoodPanel, capture, bank, messages, support, jobs, career, statement, invest, houses, worlds, cars, groceries, health, goals, profile, needs, skills, settings, boutique, healthChip, weatherChip, goalChip, settleChip, homeChip, buy, homeItem, ...PASSPORT_PANELS, ...CIVIC_APPS, ...CIVIC_HUD, ...GROWTH_PANELS, ...GROWTH_HUD_PANELS, ...TABLES_PANELS, ...GAMES_PANELS, ...CAMPUS_PANELS, ...WORLD_PANELS, ...SOCIAL_PANELS, ...START_PANELS, ...TRAVEL_PANELS, ...ACCOUNT_PANELS, ...BUSINESS_PANELS, ...MARKET_PANELS, ...SHOWCASE_PANELS, ...COMMERCE_PANELS, ...POLITICS_PANELS, ...ADMIN_PANELS, ...LIVING_WORLD_PANELS, ...FEED_PANELS]

@@ -2,9 +2,9 @@
 // transport error becomes a refusal in words.
 import type { SpacePlanV1, SpaceProblem, SpaceTarget } from '../../../spaces/plan.ts'
 import { packPlan } from '../../../spaces/plan.ts'
-import type { ModelView, ModelsMine, PlacedModel, WorldView } from '../../../types/spaces.ts'
+import type { ModelView, ModelsMine, PlacedModel, WorldCard, WorldsList, WorldView } from '../../../types/spaces.ts'
 import type { Placement } from '../../../spaces/layout.ts'
-export type { ModelView, ModelsMine, PlacedModel, WorldView }
+export type { ModelView, ModelsMine, PlacedModel, WorldView, WorldCard, WorldsList }
 
 export interface Fetcher { fetchJson: <T = Record<string, unknown>>(path: string, options?: { method?: 'POST'; body?: unknown }) => Promise<T> }
 export type Refusal = { ok: false; code: string; reason: string }
@@ -58,7 +58,7 @@ export async function modelBytes(hash: string): Promise<ArrayBuffer | null> {
 }
 
 // A space in 3D (docs/SPACES-3D.md, phase 2).
-export interface WorldWhere { target: 'home' | 'room'; host?: string; id?: string }
+export interface WorldWhere { target: 'home' | 'room' | 'world'; host?: string; id?: string }
 export const worldRead = (api: Fetcher, where: WorldWhere) => {
   const query = new URLSearchParams({ target: where.target, ...(where.host ? { host: where.host } : {}), ...(where.id ? { id: where.id } : {}) })
   return call<WorldView>(api, `/api/spaces/world?${query}`)
@@ -67,3 +67,17 @@ export const worldSave = (api: Fetcher, where: WorldWhere, models: readonly Plac
   call<{ ok: true; code: 'saved'; placed: number; triangles: number }>(api, '/api/spaces/world/layout', { target: where.target, ...(where.id ? { id: where.id } : {}), models })
 export const scriptSave = (api: Fetcher, where: WorldWhere, code: string, lines: readonly string[]) =>
   call<{ ok: true; code: 'saved' | 'removed'; lines?: number }>(api, '/api/spaces/world/script', { target: where.target, ...(where.id ? { id: where.id } : {}), code, lines })
+
+// Worlds (docs/WORLDS.md; server/spaces/worlds.ts).
+export const worldsList = (api: Fetcher, which: 'mine' | 'new' | 'popular') => call<WorldsList>(api, `/api/spaces/worlds?list=${which}`)
+export const worldCreate = (api: Fetcher, body: { name: string; blurb: string; size: string; ground: string; open: string }) => call<{ ok: true; code: 'created'; world: WorldCard }>(api, '/api/spaces/worlds', body)
+export const worldUpdate = (api: Fetcher, body: { id: string; name?: string; blurb?: string; ground?: string; open?: string }) => call<{ ok: true; code: 'saved'; world: WorldCard }>(api, '/api/spaces/worlds/update', body)
+export const worldDelete = (api: Fetcher, id: string) => call<{ ok: true; code: 'deleted' }>(api, '/api/spaces/worlds/delete', { id })
+/** A world's cover, with its hash's first letters so a new cover is a new address. */
+export const worldCoverUrl = (card: Pick<WorldCard, 'id' | 'cover'>): string | null => (card.cover ? `/api/spaces/world-cover/${card.id}?v=${card.cover}` : null)
+export async function worldCoverUpload(id: string, picture: Blob): Promise<{ ok: true; code: 'saved'; cover: string } | Refusal> {
+  try {
+    const response = await fetch(`/api/spaces/worlds/cover?id=${encodeURIComponent(id)}`, { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'image/webp', Accept: 'application/json' }, body: picture })
+    return await response.json() as { ok: true; code: 'saved'; cover: string } | Refusal
+  } catch { return { ok: false, code: 'offline', reason: 'The cover could not be sent.' } }
+}

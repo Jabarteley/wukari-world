@@ -75,6 +75,12 @@ test('at home: the banner offers Knock, which opens the Invite app on that house
   assert.equal(first.landing.banner.value, null)
 })
 
+test('a world link (kept as world-<id>) opens the Worlds app on the world, and never the Tables app', async () => {
+  const s = setup({}, { table: 'world-wabc123def456' }); await s.landing.land()
+  assert.ok(s.log.includes(`open:worlds:${JSON.stringify({ world: 'wabc123def456' })}`), s.log.join('\n'))
+  assert.ok(!s.log.some((line) => line.startsWith('open:tables'))); assert.equal(s.keep.table, null)
+})
+
 test('a table link opens the Tables app only for a table that exists', async () => {
   const known = setup({}, { table: 'whot-1' }); await known.landing.land()
   assert.ok(known.log.includes(`open:tables:${JSON.stringify({ table: 'whot-1' })}`)); assert.equal(known.keep.table, null)

@@ -1,0 +1,29 @@
+/* Worlds: the hero line, the make-a-world form, cards with a cover (or the ground's colour) and the actions under one's own. */
+.worlds-app{--button-primary:#1f5f8b}
+.worlds-hero{display:grid;gap:4px;padding:16px 18px}
+.worlds-hero>small{font-size:13px;font-weight:600;color:var(--c-muted)}
+.worlds-hero>strong{font-size:24px;font-weight:700;line-height:1.15;letter-spacing:-.2px}
+.worlds-hero>p{margin:2px 0 10px;font-size:14px;line-height:1.5;color:var(--c-ink-2)}
+.worlds-form h3{margin:0 0 10px}
+.worlds-label{display:block;margin:10px 0 6px;font-size:13px;font-weight:650}
+.worlds-label small{font-weight:500;color:var(--c-muted)}
+.worlds-chips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.worlds-chips.worlds-grounds{grid-template-columns:repeat(5,minmax(0,1fr))}
+.worlds-chip{display:grid;justify-items:center;gap:3px;min-height:44px;padding:8px 6px;border:1px solid var(--c-line);border-radius:12px;background:#fff;color:var(--c-ink);font:inherit;text-align:center;cursor:pointer}
+.worlds-chip[aria-pressed=true]{border-color:var(--c-ink);background:var(--c-fill)}
+.worlds-chip b{font-size:13px}
+.worlds-chip small{font-size:11px;line-height:1.25;color:var(--c-muted)}
+.worlds-chip i{display:block;width:26px;height:26px;border-radius:50%;border:1px solid rgba(0,0,0,.12)}
+.worlds-row{display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:12px}
+.worlds-list{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.ph.is-wide .worlds-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+.worlds-card{border:1px solid var(--c-line);border-radius:14px;background:#fff;overflow:hidden}
+.worlds-cover{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:0;background:var(--c-fill);color:#fff;text-align:left;cursor:pointer;overflow:hidden}
+.worlds-cover img,.worlds-cover i{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.worlds-cover b,.worlds-cover small{position:absolute;left:12px;right:12px;text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.worlds-cover b{bottom:26px;font-size:17px;line-height:1.2}
+.worlds-cover small{bottom:10px;font-size:12px;font-weight:500;opacity:.95}
+.worlds-cover::after{content:"";position:absolute;inset:auto 0 0;height:60%;background:linear-gradient(to top,rgba(0,0,0,.6),transparent)}
+.worlds-blurb{margin:8px 12px 0;font-size:13px;line-height:1.4;color:var(--c-ink-2)}
+.worlds-acts{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:6px;padding:10px 12px 12px}
+.worlds-acts .ui-button{min-height:40px;padding:0 6px;font-size:13px}

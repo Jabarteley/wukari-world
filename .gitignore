@@ -7,7 +7,8 @@ dist/
 .env*
 !.env.example
 VERIFICATION.md
-evidence/
+/evidence/
+docs/evidence/out/
 *.log
 dist-maps/
 *.map

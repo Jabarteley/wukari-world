@@ -72,6 +72,7 @@ import type { MiniGamesHttpRoutes } from './minigames.ts'
 import type { NeighbourhoodHttpRoutes, EconomyHttpRoutes, BillboardHttpRoutes } from './neighbourhood.ts'
 import type { StoryHttpRoutes } from './story-http.ts'
 import type { ShareLoopsHttpRoutes } from './shareloops.ts'
+import type { GlueHttpRoutes } from './glue.ts'
 import type { StoryTalkView, StoryTalkTurn, TalkHistoryLine } from './story-talk.ts'
 
 // ---- shared primitives ---------------------------------------------------------------------------
@@ -323,6 +324,8 @@ export interface HttpRoutes extends MiniGamesHttpRoutes {}
 export type HttpRouteKey = keyof HttpRoutes
 export type ResponseOf<K extends HttpRouteKey> = HttpRoutes[K]['response']
 export type ErrorCodeOf<K extends HttpRouteKey> = HttpRoutes[K]['errors']
+/** The social glue (docs/SOCIAL-GLUE.md): merged into HttpRoutes the same way, kept apart from the other phases' lines. */
+export interface HttpRoutes extends GlueHttpRoutes {}
 
 // ---- WebSocket /socket: venue rooms (server/ws/rooms.ts) -----------------------------------------
 //
@@ -948,6 +951,7 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/trust/profile/:id',
   'POST /api/trust/check/:kind/start',
   'POST /api/trust/report',
+  'GET /api/glue/close', 'GET /api/glue/close/now', 'POST /api/glue/close', 'GET /api/glue/talks', 'POST /api/glue/talks', 'POST /api/glue/talks/remind', 'POST /api/glue/talks/open', 'POST /api/glue/talks/cancel', 'GET /api/glue/board', 'POST /api/glue/board/posts', 'POST /api/glue/board/same', 'POST /api/glue/board/report', 'POST /api/glue/board/moderate', 'GET /api/glue/trips', 'POST /api/glue/trips', 'POST /api/glue/trips/answer', 'POST /api/glue/trips/manage', 'POST /api/glue/trips/go', 'GET /api/glue/family', 'POST /api/glue/family/propose', 'POST /api/glue/family/answer', 'POST /api/glue/family/withdraw', 'POST /api/glue/family/ceremony', 'POST /api/glue/family/home', 'POST /api/glue/family/divorce',
   'GET /api/world/event', 'GET /api/world/event/me', 'POST /api/world/event/step', 'GET /api/world/stage', 'POST /api/world/stage',
   'GET /api/world/election-night', 'POST /api/world/election-night/speech', 'POST /api/world/election-night/card', 'GET /api/admin/world-events', 'POST /api/admin/world-events',
   'GET /api/neighbourhood/board', 'POST /api/neighbourhood/notices', 'POST /api/neighbourhood/notices/vote', 'POST /api/neighbourhood/notices/report', 'POST /api/neighbourhood/notices/remove', 'GET /api/neighbourhood/meetups', 'POST /api/neighbourhood/meetups/plan',

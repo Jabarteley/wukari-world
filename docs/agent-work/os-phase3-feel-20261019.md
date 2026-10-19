@@ -7,7 +7,7 @@
 - **Model / effort:** Sonnet 5.5 / default
 - **Thread:** local
 - **UTC updated:** 2026-10-19T12:00:00Z
-- **Status:** `active`
+- **Status:** `ready-for-review`
 - **Work state:** `implementation`
 
 ## Goal and boundaries
@@ -64,3 +64,5 @@
 
 - camera-controls.ts is in the `controls` chunk, which is in the first download (startup gzip 223,153 on main against a 223,500 budget, 347 bytes of headroom). Adding the shake to it (plus a shared shake chunk) cost +741 gzip and failed `entry.test.ts`. So camera-controls.ts is NOT touched; the shake is applied by the scene host, which is lazy (patch above).
 - feel/ lands in the lazy `fx` chunk (3,043 bytes raw before the changes below); reward and fight-3d import it.
+- Second finding: importing `audio/play.ts` from fx split play.ts and toasts.ts out of their chunks (+870 raw in the startup closure). feel() now takes the sound as a parameter. After that startup raw equals main (613,913) and gzip is 223,139-223,149 (main 223,153).
+- STARTUP_BROTLI (provisional, 196,300; main 196,250) moves by tens of bytes with the content hashes of changed lazy chunks: the same code gave 196,309 / 196,369 / 196,329 / 196,304 / 196,297 with the hit-stop cap at 120 / 110 / 100 / 105 / 95. The cap is 95 because that build passed (196,297). Any merge that changes a lazy chunk's hash can tip it either way: the integrator should expect to re-roll or to rule on the 50-byte headroom.

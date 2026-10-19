@@ -99,17 +99,13 @@ Text is drawn from `src/entry-variants.ts` (the home row) so the store says what
 
 - App icon, 512x512 32-bit PNG: `public/icons/icon-512.png` (it is an 8-bit palette PNG; re-save it as 32-bit if the Console objects).
 - Feature graphic, 1024x500 PNG or JPEG: needs making. `public/og/allworld.jpg` (1200x630, the globe and the lights) is the starting picture.
-- Phone screenshots, 2 to 8, 9:16 (for example 1080x1920): need capturing from the live game on a phone (the Capture app, or the screenshot harness in
-  the notes). Good ones: the entry card over the street, the world map, the character on a street, a chess table with a friend. Once you have them,
-  put them under `public/` and list them in the manifest's `screenshots` so Chrome's install sheet shows them too; ask for that change then.
+- Phone screenshots: five real ones, 1080x1920, under `public/store/` (the entry card over the world, Near you, Communities, the character at home in
+  3D, the Lagos map), taken from the live build with the screenshot harness and listed in the manifest's `screenshots`. Retake them when the screens change.
 
 ### Policy forms
 
-- **Privacy policy URL (required): there is none yet.** The repository has no public privacy page or route; what exists is Settings, Privacy in the
-  game ("Analytics and error reports", `src/telemetry/what-we-collect.ts`) and the export and erase tools in the account. Play will not publish
-  without a public address, so a `/privacy` page (written with the lawyer who reads the creator-pool terms) has to exist first. It should say what is
-  stored (a nickname, the life in the game, an e-mail only if the player signs in, a city badge the player chose to show; the phone's position is
-  found on the phone and not sent), the optional analytics, and how to erase an account.
+- **Privacy policy URL (required):** `https://joinallworld.com/privacy` (server/privacy-page.ts, served by both hosts, linked from the entry page). It
+  states what the code does today; the owner's lawyer reads it before it is filed as the policy, and it changes when the game changes.
 - **Data safety:** declare the above: name or nickname, e-mail (optional sign-in), user-generated content (chat, posts, pictures), device or other ids
   (the session id), approximate location (only the city the player confirms), app activity and crash logs (analytics are opt-in). Data is encrypted in
   transit; deletion is available inside the app.

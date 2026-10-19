@@ -31,6 +31,31 @@ const { game, shell } = useApp()
 const canvas = ref<HTMLCanvasElement | null>(null)
 // A modal dialog: the phone is one too, and a dialog shown later sits above it in the page's top layer.
 const dialog = ref<HTMLDialogElement | null>(null)
+/** Full screen: the whole 3D view (the stage inside the dialog: a modal dialog cannot itself be the full-screen element in every browser)
+ *  or just the shared screen. iPhones have no full screen for a page element: the button is not shown there (the view already fills the screen). */
+const stage = ref<HTMLElement | null>(null)
+const tvBox = ref<HTMLElement | null>(null)
+type FullDoc = Document & { webkitFullscreenElement?: Element | null; webkitFullscreenEnabled?: boolean; webkitExitFullscreen?: () => Promise<void> }
+type FullEl = HTMLElement & { webkitRequestFullscreen?: () => Promise<void> }
+const fullDoc = document as FullDoc
+const canFull = Boolean(fullDoc.fullscreenEnabled || fullDoc.webkitFullscreenEnabled)
+const full = ref<'stage' | 'tv' | null>(null)
+function fullChanged(): void {
+  const el = fullDoc.fullscreenElement ?? fullDoc.webkitFullscreenElement ?? null
+  full.value = el && el === stage.value ? 'stage' : el && el === tvBox.value ? 'tv' : null
+}
+async function toggleFull(what: 'stage' | 'tv'): Promise<void> {
+  try {
+    if (full.value === what) { await (fullDoc.exitFullscreen?.() ?? fullDoc.webkitExitFullscreen?.()); return }
+    const el = (what === 'stage' ? stage.value : tvBox.value) as FullEl | null
+    if (!el) return
+    if (what === 'tv') screenHidden.value = false
+    await (el.requestFullscreen?.({ navigationUI: 'hide' }) ?? el.webkitRequestFullscreen?.())
+    // A phone turns to landscape for a video where the browser allows it (Android); elsewhere this is refused quietly.
+    if (what === 'tv') void (screen.orientation as ScreenOrientation & { lock?: (o: string) => Promise<void> })?.lock?.('landscape')?.catch(() => {})
+    track('world_fullscreen', { what })
+  } catch { note.value = 'This browser would not go full screen.' }
+}
 const world = shallowRef<WorldView['world'] | null>(null)
 const loading = ref(true)
 const error = ref('')
@@ -128,6 +153,12 @@ onMounted(async () => {
     lines.value = answer.world.script.lines.join('\n')
     startScript(answer.world.script)
   }
+})
+document.addEventListener('fullscreenchange', fullChanged)
+document.addEventListener('webkitfullscreenchange', fullChanged)
+onBeforeUnmount(() => {
+  document.removeEventListener('fullscreenchange', fullChanged); document.removeEventListener('webkitfullscreenchange', fullChanged)
+  if (full.value) void (fullDoc.exitFullscreen?.() ?? fullDoc.webkitExitFullscreen?.())?.catch?.(() => {})
 })
 onBeforeUnmount(() => { gone = true; clearInterval(tickTimer); together?.leave(); together = null; engine?.dispose(); engine = null })
 
@@ -377,12 +408,14 @@ const round = (v: number): number => Math.round(v * 100) / 100
 
 <template>
   <dialog ref="dialog" class="ws" :aria-label="world ? `${world.title} in 3D` : 'Space in 3D'" @cancel.prevent="leave">
+    <div ref="stage" class="ws-stage">
       <canvas ref="canvas" class="ws-canvas" aria-label="The space in 3D. Drag to look around." />
       <header class="ws-top">
         <button type="button" class="ws-pill" @click="leave">Leave</button>
         <h2 class="ws-title">{{ world?.title ?? 'Loading…' }}</h2>
         <button v-if="world?.kind === 'world'" type="button" class="ws-pill" data-world="invite" @click="invite">Invite</button>
         <button v-if="world" type="button" class="ws-pill" :aria-label="view === 'first' ? 'Switch to third person' : 'Switch to first person'" @click="toggleView">{{ view === 'first' ? '1st' : '3rd' }}</button>
+        <button v-if="world && canFull" type="button" class="ws-pill" :class="{ 'is-on': full === 'stage' }" :aria-pressed="full === 'stage'" :aria-label="full === 'stage' ? 'Leave full screen' : 'Full screen'" data-world="full" @click="toggleFull('stage')">{{ full === 'stage' ? 'Exit full' : 'Full screen' }}</button>
       </header>
       <p v-if="floors > 1" class="ws-floor" role="status">{{ floor === 0 ? 'Ground floor' : `Floor ${floor}` }}</p>
       <p v-if="loading" class="ws-centre" role="status">Building the space…</p>
@@ -401,8 +434,9 @@ const round = (v: number): number => Math.round(v * 100) / 100
         </div>
         <p v-if="score !== null" class="ws-score" role="status">Score {{ score }}</p>
         <p v-if="here > 1" class="ws-here" role="status">{{ here }} here</p>
-        <div v-if="screenSrc" class="ws-tv" :class="{ 'is-hidden': screenHidden }">
-          <iframe ref="tv" :src="screenSrc" title="The screen" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" @load="tvLoaded" />
+        <div v-if="screenSrc" ref="tvBox" class="ws-tv" :class="{ 'is-hidden': screenHidden }">
+          <iframe ref="tv" :src="screenSrc" title="The screen" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" @load="tvLoaded" />
+          <button v-if="canFull" type="button" class="ws-tv-full" :aria-label="full === 'tv' ? 'Leave full screen' : 'Watch full screen'" data-world="tv-full" @click="toggleFull('tv')">{{ full === 'tv' ? '✕' : '⛶' }}</button>
         </div>
         <div class="ws-left" role="group" aria-label="Screen and game">
           <button v-if="world.screen" type="button" class="ws-pill" :class="{ 'is-on': screenOpen }" :aria-pressed="screenOpen" data-world="screen" @click="screenOpen = !screenOpen">Screen</button>
@@ -421,6 +455,7 @@ const round = (v: number): number => Math.round(v * 100) / 100
             </div>
           </template>
           <p v-else class="ws-hint">{{ screenState ? 'The host controls the screen. Everyone here sees the same moment.' : 'The host has nothing on the screen yet.' }}</p>
+          <button v-if="screenSrc && canFull" type="button" class="ws-wide" data-world="screen-full" @click="toggleFull('tv')">Watch full screen</button>
           <button v-if="screenSrc" type="button" class="ws-wide" @click="screenHidden = !screenHidden">{{ screenHidden ? 'Show the screen' : 'Hide the screen (keep the sound)' }}</button>
         </section>
         <div v-if="gameOpen && world.terrain?.game" class="ws-game">
@@ -483,6 +518,7 @@ const round = (v: number): number => Math.round(v * 100) / 100
         <p v-if="note && !error" class="ws-note" role="status">{{ note }}</p>
         <p v-if="error" class="ws-note ws-error" role="alert">{{ error }}</p>
       </template>
+    </div>
   </dialog>
 </template>
 
@@ -498,6 +534,10 @@ const round = (v: number): number => Math.round(v * 100) / 100
 
 .ws::backdrop { background: #000; }
 .ws { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: #a9c7de; overflow: hidden; touch-action: none; user-select: none; font-family: var(--font); }
+.ws-stage { position: absolute; inset: 0; overflow: hidden; }
+.ws-stage:fullscreen { width: 100%; height: 100%; background: #a9c7de; }
+.ws-tv-full { position: absolute; right: 6px; bottom: 6px; min-width: 36px; min-height: 36px; border: 0; border-radius: 999px; background: rgba(0, 0, 0, 0.55); color: #fff; font: 600 16px/1 var(--font); cursor: pointer; }
+.ws-tv:fullscreen { top: 0; left: 0; transform: none; width: 100%; height: 100%; aspect-ratio: auto; border-radius: 0; }
 .ws-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .ws-top { position: absolute; top: max(8px, env(safe-area-inset-top)); left: 8px; right: 8px; display: flex; align-items: center; gap: 8px; pointer-events: none; }
 .ws-top > * { pointer-events: auto; }

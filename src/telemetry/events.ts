@@ -108,6 +108,7 @@ export const EVENTS: Record<string, EventSpec> = {
   house_skill_copied: { from: 'world', props: { what: 'string' }, when: 'Copy my real house: the instructions for the player\'s own AI were copied (what: prompt) or the skill opened (what: skill).', why: 'Do players hand their house to their own AI?' },
   house_copy_used: { from: 'world', props: { kind: 'string' }, when: 'A copied house became the player\'s home (kind: spec | model).', why: 'How many real houses reach the game, and how.' },
   world_screen: { from: 'world', props: { action: 'string' }, when: 'The host put something on a space’s screen (action: on).', why: 'Is watching and listening together used?' },
+  world_fullscreen: { from: 'world', props: { what: 'string' }, when: 'A world went full screen (what: stage, the whole 3D view | tv, the shared screen).', why: 'Do people want worlds and watching together on the whole screen?' },
   world_liked: { from: 'world', props: { on: 'boolean' }, when: 'A world was liked (on: true) or the like taken back.', why: 'Which worlds people value, beyond visits.' },
 
   // ---- Missions, tables, sharing and outreach (the growth panels: src/ui/panels/*, src/tables/client.ts)

@@ -2,6 +2,7 @@ import { readPublicProfile } from '../public-profile.ts'
 import { publicProfilePageHtml, unavailableProfilePageHtml } from '../public-profile-page.ts'
 import { feedService } from '../feed/service.ts'
 import { profileSocialHtml } from '../feed/pages.ts'
+import { privacyPageHtml } from '../privacy-page.ts'
 import { sourceQuery } from '../../src/game/share-model.ts'
 import type { Db, RouteContext, RouteHandler, RouteKey } from '../types.ts'
 
@@ -13,6 +14,8 @@ export default function profileRoutes(ctx: RouteContext): Record<RouteKey, Route
   const idOf = (db: Db, raw: string): string => { let text = raw; try { text = decodeURIComponent(raw) } catch { return raw } return text.startsWith('@') ? feed.resolve(db, text) ?? '' : text }
   /** The feed's part of the page: portrait, handle, bio, status, the latest public posts. Nothing for a guest viewer beyond what is public. */
   const socialOf = (db: Db, id: string, origin: string): string => { const found = feed.profile(db, null, id); if (!found.ok) return ''; const page = feed.read(db, null, { tab: 'author', by: id }); return profileSocialHtml(found.profile, 'posts' in page ? page.posts.filter((p) => p.vis === 'public') : [], origin) }
+  // The public privacy page (server/privacy-page.ts): plain HTML, cacheable, the same on both hosts.
+  ctx.pages?.set('/privacy', async ({ origin }) => ({ status: 200, cache: true, html: privacyPageHtml(origin) }))
   ctx.pages?.set('/p/', async ({ path, query, origin, ip, method }) => {
     if (method !== 'GET' && method !== 'HEAD') return { status: 405, cache: false, html: unavailableProfilePageHtml(origin) }
     if (!ctx.allow(`profile:page:${ip}`, 60, 60000)) return { status: 429, cache: false, html: unavailableProfilePageHtml(origin) }

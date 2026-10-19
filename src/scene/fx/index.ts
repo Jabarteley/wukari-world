@@ -4,8 +4,8 @@
  * directly. Today the host is empty; phases 1 to 3 of docs/OPEN-SOURCE-PLAN.md add their parts at the FX_IMPORTS marker below.
  *
  * Nothing in the first download imports this file. It is reached only by lazy `import('./fx/index.ts')` calls from scene hosts,
- * so vite.config.ts can put src/scene/fx/**, src/scene/feel/** and the libraries behind them (postprocessing, n8ao, three-nebula,
- * yuka) in one chunk named `fx`, and src/scene/city-scenes.test.ts checks that no startup or scene-host chunk imports it statically.
+ * so vite.config.ts can put src/scene/fx/**, src/scene/feel/** and the libraries behind them (postprocessing and
+ * n8ao) in one chunk named `fx`, and src/scene/city-scenes.test.ts checks that no startup or scene-host chunk imports it statically.
  *
  * The tier gate, in one paragraph: rain, particles and feel are for every tier (a phone gets fewer drops and sparks, never none),
  * but the post-processing and ambient-occlusion parts, the code that imports `postprocessing` and `n8ao`, are imported only when

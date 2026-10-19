@@ -348,9 +348,9 @@ export default defineConfig({
     if (/node_modules\/three\/examples\/jsm\/(loaders\/GLTFLoader|libs\/meshopt_decoder\.module|utils\/SkeletonUtils)\.js$/.test(id)) return undefined
     // The high tier's environment map and night bloom (src/scene/quality.ts, imported only on that tier) ride in its lazy chunk the same way.
     if (/node_modules\/three\/examples\/jsm\/(environments|postprocessing|shaders)\//.test(id)) return undefined
-    // The weather, particles, post-processing and game-feel code (src/scene/fx, src/scene/feel) and the libraries only they use (postprocessing, n8ao, three-nebula, yuka) are one chunk, `fx`,
+    // The weather, particles, post-processing and game-feel code (src/scene/fx, src/scene/feel) and the libraries only they use (postprocessing, n8ao) are one chunk, `fx`,
     // fetched through src/scene/fx/index.ts by scene hosts when a scene has drawn its first frame; nothing in the first download or the scene host imports it statically (src/scene/city-scenes.test.ts checks).
-    // Three's own examples/jsm/postprocessing stay with the rule above: quality.ts's bloom and the space's RoomEnvironment use them today, and moving them would make those fetch the particle and steering code too.
+    // Three's own examples/jsm/postprocessing stay with the rule above: quality.ts's bloom and the space's RoomEnvironment use them today, and moving them would make those fetch the post stack too.
     if (/\/src\/scene\/(fx|feel)\/|node_modules\/(postprocessing|n8ao|three-nebula|yuka)\//.test(id)) return 'fx'
     if (/node_modules\/three\//.test(id)) return 'three'
     // The one-line component wrapper every compiled .vue file imports: beside Vue, which each of them imports as well, so the first page and the shell kit do not need a file of its own for it.

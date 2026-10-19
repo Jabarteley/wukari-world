@@ -1,0 +1,13 @@
+✔ every generated city passes its offline source and output check (29937.665958ms)
+✔ open city footprints do not overlap beyond the unchanged legacy boundary seams (9947.591291ms)
+✔ every public venue uses a scene within the shared rendering budget (94297.755208ms)
+✔ every playable city exposes market, table and arrival relief contracts (3.404584ms)
+✔ each playable city can settle, work, eat, rest, travel to three cities, return and reload (129090.023791ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 264704.431042

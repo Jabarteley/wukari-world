@@ -1,0 +1,55 @@
+{
+  "schema": "phase3-release-admission-candidate-v2",
+  "time": "2026-10-19T01:15:02.694111+00:00",
+  "sourceSha": "419e3768cb337ce29b6317a094ce5eb4e57236b3",
+  "supersedes": "/var/folders/3x/y9y7vtp934q97zk_sl810lj40000gn/T/story-phase3-release-admission-20261019-ctn9f2oi/release-admission.patch",
+  "patchSha256": "356c12bc26b2a53be51245dd1a918ab082405a3ece0453bc82cc58f5b4f0714f",
+  "r1DeltaSha256": "88d488820504f2a9d3ae73c1a4056370147dd9e38aecf25b18f08ca2947eb034",
+  "scope": "Only exactObject predicate any to unknown and explicit numeric type guards before existing integer/range tests; two other candidate paths byte-identical to R1.",
+  "paths": [
+    {
+      "path": "scripts/guard-joinallworld-package.mjs",
+      "before": "dc7e69ea6d1306939b78eeea46e674f43b9e66ad5de99903bca7b2b643b23dcb",
+      "after": "58795498e814190dcf35f3eb93f9babc5f85c9978f2a59bf4dda47b4023ff2fc"
+    },
+    {
+      "path": "scripts/guard-joinallworld-package.test.mjs",
+      "before": "f1f55535c2e6c4122d30720cffbb9b55f69528381b82f23a288e0cd38cb71e57",
+      "after": "ebf602499ab3d6ae67882bd1361dc1658a7eef51e352cbac91ef88492fb3fb88"
+    },
+    {
+      "path": "server/release.test.ts",
+      "before": "ae6434cca56b044730545bb962578a4061cd3ef19bdab7ac8462599bb8c63833",
+      "after": "aa1ad9c6ae46230dc2062a1f755ead5ef1d9018f6458252f0875db4de15a3fe3"
+    }
+  ],
+  "checks": {
+    "strictTypes": {
+      "exit": 0
+    },
+    "focusedTalkAndActualPublic": {
+      "exit": 0,
+      "passed": 32
+    }
+  },
+  "logs": {
+    "talk-public-tests.log": "08d0893a244d4e4a752718aea9094cb8bb7efd42a7da69d31fdc5984ec892ef7",
+    "focused-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "unchangedProof": {
+    "head": "419e3768cb337ce29b6317a094ce5eb4e57236b3",
+    "gitIndexSha256": "277cefa594a69c3ec22dd0a9c1b825a0b514495394e29a78f3e6b8f583ca779f",
+    "sourcePathHashesMatchBase": true,
+    "originalCandidatePreserved": true
+  },
+  "execution": {
+    "standardHeavyLease": true,
+    "nodeOldSpaceMiB": 512,
+    "nodeSemiSpaceMiB": 16,
+    "GOMAXPROCS": 2,
+    "eachUnitUnderSeconds": 1,
+    "attempts": 1,
+    "resourcesRemaining": null
+  },
+  "limitations": "R1 full canonical package probe is prior evidence; R2 reruns only strict types and affected Talk/public fixtures. Parent retains application, runtime fix, new-SHA CI and release."
+}

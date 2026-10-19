@@ -1,0 +1,13 @@
+✔ the first download paints without the game shell, rules engine or city content; the startup closure reads them through the browser system set (0.61325ms)
+✔ the shared shell does not statically import a city venue or regular catalogue (0.175667ms)
+✔ the shared shell does not statically import the world city network (catalogue rows, land components, routes) (0.589958ms)
+✔ each generated catalogue row has one checked-in Node and Worker loader (1.301959ms)
+✔ Three.js, maps, scene hosts, campus world, models and telemetry SDKs remain separate from both entry and shell (1.42075ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 142.362333

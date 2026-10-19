@@ -198,9 +198,9 @@ export const FIRST_PAINT_BROTLI: Budget = {
   why: 'Shell first paint may not grow: index.html, its stylesheet and the chunks it statically imports (baseline after phase 0, with the boot-recovery and old-browser notice: 36.6 kB, plus about 0.6%).',
 }
 export const STARTUP_BROTLI: Budget = {
-  value: 196_100, unit: 'brotli bytes', limit: 'max', status: 'provisional',
+  value: 196_300, unit: 'brotli bytes', limit: 'max', status: 'provisional',
   enforcedIn: 'scripts/download-budget.ts',
-  why: 'The automatic startup (shell, engine, the default city) may not grow (baseline after phase 0: the largest of the cities, Lagos, measures 195.4 kB, plus about 0.1%). Raised by 500 on 18 Oct 2026 for Lite and the feed apps (measured 195,912), under the owner\'s 17 Oct direction.',
+  why: 'The automatic startup (shell, engine, the default city) may not grow (baseline after phase 0: the largest of the cities, Lagos, measures 195.4 kB, plus about 0.1%). Raised by 500 on 18 Oct 2026 for Lite and the feed apps (measured 195,912), under the owner\'s 17 Oct direction. Raised by 200 on 19 Oct 2026: the engine lists the 284 city-rules chunk hashes, which change whenever a lazy chunk does, and their brotli size moves by about ±100 bytes with no code change (raw startup unchanged at 615,827; measured 196,149).',
 }
 export const BASE_BODY_BROTLI: Budget = {
   value: 300_000, unit: 'brotli bytes', limit: 'max', status: 'provisional',
@@ -243,10 +243,26 @@ export const PHONE_SCENE_DRAW_CALLS: Budget = {
   why: 'Everything visible at once on a phone, the same limit venue scenes already keep.',
 }
 
+export const TALK_INDEX_BYTES: Budget = {
+  value: 256_000, unit: 'raw bytes', limit: 'max', status: 'current',
+  enforcedIn: 'server/story/talk-banks.ts, scripts/download-budget.ts',
+  why: 'The immutable Talk city index is bounded before any city pack is requested.',
+}
+export const TALK_CITY_PACK_BYTES: Budget = {
+  value: 5_000_000, unit: 'raw bytes', limit: 'max', status: 'current',
+  enforcedIn: 'server/story/talk-banks.ts, scripts/talk-factory/world.ts, scripts/download-budget.ts',
+  why: 'Each immutable Talk city pack remains within the existing 5 MB per-file contract.',
+}
+
 export const CITY_SCENE_RECIPES_BYTES: Budget = {
   value: 120_000, unit: 'raw bytes', limit: 'max', status: 'current',
   enforcedIn: 'src/scene/recipe/contract.ts, scripts/scene-factory/scenes.ts, scripts/download-budget.ts',
   why: 'One city fetches its compact recipes and measured dependencies in a separate lazy entry.',
+}
+export const CITY_CONTENT_RECIPE_TALK_BYTES: Budget = {
+  value: 5_000_000, unit: 'raw bytes', limit: 'max', status: 'current',
+  enforcedIn: 'scripts/download-budget.ts',
+  why: 'One city download sums its immutable content JSON, optional city recipe entry and optional indexed Talk pack; shared kits and heroes are excluded.',
 }
 export const SCENE_KIT_BROTLI: Budget = {
   value: 300_000, unit: 'brotli bytes', limit: 'max', status: 'current',
@@ -267,7 +283,7 @@ export const BUDGETS = {
   STARTUP_RAW, STARTUP_GZIP, LOADING_RAW, LOADING_GZIP, SCENE_HOST_RAW, SCENE_HOST_GZIP,
   FIRST_PAINT_BROTLI, STARTUP_BROTLI, BASE_BODY_BROTLI, CLIP_PACK_BROTLI, WARDROBE_ITEM_BROTLI, WARDROBE_ITEM_TRIANGLES, WARDROBE_ITEM_TEXTURE_PX,
   STREET_TILE_BROTLI, STREET_TILE_TRIANGLES, PHONE_SCENE_DRAW_CALLS,
-  CITY_SCENE_RECIPES_BYTES, SCENE_KIT_BROTLI, HERO_BROTLI,
+  CITY_SCENE_RECIPES_BYTES, TALK_INDEX_BYTES, TALK_CITY_PACK_BYTES, CITY_CONTENT_RECIPE_TALK_BYTES, SCENE_KIT_BROTLI, HERO_BROTLI,
 } as const satisfies Record<string, Budget>
 
 export type BudgetName = keyof typeof BUDGETS

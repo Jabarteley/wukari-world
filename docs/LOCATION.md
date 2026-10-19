@@ -1,5 +1,7 @@
 # Location-confirmed badge
 
+(The social profile has its own city-level badge, used by locals-only communities, built the same way: docs/FEED.md, "Location badge".)
+
 An optional badge that says a player's own device placed them in the local government they live in. It is not a location feature.
 
 ## What is checked, and where

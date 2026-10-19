@@ -1,0 +1,5 @@
+{
+  "scripts/guard-joinallworld-package.mjs": "58795498e814190dcf35f3eb93f9babc5f85c9978f2a59bf4dda47b4023ff2fc",
+  "scripts/guard-joinallworld-package.test.mjs": "ebf602499ab3d6ae67882bd1361dc1658a7eef51e352cbac91ef88492fb3fb88",
+  "server/release.test.ts": "aa1ad9c6ae46230dc2062a1f755ead5ef1d9018f6458252f0875db4de15a3fe3"
+}

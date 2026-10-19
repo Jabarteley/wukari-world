@@ -59,6 +59,58 @@ export function expectedConfig(sourceSha, publish) {
     vars: { BUILD_ID: `joinallworld-${sourceSha}` }, observability: { enabled: false },
   };
 }
+const CITY_ASSET = /^assets\/assets\/cities\/[a-z][a-z0-9-]*\.([a-f0-9]{64})\.json$/;
+const PROGRESSION_ASSET = /^assets\/assets\/progression\/(?:episodes-\d+|journeys|missions)\.([a-f0-9]{64})\.json$/;
+const TALK_INDEX = 'assets/assets/talk-banks/index.json';
+const TALK_CITY = /^assets\/assets\/talk-banks\/([a-z][a-z0-9]*(?:-[a-z0-9]+)*)-([a-f0-9]{64})\.json$/;
+const NATIVE_JSON = new Set(['assets/character-lab/models/final-pass-20261015/catalog.json', 'assets/character-lab/models/candidates/motion-iteration2-upper-palm.json']);
+const NATIVE_NOTICE = new Set(['assets/character-lab/THIRD_PARTY_NOTICES.md', 'assets/character-lab/FINAL-PASS-LICENSE-NOTE.md']);
+/** Path admission only; checkPackage authenticates content and reference closure. @param {string} path @param {number} bytes */
+export function isPackageAssetPath(path, bytes) {
+  if (path.startsWith('assets/assets/talk-banks/')) return path === TALK_INDEX || TALK_CITY.test(path);
+  // The two reduced-detail near-crowd bodies are the only non-glTF binary assets.
+  const bodyLod = /^assets\/assets\/base-body-(?:male|female)-lod-[0-9a-f]{7}\.bin$/.test(path) && bytes > 0 && bytes < 1024 * 1024;
+  return NATIVE_JSON.has(path) || NATIVE_NOTICE.has(path) || CITY_ASSET.test(path) || PROGRESSION_ASSET.test(path) || bodyLod
+    || /^assets\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+\.(?:html|js|css|svg|png|jpg|jpeg|webp|ico|woff2|txt|glb)$/.test(path);
+}
+/** @param {unknown} value @param {string[]} keys @returns {value is Record<string, unknown>} */
+const exactObject = (value, keys) => value !== null && typeof value === 'object' && !Array.isArray(value)
+  && Object.keys(value).length === keys.length && keys.every(key => Object.hasOwn(value, key));
+/** @param {string} root @param {{path:string, bytes:number, sha256:string}[]} files @param {boolean} required */
+function checkTalkAssets(root, files, required) {
+  const talkFiles = files.filter(file => file.path.startsWith('assets/assets/talk-banks/'));
+  if (!required && !talkFiles.length) return;
+  const indexFile = talkFiles.find(file => file.path === TALK_INDEX);
+  if (!indexFile) throw Error('Missing Talk index');
+  if (indexFile.bytes === 0 || indexFile.bytes > 256_000) throw Error('Talk index byte limit');
+  /** @param {string} path */
+  function json(path) {
+    try { return JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(readFileSync(join(root, path)))); }
+    catch { throw Error('Invalid Talk JSON'); }
+  }
+  const index = json(TALK_INDEX);
+  if (!exactObject(index, ['schema', 'version', 'cities']) || index.schema !== 'allworld-talk-index' || index.version !== 1
+    || !Array.isArray(index.cities) || index.cities.length === 0 || index.cities.length > 512) throw Error('Invalid Talk index');
+  const cities = new Set(), referenced = new Set([TALK_INDEX]);
+  const assets = new Map(talkFiles.map(file => [file.path, file]));
+  for (const row of index.cities) {
+    if (!exactObject(row, ['city', 'path', 'sha256', 'bytes', 'banks']) || typeof row.city !== 'string'
+      || !/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/.test(row.city) || typeof row.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(row.sha256)
+      || row.path !== `/assets/talk-banks/${row.city}-${row.sha256}.json`
+      || typeof row.bytes !== 'number' || !Number.isSafeInteger(row.bytes) || row.bytes <= 0 || row.bytes > 5_000_000
+      || typeof row.banks !== 'number' || !Number.isSafeInteger(row.banks) || row.banks <= 0 || row.banks > 10_000) throw Error('Invalid Talk city reference');
+    if (cities.has(row.city)) throw Error('Duplicate Talk city');
+    cities.add(row.city);
+    const path = `assets${row.path}`, file = assets.get(path);
+    if (!file) throw Error('Missing referenced Talk asset');
+    if (file.bytes !== row.bytes || file.sha256 !== row.sha256) throw Error('Talk asset identity mismatch');
+    const pack = json(path);
+    if (!exactObject(pack, ['schema', 'version', 'city', 'banks']) || pack.schema !== 'allworld-city-talk' || pack.version !== 1
+      || pack.city !== row.city || !Array.isArray(pack.banks) || pack.banks.length !== row.banks) throw Error('Talk city identity or count mismatch');
+    referenced.add(path);
+  }
+  if (talkFiles.some(file => !referenced.has(file.path))) throw Error('Unreferenced Talk asset');
+}
 /** @param {string} root @param {string} sourceSha @param {boolean} publish */
 export function checkPackage(root, sourceSha, publish) {
   root = resolve(root);
@@ -73,18 +125,15 @@ export function checkPackage(root, sourceSha, publish) {
       if (stat.isDirectory()) { if (rel !== 'assets' && !rel.startsWith('assets/')) throw Error('Unexpected directory'); walk(full); }
       else {
         if (!stat.isFile() || stat.size > 5 * 1024 * 1024) throw Error('Invalid package file');
-        const cityAsset = /^assets\/assets\/cities\/[a-z][a-z0-9-]*\.([a-f0-9]{64})\.json$/.exec(rel);
-        const progressionAsset = /^assets\/assets\/progression\/(?:episodes-\d+|journeys|missions)\.([a-f0-9]{64})\.json$/.exec(rel);
-        // The two reduced-detail body files of the near crowd (src/scene/body/files.ts): the only binary that is not a glTF.
-        const bodyLod = /^assets\/assets\/base-body-(?:male|female)-lod-[0-9a-f]{7}\.bin$/.test(rel) && stat.size > 0 && stat.size < 1024 * 1024;
-        const nativeJson = ['assets/character-lab/models/final-pass-20261015/catalog.json', 'assets/character-lab/models/candidates/motion-iteration2-upper-palm.json'].includes(rel);
-        const nativeNotice = ['assets/character-lab/THIRD_PARTY_NOTICES.md', 'assets/character-lab/FINAL-PASS-LICENSE-NOTE.md'].includes(rel);
-        if (!nativeJson && !nativeNotice && !['worker.js', 'wrangler.json', 'manifest.json'].includes(rel) && !cityAsset && !progressionAsset && !bodyLod && !/^assets\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_.-]+\.(?:html|js|css|svg|png|jpg|jpeg|webp|ico|woff2|txt|glb)$/.test(rel)) throw Error('Unexpected package file');
+        const cityAsset = CITY_ASSET.exec(rel), progressionAsset = PROGRESSION_ASSET.exec(rel), talkAsset = TALK_CITY.exec(rel);
+        const nativeJson = NATIVE_JSON.has(rel);
+        if (!['worker.js', 'wrangler.json', 'manifest.json'].includes(rel) && !isPackageAssetPath(rel, stat.size)) throw Error('Unexpected package file');
         const bytes = readFileSync(full);
         if (nativeJson) {
           if (bytes.length > 1024 * 1024) throw Error('Native metadata too large');
           try { JSON.parse(bytes.toString('utf8')); } catch { throw Error('Invalid native metadata'); }
         }
+        if (talkAsset && talkAsset[2] !== hash(bytes)) throw Error('Talk content filename hash mismatch');
         if (cityAsset && cityAsset[1] !== hash(bytes)) throw Error('City content filename hash mismatch');
         if (progressionAsset && progressionAsset[1] !== hash(bytes)) throw Error('Progression content filename hash mismatch');
         if (rel.endsWith('.glb')) {
@@ -111,6 +160,7 @@ export function checkPackage(root, sourceSha, publish) {
   if (!worker.startsWith(marker) || worker.slice(marker.length).startsWith(RELEASE_MARKER_PREFIX)) throw Error('Worker release marker mismatch');
   // The Node host's local developer mode is never part of a release: its module carries this marker, so a Worker bundle that pulled it in is refused.
   if (worker.includes('allworld-open-dev-node-only')) throw Error('Open dev mode code in the release package');
+  checkTalkAssets(root, files, worker.includes('/assets/talk-banks/index.json'));
   const contentPaths = new Set(worker.match(/\/assets\/(?:cities\/[a-z][a-z0-9-]*\.[a-f0-9]{64}\.json|words\/dictionary\.[a-f0-9]{64}\.txt|progression\/(?:episodes-\d+|journeys|missions)\.[a-f0-9]{64}\.json)/g) ?? []);
   const cityPaths = [...contentPaths].filter(path => path.startsWith('/assets/cities/'));
   const dictionaryPaths = [...contentPaths].filter(path => path.startsWith('/assets/words/'));

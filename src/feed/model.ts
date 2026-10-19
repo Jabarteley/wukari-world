@@ -8,6 +8,16 @@
 import { COLOURS } from '../festivals/party.ts'
 
 export { COLOURS }
+/**
+ * The location badge of a profile (docs/FEED.md, "Location badge"): the person's own device found itself in a city of the world
+ * map; the position never leaves it. Optional, adults only, gone after `days`.
+ */
+export const LOCATED = Object.freeze({ days: 90, perDay: 5, km: 25, accuracyM: 5000 })
+/** Who a community with a real place may let in: only people whose badge is in its city, its state, or its country. */
+export const LOCAL_SCOPES = ['city', 'state', 'country'] as const
+export type LocalScope = (typeof LOCAL_SCOPES)[number]
+export const isLocalScope = (v: unknown): v is LocalScope => typeof v === 'string' && (LOCAL_SCOPES as readonly string[]).includes(v)
+
 export const FEED = Object.freeze({
   body: 500, reply: 280, bio: 80, status: 60, place: 40,
   handleMin: 3, handleMax: 20, handleEveryMs: 30 * 86400000,

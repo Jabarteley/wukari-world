@@ -50,3 +50,6 @@
 .feed-compose .feed-row input{flex:1 1 140px}
 .feed-compose .feed-row select{flex:0 1 auto}
 .feed-form label.feed-row,.feed-card label.feed-row{display:flex;flex-wrap:nowrap;gap:8px;align-items:center;font-weight:500}
+
+/* The location badge (docs/FEED.md): a small pin and the city. */
+.feed-located { color: #1f7a4d; font-weight: 600; }

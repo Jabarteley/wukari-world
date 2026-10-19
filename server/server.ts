@@ -29,6 +29,8 @@ import { createCallRelay } from './call-relay.ts';
 import type { CallRelay } from './call-relay.ts';
 import { capacityConfig, envReader, outboundFetch, sessionArchiver, lifeAuthority, lifeAnnouncer, routeHeaders, pageFor as findPage, cleanOrigin, cleanHost, absolutePreviewImage, validOperatorToken, bearerToken, accountsConfig, founderEmailHash, sessionCookie, isStrictOrigin, presentedSession, mayBind, addressBucket } from './host-context.ts';
 import { buildRoutes, ROUTE_MODULES } from './routes/index.ts';
+import { installStoryTalkAssets } from './story/talk-service.ts';
+import { nodeTalkAssets } from './story/talk-assets-node.ts';
 import { trustHeaderConfig } from './trust/config.ts';
 import { createCommerceGateway } from './commerce/goalmatic.ts';
 import type { CommerceGateway } from './commerce/types.ts';
@@ -666,6 +668,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
       revalidate: async () => {},
     },
   };
+  installStoryTalkAssets(ctx, nodeTalkAssets(distDir));
   const sockets = buildSocketHandlers(ctx, wsModules);
   const routes = buildRoutes(ctx, routeModules || [...ROUTE_MODULES, telemetryRoutes, ...(open ? [open.routes] : [])]);
   telemetry.attach(ctx);

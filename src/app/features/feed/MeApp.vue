@@ -9,6 +9,7 @@ import { useApp } from '../../state/app.ts'
 import PlayerAvatar from '../social/PlayerAvatar.vue'
 import PostCard from './PostCard.vue'
 import ContactsCard from './ContactsCard.vue'
+import LocatedCard from './LocatedCard.vue'
 import { feedApi, portraitUrl, uploadMedia } from './feedApi.ts'
 import { portraitFrom, portraitFromScene, stickerFrom } from './feedMedia.ts'
 import { shareLink, whatsappUrl } from './feedShare.ts'
@@ -20,6 +21,7 @@ const props = defineProps<{ params?: { code?: string } | null }>()
 const { game, shell, scene } = useApp()
 const api = feedApi((path, options) => game.fetchJson(path, options))
 const profile = ref<ProfileView | null>(null), posts = ref<PostView[]>([])
+const onLocated = (p: ProfileView): void => { if (!profile.value) return; const { located: _old, ...rest } = profile.value; profile.value = p.located ? { ...rest, located: p.located } : rest }
 const handle = ref(''), bio = ref(''), status = ref(''), withPlace = ref(true), code = ref(''), busy = ref(false), now = ref(Date.now())
 const toast = (text: string, tone?: 'error'): void => game.toast(text, tone === 'error' ? 'error' : 'info')
 const link = computed(() => profile.value ? `/p/${profile.value.handle ? `@${profile.value.handle}` : profile.value.id}` : '')
@@ -78,7 +80,7 @@ const sceneOn = computed(() => Boolean(scene.venue.value) && !document.body.clas
       <div class="feed-head">
         <img v-if="profile.portrait" class="feed-portrait is-big" :src="portraitUrl(profile.id, profile.portrait)" alt="Your portrait">
         <PlayerAvatar v-else :name="profile.name" :seed="profile.id" />
-        <div class="feed-who"><b>{{ profile.name }}</b><small>{{ profile.handle ? `@${profile.handle}` : 'No handle yet' }}<template v-if="profile.followers"> · {{ profile.followers }}</template></small></div>
+        <div class="feed-who"><b>{{ profile.name }}</b><small>{{ profile.handle ? `@${profile.handle}` : 'No handle yet' }}<template v-if="profile.followers"> · {{ profile.followers }}</template><template v-if="profile.located"> · 📍 {{ profile.located.name }}</template></small></div>
       </div>
       <div class="feed-row" style="margin-top:8px">
         <button v-if="sceneOn" type="button" class="feed-pill" :disabled="busy" @click="fromScene">Portrait from the scene</button>
@@ -110,6 +112,8 @@ const sceneOn = computed(() => Boolean(scene.venue.value) && !document.body.clas
     </div>
 
     <ContactsCard />
+
+    <LocatedCard v-if="profile" :located="profile.located" @changed="onLocated" />
 
     <form class="feed-card feed-form" @submit.prevent="findByCode">
       <label>Have a code?<input v-model="code" maxlength="8" placeholder="ABCDEF" autocapitalize="characters"></label>

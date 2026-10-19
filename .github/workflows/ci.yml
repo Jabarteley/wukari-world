@@ -75,12 +75,14 @@ jobs:
           path: |
             dist/assets/*.js
             dist/assets/*.css
+            dist/assets/*.webp
             dist/.vite/manifest.json
             dist/index.html
             dist/county/index.html
             dist/cities/index.html
             dist/cities/scenes/index.html
             dist/assets/scene-factory/**
+            dist/assets/talk-banks/**
           retention-days: 3
       - run: npm run test:smoke
       - run: npm run size:download

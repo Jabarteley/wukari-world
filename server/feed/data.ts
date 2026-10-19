@@ -48,6 +48,9 @@ export interface AuthorRecord {
   vouches?: Partial<Record<Skill, string[]>>
   reviews?: { n: number; sum: number; recent: { by: string; stars: number; text: string; at: number }[] }
   gigsDone?: number
+  /** The location badge (docs/FEED.md): a city of the catalogue, when (server clock), `net` when the network's country agreed. Never a position. */
+  located?: { city: string; at: number; net?: 1 }
+  locatedDay?: { day: string; n: number }
   /** Their own and RSVP'd events, and gigs posted, applied to or taken: newest last, at most 40 each. */
   events?: string[]; gigs?: string[]
   media?: PendingMedia[]
@@ -67,6 +70,8 @@ export interface CrewRecord {
   open?: 1
   /** Moderators besides the founder: they edit, remove members and build the world. */
   mods?: string[]
+  /** Locals only: joining needs a location badge in its city, state or country. */
+  locals?: import('../../src/feed/model.ts').LocalScope
   /** Its world: a group chat the founder made, whose room is the community's 3D world (docs/SPACES-3D.md). */
   conv?: string
   cover?: string

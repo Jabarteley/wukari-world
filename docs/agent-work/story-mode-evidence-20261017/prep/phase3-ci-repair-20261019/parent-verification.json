@@ -1,0 +1,13 @@
+{
+  "verifiedAt": "2026-10-19T01:00:07.142048+00:00",
+  "sourceBase": "33cc51b1cfa3b470591d7f7c3863691b7a6c1143",
+  "handoffFilesVerified": 12,
+  "actualCurrentPinsVerified": 288,
+  "exactDeltaPathsVerified": 572,
+  "currentManifestSourcesVerified": 1167,
+  "citiesComparedFromActualOldBackupAndCurrentBytes": 284,
+  "bankObjectsIdentical": 13726,
+  "onlyCityBriefDigestChanges": true,
+  "providerCalls": 0,
+  "typecheck": "pending repaired hosted CI"
+}

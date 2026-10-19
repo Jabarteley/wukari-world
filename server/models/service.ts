@@ -93,7 +93,7 @@ export function linkModels(ctx: RouteContext): void {
 
   const stat = (id: string, label: string, read: () => number | string): void => registerAdminStat(ctx, { id: `models-${id}`, group: 'Models today (UTC day)', label, cost: 'memory', read });
   const view = () => { void router.ready(); return router.today(); };
-  stat('spend', 'Spent / cap', () => { const t = view(); return `${usd(t.ledger.micro)} of ${usd(t.capMicro)} (in flight ${usd(t.reservedMicro)})`; });
+  stat('spend', 'Budget usage / cap', () => { const t = view(); return `${usd(t.ledger.micro)} of ${usd(t.capMicro)} (unresolved estimates ${usd(t.ledger.estimatedMicro ?? 0)}; in flight ${usd(t.reservedMicro)}; not an invoice)`; });
   stat('requests', 'Answered requests', () => view().ledger.requests);
   stat('by-model', 'By model', () => Object.entries(view().ledger.byModel).map(([name, m]) => `${name}: ${m.n} answered, ${m.failed} failed, ${usd(m.micro)}`).join(' · ') || 'none yet');
   stat('by-purpose', 'By purpose', () => Object.entries(view().ledger.byPurpose).map(([name, m]) => `${name}: ${m.n}, ${usd(m.micro)}`).join(' · ') || 'none yet');

@@ -36,6 +36,101 @@ function fixture(t, identity = { version: 1, kind: 'local' }) {
   };
   seal(); return { root, seal, cityPath, dictionaryPath, progressionPaths, markWorker };
 }
+function talkFixture(t, city = 'lagos') {
+  const f = fixture(t), dir = join(f.root, 'assets/assets/talk-banks');
+  mkdirSync(dir, { recursive: true });
+  const pack = { schema: 'allworld-city-talk', version: 1, city, banks: [{}] };
+  const bytes = JSON.stringify(pack), digest = createHash('sha256').update(bytes).digest('hex');
+  const row = { city, path: `/assets/talk-banks/${city}-${digest}.json`, sha256: digest, bytes: Buffer.byteLength(bytes), banks: 1 };
+  const index = { schema: 'allworld-talk-index', version: 1, cities: [row] };
+  const file = join(f.root, `assets${row.path}`), indexFile = join(dir, 'index.json');
+  writeFileSync(file, bytes);
+  const seal = () => { writeFileSync(indexFile, JSON.stringify(index)); f.seal(); };
+  seal(); return { ...f, dir, file, indexFile, index, row, pack, seal };
+}
+test('Talk package accepts canonical index and hashed city documents', t => {
+  const f = talkFixture(t, 'port-harcourt');
+  assert.match(checkPackage(f.root, sha, false), /^[a-f0-9]{64}$/);
+});
+test('Talk package authenticates city filename hashes after resealing', t => {
+  const f = talkFixture(t);
+  writeFileSync(f.file, JSON.stringify({ ...f.pack, city: 'accra' })); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Talk content filename hash mismatch/);
+});
+test('Talk package requires the index and every referenced city, and refuses orphans', t => {
+  const f = talkFixture(t);
+  rmSync(f.file); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Missing referenced Talk asset/);
+  const g = talkFixture(t);
+  rmSync(g.indexFile); fixtureSeal(g);
+  assert.throws(() => checkPackage(g.root, sha, false), /Missing Talk index/);
+  const h = talkFixture(t), extra = JSON.stringify({ ...h.pack, city: 'accra' });
+  writeFileSync(join(h.dir, `accra-${createHash('sha256').update(extra).digest('hex')}.json`), extra); h.seal();
+  assert.throws(() => checkPackage(h.root, sha, false), /Unreferenced Talk asset/);
+});
+// Rebuild only the package manifest after deliberately removing the Talk index.
+function fixtureSeal(f) {
+  const manifest = JSON.parse(readFileSync(join(f.root, 'manifest.json'), 'utf8'));
+  manifest.files = manifest.files.filter(file => file.path !== 'assets/assets/talk-banks/index.json');
+  writeFileSync(join(f.root, 'manifest.json'), JSON.stringify(manifest));
+}
+test('Talk package requires its index when the Worker references it', t => {
+  const f = fixture(t);
+  writeFileSync(join(f.root, 'worker.js'), readFileSync(join(f.root, 'worker.js'), 'utf8') + '\nexport const talkIndex = "/assets/talk-banks/index.json";'); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Missing Talk index/);
+});
+for (const [label, mutate, expected] of [
+  ['schema', f => { f.index.schema = 'other'; }, /Invalid Talk index/],
+  ['version', f => { f.index.version = 2; }, /Invalid Talk index/],
+  ['extra index field', f => { f.index.secret = 'synthetic'; }, /Invalid Talk index/],
+  ['empty index', f => { f.index.cities = []; }, /Invalid Talk index/],
+  ['too many cities', f => { f.index.cities = Array(513).fill(f.row); }, /Invalid Talk index/],
+  ['duplicate city', f => { f.index.cities.push({ ...f.row }); }, /Duplicate Talk city/],
+  ['wrong bytes', f => { f.row.bytes++; }, /Talk asset identity mismatch/],
+  ['wrong hash', f => { f.row.sha256 = 'b'.repeat(64); }, /Invalid Talk city reference/],
+  ['traversal', f => { f.row.path = '/assets/talk-banks/../other.json'; }, /Invalid Talk city reference/],
+  ['foreign URL', f => { f.row.path = 'https://example.invalid/city.json'; }, /Invalid Talk city reference/],
+  ['extra row field', f => { f.row.extra = true; }, /Invalid Talk city reference/],
+  ['city byte cap', f => { f.row.bytes = 5_000_001; }, /Invalid Talk city reference/],
+  ['noninteger bytes', f => { f.row.bytes = 1.5; }, /Invalid Talk city reference/],
+  ['bank count', f => { f.row.banks = 2; }, /Talk city identity or count mismatch/],
+  ['bank cap', f => { f.row.banks = 10_001; }, /Invalid Talk city reference/],
+]) test(`Talk package rejects ${label}`, t => {
+  const f = talkFixture(t); mutate(f); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), expected);
+});
+for (const [label, bytes, expected] of [
+  ['invalid JSON', '{bad', /Invalid Talk JSON/],
+  ['invalid UTF-8', Buffer.from([0xff]), /Invalid Talk JSON/],
+  ['oversize index', ' '.repeat(256_001), /Talk index byte limit/],
+]) test(`Talk package rejects ${label} index`, t => {
+  const f = talkFixture(t); writeFileSync(f.indexFile, bytes);
+  // Seal changed bytes without restoring the index fixture.
+  const manifest = JSON.parse(readFileSync(join(f.root, 'manifest.json'), 'utf8'));
+  const row = manifest.files.find(file => file.path === 'assets/assets/talk-banks/index.json');
+  row.bytes = Buffer.byteLength(bytes); row.sha256 = createHash('sha256').update(bytes).digest('hex');
+  writeFileSync(join(f.root, 'manifest.json'), JSON.stringify(manifest));
+  assert.throws(() => checkPackage(f.root, sha, false), expected);
+});
+for (const name of ['credentials.json', 'lagos.json', 'index-copy.json', `lagos.${'a'.repeat(64)}.json`, 'other.js']) {
+  test(`Talk package rejects unexpected ${name}`, t => {
+    const f = talkFixture(t); writeFileSync(join(f.dir, name), '{}'); f.seal();
+    assert.throws(() => checkPackage(f.root, sha, false), /Unexpected package file/);
+  });
+}
+for (const [label, change] of [
+  ['schema', pack => { pack.schema = 'other'; }],
+  ['city', pack => { pack.city = 'accra'; }],
+  ['version', pack => { pack.version = 2; }],
+  ['count', pack => { pack.banks = []; }],
+]) test(`Talk package rejects a correctly hashed city with wrong ${label}`, t => {
+  const f = talkFixture(t); change(f.pack);
+  const bytes = JSON.stringify(f.pack), digest = createHash('sha256').update(bytes).digest('hex');
+  rmSync(f.file); f.row.sha256 = digest; f.row.path = `/assets/talk-banks/${f.row.city}-${digest}.json`; f.row.bytes = Buffer.byteLength(bytes);
+  writeFileSync(join(f.root, `assets${f.row.path}`), bytes); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Talk city identity or count mismatch/);
+});
+
 test('accepts exact separate-worker package and rejects content changes', t => {
   const f = fixture(t); assert.match(checkPackage(f.root, sha, false), /^[a-f0-9]{64}$/);
   writeFileSync(join(f.root, 'worker.js'), 'tampered'); assert.throws(() => checkPackage(f.root, sha, false), /manifest mismatch/);

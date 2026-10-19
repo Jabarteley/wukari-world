@@ -423,10 +423,10 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     if (weatherFx) { weatherFx.setTime(homeTime); weatherFx.update(wetNow); if (changed) onAmbient?.(true); return changed; }
     if (!wetNow.wet || weatherAsked || gone) return changed;
     weatherAsked = true;
-    void import('./fx/weather.ts').then((fx) => {
+    void import('./fx/index.ts').then((fx) => fx.loadFxHere()).then(({ tier, weather: fx }) => {
       if (gone) return;
       const half = ROOM / 2 + 0.3;
-      weatherFx = fx.createWeather({ THREE, parent: group, time: homeTime, roofs: { boxes: [[-half, 0, -half, half, 3 * WALL_HEIGHT, half]], bounds: [-30, -30, 30, 30], buildings: true } });
+      weatherFx = fx.createWeather({ THREE, parent: group, tier, time: homeTime, roofs: { boxes: [[-half, 0, -half, half, 3 * WALL_HEIGHT, half]], bounds: [-30, -30, 30, 30], buildings: true } });
       weatherFx.update(wetNow); onAmbient?.(true);
     }).catch(() => { weatherAsked = false; });
     return changed;

@@ -22,6 +22,8 @@ export type FxTier = 'phone' | 'wide' | 'high'
 /** What a scene host holds after `loadFx`. Phases add their parts here (rain, particles, post, feel); `dispose` frees all of them. */
 export interface FxHost {
   readonly tier: FxTier
+  /** Phase 1: rain, splashes and smoke (weather.ts). Every tier; the tier only sets the counts. */
+  readonly weather: typeof import('./weather.ts')
   dispose(): void
 }
 
@@ -38,10 +40,16 @@ export const fxUsesPost = (tier: FxTier): boolean => tier === 'high'
 
 /**
  * Load the fx parts this tier may use and return the host that owns them. Call `dispose` when the scene goes away.
- * Today it loads nothing and returns a host that does nothing.
+ * Today it loads the weather (phase 1).
  */
 export async function loadFx(tier: FxTier): Promise<FxHost> {
   // FX_IMPORTS: phases 1 to 3 add their lazy imports here. Rain, particles and feel for every tier; `if (fxUsesPost(tier))` around
   // anything that imports postprocessing or n8ao.
-  return { tier, dispose() {} }
+  const weather = await import('./weather.ts')
+  return { tier, weather, dispose() {} }
+}
+
+/** `loadFx` for this device's render tier (src/scene/look.ts). What the scene hosts call. */
+export async function loadFxHere(): Promise<FxHost> {
+  return loadFx(fxTierFor((await import('../look.ts')).renderTier()))
 }

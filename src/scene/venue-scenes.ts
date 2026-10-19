@@ -496,10 +496,10 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     if (weatherFx) { weatherFx.setTime(view.time); weatherFx.update(view.weather, place()); ambientChanged?.(true); return; }
     if (weatherAsked || !((outdoor && view.weather.wet) || (view.weather.outage && view.weather.generator) || (layout?.spots ?? []).some((spot) => /suya|grill|smoke/i.test(spot.key)))) return;
     weatherAsked = true;
-    void import('./fx/weather.ts').then((fx) => {
+    void import('./fx/index.ts').then((fx) => fx.loadFxHere()).then(({ tier, weather: fx }) => {
       if (!live || disposed) { weatherAsked = false; return; }
       const b = grid?.bounds ?? footprints?.floor ?? [-20, -20, 20, 20];
-      weatherFx = fx.createWeather({ THREE, parent: group, open: outdoor, time: view.time, roofs: { boxes: roofRecord?.boxes() ?? [], bounds: [b[0] - 8, b[1] - 8, b[2] + 8, b[3] + 8] } });
+      weatherFx = fx.createWeather({ THREE, parent: group, tier, open: outdoor, time: view.time, roofs: { boxes: roofRecord?.boxes() ?? [], bounds: [b[0] - 8, b[1] - 8, b[2] + 8, b[3] + 8] } });
       syncWeather();
     }).catch(() => { weatherAsked = false; });
   }

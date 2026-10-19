@@ -106,9 +106,9 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
     if (weatherFx) { weatherFx.setTime(streetTime); weatherFx.update(wetNow); return changed; }
     if (!wetNow.wet || weatherAsked || disposed) return changed;
     weatherAsked = true;
-    void import('./fx/weather.ts').then((fx) => {
+    void import('./fx/index.ts').then((fx) => fx.loadFxHere()).then(({ tier, weather: fx }) => {
       if (disposed) return;
-      weatherFx = fx.createWeather({ THREE, parent: group, time: streetTime, roofs: { boxes: plan.solids, bounds: [BOUNDS[0] - 8, BOUNDS[1] - 8, BOUNDS[2] + 8, BOUNDS[3] + 8], buildings: true } });
+      weatherFx = fx.createWeather({ THREE, parent: group, tier, time: streetTime, roofs: { boxes: plan.solids, bounds: [BOUNDS[0] - 8, BOUNDS[1] - 8, BOUNDS[2] + 8, BOUNDS[3] + 8], buildings: true } });
       weatherFx.update(wetNow); notify?.();
     }).catch(() => { weatherAsked = false; });
     return changed;

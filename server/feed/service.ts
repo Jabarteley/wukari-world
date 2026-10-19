@@ -22,6 +22,7 @@ import { cityName, cityCatalogue, cityCatalogueEntry, cityRules } from '../../sr
 import { roomLinkPath } from '../../src/places/model.ts'
 import { feedOf, peekFeed } from './data.ts'
 import { gigPaid, needsTicket, ticketOf } from '../earn/data.ts'
+import { meetupRefusal } from '../neighbourhood/data.ts'
 import type { AuthorRecord, CrewRecord, DecisionRecord, EventRecord, FeedCollection, GigRecord, PostRecord, Reply, ReportRecord } from './data.ts'
 import type { Db, RouteContext, SessionRecord } from '../types.ts'
 
@@ -748,6 +749,7 @@ function buildService(ctx: RouteContext) {
     const answer = body.answer === 'going' || body.answer === 'maybe' ? body.answer : null
     const was = e.going.includes(id) ? 'going' : e.maybe.includes(id) ? 'maybe' : null
     if (id === e.by && answer !== 'going') return no('host', 'You are hosting this event. Cancel it instead.')
+    if (answer === 'going' && was !== 'going') { const locked = meetupRefusal(db, e.id, id, now()); if (locked) return no(locked.code, locked.reason) }
     if (answer === 'going' && was !== 'going' && id !== e.by && !e.cohosts.includes(id) && needsTicket(db, e.id, id)) return no('ticket_needed', 'This event has tickets. Buy one to go.')
     e.going = e.going.filter((x) => x !== id); e.maybe = e.maybe.filter((x) => x !== id)
     if (answer === 'going') { if (e.going.length >= e.cap) { if (was === 'maybe') e.maybe.push(id); return no('event_full', 'This event is full.') } e.going.push(id) }

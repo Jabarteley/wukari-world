@@ -65,6 +65,7 @@ import type { SpacesHttpRoutes } from './spaces.ts'
 import type { FeedHttpRoutes } from './feed.ts'
 import type { PromoteHttpRoutes } from './promote.ts'
 import type { EarnHttpRoutes } from './earn.ts'
+import type { NeighbourhoodHttpRoutes, EconomyHttpRoutes, BillboardHttpRoutes } from './neighbourhood.ts'
 import type { StoryHttpRoutes } from './story-http.ts'
 import type { StoryTalkView, StoryTalkTurn, TalkHistoryLine } from './story-talk.ts'
 
@@ -298,7 +299,7 @@ export interface CoreHttpRoutes {
  * telemetry endpoints are added beside them by server/server.ts: growth.ts TelemetryHttpRoutes.)
  */
 export interface HttpRoutes extends CoreHttpRoutes, SocialHttpRoutes, CivicHttpRoutes, SupportHttpRoutes, ModerationHttpRoutes, WorldHttpRoutes,
-  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, ProjectHttpRoutes, RetentionHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes, PublicProfileHttpRoutes, ArenaHttpRoutes, ClansHttpRoutes, StoryHttpRoutes, SpacesHttpRoutes, FeedHttpRoutes, PromoteHttpRoutes, EarnHttpRoutes {
+  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, ProjectHttpRoutes, RetentionHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes, PublicProfileHttpRoutes, ArenaHttpRoutes, ClansHttpRoutes, StoryHttpRoutes, SpacesHttpRoutes, FeedHttpRoutes, PromoteHttpRoutes, EarnHttpRoutes, NeighbourhoodHttpRoutes, EconomyHttpRoutes, BillboardHttpRoutes {
   'GET /api/story/talk': { response: Ok<StoryTalkView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'character_required' | 'city_content_unavailable' | 'talk_venue_unavailable' }
   'POST /api/story/talk': { body: { npc: string; clientId: string; question: string; history?: TalkHistoryLine[] }; response: Ok<StoryTalkTurn>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | JsonBodyErrorCode | OnceErrorCode | 'character_required' | 'city_content_unavailable' | 'talk_venue_unavailable' | 'talk_regular_unavailable' | 'invalid_talk_request' | 'invalid_talk_history' }
   'GET /api/world/land': { query: { city: CityId }; response: Ok<LandView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'invalid_city' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' }
@@ -926,6 +927,9 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/trust/profile/:id',
   'POST /api/trust/check/:kind/start',
   'POST /api/trust/report',
+  'GET /api/neighbourhood/board', 'POST /api/neighbourhood/notices', 'POST /api/neighbourhood/notices/vote', 'POST /api/neighbourhood/notices/report', 'POST /api/neighbourhood/notices/remove', 'GET /api/neighbourhood/meetups', 'POST /api/neighbourhood/meetups/plan',
+  'GET /api/admin/neighbourhood', 'POST /api/admin/neighbourhood/act', 'POST /api/admin/neighbourhood/meetup',
+  'GET /api/economy', 'GET /api/promote/boards', 'GET /api/promote/street',
 ] as const satisfies readonly HttpRouteKey[]
 
 /** WORKER: the same registry, so the same routes. (`/api/mod/*` answers only when the MODERATOR_TOKEN secret is set, as on Node.) */

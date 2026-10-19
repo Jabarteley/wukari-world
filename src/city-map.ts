@@ -343,7 +343,7 @@ export function createCityMap(container: HTMLElement, { onSelectVenue = () => {}
   function local(event: { clientX: number, clientY: number }) { const page = container.getBoundingClientRect(); return { x: event.clientX - page.left, y: event.clientY - page.top }; }
   function onPointerDown(event: PointerEvent) {
     if (event.pointerType === 'mouse' && event.button !== 0) return;
-    if ((event.target as Element).closest('[data-cmap]')) return; // the view buttons are not a place to start a drag
+    if ((event.target as Element).closest('[data-cmap],[data-business]')) return; // the view buttons and a business's board are not a place to start a drag
     // A primary pointer means no other finger is down: forget any press whose release was never seen,
     // so a lost pointerup can not leave the map stuck in a one-finger "pinch".
     if (event.isPrimary) pointers.clear();
@@ -474,18 +474,19 @@ export function createCityMap(container: HTMLElement, { onSelectVenue = () => {}
         const venue = venueTable()[slot.near];
         if (!venue) continue;
         const place = slot.near === 'home' ? home.map : venue.map;
-        const board = make('div', `cmap-board${slot.ad ? '' : ' is-free'}`);
+        const board = make(slot.ad?.business ? 'button' : 'div', `cmap-board${slot.ad ? '' : ' is-free'}`);
         board.style.left = `${place.x + 4.6}%`; board.style.top = `${place.y - 5.4}%`;
         if (slot.ad) {
           const colour = colourOf(slot.ad.colour);
           board.style.background = colour.bg; board.style.color = colour.ink;
           board.append(boardIcon('cmap-board-icon', slot.ad.icon), make('span', 'cmap-board-text', slot.ad.text));
           board.setAttribute('aria-label', `Billboard on ${slot.road}: ${slot.ad.text}, by ${slot.ad.by.name}`);
+          if (slot.ad.business) { board.dataset.business = slot.ad.business.id; board.classList.add('is-tap'); board.setAttribute('type', 'button'); }
         } else {
           board.append(make('span', 'cmap-board-text', 'Billboard for rent'));
           board.setAttribute('aria-label', `Billboard on ${slot.road}: for rent`);
         }
-        board.setAttribute('role', 'img');
+        if (!board.dataset.business) board.setAttribute('role', 'img');
         nodes.push(board);
       }
     }
@@ -551,6 +552,8 @@ export function createCityMap(container: HTMLElement, { onSelectVenue = () => {}
     if (control) { if (control.getAttribute('aria-disabled') !== 'true') onControl(control.dataset.cmap); return; }
     // Only the pointer click that ends a drag or pinch is swallowed; a keyboard click (detail 0) always goes through.
     if (suppressClick) { suppressClick = false; if (event.detail !== 0) { event.preventDefault(); return; } }
+    const biz = target.closest<HTMLElement>('[data-business]');
+    if (biz) { window.dispatchEvent(new CustomEvent('jaw:map-business', { detail: { listing: biz.dataset.business } })); return; }
     const house = target.closest<HTMLElement>('[data-neighbour]');
     if (house) { onSelectNeighbour({ id: house.dataset.neighbour!, name: house.dataset.name! }); return; }
     const pin = target.closest<HTMLElement>('.cmap-pin');

@@ -9,6 +9,7 @@ import { CANNED, age, counts, queue, step } from './moderationModel.ts'
 import type { Item, Kind, PictureRow, Reports, ShopRow } from './moderationModel.ts'
 import FeedDecisions from './FeedDecisions.vue'
 import PromoteAdmin from './PromoteAdmin.vue'
+import NeighbourhoodAdmin from './NeighbourhoodAdmin.vue'
 import EarnAdmin from './EarnAdmin.vue'
 
 const emit = defineEmits<{ player: [id: string] }>()
@@ -148,6 +149,7 @@ const KINDS = [['all', 'All'], ['report', 'Reports'], ['shop', 'Shops'], ['pictu
         <p v-if="!content.ads.length && !content.announcements.length && !content.radio.length" class="adm-muted">Nothing live in {{ city }}.</p></template></div>
     <FeedDecisions @player="(id) => emit('player', id)" />
     <PromoteAdmin @player="(id) => emit('player', id)" />
+    <NeighbourhoodAdmin />
     <EarnAdmin @player="(id) => emit('player', id)" />
     <div v-if="admin.me?.tools.length" class="adm-card"><h3>Tools from other features</h3><p v-for="tool in admin.me.tools" :key="tool.id" class="adm-sub">{{ tool.title }} ({{ tool.kind }})</p></div>
   </section>

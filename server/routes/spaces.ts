@@ -22,6 +22,7 @@
  *   GET  /api/spaces/worlds?list=mine|new|popular     worlds (server/spaces/worlds.ts, docs/WORLDS.md)
  *   POST /api/spaces/worlds { name, …, template? } · /update { id, … } · /delete { id } · /like { id, on } · /builders { id, builders } · /cover?id= (body: image/webp)
  *   GET  /api/spaces/world-cover/:id                  a world's cover picture
+ *   GET  /api/spaces/depth/:name                      the depth model's files, for a world from a photo (server/spaces/depth.ts)
  *   POST /api/spaces/models/upload-link { name, house?, use? }   a one-time address for a player's own AI to send a .glb to (10 minutes)
  *   POST /api/spaces/models/upload/:token  (body: the .glb)        that upload, with no cookie; `use: 'house'` sets it as the house
  *   POST /api/spaces/house { spec } | { model } | { clear }       what the home is built from (server/spaces/home-house.ts)
@@ -33,10 +34,11 @@ import { modelsService } from '../spaces/models.ts';
 import { worldService } from '../spaces/world.ts';
 import { worldsService } from '../spaces/worlds.ts';
 import { homeHouseService } from '../spaces/home-house.ts';
+import { depthService } from '../spaces/depth.ts';
 import type { RouteContext, RouteHandler, RouteKey } from '../types.ts';
 
 export default function spacesRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
-  const spaces = spacesService(ctx), hosts = hostService(ctx), games = gamesService(ctx), models = modelsService(ctx), world = worldService(ctx), worlds = worldsService(ctx), house = homeHouseService(ctx);
+  const spaces = spacesService(ctx), hosts = hostService(ctx), games = gamesService(ctx), models = modelsService(ctx), world = worldService(ctx), worlds = worldsService(ctx), house = homeHouseService(ctx), depth = depthService(ctx);
   const limited = (publicId: string): void => { if (!ctx.allow(`spaces:http:${publicId}`, 30)) throw ctx.fail(429, 'rate_limited'); };
   const gate = async (request: Parameters<RouteHandler>[0]): Promise<void> => { limited(await ctx.store.read((db) => request.requireSession(db).publicId)); };
   const change = (fn: (db: Parameters<typeof models.rename>[0], session: Parameters<typeof models.rename>[1], body: Record<string, unknown>) => object): RouteHandler => async (request) => {
@@ -68,6 +70,8 @@ export default function spacesRoutes(ctx: RouteContext): Record<RouteKey, RouteH
       if (!ctx.allow(`spaces:model-file:${id}`, 240)) throw ctx.fail(429, 'rate_limited');
       return models.file(request);
     },
+    // The depth model a player's device runs to make a world from a photo (server/spaces/depth.ts): three fixed files.
+    'GET /api/spaces/depth/:name': async (request) => depth.file(request, await ctx.store.read((db) => request.requireSession(db).publicId)),
     'GET /api/spaces/world': async (request) => { await gate(request); return { body: await ctx.store.read((db) => world.read(db, request.requireSession(db), request.query)) }; },
     'POST /api/spaces/world/layout': change((db, session, body) => world.save(db, session, body)),
     'POST /api/spaces/world/script': async (request) => {

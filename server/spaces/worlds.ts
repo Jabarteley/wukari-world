@@ -22,6 +22,7 @@ import { friendsIn } from '../social/founder.ts';
 import { gamesService } from './games.ts';
 import type { WorldCard } from '../../src/types/spaces.ts';
 import { registerAdminSetting } from '../admin/settings.ts';
+import { photoWorldsOn } from './depth.ts';
 import { screenText } from '../moderation/text.ts';
 import { spacesOf, type WorldEntry } from './store.ts';
 import type { Db, RouteContext, RouteRequest, SessionRecord } from '../types.ts';
@@ -47,6 +48,7 @@ function build(ctx: RouteContext) {
   registerAdminSetting(ctx, { key: 'spacesWorlds', label: 'Players make their own worlds', help: 'A player makes worlds of their own (open ground, their models, their script), sends friends a link, and browses and joins the worlds others opened to everyone (docs/WORLDS.md). Needs "Walk through spaces in 3D". Off until an operator turns it on.', kind: 'boolean', default: () => false });
   registerAdminSetting(ctx, { key: 'spacesScreen', label: 'A screen in spaces (watch or listen together)', help: 'The host of a space in 3D puts on a YouTube video or song and everyone there watches or listens in time (docs/WORLDS.md, phase 2). The player is youtube-nocookie.com\'s own; only the video id passes through Allworld. Off until an operator turns it on.', kind: 'boolean', default: () => false });
   const on = (): boolean => ctx.checks?.setting?.('spaces3d') === true && ctx.checks?.setting?.('spacesWorlds') === true;
+  registerAdminSetting(ctx, { key: 'spacesPhotoWorlds', label: 'Worlds from a photo', help: 'A player picks a photo; their own device works out its depth (a small open model, about 41 MB, fetched once) and makes a world they walk into where the photo was taken (docs/WORLDS.md, phase 8). Needs worlds, model uploads and the 3D view. Off until an operator turns it on.', kind: 'boolean', default: () => false });
   const screenOn = (): boolean => ctx.checks?.setting?.('spaces3d') === true && ctx.checks?.setting?.('spacesScreen') === true;
   const friends = (db: Db, a: string, b: string): boolean => a === b || friendsIn(db.social?.players ?? {}, a, b);
   /** Who may arrange it: the maker and the friends they named. */
@@ -104,7 +106,7 @@ function build(ctx: RouteContext) {
         const open = newest(Object.values(all(db)).filter((w) => w.open === 'everyone'));
         worlds = which === 'popular' ? open.sort((a, b) => (live.get(b.id) ?? 0) - (live.get(a.id) ?? 0) || (b.likes ?? 0) - (a.likes ?? 0) || b.visits - a.visits) : open;
       }
-      return { ok: true as const, code: 'ok' as const, worlds: worlds.slice(0, WORLDS.list).map((w) => card(db, w, me)), mine: mineOf(db, me).length, limit: WORLDS.perPlayer };
+      return { ok: true as const, code: 'ok' as const, worlds: worlds.slice(0, WORLDS.list).map((w) => card(db, w, me)), mine: mineOf(db, me).length, limit: WORLDS.perPlayer, ...(photoWorldsOn(ctx) ? { photo: true as const } : {}) };
     },
     /** POST /api/spaces/worlds */
     create(db: Db, session: SessionRecord, body: Record<string, unknown>) {

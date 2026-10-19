@@ -20,7 +20,8 @@ export interface WorldTerrain { ground: string; size: string; open: string; blur
 export interface WorldView { ok: true; code: 'ok'; world: { key: string; kind: 'home' | 'room' | 'world'; title: string; owner: { id: string; name: string }; grid: number; owned: boolean; plot: { w: number; d: number; floors: number }; style: object | null; items: WorldItem[]; canEdit: boolean; models: PlacedModel[]; mine: ModelView[]; limits: { placements: number; triangles: number }; scripts: boolean; script?: { code: string; lines: string[] }; terrain?: WorldTerrain; screen?: boolean; house?: { kind: 'spec'; spec: import('../spaces/house-spec.ts').HouseSpecV1 } | { kind: 'model'; model: ModelView } } }
 /** A world in a list (server/spaces/worlds.ts). `cover`: the first letters of its cover's hash (a cache key), or null without one. */
 export interface WorldCard { id: string; name: string; blurb: string; by: { id: string; name: string }; size: string; ground: string; open: string; sky: string; visits: number; here: number; cover: string | null; at: number; updated: number; mine: boolean; likes: number; liked: boolean; builder: boolean; builders?: { id: string; name: string }[]; game?: { id: string; title: string } }
-export interface WorldsList { ok: true; code: 'ok'; worlds: WorldCard[]; mine: number; limit: number }
+/** `photo`: a world may be made from a photo here (the `spacesPhotoWorlds` setting; docs/WORLDS.md phase 8). */
+export interface WorldsList { ok: true; code: 'ok'; worlds: WorldCard[]; mine: number; limit: number; photo?: true }
 type ModelDone = Ok<{ ok: true; code: 'uploaded' | 'already' | 'renamed'; model: ModelView } | Refused>
 export interface HostView { kind: 'butler' | 'dj' | 'quizmaster' | 'gateman' | null; persona: string; on: boolean; name: string | null; kinds: { id: string; label: string; name: string }[] }
 export interface LiteSummary { id: string; title: string; seats: { min: number; max: number }; win: string; controls: string; mine: boolean }
@@ -57,6 +58,8 @@ export interface SpacesHttpRoutes {
   'POST /api/spaces/worlds/builders': { body: { id: string; builders: string[] }; response: Ok<{ ok: true; code: 'saved'; world: WorldCard } | Refused>; errors: E }
   'POST /api/spaces/worlds/cover': { body: Uint8Array; response: Ok<{ ok: true; code: 'saved'; cover: string } | Refused>; errors: E | 'type_not_accepted' | 'body_too_large' }
   'GET /api/spaces/world-cover/:id': { params: { id: string }; response: Ok<Record<string, never>>; errors: E | 'unknown_world' }
+  'GET /api/spaces/depth/:name': { params: { name: string }; response: Ok<Record<string, never>>; errors: E | 'not_found' }
+  'POST /api/mod/spaces/depth/:name': { params: { name: string }; response: Ok<{ ok: true; code: 'stored'; name: string; bytes: number }>; errors: E | 'not_found' | 'wrong_file' | 'not_ready' | 'moderator_token_required' }
 }
 
 // Together in a space (server/ws/spaces.ts, docs/SPACES-3D.md phase 5). `p` is [x, y, z, yaw]; `o` rows are [index, x, y, z, qx, qy, qz, qw]

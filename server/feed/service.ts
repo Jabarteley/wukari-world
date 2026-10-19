@@ -24,6 +24,7 @@ import { feedOf, peekFeed } from './data.ts'
 import { gigPaid, needsTicket, ticketOf } from '../earn/data.ts'
 import type { AuthorRecord, CrewRecord, DecisionRecord, EventRecord, FeedCollection, GigRecord, PostRecord, Reply, ReportRecord } from './data.ts'
 import type { Db, RouteContext, SessionRecord } from '../types.ts'
+import { returneeBadge } from '../detty/store.ts'
 
 export interface Refused { ok: false; code: string; reason: string }
 /** One of a city's local units (its local governments, or the local equivalent), when the city's rules are in (the route loads them first). */
@@ -224,6 +225,8 @@ function buildService(ctx: RouteContext) {
     const mutual = viewer && !self ? Object.keys(playersOf(db)[viewer]?.friends ?? {}).filter((x) => x !== id && friends(db, x, id) && friends(db, viewer, x)).slice(0, 5).map((x) => person(db, f, x, viewer)) : []
     return {
       ...person(db, f, id, viewer),
+      // The Returnee badge of Detty December (docs/DETTY-DECEMBER.md), on the profile only: one entry read, never in a list.
+      ...((returnee) => (returnee ? { returnee } : {}))(returneeBadge(db, id)),
       ...(a?.bio ? { bio: a.bio } : {}), ...(a?.status ? { status: a.status } : {}),
       followers: followersText(a?.followers ?? 0), following: Boolean(viewer && f.authors[viewer]?.follows?.[id]), followable: !self && followable(db, f, id),
       ...(self || (viewer && friends(db, viewer, id)) ? (a?.code ? { code: a.code } : {}) : {}),

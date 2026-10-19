@@ -27,11 +27,11 @@ async function vouch(on: boolean, which = skill.value): Promise<void> { const r 
 </script>
 
 <template>
-  <section v-if="profile && !profile.mine && (profile.handle || profile.bio || profile.status || profile.portrait || profile.followable || posts.length || profile.work.rating || profile.work.vouches.length || profile.friend || profile.located)" class="feed" data-feed="person" style="margin-top:12px">
+  <section v-if="profile && !profile.mine && (profile.handle || profile.bio || profile.status || profile.portrait || profile.followable || posts.length || profile.work.rating || profile.work.vouches.length || profile.friend || profile.located || profile.returnee)" class="feed" data-feed="person" style="margin-top:12px">
     <div class="feed-card">
       <div class="feed-head">
         <img v-if="profile.portrait" class="feed-portrait is-big" :src="portraitUrl(profile.id, profile.portrait)" alt="">
-        <div class="feed-who"><b v-if="profile.handle">@{{ profile.handle }}</b><small v-if="profile.followers">{{ profile.followers }}</small><small v-if="profile.located" class="feed-located">📍 In {{ badgePlaceText(profile.located) }} · confirmed by their device<template v-if="profile.located.net"> and network</template></small></div>
+        <div class="feed-who"><b v-if="profile.handle">@{{ profile.handle }}</b><small v-if="profile.followers">{{ profile.followers }}</small><small v-if="profile.located" class="feed-located">📍 In {{ badgePlaceText(profile.located) }} · confirmed by their device<template v-if="profile.located.net"> and network</template></small><small v-if="profile.returnee" class="feed-located" data-feed="returnee">✈️ {{ profile.returnee }}</small></div>
         <button v-if="profile.followable" type="button" class="social-btn" :class="{ 'is-primary': !profile.following }" @click="follow(!profile.following)">{{ profile.following ? 'Following' : 'Follow' }}</button>
       </div>
       <p v-if="profile.bio" class="feed-body">{{ profile.bio }}</p>

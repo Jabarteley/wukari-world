@@ -67,6 +67,8 @@ export interface ProfileView extends FeedPerson {
   adult?: true
   canFollowMe?: boolean
   handleChangeAt?: number
+  /** The Returnee badge of Detty December, "Returnee · Detty December 2026" (docs/DETTY-DECEMBER.md). */
+  returnee?: string
 }
 export interface WorkView {
   rating: string | null

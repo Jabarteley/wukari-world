@@ -17,7 +17,7 @@ import BonusLine from '../bonus/BonusLine.vue'
 import { invitedWords, inviterName } from '../growth/inviterLookup.ts'
 import { useAccountEntry } from './accountEntry.ts'
 import AgentSheet from './AgentSheet.vue'
-import { ENTRY_VARIANTS, variantOf, withFigures, withPlace } from '../../../entry-variants.ts'
+import { ENTRY_VARIANTS, placeWords, variantOf, withFigures, withPlace } from '../../../entry-variants.ts'
 import type { EntryAction } from '../../../entry-variants.ts'
 import { SETUP_NEEDS, SETUP_STEPS, SOURCE_URL, liveLine } from './entryModel.ts'
 import { loadCreatorApp } from './loadCreator.ts'
@@ -44,8 +44,10 @@ const isHome = variant.id === 'home'
 const street = ref<StreetTarget | null>(null)
 const chosen = ref(false)
 const words = (text: string, place: string | undefined): string => (place && street.value ? withPlace(place, { city: street.value.cityName, name: street.value.place?.name ?? null }) : withFigures(text, figures))
-const headline = computed(() => words(variant.headline, variant.place?.headline))
-const pitch = computed(() => words(variant.pitch, variant.place?.pitch))
+// A visit to Lagos, Accra or Abuja reads "Detty December in Lagos" from 1 to 31 December (src/entry-variants.ts placeWords, by the date).
+const placed = computed(() => placeWords(variant, street.value && !street.value.place ? street.value.city : null, Date.now()))
+const headline = computed(() => words(variant.headline, placed.value?.headline))
+const pitch = computed(() => words(variant.pitch, placed.value?.pitch))
 const findLabel = variant.secondary.find((item) => item.kind === 'find')?.label ?? 'Find my city'
 const setup = variant.primary.kind === 'setup'
 const invited = invitedNow()

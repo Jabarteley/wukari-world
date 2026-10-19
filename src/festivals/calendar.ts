@@ -94,7 +94,9 @@ export const FESTIVALS: readonly FestivalDef[] = Object.freeze([
   // Nigeria
   NATIONAL('ng-independence', 'Independence Day', 'Green, white, green. Nigeria turns another year.', 'ng', 10, 1, ['#008751', '#ffffff']),
   NATIONAL('ng-democracy', 'Democracy Day', 'A day for the vote, the town hall and a good long talk.', 'ng', 6, 12, ['#008751', '#f2c14e']),
-  { id: 'ng-detty-december', name: 'Detty December', blurb: 'Lagos does not sleep. Beach by day, parties by night, home for the season.', countries: ['ng'], rule: { kind: 'range', from: [12, 15], to: [1, 2], focal: [12, 31] }, colours: ['#e0a43a', '#7b3fa0'], main: { from: 19, to: 23, daily: true, what: 'at the Square', host: null } },
+  // The December season (docs/DETTY-DECEMBER.md): 1 to 31 December in Nigeria and Ghana. Lagos, Accra and Abuja get the full season on top
+  // (src/festivals/detty.ts: nightly events, owambe Saturdays, the daily drop, the city skin), which replaces this row's main event there.
+  { id: 'ng-detty-december', name: 'Detty December', blurb: 'Lagos, Accra and Abuja do not sleep. Beach by day, parties by night, home for the season.', countries: ['ng', 'gh'], rule: { kind: 'range', from: [12, 1], to: [12, 31], focal: [12, 31] }, colours: ['#e0a43a', '#7b3fa0'], main: { from: 19, to: 23, daily: true, what: 'at the Square', host: null } },
   // Ghana
   NATIONAL('gh-independence', 'Independence Day', 'Red, gold and green, with the Black Star in the sky.', 'gh', 3, 6, ['#ce1126', '#fcd116']),
   NATIONAL('gh-republic', 'Republic Day', 'Ghana remembers becoming a republic.', 'gh', 7, 1, ['#006b3f', '#fcd116']),

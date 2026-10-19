@@ -34,6 +34,7 @@ import type { AccountRecord, ArchivedLife, Db, RouteContext, SessionRecord, Soci
 import { forgetArena, peekBook as peekArena } from '../tournaments/book.ts'
 import { forgetOAuth } from '../agents/privacy.ts'
 import { eraseSpaces } from '../spaces/store.ts'
+import { forgetDettyPlayers } from '../detty/store.ts'
 import { ownerKeyOf } from '../tournaments/life.ts'
 
 export type ErasureScope = 'guest' | 'agent' | 'account'
@@ -235,7 +236,7 @@ function preflightSharedIntegrity(ctx: RouteContext, db: Db, actors: ReadonlySet
   const known = new Set([
     'version', 'sessions', 'archivedLives', 'social', 'civic', 'support', 'moderation', 'growth', 'visits', 'commerce', 'business', 'market', 'legacy',
     'trust', 'trustChecks', 'street', 'realValue', 'showcase', 'politics', 'campus', 'accounts', 'accountDevices', 'accountLog', 'walletEffects', 'livingWorld', 'clans',
-    'storyHelp', 'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', 'agentarena', 'oauth', 'arenadaily', 'spaces', '$store',
+    'storyHelp', 'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', 'agentarena', 'oauth', 'arenadaily', 'spaces', 'detty', '$store',
   ])
   const collectionNames = (db.$store as (typeof db.$store & { collectionNames?: () => readonly string[] }) | undefined)?.collectionNames?.() ?? []
   const names = new Set([...Object.keys(db), ...collectionNames])
@@ -622,6 +623,7 @@ function scrubMisc(db: Db, ids: ReadonlySet<string>, accounts: ReadonlySet<strin
   const arena = peekArena(db)
   if (arena) forgetArena(arena, ids, new Set([...accounts].map(ownerKeyOf)))
   if (db.street) for (const id of ids) delete db.street.journeys[id]
+  forgetDettyPlayers(db, ids)
   if (db.campus?.election) {
     const election = db.campus.election
     election.candidates = election.candidates.filter((candidate) => !ids.has(candidate.id))

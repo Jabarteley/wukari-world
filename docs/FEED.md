@@ -201,6 +201,10 @@ badge it opens on Friends). `GET /api/feed/list?tab=near`:
 The privacy rule is the badge's: the position never leaves the phone; what is stored is a local-government id the player chose to show,
 as the residence badge (docs/LOCATION.md) already does.
 
+**Returnee (Detty December).** During December a player whose badge is in another country, in Lagos, Accra or Abuja, earns
+"Returnee · Detty December 2026", shown on their profile beside the badge (the profile only, never in lists). The server compares the badge
+city's country with the season city's; no position is involved ([DETTY-DECEMBER.md](DETTY-DECEMBER.md)).
+
 ## First minute
 
 What a player sees right after Play (`src/app/features/firstminute/`, Phase 6 of `docs/AD-READY-PLAN.md`): one strip at the top of the

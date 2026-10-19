@@ -178,6 +178,10 @@ export interface WorldWorksResponse {
 }
 export interface WorldHomeCityResponse { home: { city: string; name: string; tz: string } | null }
 export interface WorldBirthdayResponse { mine: { m: number; d: number; share: boolean } | null; today: boolean; friends: string[] }
+/** Detty December's public read (src/festivals/detty.ts). */
+export interface DettySeasonView { now: number; on: boolean; preview: boolean; day: number | null; year: number; key: string; cities: readonly string[]; nights: readonly { kind: 'concert' | 'beach' | 'street'; title: string; from: number; to: number }[]; drops: readonly string[]; card: boolean }
+/** A player's own Detty December: the season card's facts (counts and city names) and the Returnee badge of this season. */
+export interface DettyMineView { season: DettySeasonView; facts: { year: number; nights: number; parties: number; cities: string[]; returnee: boolean }; returnee: string | null }
 export interface WorldHttpRoutes {
   'GET /api/world/street': { query: { city: CityId }; response: Ok<WorldStreetResponse>; errors: WorldCommon | StorageErrorCode | 'city_moved' | 'not_on_street' | 'plot_unavailable' }
   /** Settles (or creates) the caller's life in that city exactly as a poll would, so it can also answer 409 `city_moved` and 503 `storage_unavailable`. */
@@ -188,6 +192,12 @@ export interface WorldHttpRoutes {
   'GET /api/world/pulse/online': { query: Record<string, never>; response: Ok<{ online: number }>; errors: HostErrorCode | 'pulse_rate_limited' }
   /** Public: the city's country and what an admin changed in the festival calendar and fixtures (server/routes/festivals.ts, docs/FESTIVALS.md). */
   'GET /api/world/festivals': { query: { city: CityId }; response: Ok<{ now: number; city: CityId; country: string; extras: unknown; fixtures: unknown[] }>; errors: HostErrorCode | 'invalid_city' | 'rate_limited' }
+  /** Public: Detty December's switch, day and the admin's lists (server/routes/detty.ts, docs/DETTY-DECEMBER.md); cached a minute. */
+  'GET /api/world/detty': { query: Record<string, never>; response: Ok<DettySeasonView>; errors: HostErrorCode | 'rate_limited' }
+  /** The caller's own season: the card's facts and the Returnee badge. */
+  'GET /api/world/detty/me': { query: Record<string, never>; response: Ok<DettyMineView>; errors: HostErrorCode | SessionErrorCode }
+  /** The server records what it can see for itself (the season city, a night, a party, the Returnee rule); the body is not read. */
+  'POST /api/world/detty/checkin': { body: Record<string, never>; response: Ok<DettyMineView & { ok: boolean; code: 'checked' | 'off_season'; reason?: string; added: { city?: string; returnee?: string; event?: string; party?: true } }>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'rate_limited' }
   /** Public: the day's rates (the city's own currency, NGN, USD) and the city's observed weather; cached five minutes (docs/WORLD-FEED.md). */
   'GET /api/world/feed': { query: { id: CityId }; response: Ok<WorldFeedResponse>; errors: HostErrorCode | 'invalid_city' | 'feed_rate_limited' }
   /** Public: the newest public lines of a city's gist (its own and the world's) after `since`; cached 15 seconds. */

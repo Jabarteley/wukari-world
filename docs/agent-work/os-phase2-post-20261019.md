@@ -7,7 +7,7 @@
 - **Model / effort:** Sonnet 5.5 / default
 - **Thread:** local
 - **UTC updated:** 2026-10-19T22:00:00Z
-- **Status:** `active`
+- **Status:** `active` (waiting for a browser slot to measure)
 - **Work state:** `implementation`
 
 ## Goal and boundaries
@@ -30,11 +30,17 @@
 
 ### Done and exact evidence
 
-- Read the code. Finding: `createBloom` has no caller today (only `ensureEnvironment` is used, by `lazyEnvironment` in the avatar preview). No venue, street or home host draws through a composer yet.
+- Read the code. `createBloom` had no caller before this work (only `ensureEnvironment` is used, by the avatar preview). No venue, street or home host draws through a composer yet; a host adopts `createBloom` (or the fx host) to show the stack.
+- `grade.ts` and `post.ts` written with tests: `node --experimental-strip-types --test src/scene/fx/*.test.ts` (22 pass, includes main's `index.test.ts`). Twelve grade fingerprints are pinned in `grade.test.ts`.
+- Typecheck: client and test projects clean at 7 GB heap (`npm run typecheck`'s 3.5 GB heap runs out in the test project).
+- `quality.ts`: `createBloom` keeps its signature (one optional trailing `grade` argument) and delegates to `fx/post.ts`.
+- Street harness (`src/scene/street-harness.ts`, dev only): `?post=1` draws through the stack, `&ao=1` adds AO, `&bench=1` exposes `window.__bench(frames, 'plain'|'post')`.
+- CI run 39328266128 (before dropping SMAA): fx chunk 336,874 raw / 161,801 gzip, FX_GZIP over its provisional 120,000. SMAA's images were about 60 kB gzip, so SMAA was replaced by 4x MSAA (commit after that run). CI rerun: 39330014232.
+- Standalone Rollup sizes (vite lib build of post.ts, game/ external): postprocessing named classes 267 kB raw / 93 gzip with SMAA, 160 / 33 without; n8ao 174 / 87.
 
 ### In progress / blockers
 
-- Write grade.ts, post.ts, tests, quality.ts delegation; typecheck; CI.
+- Frame timings on the Mac: waiting for the shared `browser` slot (design agents hold it). Script: `/tmp/p2-shot.mjs` (Chrome headless=new, CDP).
 
 ### Immediate resume steps
 

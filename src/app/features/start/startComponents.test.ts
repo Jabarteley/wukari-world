@@ -328,6 +328,18 @@ test('a life that never had a character starts the creator on the look, with und
   await resetCreator()
 })
 
+test('the look step offers "Start from a photo" with the camera input and the privacy line, never "looks like you"; the Ready step offers the card only when the stage is there', async () => {
+  const look = app.game.state.value.onboarding.look
+  const html = await render('StepLook', { look, owned: {}, canUndo: false, canReset: false })
+  const words = text(html)
+  assert.ok(words.includes('Start from a photo') && words.includes('stays on your phone'), words)
+  assert.match(html, /<input[^>]*type="file"[^>]*accept="image\/\*"[^>]*capture="user"|<input[^>]*capture="user"[^>]*type="file"/)
+  assert.ok(!/looks like you/i.test(words))
+  const ready = { name: 'Ada', look, traits: [], dream: null, area: 'Yaba' }
+  assert.ok(!(await render('StepReady', ready)).includes('Share my character'))
+  assert.ok(text(await render('StepReady', { ...ready, canCard: true })).includes('Share my character'))
+})
+
 test('the home city model makes cold Sagamu rules reactive after switching from Lagos', async () => {
   const registry = await load<typeof import('../../../game/cities/registry.ts')>('/src/game/cities/registry.ts')
   assert.equal(registry.cachedCityContent('sagamu'), null, 'only the starting city content is loaded')

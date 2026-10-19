@@ -4,7 +4,7 @@ import { feedService } from '../feed/service.ts'
 import { profileSocialHtml } from '../feed/pages.ts'
 import { privacyPageHtml } from '../privacy-page.ts'
 import { moneyPageHtml } from '../money-page.ts'
-import { featuresPageHtml, pagesPageHtml } from '../docs-pages.ts'
+import { guidePage } from '../docs-pages.ts'
 import { sourceQuery } from '../../src/game/share-model.ts'
 import type { Db, RouteContext, RouteHandler, RouteKey } from '../types.ts'
 
@@ -20,9 +20,9 @@ export default function profileRoutes(ctx: RouteContext): Record<RouteKey, Route
   ctx.pages?.set('/privacy', async ({ origin }) => ({ status: 200, cache: true, html: privacyPageHtml(origin) }))
   // The public money page (server/money-page.ts): what game naira is, what real money exists, who holds it, how to report a scam.
   ctx.pages?.set('/money', async ({ origin }) => ({ status: 200, cache: true, html: moneyPageHtml(origin) }))
-  // The two public guides (server/docs-pages.ts): every feature, and every page and screen.
-  ctx.pages?.set('/features', async ({ origin }) => ({ status: 200, cache: true, html: featuresPageHtml(origin) }))
-  ctx.pages?.set('/pages', async ({ origin }) => ({ status: 200, cache: true, html: pagesPageHtml(origin) }))
+  // The public guides (server/docs-pages.ts): every feature, every page and screen, and the AI skills. Each answers its exact address;
+  // a longer one renders nothing and falls through (under /skills/ that is a skill's own files, public/skills/).
+  for (const prefix of ['/features', '/pages', '/skills']) ctx.pages?.set(prefix, async ({ path, origin }) => { const html = guidePage(path, origin); return html === null ? null : { status: 200, cache: true, html } })
   ctx.pages?.set('/p/', async ({ path, query, origin, ip, method }) => {
     if (method !== 'GET' && method !== 'HEAD') return { status: 405, cache: false, html: unavailableProfilePageHtml(origin) }
     if (!ctx.allow(`profile:page:${ip}`, 60, 60000)) return { status: 429, cache: false, html: unavailableProfilePageHtml(origin) }

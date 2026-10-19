@@ -1,7 +1,7 @@
 /**
  * OWNER: growth
  * The two public guide pages, written by both hosts (ctx.pages, registered in server/routes/profiles.ts beside /privacy; the Worker lists the prefixes):
- * /features, every feature in the game and how to reach it, and /pages, every page, screen and address. Plain HTML with no script, the
+ * /features, every feature in the game and how to reach it, /pages, every page, screen and address, and /skills, the AI skills people use to build for it. Plain HTML with no script, the
  * privacy page's palette in a wider layout with a contents list, so a reader moves around by links alone. Every entry states what the code
  * does today (src/paths.ts, src/app/features/*, server/routes/*): when a feature or an address changes, change its line here.
  */
@@ -10,6 +10,7 @@ import { escapeHtml as esc } from './path-meta.ts'
 import { cityCatalogue } from '../src/game/cities/registry.ts'
 import { worldFigures } from '../src/app/features/start/entryModel.ts'
 import { FEATURE_SECTIONS } from './docs-features.ts'
+import { SKILL_SECTIONS } from './docs-skills.ts'
 
 const UPDATED = '19 October 2026'
 
@@ -20,7 +21,7 @@ export interface GuideEntry {
   text: string
   /** How to reach it, in the same notation. */
   open?: string
-  /** An address on this site the name links to (a path), when it is a page you can simply open. */
+  /** Where the name links: a path on this site, or an https address elsewhere (the source code), when it is a page you can simply open. */
   href?: string
   /** A short label: Admin, Developer, Season, Lagos only, … */
   tag?: string
@@ -55,15 +56,18 @@ section{margin-top:40px}h2{font-size:23px;margin:0 0 4px;padding-top:8px;border-
 const rich = (text: string): string => esc(text).replace(/`([^`]+)`/g, '<code>$1</code>')
 
 function entryHtml(entry: GuideEntry, base: string): string {
-  const name = entry.href ? `<a href="${esc(`${base}${entry.href}`)}">${esc(entry.name)}</a>` : esc(entry.name)
+  const external = entry.href?.startsWith('https://') ?? false
+  const name = entry.href ? `<a href="${esc(external ? entry.href : `${base}${entry.href}`)}"${external ? ' rel="noopener"' : ''}>${esc(entry.name)}</a>` : esc(entry.name)
   const tag = entry.tag ? ` <span class="tag">${esc(entry.tag)}</span>` : ''
   const how = entry.open ? `<p class="how"><b>Open:</b> ${rich(entry.open)}</p>` : ''
   return `<div class="card"><h3>${name}${tag}</h3><p>${rich(entry.text)}</p>${how}</div>`
 }
 
-interface GuideOptions { path: '/features' | '/pages'; title: string; heading: string; lead: string; description: string; sections: readonly GuideSection[] }
+interface GuideOptions { path: GuidePath; title: string; heading: string; lead: string; description: string; sections: readonly GuideSection[] }
 
-const NAV: readonly [string, string][] = [['/features', 'Features'], ['/pages', 'Pages'], ['/money', 'Money'], ['/privacy', 'Privacy']]
+export type GuidePath = '/features' | '/pages' | '/skills'
+
+const NAV: readonly [string, string][] = [['/features', 'Features'], ['/pages', 'Pages'], ['/skills', 'Skills'], ['/money', 'Money'], ['/privacy', 'Privacy']]
 
 function guideHtml(origin: unknown, o: GuideOptions): string {
   const base = safeOrigin(origin)
@@ -105,6 +109,22 @@ export function pagesPageHtml(origin: unknown = ''): string {
   })
 }
 
+export function skillsPageHtml(origin: unknown = ''): string {
+  return guideHtml(origin, {
+    path: '/skills', title: 'Skills — Allworld', heading: 'AI skills for Allworld',
+    lead: 'Give your own AI assistant a skill and it can copy your real house into the game, design a room, or build a small game, and connect to play beside you.',
+    description: 'The AI skills for Allworld: copy your real house from photos, design a home or room, build a game, and connect ChatGPT, Claude or any MCP client to play.',
+    sections: SKILL_SECTIONS,
+  })
+}
+
+/** The guides' own addresses. Each answers its exact path (and a trailing slash) only: anything under /skills/ is a file of a skill, served as before. */
+const GUIDES: Readonly<Record<GuidePath, (origin: unknown) => string>> = { '/features': featuresPageHtml, '/pages': pagesPageHtml, '/skills': skillsPageHtml }
+export function guidePage(path: string, origin: unknown): string | null {
+  const exact = path.length > 1 ? path.replace(/\/$/, '') : path
+  return Object.hasOwn(GUIDES, exact) ? GUIDES[exact as GuidePath](origin) : null
+}
+
 export const PAGE_SECTIONS: readonly GuideSection[] = [
   {
     id: 'start', title: 'Start here',
@@ -116,6 +136,7 @@ export const PAGE_SECTIONS: readonly GuideSection[] = [
       { name: 'Log in', href: '/login', text: 'Sign in to an existing account.', open: '`/login`' },
       { name: 'Features', href: '/features', text: 'Every feature in the game, grouped, with how to reach it.', open: '`/features`' },
       { name: 'Pages', href: '/pages', text: 'This page: every address, screen and app.', open: '`/pages`' },
+      { name: 'Skills', href: '/skills', text: 'AI skills that copy your house, design a room or build a game, and how to connect your AI.', open: '`/skills`' },
       { name: 'Money', href: '/money', text: 'Game naira is never real money. What real money exists, who holds it, and how to report a scam.', open: '`/money`' },
       { name: 'Privacy', href: '/privacy', text: 'What Allworld stores, what never leaves your phone, and how to download or erase your account.', open: '`/privacy`' },
     ],

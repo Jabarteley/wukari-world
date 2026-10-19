@@ -1288,8 +1288,8 @@ export interface ServerEvents {
   'directory-pref': { id: string; hidden: boolean }
 }
 
-/** One small HTML page outside /api/ (ctx.pages): the link-preview page `/s/<code>` and the e-mail pages `/e/…`. No script runs on it and it sets no cookie. */
-export type PageHandler = (request: { path: string; query: URLSearchParams; origin: string; ip: string; method: string }) => Promise<{ status?: number; html: string; cache?: boolean }>
+/** One small HTML page outside /api/ (ctx.pages): the link-preview page `/s/<code>` and the e-mail pages `/e/…`. No script runs on it and it sets no cookie. Null: no page here, the request goes on as if no prefix matched. */
+export type PageHandler = (request: { path: string; query: URLSearchParams; origin: string; ip: string; method: string }) => Promise<{ status?: number; html: string; cache?: boolean } | null>
 
 /**
  * What the host's telemetry object offers the route modules (server/telemetry/index.ts); the host

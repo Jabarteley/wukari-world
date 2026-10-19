@@ -1,0 +1,158 @@
+// Rain drawn (rain.ts) and the weather door (weather.ts), against the real three.js under Node (no GL context is made): one mesh for the drops and
+// one for the splashes, the tier's counts, additive and depth-free, moved only by step(), still under settle(), and freed by dispose().
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import * as THREE from 'three'
+import { createRain, STILL_SECONDS } from './rain.ts'
+import { createSmoke } from './smoke.ts'
+import { createWeather, WINDOW_S } from './weather.ts'
+import { RAIN_COUNT, SPLASH_COUNT } from './rain-plan.ts'
+import { coverFromBoxes } from './cover.ts'
+import { PUFFS } from './smoke-plan.ts'
+
+const parent = () => new THREE.Group()
+
+test('rain is one mesh of drops and one of splashes, additive, depth-free and never culled', () => {
+  const root = parent(), rain = createRain({ THREE, parent: root, tier: 'phone' })
+  const meshes = rain.group.children as THREE.Mesh[]
+  assert.equal(meshes.length, 2)
+  assert.equal(meshes.filter((m) => m.name === 'rain-drops').length, 1)
+  assert.equal(meshes.filter((m) => m.name === 'rain-splashes').length, 1)
+  assert.equal(rain.drawCalls, 2)
+  for (const mesh of meshes) {
+    const material = mesh.material as THREE.ShaderMaterial
+    assert.equal(material.blending, THREE.AdditiveBlending)
+    assert.equal(material.depthWrite, false)
+    assert.equal(material.transparent, true)
+    assert.equal(mesh.frustumCulled, false)
+    assert.equal(mesh.castShadow, false)
+  }
+  assert.ok(rain.drops.renderOrder > 0 && rain.splashes.renderOrder > 0, 'after the opaque scene')
+  assert.equal(root.children.length, 1)
+  rain.dispose()
+})
+
+test('the instance counts are the tier\'s', () => {
+  for (const tier of ['phone', 'wide', 'high'] as const) {
+    const rain = createRain({ THREE, parent: parent(), tier })
+    assert.equal((rain.drops.geometry as THREE.InstancedBufferGeometry).instanceCount, RAIN_COUNT[tier])
+    assert.equal((rain.splashes.geometry as THREE.InstancedBufferGeometry).instanceCount, SPLASH_COUNT[tier])
+    assert.equal(rain.dropCount, RAIN_COUNT[tier])
+    rain.dispose()
+  }
+})
+
+test('the seconds move only when stepped, and the still frame is fixed', () => {
+  const rain = createRain({ THREE, parent: parent(), tier: 'wide' })
+  assert.equal(rain.seconds, STILL_SECONDS)
+  rain.step(0.5); rain.step(0.25)
+  assert.equal(rain.seconds, STILL_SECONDS + 0.75)
+  rain.step(-1); rain.step(Number.NaN)
+  assert.equal(rain.seconds, STILL_SECONDS + 0.75, 'bad steps are ignored')
+  rain.settle()
+  assert.equal(rain.seconds, STILL_SECONDS)
+  rain.dispose()
+})
+
+test('the cover grid goes to the shader as a texture; without cover the sky is open', () => {
+  const cover = coverFromBoxes([[-6, 5.9, -6, 6, 6.4, 6]], [-30, -30, 30, 30])
+  const covered = createRain({ THREE, parent: parent(), tier: 'phone', cover })
+  const material = covered.drops.material as THREE.ShaderMaterial
+  assert.equal(material.uniforms.uHasCover!.value, 1)
+  assert.equal((material.uniforms.uCover!.value as THREE.DataTexture).image.width, cover.cols)
+  assert.equal((covered.splashes.material as THREE.ShaderMaterial).uniforms.uCover, material.uniforms.uCover, 'drops and splashes share one texture')
+  covered.dispose()
+  const open = createRain({ THREE, parent: parent(), tier: 'phone' })
+  assert.equal((open.drops.material as THREE.ShaderMaterial).uniforms.uHasCover!.value, 0)
+  open.dispose()
+})
+
+test('the camera tells the rain where to fall: the focus is ahead of it on the ground, near enough to keep the camera in the box', () => {
+  const rain = createRain({ THREE, parent: parent(), tier: 'wide' })
+  const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 500)
+  camera.position.set(15, 19.8, 25.4); camera.lookAt(0, 0, 0); camera.updateMatrixWorld(true)
+  ;(rain.drops.onBeforeRender as unknown as (r: unknown, s: unknown, c: THREE.Camera) => void)(null, null, camera)
+  const focus = (rain.drops.material as THREE.ShaderMaterial).uniforms.uFocus!.value as THREE.Vector3
+  assert.equal(focus.y, 0)
+  assert.ok(Math.hypot(focus.x - 15, focus.z - 25.4) <= 17.01, 'within reach of the camera')
+  assert.ok(focus.x < 15 && focus.z < 25.4, 'toward the scene')
+  rain.dispose()
+})
+
+test('dispose frees the geometries, the materials and the textures, and takes the rain out of the scene', () => {
+  const root = parent(), rain = createRain({ THREE, parent: root, tier: 'phone', cover: coverFromBoxes([[-6, 5.9, -6, 6, 6.4, 6]], [-30, -30, 30, 30]) })
+  let disposed = 0
+  const count = () => { disposed++ }
+  for (const mesh of [rain.drops, rain.splashes]) { mesh.geometry.addEventListener('dispose', count); (mesh.material as THREE.Material).addEventListener('dispose', count) }
+  const texture = (rain.drops.material as THREE.ShaderMaterial).uniforms.uCover!.value as THREE.Texture
+  texture.addEventListener('dispose', count)
+  rain.dispose(); rain.dispose()
+  assert.equal(disposed, 5)
+  assert.equal(root.children.length, 0)
+  rain.step(1)
+  assert.equal(rain.seconds, STILL_SECONDS, 'a disposed rain does not move')
+})
+
+test('smoke is one mesh and one draw call for every source, nothing without a source', () => {
+  assert.equal(createSmoke({ THREE, parent: parent(), tier: 'phone', sources: [] }), null)
+  const root = parent()
+  const smoke = createSmoke({ THREE, parent: root, tier: 'wide', sources: [{ kind: 'grill', x: 1, y: 1.7, z: 2 }, { kind: 'generator', x: -3, y: 1.4, z: -9 }] })!
+  assert.equal(smoke.drawCalls, 1)
+  assert.equal((smoke.mesh.geometry as THREE.InstancedBufferGeometry).instanceCount, 2 * PUFFS.wide)
+  assert.equal(root.children.length, 1)
+  smoke.step(1)
+  assert.ok(smoke.seconds > 0)
+  smoke.dispose()
+  assert.equal(root.children.length, 0)
+})
+
+test('weather: dry and nothing to smoke draws nothing and wakes nothing', () => {
+  const root = parent(), weather = createWeather({ THREE, parent: root, tier: 'phone' })
+  weather.update({ wet: false }, [])
+  assert.equal(weather.drawCalls, 0)
+  assert.equal(root.children.length, 0, 'not even built')
+  assert.equal(weather.wake(), false)
+  assert.equal(weather.step(0.1), false)
+})
+
+test('weather: wet builds the rain once, the window opens and closes, settle is a still frame, dry hides it again', () => {
+  const root = parent(), weather = createWeather({ THREE, parent: root, tier: 'phone' })
+  weather.update({ wet: true })
+  const rain = weather.rain!
+  assert.ok(rain)
+  weather.update({ wet: true })
+  assert.equal(weather.rain, rain, 'built once')
+  assert.equal(weather.drawCalls, 2)
+  assert.equal(weather.awake, false, 'nothing asks for frames on its own')
+  assert.equal(weather.wake(), true)
+  assert.equal(weather.awake, true)
+  let frames = 0
+  while (weather.step(1 / 30)) frames++
+  assert.ok(Math.abs(frames - WINDOW_S * 30) <= 2, `the window is ${WINDOW_S} s of frames, ${frames}`)
+  assert.equal(weather.awake, false)
+  const stopped = rain.seconds
+  assert.equal(weather.step(1 / 30), false)
+  assert.equal(rain.seconds, stopped, 'outside the window the rain stands still')
+  weather.wake(); weather.step(0.5); weather.settle()
+  assert.equal(rain.seconds, STILL_SECONDS)
+  assert.equal(weather.awake, false)
+  weather.update({ wet: false })
+  assert.equal(rain.active, false)
+  assert.equal(weather.drawCalls, 0)
+  weather.dispose()
+  assert.equal(root.children.length, 0)
+})
+
+test('weather: a room with a ceiling draws no rain, only its smoke; a changed source list rebuilds the smoke', () => {
+  const root = parent(), weather = createWeather({ THREE, parent: root, tier: 'phone', open: false })
+  weather.update({ wet: true }, [{ kind: 'grill', x: 0, y: 1.7, z: 0 }])
+  assert.equal(weather.rain, null)
+  assert.equal(weather.drawCalls, 1)
+  const first = weather.smoke
+  weather.update({ wet: true }, [{ kind: 'grill', x: 0, y: 1.7, z: 0 }])
+  assert.equal(weather.smoke, first, 'the same sources keep the same smoke')
+  weather.update({ wet: true }, [])
+  assert.equal(weather.smoke, null)
+  assert.equal(weather.wake(), false)
+  weather.dispose()
+})

@@ -84,7 +84,8 @@ function clearOutput(): void {
   photoBlob = null; videoBlob = null; captureSession.videoType = ''; captureSession.videoMs = 0; captureSession.autoShare = false
   for (const hook of clearHooks) hook()
 }
-function stopTicker(): void { if (ticker !== undefined) clearInterval(ticker); ticker = undefined }
+let frames: ReturnType<typeof setInterval> | undefined
+function stopTicker(): void { if (ticker !== undefined) clearInterval(ticker); ticker = undefined; if (frames !== undefined) clearInterval(frames); frames = undefined }
 function stopMonitor(): void {
   monitor?.stop(); monitor = null
   observer?.disconnect(); observer = null
@@ -143,7 +144,12 @@ function watchRecording(canvas: HTMLCanvasElement, run: number, startKey: string
     if (!canvas.isConnected) { cancelActive('The scene canvas closed. Your clip was discarded.'); return }
     captureSession.secondsLeft = Math.max(0, Math.ceil((activeDuration - (Date.now() - startedAt)) / 1000))
   }, 250)
+  // The scene draws only when something changes, and a canvas stream carries only the frames that are drawn: a still room would record
+  // one frame. While recording, the scene is drawn RECORD_FPS times a second (captureCanvas renders it), so the clip lasts as long as it says.
+  frames = setInterval(() => { if (run === generation && canvas.isConnected) venue?.captureCanvas() }, Math.round(1000 / RECORD_FPS))
 }
+/** Frames a second of a recording, the same as the canvas stream asks for (captureModel.ts recordCanvas). */
+const RECORD_FPS = 20
 
 let activeDuration = MAX_MS
 

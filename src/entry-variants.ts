@@ -1,6 +1,6 @@
 /**
  * THE ENTRY VARIANTS: the one small table behind the entry page of a new visitor. Each row is an address an advert or a shared link can
- * point at (`/`, `/shops`, `/services`, `/games`, `/cities`, `/agents`, `/politics`, `/street`, `/visit`) with what that page says, what its first button does and where
+ * point at (`/`, `/shops`, `/services`, `/games`, `/cities`, `/agents`, `/politics`, `/street`, `/visit`, `/detty`) with what that page says, what its first button does and where
  * the visitor ends up. The page (src/app/features/start/EntryPage.vue) and both hosts (server/path-meta.ts, for the link preview) read
  * this table and nothing else, so a new variant is a row, not a page. Plain data: no Vue, no registry, nothing a player typed.
  *
@@ -8,10 +8,12 @@
  *   A row with `place` also answers on the addresses under it (`/street/<city>/<place>`, `/visit/<city>`, src/paths.ts): its words take
  *   {place} ("Yaba, Lagos", or the city alone) and {city} from the city's own rules, never from the address, and the dive to that place
  *   plays behind the card (src/map3d/entry-dive.ts).
+ *   A row with `december` (the visit) says those words instead of its `place` ones for Lagos, Accra and Abuja while Detty December is on
+ *   (1 to 31 December, WAT: docs/DETTY-DECEMBER.md): `placeWords` decides, by date, on the page and both hosts.
  *   `lands`: what the first button does once the life exists. 'shop' opens My shop in the Services app with a kind preselected
  *   (src/paths.ts keeps that as the address's own intent); 'address' leaves it to the address (the Games app, the world map).
  */
-export type EntryVariantId = 'home' | 'shops' | 'services' | 'games' | 'cities' | 'agents' | 'politics' | 'street' | 'visit'
+export type EntryVariantId = 'home' | 'shops' | 'services' | 'games' | 'cities' | 'agents' | 'politics' | 'street' | 'visit' | 'detty'
 
 export interface EntryTileSpec { icon: string; label: string }
 export interface EntryAction { label: string; kind: 'play' | 'setup' | 'browse' | 'agent' | 'find' }
@@ -34,6 +36,8 @@ export interface EntryVariant {
   category?: string
   /** The words of an address under this row that names a place ({place}, {city}). */
   place?: { title: string; description: string; headline: string; pitch: string }
+  /** The `place` words of a Detty December city while the season is on ({city} as in `place`). */
+  december?: { title: string; description: string; headline: string; pitch: string }
 }
 
 const TAIL = 'Free in your browser, no download.'
@@ -112,6 +116,18 @@ export const ENTRY_VARIANTS: readonly EntryVariant[] = Object.freeze([
       title: 'Visit {city} on Allworld', description: `From London, Houston or Toronto: walk your family’s street in {city} tonight and call their character. ${TAIL}`,
       headline: 'Visit home to {city}', pitch: 'Walk your family’s street tonight and call their character. One tap on Play and you are there.',
     },
+    december: {
+      title: 'Detty December in {city} — Allworld', description: `Home for December from anywhere: beach days, street parties, concerts and owambe Saturdays in {city}, 1 to 31 December. ${TAIL}`,
+      headline: 'Detty December in {city}', pitch: 'Beach by day, parties by night, home for the season. One tap on Play and you are there.',
+    },
+  },
+  {
+    // The December season's own address (docs/DETTY-DECEMBER.md): Play opens the Events app on the season once the life exists.
+    id: 'detty', paths: ['/detty'], title: 'Detty December in Allworld: Lagos, Accra and Abuja',
+    description: `1 to 31 December in Lagos, Accra and Abuja: beach days, street parties, concerts and owambe Saturdays. ${TAIL}`,
+    headline: 'Detty December in Allworld', pitch: 'Lagos, Accra and Abuja, 1 to 31 December: beach by day, parties by night, and a Returnee badge when you come home from abroad.',
+    tiles: [{ icon: 'star', label: 'A night out every night' }, { icon: 'people', label: 'Owambe Saturdays' }, { icon: 'plane', label: 'Returnee badge from abroad' }, { icon: 'calendar', label: 'Something new every day' }],
+    image: null, og: '/og/entry-cities.jpg', primary: { label: 'Play now', kind: 'play' }, secondary: [],
   },
 ] satisfies readonly EntryVariant[])
 
@@ -123,6 +139,14 @@ export function variantOf(pathname: string): EntryVariant | null {
 }
 /** A text of a row's `place` words with the place put in: {place} is "Yaba, Lagos" (or the city alone), {city} the city. */
 export const withPlace = (text: string, place: { city: string; name: string | null }): string => text.replace(/\{place\}/g, place.name ? `${place.name}, ${place.city}` : place.city).replace(/\{city\}/g, place.city)
+/**
+ * Detty December's cities and month in West Africa Time: the rule of src/festivals/detty-dates.ts, written again here so that the entry page
+ * and its chunk load nothing more (src/festivals/detty.test.ts keeps the two equal).
+ */
+export const DECEMBER_CITIES: readonly string[] = Object.freeze(['lagos', 'accra', 'abuja'])
+const inDecember = (now: number): boolean => new Date(now + 3600000).getUTCMonth() === 11
+/** The place words of a row for a city at time `now`: December's for a season city while Detty December is on, else the row's own. */
+export const placeWords = (variant: EntryVariant, cityId: string | null | undefined, now: number): EntryVariant['place'] => (variant.december && DECEMBER_CITIES.includes(cityId ?? '') && inDecember(now) ? variant.december : variant.place)
 /** Every address a variant answers on, except the home page. */
 export const VARIANT_PATHS: readonly string[] = Object.freeze(ENTRY_VARIANTS.flatMap((variant) => variant.paths).filter((path) => path !== '/'))
 /** A text with the live figures put in. */

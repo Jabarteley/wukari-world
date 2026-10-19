@@ -268,6 +268,9 @@ export const ROUTE_MODULES: RouteModule[] = [core, auth, social, civic, support,
 import danfo from './danfo.ts';
 ROUTE_MODULES.push(danfo);
 import shareLoops from '../shareloops/routes.ts';
+import detty from './detty.ts';
+// Detty December (docs/DETTY-DECEMBER.md), on its own line so the list above stays one line per change.
+ROUTE_MODULES.push(detty);
 const KEY = /^(GET|POST|PUT|PATCH|DELETE) (\/api\/[A-Za-z0-9\-_/:.]+)$/;
 
 /**

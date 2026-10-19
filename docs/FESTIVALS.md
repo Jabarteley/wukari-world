@@ -12,8 +12,8 @@ and the last two load it on demand.
 
 | Where | Festivals |
 | --- | --- |
-| Nigeria | Independence Day (1 Oct), Democracy Day (12 Jun), Detty December (15 Dec to 2 Jan) |
-| Ghana | Independence Day (6 Mar), Republic Day (1 Jul), Homowo (late August) |
+| Nigeria | Independence Day (1 Oct), Democracy Day (12 Jun), Detty December (1 to 31 Dec, with Ghana) |
+| Ghana | Independence Day (6 Mar), Republic Day (1 Jul), Homowo (late August), Detty December (1 to 31 Dec) |
 | Kenya | Madaraka Day (1 Jun), Mashujaa Day (20 Oct), Jamhuri Day (12 Dec) |
 | South Africa | Freedom Day (27 Apr), Heritage Day / Braai Day (24 Sep), Day of Reconciliation (16 Dec) |
 | Everywhere | New Year, Valentine's week (10 to 16 Feb), Christmas (23 to 26 Dec), Easter (Good Friday to Easter Monday), Ramadan evenings, Eid al-Fitr, Eid al-Adha |
@@ -42,6 +42,13 @@ and the last two load it on demand.
   (Ramadan evenings, Detty December); the others on the main day. The main event is a row like any other event: Go takes the player
   to the Square. It is not a spray event.
 * **Hook for Phase 10.** `main.host` is `null`: when house agents exist, an agent id there hosts the event. Nothing else needs to change.
+
+## Detty December, the season
+
+Lagos, Accra and Abuja hold a full season from 1 to 31 December (WAT) on top of the calendar row: the city skin, a night out every night,
+**owambe Saturdays** (a city-wide party night that sends people to throw or visit an owambe at home, below), a daily drop, the Returnee
+badge and a season card. It switches itself on by the date; an admin can preview it. In those three cities the season's nights replace
+the row's daily "Detty December at the Square". Everything is in [DETTY-DECEMBER.md](DETTY-DECEMBER.md).
 
 ## Owambe parties
 
@@ -100,6 +107,6 @@ of `src/festivals/client.ts` (only in the arrival venue), and the party panel is
 
 ## Tests
 
-`src/festivals/calendar.test.ts`, `matches.test.ts`, `party.test.ts` (spans, countries, lunar rows, the dressing decision, main events,
+`src/festivals/calendar.test.ts`, `matches.test.ts`, `party.test.ts`, `detty.test.ts` (spans, countries, lunar rows, the dressing decision, main events,
 fixture validation, party rules), `server/admin/festivals.test.ts` (the admin route and the public feed), `server/party.test.ts` (the
 party over HTTP).

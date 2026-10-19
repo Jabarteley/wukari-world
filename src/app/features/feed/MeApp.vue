@@ -81,7 +81,7 @@ const sceneOn = computed(() => Boolean(scene.venue.value) && !document.body.clas
       <div class="feed-head">
         <img v-if="profile.portrait" class="feed-portrait is-big" :src="portraitUrl(profile.id, profile.portrait)" alt="Your portrait">
         <PlayerAvatar v-else :name="profile.name" :seed="profile.id" />
-        <div class="feed-who"><b>{{ profile.name }}</b><small>{{ profile.handle ? `@${profile.handle}` : 'No handle yet' }}<template v-if="profile.followers"> · {{ profile.followers }}</template><template v-if="profile.located"> · 📍 {{ badgePlaceText(profile.located) }}</template></small></div>
+        <div class="feed-who"><b>{{ profile.name }}</b><small>{{ profile.handle ? `@${profile.handle}` : 'No handle yet' }}<template v-if="profile.followers"> · {{ profile.followers }}</template><template v-if="profile.located"> · 📍 {{ badgePlaceText(profile.located) }}</template><template v-if="profile.returnee"> · ✈️ {{ profile.returnee }}</template></small></div>
       </div>
       <div class="feed-row" style="margin-top:8px">
         <button v-if="sceneOn" type="button" class="feed-pill" :disabled="busy" @click="fromScene">Portrait from the scene</button>

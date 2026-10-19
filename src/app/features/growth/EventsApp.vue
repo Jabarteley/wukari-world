@@ -2,7 +2,7 @@
 // Events: the Phone app. What is on now and this week, where, a Go button, "add to my calendar"
 // (a file the phone's own calendar opens — nothing is sent anywhere) and spraying at a party.
 // The list is computed from the server's clock (src/game/calendar.ts), with no request.
-import { computed, onMounted, ref } from 'vue'
+import { computed, defineAsyncComponent, onMounted, ref, shallowRef } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { isDeparting } from '../../../life.ts'
 import EmptyState from '../../ui/EmptyState.vue'
@@ -19,6 +19,11 @@ import { useGrowth } from './useGrowth.ts'
 import { festivalNotices, festivalRows } from './festivalEvents.ts'
 import { loadFeed } from '../../../festivals/client.ts'
 import type { Feed } from '../../../festivals/client.ts'
+// Detty December (docs/DETTY-DECEMBER.md): the season's nights, drop, Returnee badge and card in Lagos, Accra and Abuja, 1 to 31 December.
+// Everything of it is fetched when the app opens (a dynamic import), so the app's own download does not grow.
+import type { DettyFeed } from '../../../festivals/detty-client.ts'
+type DettyLib = typeof import('../detty/dettyEvents.ts')
+const DettyPanel = defineAsyncComponent(() => import('../detty/DettyPanel.vue'))
 
 defineProps<{ params?: unknown }>()
 const { game, shell, goTo } = useApp()
@@ -29,15 +34,17 @@ const offline = computed(() => view.value.connected ? null : 'Reconnect to trave
 // Festivals and match nights (src/festivals): the city's feed is fetched once; until it arrives only the city's own events show.
 const feed = ref<Feed | null>(null)
 const own = computed(() => upcomingEvents(view.value.now, 7, view.value.cityId))
-const events = computed(() => [...own.value, ...festivalRows(feed.value, view.value.now, 7, view.value.cityId)].sort((a, b) => a.start - b.start || a.id.localeCompare(b.id)))
-const notices = computed(() => festivalNotices(feed.value, view.value.now))
+const detty = ref<DettyFeed | null>(null), dettyLib = shallowRef<DettyLib | null>(null)
+const keep = (row: { id: string }): boolean => dettyLib.value?.keepFestivalRow(row, detty.value, view.value.now, view.value.cityId) ?? true
+const events = computed(() => [...own.value, ...festivalRows(feed.value, view.value.now, 7, view.value.cityId).filter(keep), ...(dettyLib.value?.dettyRows(detty.value, view.value.now, 7, view.value.cityId) ?? [])].sort((a, b) => a.start - b.start || a.id.localeCompare(b.id)))
+const notices = computed(() => festivalNotices(feed.value, view.value.now).filter(keep))
 const live = computed(() => events.value.filter((event) => event.live))
 const later = computed(() => events.value.filter((event) => !event.live))
 const rules = ['Events happen at a place and a time, on Nigerian time. Be there and finish any activity to count as attending.', 'An event changes no price and no pay. Being there counts for missions.',
   'Events come round again: weekly ones every week, yearly ones every year. Nothing is gone for ever.', '“Add to my calendar” makes a calendar file on your phone. The game sends no reminder by itself.']
 
 // The home-city pin is kept with the character: read it once, so a pin made on another device shows on the event times.
-onMounted(() => { void syncHomePin(game.fetchJson); void growth.load(); void loadFeed(view.value.cityId).then((found) => { feed.value = found }) })
+onMounted(() => { void syncHomePin(game.fetchJson); void growth.load(); void loadFeed(view.value.cityId).then((found) => { feed.value = found }); void import('../detty/dettyEvents.ts').then(async (lib) => { dettyLib.value = lib; detty.value = await lib.loadDetty() }).catch(() => { /* no season shown */ }) })
 
 const hereAt = (event: CalendarOccurrence): boolean => state.value.location === event.venue && !isDeparting(state.value)
 const attended = (event: CalendarOccurrence): boolean => Boolean(view.value.events?.live?.find((item) => item.key === event.key)?.attended)
@@ -73,6 +80,7 @@ function addToCalendar(event: CalendarOccurrence): void {
 <template>
   <div class="events">
     <p v-if="offline" class="gr-note" role="status">{{ offline }}</p>
+    <DettyPanel v-if="detty && (detty.on || detty.card)" :feed="detty" />
     <p v-for="item in notices" :key="item.id" class="gr-fest" :style="{ borderColor: item.colours[0], background: `linear-gradient(90deg, ${item.colours[0]}33, ${item.colours[1]}33)` }" data-festival="notice"><strong>{{ item.line }}</strong> {{ item.blurb }}</p>
     <template v-if="live.length">
       <EventCard v-for="event in live" :key="event.key" :event="event" :now="view.now" :cash="state.cash" :here="hereAt(event)" :attended="attended(event)" :spray="sprayOf(event)" :offline="offline" :sharing="growth.state.busy !== null" :spraying="spraying" @go="go(event)" @calendar="addToCalendar(event)" @share="share(event)" @spray="spray" />

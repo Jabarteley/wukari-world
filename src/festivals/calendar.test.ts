@@ -49,19 +49,25 @@ test('countries match: each country sees its own national days, not the others',
   assert.ok(ids('2027-01-01', 'za').includes('new-year'));
 });
 
-test('a window across New Year works: Detty December, 15 December to 2 January, and New Year on 31 December', () => {
-  assert.ok(ids('2026-12-15', 'ng').includes('ng-detty-december'));
-  assert.ok(ids('2027-01-02', 'ng').includes('ng-detty-december'));
-  assert.ok(!ids('2027-01-03', 'ng').includes('ng-detty-december'));
-  assert.ok(!ids('2026-12-14', 'ng').includes('ng-detty-december'));
-  assert.ok(!ids('2026-12-20', 'gh').includes('ng-detty-december'));
+test('Detty December runs 1 to 31 December in Nigeria and Ghana; a range across New Year still works', () => {
+  assert.ok(ids('2026-12-01', 'ng').includes('ng-detty-december'));
+  assert.ok(ids('2026-12-31', 'ng').includes('ng-detty-december'));
+  assert.ok(ids('2026-12-20', 'gh').includes('ng-detty-december'));
+  assert.ok(!ids('2027-01-01', 'ng').includes('ng-detty-december'));
+  assert.ok(!ids('2026-11-30', 'ng').includes('ng-detty-december'));
+  assert.ok(!ids('2026-12-20', 'ke').includes('ng-detty-december'));
   assert.ok(ids('2026-12-31', 'ng').includes('new-year'));
   assert.ok(ids('2027-01-02', 'ng').includes('new-year'));
-  const detty = activeFestivals(noon('2027-01-01'), 'ng').find((item) => item.id === 'ng-detty-december')!;
-  assert.equal(isoOfDay(detty.span.start), '2026-12-15');
-  assert.equal(isoOfDay(detty.span.end), '2027-01-02');
-  assert.equal(detty.days, 19);
+  const detty = activeFestivals(noon('2026-12-18'), 'ng').find((item) => item.id === 'ng-detty-december')!;
+  assert.equal(isoOfDay(detty.span.start), '2026-12-01');
+  assert.equal(isoOfDay(detty.span.end), '2026-12-31');
+  assert.equal(detty.days, 31);
   assert.equal(detty.dayOf, 18);
+  // A range whose end is in the next year (an admin's season, or a later built-in) spans New Year.
+  const [span] = spansOf({ kind: 'range', from: [12, 15], to: [1, 2], focal: [12, 31] }, 2026);
+  assert.equal(isoOfDay(span!.start), '2026-12-15');
+  assert.equal(isoOfDay(span!.end), '2027-01-02');
+  assert.equal(isoOfDay(span!.focal), '2026-12-31');
 });
 
 test('every time zone sees a festival: each country has it on from local midnight of the first day to the last minute of the last', () => {
@@ -153,7 +159,8 @@ test('the dressing decision: the festival nearest its main day wins, none outsid
   // 18 December: Detty December only; 25 December: Christmas is nearer its main day than Detty December is to its own.
   assert.equal(dressingFor(noon('2026-12-18'), 'ng')!.id, 'ng-detty-december');
   assert.equal(dressingFor(noon('2026-12-25'), 'ng')!.id, 'christmas');
-  assert.equal(dressingFor(noon('2026-12-18'), 'gh')?.id ?? null, null);
+  assert.equal(dressingFor(noon('2026-12-18'), 'gh')?.id ?? null, 'ng-detty-december');
+  assert.equal(dressingFor(noon('2026-12-18'), 'ke')?.id ?? null, null);
   assert.equal(dressingFor(Number.NaN, 'ng'), null);
 });
 

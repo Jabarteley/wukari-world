@@ -11,7 +11,7 @@ import { cityCatalogue, loadCityRules } from '../src/game/cities/registry.ts';
 import { GAME_SLUGS, knownStateIds, openCitiesOf, openCityIds, parsePath, pathOf, placeFacts, streetPlace } from '../src/paths.ts';
 import type { GameSlug, PathIntent } from '../src/paths.ts';
 import { SITE_ORIGIN } from './host-context.ts';
-import { ENTRY_VARIANTS, variantOf, withFigures, withPlace } from '../src/entry-variants.ts';
+import { ENTRY_VARIANTS, placeWords, variantOf, withFigures, withPlace } from '../src/entry-variants.ts';
 import { worldFigures } from '../src/app/features/start/entryModel.ts';
 import { gameOfRoom } from '../src/arena/code.ts';
 import { arenaGame } from '../src/arena/registry.ts';
@@ -41,8 +41,8 @@ const GAME_META: Readonly<Record<GameSlug, { title: string; description: string 
   ayo: { title: `Play Ayo free — ${BRAND}`, description: `Sow and capture seeds in Ayo, played here with Oware rules, against the computer. ${TAIL}` },
 };
 
-/** What an intent's page says about itself. */
-function metaOf(intent: PathIntent): PathMeta | null {
+/** What an intent's page says about itself (`now`: the server's time, for the words of a season such as Detty December). */
+function metaOf(intent: PathIntent, now: number = Date.now()): PathMeta | null {
   switch (intent.kind) {
     case 'games':
       return intent.game
@@ -72,11 +72,13 @@ function metaOf(intent: PathIntent): PathMeta | null {
     case 'street': {
       // A street (/street/<city>/<place>) or a visit (/visit/<city>): the row's own words with the names from the city's rules. A place the
       // rules do not have (or not loaded: preparePathMeta) is never written: the page is the city's visit, and its canonical says so.
+      // A visit to Lagos, Accra or Abuja reads "Detty December in Lagos" from 1 to 31 December (WAT), by the date alone (placeWords).
       const facts = placeFacts(intent.city), found = streetPlace(intent.city, intent.place);
       const row = ENTRY_VARIANTS.find((variant) => variant.id === (found ? 'street' : 'visit'));
-      if (!facts || !row?.place) return null;
+      const words = row ? placeWords(row, found ? null : intent.city, now) : undefined;
+      if (!facts || !row || !words) return null;
       const place = { city: facts.name, name: found?.name ?? null };
-      return { title: withPlace(row.place.title, place), description: clip(withPlace(row.place.description, place)), canonical: found ? `/street/${intent.city}/${found.id}` : `/visit/${intent.city}`, index: true, image: row.og };
+      return { title: withPlace(words.title, place), description: clip(withPlace(words.description, place)), canonical: found ? `/street/${intent.city}/${found.id}` : `/visit/${intent.city}`, index: true, image: row.og };
     }
   }
 }
@@ -94,12 +96,12 @@ export async function preparePathMeta(pathname: string, waitMs = 1500): Promise<
   if (timer !== undefined) clearTimeout(timer);
 }
 
-/** The head for an address, or null for the home page (`/`), which keeps index.html's own head. An unknown address gets the default head with noindex. */
-export function metaFor(pathname: string): PathMeta | null {
+/** The head for an address, or null for the home page (`/`), which keeps index.html's own head. An unknown address gets the default head with noindex. `now` dates a season's words. */
+export function metaFor(pathname: string, now: number = Date.now()): PathMeta | null {
   if (pathname === '/' || pathname === '') return null;
   // A street or a visit that names an open city: the row's words with the city's own names (metaOf). Fixed text and registry names only.
   const street = /^\/(street|visit)\//i.test(pathname) ? parsePath(pathname) : null;
-  if (street?.kind === 'street') return metaOf(street);
+  if (street?.kind === 'street') return metaOf(street, now);
   // An address of the entry page (src/entry-variants.ts): its own words and its own picture, the same on both hosts. Fixed text: nothing a visitor typed.
   const variant = variantOf(pathname);
   if (variant && variant.id !== 'home') {
@@ -135,9 +137,9 @@ export function roomMeta(pathname: string, search: string): PathMeta | null {
   return { title: `Join my ${game.label} match on ${BRAND}`, description: `A friend is waiting for you in a live ${game.label} match. Tap to play, or to watch if it is full. ${TAIL}`, canonical: null, index: false };
 }
 
-/** index.html written for an address. `origin` is the page's public origin (no trailing slash); empty falls back to the site's own. */
-export function withPathMeta(html: string, pathname: string, origin = '', search = ''): string {
-  const meta = roomMeta(pathname, search) ?? metaFor(pathname);
+/** index.html written for an address. `origin` is the page's public origin (no trailing slash); empty falls back to the site's own. `now` dates a season's words. */
+export function withPathMeta(html: string, pathname: string, origin = '', search = '', now: number = Date.now()): string {
+  const meta = roomMeta(pathname, search) ?? metaFor(pathname, now);
   if (!meta) return html;
   let page = html;
   if (!meta.index) page = setMeta(page, 'robots', 'noindex,follow');

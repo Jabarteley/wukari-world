@@ -27,6 +27,7 @@ import { gigPaid, needsTicket, ticketOf } from '../earn/data.ts'
 import { meetupRefusal } from '../neighbourhood/data.ts'
 import type { AuthorRecord, CrewRecord, DecisionRecord, EventRecord, FeedCollection, GigRecord, PostRecord, Reply, ReportRecord } from './data.ts'
 import type { Db, RouteContext, SessionRecord } from '../types.ts'
+import { returneeBadge } from '../detty/store.ts'
 
 export interface Refused { ok: false; code: string; reason: string }
 /** One of a city's local units (its local governments, or the local equivalent), when the city's rules are in (the route loads them first). */
@@ -236,6 +237,9 @@ function buildService(ctx: RouteContext) {
     return {
       ...person(db, f, id, viewer),
       ...(a?.bio ? { bio: a.bio } : castMember(id) ? { bio: castMember(id)!.about } : {}), ...(a?.status ? { status: a.status } : {}),
+      // The Returnee badge of Detty December (docs/DETTY-DECEMBER.md), on the profile only: one entry read, never in a list.
+      ...((returnee) => (returnee ? { returnee } : {}))(returneeBadge(db, id)),
+      ...(a?.bio ? { bio: a.bio } : {}), ...(a?.status ? { status: a.status } : {}),
       followers: followersText(a?.followers ?? 0), following: Boolean(viewer && f.authors[viewer]?.follows?.[id]), followable: !self && followable(db, f, id),
       ...(self || (viewer && friends(db, viewer, id)) ? (a?.code ? { code: a.code } : {}) : {}),
       crews: (a?.crews ?? []).map((c) => f.crews[c]).filter((c): c is CrewRecord => Boolean(c)).map((c) => ({ id: c.id, name: c.name, colour: c.colour })),

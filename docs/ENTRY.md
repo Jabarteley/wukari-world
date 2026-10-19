@@ -17,12 +17,16 @@ One table, `src/entry-variants.ts`, drives the page and the link preview of both
 | `/politics` | the politics advert: "Become governor of Lagos this week" (one-week terms, real elections, `docs/POLITICS.md`) | Play now |
 | `/street/<city>/<place>`, `/street` | the street advert: "Walk Yaba, Lagos" | Play now |
 | `/visit/<city>`, `/visit` | the diaspora advert: "Visit home from London" (walk your family's street, call their character) | Play now |
+| `/detty` | the December season: "Detty December in Allworld" (Lagos, Accra and Abuja, 1 to 31 December; `docs/DETTY-DECEMBER.md`) | Play now (then the Events app) |
 
 - The address is not rewritten to `/` until the visitor acts, so it survives a reload.
 - `/politics` opens the Politics panel once the life exists (it is also the panel's short address for a returning player).
+- `/detty` opens the Events app, where the season is, once the life exists (also for a returning player).
+- **December words.** From 1 to 31 December (WAT) `/visit/lagos`, `/visit/accra` and `/visit/abuja` read "Detty December in Lagos" (title, description,
+  headline, pitch: the visit row's `december` words, `placeWords`), on the page and in both hosts' previews, by the date alone.
 - "Open my shop" and "List my services" start a guest, then open My shop in the Services app with a kind of shop chosen. A guest cannot publish, so My shop shows the three steps ("Set up now · Sign up to save it · Goes live once checked") and the real requirements, with Sign up at that moment. Nothing about the rules is loosened: an account, a checked phone number, an account at least a day old, an "18 or older" answer, three photos, and an approval.
 - A returning player who opens `/shops` or `/services` goes straight to My shop; `/games` to the games; `/cities` to the map.
-- Campaign counting: `landed` and `play` are counted on this page. When a link has no `utm_content`, the variant name (`shops`, `services`, `games`, `cities`, `agents`, `politics`, `street`, `visit`) is counted as the content, so the variants can be compared without tagging. Every street and visit address counts as `street` or `visit`: the place itself is not a campaign word.
+- Campaign counting: `landed` and `play` are counted on this page. When a link has no `utm_content`, the variant name (`shops`, `services`, `games`, `cities`, `agents`, `politics`, `street`, `visit`, `detty`) is counted as the content, so the variants can be compared without tagging. Every street and visit address counts as `street` or `visit`: the place itself is not a campaign word.
 - The head of each address (title, description, `og:` and Twitter tags, canonical, picture) is fixed text from the table, written by the Node host and the Worker alike.
 
 ## A street or a visit (ad-ready plan, phase 1)
@@ -59,3 +63,4 @@ the place is checked against the city's rules (`streetPlace`), so a word the cit
 - `https://joinallworld.com/street/lagos/yaba?utm_source=instagram&utm_medium=paid&utm_campaign=street-oct`
 - `https://joinallworld.com/visit/lagos?utm_source=instagram&utm_medium=paid&utm_campaign=visit-home-uk&utm_content=london-1`
 - `https://joinallworld.com/politics?utm_source=tiktok&utm_medium=paid&utm_campaign=governor-oct`
+- `https://joinallworld.com/detty?utm_source=instagram&utm_medium=paid&utm_campaign=detty-diaspora`

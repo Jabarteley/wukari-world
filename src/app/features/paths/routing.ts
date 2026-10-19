@@ -11,6 +11,7 @@
 //                      lies in; an unknown place, or a visit, is the whole city). Elsewhere: the travel card, as /<city>
 //   /<state>, /nigeria, /world   the atlas, at that level
 //   /messages, /friends, /invite, /business, /jobs, /help, /sound, /signup, /login   that panel
+//   /detty             the Events app, where Detty December's nights, drop and card are (docs/DETTY-DECEMBER.md)
 import { ENTRY_VARIANTS } from '../../../entry-variants.ts'
 import { PHONE_TABLE, pathOf } from '../../../paths.ts'
 import type { PanelWord, PathIntent } from '../../../paths.ts'
@@ -39,7 +40,7 @@ export interface Env {
   focusUnit(unit: string): void
 }
 
-const PANEL_OF: Readonly<Record<Exclude<PanelWord, 'signup' | 'login'>, string>> = { messages: 'messages', friends: 'people', invite: 'invite', business: 'business', jobs: 'jobs', help: 'help', sound: 'settings', politics: 'politics', records: 'politics', shops: 'showcase', services: 'showcase', feedback: 'support', danfo: 'danfo' }
+const PANEL_OF: Readonly<Record<Exclude<PanelWord, 'signup' | 'login'>, string>> = { messages: 'messages', friends: 'people', invite: 'invite', business: 'business', jobs: 'jobs', help: 'help', sound: 'settings', politics: 'politics', records: 'politics', shops: 'showcase', services: 'showcase', feedback: 'support', danfo: 'danfo' }, detty: 'events' }
 
 /** The kind of shop My shop starts on for /shops and /services (the rows of src/entry-variants.ts). */
 const setupCategory = (panel: 'shops' | 'services'): string | undefined => ENTRY_VARIANTS.find((variant) => variant.id === panel)?.category

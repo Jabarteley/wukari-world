@@ -1,5 +1,6 @@
 import { clearPlayerFamily } from '../social/family.ts';
 import { commerceAddress, commerceOf, ownCommerce } from '../commerce/service.ts';
+import { exportDetty, forgetDettyPlayers, peekDetty } from '../detty/store.ts';
 /**
  * OWNER: accounts
  * WHAT AN ACCOUNT IS, IN THE STORE (design: docs/ACCOUNTS.md).
@@ -556,6 +557,7 @@ export function deleteAccount(db: Db, deps: AccountDeps, input: Caller & { ident
   const showcasePhotos = eraseShowcase(db, publicIds);
   if (db.social) for (const id of publicIds) if (input.erase || id !== account.publicId) clearPlayerFamily(db.social.players, id);
   for (const id of publicIds) if (db.street && (input.erase || id !== account.publicId)) delete db.street.journeys[id];
+  forgetDettyPlayers(db, publicIds.filter(id => input.erase || id !== account.publicId));
   for (const id of publicIds) if (db.trust?.players) delete db.trust.players[id];
   if (db.trustChecks?.checks) for (const [ref, check] of Object.entries(db.trustChecks.checks)) if (check.account === account.id || publicIds.includes(check.player)) delete db.trustChecks.checks[ref];
   const devices = devicesOf(db), after: AfterChange = { closeKeys: [], closeDevices: [...account.devices], ...(showcasePhotos.length ? { showcasePhotos } : {}) };
@@ -616,6 +618,7 @@ export function exportAccount(db: Db, deps: AccountDeps, caller: Caller, identit
     ...(db.market ? { market: exportMarket(db, [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)]) } : {}),
     ...(db.realValue ? { realValue: exportRealValue(db, [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)], now) } : {}),
     ...(livingWorld ? { livingWorld } : {}),
+    ...(peekDetty(db) ? { dettyDecember: exportDetty(db, [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)]) } : {}),
     ...(db.agents ? { aiAgents: exportAgents(db, account.id) } : {}),
     ...(peekMemory(db) ? { aiMemory: exportMemory(db, [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)], now) } : {}),
     ...(db.trustChecks ? { identityChecks: Object.values(db.trustChecks.checks).filter(check => check.account === account.id).map(check => ({ ref: check.ref, player: check.player, at: check.at, expiresAt: check.expiresAt, status: check.status, environment: check.environment, adultVerified: check.adult === true })) } : {}),

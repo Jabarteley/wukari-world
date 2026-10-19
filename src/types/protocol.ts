@@ -772,6 +772,7 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/world/pulse',
   'GET /api/world/pulse/online',
   'GET /api/world/festivals',
+  'GET /api/world/detty', 'GET /api/world/detty/me', 'POST /api/world/detty/checkin',
   'GET /api/world/feed',
   'GET /api/world/gist',
   'GET /api/world/episode',

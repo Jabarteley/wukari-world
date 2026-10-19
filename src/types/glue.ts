@@ -1,5 +1,6 @@
 // Wire shapes of the social glue (docs/SOCIAL-GLUE.md): what /api/glue/* answers. Rules: src/glue/model.ts; server: server/glue/.
 import type { ClosePlace, MarriageState, Ring, TalkPhase, TripAnswer, TripMode } from '../glue/model.ts'
+import type { HostErrorCode, JsonBodyErrorCode, Ok } from './protocol.ts'
 
 export interface GlueRefusal { ok: false; code: string; reason: string }
 export interface PersonRef { id: string; name: string }
@@ -117,3 +118,34 @@ export interface FamilyLifeView {
 }
 /** On a person's card: they are married (a badge). */
 export interface MarriedBadge { to: PersonRef; since: number }
+
+// ---- the routes (server/routes/glue.ts), merged into HttpRoutes in ./protocol.ts ----------------------------------------------------
+type E = HostErrorCode | JsonBodyErrorCode | 'rate_limited' | 'device_session_required' | 'storage_unavailable' | 'invalid_request'
+type Done<T extends object = object> = Ok<({ ok: true } & T) | GlueRefusal>
+export interface GlueHttpRoutes {
+  'GET /api/glue/close': { response: Done<Omit<CloseView, 'ok'>>; errors: E }
+  'GET /api/glue/close/now': { response: Done<{ now: CloseNowLine[] }>; errors: E }
+  'POST /api/glue/close': { body: { on?: boolean; add?: string; remove?: string; ids?: string[] }; response: Done<Omit<CloseView, 'ok'>>; errors: E }
+  'GET /api/glue/talks': { response: Done<Omit<TalksView, 'ok'>>; errors: E }
+  'POST /api/glue/talks': { body: { title: string; about?: string; start: number; minutes: number; room: string; speakers?: string[] }; response: Done<{ talk: TalkView }>; errors: E }
+  'POST /api/glue/talks/remind': { body: { id: string; on?: boolean }; response: Done<{ talk: TalkView }>; errors: E }
+  'POST /api/glue/talks/open': { body: { id: string }; response: Done<{ room: string }>; errors: E }
+  'POST /api/glue/talks/cancel': { body: { id: string }; response: Done; errors: E }
+  'GET /api/glue/board': { query: { key: string }; response: Done<Omit<GistBoardView, 'ok'>>; errors: E }
+  'POST /api/glue/board/posts': { body: { board: string; body: string }; response: Done<{ post: GistPostView }>; errors: E }
+  'POST /api/glue/board/same': { body: { id: string; on?: boolean }; response: Done<{ post: GistPostView }>; errors: E }
+  'POST /api/glue/board/report': { body: { id: string; aboutMe?: boolean }; response: Done; errors: E }
+  'POST /api/glue/board/moderate': { body: { id: string; action: 'remove' | 'restore' }; response: Done; errors: E }
+  'GET /api/glue/trips': { query: { crew?: string }; response: Done<Omit<TripsView, 'ok'>>; errors: E }
+  'POST /api/glue/trips': { body: { crew: string; mode: TripMode; to: string; members?: string[]; cityId?: string }; response: Done<{ trip: TripView }>; errors: E }
+  'POST /api/glue/trips/answer': { body: { id: string; yes: boolean }; response: Done<{ trip: TripView }>; errors: E }
+  'POST /api/glue/trips/manage': { body: { id: string; action: 'drop' | 'cancel'; member?: string }; response: Done<{ trip: TripView }>; errors: E }
+  'POST /api/glue/trips/go': { body: { id: string; cityId?: string }; response: Done<{ trip: TripView }>; errors: E }
+  'GET /api/glue/family': { response: Done<Omit<FamilyLifeView, 'ok'>>; errors: E }
+  'POST /api/glue/family/propose': { body: { to: string; ring: Ring }; response: Done<{ family: FamilyLifeView }>; errors: E }
+  'POST /api/glue/family/answer': { body: { id: string; yes: boolean }; response: Done<{ family: FamilyLifeView }>; errors: E }
+  'POST /api/glue/family/withdraw': { body: Record<string, never>; response: Done<{ family: FamilyLifeView }>; errors: E }
+  'POST /api/glue/family/ceremony': { body: Record<string, never>; response: Done<{ family: FamilyLifeView; line: string }>; errors: E }
+  'POST /api/glue/family/home': { body: { on: boolean }; response: Done<{ family: FamilyLifeView }>; errors: E }
+  'POST /api/glue/family/divorce': { body: Record<string, never>; response: Done<{ family: FamilyLifeView }>; errors: E }
+}

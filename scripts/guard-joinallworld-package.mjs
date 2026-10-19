@@ -9,7 +9,9 @@ const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 export const RELEASE_IDENTITY_VERSION = 1;
 export const RELEASE_MARKER_PREFIX = '// joinallworld-release:v1 ';
 const MAX_DECIMAL_ID = 9223372036854775807n;
-const MAX_WORKER_BYTES = 3_500_000;
+// Raised from 3.5 MB on 19 Oct 2026 for the WOW plan's server modules (docs/WOW-PLAN.md): the minified Worker measured 3,509,957 bytes,
+// 1,208,292 gzipped (Cloudflare's paid limit is 10 MB compressed; deploy/words.edge.test.ts keeps a 3 MB gzip guard and the 400 ms import check).
+const MAX_WORKER_BYTES = 4_000_000;
 // Trusted source receipt, never read from the candidate package. The native exception is path + byte-identity scoped.
 const nativeSelection = /** @type {{files:{url:string,sha256:string,bytes:number}[]}} */ (JSON.parse(readFileSync(new URL('../docs/character-assets/selected-release-assets.json', import.meta.url), 'utf8')));
 const reviewedNativeModels = new Map(nativeSelection.files.filter(file => file.url.startsWith('/character-lab/') && file.url.endsWith('.glb')).map(file => [`assets${file.url}`, file]));

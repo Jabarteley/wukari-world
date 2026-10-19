@@ -24,7 +24,7 @@ const { build } = require('esbuild') as { build(options: BundleOptions): Promise
 const here = (path: string): string => new URL(path, import.meta.url).pathname;
 
 /** What the platform allows a Worker script to be, compressed (the smaller, free-plan figure is used so the guard has room), and the budgets of this test. */
-const LIMITS = { fileBytes: 5_000_000, workerBytes: 3_500_000, gzipBytes: 3_000_000, dictionaryImportMs: 200, workerImportMs: 400, dictionaryHeapBytes: 4_000_000, readyMs: 1000, warmMs: 500, lookupUs: 20 };
+const LIMITS = { fileBytes: 5_000_000, workerBytes: 4_000_000, gzipBytes: 3_000_000, dictionaryImportMs: 200, workerImportMs: 400, dictionaryHeapBytes: 4_000_000, readyMs: 1000, warmMs: 500, lookupUs: 20 };
 
 async function bundles() {
   const folder = await mkdtemp(join(tmpdir(), 'joinallworld-words-'));

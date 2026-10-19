@@ -6,7 +6,7 @@
 - **Owner:** Claude (Opus 5.5) sub-agent for Phase 6 of the wow plan
 - **Model / effort:** `claude-opus-5-5 / default`
 - **Thread:** `local`
-- **UTC updated:** `2026-10-19T16:30:00Z`
+- **UTC updated:** `2026-10-19T17:30:00Z`
 - **Status:** `verified-local`
 - **Work state:** `implementation`
 
@@ -16,7 +16,7 @@
 - **In scope:** the season rules and lists, the lazy December city skin, nightly events and owambe Saturdays, the Returnee badge (server-checked), the daily drop, the December entry words for `/visit/<city>` and the `/detty` address, the season card, tests and docs.
 - **Out of scope:** pushing, deploying, `wrangler.jsonc`, the release guard, new city venues (Labadi Beach is not an Accra venue yet: the beach day uses the city's recreation park until one is added), share-card server kinds (Phase 4 owns `server/growth/share.ts`).
 - **Exclusive file ownership:** `src/festivals/detty*.ts`, `src/app/features/detty/`, `server/routes/detty.ts`, `server/detty/`, `server/detty.test.ts`, `docs/DETTY-DECEMBER.md`, this record.
-- **Shared files, lines added only:** `src/festivals/calendar.ts` (the old `ng-detty-december` row), `src/entry-variants.ts`, `server/path-meta.ts`, `src/paths.ts`, `src/app/features/paths/routing.ts`, `src/scene/venue-scenes.ts` (one hook), `src/app/features/growth/EventsApp.vue`, `server/routes/index.ts`, `server/keyed.ts`, `server/admin/erasure-data.ts`, `docs/FESTIVALS.md`, `docs/ENTRY.md`.
+- **Shared files, lines added only:** `src/festivals/calendar.ts` (the old `ng-detty-december` row), `src/entry-variants.ts`, `server/path-meta.ts`, `src/paths.ts`, `src/app/features/paths/routing.ts`, `src/venue-world.ts` (one hook in the scene host; `src/scene/venue-scenes.ts` stays byte-identical to base because the talk factory pins it), `src/app/features/growth/EventsApp.vue`, `server/routes/index.ts`, `server/keyed.ts`, `server/admin/erasure-data.ts`, `docs/FESTIVALS.md`, `docs/ENTRY.md`.
 - **Input contract:** main at `3010cc17e`.
 - **Output contract:** one commit on this branch; the integrator merges and deploys.
 - **Dependencies:** none. Phase 2 (weekly world events) and Phase 4 (share loops) work in parallel; overlap expected only in `EventsApp.vue` and the route index (added lines).
@@ -41,7 +41,7 @@
 - Related suites unchanged against base `3010cc17e` (same pass/fail counts on a clean base checkout): entryModel 10/0, paths 14/0, path-meta 13/0, client paths 18/0, feed 17/0, keyed 20/0, sqlite-release 14/0, sqlite-migration 12/0, store 17/0; pre-existing environment failures identical on base: admin/festivals 11/11, admin/links 9/12, feed-located 5/2, registry 6/7, protocol 3/2, scenes 15/10.
 - `npx vite build && npm run -s size:download` — pass, overBudget 0; startup raw +9 B (the `detty` entry word), gzip/brotli within hash noise; first paint raw unchanged.
 - Seen working in the browser (local open mode, its clock set to 3 December 2026 19:40 WAT, no preview): the season on by date, string lights at Freedom Park, purple and gold umbrellas and lights at the beach, `/detty` opening the Events app with the notice, the drop chip, the Returnee hint and "Street party · On now"; the check-in counted the night. The first try showed the kit's see-through patch breaks unlit materials: the skin no longer calls `kit.adopt`. Data folder, server and browser profile removed afterwards.
-- The talk check in `npm run -s pretest` fails after a `vite build` in this symlinked worktree (generated talk-bank files); it passed before the build and no talk file is touched here.
+- Integration blocker fixed: the hook in `src/scene/venue-scenes.ts` changed a source the talk factory pins. That file is byte-identical to base again; the props hang from the scene host (`src/venue-world.ts`). In a non-symlinked copy at `d815258ed`: `npm run -s pretest` (talk:check 286 unchanged, also after the build), typecheck, 127/127 targeted tests, `npx vite build && npm run -s size:download` pass (startup raw 612016, overBudget 0).
 
 ### In progress / blockers
 
@@ -66,4 +66,5 @@
 |---|---|---|---|---|
 | 2026-10-19T12:00Z | active | Registered | this file | implement |
 | 2026-10-19T15:30Z | verified-local | Phase 6 implemented and tested; committed on the branch | see Done | integrator merges |
+| 2026-10-19T17:30Z | verified-local | Hook moved to the scene host; talk:check passes in a clean copy | d815258ed | integrator merges |
 | 2026-10-19T16:30Z | verified-local | Browser check in open mode; unlit skin materials no longer patched; wire for the lights | see Done | integrator merges |

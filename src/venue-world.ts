@@ -1533,13 +1533,36 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     dressStandIn();
     current.setCrowd?.(crowd);
     current.settleCrowd?.();
-    if (lastState) current.update?.(lastState);
+    if (lastState) { current.update?.(lastState); dettyTick(lastState.t); }
     showAmbient();
     enterScene();
     readTags();
     applyLook();
     warmup.mark();
     resize();
+  }
+  // Detty December (src/festivals/detty-client.ts, docs/DETTY-DECEMBER.md): in Lagos, Accra and Abuja the shown venue wears the season's props
+  // while it is on (1 to 31 December, or the admin's preview). The hook is fetched only in those three cities, the props only while the season
+  // is on. It lives here, in the host, so the scene builders (whose sources the talk factory pins) stay as they are.
+  let detty: { entry: HostScene; hook: import('./festivals/detty-client.ts').SceneHook } | null = null, dettyWaiting: HostScene | null = null;
+  function dettyTick(t: number | undefined): void {
+    const entry = current, venueId = currentLocation;
+    if (detty && detty.entry !== entry) { detty.hook.dispose(); detty = null; }
+    // The three cities, written here so this chunk imports nothing for them (the hook checks again: isDettyCity).
+    if (!entry || !venueId || typeof t !== 'number' || !Number.isFinite(t) || !['lagos', 'accra', 'abuja'].includes(cityId)) return;
+    if (detty) { detty.hook.tick(t); return; }
+    if (dettyWaiting === entry) return;
+    dettyWaiting = entry;
+    const city = cityId;
+    void import('./festivals/detty-client.ts').then((lib) => {
+      if (gone || current !== entry || dettyWaiting !== entry) return;
+      dettyWaiting = null;
+      const hook = lib.sceneSkin({ THREE: kit.THREE, group: entry.group, cityId: city, venueId,
+        place: () => { const grid = entry.walk?.grid; return grid ? { bounds: grid.bounds, heightAt: (x, z) => entry.walk!.heightAt(x, z) } : null; },
+        redraw: () => { if (!gone && current === entry && !loop.running) renderScene(); } });
+      detty = { entry, hook };
+      hook.tick(t);
+    }).catch(() => { dettyWaiting = null; /* no season: the venue stays as it is */ });
   }
   /** Give the current scene the latest game state. Draws one frame only if the scene says it changed. */
   function setState(state: LifeState) {
@@ -1555,6 +1578,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     }
     trackReward(state);
     const changed = current?.update?.(state);
+    dettyTick(state.t);
     const walk = walkOf();
     if (walk) { walker.setGrid(walk.grid); spotList = walk.spots(); }
     const moved = syncRest();
@@ -1738,6 +1762,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       measurement?.cancel('Scene disposed');
       if (gone) return;
       view?.dispose(); view = null;
+      detty?.hook.dispose(); detty = null;
       gone = true; reducedMotion?.removeEventListener?.('change', onReducedMotion); loop.dispose(); standIn?.dispose(); clearDwell(); if (thingDwell !== null) { clearTimeout(thingDwell); thingDwell = null; }
       releasePointers();
       for (const [type, listener] of Object.entries(listeners)) canvas.removeEventListener?.(type, listener, { capture: type === 'click' });

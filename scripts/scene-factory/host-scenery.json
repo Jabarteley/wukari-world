@@ -24,7 +24,7 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "0df1a57f859e27b3b00ca7cec515aea5d74795605af18b5e2559e2788bcdeeaa"
+      "sha256": "26b959bb8bd116f8c6776a489ebe3af84c4f94e97388dbddb3e9b56815f57d05"
     },
     {
       "path": "scripts/assets/glb.ts",

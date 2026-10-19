@@ -370,6 +370,18 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
   let street: { group: InstanceType<typeof THREE.Group>; dispose(): void } | null = null
   let selfFigure: InstanceType<typeof THREE.Object3D> | null = null
   const modelsReady = space.setModels(input.models, bytesOf)
+  // A world made from a photo starts its visitors where the photo was taken (docs/WORLDS.md, phase 8): once, when its model arrives.
+  let spawnTaken = false
+  const takeModelSpawn = (): void => {
+    if (!open || spawnTaken || closed) return
+    const at = space.modelSpawn()
+    if (!at) return
+    spawnTaken = true
+    spawn.x = at.x; spawn.z = at.z; spawn.yaw = at.yaw
+    walker = { ...walker, x: at.x, z: at.z, y: at.y, yaw: at.yaw }
+    physics?.place({ x: at.x, y: at.y, z: at.z })
+  }
+  void modelsReady.then(takeModelSpawn).catch(() => {})
   // A model house: loaded beside the first frames; the walker is moved to where it says, and the physics waits for its walls.
   const houseReady = space.setHouseModel(bytesOf).then((at) => {
     if (!at || closed) return
@@ -398,7 +410,7 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
     throwHeld() { physics?.throwHeld(lookAt) },
     setView(next) { view = next; space.show(walker.floor, view === 'first', outdoorsAt(walker.x, walker.z)); report() },
     setEditing(on) { editing = on },
-    setModels: async (list) => { await space.setModels(list, bytesOf); syncModels() },
+    setModels: async (list) => { await space.setModels(list, bytesOf); syncModels(); takeModelSpawn() },
     placeModel(p) {
       const object = space.modelObject(p.k)
       if (!object) return

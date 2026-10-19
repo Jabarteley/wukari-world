@@ -1,0 +1,109 @@
+{
+  "scope": "static exact-artifact and source diagnosis, no module evaluation",
+  "failingBinding": {
+    "asset": "scene-core-e4f772b.js",
+    "source": "src/scene/avatar-rig.ts:84",
+    "read": "PLAYER_DETAIL = pickDetail(characters.DETAILS)",
+    "compiledRead": "const I=(B=s,Array.isArray(B)&&B.includes(\"medium\")?\"medium\":\"low\")",
+    "binding": "characters chunk exports A as D; scene-core imports D as s; A=Object.freeze([\"low\",\"medium\",\"high\"])",
+    "computedOneBasedColumn": 7893
+  },
+  "comparison": [
+    {
+      "phase2": {
+        "path": "/private/tmp/story-phase2-bundle-1851d545/assets/scene-core-9207320.js",
+        "sha256": "617c4abc500b5e3020960ba0ca1dfd6b08b2b6243d1c76cb47bbb15651e9a2b7",
+        "bytes": 23442
+      },
+      "phase3": {
+        "path": "/private/tmp/story-phase3-bank-qa-419e3768-c1pzv8nl/prepared-dist/assets/scene-core-e4f772b.js",
+        "sha256": "4fabb18b57ae4d3161eff650e63cff6f334094ee98fa3a6f565266a1ec9f92e7",
+        "bytes": 23442
+      },
+      "onlyChunkReferenceHashesDiffer": true,
+      "phase3StaticImports": [
+        "import{r as t,b as e,a as n,c as r,d as o,p as a,D as s}from\"./characters-dcc872a.js\";",
+        "import{l as i}from\"./engine-fbd9916.js\";"
+      ],
+      "normalizedSha256": "45fbb163a49e7683bdfc13a427c72529fa87309e4b23e2e0d9c354a7f6b79859"
+    },
+    {
+      "phase2": {
+        "path": "/private/tmp/story-phase2-bundle-1851d545/assets/characters-255856d.js",
+        "sha256": "169c805567144c15df1916614db9831cf366e8b3df1e32be2e4a26407a3d9879",
+        "bytes": 11681
+      },
+      "phase3": {
+        "path": "/private/tmp/story-phase3-bank-qa-419e3768-c1pzv8nl/prepared-dist/assets/characters-dcc872a.js",
+        "sha256": "01bcfdc18ed904e2ed63a5dda3b57e9fe2e8fcb9ea936f6eba6fe56217612053",
+        "bytes": 11681
+      },
+      "onlyChunkReferenceHashesDiffer": true,
+      "phase3StaticImports": [
+        "import{_ as e}from\"./preload-helper-86ad5cf.js\";",
+        "import{b2 as t,b3 as a}from\"./engine-fbd9916.js\";",
+        "import{n as o,a as n}from\"./rules-1e52af1.js\";",
+        "import{z as r}from\"./scene-core-e4f772b.js\";"
+      ],
+      "normalizedSha256": "d325a1e4f38c6de4bc7d30b50930a4adfc9c2ee34e2cca1f860169f6db3eaec4"
+    }
+  ],
+  "sourcePins": {
+    "vite.config.ts": {
+      "sha256": "97d95fec70e265d2e4f207ac77200fd981081e318a230a33b150205096e2c69e",
+      "bytes": 36437
+    },
+    "src/scene/avatar-rig.ts": {
+      "sha256": "3de58c97459fed66cefd1372ab721232bdc81073b09eb6bfeb3aaaed52b7840d",
+      "bytes": 9437
+    },
+    "src/scene/characters.ts": {
+      "sha256": "dc851ae66e0cd16b4d8eded2a854095196573e61bafb0082971ab02b34d7e8cf",
+      "bytes": 124665
+    },
+    "src/scene/build.ts": {
+      "sha256": "f3c02fbc45dacb9310fe03f16f105ac5fbb1b0d5a86fdb71b0f0eb17d69ce6ba",
+      "bytes": 20210
+    },
+    "src/scene/look.ts": {
+      "sha256": "0636d74ae35452e7c53a315aee498d947d94f877305a9c091f29c15baf03f463",
+      "bytes": 11653
+    },
+    "src/scene/ao-bake.ts": {
+      "sha256": "67dd0bf2a876dbc1ae2e0bc93cc8f9f83687b714ad5941161e0b63a6b62112f0",
+      "bytes": 5084
+    },
+    "src/scene/movement.ts": {
+      "sha256": "1451cc3c050542ac777ae43380dfa584d7a4c82db87246b02f49e4813c1bbed9",
+      "bytes": 28500
+    },
+    "src/scene/walk-grid.ts": {
+      "sha256": "941c0210de6b4585546b416cd29c987e6703b1c9208adeb3e79bf456b737ff29",
+      "bytes": 9612
+    },
+    "src/scene/space.ts": {
+      "sha256": "1a116b8f239fe3c77099ad58256e9546d7cb447073ff19e90b6a419d4f796e51",
+      "bytes": 5587
+    },
+    "src/scene/lighting.ts": {
+      "sha256": "0a5b803c1ed5581a082376efb8ec063eae910417a5a2e31aed89c1e767f37665",
+      "bytes": 3255
+    },
+    "src/ui/npc-mark.ts": {
+      "sha256": "8b75b0d32ec8b5e3b972dd4f36fb8a4969c4ed06e66aacbcb2fc4078bf8a6881",
+      "bytes": 2030
+    },
+    "src/app/chatter/cityTalk.ts": {
+      "sha256": "e3e80e69782dd6ccf66dc2fb7493630417bbb0f37c3fa0694766bd68273116fa",
+      "bytes": 4508
+    }
+  },
+  "candidate": {
+    "path": "vite.config.ts",
+    "baseSha256": "97d95fec70e265d2e4f207ac77200fd981081e318a230a33b150205096e2c69e",
+    "outputSha256": "d980c1c9c5a1ba1f43ce79220cf87d9a6f08d32de8143952a03eee7bf7255ad2",
+    "patchSha256": "73c0a9054d4cf9ef4643b3dc0f32d6719b6580ff5f0c92ff4df55c7c4b7677de"
+  },
+  "runtimeVerified": false,
+  "buildExecuted": false
+}

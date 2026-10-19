@@ -160,10 +160,8 @@ const BUDGET = { raw: STARTUP_RAW.value, gzip: STARTUP_GZIP.value }
 // only their compact catalogue row and loader thunk to that startup closure.
 const LOADING_BUDGET = { raw: LOADING_RAW.value, gzip: LOADING_GZIP.value }
 
-function eagerChunks(dist: string, additional: readonly string[] = []): string[] {
-  const html = readFileSync(join(dist, 'index.html'), 'utf8')
-  const queue = [...html.matchAll(/<(?:script|link)\b[^>]*\b(?:src|href)="\/(assets\/[^"]+\.js)"/g)].map((match) => match[1] as string)
-  queue.push(...additional)
+function emittedChunks(dist: string, entries: readonly string[]): string[] {
+  const queue = [...entries]
   const seen = new Set<string>()
   while (queue.length) {
     const name = queue.pop() as string
@@ -175,6 +173,31 @@ function eagerChunks(dist: string, additional: readonly string[] = []): string[]
   }
   return [...seen]
 }
+
+function eagerChunks(dist: string, additional: readonly string[] = []): string[] {
+  const html = readFileSync(join(dist, 'index.html'), 'utf8')
+  const entries = [...html.matchAll(/<(?:script|link)\b[^>]*\b(?:src|href)="\/(assets\/[^"]+\.js)"/g)].map((match) => match[1] as string)
+  return emittedChunks(dist, [...entries, ...additional])
+}
+
+function assertCharacterChunkBoundary(dist: string): void {
+  const all = readdirSync(join(dist, 'assets'))
+  const characters = all.filter(name => /^characters-[\w-]+\.js$/.test(name))
+  const core = all.filter(name => /^scene-core-[\w-]+\.js$/.test(name))
+  assert.equal(characters.length, 1, 'one emitted character chunk is required')
+  assert.equal(core.length, 1, 'one emitted scene-core chunk is required')
+  const characterChunk = `assets/${characters[0]}`, coreChunk = `assets/${core[0]}`
+  const characterImportsCore = emittedChunks(dist, [characterChunk]).includes(coreChunk)
+  const coreImportsCharacters = emittedChunks(dist, [coreChunk]).includes(characterChunk)
+  assert.ok(!(characterImportsCore && coreImportsCharacters),
+    `native creator initialization must not depend on a static-import cycle between ${characterChunk} and ${coreChunk}`)
+}
+
+test('the emitted character and scene-core boundary has no static-import cycle', (t) => {
+  const dist = join(root, 'dist')
+  if (!existsSync(join(dist, 'index.html')) || !existsSync(join(dist, 'assets'))) { t.diagnostic('no dist/: run `npm run build` to check the character chunk boundary'); return }
+  assertCharacterChunkBoundary(dist)
+})
 
 /** One emitted JSON-compatible array literal, including nested arrays and quoted brackets. */
 function arrayLiteralAt(code: string, start: number): string {

@@ -2,7 +2,7 @@
 
 What the game does today, how to run and operate a server, every setting, and where each part of the code lives. New here? Start with the [README](../README.md), then [CONTRIBUTING.md](../CONTRIBUTING.md) and [your first change](FIRST-CHANGE.md).
 
-The optional, server-gated chapter path, its saved receipts, city locks, friend help, solo route, and release gates are documented in [Story Mode](STORY-MODE.md). Scene recipes, measured regional assets, regeneration and checking, lazy loading, and linked-city cache warming are documented in [Scene Factory](SCENE-FACTORY.md).
+The optional, server-gated chapter path, its saved receipts, city locks, friend help, solo route, and release gates are documented in [Story Mode](STORY-MODE.md). Scene recipes, measured regional assets, regeneration and checking, lazy loading, and linked-city cache warming are documented in [Scene Factory](SCENE-FACTORY.md). City-specific banks, beta phrasebooks, deterministic replies, bounded free text and their release gates are documented in [Talk Banks](TALK-BANKS.md).
 
 ## Commands and settings
 

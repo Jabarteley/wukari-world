@@ -1,0 +1,20 @@
+# Creator preview TDZ: exact diagnosis and Vite-only proposal
+
+Observed by the browser owner on immutable Phase3 source419e3768 artifact12157615906: canonical preview rejects with ReferenceError in scene-core-e4f772b.js line1 column7890. No actor was created. This proposal does not itself operate the browser or verify a fix.
+
+## Exact cause
+scene-core imports D as s from characters-dcc872a.js. Its eager `const I=(B=s, ...)` is src/scene/avatar-rig.ts:84 PLAYER_DETAIL=pickDetail(characters.DETAILS). The characters chunk exports A as D; A is the later lexical const Object.freeze(['low','medium','high']) from characters.ts:184. The characters chunk simultaneously imports z/hash from scene-core. Source edge: characters.ts:42 imports build.ts; manualChunks places build.ts and avatar-rig.ts together in scene-core. Thus entering through characters requires evaluating scene-core first, which eagerly reads the uninitialized characters binding. Network success cannot repair an ESM TDZ.
+
+Source modules themselves provide the direction avatar-rig -> characters -> build -> look/ao-bake. Their artificial chunk graph is characters -> scene-core(hash) -> characters(DETAILS and look helpers). build.ts imports look.ts (already bundled with characters), forming the additional return edge. Remaining scene-core members movement/walk-grid/space/npc-mark have no runtime character dependency; lighting imports engine clock.
+
+Exact1851 Phase2 assets have the SAME static cycle and eager read. Both entire chunk texts are identical to419 after normalizing only referenced seven-hex chunk hashes; evidence.json records originals/hashes and normalization equality. This proves the defect predates Phase3 in these chunks. It does not prove whether Phase2 fresh onboarding also failed in every load order. Earlier entered-scene/owned-life QA is not evidence for fresh creator import order. cityTalk.ts has only type imports; no demonstrated runtime edge to character initialization. Do not blame Phase3 chatter without additional evidence.
+
+## Proposed owned change
+One vite.config.ts hunk: explicitly put characters.ts, build.ts and avatar-rig.ts in the existing characters chunk; remove build/avatar-rig from scene-core. This co-locates the actual eager initializer and its declaration AND removes the hash return edge. Moving only avatar-rig would suppress this read but retain the artificial build/look cycle; moving only build would retain the rig/DETAILS dependency. No scene source, guards, budgets, startup/engine assignment or API changes. No new chunk name. look/ao-bake currently ride with characters and remain dependency-driven; final emitted topology must verify this assumption.
+
+## Required later verification and integration
+Parent owns actual application after its review and the other owner's guard R2 completion. Apply only candidate.patch to the exact baseHash after recheck. No protected src/scene ownership exception is required for this Vite-only candidate. The patch is unbuilt and untested; do not claim runtime success or exact emitted-byte neutrality.
+
+One new combined hosted CI artifact must contain BOTH this runtime fix and reviewed guard repair; do not rerun unchanged419. Inspect its emitted characters and scene-core imports: no character<->scene-core SCC, DETAILS declaration initializes before rig constants, and creator download entry uses repaired chunks. Existing startup/scene/preview/exported download budgets must remain unchanged and pass; never raise caps. Topological regrouping may change compression/chunk ownership, so actual budgets are mandatory.
+
+Then sole browser owner starts a fresh context against that exact immutable artifact: Make my character -> native preview readiness and nonempty native render -> normal actor creation/reload; verify no TDZ/shader/asset errors. Re-enter ordinary scene and existing Phase3 bank/chatter journeys because shared characters/build/rig consumers changed grouping. Parent handles ordinary Roots separately. No local full build/minification needed for this preparation. Source-level execution and real browser acceptance remain pending.

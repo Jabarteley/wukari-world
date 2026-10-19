@@ -1,0 +1,56 @@
+{
+  "schema": "story-phase2-release/v1",
+  "checkedUtc": "2026-10-19T00:33:21.562906+00:00",
+  "phase2Merge": "a5c47a076438d87ac8708a646a67a743d7be2589",
+  "source": "48866677dbc25debf3f888211f590436d1ca751a",
+  "release": {
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/kromate/joinallworld/actions/runs/39180047509"
+  },
+  "jobs": [
+    {
+      "name": "Build, check and seal new game",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "Deploy only joinallworld-next",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "log": "/tmp/story-phase2-combined-release-39180047509.log",
+  "logSha256": "73f04e49741fb4fa19c7cc6eaee9dbb13aefc2284edd18f3139f851647ad3b3f",
+  "packageSourceLogWitnesses": [
+    "SOURCE_SHA exact at validation, install, assemble and deploy",
+    "HEAD is now at48866677 after exact-source checkout"
+  ],
+  "worker": "joinallworld-next",
+  "workerVersion": "907922c9-b761-4bec-838a-83f14396d33d",
+  "health": {
+    "checkedUtc": "2026-10-19T00:32:44.093164+00:00",
+    "url": "https://joinallworld.com/api/health",
+    "status": 200,
+    "health": {
+      "ok": true,
+      "build": "joinallworld-48866677dbc25debf3f888211f5",
+      "relay": true,
+      "companionAi": true,
+      "serverTime": 1792369964147,
+      "transport": "cloudflare",
+      "buildId": "joinallworld-48866677dbc25debf3f888211f5"
+    }
+  },
+  "releaseBytes": {
+    "STARTUP_RAW": 611548,
+    "STARTUP_GZIP": 222193,
+    "STARTUP_BROTLI": 195555,
+    "SCENE_HOST_RAW": 80065,
+    "SCENE_HOST_GZIP": 30316,
+    "SCENE_KIT_BROTLI": 141446,
+    "HERO_BROTLI": 37645
+  },
+  "publicBrowser": "running; separate evidence required",
+  "staleRun39179122605": "cancelled before deploy; superseded by combined run"
+}

@@ -1,0 +1,27 @@
+{
+  "sourceBase": "33cc51b1cfa3b470591d7f7c3863691b7a6c1143",
+  "oldCityFiles": 284,
+  "newCityFiles": 284,
+  "oldRemovedFromLiveTree": 284,
+  "oldFilesPreservedInBackup": true,
+  "updatedIndexAndManifest": 2,
+  "currentCanonicalFiles": 286,
+  "newNamesExactlyMatchBothLinuxJobs": true,
+  "sameCityBankObjects": 284,
+  "sameProvenanceNormalizedPacks": 284,
+  "banks": 13726,
+  "sourcePinsFresh": 1167,
+  "paidRuntimePinsUnchanged": 18,
+  "paidChangedIndexPin": "public/assets/talk-banks/index.json",
+  "paidInheritance": "The committed33cc51b1 warmed paid sample retains exact18runtime pins and identical bank/evidence semantics; full19file hash receipt belongs only to the earlier index. No new paid request.",
+  "newIndexSha256": "b861ccc39444f1dee4e7cda2c33a6db1b961ca8f0e6c4534b86457ade8a0ac16",
+  "newWorldManifestSha256": "1f01deceaef6bcbff1f916dfe0b53a9b87cdc66bc24afe197222e71a7ffe660c",
+  "summary": {
+    "banks": 13726,
+    "bytes": 108488574,
+    "cities": 284,
+    "externalSpendUsd": 0,
+    "maxCityBytes": 628584
+  },
+  "stagePaths": 572
+}

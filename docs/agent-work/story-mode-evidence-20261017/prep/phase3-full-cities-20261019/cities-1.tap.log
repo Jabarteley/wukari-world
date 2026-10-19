@@ -1,0 +1,11 @@
+✔ every playable city is covered by the shared city contracts (406011.697416ms)
+✔ every playable city is covered by the shared city contracts: Story chapters are reachable (539.3515ms)
+ℹ Story terminal cities: none
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 407777.212458

@@ -247,6 +247,7 @@ import profiles from './profiles.ts';
 import arena from './arena.ts';
 import clans from './clans.ts';
 import story from '../story/routes.ts';
+import storyTalkRoutes from '../story/talk-routes.ts';
 import spaces from './spaces.ts';
 import spacesMod from './spaces-mod.ts';
 import feed from './feed.ts';
@@ -258,7 +259,7 @@ import earn from './earn.ts';
 import earnAdmin from './earn-admin.ts';
 import { prepareRouteCityContent, warmCityContentFailure } from '../request-city-content.ts';
 
-export const ROUTE_MODULES: RouteModule[] = [core, auth, social, civic, support, moderation, world, land, growth, growthMod, campus, projects, retention, pulse, festivals, worldFeed, gist, prayers, works, stages, ping, visit, places, business, commerce, businessMod, market, marketMod, notice, residence, companion, admin, bonus, storageMod, politics, records, trust, realValue, street, livingWorld, showcase, showcaseMod, agents, agentsMod, legacy, profiles, arena, clans, story, spaces, spacesMod, feed, feedMod, feedAdmin, promote, promoteAdmin, earn, earnAdmin];
+export const ROUTE_MODULES: RouteModule[] = [core, auth, social, civic, support, moderation, world, land, growth, growthMod, campus, projects, retention, pulse, festivals, worldFeed, gist, prayers, works, stages, ping, visit, places, business, commerce, businessMod, market, marketMod, notice, residence, companion, admin, bonus, storageMod, politics, records, trust, realValue, street, livingWorld, showcase, showcaseMod, agents, agentsMod, legacy, profiles, arena, clans, story, storyTalkRoutes, spaces, spacesMod, feed, feedMod, feedAdmin, promote, promoteAdmin, earn, earnAdmin];
 const KEY = /^(GET|POST|PUT|PATCH|DELETE) (\/api\/[A-Za-z0-9\-_/:.]+)$/;
 
 /**

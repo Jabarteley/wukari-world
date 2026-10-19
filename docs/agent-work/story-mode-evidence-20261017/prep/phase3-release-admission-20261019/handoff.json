@@ -1,0 +1,26 @@
+{
+  "sourceBase": "419e3768cb337ce29b6317a094ce5eb4e57236b3",
+  "acceptedPatchSha256": "356c12bc26b2a53be51245dd1a918ab082405a3ece0453bc82cc58f5b4f0714f",
+  "paths": {
+    "scripts/guard-joinallworld-package.mjs": "58795498e814190dcf35f3eb93f9babc5f85c9978f2a59bf4dda47b4023ff2fc",
+    "scripts/guard-joinallworld-package.test.mjs": "ebf602499ab3d6ae67882bd1361dc1658a7eef51e352cbac91ef88492fb3fb88",
+    "server/release.test.ts": "aa1ad9c6ae46230dc2062a1f755ead5ef1d9018f6458252f0875db4de15a3fe3"
+  },
+  "testPassCounts": {
+    "full-guard": 59,
+    "actual-public": 1
+  },
+  "files": {
+    "after-pins.json": "2f17c4029199a859558bd6d3e2384a20742251fba1567be5256faec695d42d67",
+    "stage-allowlist.txt": "87f813ce77d319b8079968c69f52c8aad5a23710e8d04a0c3a1e278ea08fa378",
+    "actual-three-path.diff": "dafbfc611cb6fa7fa12cd563068c34f4921ee33f0f941c83700ba9178d9bc872",
+    "execution.json": "0e4744cd2e1ba70e73d37f4b05d739a91e194ef1f8c0c1522fc0b89239046c88",
+    "full-guard.log": "6276f0c77ab08734f611c7d94bb09ca3c33f0a3b569b52d16f712919e9b24859",
+    "actual-public.log": "e00fc5677d1063275c08fbebd6eecf23eadb24a9f8992fd63c775982af71c77e"
+  },
+  "ownRecordSha256": "ece6d194d9c27a449597bffd5639e662c95a6bdbfd7ad0c170da4f55b1f3056c",
+  "heavyReleased": true,
+  "gitIndexEmpty": true,
+  "providerCalls": 0,
+  "next": "Parent combined commit and exact-SHA hosted CI"
+}

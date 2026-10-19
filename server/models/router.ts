@@ -17,7 +17,7 @@
  *   4. THE BUDGET: a paid model is tried only when today's spend, plus what requests in flight may still cost, plus this request's worst
  *      case (every prompt token and every allowed output token) stays under the day's cap (US$2.00). The check and the reservation
  *      happen in one synchronous step, so a burst of parallel requests cannot all pass the same check. A cost is added from the answer's
- *      `usage`, or from the characters when the provider gave none. A request that fails costs nothing.
+ *      `usage` and provider cost evidence independently of visible text. Ambiguous paid attempts retain an estimated debit.
  *   5. A player's day: at most so many requests and so many US cents of paid model (settings). A refusal here is 'player-cap'.
  * The refusal reasons are 'off' (no provider has a key), 'no-model' (nothing in the list can be used for this request), 'budget',
  * 'player-cap', 'rate' (free room used up and nothing paid to fall to) and 'failed' (every model tried failed). Callers have a
@@ -57,8 +57,10 @@ const PRIMARY_SHARE = 0.6;
 export interface Tally { n: number; micro: number }
 export interface ModelTally extends Tally { input: number; output: number; failed: number }
 export interface DayLedger {
-  /** Millionths of a US dollar spent. */
+  /** Budget debits in millionths of a US dollar, including conservative unresolved estimates; not an invoice. */
   micro: number
+  /** Portion of micro booked from an unresolved estimate rather than usage/receipt. */
+  estimatedMicro?: number
   requests: number
   byModel: Record<string, ModelTally>
   byPurpose: Record<string, Tally>
@@ -105,15 +107,18 @@ export interface AskInput {
   prefer?: string
 }
 export type Refusal = 'off' | 'no-model' | 'budget' | 'player-cap' | 'rate' | 'failed';
-export interface Attempt { model: string; provider: Provider; ok: boolean; why?: GatewayFailure }
+export type ChargeBasis = 'free' | 'unbilled' | 'provider' | 'usage' | 'estimate';
+export interface Attempt { model: string; provider: Provider; ok: boolean; why?: GatewayFailure; costMicro?: number; chargeBasis?: ChargeBasis; providerCostMicro?: number }
 export type AskResult =
-  | { ok: true; text: string; model: string; provider: Provider; free: boolean; usage: { input: number; output: number } | null; costMicro: number; attempts: Attempt[] }
+  | { ok: true; text: string; model: string; provider: Provider; free: boolean; usage: { input: number; output: number } | null; /** Total budget debited across all attempts, including estimated failed attempts; not an invoice. */ costMicro: number; attempts: Attempt[] }
   | { ok: false; why: Refusal; attempts: Attempt[] };
 
 const blankDay = (): DayLedger => ({ micro: 0, requests: 0, byModel: {}, byPurpose: {}, players: {}, free: {}, refused: {} });
 const own = (table: object, key: string): boolean => Object.hasOwn(table, key);
 const tally = <T extends Tally>(table: Record<string, T>, key: string, fresh: () => T): T => { if (!own(table, key)) table[key] = fresh(); return table[key]!; };
-const charsOf = (messages: readonly ChatMessage[]): number => messages.reduce((sum, item) => sum + item.content.length, 0);
+// A conservative text-token estimate for supported plain-text chat: at most one token per UTF-8 byte,
+// plus 32 framing tokens per message and 32 for the reply. Rates and framing remain host assumptions.
+const promptTokens = (messages: readonly ChatMessage[]): number => messages.reduce((sum, item) => sum + new TextEncoder().encode(item.content).length + 32, 32);
 
 export function createRouter(deps: Deps) {
   let stored: Stored = { days: {} };
@@ -186,12 +191,14 @@ export function createRouter(deps: Deps) {
     const order = liked > 0 ? [rested[liked]!, ...rested.filter((_, at) => at !== liked)] : rested;
     const totalMs = input.timeoutMs ?? 8000;
     let blocked: Refusal | null = null;
+    let totalCostMicro = 0;
     for (let index = 0; index < order.length; index++) {
       const entry = order[index]!;
       const left = totalMs - (deps.now() - started);
       if (left < 100) break;
       if (resting.has(`provider:${entry.provider}`)) continue;
       const free = isFree(entry.id, prices), price = priceOf(entry.id, prices);
+      if (player && player.n >= limits.playerRequests) { blocked = 'player-cap'; break; }
       // ---- one synchronous step: check, then reserve ----
       let reserve = 0;
       if (free) {
@@ -199,7 +206,7 @@ export function createRouter(deps: Deps) {
         (minute[entry.provider] ??= []).push(deps.now());
         day.free[entry.provider] = (day.free[entry.provider] ?? 0) + 1;
       } else {
-        const worst = Math.ceil(charsOf(input.messages) / 3) + 8 * input.messages.length;
+        const worst = promptTokens(input.messages);
         reserve = Math.ceil(worst * price.input + input.maxTokens * price.output);
         if (day.micro + reserved + reserve > limits.dailyCapMicro) { blocked = 'budget'; continue; }
         if (player && player.micro + reserve > limits.playerMicro) { blocked = blocked === 'budget' ? blocked : 'player-cap'; continue; }
@@ -209,23 +216,32 @@ export function createRouter(deps: Deps) {
       const more = index < order.length - 1;
       const answer = await once((url, init) => deps.fetch(url, init), target.target, entry.id, index === 0 ? 'primary' : 'fallback', input.messages, input.playerId ?? 'anonymous', Math.floor(more ? left * PRIMARY_SHARE : left));
       reserved = Math.max(0, reserved - reserve);
+      const billing = answer.billing;
+      const usage = answer.ok ? answer.usage : billing?.kind === 'observed' ? billing.usage : null;
+      const providerCostMicro = billing?.kind === 'observed' ? billing.providerCostMicro : null;
+      const pricedUsage = usage ? Math.ceil(usage.input * price.input + usage.output * price.output) : null;
+      const chargeBasis: ChargeBasis = free ? 'free' : billing?.kind === 'unbilled' ? 'unbilled'
+        : providerCostMicro !== null ? 'provider' : pricedUsage !== null ? 'usage' : 'estimate';
+      const micro = free || chargeBasis === 'unbilled' ? 0
+        : chargeBasis === 'estimate' ? reserve : Math.ceil(Math.max(pricedUsage ?? 0, providerCostMicro ?? 0));
+      // Settle before any fallback admission. Unknowns remain debited for the day; they are never called zero spend.
+      day.micro += micro;
+      if (chargeBasis === 'estimate') day.estimatedMicro = (day.estimatedMicro ?? 0) + micro;
+      totalCostMicro += micro;
+      const m = tally(day.byModel, entryKey(entry), () => ({ n: 0, micro: 0, input: 0, output: 0, failed: 0 }));
+      m.micro += micro; m.input += usage?.input ?? 0; m.output += usage?.output ?? 0;
+      const p = tally(day.byPurpose, input.purpose, () => ({ n: 0, micro: 0 })); p.micro += micro;
+      if (player) { player.n++; player.micro += micro; }
+      const charge = { costMicro: micro, chargeBasis, ...(providerCostMicro !== null ? { providerCostMicro } : {}) };
       if (answer.ok) {
         strikes.delete(entryKey(entry));
-        const sentTokens = Math.ceil(charsOf(input.messages) / 4), gotTokens = Math.ceil(answer.text.length / 4);
-        const usage = answer.usage, inTok = usage?.input ?? sentTokens, outTok = usage?.output ?? gotTokens;
-        const micro = free ? 0 : Math.round(inTok * price.input + outTok * price.output);
-        day.micro += micro; day.requests++;
-        const m = tally(day.byModel, entryKey(entry), () => ({ n: 0, micro: 0, input: 0, output: 0, failed: 0 }));
-        m.n++; m.micro += micro; m.input += inTok; m.output += outTok;
-        const p = tally(day.byPurpose, input.purpose, () => ({ n: 0, micro: 0 })); p.n++; p.micro += micro;
-        if (player) { player.n++; player.micro += micro; }
-        attempts.push({ model: entry.id, provider: entry.provider, ok: true });
+        day.requests++; m.n++; p.n++;
+        attempts.push({ model: entry.id, provider: entry.provider, ok: true, ...charge });
         persist();
-        return { ok: true, text: answer.text, model: entry.id, provider: entry.provider, free, usage, costMicro: micro, attempts };
+        return { ok: true, text: answer.text, model: entry.id, provider: entry.provider, free, usage, costMicro: totalCostMicro, attempts };
       }
-      attempts.push({ model: entry.id, provider: entry.provider, ok: false, why: answer.why });
-      tally(day.byModel, entryKey(entry), () => ({ n: 0, micro: 0, input: 0, output: 0, failed: 0 })).failed++;
-      if (player) player.n++;
+      attempts.push({ model: entry.id, provider: entry.provider, ok: false, why: answer.why, ...charge });
+      m.failed++;
       persist();
       // A 429 rests that model for the time the provider named (`retry-after`); without a usable one it backs off 1, 2, then 5 minutes. Other failures rest 5 minutes (30 when gone).
       let rest = answer.why === 'model' ? GONE_REST_MS : DEFAULT_REST_MS;

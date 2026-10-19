@@ -1,0 +1,66 @@
+{
+  "sourceBase": "48866677dbc25debf3f888211f590436d1ca751a",
+  "branch": "story/phase3-talk",
+  "groups": [
+    {
+      "name": "story-runtime",
+      "tests": 50,
+      "pass": 50,
+      "fail": 0,
+      "cancelled": 0,
+      "elapsedMs": 3173,
+      "logSha256": "6d411708fb7b5e8ecd7eb7c817f6990e2d18cc728c543f46d447768a2fa89179"
+    },
+    {
+      "name": "router-billing",
+      "tests": 37,
+      "pass": 37,
+      "fail": 0,
+      "cancelled": 0,
+      "elapsedMs": 3282,
+      "logSha256": "dc36104802ea8fe626549f99e712b9dab989ffa10f94da1ad5b4c296a8832390"
+    },
+    {
+      "name": "talk-client",
+      "tests": 12,
+      "pass": 12,
+      "fail": 0,
+      "cancelled": 0,
+      "elapsedMs": 205,
+      "logSha256": "7297dfe33d00be22514f82e59852dbc02c10241b78f21b74d3cc1153baf4d54e"
+    },
+    {
+      "name": "talk-factory",
+      "tests": 84,
+      "pass": 84,
+      "fail": 0,
+      "cancelled": 0,
+      "elapsedMs": 6739,
+      "logSha256": "7d801ec0b196b7296098f5a35028334c916ff8538192d1e3b8c6023b3a56325c"
+    },
+    {
+      "name": "download-budget",
+      "tests": 12,
+      "pass": 12,
+      "fail": 0,
+      "cancelled": 0,
+      "elapsedMs": 671,
+      "logSha256": "dfa072aa25158f7632f63ca5342b245adc763e807bd55b2ec4482d16598629bb"
+    }
+  ],
+  "tests": 195,
+  "pass": 195,
+  "wallMs": 14077,
+  "testSourcePathsUnchanged": 356,
+  "unrelatedSourcePreserved": true,
+  "concurrentOwnerRecords": [
+    "docs/agent-work/story-mode-20261017.md",
+    "docs/agent-work/story-release-browser-20261019.md"
+  ],
+  "earlierHarnessFailure": "harness-attempt-1.json",
+  "paidProviderRequests": 0,
+  "hostedBuild": false,
+  "browser": false,
+  "allCities": "separate parent-owned run pending",
+  "stageAllowlist": "stage-allowlist.txt"
+}

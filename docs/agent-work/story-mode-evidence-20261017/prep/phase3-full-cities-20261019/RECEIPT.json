@@ -1,0 +1,111 @@
+{
+  "schema": "phase3-full-cities-verification",
+  "updatedUTC": "2026-10-19T00:54:36Z",
+  "checkout": "/Users/anthonyakpan/work/joinallworld-story",
+  "branch": "story/phase3-talk",
+  "head": "33cc51b1cfa3b470591d7f7c3863691b7a6c1143",
+  "preflight": {
+    "command": "npm run -s preflight",
+    "exit": 0,
+    "log": "preflight.log"
+  },
+  "runs": [
+    {
+      "command": "NODE_OPTIONS=\"--max-old-space-size=2048 --max-semi-space-size=16 --import=./scripts/node-scene-css.ts\" GOMAXPROCS=2 node --experimental-strip-types scripts/agent-slot.ts heavy --wait-ms 60000 -- node --experimental-strip-types scripts/node-test-plan.ts cities-1",
+      "exit": 0,
+      "startedUTC": "2026-10-19T00:42:15Z",
+      "endedUTC": "2026-10-19T00:49:03Z",
+      "elapsedMs": 407777,
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "log": "cities-1.tap.log"
+    },
+    {
+      "command": "NODE_OPTIONS=\"--max-old-space-size=2048 --max-semi-space-size=16 --import=./scripts/node-scene-css.ts\" GOMAXPROCS=2 node --experimental-strip-types scripts/agent-slot.ts heavy --wait-ms 60000 -- node --experimental-strip-types scripts/node-test-plan.ts cities-2",
+      "exit": 0,
+      "startedUTC": "2026-10-19T00:49:03Z",
+      "endedUTC": "2026-10-19T00:53:28Z",
+      "elapsedMs": 264704,
+      "tests": 5,
+      "pass": 5,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "log": "cities-2.tap.log"
+    },
+    {
+      "command": "NODE_OPTIONS=\"--max-old-space-size=2048 --max-semi-space-size=16 --import=./scripts/node-scene-css.ts\" GOMAXPROCS=2 node --experimental-strip-types scripts/agent-slot.ts heavy --wait-ms 60000 -- node --experimental-strip-types --import ./scripts/node-scene-css.ts --test --test-concurrency=1 src/scene/city-scenes.test.ts",
+      "exit": 0,
+      "startedUTC": "2026-10-19T00:53:28Z",
+      "endedUTC": "2026-10-19T00:54:22Z",
+      "elapsedMs": 53383,
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "log": "city-scenes.tap.log"
+    }
+  ],
+  "logsAre": "raw Node test-runner spec output; not TAP protocol",
+  "selectorCorrection": {
+    "attempt": "node --experimental-strip-types scripts/node-test-plan.ts 1",
+    "exit": 1,
+    "testsStarted": 0,
+    "reason": "pinned current planner requires named selectors cities-1/cities-2",
+    "log": "failed-attempts.log"
+  },
+  "sourcePins": {
+    "manifestPath": "manifest.json",
+    "manifestSHA256": "4baa2afacb9ec7d18c855237bfea00d76114de47a0081a10947d8de5ecfb90b0",
+    "trackedPathCount": 7428,
+    "postPathCount": 7428,
+    "changedPaths": [
+      "src/app/chatter/start.ts"
+    ],
+    "missingPaths": [],
+    "changedPathBeforeSHA256": "edca1c2674bf8187ea6c65eefbd5c8aaab6384ec0845b5921a7eb3ee8ef5895e",
+    "changedPathAfterSHA256": "ce94c63f968e6da9cb527dc2b2b2b2a5d47bc78273a90e9a4c0748324445bcc5",
+    "gameAndCitySceneTestInputsUnchanged": true,
+    "runtimeClosureNote": "All 7,428 tracked src, scene-factory, and canonical Talk/scene-factory asset paths were hashed before and after; the sole difference is the parent-authorized concurrent chatter UI fix, outside game/city/scene test import closure.",
+    "concurrentParentFixes": [
+      "src/app/chatter/start.ts"
+    ],
+    "testAndPlannerSHA256": {
+      "src/game/cities/allCities.test.ts": "272e9addf540c8f88d3faee2926098b2700ebc2d7736ef4ad3dfe37caf4e623c",
+      "src/scene/city-scenes.test.ts": "9996c9e2e02e6fad698c65fdddb7fca216bf3e87dd498962c3216da4271945b6",
+      "src/scene/city-scenes.ts": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa",
+      "scripts/node-test-plan.ts": "6eed25555dd777e7aaded58019b37e61b773930c8c7a3d5cf012d409512d4960"
+    }
+  },
+  "resource": {
+    "heavySlot": "released",
+    "activeChildProcesses": 0,
+    "peakRSS": "not measured",
+    "testTimeoutPerCommandSeconds": 480,
+    "retries": 0,
+    "heavySlotReleaseUTC": "2026-10-19T00:54:22Z"
+  },
+  "artifacts": {
+    "preflight": "preflight.log",
+    "cities1": "cities-1.tap.log",
+    "cities2": "cities-2.tap.log",
+    "cityScenes": "city-scenes.tap.log",
+    "posthashDiff": "posthash-diff.json",
+    "supervisor": "run-tests.sh",
+    "failedAttempts": "failed-attempts.log"
+  },
+  "sha256": {
+    "preflight": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cities1": "775d49fb31aafc4fefd599239e14feb80e7c02d706f18f6cd924d94f611e5095",
+    "cities2": "178fd95eae0748329b37f189fe80364009debbf3b0400c6985390366ba5dd82e",
+    "cityScenes": "2f40fe69550fa366fb72737085501de293b7ccf439bfd01e6e704bec3e578933",
+    "failedAttempts": "aba77f363856caac0b070ea1af0890e28462ae131a956161627f6ab238a8d2f0",
+    "supervisor": "0ba017d9e0c0d07a28b9c56b476b453271a62a6817f59459f5c4b1c7f6c47c19",
+    "manifest": "4baa2afacb9ec7d18c855237bfea00d76114de47a0081a10947d8de5ecfb90b0",
+    "posthashDiff": "604c40a1ca455e00d2cd51da5ddf053087eacf6cc2b6a91951121ff9e5352820"
+  }
+}

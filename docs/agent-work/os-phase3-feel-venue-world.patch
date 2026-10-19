@@ -1,0 +1,27 @@
+diff --git a/src/venue-world.ts b/src/venue-world.ts
+index 57f6f687c..96d64b850 100644
+--- a/src/venue-world.ts
++++ b/src/venue-world.ts
+@@ -1281,10 +1281,12 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
+       if (!gone && epoch === rewardEpoch) cheer(globalThis.document?.querySelector('dialog[open]') || globalThis.document?.body);
+     }).catch(() => { /* cheers are optional presentation */ });
+   }
++  // A big moment (src/scene/feel/) nudges the camera: the orbit holds the shake, and the loop runs until it has died away (well under a second).
++  function onShake(event: Event) { const trauma = Number((event as CustomEvent<{ trauma?: number } | null>).detail?.trauma); if (trauma > 0 && uiMode === 'venue' && !reduced()) { orbit.kick(trauma); loop.wake(); } }
+   function onMode(event: Event) { homeDoorEpoch++; uiMode = (event as CustomEvent<{ mode?: string } | null>).detail?.mode || 'venue'; if (uiMode !== 'venue') dropInput(); }
+   // Created after the shell: start from the view the shell wrote on its root element.
+   uiMode = globalThis.document?.querySelector?.<HTMLElement>('.life-ui')?.dataset?.mode || 'venue';
+-  win?.addEventListener?.('jaw:mode', onMode); win?.addEventListener?.('jaw:reward', onReward); win?.addEventListener?.('jaw:cheer', onCheer);
++  win?.addEventListener?.('jaw:mode', onMode); win?.addEventListener?.('jaw:reward', onReward); win?.addEventListener?.('jaw:cheer', onCheer); win?.addEventListener?.('jaw:shake', onShake);
+   win?.addEventListener?.('jaw:key', onKey);
+   win?.addEventListener?.('jaw:key-up', onKeyUp);
+   win?.addEventListener?.('blur', dropInput);
+@@ -1781,7 +1783,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
+       gone = true; reducedMotion?.removeEventListener?.('change', onReducedMotion); loop.dispose(); standIn?.dispose(); clearDwell(); if (thingDwell !== null) { clearTimeout(thingDwell); thingDwell = null; }
+       releasePointers();
+       for (const [type, listener] of Object.entries(listeners)) canvas.removeEventListener?.(type, listener, { capture: type === 'click' });
+-      win?.removeEventListener?.('jaw:mode', onMode); win?.removeEventListener?.('jaw:reward', onReward); win?.removeEventListener?.('jaw:cheer', onCheer); win?.removeEventListener?.('jaw:key', onKey); win?.removeEventListener?.('jaw:key-up', onKeyUp); win?.removeEventListener?.('blur', dropInput);
++      win?.removeEventListener?.('jaw:mode', onMode); win?.removeEventListener?.('jaw:reward', onReward); win?.removeEventListener?.('jaw:cheer', onCheer); win?.removeEventListener?.('jaw:shake', onShake); win?.removeEventListener?.('jaw:key', onKey); win?.removeEventListener?.('jaw:key-up', onKeyUp); win?.removeEventListener?.('blur', dropInput);
+       controls?.dispose();
+       if (canvas.style) { canvas.style.touchAction = previousTouchAction || ''; canvas.style.cursor = previousCursor || ''; }
+       for (const entry of built.values()) entry.dispose?.();

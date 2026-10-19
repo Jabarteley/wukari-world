@@ -184,11 +184,11 @@ Photoreal streets (closed on 18 October), gender or age verification, live-strea
 | Phase | State | Record |
 | --- | --- | --- |
 | 1 Zoom to your street (`/street/<city>/<place>`, `/visit/<city>`, Find my street, `street` share card, `/politics` and `/visit` entry variants) | built, tests pass, checked in headless Chrome (Play visible in 0.6 s on the street page) | `docs/agent-work/ad-phase1-street-20261019.md` |
-| 2 Every clip is an advert (Share with the mark, 9:16, MP4 where possible, Clip 6 s, profile links keep the utm words) | built, tests pass; not yet tried on a phone or Safari | `docs/agent-work/ad-phase2-clips-20261019.md` |
+| 2 Every clip is an advert (Share with the mark, 9:16, MP4 where possible, Clip 6 s, profile links keep the utm words) | built, tests pass; tried on Android 15 Chrome (emulator): a 4 s clip, the mark pass, the Android share sheet with the WebM and the profile link. Safari untried | `docs/agent-work/ad-phase2-clips-20261019.md` |
 | 3 Near you (badge local government, `near` tab default for badge holders, counts line, Plans/Work order, `lga` community scope) | built, tests pass | `docs/agent-work/ad-phase3-near-20261019.md` |
-| 4 Selfie to character (Start from a photo, Share my character) | built, tests pass; not yet tried with a real selfie on a phone | `docs/agent-work/ad-phase4-selfie-20261019.md` |
-| 5 Play Store (manifest, `/.well-known/assetlinks.json` from `PLAY_SIGNING_SHA256`, install bar, `docs/STORE.md`) | code built, tests pass; the owner's Play account, signing key, privacy page and screenshots remain | `docs/agent-work/ad-phase5-store-20261019.md` |
-| 6 First sixty seconds | in progress | `docs/agent-work/ad-phase6-first-minute-20261019.md` |
+| 4 Selfie to character (Start from a photo, Share my character) | built, tests pass; tried on Android 15 Chrome (emulator): the gallery picker, the photo read on the phone, skin and hair set | `docs/agent-work/ad-phase4-selfie-20261019.md` |
+| 5 Play Store (manifest with five real screenshots, `/privacy`, `/.well-known/assetlinks.json` from `PLAY_SIGNING_SHA256`, install bar, `docs/STORE.md`) | built, tests pass; on Android 15 Chrome the install bar shows and Chrome's own Install sheet opens. The owner's Play account and signing key remain | `docs/agent-work/ad-phase5-store-20261019.md` |
+| 6 First sixty seconds (the strip after Play with one action; Feed first for badge holders) | built, tests pass, seen on Android 15 Chrome | `docs/agent-work/ad-phase6-first-minute-20261019.md` |
 | 7 Measurement (activation and day-7 return per campaign on the Admin dashboard) | built, tests pass | `docs/agent-work/ad-phase7-measure-20261019.md` |
 
 Decisions taken for the owner (all reversible): the clip mark is `@handle · joinallworld.com`; Near you is the default tab for badge holders; the badge may name a local government (shown only after the player says yes); the Play account is the owner's; the first adverts are "Visit home" (`/visit/lagos`) and "Become governor" (`/politics`).

@@ -71,14 +71,16 @@ onMounted(() => {
   <div class="gr-share">
     <p v-if="!sharing.sharing" class="gr-note">Nothing to share yet.</p>
     <template v-else-if="!invite">
-      <img v-if="sharing.sharing.prepared.url" class="gr-share-img" :src="sharing.sharing.prepared.url" alt="Your Allworld card" width="320" height="320">
+      <video v-if="sharing.sharing.prepared.clip?.type.startsWith('video/')" class="gr-share-img" :src="sharing.sharing.prepared.clip.url" controls playsinline preload="metadata" aria-label="Your clip" />
+      <img v-else-if="sharing.sharing.prepared.url" class="gr-share-img" :src="sharing.sharing.prepared.url" alt="Your Allworld card" width="320" height="320">
       <p class="gr-share-text">{{ sharing.sharing.prepared.text }}</p>
       <div class="gr-share-acts">
         <BaseButton variant="primary" class="is-wide" :disabled="working !== null" @click="run('share')"><GameIcon name="share" :size="18" /> {{ working === 'share' ? 'Sharing…' : 'Share…' }}</BaseButton>
         <LinkButton :href="sharing.sharing.prepared.whatsapp">WhatsApp</LinkButton>
         <LinkButton :href="sharing.sharing.prepared.x">X</LinkButton>
         <BaseButton :disabled="working !== null" @click="run('copy')">{{ working === 'copy' ? 'Copying…' : 'Copy text' }}</BaseButton>
-        <LinkButton v-if="sharing.sharing.prepared.url" :href="sharing.sharing.prepared.url" download="allworld.jpg">Save picture</LinkButton>
+        <LinkButton v-if="sharing.sharing.prepared.clip" :href="sharing.sharing.prepared.clip.url" :download="sharing.sharing.prepared.clip.name">{{ sharing.sharing.prepared.clip.type.startsWith('video/') ? 'Save video' : 'Save picture' }}</LinkButton>
+        <LinkButton v-else-if="sharing.sharing.prepared.url" :href="sharing.sharing.prepared.url" download="allworld.jpg">Save picture</LinkButton>
       </div>
       <div v-if="manual" class="gr-manual" data-manual-copy>
         <textarea ref="manualField" class="gr-manual-field" readonly rows="3" :aria-label="manual === 'link' ? 'Your link' : 'The text to copy'" :value="manual === 'link' ? sharing.sharing.prepared.link : sharing.sharing.prepared.text" @focus="($event.target as HTMLTextAreaElement).select()" />

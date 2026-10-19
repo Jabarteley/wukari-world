@@ -78,6 +78,10 @@ test('profile: a unique handle once a month, a filtered bio and status, /p/@hand
   assert.equal(page.status, 200);
   const html = await page.text();
   assert.match(html, /@ada/); assert.match(html, /Jollof first/);
+  // A shared clip's link (utm_source=clip) keeps its ad-source words on the way into the game, so the landing is counted under "clip".
+  const fromClip = await (await f.request('/p/@ada?utm_source=clip&utm_medium=share&utm_campaign=clip')).text();
+  assert.match(fromClip, /href="[^"]*\/\?utm_source=clip&amp;utm_medium=share&amp;utm_campaign=clip">Open Allworld/);
+  assert.doesNotMatch(html, /utm_source/, 'a plain visit keeps the plain link');
   await f.server.store.transact((db) => { const a = (db as unknown as { feed: FeedCollection }).feed.authors[ada.id]!; a.handleAt = f.now() - FEED.handleEveryMs - 1000; });
   assert.equal((await post('/api/feed/handle', { handle: 'ada.two' }, ada)).ok, true);
   assert.equal((await get('/api/feed/profile?id=%40ada', bola)).code, 'unknown_player', 'the old handle is free again');

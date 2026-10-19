@@ -48,6 +48,28 @@ This is the pattern the invite already used; the cards reuse it, so there is no 
 SVG, so they are PNG. Made by `node --experimental-strip-types scripts/make-share-cards.ts` (no browser, no package: shapes are
 drawn pixel by pixel and written with `node:zlib`) and committed. Change the script and run it again to change a picture.
 
+## Clips and photos from Capture (Phase 2 of the ad-ready plan)
+
+Capture (`src/app/features/capture/`) has a **Share** button beside Download for the photo and the clip. This is not a server share card: there is no
+`/s/<code>`, nothing is stored and nothing is uploaded. The file is made on the phone and goes only where the person sends it.
+
+* **The mark.** A small pill in the lower-right corner, `@handle · joinallworld.com` (the handle from `GET /api/feed/me`; `joinallworld.com` alone without one).
+  Words, size and place are pure (`captureShareModel.ts`: `markText`, `markLayout`); drawing is `captureMark.ts`. A photo is one canvas pass (JPEG out). A clip is
+  played into a canvas and recorded again with `MediaRecorder`, in real time (a 30 s clip takes about 30 s; the panel says so and shows the seconds left).
+  If the browser cannot (no `captureStream` or no recordable type), the clip is shared **without** the mark and the panel says so; the photo always has it.
+* **9:16.** A checkbox crops the middle 9:16 for phone stories (and lifts the mark above the strip the story apps cover).
+* **Type.** `video/mp4` where `MediaRecorder.isTypeSupported` says so (recent Chrome, Safari), `video/webm` otherwise. The same choice is used for the plain recording, and
+  the download name follows the type. The shared `File` carries the plain type, which is what WhatsApp checks.
+* **Sending.** `navigator.share({ files, text, title })` when `navigator.canShare({ files })` says yes; otherwise, or if the browser refuses, the Allworld share
+  sheet (`ShareSheet.vue`, with `prepared.clip` for the video preview and Save). A long clip ends in a "Share clip now" button, because the phone's share sheet wants a fresh tap.
+* **Link and text.** `clipLink`: the player's profile `/p/@handle` (or `/p/<id>`, or the front door) through `shareUrl(link, 'clip', 'share', 'clip')`, so it carries
+  `utm_source=clip&utm_medium=share&utm_campaign=clip`. The text ends with the link on its own line. The profile page `/p/…` keeps those words on its "Open Allworld"
+  links (`server/routes/profiles.ts`), so the landing is counted by the growth metrics under source `clip` (any `[a-z0-9_-]` word is a valid source there).
+* **Clip this moment.** While a party at the player's home (or a live calendar event from the growth hello) is on, and Capture is allowed, the Capture chip offers
+  **Clip 6 s**: it records 6 seconds, opens Capture on the clip and marks it, ready for one tap on Share. Capture is only ever allowed in the player's own home
+  (see `captureAccess`), so the offer appears only there; nothing about that gate was loosened.
+* Capture still never asks for the camera or microphone. The only request is the player's own `GET /api/feed/me` for the handle.
+
 ## Ad-source words
 
 Every shared link carries `utm_source=share&utm_medium=card&utm_campaign=<kind>`. The page keeps the cleaned words

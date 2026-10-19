@@ -46,7 +46,7 @@
 
 - `.gitignore` line 10 (`evidence/`) hides every folder called `evidence`, including `docs/evidence/` and `scripts/evidence/`. Files are added with `git add -f`. Integrator request: change the line to `/evidence/` and add `docs/evidence/out/`.
 - Android emulator column of the frame table is "not measured".
-- CI run: see the checkpoint history.
+- CI: run 39327814622 passes (release-policy, typecheck-fast, build-and-smoke-fast; budget lines all ok, FX lines n/a). The first run, 39326567527, failed release-policy because a doc named the open-mode setting; fixed.
 
 ### Immediate resume steps
 
@@ -65,4 +65,5 @@
 | UTC | Status | Change or finding | Evidence | Next step |
 |---|---|---|---|---|
 | 2026-10-19 | active | Work record opened | this file | start the dev server and build the harness |
+| 2026-10-19 | verified-local | CI 39327814622 green | gh run view 39327814622 | integrator review |
 | 2026-10-19 | ready-for-review | Tools, docs, anchors, skills committed; typecheck clean | git log | push and run CI |

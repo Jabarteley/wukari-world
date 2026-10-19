@@ -48,6 +48,16 @@ test('location badge: a city and the network\'s word, shown on the profile and p
   assert.equal((await post('/api/feed/located', { on: false }, again)).profile.located, undefined);
 });
 
+test('near you: a public post of the badge city is listed once, not once per list it is in', async (t) => {
+  const { post, get, player } = await setup(t);
+  const ada = await player('Ada'), bola = await player('Bola');
+  for (const who of [ada, bola]) assert.equal((await post('/api/feed/located', { city: 'lagos' }, who)).profile?.located?.city, 'lagos');
+  const made = await post('/api/feed/post', { body: 'Suya at Yaba market tonight', vis: 'public' }, bola);
+  assert.equal(made.post?.vis, 'public');
+  const page = await get('/api/feed/list?tab=near', ada);
+  assert.deepEqual(page.posts.map((p: Json) => p.id), [made.post.id]);
+});
+
 test('locals only: a community of a real place admits people whose badge is in its city, state or country', async (t) => {
   const { post, player } = await setup(t);
   const ada = await player('Ada'), bola = await player('Bola'), chidi = await player('Chidi');

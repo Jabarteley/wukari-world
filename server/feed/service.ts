@@ -263,7 +263,8 @@ function buildService(ctx: RouteContext) {
       const circle = new Set([viewer, ...Object.keys(playersOf(db)[viewer]?.friends ?? {}).filter((x) => friends(db, viewer, x)), ...Object.keys(f.authors[viewer]?.follows ?? {}), ...(f.authors[viewer]?.crews ?? []).flatMap((k) => f.crews[k]?.members ?? [])])
       for (const id of circle) ids.push(...(f.authors[id]?.posts ?? []).slice(-40))
     } else if (tab === 'city') ids = (f.cities[city ?? '']?.posts ?? []).slice()
-    else if (tab === 'near') ids = [...(f.cities[home]?.posts ?? []), ...(mine ? f.world : [])]
+    // A public post of the home city is in both lists: once.
+    else if (tab === 'near') ids = [...new Set([...(f.cities[home]?.posts ?? []), ...(mine ? f.world : [])])]
     else if (tab === 'world') ids = f.world.slice()
     else if (tab === 'crew') { const k = f.crews[crew ?? '']; if (!k || !viewer || !k.members.includes(viewer)) return no('not_member', 'Only the crew can read its wall.'); ids = k.members.flatMap((m) => (f.authors[m]?.posts ?? []).slice(-60)) }
     else ids = (f.authors[by ?? '']?.posts ?? []).slice()

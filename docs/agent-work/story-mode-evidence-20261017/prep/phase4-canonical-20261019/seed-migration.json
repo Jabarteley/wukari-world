@@ -1,0 +1,2567 @@
+{
+  "schema": "retained-layout-seed-migration-v1",
+  "baselineSourceSha": "95a878bdea878e2ab7c29eb09ee053e6ef4be52a",
+  "baselineWorldManifestSha256": "af22bdc227d2d5683520fa8cb2c1ec004dbee109515918cc77ac9e4a49c5a53d",
+  "cities": 284,
+  "allCurrentSemanticDigestsMatch": true,
+  "artDataPath": "/Users/anthonyakpan/work/joinallworld-story/scripts/scene-factory/layout-seeds.ts",
+  "artDataSha256": "f15a9b3b2df16caec194bd72bdd68512b0825156f18044aece3b971407b34acf",
+  "rows": [
+    {
+      "city": "abakaliki",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/abakaliki.json",
+      "baselineBriefSha256": "9a66863ceef7b463704b3ce619c2eff1f6cc443a61850a30914f31d6dcfc499c",
+      "currentBriefSha256": "35e10603af3e71895a22a7c8ff19a21eabc1878be3ebee993383398a9593f15c",
+      "baselineContentSha256": "61d0e2a974153d8471df5c663759d924612c7b8f7be00f969a849078fea592d0",
+      "currentContentSha256": "61d0e2a974153d8471df5c663759d924612c7b8f7be00f969a849078fea592d0",
+      "selectedSeedSha256": "7c5f14427a45103c7a4b32d58d5cc50e4b7b8f1ec6f07fb447d4c37184813db0"
+    },
+    {
+      "city": "abeokuta",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/abeokuta.json",
+      "baselineBriefSha256": "4e42e55a583470f4e9833e6180858f538a036b1b07d2040b00b0e1b105f13742",
+      "currentBriefSha256": "a3c44af6e43a1073cc734e24cf254e4b5643f8c34531fcb9263e822236c05c88",
+      "baselineContentSha256": "a5f450f2ec481362c74672204cf5b8de57bd725f3fbd1268fd8bc289ea096509",
+      "currentContentSha256": "a5f450f2ec481362c74672204cf5b8de57bd725f3fbd1268fd8bc289ea096509",
+      "selectedSeedSha256": "17850affd0a17c5776d8a135f0ccf5da937152ba0fbfa25eae909ddbc80f0717"
+    },
+    {
+      "city": "abidjan",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/abidjan.json",
+      "baselineBriefSha256": "59f1f833d19518b9d7a04138253ae21fd4b59cf68f033fb46452da84eeaa3e65",
+      "currentBriefSha256": "e0f9ff8c9252cdf5a0d738b65eef523765ab96cfc1da619ccbc8516088afe7be",
+      "baselineContentSha256": "e101738f8ff96efbd3b2db7db4c135fed6de3938425977fda9bcb00b7291608d",
+      "currentContentSha256": "e101738f8ff96efbd3b2db7db4c135fed6de3938425977fda9bcb00b7291608d",
+      "selectedSeedSha256": "6db4003b6436d064e337601d7f0769eaf4d7749eaadb22fda336a76a5d832f72"
+    },
+    {
+      "city": "abuja",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/abuja.json",
+      "baselineBriefSha256": "2f461d38e5c58ea83d50439b30216b9dcfa4eabf9dcafd76404e12eeaf512eb8",
+      "currentBriefSha256": "1c6a5b7299a00db492d48a95dbcbd9e4a784685c21eec654e7747942bbac4810",
+      "baselineContentSha256": "fc26f2479b9e0eb57f0b0f76978e8feab0ad9f3ac4cdda1da6dcb4382829bce1",
+      "currentContentSha256": "fc26f2479b9e0eb57f0b0f76978e8feab0ad9f3ac4cdda1da6dcb4382829bce1",
+      "selectedSeedSha256": "16db9b4bf92d756dc20ba8a7b41b433c2474463abd8a9b2ac25e1dc20abc0900"
+    },
+    {
+      "city": "accra",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/accra.json",
+      "baselineBriefSha256": "2e5f9ce6d2476c1209da8d768dba433e6dcca01858c46f64ad4ce36df99162de",
+      "currentBriefSha256": "5d6bc3d21e1ebc2652f68b04a96ab3244ce69c9d8c83dcb17e1c2b9b98f372ed",
+      "baselineContentSha256": "d0a561b71ee75dc1f247f2dcee305b1eadcad4a84bd2329fb379b7c6c81fb874",
+      "currentContentSha256": "d0a561b71ee75dc1f247f2dcee305b1eadcad4a84bd2329fb379b7c6c81fb874",
+      "selectedSeedSha256": "9ea5a116e7e5855d9635617980a245e72f149c55d8b2aa525fd2e5f6b7400ef8"
+    },
+    {
+      "city": "adamstown",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/adamstown.json",
+      "baselineBriefSha256": "261b81861f4dd9642a792a6405f499b8f20a57d44b80cb98eac16e7ce502649a",
+      "currentBriefSha256": "05d9f5e66f4e7ca8762f34b1088e1b4ebdf691483e0c57e3122da474ea36c0f8",
+      "baselineContentSha256": "62a8dfd8f95dae3b818f409e9050c201fd04c6abcf16599a0af8c11775e73ab6",
+      "currentContentSha256": "62a8dfd8f95dae3b818f409e9050c201fd04c6abcf16599a0af8c11775e73ab6",
+      "selectedSeedSha256": "cace848d0fce424e53129f2df7c337d3cc4e5318c74abc06068c1c5506e562a6"
+    },
+    {
+      "city": "addis-ababa",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/addis-ababa.json",
+      "baselineBriefSha256": "7eabb26a5d0030212dadc0ded83e44d9dfe862a69449e2ea7260e4ca319a51cb",
+      "currentBriefSha256": "b0c20f9109d5549c6f0fa31f3aef54d1cc1d25330e8e9071c24b0905c2de8d0f",
+      "baselineContentSha256": "6c8cfd382ad33b29c5859fff3a656c9f1caeda15e7aea03d5ef5296476905471",
+      "currentContentSha256": "6c8cfd382ad33b29c5859fff3a656c9f1caeda15e7aea03d5ef5296476905471",
+      "selectedSeedSha256": "2e233e52f5590bcb8b4fd7e8d5eaac60ee3b6160ad53bb4387f80f59addd0a05"
+    },
+    {
+      "city": "ado-ekiti",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/ado-ekiti.json",
+      "baselineBriefSha256": "6c6a5bac18d8807783232facd34663a20fb61c74105d23b9a14e700267729b11",
+      "currentBriefSha256": "cecde2715753a279cd8ce423d689b287045f7013da58e17d43ad503c0854378c",
+      "baselineContentSha256": "5d418d950accc9935782c24c44ffeacaddd828114fb03e9f337d5310e4274efd",
+      "currentContentSha256": "5d418d950accc9935782c24c44ffeacaddd828114fb03e9f337d5310e4274efd",
+      "selectedSeedSha256": "53140c84f0d25ec3d52756b1a2f5897b11bb9ffb1018f8ef2013d3e0b2499ca2"
+    },
+    {
+      "city": "akure",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/akure.json",
+      "baselineBriefSha256": "e11c9105eb0b50475cb87f8c2e45ff3c5a9d7e60cfb8b6e7531ba316307b4a11",
+      "currentBriefSha256": "59898e5f8b191ce44069b44843a5c748195b33da944ea67ae650b293c6a6d505",
+      "baselineContentSha256": "9e763b2c9ef8f42e07004c84333a59f914bf4f17d50663534c6b28c7e73187a1",
+      "currentContentSha256": "9e763b2c9ef8f42e07004c84333a59f914bf4f17d50663534c6b28c7e73187a1",
+      "selectedSeedSha256": "dc29690bf3edcc659f3cf96bb9cad6e9af2674b852e3a8f55698a13d5229c945"
+    },
+    {
+      "city": "algiers",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/algiers.json",
+      "baselineBriefSha256": "62714dca58f6ae4fba2c87bd09b1f48220e9924a7b8718453d284a9662f0aa54",
+      "currentBriefSha256": "15a18d11b4340c3bc8715025e15aa657bdd040c7d82705b3dc64ada85c60f7cd",
+      "baselineContentSha256": "53adbd7afccd5f43951fe1954fe657cafd60f688793b9519cc5b5b250cefcdd3",
+      "currentContentSha256": "53adbd7afccd5f43951fe1954fe657cafd60f688793b9519cc5b5b250cefcdd3",
+      "selectedSeedSha256": "b43f6b35ab8aa665081740b74587725cd1331ea495b6ee810763707241c33aa8"
+    },
+    {
+      "city": "almaty",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/almaty.json",
+      "baselineBriefSha256": "250af91e0d6cbee32ddfdfec5c527d87d2e9454665065f76e5e1a698a597aba5",
+      "currentBriefSha256": "0416171f848642b57df412033c24b87826ccffd3801c2574ae1ceb84d1064c46",
+      "baselineContentSha256": "c3c875c142e45fa59db2361e4c46528f81e3ad0c4fa2fcde09cd868649b0acfa",
+      "currentContentSha256": "c3c875c142e45fa59db2361e4c46528f81e3ad0c4fa2fcde09cd868649b0acfa",
+      "selectedSeedSha256": "721936142a1545e10611543a7f6a62de836dcc38140ce15d0db2ba72d6eed11b"
+    },
+    {
+      "city": "alofi",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/alofi.json",
+      "baselineBriefSha256": "122a9cdcfc801e614387ce1a216232d7d2647bf798a970b24bcbbd1264dd3f1b",
+      "currentBriefSha256": "d2016d86ad1b933bba2e6cec857f53bf1915446079fc01c1455dd533806db2d4",
+      "baselineContentSha256": "d42bc0a9fc0b3891b959a1ced8f39dfffae8572482dcf091f23970892be9a707",
+      "currentContentSha256": "d42bc0a9fc0b3891b959a1ced8f39dfffae8572482dcf091f23970892be9a707",
+      "selectedSeedSha256": "68ea63818b833c54a2b80e2c43c02d346b166996e1b05f2e970816ae2d087a58"
+    },
+    {
+      "city": "amman",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/amman.json",
+      "baselineBriefSha256": "650ceb4b493dbd5319f05eb108c01dd751238f74ce83a389bda7b6e622d81d3f",
+      "currentBriefSha256": "3d6b04fc98d5fd81ddadb8a004ef21e35a87a35ead9acee83110dbea178595c5",
+      "baselineContentSha256": "3df164a2767c2b86dcf1235690f4a4c119ea029b2bc483a8d0842dc20c557cc0",
+      "currentContentSha256": "3df164a2767c2b86dcf1235690f4a4c119ea029b2bc483a8d0842dc20c557cc0",
+      "selectedSeedSha256": "80b1227c665712ea3085aa599349d9ad167a4952f150ad707452a9f68eee6dcf"
+    },
+    {
+      "city": "amsterdam",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/amsterdam.json",
+      "baselineBriefSha256": "1134947fdbb2ec141066e71d2bb14348c2942740d2fc91001b2682c5264590c7",
+      "currentBriefSha256": "16c9299fbefe3968a7e85f5a93660f5d1ee7c28513df910b2970ef09342221a7",
+      "baselineContentSha256": "fd51aeca981c4cacd1dec32f200191742c3185ad7b7e4f6a0edd17dd93d5000e",
+      "currentContentSha256": "fd51aeca981c4cacd1dec32f200191742c3185ad7b7e4f6a0edd17dd93d5000e",
+      "selectedSeedSha256": "5d6e15db4b831546227e1a816d048cb2ab2157dfd82575c93655c39e9a6b23b5"
+    },
+    {
+      "city": "andorra-la-vella",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/andorra-la-vella.json",
+      "baselineBriefSha256": "f51a215791ede96818299e98a9225fd08d57828fc63f971f123801acf69fc8f7",
+      "currentBriefSha256": "58cf12904973db2bdcac0ecd1bb6d578cb991f2c30c7f87eb1b9def8b1512aea",
+      "baselineContentSha256": "90e7a22ad49bcbae54e05126c01b4c9fa47885074ab6b1bee23b8de4d7f1799d",
+      "currentContentSha256": "90e7a22ad49bcbae54e05126c01b4c9fa47885074ab6b1bee23b8de4d7f1799d",
+      "selectedSeedSha256": "3fdc4061ab9eb01ce74a4af26b2be63e77f33b19fae48cb82d56bfbc83010109"
+    },
+    {
+      "city": "antananarivo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/antananarivo.json",
+      "baselineBriefSha256": "0bb48675ce2797322043cc30d534ce463f3f743f21677df3bc17005c0c5bc4f6",
+      "currentBriefSha256": "e3b9f09e7baf1ce44f079d749f4c4095f2f659f91a0ec45a898766c202a7c720",
+      "baselineContentSha256": "fedb88782f069b9e50bc41f2735afeab636d1e2f6c873ffd3daf4eb03a76fe04",
+      "currentContentSha256": "fedb88782f069b9e50bc41f2735afeab636d1e2f6c873ffd3daf4eb03a76fe04",
+      "selectedSeedSha256": "d1686590143885dcb8212d2b0663e83f679501d45b6af72be99cfcd814551064"
+    },
+    {
+      "city": "apia",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/apia.json",
+      "baselineBriefSha256": "d13919fcfab2057c93592b4b5c6169f8adb05a53e09b023836f0b587c5b5f2fe",
+      "currentBriefSha256": "6503e86392b047748f523bd1d5a26f5bc4c4fb8170d6466dc54f193aac9c048b",
+      "baselineContentSha256": "4938eb8db7961faaeb4eedca924c97a2c4903f5019c5da5b9c8898adcba0fd5f",
+      "currentContentSha256": "4938eb8db7961faaeb4eedca924c97a2c4903f5019c5da5b9c8898adcba0fd5f",
+      "selectedSeedSha256": "8b47d00462f10e3833d576d5213b7f65a716a1b4514207f1966b48a2269a0003"
+    },
+    {
+      "city": "asaba",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/asaba.json",
+      "baselineBriefSha256": "d92fe1bf6bb12b21f6f5f35bc72413d8ed582fedc136f691605616d53a35205c",
+      "currentBriefSha256": "a0b8d59d46396bffce386d6a8f430f34e5f4e5d59ea40f14d1404025d9f7b1da",
+      "baselineContentSha256": "aaed02b6d4ca3196af5160c2dd1dcd4beac0e445897646e3ccec58ff209eaa85",
+      "currentContentSha256": "aaed02b6d4ca3196af5160c2dd1dcd4beac0e445897646e3ccec58ff209eaa85",
+      "selectedSeedSha256": "1306c92ef43e0c1e6690361d5952a1dbb941fcc5ce28104edb5b940ea4494bbe"
+    },
+    {
+      "city": "ashgabat",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/ashgabat.json",
+      "baselineBriefSha256": "e69ba8b8678bd5ce36ccd4ce2f1f0c315782d78fd4b3cf1cd77d684c86f1ad38",
+      "currentBriefSha256": "45e9061b0bb17d827156857f4d8b6919156744b3d70b9185a3a3d623ce550d39",
+      "baselineContentSha256": "4d44435062ff339ec2f0b30ecbed062653b478dca54d34980963f05a0dd1d439",
+      "currentContentSha256": "4d44435062ff339ec2f0b30ecbed062653b478dca54d34980963f05a0dd1d439",
+      "selectedSeedSha256": "7212a22866ca7e6436c89d9d503ce46e2b6d66f120181353b18afc3fb7b91198"
+    },
+    {
+      "city": "ashmore",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/ashmore.json",
+      "baselineBriefSha256": "ab00f73b4fe755f23bc1af6d78144afc91ef862bd24045c24a731e0f01dc4c56",
+      "currentBriefSha256": "251144ad5302ad8b6c1312c0d93d2c6e935271269c4efb231271b5dd14e0afb6",
+      "baselineContentSha256": "408331a4f71f9c30d0005b30d18d35bcd05f91d068f6ec225cbc335626a1c53d",
+      "currentContentSha256": "408331a4f71f9c30d0005b30d18d35bcd05f91d068f6ec225cbc335626a1c53d",
+      "selectedSeedSha256": "6345f2098ce3f62acd7a1f94f1090cd67fa020c2ca124d0d3bd9cc5a026961fa"
+    },
+    {
+      "city": "asmara",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/asmara.json",
+      "baselineBriefSha256": "e0fba157bb6100f188ed801d53a534c28e95099a2b1a902fdb46de8d50abda16",
+      "currentBriefSha256": "c0646600531cb32b0685f8437a577a35057f89eaf46df041ad47ffc97910c010",
+      "baselineContentSha256": "41479f275c734c24b475dd7b213518d17209a78e9e0f78389c76de2a26e7cd21",
+      "currentContentSha256": "41479f275c734c24b475dd7b213518d17209a78e9e0f78389c76de2a26e7cd21",
+      "selectedSeedSha256": "c89ae4397ccfa3c53fc6370c20e1908c61058c965971971f24dade020e8a14e0"
+    },
+    {
+      "city": "asuncion",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/asuncion.json",
+      "baselineBriefSha256": "259a76c958c0abe7938bbb64ccaa00c3b97e1ef05ad5e382adacf9a2efcf051b",
+      "currentBriefSha256": "f7ed6b6702e86c4194f50ccf2285752563eb005c50eb16ff1c602a144604677e",
+      "baselineContentSha256": "ff8d401a278140e9d75cd26e549a2478b248113044f2e2d1d7786ad2eea735f8",
+      "currentContentSha256": "ff8d401a278140e9d75cd26e549a2478b248113044f2e2d1d7786ad2eea735f8",
+      "selectedSeedSha256": "953961ca8e0e008e118fd63247bae164c0389e0f0bc1aed90538e545dd78b769"
+    },
+    {
+      "city": "athens",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/athens.json",
+      "baselineBriefSha256": "ed4e0f629695cfaf37b692fd362a18b0270a1423312beab62b75bef8157e9ee7",
+      "currentBriefSha256": "f6a1e17c9beca74589186f8d371d131b33387ddae699ef75c9e11079ae12bce0",
+      "baselineContentSha256": "70b224658612b907631a7560baaf90585a8831594233cb48be37f6a459312150",
+      "currentContentSha256": "70b224658612b907631a7560baaf90585a8831594233cb48be37f6a459312150",
+      "selectedSeedSha256": "90dc9eb57fae83723b4a698de2b94913b2282d6b62635429c16c3a5734d6c86c"
+    },
+    {
+      "city": "auckland",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/auckland.json",
+      "baselineBriefSha256": "5eb3b21feef3fcdb7ff7a220a6852ac40db591df764a46ebd09e7dbb2188d86e",
+      "currentBriefSha256": "89949ef06c77e785e2aa0ae78fd31f67eab05daac112cbe4248e53d2417d7314",
+      "baselineContentSha256": "2143e45328d212c5bc9a669ceab8c9c64c650f88db838c3f7245f26b0b2021a3",
+      "currentContentSha256": "2143e45328d212c5bc9a669ceab8c9c64c650f88db838c3f7245f26b0b2021a3",
+      "selectedSeedSha256": "4ed45ae81a64bef9656f9734c9d4547a6c497b4109061a25cbeb160d7a641c90"
+    },
+    {
+      "city": "avarua",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/avarua.json",
+      "baselineBriefSha256": "87b2b9c897577726e0ca31e60ebdd98d7c75ee912560bb678648571f9f5886ed",
+      "currentBriefSha256": "12a746740e36f5da0dd43af7ba251b49adbb1e4e985fd7e7d85036d47197766b",
+      "baselineContentSha256": "5dd3285f09522ededa46663d0c78a4c0f2865b4e922bfa9a71c065fd819a96aa",
+      "currentContentSha256": "5dd3285f09522ededa46663d0c78a4c0f2865b4e922bfa9a71c065fd819a96aa",
+      "selectedSeedSha256": "46fb3259896e7dacb8280f0455cfd9eed2c139a8d639644953a847ea0b456f82"
+    },
+    {
+      "city": "awka",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/awka.json",
+      "baselineBriefSha256": "a4abb0dfdf0ea8fc8699fbeaf16fb36cd48ae3396a780a0164056be0e8a7fdba",
+      "currentBriefSha256": "cccd9856e196c3568899db43a38a90ef260efb54d29a04795853b70638da73f4",
+      "baselineContentSha256": "e63acd46c47d9ce9e95a196c0d9f3ef241df624ddb01be6f10acc116bb46c9ba",
+      "currentContentSha256": "e63acd46c47d9ce9e95a196c0d9f3ef241df624ddb01be6f10acc116bb46c9ba",
+      "selectedSeedSha256": "e3ad865daa0b8c998b462e834f055a5139ad4e6d5b3deac941fc66e3fd89a376"
+    },
+    {
+      "city": "baghdad",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/baghdad.json",
+      "baselineBriefSha256": "a79cce592ba7c6a4d4dfafbdb49becd29f99252ce9bc4557d1876af538b03661",
+      "currentBriefSha256": "775e889df500a05e05a5bd795d3306c6761c18493dccaba68bc1242dbe0c162f",
+      "baselineContentSha256": "01dbd7abc59ffa4ac75e596622c69fcab5e9701acf00b7e70785f9c070bcecb9",
+      "currentContentSha256": "01dbd7abc59ffa4ac75e596622c69fcab5e9701acf00b7e70785f9c070bcecb9",
+      "selectedSeedSha256": "81bbf619095a018d8b1f939c8a74f0a51c1bba4c72ee50bc990ed91f001d7c3e"
+    },
+    {
+      "city": "baku",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/baku.json",
+      "baselineBriefSha256": "08999a09743e20e2bfbfaa5d2a2abfc2f2790018ea641c08102d268263e04c25",
+      "currentBriefSha256": "5770039755798d6c7aa567c1a7ce08cf7ca78f36c5fd34a39551600909f07a6b",
+      "baselineContentSha256": "dc1d84a306417618b5515510deee14da47db1c8fc8665853d23b7fc7e6b9c2c6",
+      "currentContentSha256": "dc1d84a306417618b5515510deee14da47db1c8fc8665853d23b7fc7e6b9c2c6",
+      "selectedSeedSha256": "8f87ab0482c2d50285c1c731a3be97f21ea355c7742c647accadca01a1f512a9"
+    },
+    {
+      "city": "bamako",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/bamako.json",
+      "baselineBriefSha256": "11f315258da9a1dcb6db104d55246f59cf335e51c2bfaac93e76ed7d01427dee",
+      "currentBriefSha256": "bc7d2682e1b4d7bf2008038665b97fd242f9cfcf223bb46a6924b951e3070360",
+      "baselineContentSha256": "8d4d87d24dea4879dfe8e7a2b043ed33baa0da704680d1c04ac979996cf65bad",
+      "currentContentSha256": "8d4d87d24dea4879dfe8e7a2b043ed33baa0da704680d1c04ac979996cf65bad",
+      "selectedSeedSha256": "1c693bcd91b121f3c46dadc28291dd273d7e4fc6a89b12bd6c48474a0cafbbc9"
+    },
+    {
+      "city": "bangkok",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/bangkok.json",
+      "baselineBriefSha256": "979aff6ac98546abf9aab8f1c50065c1e399ca3bbf72fce6ef905a204f734ac3",
+      "currentBriefSha256": "086d5827844547515bd887499cb975f3b93ec93dfb64d26bab022d883f805c19",
+      "baselineContentSha256": "9d46c120ee700544384d9979ccc0b30550e2829d5e629b56068b80a10c96791b",
+      "currentContentSha256": "9d46c120ee700544384d9979ccc0b30550e2829d5e629b56068b80a10c96791b",
+      "selectedSeedSha256": "950fe32ad2f5620c102a4be1d9fd4e6bfa8cdb56eca1bf8eda916b4de77a4b07"
+    },
+    {
+      "city": "bangui",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/bangui.json",
+      "baselineBriefSha256": "c6a467e2fe5c93b76124a9e47a6bce83777d2ba20754dea1c3ab520d54e520eb",
+      "currentBriefSha256": "cb944294681b66740fff9f72a54a12531da4bfa5f32484dc0f19327df7cb3594",
+      "baselineContentSha256": "2ccca3cc3aead5ba700cdab7ddc85ababb43abd3b1e2771a7ef127422982262b",
+      "currentContentSha256": "2ccca3cc3aead5ba700cdab7ddc85ababb43abd3b1e2771a7ef127422982262b",
+      "selectedSeedSha256": "3482a7cc5611e314a5182bd99798f582bd76e53ff5273dbcf5c827c8e6e9a8d3"
+    },
+    {
+      "city": "basseterre",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/basseterre.json",
+      "baselineBriefSha256": "afb95f9747e4ce12c652a82b201f1684fdda16fd77066a63ee6016632dbcea2c",
+      "currentBriefSha256": "06bd23cbee2bf982e9d5c7a99f4e423f3cd147afb797b3fd3cfe73fa5a997abf",
+      "baselineContentSha256": "b08af5965d94934107e8ba4344091cadd47746c34872867e29df84b4a87809e3",
+      "currentContentSha256": "b08af5965d94934107e8ba4344091cadd47746c34872867e29df84b4a87809e3",
+      "selectedSeedSha256": "51f93899b09420197913e752e2d5af52418b8ad09944d135e25c6e6c934ee19f"
+    },
+    {
+      "city": "bauchi",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/bauchi.json",
+      "baselineBriefSha256": "0ad955b1882d476f26ff79dd037daa5591e03d4c78be567996efee51434027c6",
+      "currentBriefSha256": "625fbc9613a6020ffe026472b4e15a537a45c971a728d7d6db42e26cd9a60bd1",
+      "baselineContentSha256": "8274063541593aecf6809916b36d6d5c1ac043fada820ad7b70994ea9be774c9",
+      "currentContentSha256": "8274063541593aecf6809916b36d6d5c1ac043fada820ad7b70994ea9be774c9",
+      "selectedSeedSha256": "0196b6c12502d965225ecb65e5e6aab1f1e469ca688ba776f339de439eceea50"
+    },
+    {
+      "city": "beirut",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/beirut.json",
+      "baselineBriefSha256": "e46347138b01e4de11152efa33578615c4ddcd695656c6bf5dbc10356d197894",
+      "currentBriefSha256": "af1795735bc164f2a9d813117dfb7df53efff7a9d7a084bde1e302782bf0c576",
+      "baselineContentSha256": "3828e2aac5cc542c11bc9452764e12288f7d1b468eb13152139d0738f2833dbf",
+      "currentContentSha256": "3828e2aac5cc542c11bc9452764e12288f7d1b468eb13152139d0738f2833dbf",
+      "selectedSeedSha256": "773b8c5c90720cfe3c88519174443864de6248ab7404f49b56400ccbcf46fbea"
+    },
+    {
+      "city": "belgrade",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/belgrade.json",
+      "baselineBriefSha256": "c035b15b1f2f491ec02d5731188565f4dd2b8b645cb1ff3737c4ada1b95bcb8f",
+      "currentBriefSha256": "66787d906cc0192348f7b16a430839caf8b8204f3a30ddcda71461ff9ccd2a66",
+      "baselineContentSha256": "b7a6b82787cbb7d705d28d9320205194b5cba9e8f0ccff2d11050d898cda130e",
+      "currentContentSha256": "b7a6b82787cbb7d705d28d9320205194b5cba9e8f0ccff2d11050d898cda130e",
+      "selectedSeedSha256": "f10131b73ba6dbc71d36e6598d0e04f0913151c3f524b7614f04bfd8bdafb9c1"
+    },
+    {
+      "city": "belize-city",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/belize-city.json",
+      "baselineBriefSha256": "adc8a1a81c9c1ccc36840b1e49ff27a335ca75a815648d21853c5278b1c476f4",
+      "currentBriefSha256": "63cc4df338e0fcdb0b8e084e56c9e5bfd24619795393f7f22186e150b3a76e73",
+      "baselineContentSha256": "2dd4e755b0c3ee86135162ef6ff3d8b2ad336ac63460911c48d75a6bf4f1f9f0",
+      "currentContentSha256": "2dd4e755b0c3ee86135162ef6ff3d8b2ad336ac63460911c48d75a6bf4f1f9f0",
+      "selectedSeedSha256": "c48c2e5b5ddb6192cc42b6d36377da092dadca6d4ca5dc87202dda912ae556b8"
+    },
+    {
+      "city": "benin-city",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/benin-city.json",
+      "baselineBriefSha256": "069f71ab7b94201bccea01c03a72b7310ff1b4d39b290b102ccffdd65c51ddea",
+      "currentBriefSha256": "a48b9675f4aa571749072e835821fdd0e03b4ec72eb3dd3fc32bff177119ac34",
+      "baselineContentSha256": "b3efb28643831e293424408118b29d8e35c06a3e4b0e75576e16fd693c0bad13",
+      "currentContentSha256": "b3efb28643831e293424408118b29d8e35c06a3e4b0e75576e16fd693c0bad13",
+      "selectedSeedSha256": "a8b4154bc26b28be8e0688ef89c49825282c310673968603b837c4f56a62fdb3"
+    },
+    {
+      "city": "berlin",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/berlin.json",
+      "baselineBriefSha256": "eb7de7e3ccf98bd33fb9eb8cd4b04bedff1deccb3cd8beb4b382fa6ec7a4160e",
+      "currentBriefSha256": "4904ed7ce22b6d9c84fedf64ae4df3af46a17445bdfad69150b741f515f4db45",
+      "baselineContentSha256": "1348f0335ffef56ec5bdeae72e217015c8ea0d63958aeb6451e3c5a0ff953251",
+      "currentContentSha256": "1348f0335ffef56ec5bdeae72e217015c8ea0d63958aeb6451e3c5a0ff953251",
+      "selectedSeedSha256": "44e9b3b383b91ded75feaaa5e60c3ad60c841ba433d26432a0dd1e04519c30b4"
+    },
+    {
+      "city": "birnin-kebbi",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/birnin-kebbi.json",
+      "baselineBriefSha256": "da92049dcdd3219ba8d76e6ef0d6b168cca95ee32978febe34279bc00a17ee7e",
+      "currentBriefSha256": "79622d14f8023015ae41f50f9d74baa10b659f5530097c0b981287a1eff2c907",
+      "baselineContentSha256": "f5bf196268c0d1b35c1d132517cc0f494063eaca0859fa580ea7a3f1e11e3910",
+      "currentContentSha256": "f5bf196268c0d1b35c1d132517cc0f494063eaca0859fa580ea7a3f1e11e3910",
+      "selectedSeedSha256": "0611a2dd6be603c077bb29d06684c92f94f2dfbaa09d71411f1eb352fe8408c8"
+    },
+    {
+      "city": "bishkek",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/bishkek.json",
+      "baselineBriefSha256": "31323be0a5810cdbd655f6a52a2077c58fa62cda01ad330d8933fec5b360e941",
+      "currentBriefSha256": "b827ee381c1710e9437af1361cc9bc99c07bce15082f649781c7d70ecf240977",
+      "baselineContentSha256": "c1e488b9b44f65496e138074662ad64dce9281a0eb93e81226818843dbb39bed",
+      "currentContentSha256": "c1e488b9b44f65496e138074662ad64dce9281a0eb93e81226818843dbb39bed",
+      "selectedSeedSha256": "1f08f82990044e6cc08e4ee95cda445a31335a782366b13978479d2a062dffeb"
+    },
+    {
+      "city": "bissau",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/bissau.json",
+      "baselineBriefSha256": "8d7135977cea8da53891641086d35a8c655db87097b35e2985ce487f5fb557f6",
+      "currentBriefSha256": "4cf6af6dc7235c6fefbc2b16aa244078507230c8184055941b3a93b10e0b8df9",
+      "baselineContentSha256": "2ae9746a2582898ba5d751897da4af289e05fc9c17344bd10a6c8ae1cbd869ad",
+      "currentContentSha256": "2ae9746a2582898ba5d751897da4af289e05fc9c17344bd10a6c8ae1cbd869ad",
+      "selectedSeedSha256": "d06ead7a4f54914266f08a6ef23d2d0162c8d6a8d7edb8597de4508fe3db6296"
+    },
+    {
+      "city": "bogota",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/bogota.json",
+      "baselineBriefSha256": "b70aa2f8fb0e246443fd74dab96ac584b97a64f6a2046bdb26399458d19dc586",
+      "currentBriefSha256": "c1650e9700c208d4ae631c183763dcb78687e9376532854da76db513b5a0969a",
+      "baselineContentSha256": "282d93da35775e28bd6481663ff63e68791e878f09595559bfbed44347c37266",
+      "currentContentSha256": "282d93da35775e28bd6481663ff63e68791e878f09595559bfbed44347c37266",
+      "selectedSeedSha256": "1fb88bca5ed7fa8a191ca535e965cf5cf94df7f0d8c27c5cae0ae8e3c4938f71"
+    },
+    {
+      "city": "brades",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/brades.json",
+      "baselineBriefSha256": "0c63c6d674ea350b9cebb602425374cb2e8c0c0606cc46c955c5d2e3d8f84dcf",
+      "currentBriefSha256": "1b21198738343c4c07d78230621d25d87288c6fd0b66700f60ba977338c66cbe",
+      "baselineContentSha256": "247d3fb643883a3ed2ec303eaa25e0f581d62120add00c3fa96b4e8df95f37af",
+      "currentContentSha256": "247d3fb643883a3ed2ec303eaa25e0f581d62120add00c3fa96b4e8df95f37af",
+      "selectedSeedSha256": "05c274cf9224160bdfcda23766c20075086bb9e4d414c87e7f5bda83a5cef0de"
+    },
+    {
+      "city": "brasilia",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/brasilia.json",
+      "baselineBriefSha256": "9445dec99722b875bac48245d23bbe5245e9dab7c1012b0f4c488b404468d3e3",
+      "currentBriefSha256": "9a0f65ffb99937578ffec4a06e5b3d94588e0c98e1d6dac8a351a59ec8e4f592",
+      "baselineContentSha256": "23580af9fb1e89b59cfbec481ec0ac51fa7ddaf8a4c35e809b93efb59443d5cb",
+      "currentContentSha256": "23580af9fb1e89b59cfbec481ec0ac51fa7ddaf8a4c35e809b93efb59443d5cb",
+      "selectedSeedSha256": "acc4c5791dd93f991ad96ab0ecd6e563c0bc20b48fd168e0c77ef506c693cb86"
+    },
+    {
+      "city": "bratislava",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/bratislava.json",
+      "baselineBriefSha256": "1d0c5d893dd5a3cfa3d21b43425721a117ed9b680e1875cca016acebd64af2f7",
+      "currentBriefSha256": "1cc0b602d392faa1deca5379cdb974550d36040352596856d046b47781cd6035",
+      "baselineContentSha256": "84a0f41ddbff06cc9ad090852fe28085f3dca1301ad2e9596c24c785fbf4ae84",
+      "currentContentSha256": "84a0f41ddbff06cc9ad090852fe28085f3dca1301ad2e9596c24c785fbf4ae84",
+      "selectedSeedSha256": "d8adb0876118fa73f2f9c98289e9722853a4f0cf90b1c34106bdf42e5176326a"
+    },
+    {
+      "city": "brazzaville",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/brazzaville.json",
+      "baselineBriefSha256": "90ceacd351da6f59316ad4d76a3b8e9ac2f448bb78811b8b200fde9fe27d591d",
+      "currentBriefSha256": "84ef6070916c46d6be88d2d45fb690faca24ad37562c25eb9373f166aa51e005",
+      "baselineContentSha256": "e76bf0b21da7ae558d39dca788bc5a64f209ecbbb96b2df710755a91f7013973",
+      "currentContentSha256": "e76bf0b21da7ae558d39dca788bc5a64f209ecbbb96b2df710755a91f7013973",
+      "selectedSeedSha256": "0745da20f56440c8afbc402f31cb7a4ff3df933d2fed24add7eedc5cda8db65f"
+    },
+    {
+      "city": "bridgetown",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/bridgetown.json",
+      "baselineBriefSha256": "83e5167e2d7a48f2be53c524be0a6c7802ca9bb676f7a1ed4d779182899af408",
+      "currentBriefSha256": "6bc9007d9b61dc224785fa097df6cc2bc7f9fbb101a0c83e170c4fd37de26281",
+      "baselineContentSha256": "0f02eb7795fe3ce2d2364872e7e1c5ace30e600e2e6878c7e6cf5d0973c0418d",
+      "currentContentSha256": "0f02eb7795fe3ce2d2364872e7e1c5ace30e600e2e6878c7e6cf5d0973c0418d",
+      "selectedSeedSha256": "53e0eac23ef2d4ce875b37b5357065f8c14490a51d1c85bd8c93231b5d4a313b"
+    },
+    {
+      "city": "brussels",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/brussels.json",
+      "baselineBriefSha256": "daf274dd778a7595ff3d452d3e1f3718bb11fc9e4ca80edc56356a9a1013cafe",
+      "currentBriefSha256": "956135cf690fbf22fae127e3268b47bd8d94b574992907d7995176a777cb320b",
+      "baselineContentSha256": "dd8ad365b812b5db8817e9b3b2491e6b96b570589c71c3949ad68fefb7e2c36e",
+      "currentContentSha256": "dd8ad365b812b5db8817e9b3b2491e6b96b570589c71c3949ad68fefb7e2c36e",
+      "selectedSeedSha256": "903c46e99b192cf06c91b3c9a316bb47b00f85b16affdcf5704e590dbc19c301"
+    },
+    {
+      "city": "bsb",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/bsb.json",
+      "baselineBriefSha256": "bfc99335386f41c041251e25e593a222868029acc0bd02eda8601c15b164e109",
+      "currentBriefSha256": "f3d730e687d237a2630fdd8ac2f25ce2656824ae58937da6b5b48a44ef649ac1",
+      "baselineContentSha256": "b95d92b25fe34179e16c6516d90a8744cfd8ef39cf85073a982f24a7d0601141",
+      "currentContentSha256": "b95d92b25fe34179e16c6516d90a8744cfd8ef39cf85073a982f24a7d0601141",
+      "selectedSeedSha256": "aba6ddc36bb57f6584f7d14c91d079e31615da06ec14db94a3d686c2e5f289fb"
+    },
+    {
+      "city": "bucharest",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/bucharest.json",
+      "baselineBriefSha256": "8e4bb27c2b60828cde7bebce9a5960f86f51347c5372f1e0f271c245bb4fc72c",
+      "currentBriefSha256": "6ec4e4b7a0e247911102cb5a84457c665c968e6edd327b7182816570f49a23b0",
+      "baselineContentSha256": "922afb85caa91bd42c4240819c4aa7c8c1c0e7a9a2aae9fd08e91c636f8044a6",
+      "currentContentSha256": "922afb85caa91bd42c4240819c4aa7c8c1c0e7a9a2aae9fd08e91c636f8044a6",
+      "selectedSeedSha256": "3e94287afcc435257f0a310f069bbfb1c37c6fbba76f20073c8665ebb67413d7"
+    },
+    {
+      "city": "budapest",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/budapest.json",
+      "baselineBriefSha256": "134de273423542fc465515818e8272c239959d45908081138b1baef2576629ed",
+      "currentBriefSha256": "3144dd12e7d8c126f685cb5a08b97c8af576ec91d024c8cd5ac22907ce4652a2",
+      "baselineContentSha256": "2465794ca6141668e1b26c781e3829635e1d71a1f4ad44598ba71bad9da1f007",
+      "currentContentSha256": "2465794ca6141668e1b26c781e3829635e1d71a1f4ad44598ba71bad9da1f007",
+      "selectedSeedSha256": "8be15725ffb9f2aebbd0ad389b9df222a83d5c0ff6603fa173aac5f030ad974e"
+    },
+    {
+      "city": "buenos-aires",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/buenos-aires.json",
+      "baselineBriefSha256": "93cdb0b2a137bfdb99e5f33569908e8e1b222b4db9f151fd04f3d78c35b6cc0e",
+      "currentBriefSha256": "f215a8a618bdba5944d659a3dd1afe3616bdb9d2d53b3c1fb6d9e7e58e6088a5",
+      "baselineContentSha256": "77d033fcc51ca794cd5534371f00d97579d69205275fea27605f8090438c6d9c",
+      "currentContentSha256": "77d033fcc51ca794cd5534371f00d97579d69205275fea27605f8090438c6d9c",
+      "selectedSeedSha256": "064ab0d0c86183f2426730e5afdce4c9948526db493c588239f8fe5dbf5751fc"
+    },
+    {
+      "city": "bujumbura",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/bujumbura.json",
+      "baselineBriefSha256": "795e8d857ff4193f324bba1dd32ec2f0c9794426736ec5aa71d497d5045d7420",
+      "currentBriefSha256": "c241699afea7a9640fcdefef6dd5ea41eab92ef247518313ee0384e7a5338b36",
+      "baselineContentSha256": "d3e67d17b32695ccf98838ed0fe62cb2d2f286011c38b7652c23b8fe5a1f656c",
+      "currentContentSha256": "d3e67d17b32695ccf98838ed0fe62cb2d2f286011c38b7652c23b8fe5a1f656c",
+      "selectedSeedSha256": "d6f90b78083995125ec141df5a003bf4df0b8edfd6f61bfb0ca76091bd1374d9"
+    },
+    {
+      "city": "cairo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/cairo.json",
+      "baselineBriefSha256": "1ca2cf5b819c8c1d7696e4fe9c0dc32c9a30c33775980c97f119bbb5ba7f3f7b",
+      "currentBriefSha256": "4c78f5f2e1117eb121839fa7b49fe5ade1110966a4e92ff84edf4c6e5f34293d",
+      "baselineContentSha256": "c244bbd9db354f862aa63ff4d0e26c4c73e6582aad315c631c4f06aa234782f5",
+      "currentContentSha256": "c244bbd9db354f862aa63ff4d0e26c4c73e6582aad315c631c4f06aa234782f5",
+      "selectedSeedSha256": "c2c7e6c92b86cd4fe34d278467fed9244b3cad5510d718e6078676d277cc0fa1"
+    },
+    {
+      "city": "calabar",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/calabar.json",
+      "baselineBriefSha256": "b7f59b0221e8ece8f1c16ca3c34a93ec899f996d5a27fc1543fd164a1c648b61",
+      "currentBriefSha256": "299596c092ea4a98923e7cb781bbebe930d54a9e6c4b986be032d6b401cfcd6e",
+      "baselineContentSha256": "4a9f878d968f66347f14c1dc46d87cfb2becf67db9981ad3c3a4cd9ef2709f90",
+      "currentContentSha256": "4a9f878d968f66347f14c1dc46d87cfb2becf67db9981ad3c3a4cd9ef2709f90",
+      "selectedSeedSha256": "bc7ffb2cca68c9df2e1b48c88f1e99346943d6f5de681f288a6b5a30709d8b48"
+    },
+    {
+      "city": "cape-town",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/cape-town.json",
+      "baselineBriefSha256": "485d893b126685af7d4ec7a59ea83194b9c093f323ad8b82551fd9d59c8b8465",
+      "currentBriefSha256": "a54208cc457bd51885b2680aff53378991cd148d59c81b1f8d1867fe3da9b9a9",
+      "baselineContentSha256": "5b286530dfeee36b3708cacd060626c61f2786ac2d5373e79599d817295b7cfe",
+      "currentContentSha256": "5b286530dfeee36b3708cacd060626c61f2786ac2d5373e79599d817295b7cfe",
+      "selectedSeedSha256": "54fcb141983cdf16e275f9cc4ba0d1a726d82f65bcd19e3514d208deefccb81a"
+    },
+    {
+      "city": "caracas",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/caracas.json",
+      "baselineBriefSha256": "3de8cdf4492c6b43c9f39089feb0310dfb81f18fecba9f23439e5682bb6a7adc",
+      "currentBriefSha256": "dbf1dcb03dbe2467ef593c160b98e20981a8a6933a1bd50ba49d55ba48c9bec1",
+      "baselineContentSha256": "ede98cc8594a302e14405b1c212c9fe27e6b6c24e20780aef5390a7d41a5f611",
+      "currentContentSha256": "ede98cc8594a302e14405b1c212c9fe27e6b6c24e20780aef5390a7d41a5f611",
+      "selectedSeedSha256": "323758066b8a6ff90123ca2af2af1e9aa30112852293fd61ebe5e75920e4da99"
+    },
+    {
+      "city": "castries",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/castries.json",
+      "baselineBriefSha256": "647a0070d9db5009bd7b0d97e45d1143d1e4067236c07f8090e7b1bf1064a725",
+      "currentBriefSha256": "ce8fe6fbac6830714733a4e418c4a22ad9f743fa0e115d92284ec33b99da90f8",
+      "baselineContentSha256": "ccc9b2f22841d180517b6ce2dac23caaedf4cc286f78189580a4bda23b2251ca",
+      "currentContentSha256": "ccc9b2f22841d180517b6ce2dac23caaedf4cc286f78189580a4bda23b2251ca",
+      "selectedSeedSha256": "d0001837cd1a0fc349ac141c4a7c30b05f86ee984c49b4cb9e4c71a5a8a06910"
+    },
+    {
+      "city": "chagos",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/chagos.json",
+      "baselineBriefSha256": "3b3382df70ec73404c00f985688398e4a214cad413ea5d65c6b5f98520a619dd",
+      "currentBriefSha256": "fd12cc196a63930d7e93c7f2ab8e3753248e1584c4ee5d0279d16c58c16b0183",
+      "baselineContentSha256": "fc638c597d393fa97c9c5334af41fe894d7e791f1ec971e572b756d550e42193",
+      "currentContentSha256": "fc638c597d393fa97c9c5334af41fe894d7e791f1ec971e572b756d550e42193",
+      "selectedSeedSha256": "8b89b2584e8e57e95dafa8fb87faefad6225ffbc8b11cb974d4d8dbc8197b374"
+    },
+    {
+      "city": "charlotte-amalie",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/charlotte-amalie.json",
+      "baselineBriefSha256": "74105788a1298b0b6c4ac6a4b1045bc975ab54a38a0abe74120aa86b2fd3d153",
+      "currentBriefSha256": "09a5d683ca38e5638de1a881f74735915547500f55c34aa5b56b2ca4ad53d3db",
+      "baselineContentSha256": "ff82dd50609c60ca7b352ac8bad0ac781527fb81adabdb53b7d506f9fa7daf1e",
+      "currentContentSha256": "ff82dd50609c60ca7b352ac8bad0ac781527fb81adabdb53b7d506f9fa7daf1e",
+      "selectedSeedSha256": "262764c99617effe50f80b7a268f51ec96d14b4b6a9b9da815fcb512f5359937"
+    },
+    {
+      "city": "chisinau",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/chisinau.json",
+      "baselineBriefSha256": "585c39c8144db29ac874f806e2467ddcf610ba02d78e9856c2e722c18a854455",
+      "currentBriefSha256": "b9598e855dcbcda47d26ad64a1d94d61efd54961a6872a6327fa8a8cf98c3ab5",
+      "baselineContentSha256": "826ce0bfcd3d12afbd233179635abc5bdc17d21bbc62c8c7a43dcb45c10d45a1",
+      "currentContentSha256": "826ce0bfcd3d12afbd233179635abc5bdc17d21bbc62c8c7a43dcb45c10d45a1",
+      "selectedSeedSha256": "a906c325d057e0017118d76d6d6223c0278cd218fd69a897bdf589983637e250"
+    },
+    {
+      "city": "cockburn-town",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/cockburn-town.json",
+      "baselineBriefSha256": "45c6a27161838d4edd38be8beafed80f840c18eb28fe02a98bb47d5830edd0fe",
+      "currentBriefSha256": "7e4649397104edb250f2fab95a00c0661673609011b422540ec75fc06e123410",
+      "baselineContentSha256": "15e890c36420dc07528ac9ae43f76116ca86ac843015b7cec6c8e6773449da56",
+      "currentContentSha256": "15e890c36420dc07528ac9ae43f76116ca86ac843015b7cec6c8e6773449da56",
+      "selectedSeedSha256": "2bc37ed4268cf12e7be1b82f9ebc2ad49054fe6333b3c1c80ba3475ebac6b69b"
+    },
+    {
+      "city": "colombo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/colombo.json",
+      "baselineBriefSha256": "d875c53054755e3ec336025a33f0d431294423071ba0a6a1b648d294bd1ec884",
+      "currentBriefSha256": "9e47bd5c484974e34a758920dadf278c3e80c0030419fbc055337d0ad581d95d",
+      "baselineContentSha256": "99fb2e5126d5976dba349765b57b9707cc6cb5665de1eed3c1cabfe955936052",
+      "currentContentSha256": "99fb2e5126d5976dba349765b57b9707cc6cb5665de1eed3c1cabfe955936052",
+      "selectedSeedSha256": "73927f6da52aeaad8b94aa95844c7ab82bc69f54674152f3f8d601b73c159e4d"
+    },
+    {
+      "city": "conakry",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/conakry.json",
+      "baselineBriefSha256": "b2a29001405ecfbc6559ff899d691db543c9103b4e963538c6e2be1ca239254f",
+      "currentBriefSha256": "4e1b3fb70b387db95e43a7450f9522ee15d10605231b03f7334c8eb9411ddaa8",
+      "baselineContentSha256": "21e39cbe6fc1ace0f060ac5d768e18bc32276cacde1faed715d700142fac5808",
+      "currentContentSha256": "21e39cbe6fc1ace0f060ac5d768e18bc32276cacde1faed715d700142fac5808",
+      "selectedSeedSha256": "31f7456cebafb2d71308b961479b087de2ab94d8a669334f441022c630e4e66e"
+    },
+    {
+      "city": "copenhagen",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/copenhagen.json",
+      "baselineBriefSha256": "0078b0cd90e55ca2eb26bffe4c94dde364da18b3582471d478823f17f9c1ebef",
+      "currentBriefSha256": "ea289ca1fe305af0c8546d7dea6eaf8606607dd6fb52387c0e58f120a2542a67",
+      "baselineContentSha256": "570ba202011bffc70898f2db51a3ba248938814ec73bb5941352ffcc938c7d01",
+      "currentContentSha256": "570ba202011bffc70898f2db51a3ba248938814ec73bb5941352ffcc938c7d01",
+      "selectedSeedSha256": "a4359bcd8ad1a69558aef930b7c1f0d0875440ad831d4490926db6e8deb29802"
+    },
+    {
+      "city": "cotonou",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/cotonou.json",
+      "baselineBriefSha256": "efed06f9ffc202afbce98835d06ee5dec7a2fc7b97463d0986186050f4fcaf09",
+      "currentBriefSha256": "035374f259a62281bcc03965c9ef921f632cf238c1339b9f0fcf9486ea6c5e0b",
+      "baselineContentSha256": "da4fef2f565005d3e4ecb55792378e2fdc68b3287b249f975a602c1afafe9d85",
+      "currentContentSha256": "da4fef2f565005d3e4ecb55792378e2fdc68b3287b249f975a602c1afafe9d85",
+      "selectedSeedSha256": "814e1fc3e02a6aa9f8e0f91df5853af0edf2e4a689cac0fc38ec1d56f14e3bd3"
+    },
+    {
+      "city": "cove",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/cove.json",
+      "baselineBriefSha256": "73a70e40bb15d7dea0c730b578af090807784681efce1416b66ace379141c65b",
+      "currentBriefSha256": "a0ca218a1150a1d8874c30d0c3f759b32acb88eecd080cb23ca711f2b8b2ab6c",
+      "baselineContentSha256": "98ba213b0f13879a659887a4c7a54aa694d2323285fc814820830d4b031e7383",
+      "currentContentSha256": "98ba213b0f13879a659887a4c7a54aa694d2323285fc814820830d4b031e7383",
+      "selectedSeedSha256": "6dfd2f052f6a1feedf61307d7ef6965c21e13d44ca068046ee5142254d5ed9ee"
+    },
+    {
+      "city": "dakar",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/dakar.json",
+      "baselineBriefSha256": "4abd7172526132c2f682cfa7c683a7304a4cb7609ce9a8a30c5a93c9fe70bb41",
+      "currentBriefSha256": "58393241af0988dd87e466c60d3909fdc308783c4024d2c631230e5992db656b",
+      "baselineContentSha256": "76dcca364f349f7c2e3d0edc527e29b8f60b6285ca11a8a495061df7a5336ab3",
+      "currentContentSha256": "76dcca364f349f7c2e3d0edc527e29b8f60b6285ca11a8a495061df7a5336ab3",
+      "selectedSeedSha256": "fe0f6cc44df112a2c56ada1f193d9def9e2bd9315f1c31ae772e5221dffff7d2"
+    },
+    {
+      "city": "damascus",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/damascus.json",
+      "baselineBriefSha256": "5f8310a745e9cfc9a7e57cd4cb9f4ddcf25e86c127242ddfa50f087be9f6e7fa",
+      "currentBriefSha256": "65d85e47c258388adb39bd7492679622a55b09de37d90dc91865115032f693e3",
+      "baselineContentSha256": "6dab525563d661dc9f33ca6592d7bfb7e827380398dd79325cbc2a6f8b992985",
+      "currentContentSha256": "6dab525563d661dc9f33ca6592d7bfb7e827380398dd79325cbc2a6f8b992985",
+      "selectedSeedSha256": "41e70976feb6f88e4b798a87862e630e06f3426b6aac1fa28b153f31c44a7803"
+    },
+    {
+      "city": "damaturu",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/damaturu.json",
+      "baselineBriefSha256": "14d8722520942518548f46a47fb21b39084b168787d78dfa8dcbe84009703537",
+      "currentBriefSha256": "62dc03f14e8fd7040fe723e2f3636307fb410fece1ee6423f556eb52afe24fe0",
+      "baselineContentSha256": "bc549781cfc9f470fcde1fa7187573804a1d0e27a3c67766a75442ac14c565b8",
+      "currentContentSha256": "bc549781cfc9f470fcde1fa7187573804a1d0e27a3c67766a75442ac14c565b8",
+      "selectedSeedSha256": "97f36ac2361c8cbdd0be586bb1dbed2024623976e76f5f1361b59348100a47fc"
+    },
+    {
+      "city": "dar-es-salaam",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/dar-es-salaam.json",
+      "baselineBriefSha256": "d0405e9c9419e6dd65fb1689e34401548c9a965269406893922b7bb63fc912d6",
+      "currentBriefSha256": "8696bb2371c113c42d45d6fe52e8166bf2573985081a43ba2ea88151470c5e62",
+      "baselineContentSha256": "e7597717595abdd55561039eff3bcb2cb13ed48fa363aadcaff3325af8403df0",
+      "currentContentSha256": "e7597717595abdd55561039eff3bcb2cb13ed48fa363aadcaff3325af8403df0",
+      "selectedSeedSha256": "8984d6282b5e244348a7aac73e23f852cc6e7b7d4586d4f9a40799d2de1eec59"
+    },
+    {
+      "city": "delhi",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/delhi.json",
+      "baselineBriefSha256": "2d00c2a57cc333acfe77adfcf806e8aaeb1279bfe9cb1159d97d4a69a25bd4f8",
+      "currentBriefSha256": "8f47b5c64e7f029d1b4ac110d97e9a17984b1a1810d3c7f66ceb9d88ce2e97a8",
+      "baselineContentSha256": "4643bad6bdf76f7164c2cc39d83dd5f6ead2c04a66a9f019b1d51a2e2bc3e512",
+      "currentContentSha256": "4643bad6bdf76f7164c2cc39d83dd5f6ead2c04a66a9f019b1d51a2e2bc3e512",
+      "selectedSeedSha256": "056b77867ee5c1980f4c62fe6b44e001a32dcf23383c94eeaaaf5a34f9cdb62f"
+    },
+    {
+      "city": "dhaka",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/dhaka.json",
+      "baselineBriefSha256": "14c344586e589793fc93483543dbd615e738d8dbf5951de31cdf08553bd726c4",
+      "currentBriefSha256": "5d4da724d895e88fec9372ccf25fbbc06d7618fe7bc313055e34ab880c6cbb56",
+      "baselineContentSha256": "426810429552c08a847936a3beb30ff7d8fb0455459bcf9765e54bafc5d71910",
+      "currentContentSha256": "426810429552c08a847936a3beb30ff7d8fb0455459bcf9765e54bafc5d71910",
+      "selectedSeedSha256": "17b53956c9b9c52b4e335daed92f5fc7cda9c4b333b4a208e3e0ad47947d4ee6"
+    },
+    {
+      "city": "dili",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/dili.json",
+      "baselineBriefSha256": "806ac5dca846479f68b0140de94657ef96dd6cd393daa41fe6a1d4b2051b9e05",
+      "currentBriefSha256": "8917e9db6de2909c2df134013c597d7199f2f7013f26186d23debe58e48144b6",
+      "baselineContentSha256": "1765781b3cc5b599c4ba41098205416ae6adf936b26a212a58ce16a2bf7c1668",
+      "currentContentSha256": "1765781b3cc5b599c4ba41098205416ae6adf936b26a212a58ce16a2bf7c1668",
+      "selectedSeedSha256": "36e7f0c5d922008f6e1f6ace480dcb09348c63ab04bee85067d4d126bc49e1a4"
+    },
+    {
+      "city": "djibouti",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/djibouti.json",
+      "baselineBriefSha256": "61fb477f2b42e4af60537f7c0eeb035cafbcd45b91353eb2ef3f402e562132a7",
+      "currentBriefSha256": "2018dde766b307b1b010f90d61f60464ab1dc0279601318cd2e2aabc2c1df48a",
+      "baselineContentSha256": "b4a5248fdc3d71c99284707f155e86f27d4a42f46a87e5cdc8a9669ed25ad249",
+      "currentContentSha256": "b4a5248fdc3d71c99284707f155e86f27d4a42f46a87e5cdc8a9669ed25ad249",
+      "selectedSeedSha256": "294e49fecae94bf74d9cfcb8b2f54587eebbb591ccf1c5ab640522d1bcbeacf8"
+    },
+    {
+      "city": "doha",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/doha.json",
+      "baselineBriefSha256": "998671c8f1d81abb5cf2b85d3c7e5be4951890716a3be550df5fa90215530eed",
+      "currentBriefSha256": "fb7d2d282af0fe1d4b4c9ddcf5bd8533b8dbc2af1bae257615fb874afcf37481",
+      "baselineContentSha256": "88d171e0f27edf8a2ea5d5ef90950413999d7679ac8b60d6428699b8ecb0e773",
+      "currentContentSha256": "88d171e0f27edf8a2ea5d5ef90950413999d7679ac8b60d6428699b8ecb0e773",
+      "selectedSeedSha256": "e5617e646ae2da88a237b73b35ede3e9e46f158f97e65a4aaeb740069258a739"
+    },
+    {
+      "city": "douglas",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/douglas.json",
+      "baselineBriefSha256": "4d019f3f2508afc92e3a3b468d18be5f809a9f02309613f9588be584a8d10c47",
+      "currentBriefSha256": "920066a913a0347d9c92a1645fd1ec4cd67527a661df08e93b043cc1732fddd2",
+      "baselineContentSha256": "2e0fde3b4821f2c84381d731723112663b0470930fd8bdb7f09995b1317f4977",
+      "currentContentSha256": "2e0fde3b4821f2c84381d731723112663b0470930fd8bdb7f09995b1317f4977",
+      "selectedSeedSha256": "642cf31e2751d768d5e304e0499ff8c37bd77fabeffdc635d4eac795dfa44707"
+    },
+    {
+      "city": "dubai",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/dubai.json",
+      "baselineBriefSha256": "559f4a31e275d846993b64cf7c828a50e07a6409632e787569ebc54808f056e2",
+      "currentBriefSha256": "8905dca04ff298c459adec7fb87269361b18a2467621e2b9defd0ff9f69173c2",
+      "baselineContentSha256": "d03ae87678ba1533be383dd361a27663bad61f2c268bdd5f5f5a2277d83c3bfe",
+      "currentContentSha256": "d03ae87678ba1533be383dd361a27663bad61f2c268bdd5f5f5a2277d83c3bfe",
+      "selectedSeedSha256": "f3477e63e1ff5fcad61e078a9dff8be1088dbd6bc3f5428548d4a46ec1c83d2b"
+    },
+    {
+      "city": "dublin",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/dublin.json",
+      "baselineBriefSha256": "06789c207ccdd24bdcf59ba09f7bdd6b82d42b57d5330c3181f4bf6fe3ef04b6",
+      "currentBriefSha256": "d97d4891ea36ca73b1da5d72d54b3459e38dbd2e46bca6c90ed91306e8e426ab",
+      "baselineContentSha256": "0bcb70cd6f1a1b97d282a30485c96467a452b65fd18ae3216cc7117f9abb1525",
+      "currentContentSha256": "0bcb70cd6f1a1b97d282a30485c96467a452b65fd18ae3216cc7117f9abb1525",
+      "selectedSeedSha256": "7db3e8e769cd9088dc447cec59e722615937aa09438246ef24d264661df1550b"
+    },
+    {
+      "city": "dushanbe",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/dushanbe.json",
+      "baselineBriefSha256": "f872a936d163823e6cae48f192e6470f2126fa748228b4100da8ab7468592bf4",
+      "currentBriefSha256": "f0bfe78c3081679a0f6c9d4f61cc8db4c32cbb6b6eb78785d96841539a5f40c8",
+      "baselineContentSha256": "913b80b5086e769df0179bbe12936c52d5aa4f2dff563c72921a9b2382210aba",
+      "currentContentSha256": "913b80b5086e769df0179bbe12936c52d5aa4f2dff563c72921a9b2382210aba",
+      "selectedSeedSha256": "e61b6f123f6239e6c9876feba478ba0f91b60b21ac6ba45af14426ce40e96580"
+    },
+    {
+      "city": "dutse",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/dutse.json",
+      "baselineBriefSha256": "bc344e08156ada2dfce8b0b1737710eef73b7a3b351f8203d54189ae0ea67ae6",
+      "currentBriefSha256": "92a5529d53cf09cd98b69a5b3a994a13d112f9215763b5d3678f91ae6a4474aa",
+      "baselineContentSha256": "eb2416ede5d441721042f58ad08f52d537f539147101ffe6dc3521878bc0267b",
+      "currentContentSha256": "eb2416ede5d441721042f58ad08f52d537f539147101ffe6dc3521878bc0267b",
+      "selectedSeedSha256": "7b2e5fcd58d9f358e103ffbf99d9846a575bd02c4bd1a6384b871d7551f4a3a2"
+    },
+    {
+      "city": "enugu",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/enugu.json",
+      "baselineBriefSha256": "52438902ba675e10cb190e4bc51ebe427e081eb9d85ce95048da51b4a0ab3d64",
+      "currentBriefSha256": "b2ed3e013c7bc63a1dbfcabbae99f1561ea2171616004b7d425cc8520f0c7186",
+      "baselineContentSha256": "ff08d158310588960cd06e3647669e8afe7284d95b809c39f20f98bcc2848000",
+      "currentContentSha256": "ff08d158310588960cd06e3647669e8afe7284d95b809c39f20f98bcc2848000",
+      "selectedSeedSha256": "fc8758b6d383d4c83672be7fcca29e337d9d0af40a5f7d7996efc9d4a1490bac"
+    },
+    {
+      "city": "flying-fish-cove",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/flying-fish-cove.json",
+      "baselineBriefSha256": "57f8aef13579986d550d2f6e453459b7c71c63dfd04c890ae5841c715115e449",
+      "currentBriefSha256": "09f033c86e17c7762be7ffcbaa52d371eccbddd309573e83fb28d1a4ca4103c6",
+      "baselineContentSha256": "ae26c4c8aa6a21805a8f4fa5f83b60a2e7376be5506b7af1fb03a26e0345acd4",
+      "currentContentSha256": "ae26c4c8aa6a21805a8f4fa5f83b60a2e7376be5506b7af1fb03a26e0345acd4",
+      "selectedSeedSha256": "c3edcc43d0125de99c869248278df6ac9623c895af9d9529ef56a4e025a89abc"
+    },
+    {
+      "city": "freetown",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/freetown.json",
+      "baselineBriefSha256": "1945e1203fe2110d3ff3157b075d43b4f417dfba442ccaabd30ca0292735599c",
+      "currentBriefSha256": "5970c00b73734087b0c0619016b09141de808e267d2a548342c53bdc0304e6c0",
+      "baselineContentSha256": "6be37f01916aa6bb123ac3b95178e8f7115fd0bccb77cc8144e761a0f6f8395b",
+      "currentContentSha256": "6be37f01916aa6bb123ac3b95178e8f7115fd0bccb77cc8144e761a0f6f8395b",
+      "selectedSeedSha256": "54000cde0cc5bbd3e8b3270f8294a72fc2dc89dcfc41121754217d6df3d9501e"
+    },
+    {
+      "city": "funafuti",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/funafuti.json",
+      "baselineBriefSha256": "929fa0e54cdb630969e83e24d932164d31b16b0684577b20e66f80c19629f18a",
+      "currentBriefSha256": "b3c2264c51ca4ba226ac856c8a20dcc9fddfaebe2e8d3283b232b8530b694c8b",
+      "baselineContentSha256": "34e0e3e7076d54664290de5ec16f07c078de0ff980c6c240304fc26e369d1e1d",
+      "currentContentSha256": "34e0e3e7076d54664290de5ec16f07c078de0ff980c6c240304fc26e369d1e1d",
+      "selectedSeedSha256": "8b70d821a60aba30ed94a5303de44facfede6bf4ccdf51c87f544f4653e865da"
+    },
+    {
+      "city": "gaborone",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/gaborone.json",
+      "baselineBriefSha256": "270e3a835076da17f7ff8cf38909fd46e0c5297f5a89de9ec5811e7b0c7da401",
+      "currentBriefSha256": "7c99bc48888a52dab17c53407b51a0a7b672df1d9938ce2e32afe285e107daa6",
+      "baselineContentSha256": "fe89541fed7986c9d61aa1e2812376d1042518f46694b3e07cc445464f12c5f6",
+      "currentContentSha256": "fe89541fed7986c9d61aa1e2812376d1042518f46694b3e07cc445464f12c5f6",
+      "selectedSeedSha256": "819f8a4607fda7df0567147badf35a99ab106d1e7189b8c9e339789254bbafc8"
+    },
+    {
+      "city": "garapan",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/garapan.json",
+      "baselineBriefSha256": "8acb6fbc5f34c2d009a71aa204d40f6c8a461f3284e8b51143f22ea4ddbdf63f",
+      "currentBriefSha256": "00ed59700da295658c83b61f089da0a49e42978f375794f0861b3b576474005d",
+      "baselineContentSha256": "e32ad6344ee7b99b47c4439a8cbc887aaf5a0e7d0831453644761817b9aa6257",
+      "currentContentSha256": "e32ad6344ee7b99b47c4439a8cbc887aaf5a0e7d0831453644761817b9aa6257",
+      "selectedSeedSha256": "fd84e72b07289ec905ff2341a219b101ff8514d2fdf361c06b27c8ca55339413"
+    },
+    {
+      "city": "george-town",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/george-town.json",
+      "baselineBriefSha256": "2a43ba227c16862349de4dd711b76e01e9ed4e87e9db8a48a3fa881ed9462b4a",
+      "currentBriefSha256": "2d62023b970a3d14cd34635f9e4305b5805362b2edd9bb685f5200634e3f2a17",
+      "baselineContentSha256": "67cb7773a20b267d700befa8f67526cf7d891e4ec8e0222ba6f957635a6560d7",
+      "currentContentSha256": "67cb7773a20b267d700befa8f67526cf7d891e4ec8e0222ba6f957635a6560d7",
+      "selectedSeedSha256": "f0f8bede9088e6d69dfb7fe1047f0efeb0e696985947cc827a3abae4f7d160a0"
+    },
+    {
+      "city": "georgetown",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/georgetown.json",
+      "baselineBriefSha256": "306bf5d81dd594c58677b22a0dfe23d0e244f18f6809142c718294221929758e",
+      "currentBriefSha256": "27ae50c5f28eb81c3d3e4b8b0dd383337da4b2b28dd8f919e73f472f5fd4c6d9",
+      "baselineContentSha256": "55504c768edf637172a99e7d60c96dffd5ab06ae147e6f4916bd88fc70f40fc5",
+      "currentContentSha256": "55504c768edf637172a99e7d60c96dffd5ab06ae147e6f4916bd88fc70f40fc5",
+      "selectedSeedSha256": "90c2e52bf26ded28aa10ccea97217eea8abc38bf90d44ac52a1ba7a6c11379b3"
+    },
+    {
+      "city": "gombe",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/gombe.json",
+      "baselineBriefSha256": "0aef3501c7ea137820319b6a47d73bcc51c2ed29f0d3ef1ff64cd2f2b8bef2c6",
+      "currentBriefSha256": "cdd6a003a4173674845759bd895dc89eeb1a3ceb7adee95331725ef4becbbfdb",
+      "baselineContentSha256": "22dfaeebdc0f5ce7f84a700fff077e0d67eb49e67e3137913924662089b120ad",
+      "currentContentSha256": "22dfaeebdc0f5ce7f84a700fff077e0d67eb49e67e3137913924662089b120ad",
+      "selectedSeedSha256": "ab12384e23b619d9e1450b5674ad0d865ba2fa20fbc3686484b55870bafa87ec"
+    },
+    {
+      "city": "grytviken",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/grytviken.json",
+      "baselineBriefSha256": "7cd7f2f5439ed70d6f8d75a5e4e89a55ef002ef800885b591e5b38535edc18c7",
+      "currentBriefSha256": "c8bec150287ce09e09ccb54d77c7602e1edf2d0d5cf49613c6dd5a46934bcf04",
+      "baselineContentSha256": "e1aefcf77a320f833be17d751eae0acc9750022b6f1bd6f329732f4883a338eb",
+      "currentContentSha256": "e1aefcf77a320f833be17d751eae0acc9750022b6f1bd6f329732f4883a338eb",
+      "selectedSeedSha256": "2df1b3949bf82cbebba88e37213318da8230a9c92233b88c7963cdbf2d317eeb"
+    },
+    {
+      "city": "guatemala-city",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/guatemala-city.json",
+      "baselineBriefSha256": "c59ec4fb1cefab9fc9698575036c07e5d942da96a251ab6c2e99de7ab8be786a",
+      "currentBriefSha256": "0b411dcd6527275e9ee08af9ac46d8622cc4278b6e28e6b1d2cfa3a7380444f3",
+      "baselineContentSha256": "20ab69eda31ae258b8a7b49f5fd46053cc59b2c1eae27add5fc5bbe76a35fecc",
+      "currentContentSha256": "20ab69eda31ae258b8a7b49f5fd46053cc59b2c1eae27add5fc5bbe76a35fecc",
+      "selectedSeedSha256": "b4c57fa765814faf80865e4b1f7934a1a751d3c8c7bac7aefe14702d9b89c7b1"
+    },
+    {
+      "city": "gusau",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/gusau.json",
+      "baselineBriefSha256": "d9953d52bdc2f1945eed0f4485ea996df427cf0249401af6f8167d5e219c125a",
+      "currentBriefSha256": "640861e9881d1ab317eab3f3626045564d074b21474102c3a2030168fec0b09b",
+      "baselineContentSha256": "65d00b4f9983bebb3c664d5f8aab2db98cc6ce5bc79b357758a58f7e455ea7d9",
+      "currentContentSha256": "65d00b4f9983bebb3c664d5f8aab2db98cc6ce5bc79b357758a58f7e455ea7d9",
+      "selectedSeedSha256": "7a818977479b10c2c0b021c41e36929ee27d26d67320a789256859b9b50daed9"
+    },
+    {
+      "city": "gustavia",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/gustavia.json",
+      "baselineBriefSha256": "00035d4057fe6e29e32c56670967c4c97dfdc3d2353edfdf1f0c3c16b4467d78",
+      "currentBriefSha256": "29ca0014753e0c24eb64f6e24b5046939ff7fe41f801f2a516396bdce7f82988",
+      "baselineContentSha256": "cd982b830607edb8b19f03cfdec7655bf9d2907db920b7bd7616baf658266c9c",
+      "currentContentSha256": "cd982b830607edb8b19f03cfdec7655bf9d2907db920b7bd7616baf658266c9c",
+      "selectedSeedSha256": "fad801707a3b6d0749afbdafff41391aed948f34a290b16d2821c6d049810dbf"
+    },
+    {
+      "city": "hagatna",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/hagatna.json",
+      "baselineBriefSha256": "12867479d2434f4bb56df28df09def7cb0a7cb2ca31f0cccd85f8af6d69500c0",
+      "currentBriefSha256": "923defa72ec7996425bbd2863241047b534329875066efbc298a24c2901a93e1",
+      "baselineContentSha256": "62cce996193e867525dd4c6d654c4a65cac26ec10755dd411ddd155eb772f92a",
+      "currentContentSha256": "62cce996193e867525dd4c6d654c4a65cac26ec10755dd411ddd155eb772f92a",
+      "selectedSeedSha256": "0de6119d91cebef1d633488ddb9e2ac64413012c238a172d42b159be527bfac2"
+    },
+    {
+      "city": "hamilton",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/hamilton.json",
+      "baselineBriefSha256": "74cef823b67d0454bda27fae5fbb1452ad6c12281b3fc1ddc5275bd42c4b6529",
+      "currentBriefSha256": "7a07a7a1581342c8c8b344bfd54ee75c50270517582eb1ee868acff10e723359",
+      "baselineContentSha256": "bf01d5a85567f8031b73d6185f124c5784deae4baea7c42b4d4ba21bace8c4a3",
+      "currentContentSha256": "bf01d5a85567f8031b73d6185f124c5784deae4baea7c42b4d4ba21bace8c4a3",
+      "selectedSeedSha256": "4c04a84736f86b02934f56a37db38984547b89b57684e261bdf25a4c91df87a9"
+    },
+    {
+      "city": "harare",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/harare.json",
+      "baselineBriefSha256": "07a5c808a2b34f083a21e85dd49a6e7a6f41f8907c28fe6f9e9c3b8c19c62f5e",
+      "currentBriefSha256": "577c6b1a63a7532525a11707fa9457d5df49737e860a7dff6f57f82eb1558121",
+      "baselineContentSha256": "143e07f620e43d0ef5db373c5587153ca55c778cbeb2ea37a3f2fe8b7e664ea5",
+      "currentContentSha256": "143e07f620e43d0ef5db373c5587153ca55c778cbeb2ea37a3f2fe8b7e664ea5",
+      "selectedSeedSha256": "5aa4a4a7d44655d9668804c307ea9550687969d483c0d7e21c380fdec544eb2a"
+    },
+    {
+      "city": "hargeisa",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/hargeisa.json",
+      "baselineBriefSha256": "d1885e6bb483e5992ff27ee49666b00f5e209439a096af98995e1f10409499a7",
+      "currentBriefSha256": "118b9fa5511de2168305247482c8af8ff01187e9a12a86e6785df5ad354c9b96",
+      "baselineContentSha256": "69738d40cfa641edff909a38f1516123cf1e88fa73c29d3b4f5ec03e96efb417",
+      "currentContentSha256": "69738d40cfa641edff909a38f1516123cf1e88fa73c29d3b4f5ec03e96efb417",
+      "selectedSeedSha256": "bba97c2eaa2b4fe4bfa26bcec88e0959a13504fbe59d61216563666d10cec620"
+    },
+    {
+      "city": "havana",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/havana.json",
+      "baselineBriefSha256": "c8d87b92b40020cd97edd0289b14c100dc8e2c51524d6b640cf84ed709b7abba",
+      "currentBriefSha256": "d90c9cef9cf1b57123a07569d105c65b16ff23fff64f6260b45753ceb467d7f3",
+      "baselineContentSha256": "b42c5aebef43f76859aa112d53da2e267b4909795d8dbf9c2fa5916f4cf7f7bc",
+      "currentContentSha256": "b42c5aebef43f76859aa112d53da2e267b4909795d8dbf9c2fa5916f4cf7f7bc",
+      "selectedSeedSha256": "00e3c030eba6952eadb39aae570381586af18810729de22ac8d6f8f98599e541"
+    },
+    {
+      "city": "helsinki",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/helsinki.json",
+      "baselineBriefSha256": "d18fca0041e804e453bc64ff062236611d5932412b57006995134b4c813c3caf",
+      "currentBriefSha256": "33bd8ff96670b11f764bc1a3a0078288c2608ab5eb0d3fcfdaa96dde0ef280b7",
+      "baselineContentSha256": "e36e77bf496ee8bd43270dee0a5b8fb9a28908e3d478dc907938964e73c3489e",
+      "currentContentSha256": "e36e77bf496ee8bd43270dee0a5b8fb9a28908e3d478dc907938964e73c3489e",
+      "selectedSeedSha256": "9bbb20022971d2afc198abaaeb1ed5e04fa3d7bdda4e306a9538366ea7a8b513"
+    },
+    {
+      "city": "ho-chi-minh-city",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/ho-chi-minh-city.json",
+      "baselineBriefSha256": "29cfda02c44c3a9a602f3a9b08144bdde622ba90241eda8ebafe56b73a2dfa4b",
+      "currentBriefSha256": "5db217fa2762bd490b9229f07d42ac50e95024e2ea439ec1679c9bed61e40a49",
+      "baselineContentSha256": "a8bdfb426c5052ce05e48d35d0ff276ff802fce8aa5e4687e8bc6314f5d8f5ac",
+      "currentContentSha256": "a8bdfb426c5052ce05e48d35d0ff276ff802fce8aa5e4687e8bc6314f5d8f5ac",
+      "selectedSeedSha256": "6f431dfd9321152836d25afc3f552f0b6590d70e06d5e9b145d789919c6e6447"
+    },
+    {
+      "city": "hong-kong",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/hong-kong.json",
+      "baselineBriefSha256": "9738c231238879a3d973bd5f8c211384598dbc45ec27e0009bb0ab133d9dd3b0",
+      "currentBriefSha256": "8a4e37b9fe61898c8818e261326677f88a0d24dcfb917e346cf7ec9f8ae0c13b",
+      "baselineContentSha256": "d1e29d1eec9ef48bd12068803c480b4a676d2a82fb7c4df5d231cb9e432ddfdd",
+      "currentContentSha256": "d1e29d1eec9ef48bd12068803c480b4a676d2a82fb7c4df5d231cb9e432ddfdd",
+      "selectedSeedSha256": "5da464d9237b02c6e3d65e742b6b404382207a392a8997d268ba6c350fe2ca4e"
+    },
+    {
+      "city": "honiara",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/honiara.json",
+      "baselineBriefSha256": "b30e58c9d2c5f105dbb7e35cc42a932246d8585fd368cbbbaea1345aa05dc76c",
+      "currentBriefSha256": "cd0bf44afe0a80f1ed39b24e2826707aecbad2a6ca970201c6fe61c76d99c770",
+      "baselineContentSha256": "891aedee2dd93152bd618842e160ae77317a70a02c2d98cc15378590707b59df",
+      "currentContentSha256": "891aedee2dd93152bd618842e160ae77317a70a02c2d98cc15378590707b59df",
+      "selectedSeedSha256": "98c9e6f2e5797ee12076d73f58c030c5445fd6aefeecf484cae96b2d86c0a28c"
+    },
+    {
+      "city": "ibadan",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/ibadan.json",
+      "baselineBriefSha256": "b5b0394438be9458f68065c4193b27e0014039a05dcad6ff3d211993884d9ba2",
+      "currentBriefSha256": "8b4eba68beb889e9eb08c3431c168e891e3c3e543abc9d9c2f686dd69e04e5b0",
+      "baselineContentSha256": "d4b1ae2b08ecfa216b69275e771c1fa3eda90c9fa1cdc50c724faa4fcacf6093",
+      "currentContentSha256": "d4b1ae2b08ecfa216b69275e771c1fa3eda90c9fa1cdc50c724faa4fcacf6093",
+      "selectedSeedSha256": "dd821c978d744746d9837dbd8e9ee5313d87e2103e3fd331d59b7167c9862881"
+    },
+    {
+      "city": "ijebu-ode",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/ijebu-ode.json",
+      "baselineBriefSha256": "4e1201b864e67b6e5e8dec95447e00ff4b880459c12213746d75e6336e51cc73",
+      "currentBriefSha256": "b298b3bfe9d7a750941c06d42a39ce68d48efdefd94fcbaae20e2747765f2474",
+      "baselineContentSha256": "1b09b6e270dd7fcaab42ec775384361e5c22bfa1a3c7944c1ec1ca1db33b78d3",
+      "currentContentSha256": "1b09b6e270dd7fcaab42ec775384361e5c22bfa1a3c7944c1ec1ca1db33b78d3",
+      "selectedSeedSha256": "41cd64fe796c1983750eae985a0a5152bc69336b2ebb109e75f5fb20ecd9c117"
+    },
+    {
+      "city": "ilorin",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/ilorin.json",
+      "baselineBriefSha256": "ab482cdc2dbdad485f22e3085bc49f84853ad81eb3b08f79dcc6e23088349ef8",
+      "currentBriefSha256": "16bc22e3261fdc0ccdff4c25d0c672f750638ed0d44f282553f0b67bccbe42f5",
+      "baselineContentSha256": "7532e87bcecbff893571d9a405ce6ffc5b7887b429a04d3a42bea5a4610bce80",
+      "currentContentSha256": "7532e87bcecbff893571d9a405ce6ffc5b7887b429a04d3a42bea5a4610bce80",
+      "selectedSeedSha256": "d760b9869f8c141f6c4891f0b84a3fad4f2f6e80aa79f51c16bd7713160d764e"
+    },
+    {
+      "city": "istanbul",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/istanbul.json",
+      "baselineBriefSha256": "6db0e73ebe57f14c8c812dfad4d880ec4711ced13bd136da16b45c00540ac1bb",
+      "currentBriefSha256": "37064b32c221816abf04ea77163b77349553caee251f710db5775b161c20f16c",
+      "baselineContentSha256": "3dcf5bc3f097ad7e647aa8678058bcf0512938d50b536f67762667635a87e564",
+      "currentContentSha256": "3dcf5bc3f097ad7e647aa8678058bcf0512938d50b536f67762667635a87e564",
+      "selectedSeedSha256": "a44cfad4914b18d513b783851b9af5d515a02e1f555e6b9a5cbea7e65a7e9af4"
+    },
+    {
+      "city": "jakarta",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/jakarta.json",
+      "baselineBriefSha256": "6f09c3c7e7a330860ffe816b82cbd1f984481c83f5dc7d9100ce421990999bca",
+      "currentBriefSha256": "325344acd45c4f921c352da38d36ab7de4e526b19643e7dec7e29d9e7b8cfbd7",
+      "baselineContentSha256": "d9df0f2bb7aee1e9be3284e77f3c4938ed81f7de0147d5fc0d45979eefaecd52",
+      "currentContentSha256": "d9df0f2bb7aee1e9be3284e77f3c4938ed81f7de0147d5fc0d45979eefaecd52",
+      "selectedSeedSha256": "ed0d1b5d7d203786a2b1aca722977f094c3aca4de04be91b74972605500f1a17"
+    },
+    {
+      "city": "jalingo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/jalingo.json",
+      "baselineBriefSha256": "29343556fce384cce0f97d043e984fba4de9eb0354e2b7333bebb921180310e8",
+      "currentBriefSha256": "e29bfc178488b8a03e9c882c49c25e1dd19383bb8729c939f7553ab4c3978274",
+      "baselineContentSha256": "ada983c87f707fdda4c65e38c37c2f28e08a469a1e30d23700b570cf9be3f944",
+      "currentContentSha256": "ada983c87f707fdda4c65e38c37c2f28e08a469a1e30d23700b570cf9be3f944",
+      "selectedSeedSha256": "114abcea5bd98cee30baa36b7a392c7f0b20baa9832e9b6adcb0f6b08fa1722a"
+    },
+    {
+      "city": "jamestown",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/jamestown.json",
+      "baselineBriefSha256": "e00c307c390495295a7405629bd5ea3a34b3ac2c55ada6395f2052dfa3d9f4a4",
+      "currentBriefSha256": "4d27119a10bccd85b2e1b9d464ea292b1f9a1f64406aa5146207b9c6c4f1e8ac",
+      "baselineContentSha256": "6d6ea670c2dff07154699d2ed7596ffa0c57de798978597cb09a37772cdb54a3",
+      "currentContentSha256": "6d6ea670c2dff07154699d2ed7596ffa0c57de798978597cb09a37772cdb54a3",
+      "selectedSeedSha256": "062fa83c58fe678393ad0587576cfa2b259cd813f211e9330228f597add32e8f"
+    },
+    {
+      "city": "jos",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/jos.json",
+      "baselineBriefSha256": "e05075866f88bed4ecdd2e1b071f778c965a17b5890246a11a5c62707d30140f",
+      "currentBriefSha256": "561313f97b1d34126d404187b3d41441f642f388c6025ecb214e59146635d7b9",
+      "baselineContentSha256": "19a3d6b10c71b258249ea08c5da281f7e8d31697be20633b42b6c910312d1a34",
+      "currentContentSha256": "19a3d6b10c71b258249ea08c5da281f7e8d31697be20633b42b6c910312d1a34",
+      "selectedSeedSha256": "973407db03426e55e373007213b945cc6a56b9dbe1dac7e7a6741e614f662898"
+    },
+    {
+      "city": "juba",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/juba.json",
+      "baselineBriefSha256": "948a8dd7aacb9a6b150733bc8f73607b1e55d87967520477235bc101c050be70",
+      "currentBriefSha256": "776248d4e83a2f2ae366a19662cdedd0ed1b37d380ea0a6d964fda70b2bf61ee",
+      "baselineContentSha256": "24c41bfcb1921c90855d600433ead310e38a322b3bffcb9605b05757ce49fc78",
+      "currentContentSha256": "24c41bfcb1921c90855d600433ead310e38a322b3bffcb9605b05757ce49fc78",
+      "selectedSeedSha256": "5d874394ce60e7d00f78162a058b5af0f2f5c40ac1c993b075a8ca4480e491e0"
+    },
+    {
+      "city": "kabul",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/kabul.json",
+      "baselineBriefSha256": "8cf39765bcd51a5c159828b789aa2c0f5354ca2d089fe2e1d638fdc9e2a6be0d",
+      "currentBriefSha256": "95ef791aaad60a3a3d0389304f6fb8bdf4231d187c1ba6ff1e04ae6458db0a9f",
+      "baselineContentSha256": "940a906bcc93e982eba61d724cddcdbc1c04ce4aedb5a28b009c170a907aee21",
+      "currentContentSha256": "940a906bcc93e982eba61d724cddcdbc1c04ce4aedb5a28b009c170a907aee21",
+      "selectedSeedSha256": "a40ce63f7140e3a1dd87a670cdacebcd2ee595c196becc375befbe496d7c779e"
+    },
+    {
+      "city": "kaduna",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/kaduna.json",
+      "baselineBriefSha256": "25b291238ce0bdcf9b4d4f47e530cbb04ba1dfa0f8e9512e16a413c7e49e2d2e",
+      "currentBriefSha256": "aaadb4bf5f265431184dc5c2fd5f2d13c2ec707fe2b49c2ce57c1f0f67a3ec27",
+      "baselineContentSha256": "3410f0e37b800329c8241575e51237e48255d9123c0dd10577b8476f3b2eac82",
+      "currentContentSha256": "3410f0e37b800329c8241575e51237e48255d9123c0dd10577b8476f3b2eac82",
+      "selectedSeedSha256": "2dd6017b227d974a3890b3b03f995d36d79725680ec25d9b8d9637b2eccb6827"
+    },
+    {
+      "city": "kampala",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/kampala.json",
+      "baselineBriefSha256": "32c1226f6c3cfdf21af923e2b2f549b9188b6793cf88f474294f3c751d0eb535",
+      "currentBriefSha256": "45b5f341b84f9358ac5d38d857c1f625d9f5475eb194567185dd46400dd35f52",
+      "baselineContentSha256": "022600676b3c62ee70532ae39a05200e496edca7629efe0e3baeb3bfa5401690",
+      "currentContentSha256": "022600676b3c62ee70532ae39a05200e496edca7629efe0e3baeb3bfa5401690",
+      "selectedSeedSha256": "a38339e154fe5d25c5dcc1eb69135c78e24166680ed4fa06cc2e0d6f022bc79e"
+    },
+    {
+      "city": "kano",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/kano.json",
+      "baselineBriefSha256": "71ce38483b20dfe4d380ac21be981f11e1116714a4f3bf0f144dde90af8f9827",
+      "currentBriefSha256": "a7f7439d87bbf7e7c1e391ddde3fa3efeacb71957b39848f546e658e8e353656",
+      "baselineContentSha256": "a43042624694345de7c79edc794584b1a1516ca8e149743aac63af1c58ef079f",
+      "currentContentSha256": "a43042624694345de7c79edc794584b1a1516ca8e149743aac63af1c58ef079f",
+      "selectedSeedSha256": "3f9cd663878f9d6e3ae2436d516ef45b47b4c6440175d5f7381ab1fdd0201843"
+    },
+    {
+      "city": "kathmandu",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/kathmandu.json",
+      "baselineBriefSha256": "b5be96c3fcd27ec554fe98c528bccd714ce5e395ebf17ef31622c0f0d9de8d4a",
+      "currentBriefSha256": "eba35b3aac7a1985a3334e3db273ddf583b271bcc6799f1f9909c7244b296e7e",
+      "baselineContentSha256": "d727e326e0526479ccb5ae32e4ead89f3d1dc6f00190fb41a2ea235f9fd217e9",
+      "currentContentSha256": "d727e326e0526479ccb5ae32e4ead89f3d1dc6f00190fb41a2ea235f9fd217e9",
+      "selectedSeedSha256": "7d28c7be47a0bed0e413ee508b540da969401912efd1981cdc28dae36a70d052"
+    },
+    {
+      "city": "katsina",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/katsina.json",
+      "baselineBriefSha256": "5a6d0f95996a21bc78532f0fc2452be6fa9758fce177de74dbd37dcc9a9fa729",
+      "currentBriefSha256": "d0000352286a60bcf23d94c775dd2806fb358f582580ad87ac74afb6d0888b0c",
+      "baselineContentSha256": "ff5756c93e586acb621a15815878591d59d733258e5d76d16ce6760bb864cfb2",
+      "currentContentSha256": "ff5756c93e586acb621a15815878591d59d733258e5d76d16ce6760bb864cfb2",
+      "selectedSeedSha256": "60565525967c7e9f7579a8efdee0182274906b4b39ad8237ed60819b4c2dca17"
+    },
+    {
+      "city": "khartoum",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/khartoum.json",
+      "baselineBriefSha256": "67426367d27e9da46b90e103bdc2844a263fb4a752b726fa9d833fba613a9e49",
+      "currentBriefSha256": "7bff916ed29491cd97743d747e326dcd381ede0544925d0f1432edaff97ec9a1",
+      "baselineContentSha256": "2b76f1bc62104b31c9a4bd04fa3ed06a849b8a570e6660fddea1c6ff3232d679",
+      "currentContentSha256": "2b76f1bc62104b31c9a4bd04fa3ed06a849b8a570e6660fddea1c6ff3232d679",
+      "selectedSeedSha256": "8e17d5e2e58128ab3eea021abf353bbff4ff528d222229f3837b3db6b815955a"
+    },
+    {
+      "city": "kigali",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/kigali.json",
+      "baselineBriefSha256": "c3d44a49789133f9b351b35518c48dced4cfef86ecc01a89329787284b3dc745",
+      "currentBriefSha256": "bccfaf66be5450605ce7a33b715453519aa2acce5684ca9d23f277d639e58fbe",
+      "baselineContentSha256": "849cdc7c1e6855eb849090e88dc01c3e0b447cd5c99ea0b665ef78fab1ae5956",
+      "currentContentSha256": "849cdc7c1e6855eb849090e88dc01c3e0b447cd5c99ea0b665ef78fab1ae5956",
+      "selectedSeedSha256": "0df4e26725e4ef4f2ca75d9f765aa2e4044f8a7df70de164ae9f534489200c07"
+    },
+    {
+      "city": "kingston-nf",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/kingston-nf.json",
+      "baselineBriefSha256": "e3eb534ced5697a354b2339ad9657c33f6be4dad453ec113f1e4b7613052be59",
+      "currentBriefSha256": "ea761e9acd56f0cb833c2c0089745ad63c5621e742bc1be8a3095332e6501fdc",
+      "baselineContentSha256": "af685fe07c832c00ee2a3f0d20ed59a8eab675e8cd0dfff2f2bd1e1b9fbc4d55",
+      "currentContentSha256": "af685fe07c832c00ee2a3f0d20ed59a8eab675e8cd0dfff2f2bd1e1b9fbc4d55",
+      "selectedSeedSha256": "9ef8916c2e68ae15462b3fba828b35ba823c1b0ffaed5b8c9629aecc9ace971a"
+    },
+    {
+      "city": "kingston",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/kingston.json",
+      "baselineBriefSha256": "27c28935e7bcc53268199e2378b6f1b7fcaec4bab5e2e2403c683f8edbc6ee3b",
+      "currentBriefSha256": "b3beb30d7d922335a99faa03ac25eda17b13b5c3882e81ff40b75e902f75857e",
+      "baselineContentSha256": "260090ae603af11dee8d3ea44a34c65bcb2e7719b69d1ffd2c0a2c8be8fc6768",
+      "currentContentSha256": "260090ae603af11dee8d3ea44a34c65bcb2e7719b69d1ffd2c0a2c8be8fc6768",
+      "selectedSeedSha256": "faccfcb5c2d9cd1414a100ef422134231fd04d6fb6f2b5e82ba7309ccf44ae85"
+    },
+    {
+      "city": "kingstown",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/kingstown.json",
+      "baselineBriefSha256": "76262724f41cc3effc8854dc47e9af75341b968759891f748760f10c4388295e",
+      "currentBriefSha256": "ac8859af4e20a03334d28a2b1208c5e510ff1431e3f45d76054c7fe84ae0752e",
+      "baselineContentSha256": "35b5a8fe3e743e8af1d79424ecd4521ec09b6d551e3ea710ba2a913510a67646",
+      "currentContentSha256": "35b5a8fe3e743e8af1d79424ecd4521ec09b6d551e3ea710ba2a913510a67646",
+      "selectedSeedSha256": "546162ed55094ce95c49dcf4f0fd85023847d8927afad5a6066bf3c892511475"
+    },
+    {
+      "city": "kinshasa",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/kinshasa.json",
+      "baselineBriefSha256": "d55398bf3172727a6bf8bdbb8d2797afb01a05157ec83529621f3165f31542f6",
+      "currentBriefSha256": "4aee1348cc8396cdfd32362a7584edad59ae943e26fc9f45ce3fd71bb73ed8e7",
+      "baselineContentSha256": "8f52ee0d243e6aadb947e7665112de9027c3454ef45b785443f64d45728ff944",
+      "currentContentSha256": "8f52ee0d243e6aadb947e7665112de9027c3454ef45b785443f64d45728ff944",
+      "selectedSeedSha256": "80e608b569ca6007e3cd774812ca1e2c0344808d255dedae7e949506aa753865"
+    },
+    {
+      "city": "koror",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/koror.json",
+      "baselineBriefSha256": "e305d7c469ead954b91db518bcbb1bc6c592bb012a855d2a06e788989493449d",
+      "currentBriefSha256": "c2d344cd455550f36f93c95379c9218a76139e3f7b2c25f6a15229209fa3d1c8",
+      "baselineContentSha256": "330f55dd00608d86ea812c28849eca7404a66137ba7a78b0cb4d2eaa5d866bd8",
+      "currentContentSha256": "330f55dd00608d86ea812c28849eca7404a66137ba7a78b0cb4d2eaa5d866bd8",
+      "selectedSeedSha256": "943a2c4543473c7ed20dc95c04828e41c123d1b32189b2d5b5784ccfc77a3ed0"
+    },
+    {
+      "city": "kuala-lumpur",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/kuala-lumpur.json",
+      "baselineBriefSha256": "6685dcbe362990cb4ce8c2d8e243f71b684cab135b812fe0bfc5d409b1a85b30",
+      "currentBriefSha256": "f28f4a30371cc2ac97b962881ca1dc85ce6e6227e287ce7c49ce9dc32b81f2e7",
+      "baselineContentSha256": "ad47aa31144eac278d65630aac577ad2ce967d88f21ccb5df4fd33d61f7b707d",
+      "currentContentSha256": "ad47aa31144eac278d65630aac577ad2ce967d88f21ccb5df4fd33d61f7b707d",
+      "selectedSeedSha256": "96612e34503ebc1d82a7895df85c364cf75b21b84ab4871521c8d92d2f6db3c5"
+    },
+    {
+      "city": "kuwait-city",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/kuwait-city.json",
+      "baselineBriefSha256": "4831f6a80cb5f5e612187547ac6be5e57ca40202175333455cff883dd711ed24",
+      "currentBriefSha256": "9b46ef4dfc1af3f38e68aa80408eb8876856b75824165544b87da645faabe136",
+      "baselineContentSha256": "f3e17481c007ddd293bd68d281943233414484dbabe72d0f8aecf9c54d38d1f5",
+      "currentContentSha256": "f3e17481c007ddd293bd68d281943233414484dbabe72d0f8aecf9c54d38d1f5",
+      "selectedSeedSha256": "9796f024fd258b181247fd53cb7538831cfb181d69b7e02b8a225e916a51d8f7"
+    },
+    {
+      "city": "kyiv",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/kyiv.json",
+      "baselineBriefSha256": "b804060e1a22d13115c72832eed02f1a5fbd07b1b6fde6d786a26fbb61a18928",
+      "currentBriefSha256": "50efefecc0593c2fbb23ff17ab4b6d2b52388210923ed07fa3fd2e6dccf060d1",
+      "baselineContentSha256": "ab5bcc495ec939ad240acbad91d2d1cfc1c082325575deb6c8004bf1f673e33d",
+      "currentContentSha256": "ab5bcc495ec939ad240acbad91d2d1cfc1c082325575deb6c8004bf1f673e33d",
+      "selectedSeedSha256": "5edebd8610714527b7aa749184f9cbc34cdf6b0f288de4d259b54eee1d800c65"
+    },
+    {
+      "city": "kyrenia",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/kyrenia.json",
+      "baselineBriefSha256": "6b3b88b8ffa3b9d64dd252c96c1a305e226a9de8a99f59a9698dea7714ba8b5e",
+      "currentBriefSha256": "b74c8c9c1d9afc60b1c2e286d256389db18cbe63c18af822583fe199f6da0ed7",
+      "baselineContentSha256": "fae310369c2ca1310f8d48061724ca4ca45413fe9b0bf14c255e92d3ec51f370",
+      "currentContentSha256": "fae310369c2ca1310f8d48061724ca4ca45413fe9b0bf14c255e92d3ec51f370",
+      "selectedSeedSha256": "da342119b41c0d20d40c547f2bdc944edfcdc2ecb4c243d70c92f8a8ffb1fd51"
+    },
+    {
+      "city": "la-paz",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/la-paz.json",
+      "baselineBriefSha256": "0fbd19e7983205492bf01fa8ecbcf6c4640fd267a85b9740c948aad5b2075843",
+      "currentBriefSha256": "d1712c9ef52e98af7bc02a785306d3dbeacaf80031fe8966754bbc88a7781830",
+      "baselineContentSha256": "5d363bff89054a38d28c82598e6b5c26c36ec084e08484ac38a3e9060215920e",
+      "currentContentSha256": "5d363bff89054a38d28c82598e6b5c26c36ec084e08484ac38a3e9060215920e",
+      "selectedSeedSha256": "f952395803796331752309fa654e713fda21414f10ab759ed0c81167f57bfce6"
+    },
+    {
+      "city": "laayoune",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/laayoune.json",
+      "baselineBriefSha256": "646a8d52a4ef05dd1ac1ba8e84e88023a6d71e0f55af59baf41f178d72cc32a5",
+      "currentBriefSha256": "547ba17fdd51a3b8c9c19ba96d324db47b5430fb3315003b7365d95b5f4336e9",
+      "baselineContentSha256": "00c603e023e7ba985e9a1b21e77d78f02cc7d2cdca5cf666adb08c75b686d8b2",
+      "currentContentSha256": "00c603e023e7ba985e9a1b21e77d78f02cc7d2cdca5cf666adb08c75b686d8b2",
+      "selectedSeedSha256": "5ca4918bd0562ea4952a7c3eb168072a4785830369dacba4b77e4eeccfa23da6"
+    },
+    {
+      "city": "lafia",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/lafia.json",
+      "baselineBriefSha256": "fcc3918e88a3694e74e0fe2deb3e5815fe6a0264e26e270d83d07a9aa9b1db6e",
+      "currentBriefSha256": "d8e9efd0cfd34b3b4e990e3806dab402119fb37fccd51bf7d47b58b6599d357d",
+      "baselineContentSha256": "776aaa6790b783f4a88d8ab0c74c9745f47506ab035bfeeb3342a56cd490d9da",
+      "currentContentSha256": "776aaa6790b783f4a88d8ab0c74c9745f47506ab035bfeeb3342a56cd490d9da",
+      "selectedSeedSha256": "9b80e6a69fe18689a09ce9a8ac27db75b6d8e04b0415eb09ca14e560d77fdd62"
+    },
+    {
+      "city": "lagos",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/lagos.json",
+      "baselineBriefSha256": "87329cf0817453acb3dc62ecc7c20dc4efd8d9a1858b8d074fb2c163a5e8cf47",
+      "currentBriefSha256": "fcfcc4b1355d68d8ddaac401a5b54c615e82aec3decd4bb27f6abfac93fd22ca",
+      "baselineContentSha256": "bdd212f52719ba1088e85f7de6068995733ee79f332945dcbf1dd3c52ed0f257",
+      "currentContentSha256": "bdd212f52719ba1088e85f7de6068995733ee79f332945dcbf1dd3c52ed0f257",
+      "selectedSeedSha256": "d30dbd7c027f0ae21d9bf270fee5c162c7a13a9b9412d5e0ceca03a058d7664a"
+    },
+    {
+      "city": "lahore",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/lahore.json",
+      "baselineBriefSha256": "0f1bd1d3bdb7930106ecffc1c66338aed19ee1d39c7274efb949d26d4589c6ca",
+      "currentBriefSha256": "5e1a9c99f3b9cbf842ea1a4788193f2431f67e5f4196f523b2927a3f4d500f89",
+      "baselineContentSha256": "511c0b895af662ba65a6d765719a60a78f1cbf9fca9171f510ed4876c874b70a",
+      "currentContentSha256": "511c0b895af662ba65a6d765719a60a78f1cbf9fca9171f510ed4876c874b70a",
+      "selectedSeedSha256": "8db93b747c5ba0eb8ad8ce7e585a723944b1ffb632527de2168ecf9357c3c4ce"
+    },
+    {
+      "city": "larnaca",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/larnaca.json",
+      "baselineBriefSha256": "124900903e9fc1f14bc74cc54aa497efb13366cd1aeed0a6ecdef665b1c9a453",
+      "currentBriefSha256": "5f10cd8c483f23e7d95fa12e04545ea5004af8900cb402eaf2e26e3a12c33927",
+      "baselineContentSha256": "17291e6abf0f249a49c64564d105aebc946087cd6d5a4250e654d67cc68bb982",
+      "currentContentSha256": "17291e6abf0f249a49c64564d105aebc946087cd6d5a4250e654d67cc68bb982",
+      "selectedSeedSha256": "e1c7d79762f49f21d37f5427e6ba3ef4cff79a4dc3e672216c10ed56ee3807d2"
+    },
+    {
+      "city": "libreville",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/libreville.json",
+      "baselineBriefSha256": "9a1ceb09bda45dd08ba888d6938a58398fac042859de12683415493307a43783",
+      "currentBriefSha256": "16a2b645c2377284c3aca1354afab43c24eb12e99f8ea52c965c66c13212a5d1",
+      "baselineContentSha256": "16494d47b93c80c7de9a5a5fe8e9dd08611160671d91240b66b6b1fd648652af",
+      "currentContentSha256": "16494d47b93c80c7de9a5a5fe8e9dd08611160671d91240b66b6b1fd648652af",
+      "selectedSeedSha256": "daaf1a104241491307c1d7733b4ca05051b5ff84d58936e3ba7e8ba4266e269f"
+    },
+    {
+      "city": "lilongwe",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/lilongwe.json",
+      "baselineBriefSha256": "7116aaf5e9cff7670ddfad6108783ea893314c5b4815db62be71c97ce5c05548",
+      "currentBriefSha256": "597b730370156153c1fedee795295705e4f1239d32fb3b9d624f83f02d3457b8",
+      "baselineContentSha256": "9757d5868beac5ceb5e5f37ab58672647e47e38958c9faaa2518b57d7dea8a0a",
+      "currentContentSha256": "9757d5868beac5ceb5e5f37ab58672647e47e38958c9faaa2518b57d7dea8a0a",
+      "selectedSeedSha256": "e8c46127dd475b26dbcb1624a72d98e472ed387db20fb43b227c65d3d3910052"
+    },
+    {
+      "city": "lima",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/lima.json",
+      "baselineBriefSha256": "79bf957cdcb0fe1240b2f39804e5d2e3057fdb521c0915718cd4aebb024b9564",
+      "currentBriefSha256": "b81a10913bf2ab17ea7b8d4c4a8d35a92a1039e80ef9cb5ab21da0e8f9b76d06",
+      "baselineContentSha256": "c3eb8d047287da378f58270bf1a872177f60e54c8cf64db758a11f593535dd52",
+      "currentContentSha256": "c3eb8d047287da378f58270bf1a872177f60e54c8cf64db758a11f593535dd52",
+      "selectedSeedSha256": "f7ee9c944d5915652f2927529c1ef5062859972745b6e22f8f257d335850d385"
+    },
+    {
+      "city": "lisbon",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/lisbon.json",
+      "baselineBriefSha256": "e88069083fa15133134c0c96e9bae6b3a1abe66cee12bd09d6fbed4d4ff9375e",
+      "currentBriefSha256": "d5a2344d4a163372b44e60c000fe17928eceba27f338c2db4593dc889fd55346",
+      "baselineContentSha256": "00b40fd3de2b715efa41f9c4fa4175b6608ee00c7e65f41691dd06a0af71cfc3",
+      "currentContentSha256": "00b40fd3de2b715efa41f9c4fa4175b6608ee00c7e65f41691dd06a0af71cfc3",
+      "selectedSeedSha256": "8c4cd7841e2a7debd3fb10b43a41066963003396f5377db044d1d56f61df349b"
+    },
+    {
+      "city": "ljubljana",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/ljubljana.json",
+      "baselineBriefSha256": "c8994e1990af94f330b4d0de0022451ccfeaf9c424029008bd0fbbdf9c8e9406",
+      "currentBriefSha256": "b951e4db69fc991ae47c3642444b87b15e07b061b742d16ad3f7709141882de9",
+      "baselineContentSha256": "4773560c2a61218026ba65f5f3bc6a8f39755386738cf8eb4a7b9cf021224a05",
+      "currentContentSha256": "4773560c2a61218026ba65f5f3bc6a8f39755386738cf8eb4a7b9cf021224a05",
+      "selectedSeedSha256": "99285c635de1291070ffcd1a67a8a7f2343def1099f51036db714440f2087338"
+    },
+    {
+      "city": "lokoja",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/lokoja.json",
+      "baselineBriefSha256": "f07a3733ea24efd71bf1d76f8a4dc742284ebbfb2e6fca9d46696e774be9ecd6",
+      "currentBriefSha256": "53177af4bc2895c21c44cd1f9079e38279cede1db106d5963097d7daef885444",
+      "baselineContentSha256": "d6de88cce3d33069c1a87a9c66f9c98134181d9cc9d941b8e8a1fb3982c2cea8",
+      "currentContentSha256": "d6de88cce3d33069c1a87a9c66f9c98134181d9cc9d941b8e8a1fb3982c2cea8",
+      "selectedSeedSha256": "de2b8827dc6b603162c704cb0d0e7aa30abbfa2056f41186e1e0388a884a14fc"
+    },
+    {
+      "city": "lome",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/lome.json",
+      "baselineBriefSha256": "05d2b8fc70c9b6cf9abe43bb56614dfd55a3a846e7aeb35b553c56502c914f34",
+      "currentBriefSha256": "8294de27a85cd945c222a4acc29c0f36a9072dd271a13fb949efe2a79dbc67db",
+      "baselineContentSha256": "fd17cbe3e85833c91de60fd270dee6f2796743ce64a9ddbf22a5e5f48508243b",
+      "currentContentSha256": "fd17cbe3e85833c91de60fd270dee6f2796743ce64a9ddbf22a5e5f48508243b",
+      "selectedSeedSha256": "6b6c732fd50ae074c5191a0186c2059e7989227498ef7d422c49988ba0b6fe37"
+    },
+    {
+      "city": "london",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/london.json",
+      "baselineBriefSha256": "445e57bffab78a2055ff58019a99fbaebaa4652028f366d6da58528b7b0213c2",
+      "currentBriefSha256": "4c88aff7ba10ab878fa8076f6c0e23d615400f2bf954b51c1a419ef8fa7b822c",
+      "baselineContentSha256": "b564a4ef80f4ee78e8066e6e05c3fffb82bdc0fb731ba22900e3b7aebb2e25e2",
+      "currentContentSha256": "b564a4ef80f4ee78e8066e6e05c3fffb82bdc0fb731ba22900e3b7aebb2e25e2",
+      "selectedSeedSha256": "148f71f32099c3597f1c8e29a65876c02a634494d2d3ffd485500727a0c02ed1"
+    },
+    {
+      "city": "luanda",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/luanda.json",
+      "baselineBriefSha256": "0c432c0879680042708ee03fba3f0affe01d48ab5ffdf95079729ebc3dc299f8",
+      "currentBriefSha256": "7aa9619f9e43e32faa05aad87cd57da363b0b15245a36d61ff006304f37e6051",
+      "baselineContentSha256": "6cc221f300f9912f2d6595dc87c20f77b36c23afa76836a2e54cb1baabfc9e6d",
+      "currentContentSha256": "6cc221f300f9912f2d6595dc87c20f77b36c23afa76836a2e54cb1baabfc9e6d",
+      "selectedSeedSha256": "f6344eabdff44b9dc51964b43dfb12fc033b917b6c34c847cbcd30348db4f429"
+    },
+    {
+      "city": "lusaka",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/lusaka.json",
+      "baselineBriefSha256": "0195ab362157bbd855b64bd8db6b171f65cef154e8c720cacf2f01b704cafe89",
+      "currentBriefSha256": "c9a58f3ebf68680e95968416d57e0714da0b0b7626e08ff1409853e3a8ed6049",
+      "baselineContentSha256": "aeb14d21f99b309cbe5ab590ee22f668eb76df6c0421cf324232d6cea9c6cbf6",
+      "currentContentSha256": "aeb14d21f99b309cbe5ab590ee22f668eb76df6c0421cf324232d6cea9c6cbf6",
+      "selectedSeedSha256": "eeb9928a0325c4d889b453eaf3fffc604192e29d4b56148cfd30370ce6c9fec4"
+    },
+    {
+      "city": "luxembourg",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/luxembourg.json",
+      "baselineBriefSha256": "e6902646702cdc950861a02b0aeee7acbc8646faeca38c219ec8e84a93a8d8b4",
+      "currentBriefSha256": "d23e4ab787f22ecd1c38f96e8d65e15c05f8fcccf4d849a8999c3694f6d2ecbb",
+      "baselineContentSha256": "dcc27457ca5f846d67fbce8b1c03990aed033707ac45d372c314c1193978ce3a",
+      "currentContentSha256": "dcc27457ca5f846d67fbce8b1c03990aed033707ac45d372c314c1193978ce3a",
+      "selectedSeedSha256": "eed6e09f47cea2d0e80d549eedebc38916dbab51e148b4922d444d78ab54c028"
+    },
+    {
+      "city": "macau",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/macau.json",
+      "baselineBriefSha256": "a79f37c486403a3e92302ac1576731784fdc3622e15d3aa634ca0abe9d7e399d",
+      "currentBriefSha256": "b98c6ef5ad8917f4abdef374f1c7bd0602f07b2f89cbce5f5b0cbd2d53dacf92",
+      "baselineContentSha256": "39378afc15b83f29dbe79490a77665c2a4b378d61c8446865e622297189e0f1d",
+      "currentContentSha256": "39378afc15b83f29dbe79490a77665c2a4b378d61c8446865e622297189e0f1d",
+      "selectedSeedSha256": "b3a5d96adf076a5325e394cac0945b4b571fc70af6b0b6047f859173a8ce4af2"
+    },
+    {
+      "city": "madrid",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/madrid.json",
+      "baselineBriefSha256": "8308c9d62d970f00ce8b8bb0b6125f285d2a76bbc59c1c82574487e96d536856",
+      "currentBriefSha256": "205e8b11b1d915da702fea85f5bef336fdbb8856ee8ad52fe8e9277607deb119",
+      "baselineContentSha256": "b5d93dee7baa961a655ef963c6d09382f2003ede4d56a15d39ddc8b35f11c49a",
+      "currentContentSha256": "b5d93dee7baa961a655ef963c6d09382f2003ede4d56a15d39ddc8b35f11c49a",
+      "selectedSeedSha256": "4e91d10fb7eec9d42bbbbe76c99b9019c198ffa7df201b1760ca412f6d129244"
+    },
+    {
+      "city": "maiduguri",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/maiduguri.json",
+      "baselineBriefSha256": "acdac83ff1735b9ea4a8af94685d84c17094b219e16bae1e52c963bf56e71f40",
+      "currentBriefSha256": "d76e1c888abfc1a6b27d066c3cdccb31d5d6d09a695c19715533e4f5a475e9a9",
+      "baselineContentSha256": "e44f14442e030addaed4f6d34af83d8962250b53c5b437e618b934e88eaa40c2",
+      "currentContentSha256": "e44f14442e030addaed4f6d34af83d8962250b53c5b437e618b934e88eaa40c2",
+      "selectedSeedSha256": "ea54d71e2fdf872e304f7d05d1084c4c6c60a1e396f6b471e76fcc76027ed460"
+    },
+    {
+      "city": "majuro",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/majuro.json",
+      "baselineBriefSha256": "805c2f772745e6b01a6e1d7d05e7f5e24e25f6735ab9bcda9a3d8198bae8de52",
+      "currentBriefSha256": "3a8ed9782bca494c7cc36ff9acb3a9b60a4e0042370c57dcab4b79199686fad7",
+      "baselineContentSha256": "5f99236c95ab08d9e7d0c49c393580de249e034407686de1e5306cf62cd3c308",
+      "currentContentSha256": "5f99236c95ab08d9e7d0c49c393580de249e034407686de1e5306cf62cd3c308",
+      "selectedSeedSha256": "eec05c8ad46a6549e6efa648ff18f1ce586ac5a94c866ba6252b278b5b6f6268"
+    },
+    {
+      "city": "makurdi",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/makurdi.json",
+      "baselineBriefSha256": "b86d82e2aae0ccca01ace7f715edbb74d1f7d1e71bcbc0fa26775b3192632d98",
+      "currentBriefSha256": "8376a92f4a73c65197c9aa088bcad79194806fd045d14efd960ae9bb67be946d",
+      "baselineContentSha256": "d0dcdd9cbcd8bd4235a2b8ff5269534e387affc77db2f997d20096030ab28881",
+      "currentContentSha256": "d0dcdd9cbcd8bd4235a2b8ff5269534e387affc77db2f997d20096030ab28881",
+      "selectedSeedSha256": "4bdc2fb846e78d5ede1a827030c46cce3189daef9f5a4430a28490eaabc48b29"
+    },
+    {
+      "city": "malabo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/malabo.json",
+      "baselineBriefSha256": "ccb6220b4d88627c49419c29a081d4d302ad01d321c04ac21a171e5c82d52bda",
+      "currentBriefSha256": "5703e6b097d867643258c636ac0c4fa92467af5e0f6460c071aebcc05de58cfd",
+      "baselineContentSha256": "caca8138c669d027dfca33f96c53d96d7e404f77f20cb7b32ec34cd0383d447f",
+      "currentContentSha256": "caca8138c669d027dfca33f96c53d96d7e404f77f20cb7b32ec34cd0383d447f",
+      "selectedSeedSha256": "957121981062df4b8217d06ee700e37b90c2af8e3b0b8a743f87aea5d88487d8"
+    },
+    {
+      "city": "male",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/male.json",
+      "baselineBriefSha256": "c17f330460c65d7168d4af6fe506709c89d4129faecbef4437716f2cd1b8e93a",
+      "currentBriefSha256": "ddc58215c52af6321ede1ff4b703dfd50e3dc7954fd552e72c700166e0a7d8d2",
+      "baselineContentSha256": "303af320f9c9fc46f31a292de6d329642898bf60bbf7376db4580a620c83125a",
+      "currentContentSha256": "303af320f9c9fc46f31a292de6d329642898bf60bbf7376db4580a620c83125a",
+      "selectedSeedSha256": "56414b65b5eafc9d8147bd14858b8cd6de99cfa3ccbbf7311a12e5f7e9cb7f29"
+    },
+    {
+      "city": "managua",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/managua.json",
+      "baselineBriefSha256": "154ecfd97889fefcf67eab0554df16b839dd0e4459ac8c85bd5dfacf3efd4079",
+      "currentBriefSha256": "d8ed66b091d86f4ef414cdcf3624c9f87cea1fe3dca74ca2a20ddb7c04c94c46",
+      "baselineContentSha256": "b9d079582bcd040fdb5255fefa2908a0d26146366dbb05b4b496a095977ef602",
+      "currentContentSha256": "b9d079582bcd040fdb5255fefa2908a0d26146366dbb05b4b496a095977ef602",
+      "selectedSeedSha256": "a6ba68117cb184f12d52f7fb6068a172883a6b8ce557869d898d8c6149cc6922"
+    },
+    {
+      "city": "manama",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/manama.json",
+      "baselineBriefSha256": "7bd27bca32ebd2d7cc008a8f39265f68824100e1eaf1f4c964584c72f8fb37da",
+      "currentBriefSha256": "3ab38e17262b253e0c1758a4795a0a287fd6df0e44006daf3b37cf5207a9beb5",
+      "baselineContentSha256": "a59198c1a2fa26f5bb365fd9d4bd0449e440c7f86df8b3507e61854f63ebb7ae",
+      "currentContentSha256": "a59198c1a2fa26f5bb365fd9d4bd0449e440c7f86df8b3507e61854f63ebb7ae",
+      "selectedSeedSha256": "5fa2b83b011468ab75cede94610e3cae324fede74e8f2ea8bbdcfce4b7f79363"
+    },
+    {
+      "city": "manila",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/manila.json",
+      "baselineBriefSha256": "1bbb83057ea07f4c7f1cca938d3ad2e9252503e3b87dc50f3e079087c4912c83",
+      "currentBriefSha256": "a55ddf55d9ff60228d28a510d0ab5c53413675db5903e4e362ff9c2bccbb5d8a",
+      "baselineContentSha256": "7dcde045a3d5c76713e668387244c92d3dc0c8d2cb878a95a3d6e4b4bb602ccd",
+      "currentContentSha256": "7dcde045a3d5c76713e668387244c92d3dc0c8d2cb878a95a3d6e4b4bb602ccd",
+      "selectedSeedSha256": "e73f6dfaccfa78e5e604fc9fa9233d596487fc0e4475c53a51509443188430bb"
+    },
+    {
+      "city": "maputo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/maputo.json",
+      "baselineBriefSha256": "e339726a24d369dc6f1c654b64463db9f528f09bb8b473b2e5cda38fb308523b",
+      "currentBriefSha256": "1b6bee37dc1f88e12e1f915b23d2f32502e0048ee9fd5bfac35e8714fde35bb7",
+      "baselineContentSha256": "2e19569ccbb3cfc209caccd131b422488b295a7b3852d13dd3d784f4bbb5f728",
+      "currentContentSha256": "2e19569ccbb3cfc209caccd131b422488b295a7b3852d13dd3d784f4bbb5f728",
+      "selectedSeedSha256": "db0ef2f29e78b1a4e26cf622f8b9212124d39eec04944f0e899d73ffed44d3c2"
+    },
+    {
+      "city": "mariehamn",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/mariehamn.json",
+      "baselineBriefSha256": "3ce2a661c219b8093d3451ac2ee72ea2ac6b0c6c1081916f3f485aec2414da14",
+      "currentBriefSha256": "86e2f899243be490abdc336330d8b212c4684fee624ba1104e93f9a3908d513d",
+      "baselineContentSha256": "5433cbf5915c8cc8ecd13b8d3ac4a9f549c7837a897bbad040ac39040598da68",
+      "currentContentSha256": "5433cbf5915c8cc8ecd13b8d3ac4a9f549c7837a897bbad040ac39040598da68",
+      "selectedSeedSha256": "553c7435e965ea4a7018997948c1c9c7d6ca62af6409c478110ecbab24d8cfc1"
+    },
+    {
+      "city": "marigot",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/marigot.json",
+      "baselineBriefSha256": "8b9252c8cc37b5785c2ed8d83f19accaecc1451a5bf28f9f5d8cc18b43788146",
+      "currentBriefSha256": "e745dc2e3c1582e97857d28ac023739e5de030a455f3a9ef49fafe825ae75059",
+      "baselineContentSha256": "c7bfd8b77cde84b759d3097f1479582ae2da855af108fa126e81f4dc606c2c17",
+      "currentContentSha256": "c7bfd8b77cde84b759d3097f1479582ae2da855af108fa126e81f4dc606c2c17",
+      "selectedSeedSha256": "5460fa0367aa7178cde8b2768deca100ab99ab3585bfdefe5ac3ca5813aa3aa6"
+    },
+    {
+      "city": "maseru",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/maseru.json",
+      "baselineBriefSha256": "76a062472dd2c48d0609d74b7b663cf824b3e37d4c906baffa0bf58d0fceda22",
+      "currentBriefSha256": "340e04f40329ac44580ab229b38aca2b13a0a0d4dae513f0dd473da9f584b2b4",
+      "baselineContentSha256": "6d5b477c7e3428ba1f8741db74cbb35db0490cb3df48fe7cdb5b9369c1d2d088",
+      "currentContentSha256": "6d5b477c7e3428ba1f8741db74cbb35db0490cb3df48fe7cdb5b9369c1d2d088",
+      "selectedSeedSha256": "0f7c061832ca52c85d4fea6212fced20ab248dbb8f3f2bbd42c4a157bb199342"
+    },
+    {
+      "city": "mata-utu",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/mata-utu.json",
+      "baselineBriefSha256": "7ea6b47f2b5bc39a20bede1d02599c10b549bcb1189421c87a8b7dcd3ad80e48",
+      "currentBriefSha256": "a9a1eaf33a3b774bf7ad3699ab70edb2877099bcd6a959da23debc95d1ad7131",
+      "baselineContentSha256": "f9fd8aa99b92c5dc6d4fa01b0ab59ceefec2f55c9e8d476939fbd1a5f3755710",
+      "currentContentSha256": "f9fd8aa99b92c5dc6d4fa01b0ab59ceefec2f55c9e8d476939fbd1a5f3755710",
+      "selectedSeedSha256": "10d31a001808f37c70ee9b5558295c5d4e4e34b90ff531d63d62ae9ff4b75b39"
+    },
+    {
+      "city": "mbabane",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/mbabane.json",
+      "baselineBriefSha256": "6c6909269f352bf23aaa5f8434570800aecdc3763c0a465261b7f93476477732",
+      "currentBriefSha256": "fa8e345306abc19ded431fdb1ef69089f4fb237543614553c7c393036562825b",
+      "baselineContentSha256": "cb537d60d42832514270eb2f832eacd0dfac2875742ef822992e8f3c03f35b16",
+      "currentContentSha256": "cb537d60d42832514270eb2f832eacd0dfac2875742ef822992e8f3c03f35b16",
+      "selectedSeedSha256": "98d570134ffced5c797dddca68277f0b8c1c68f084153ea660b393abcf839d9c"
+    },
+    {
+      "city": "mexico-city",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/mexico-city.json",
+      "baselineBriefSha256": "3a36817da0991819d0e601304411cc5d0e76c00430b7e05436447bab56a44bc0",
+      "currentBriefSha256": "96616c8f51ab3993e70b33e216273098a34b862528a5414d46fa68ca453b7703",
+      "baselineContentSha256": "7cecc90ef5c31c67822917ed253b7bac24c1f559905db29b017ba95cfbbfbd19",
+      "currentContentSha256": "7cecc90ef5c31c67822917ed253b7bac24c1f559905db29b017ba95cfbbfbd19",
+      "selectedSeedSha256": "42171fc03758abaf55cb3076d2bbdc757c9195ff5e7aa5fd03b4e3b4ef7ef753"
+    },
+    {
+      "city": "minna",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/minna.json",
+      "baselineBriefSha256": "0d20c9a84860d4208e8d1e8fbe7da9f4e0a792d1089126ee5d856bacddbc3d34",
+      "currentBriefSha256": "a3e27f08cb4c9e178b04bca34137a6b1b4b3bcd20f99ae5e735d92e57f62e62b",
+      "baselineContentSha256": "5ce3ab6ce3e4e555cc4d25d943d3403b22ffd331f136ee0540d4374c05486555",
+      "currentContentSha256": "5ce3ab6ce3e4e555cc4d25d943d3403b22ffd331f136ee0540d4374c05486555",
+      "selectedSeedSha256": "709f82e028a707bc987746a26e0b99218fefb53eff5de96e4912af23f8609e10"
+    },
+    {
+      "city": "minsk",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/minsk.json",
+      "baselineBriefSha256": "c9578f6ff51fd54a7c1e5911d552e682759d48ad18e373e754322e8a9cc97b91",
+      "currentBriefSha256": "33c9de497e2411289863900ac133de11768d579a97af0e471695e4804e3c1f2a",
+      "baselineContentSha256": "2befabbb0f972beb85472f7e828a7a4bb1fafb5ff55fb8c67f9592778aa42c1e",
+      "currentContentSha256": "2befabbb0f972beb85472f7e828a7a4bb1fafb5ff55fb8c67f9592778aa42c1e",
+      "selectedSeedSha256": "ebdec58b117ecb0b045d659d3789a94462c551eca5358286a699d85df2499b42"
+    },
+    {
+      "city": "mogadishu",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/mogadishu.json",
+      "baselineBriefSha256": "5ab61fc28cb61f47f90ae0d83332b83c54a5a8f4f8eb313bfffe1f8949105a7f",
+      "currentBriefSha256": "332bf29ae9dcce9f67e99f1637c61715d6edb04432390cffbe9fd8c671e0047e",
+      "baselineContentSha256": "e58450ce7c52f4b8638189e0ffeda4a0ba0081d5fe357143dee6c00252e77b1e",
+      "currentContentSha256": "e58450ce7c52f4b8638189e0ffeda4a0ba0081d5fe357143dee6c00252e77b1e",
+      "selectedSeedSha256": "aae31466074e365a399b4745bebc8529290a0ab55a71daffcdb0c5f6615d2c5e"
+    },
+    {
+      "city": "monaco",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/monaco.json",
+      "baselineBriefSha256": "de2dd0644b29dbe7a1c74e1e662bd6b865065df8249e60cbf9a85bffcb5c90ee",
+      "currentBriefSha256": "9dba3f5e83b5ae96be706319c1b92c8712d8d5cb8a485455339d0330213ad2b3",
+      "baselineContentSha256": "dcead45bcf4d1d8b7bbfeb498bb2b2578db452998e7ebcffdc69d7e6890f6003",
+      "currentContentSha256": "dcead45bcf4d1d8b7bbfeb498bb2b2578db452998e7ebcffdc69d7e6890f6003",
+      "selectedSeedSha256": "375e85a906a2e4ebe4fd28641fd5e1ac29bdb82699addc32815a3cac8c941857"
+    },
+    {
+      "city": "monrovia",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/monrovia.json",
+      "baselineBriefSha256": "dfb479b9088b1fdd500b00169a3a5caea97c48b36c7ec4c9e1ff636002280df2",
+      "currentBriefSha256": "a036486ea584e8690c137f3487fd472268c409bf144378c0e5e7747ebb515b0a",
+      "baselineContentSha256": "66fa116a935b987dd6db32e77ea7e31ce96596b73084305bb998eb646928fdee",
+      "currentContentSha256": "66fa116a935b987dd6db32e77ea7e31ce96596b73084305bb998eb646928fdee",
+      "selectedSeedSha256": "fc65b3b60b96926d35ebdcf6f21f19727dc0aebc69416f67084dea254b5684b3"
+    },
+    {
+      "city": "montevideo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/montevideo.json",
+      "baselineBriefSha256": "4482f9864dac67439c7820af2a137dc0292f44762092166435506b0b3f0d0e0b",
+      "currentBriefSha256": "a7fcd65e78a6207a692dfeaa33c96c5c780183264db63b573ad4bf12399e25cb",
+      "baselineContentSha256": "73447611bc9b44879b954e69a869176c31f63e032b466e6df7f59eb845a90e75",
+      "currentContentSha256": "73447611bc9b44879b954e69a869176c31f63e032b466e6df7f59eb845a90e75",
+      "selectedSeedSha256": "351e040ca723b9cb885f2a6d78e8da2d179b86576e9d10b0a5a2650c34e9513d"
+    },
+    {
+      "city": "moroni",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/moroni.json",
+      "baselineBriefSha256": "6d24d5b29e1beff67450854330854557793318dc5aff839b5d011c55a7363756",
+      "currentBriefSha256": "b6d9e0f13fa2f34f77b14fc46a04ebac01315a96256543d8ee9af9955650c62b",
+      "baselineContentSha256": "6f8bfe55afe77369e446ec7cdbc4b16194be03c971f9f4ddd5fa9bd7abba3092",
+      "currentContentSha256": "6f8bfe55afe77369e446ec7cdbc4b16194be03c971f9f4ddd5fa9bd7abba3092",
+      "selectedSeedSha256": "7f683ca52703ec34631f5c18d0e910035217f7b0238c20697a89d508f9dcc898"
+    },
+    {
+      "city": "moscow",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/moscow.json",
+      "baselineBriefSha256": "e1b5ef2f5d7ebd8e054ccc7378d57b02e6e9c3340bb10e138128e7fa13c36364",
+      "currentBriefSha256": "dd58bc448ac6e649c9b454643b4a8157f177a5af5bca7269437e93fe70c9afed",
+      "baselineContentSha256": "90cad04d684ec2c2c9d3ba322fa15c455e9cf1264d71007b50fb9f50915bd12e",
+      "currentContentSha256": "90cad04d684ec2c2c9d3ba322fa15c455e9cf1264d71007b50fb9f50915bd12e",
+      "selectedSeedSha256": "38fad05657b1760ee4a24f32ad72226fa43a5ec73d9a180ca5126916db811b5b"
+    },
+    {
+      "city": "muscat",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/muscat.json",
+      "baselineBriefSha256": "fa11111e95ffecf3503eda2b5dbfbfc628d19c4633b8258e8e7ab6888db74597",
+      "currentBriefSha256": "9ec5bc9de35584619011652667480387c929ddd4aa032421947ce051049a8526",
+      "baselineContentSha256": "a0cd672734a286bf02d946a4dc4c8e79df3e7605d92e0ba35820e43f807d6e5d",
+      "currentContentSha256": "a0cd672734a286bf02d946a4dc4c8e79df3e7605d92e0ba35820e43f807d6e5d",
+      "selectedSeedSha256": "6c12a7f0604b5dea54863c3c0ca36c6aae5629775d560fc7524d14cb82f3db9f"
+    },
+    {
+      "city": "nairobi",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/nairobi.json",
+      "baselineBriefSha256": "208f186fdcd25d638c4c79657e538b87a9cd50086b0fd1fb6fad539722e4e5ec",
+      "currentBriefSha256": "ad082ec00d23d1ffe7a80d1df39463ef6894a2df54658cd608da34ae24154bfa",
+      "baselineContentSha256": "0bb7ca39ee7b2e1755baabdd71c348974e6e8c75aed255ffc184a42fb637d3ea",
+      "currentContentSha256": "0bb7ca39ee7b2e1755baabdd71c348974e6e8c75aed255ffc184a42fb637d3ea",
+      "selectedSeedSha256": "bf90881883277055173cea4574612c5ae2ae34b1e3f9e91814419bc7664ad961"
+    },
+    {
+      "city": "nassau",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/nassau.json",
+      "baselineBriefSha256": "bde30fb9100f16846e7cce6a31ab88c6e5810d91b974f3f2e7ad55592fc281a2",
+      "currentBriefSha256": "d75ffbdd408029c040b6be8e734e55357855e640f77fda13743c398e03399637",
+      "baselineContentSha256": "95279508308d0b1d8290403960d4382dac8d1f74cb7c19b39aee871318bd5412",
+      "currentContentSha256": "95279508308d0b1d8290403960d4382dac8d1f74cb7c19b39aee871318bd5412",
+      "selectedSeedSha256": "e6905f89624cc2576e6d18eccde4edf1ee5d867f10b9c46a5f56ad403b7f0d61"
+    },
+    {
+      "city": "ndjamena",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/ndjamena.json",
+      "baselineBriefSha256": "1fabf0c4bf44d49034352ca71251787479165301190906a60330dba6dd8159f6",
+      "currentBriefSha256": "764f4d1319754fa7c01630de6da12f7b6a1e8f2df75c22193e941cb2943693b9",
+      "baselineContentSha256": "bff6de344c03a58aad6e31af887d11102a25e8131bdd8b3cd74406fe6d915cf2",
+      "currentContentSha256": "bff6de344c03a58aad6e31af887d11102a25e8131bdd8b3cd74406fe6d915cf2",
+      "selectedSeedSha256": "cdd268bc6d066debf14af507d2b12a25d77c669371ccb4190f64f2f402903280"
+    },
+    {
+      "city": "new-york",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/new-york.json",
+      "baselineBriefSha256": "3d36d4b0757c273bc6bc6e16214741b78389e320f8a65c645fbf1b5ea33a3a8b",
+      "currentBriefSha256": "eacaf36e99d4c43035dee7b2ca5a43653d3fa0a805d7ed5bed5ff7b82aea93fe",
+      "baselineContentSha256": "b208f256390d6ce644d66bc4566eab2bb5e017d44cc8191ba41cd2fb5484479b",
+      "currentContentSha256": "b208f256390d6ce644d66bc4566eab2bb5e017d44cc8191ba41cd2fb5484479b",
+      "selectedSeedSha256": "42476fdb1568b5602691ce7eb475f98e6f4b3a30e10337abbebb05088d15eb0a"
+    },
+    {
+      "city": "niamey",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/niamey.json",
+      "baselineBriefSha256": "22f300c0f21622ec82d064af50e015f26b8c02849cc95799f17cf8d12dd82d40",
+      "currentBriefSha256": "1b8d73c7e92ed921d8d0f6cc9e278b2c1b8c9f6b8fb6ea6941bf0fbf5b3e5ce2",
+      "baselineContentSha256": "e5ff6bcb592f51d1384e9d0fc945630f76292d908e2abcd9d4ecad5d72aa6405",
+      "currentContentSha256": "e5ff6bcb592f51d1384e9d0fc945630f76292d908e2abcd9d4ecad5d72aa6405",
+      "selectedSeedSha256": "e40923c8cbcb1132d4c9433808d2d626ad877d328d33a6fa5cc945c9cf9492af"
+    },
+    {
+      "city": "nouakchott",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/nouakchott.json",
+      "baselineBriefSha256": "f34a8667fdebcd77c257de486b75dd476c88efc7f38612d3f426c2500c7857c4",
+      "currentBriefSha256": "7fe1ab5fa26890b1a648f5119b7e6b1cf98391be26c91632458894e70fcece9e",
+      "baselineContentSha256": "b9b7e7f620347bab0f394b646e29198047000a3b1b48ec271349f08a3d33d6db",
+      "currentContentSha256": "b9b7e7f620347bab0f394b646e29198047000a3b1b48ec271349f08a3d33d6db",
+      "selectedSeedSha256": "e839df0ea25dbb9dd3de46425543603b6b400d2d9bda5c3c626057328779043f"
+    },
+    {
+      "city": "noumea",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/noumea.json",
+      "baselineBriefSha256": "5c3c3142644b875331e94b0992650aa253f2ebc37bc6991109106d12ff4e2db2",
+      "currentBriefSha256": "ca4a121626d11ba06c79b033316ba256cff627cc7fc1a713d4d78d2bf3d2a2ae",
+      "baselineContentSha256": "08ecbcf0a22ae1d9dd7c922cd668038fd283282455930db637a360dc54687795",
+      "currentContentSha256": "08ecbcf0a22ae1d9dd7c922cd668038fd283282455930db637a360dc54687795",
+      "selectedSeedSha256": "65ec97ef4dd0499527da0a50d133a04f01686045fcd0fda708fa1609513f7e01"
+    },
+    {
+      "city": "nukualofa",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/nukualofa.json",
+      "baselineBriefSha256": "e4bc0d5bdf1bca422f7c9d44ff9c5d3c11712e6fea40c4963e87829c28e82d41",
+      "currentBriefSha256": "f8c164d57ae7d593c10d805ae9d01bec64fb49d8d321302737243f2b51c54ec4",
+      "baselineContentSha256": "a0e2890a5f2e4cbcfd018f2adf3c7df0ab7edf7b8863cc0040467ac235ff9083",
+      "currentContentSha256": "a0e2890a5f2e4cbcfd018f2adf3c7df0ab7edf7b8863cc0040467ac235ff9083",
+      "selectedSeedSha256": "be48fa3abca7d3450bd45fa708125c856a0fbcc151020727e8aa0de3a0ac0765"
+    },
+    {
+      "city": "nuuk",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/nuuk.json",
+      "baselineBriefSha256": "6105ffc86d7889a8a820f5487f63bb5ee821f350b5d0289ca4d19317c55e158f",
+      "currentBriefSha256": "1bc90fef42b6b40257426c810bd9ac7ee5afad0e95c4c8d1c490f6c5eb5700ad",
+      "baselineContentSha256": "cfbb84d99b1a64a45ecf999dd7721af2c591935a5e3b3120824f29938425f4c6",
+      "currentContentSha256": "cfbb84d99b1a64a45ecf999dd7721af2c591935a5e3b3120824f29938425f4c6",
+      "selectedSeedSha256": "e6c022a62b24f9b0384e3240d3d69b0156feae9eaa0d7efb3e36f517cab2c5b4"
+    },
+    {
+      "city": "oranjestad",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/oranjestad.json",
+      "baselineBriefSha256": "e892f4fb4bddcf9f61a4041dafdf95d7d929dd7b41726ddcd46dd4b7013e8fd4",
+      "currentBriefSha256": "a34062e2cb876e87e400658ac2188a32f1a50a2ee8e6ab6970d1c70fb44c8686",
+      "baselineContentSha256": "a5c8d68e3fcfff312218cf632cc6a4e2d04f0621c63b50910cbd0a37928ee4c4",
+      "currentContentSha256": "a5c8d68e3fcfff312218cf632cc6a4e2d04f0621c63b50910cbd0a37928ee4c4",
+      "selectedSeedSha256": "b57a744c4d30d6adb569dd47e08ff210dd02914e62859f597ee753bc38e27863"
+    },
+    {
+      "city": "oslo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/oslo.json",
+      "baselineBriefSha256": "283869d856975636a78372e8ee1b21c244486ce933df77340a33d59c782e1577",
+      "currentBriefSha256": "882db61feaacb1cc2154f6964cbc6ccc31d20007a33800abaeda6d317b2d28ec",
+      "baselineContentSha256": "d06ada27306b63f270e6fd0b2c783b9b21d64d1e167d281724280ed7fdbabe45",
+      "currentContentSha256": "d06ada27306b63f270e6fd0b2c783b9b21d64d1e167d281724280ed7fdbabe45",
+      "selectedSeedSha256": "9f4ddb86b94ef100151c3128646ceee2ab8914dad4be4754ba21727db2dfd55f"
+    },
+    {
+      "city": "osogbo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/osogbo.json",
+      "baselineBriefSha256": "5879c1a59263c77416a82f950e53bd4dc1304220839fdaeec02f5932606ac00d",
+      "currentBriefSha256": "18a981ce9f631cad6142731933d83e2049529d9ca125ea746c2661d6c95f4426",
+      "baselineContentSha256": "6338ff52ba7ed059f190a401530eee89e6954b002ac18f67b6e8359ca04a61b9",
+      "currentContentSha256": "6338ff52ba7ed059f190a401530eee89e6954b002ac18f67b6e8359ca04a61b9",
+      "selectedSeedSha256": "53ab0472178dbf20e293261d1c358f7b1fa1363c9dcaec70a85f37c240a7e095"
+    },
+    {
+      "city": "ota",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/ota.json",
+      "baselineBriefSha256": "da267fa007408a6e3fbde285cdde742e353c803c8efc378f35a238dea28b7d97",
+      "currentBriefSha256": "24d709bc9790b6137f884f5a0a6ffba77d0eb3a24d2fcc2e49a531a6af6b1f47",
+      "baselineContentSha256": "16565fa82b2b05052d8cb943b0417fdd3ea498c94ea44826ad97f96fa24d3be9",
+      "currentContentSha256": "16565fa82b2b05052d8cb943b0417fdd3ea498c94ea44826ad97f96fa24d3be9",
+      "selectedSeedSha256": "fe1d8fa27d5c79fc5619e5fa6683e394add053c112b128fedc46baf548696d73"
+    },
+    {
+      "city": "ouagadougou",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/ouagadougou.json",
+      "baselineBriefSha256": "297bed6f554415a595e955956b2b7d62d1426ae9855eb77dddec1f79baa39f13",
+      "currentBriefSha256": "79e712b49403b592c3a2400582b14cbfb585d7e29bb49547c62395cb37fc49de",
+      "baselineContentSha256": "45480fd02c4968ea10eaee1887e3a82fdb2c4952c2bad7bedf38438ce09a0a5b",
+      "currentContentSha256": "45480fd02c4968ea10eaee1887e3a82fdb2c4952c2bad7bedf38438ce09a0a5b",
+      "selectedSeedSha256": "eee59ef5aa4c711ada6de5d9814fcbf4360f2c5709d2c939509363da665d3a9b"
+    },
+    {
+      "city": "owerri",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/owerri.json",
+      "baselineBriefSha256": "62228e719e5f061bec5cf9e6130deee1408b1adf69137e5aa3ae1ec3515659a4",
+      "currentBriefSha256": "f855ba14efe8962ef81e56ece2daad65611eb78bc7937c753339d2e9ed9664fc",
+      "baselineContentSha256": "9228fd84cb8a8d06b4593ba8dc74071147d41f44274d20a52248dd73803068a1",
+      "currentContentSha256": "9228fd84cb8a8d06b4593ba8dc74071147d41f44274d20a52248dd73803068a1",
+      "selectedSeedSha256": "d8b6ffdae51db1ce4cfbf8b1ffbb63338ebb2e3d306b4fb31fa8b8f2f1d01620"
+    },
+    {
+      "city": "pago-pago",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/pago-pago.json",
+      "baselineBriefSha256": "fcf689b0e7a90b0ed890ef48d529aa8836a1ceaa14c520bd97a5f90c9f55474d",
+      "currentBriefSha256": "34c3f49dfc61196ec73c9f729edbcfc47be882d95586e3420b8c55857bcff3e2",
+      "baselineContentSha256": "9085b263a288b418b2d8517d34faa45892ce1af08547d9f7c3275305944fe03d",
+      "currentContentSha256": "9085b263a288b418b2d8517d34faa45892ce1af08547d9f7c3275305944fe03d",
+      "selectedSeedSha256": "72aa44272a9d0119537447f26caecff9b98a5d812b892a17190eb26c0177d358"
+    },
+    {
+      "city": "palikir",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/palikir.json",
+      "baselineBriefSha256": "3878b2f8baba499362cb90e359c974202d39b1110760cb6525d1d69d7564d555",
+      "currentBriefSha256": "13b6bf83033f66a480ecb5fc07983a3ca10ea68993795c32ad3164ff7accd481",
+      "baselineContentSha256": "0d0354012df9942e829f2957e728a85f0263b7ea14b3fdb0187fa1700f7f9b64",
+      "currentContentSha256": "0d0354012df9942e829f2957e728a85f0263b7ea14b3fdb0187fa1700f7f9b64",
+      "selectedSeedSha256": "c2c155e5ede5c8019c235e077041b0dacc85d56c53328963e4da52f3194a0543"
+    },
+    {
+      "city": "panama-city",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/panama-city.json",
+      "baselineBriefSha256": "2b96feaa03d252f5aa0c99e857ed22da7605dcb7731e6a6176bdf6b9e7e975b8",
+      "currentBriefSha256": "f23383816698c658a08a9d624090027bb4a4535bfe5e725e3852396b844cff2e",
+      "baselineContentSha256": "4177f79486e1c29ab4f152983ab2d9d3035fdbbc74cf54e100ae51fd29ed484f",
+      "currentContentSha256": "4177f79486e1c29ab4f152983ab2d9d3035fdbbc74cf54e100ae51fd29ed484f",
+      "selectedSeedSha256": "8118db8ab76edc6c2b3582ed4b08456844cab2309b95d8bd7ebd7da84045e305"
+    },
+    {
+      "city": "papeete",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/papeete.json",
+      "baselineBriefSha256": "43669a0b656bf27afb6660df5b180b0e9e63de36318129c7c4c8f16a3ef516e8",
+      "currentBriefSha256": "27ac0ee1561dffa7c44c14934f13a7fef635eb56a5d5a94930de4923c9c85a13",
+      "baselineContentSha256": "c6209085f03c242bd13705cdc00aafff7c23ba6d669870bfa34aba7cbc7365ea",
+      "currentContentSha256": "c6209085f03c242bd13705cdc00aafff7c23ba6d669870bfa34aba7cbc7365ea",
+      "selectedSeedSha256": "3089aea872b98fb805bf17aa3e9c856ac10750774030302d620e684b478b525d"
+    },
+    {
+      "city": "paramaribo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/paramaribo.json",
+      "baselineBriefSha256": "5bf2e03b52cf0670900891261bd0935e139496b92acade19cd5654f2ef29b163",
+      "currentBriefSha256": "c109fb1510a06277a018286f1366ebe7d82efaa6b84b9975a822cbbee606fadb",
+      "baselineContentSha256": "d6484c6fa23013dddfa406f828065dd33c7ddc4a5b0cee9914698e7e0a14c31d",
+      "currentContentSha256": "d6484c6fa23013dddfa406f828065dd33c7ddc4a5b0cee9914698e7e0a14c31d",
+      "selectedSeedSha256": "6f00270208dec92fcab485cb1d621b9209c180583acc6091ef210c35740cb32b"
+    },
+    {
+      "city": "paris",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/paris.json",
+      "baselineBriefSha256": "b2d0292c321a85dd2f3cccf71e4855f205c8a2d8f44aaabf1cdf0e16f6cacd58",
+      "currentBriefSha256": "5b430208290cf73a92c767c7696fcfcf650a8ae3f6cc594b24c479284cf8180f",
+      "baselineContentSha256": "dc6377f68c3cd8802634b4fe5f0132480de6dfc619d0ce3a383db36fb3a4bf05",
+      "currentContentSha256": "dc6377f68c3cd8802634b4fe5f0132480de6dfc619d0ce3a383db36fb3a4bf05",
+      "selectedSeedSha256": "4fdb45d61ceb8b564732ccd30df08e45467501e9b32364269e578a3703b996d1"
+    },
+    {
+      "city": "philipsburg",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/philipsburg.json",
+      "baselineBriefSha256": "97b93d3c4b84adaef1cea0af239d12d2b0412994b1f85b8e3f2031373f49b1d4",
+      "currentBriefSha256": "7604aa38e3e068b60d0cfce00496651512b830a839cd60a6a5d3fc1a36aa52c4",
+      "baselineContentSha256": "48152e18ea0a04e902bef33a87a02b53bc019f7c09cb5328bb1e42475a084593",
+      "currentContentSha256": "48152e18ea0a04e902bef33a87a02b53bc019f7c09cb5328bb1e42475a084593",
+      "selectedSeedSha256": "14c90059082ce8c6fcbb0739298239c9789d67b748d91f07e97ec2ff168ce0f1"
+    },
+    {
+      "city": "phnom-penh",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/phnom-penh.json",
+      "baselineBriefSha256": "09ee4580303a13adc59a40eec085599df21acea044aa043e11eb932d27eb6121",
+      "currentBriefSha256": "73fa374a829483199e20c844929f990ca34853efd8036004f74f10926c5f0aae",
+      "baselineContentSha256": "c01ee548d932f0c4ba6bb50d260fd601ef1e10ef7757165f15eef3730dbddbe7",
+      "currentContentSha256": "c01ee548d932f0c4ba6bb50d260fd601ef1e10ef7757165f15eef3730dbddbe7",
+      "selectedSeedSha256": "3a3501e52401e50b6efda99890d631ddc2e26c73a1ada47086eda985c45c8175"
+    },
+    {
+      "city": "podgorica",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/podgorica.json",
+      "baselineBriefSha256": "4014b1105e05d0dc5e2d8debbcbb1eab46154514b8812685e58047d9577fe3ce",
+      "currentBriefSha256": "5aa025b297bdc892cd26832af5a9ecce763b5dee6c2960d8c80e7ab90183005f",
+      "baselineContentSha256": "75efe548e3e477c86993ee98df7a94ed85ccba4fffe06d4c672251a3da9c047c",
+      "currentContentSha256": "75efe548e3e477c86993ee98df7a94ed85ccba4fffe06d4c672251a3da9c047c",
+      "selectedSeedSha256": "a7c2df0e7499776fb3dbd922fd98e26e8bb260108cd85a9145060637d11c5c80"
+    },
+    {
+      "city": "port-au-prince",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/port-au-prince.json",
+      "baselineBriefSha256": "d21195d5cec255ea253997c18a43dfa366968e30729c18da9e6f48c9b78945f4",
+      "currentBriefSha256": "38e3e0f85151583a6505ad5c60d14f02cfabc4cca15ccf647c76c3bf0f870e59",
+      "baselineContentSha256": "96791dc7414b53d76052e312c2522b3a5a35d4a3f52dfaabf1b7fd7c7360134b",
+      "currentContentSha256": "96791dc7414b53d76052e312c2522b3a5a35d4a3f52dfaabf1b7fd7c7360134b",
+      "selectedSeedSha256": "05908630285f6e6d6369588e807b8a962e5ea34f2e20ff7cbfde7fb710d66ff9"
+    },
+    {
+      "city": "port-aux-francais",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/port-aux-francais.json",
+      "baselineBriefSha256": "8fe5a7160007ac28818ba05bfd13445a7807186436789ae4fdf2296b9ed300e8",
+      "currentBriefSha256": "ec7297fe501883071f46f9f4b98f6b3451bc87e19429c918647705b43dfe6ec6",
+      "baselineContentSha256": "e0876071fdcc8bcc7402382f846db5c9cba84e4343ace183f1a67d4226042ac5",
+      "currentContentSha256": "e0876071fdcc8bcc7402382f846db5c9cba84e4343ace183f1a67d4226042ac5",
+      "selectedSeedSha256": "ab451564ace6f094af919e8a0e70dfe44cc73afb2606e9afcfc8d51481be8631"
+    },
+    {
+      "city": "port-harcourt",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/port-harcourt.json",
+      "baselineBriefSha256": "6f586cc6946cf91aae837ea3c73f93e7b2784d6863f8eb6a06119560ce23633b",
+      "currentBriefSha256": "5898ba1122d19d6eecafe9f5ea9ad38569a0e70efa8f8175d9bd382557b37a2c",
+      "baselineContentSha256": "fb5d9677a4d7f2504536c8d128fe091924e343243e7be04730696e5ba1d5d8a4",
+      "currentContentSha256": "fb5d9677a4d7f2504536c8d128fe091924e343243e7be04730696e5ba1d5d8a4",
+      "selectedSeedSha256": "76b764d3c9bdf0f612ce261db01198b21bb2b6f551f7518395aabeb2a0c2a036"
+    },
+    {
+      "city": "port-louis",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/port-louis.json",
+      "baselineBriefSha256": "da7066004793c6faefe3cb61e787e8ae28555b115db97b52529fd242371a42ef",
+      "currentBriefSha256": "979cf5fedc213101856a52f61b2894193ec5afeab3964cf4bcf00c91559fde47",
+      "baselineContentSha256": "869172a56a491ca5059b995d6bf285b34c1491a2f559a9bcc1db42a0e1f9ea6f",
+      "currentContentSha256": "869172a56a491ca5059b995d6bf285b34c1491a2f559a9bcc1db42a0e1f9ea6f",
+      "selectedSeedSha256": "04ab28dc0f8358cdb235326d3aceefb8157faa0aaf311017fa2ab35aa4a043b8"
+    },
+    {
+      "city": "port-moresby",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/port-moresby.json",
+      "baselineBriefSha256": "a08726fe15e15272a65dfc0ffa3215b0bb3e3a4fb3fa50be418259b8f83ff2d9",
+      "currentBriefSha256": "ad3b17eeb3cbeaa3cb175867b1eb4befcf4a8602f4d6a8ca48c9956bd8d701da",
+      "baselineContentSha256": "bf10c90079a7e68c35a9ac10f6cf8a7a7f27d25d60fc393b982c4d539f8a744d",
+      "currentContentSha256": "bf10c90079a7e68c35a9ac10f6cf8a7a7f27d25d60fc393b982c4d539f8a744d",
+      "selectedSeedSha256": "c8cdf63a37b3fc418e4993bc60bedb829fc1590ecafa8ee9b76d81fbb047d871"
+    },
+    {
+      "city": "port-of-spain",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/port-of-spain.json",
+      "baselineBriefSha256": "909160202300495f6dc25cd367eb7b0362d7c1e0d1fc1702dfd6deee1c06c3d5",
+      "currentBriefSha256": "0411041f64afe0c676fd774fd65a321ed24434d71ce585dc33b84cce3a8779ea",
+      "baselineContentSha256": "10959040bd644be07bd03da993ce38a77ba1d587e69c8d5c79695495ddd8ebae",
+      "currentContentSha256": "10959040bd644be07bd03da993ce38a77ba1d587e69c8d5c79695495ddd8ebae",
+      "selectedSeedSha256": "0d025f09cc54bd500ec6590aed5f228e0b21e4e083060619553bf052844f5a94"
+    },
+    {
+      "city": "port-vila",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/port-vila.json",
+      "baselineBriefSha256": "4876b7435c446718883a982eb103942c691de971d0463fdd86bf88dd1248953a",
+      "currentBriefSha256": "41501c827a6e7e5dfec73d1a304849fc9483024d84bc638e518124a81098eb0c",
+      "baselineContentSha256": "1147740d7912c8c6e06451c50eadc036395c8d48ac975ef727c4fe7b5a936882",
+      "currentContentSha256": "1147740d7912c8c6e06451c50eadc036395c8d48ac975ef727c4fe7b5a936882",
+      "selectedSeedSha256": "c789529ee5d8cbd0e1857d76256881bdd8b17f85ec30f58e00f4b0a93761a06e"
+    },
+    {
+      "city": "prague",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/prague.json",
+      "baselineBriefSha256": "07629558319bd9a8c292db9aa390644231372f45a9135d3e9e04a017d95d0471",
+      "currentBriefSha256": "e069848961bbbd5c3dd2b42bf435242719be70d94be737192d70f46061d14ac6",
+      "baselineContentSha256": "c78136d88e39d48c0b5712e1c7426c964ccf044c393289089c76027009e47f09",
+      "currentContentSha256": "c78136d88e39d48c0b5712e1c7426c964ccf044c393289089c76027009e47f09",
+      "selectedSeedSha256": "6f04868ab26915eafa65c34c2de2ed5a74693a9003d7765ad9dbb5440fd16c4f"
+    },
+    {
+      "city": "praia",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/praia.json",
+      "baselineBriefSha256": "9cee3622baf19af8320ac40ab8ad2a2afad04987fb2bfba9b80cdf873e72e76c",
+      "currentBriefSha256": "2638fffcb412b5139a8f30766ab8780293f3a3683c5cdd04cc5f79cbc0063312",
+      "baselineContentSha256": "1928901710c36b214fdc72ea1d7d9e02460469dc32c292c780af483a3e8f158c",
+      "currentContentSha256": "1928901710c36b214fdc72ea1d7d9e02460469dc32c292c780af483a3e8f158c",
+      "selectedSeedSha256": "413afb75aa7132572d0fff5a50a0c1cd1eb36ff48fb599c026c9e575f81c376e"
+    },
+    {
+      "city": "pristina",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/pristina.json",
+      "baselineBriefSha256": "33b3f37330e3632be95126876c032cf195db5cc73a853c22f7db43a6bbe6e58b",
+      "currentBriefSha256": "f7e9488193a96bc9b98c8e8a0f09e3380a32da7fb4077a63a0fbbc4cd9a8ccf0",
+      "baselineContentSha256": "541bd40099ae1163901207c049be38962c2647cf2476f15cd061fa454b1fccfa",
+      "currentContentSha256": "541bd40099ae1163901207c049be38962c2647cf2476f15cd061fa454b1fccfa",
+      "selectedSeedSha256": "4cdda4ec8726bc962da73889433e7d9c6f6dee8d362aeb66ba1065e942aa5e66"
+    },
+    {
+      "city": "pyongyang",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/pyongyang.json",
+      "baselineBriefSha256": "be4df4eafdead3aaf37c19f4d3a67ede724a767fc6b02d200ca27cc218da87e1",
+      "currentBriefSha256": "700a6dafef776f06a19c8c3487466376759e76ee4ca358bf82a017270e6841b2",
+      "baselineContentSha256": "31107f5466414239c0080fe763319fb708bc8fd0204fb26bdfb4823b89dcde4f",
+      "currentContentSha256": "31107f5466414239c0080fe763319fb708bc8fd0204fb26bdfb4823b89dcde4f",
+      "selectedSeedSha256": "68e4443c14f95a181de1968ed608d32036b39111d0a8adb24fadc4620bf3567a"
+    },
+    {
+      "city": "quito",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/quito.json",
+      "baselineBriefSha256": "570c93822dead7ed4f37e9a6b4c27d4f8bb46c050d292f83a1841f2078afaa1f",
+      "currentBriefSha256": "44842122a7af572da891945501f1b6b6bf85b883f3aedc06e96008f4e55e5d61",
+      "baselineContentSha256": "721f3939ad504d03a7c6ce7f7ce858c81ac825001fb1b3b7556d9aefdc5dd54c",
+      "currentContentSha256": "721f3939ad504d03a7c6ce7f7ce858c81ac825001fb1b3b7556d9aefdc5dd54c",
+      "selectedSeedSha256": "f5757e29ef7588588c3ad88530d63f2eecec644aa504a45c87d0dd3fd03dbb7d"
+    },
+    {
+      "city": "rabat",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/rabat.json",
+      "baselineBriefSha256": "ed06ca65359d52402e2df0abe2e5b8c81d30c0a24adbebc1638f02572af949eb",
+      "currentBriefSha256": "952237264f59d56340392c381145ab4313bf320f42543c31d1c31118968c4dee",
+      "baselineContentSha256": "d3dfe2205c75ac9225a14b3b43f00ab61262ffea03320e922e0b5e65caa1846e",
+      "currentContentSha256": "d3dfe2205c75ac9225a14b3b43f00ab61262ffea03320e922e0b5e65caa1846e",
+      "selectedSeedSha256": "72892f72fa87fbd16f5bc88f60132c30939a526f4fa4d1f619e722ca8db531eb"
+    },
+    {
+      "city": "ramallah",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/ramallah.json",
+      "baselineBriefSha256": "1526c602214f7dcc5e629fcd037e39820ed4b9b09b6e616dc8cdd73717f3d858",
+      "currentBriefSha256": "3e6a080319bcc9d45e55533cb343191e0d6fec18b73fb972a9d3b648eeb2a28a",
+      "baselineContentSha256": "32f135d164be538e6c2d81b4f07b81f4756a71cbd305cac8ced26f5db4752887",
+      "currentContentSha256": "32f135d164be538e6c2d81b4f07b81f4756a71cbd305cac8ced26f5db4752887",
+      "selectedSeedSha256": "4812b64c48b3494820ae6095da9d28a984a747687338b01920c1b18b640bd5b7"
+    },
+    {
+      "city": "reykjavik",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/reykjavik.json",
+      "baselineBriefSha256": "6b7ee1c4188f3a637254aaa1fa729842d376b112100b7e5c0a0c45b6555aec3f",
+      "currentBriefSha256": "f1bbef0eb668ac917346ee09171af6653bfb45ded0c3e13bf1f9963d672618a2",
+      "baselineContentSha256": "96578f431fbdfb3b3144e9c29b97383b95a1393f6a793977764183b7fd3e4656",
+      "currentContentSha256": "96578f431fbdfb3b3144e9c29b97383b95a1393f6a793977764183b7fd3e4656",
+      "selectedSeedSha256": "6dbeaba3fb31abfd753593b53325c65a3298b46d723cb74d35e95374d046e8bc"
+    },
+    {
+      "city": "riga",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/riga.json",
+      "baselineBriefSha256": "ae5a3fd75a3e4cf103e3a037eb9edcc6e9edb1a529d35b5e72a892cf3484e6e1",
+      "currentBriefSha256": "3de0219eba42ed350344d8bd50395ac1338dc614f5f9aabda3a10e3a440ba042",
+      "baselineContentSha256": "668d50cbcded1a639bf4c6a9d28ed12d60243f96ee1194c03722e313ef907938",
+      "currentContentSha256": "668d50cbcded1a639bf4c6a9d28ed12d60243f96ee1194c03722e313ef907938",
+      "selectedSeedSha256": "1aba44a902613cc33a740f0e0ca482c81420c295ed1763de304a7ec345d1ed34"
+    },
+    {
+      "city": "riyadh",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/riyadh.json",
+      "baselineBriefSha256": "b74ee7906f09cb6c6e7ac9dc2a28ac69334f380c4485bee93b9837e150120f83",
+      "currentBriefSha256": "0475420db8a0bae85bed21b9e29af2718d0f5d2628b4d78856165c85b5f0f960",
+      "baselineContentSha256": "2d74170ed02b4abdbc1349818abfaafadb7b22f0d6eaaf3befae45b34b08aebc",
+      "currentContentSha256": "2d74170ed02b4abdbc1349818abfaafadb7b22f0d6eaaf3befae45b34b08aebc",
+      "selectedSeedSha256": "760a4959fb93742132c01ab0cf8dbf62a856025a7755f4c4cb6e68954e5de9fe"
+    },
+    {
+      "city": "road-town",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/road-town.json",
+      "baselineBriefSha256": "005e7d4fac723994953d63c889e68dc3ec8a5baa68359d98d1385f40ffe00b45",
+      "currentBriefSha256": "83379326f6ee6b429fede96895fcda34707f8a2b335f365dda79bd4e916be1ad",
+      "baselineContentSha256": "212601df94115bfceff52e5f4864f83a9b38c7ebe82afeea958b4a3a772cbf4b",
+      "currentContentSha256": "212601df94115bfceff52e5f4864f83a9b38c7ebe82afeea958b4a3a772cbf4b",
+      "selectedSeedSha256": "6deb72ddee1a8de5bf4908cb13632c4a5eecd7c2070086ad08c7bd4950047895"
+    },
+    {
+      "city": "rome",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/rome.json",
+      "baselineBriefSha256": "01952331640b852f1b3efb5ed4d06c54dac9b80feaec18606c446bd9bacabf6c",
+      "currentBriefSha256": "663f2ff0ca8a6f948cf573af0f2d54c8e75e5abf2c1a2057569e24aaf08b8361",
+      "baselineContentSha256": "792f04405131d1cbc553df64ba649af383bd3fbaf5d9acc02f96384a9ba830bc",
+      "currentContentSha256": "792f04405131d1cbc553df64ba649af383bd3fbaf5d9acc02f96384a9ba830bc",
+      "selectedSeedSha256": "3dff03d913d8cc568f4dc3ad49bbbd62c90c2c5d965a1e923d57add5db6d11ad"
+    },
+    {
+      "city": "roseau",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/roseau.json",
+      "baselineBriefSha256": "d521443a988102ebbe5dd75230bc632a069ffd96e005cdb4241f8f783c9fa7f4",
+      "currentBriefSha256": "d24b9956f137738c7076eb82fad1fd4c400b36cef1d466a1d1efd9248c89377c",
+      "baselineContentSha256": "2b8161e0d552352677d1b591f8b35b79c543832953b0b5cc2db15081a6e5aee6",
+      "currentContentSha256": "2b8161e0d552352677d1b591f8b35b79c543832953b0b5cc2db15081a6e5aee6",
+      "selectedSeedSha256": "73eadb06bc2af5c3712d603f08449228a021f5ae66249249c675e411d977d51f"
+    },
+    {
+      "city": "sagamu",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/sagamu.json",
+      "baselineBriefSha256": "d7b5da3bde05f558475dfdfde921a21c0e8608f3c11d435f5517dc1c8c1d1b5e",
+      "currentBriefSha256": "705bb2baa7d4ba54b9259f27f3521d40f34547d0fe1d6518d54d0b19b09a8d82",
+      "baselineContentSha256": "fe8f88bbe2aabedb5c131f234c80ce563b2916370ef56124fed87032dc4414ac",
+      "currentContentSha256": "fe8f88bbe2aabedb5c131f234c80ce563b2916370ef56124fed87032dc4414ac",
+      "selectedSeedSha256": "a4d07cd6531b542faa0807dfed020db5bfc18dbd88096d56adc91952824e89fe"
+    },
+    {
+      "city": "saint-pierre",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/saint-pierre.json",
+      "baselineBriefSha256": "91834723808663a6fc0cdfb347d65f999c960741eb167d67beb29d8b50d5bdd9",
+      "currentBriefSha256": "682ac53833bb26098debf3382dfaeaffd1c65a1b979a5c3a0056ff434f73ac2d",
+      "baselineContentSha256": "74c414962c56d1b5b3a1106945c47f31aee4fe882b19fb3bbefedf27c601a0f9",
+      "currentContentSha256": "74c414962c56d1b5b3a1106945c47f31aee4fe882b19fb3bbefedf27c601a0f9",
+      "selectedSeedSha256": "9edc50aa072a92991af96e235c2a1e711ec185f7cf3725afd049c4cc43f2b4a1"
+    },
+    {
+      "city": "san-jose",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/san-jose.json",
+      "baselineBriefSha256": "da01983af88bdd095da06571f4b6c7fe2c39dee2c026028a2ea63a8b89f3117c",
+      "currentBriefSha256": "d5fd643e467a2f4c5c34c4bb4b7ecb43e3f7449c1d3346da5de3b37a44111651",
+      "baselineContentSha256": "d0737a8a4a16b870f3f0690096cf5e6e7719fa5e575222974477748421806c56",
+      "currentContentSha256": "d0737a8a4a16b870f3f0690096cf5e6e7719fa5e575222974477748421806c56",
+      "selectedSeedSha256": "10f654e3575983fa8393d15978b14f87eca17259aef15acc900b602571275724"
+    },
+    {
+      "city": "san-juan",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/san-juan.json",
+      "baselineBriefSha256": "45d64004e0d42428ba9e76e9d4178454a5303860f82a743328f2ea03c638217f",
+      "currentBriefSha256": "e4310029288db4fc7ac79e5c1656dda6ae4eb23f44ff4a31300be4a0faf570c2",
+      "baselineContentSha256": "d3e9aff6c2780416d0d40e01f19d643e5e81a021c44d074502d94a88ad733e42",
+      "currentContentSha256": "d3e9aff6c2780416d0d40e01f19d643e5e81a021c44d074502d94a88ad733e42",
+      "selectedSeedSha256": "601960721987523f4c1fab508cf90d55a45cb710f90152bbe36bbe472103f075"
+    },
+    {
+      "city": "san-marino",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/san-marino.json",
+      "baselineBriefSha256": "e0db311ac0a9163a483ad1e681de66d79300c0d5c7919443a98bb50e8a3314af",
+      "currentBriefSha256": "374018860dfa2e8cbf7ecac513b6bc3c52f55582293f1a834e7c6b6046e2bf77",
+      "baselineContentSha256": "2ea76611e1b4d5975589aeda4393ef7ff33870b45a9ecbb58927aeebc29305e4",
+      "currentContentSha256": "2ea76611e1b4d5975589aeda4393ef7ff33870b45a9ecbb58927aeebc29305e4",
+      "selectedSeedSha256": "745dbfddb819d6fb2926e1c519e118cd126da0d2615437962bb870c56e7178d6"
+    },
+    {
+      "city": "san-salvador",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/san-salvador.json",
+      "baselineBriefSha256": "59461f069f8deba97c904ff1e3095830f6c2904f45181d05498942d0df59db8b",
+      "currentBriefSha256": "2dd36719c53dd64e55264f82d1b9bed269e489103f293decdaf2c58fd65a7d5b",
+      "baselineContentSha256": "694a0bb0420b3853152d1797d97e96eb916ab334ff0f539b98d8459417a43cf5",
+      "currentContentSha256": "694a0bb0420b3853152d1797d97e96eb916ab334ff0f539b98d8459417a43cf5",
+      "selectedSeedSha256": "9e1dd800c992a535e43b0399712020999752adc5a93b81f328910a554bb64881"
+    },
+    {
+      "city": "sanaa",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/sanaa.json",
+      "baselineBriefSha256": "3a6b8195b28b49ae103b2f5f0479e29b31601c0be9d4a0936f1bec15fc07a368",
+      "currentBriefSha256": "d98c0d93c9aac149a22e1e2160b0becdad52d805061b437016118fafd5c7a8ac",
+      "baselineContentSha256": "4e249d2e9849c8ca5ab30c1749fd1bdbdb8aed0bd6f8a2f52366a99ab647ca85",
+      "currentContentSha256": "4e249d2e9849c8ca5ab30c1749fd1bdbdb8aed0bd6f8a2f52366a99ab647ca85",
+      "selectedSeedSha256": "1a6ebcf33506fd06ea4b1eb8f411ef9e53d49063610d288720e2db3b11ff402c"
+    },
+    {
+      "city": "santiago",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/santiago.json",
+      "baselineBriefSha256": "30646505cfdd712ef8f964cc325b1fd5999b3c52ca84f4effc8e29209a5adc6d",
+      "currentBriefSha256": "2d8f73bfabfeca402e391b8b6bc97b394def8b1c31d9d25f5a76358c7cb7f492",
+      "baselineContentSha256": "36e98eeecdaf26d893c7efe7938a40684bdfa3b9d06ee22366492462669650d2",
+      "currentContentSha256": "36e98eeecdaf26d893c7efe7938a40684bdfa3b9d06ee22366492462669650d2",
+      "selectedSeedSha256": "7df788394083349385a1cf05ca06716b3925e9e0e8f792fe708e641aedcb20ea"
+    },
+    {
+      "city": "santo-domingo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/santo-domingo.json",
+      "baselineBriefSha256": "205ef2f133459301935cba50899128923ef32d7ced79159157e13374c37b3bc1",
+      "currentBriefSha256": "2dc5f5c09236608474d9860c311379d8d39131b182d0ea712903f342be973389",
+      "baselineContentSha256": "b524466b41b34b2266f37bf2fdfd2d63e5429a2ce996396a56f24614a8468cae",
+      "currentContentSha256": "b524466b41b34b2266f37bf2fdfd2d63e5429a2ce996396a56f24614a8468cae",
+      "selectedSeedSha256": "cefb093b760e1be3554cc97311b625e384d999674ff73b7bd44c677c2a577baa"
+    },
+    {
+      "city": "sao-paulo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/sao-paulo.json",
+      "baselineBriefSha256": "05aaa3cace926a46a4a9e8dfa4829b21af36d602972f00cfbe042f1960656d8b",
+      "currentBriefSha256": "c52dd825ce43a2c9cfa54ea2f1626c17a1d3fdeead1d5bf70d6aa1fd41f7e02f",
+      "baselineContentSha256": "6b6d59ceb96675ebdbee08d9ddf340f972d2f75948010f8ab1a5e51a76883763",
+      "currentContentSha256": "6b6d59ceb96675ebdbee08d9ddf340f972d2f75948010f8ab1a5e51a76883763",
+      "selectedSeedSha256": "ab6e9d0c1727af59b7a5b6b38ca1045a624168ccfc0797dc94674307047478c5"
+    },
+    {
+      "city": "sao-tome",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/sao-tome.json",
+      "baselineBriefSha256": "909c38ec8cc6f6fbad0e6e6b37a886a1296436946d6fc1809590dc6397033fe0",
+      "currentBriefSha256": "4fe01f017002e0228a673ea2531d35fd870a23f2a6f95a138f3f5b53b46d6ea3",
+      "baselineContentSha256": "878a8fdd6d6f27915fa9179bf8352838e7bd8cc63a0ae162f36fe31fc0571328",
+      "currentContentSha256": "878a8fdd6d6f27915fa9179bf8352838e7bd8cc63a0ae162f36fe31fc0571328",
+      "selectedSeedSha256": "802f3abe69c3cf5ea568208c8f9bc1e993319eccf0ebb85acf174abae09e1c3d"
+    },
+    {
+      "city": "sarajevo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/sarajevo.json",
+      "baselineBriefSha256": "804afb765dc3efa562834a8aae44926d7ac435edd6d60a3015fb8d6b8840b1d1",
+      "currentBriefSha256": "167d0c65565cfa409227df0beea59768de7c712ad1101437c78ec49128f5ff35",
+      "baselineContentSha256": "8b256f5760204db592eb5d1fe728423e6f82fd9744b91f92a28ccc65108d8117",
+      "currentContentSha256": "8b256f5760204db592eb5d1fe728423e6f82fd9744b91f92a28ccc65108d8117",
+      "selectedSeedSha256": "a6351c1cb1e85715a561999c0973cf2a3bf7252ecfed9a5dbd1c8c71fa852112"
+    },
+    {
+      "city": "seoul",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/seoul.json",
+      "baselineBriefSha256": "95146469182a0fc550753502a6abfe95448478d27647a63ba0595508539cb0be",
+      "currentBriefSha256": "4ceee534a7b74c92bb6d837b056c3f4362390f3a678f1d16f14135737602fbaf",
+      "baselineContentSha256": "136a88b3848a4be2f5c76a70e5d51d727f9ec537c03d8b15c7bf8d8760e8f7d5",
+      "currentContentSha256": "136a88b3848a4be2f5c76a70e5d51d727f9ec537c03d8b15c7bf8d8760e8f7d5",
+      "selectedSeedSha256": "1090c4427fdd7550570c49bc9cd82ce042a7298282e4b725bf1f0ba0775071e6"
+    },
+    {
+      "city": "serekunda",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/serekunda.json",
+      "baselineBriefSha256": "a31dce7dacd0b0036dc8a6ad4c2c07bfdc380d5049282bba6f722482634717ac",
+      "currentBriefSha256": "57f20f3dc609338ad14364b76139039dc972310dc95181597b941cef42b3a1bc",
+      "baselineContentSha256": "9050cdcb537c263dfee66b49959debbc346eadb7abd339c3a204cd02c4a791be",
+      "currentContentSha256": "9050cdcb537c263dfee66b49959debbc346eadb7abd339c3a204cd02c4a791be",
+      "selectedSeedSha256": "ce84c26e7649251b14b942560562628361ee71d3ada41d9430b6e37a27574247"
+    },
+    {
+      "city": "shanghai",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/shanghai.json",
+      "baselineBriefSha256": "8dfaf6b91f76a0a82871be8282e9ec5b30e94eb149041cbea1c40dbedd449ccd",
+      "currentBriefSha256": "958819561ee22ad6a1ca99fb7b0ce2c0dd4af9e9f1bc40a34df12d0b6930e921",
+      "baselineContentSha256": "d5b84f494240b98c8e3110ad463caac59539bd5e62d5b010a64abe2945532793",
+      "currentContentSha256": "d5b84f494240b98c8e3110ad463caac59539bd5e62d5b010a64abe2945532793",
+      "selectedSeedSha256": "79ce68d6c7f83766335ca2969451764ec03bbbb85d0577369e4ccd06855b0652"
+    },
+    {
+      "city": "siachen",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/siachen.json",
+      "baselineBriefSha256": "52c7e47df328282a35d7d0a4a56c9cc2526d039c5427c304f9c739dfb7824977",
+      "currentBriefSha256": "630ce42e6f2f222756ce81d4b01efc2123eb29e8f48f17bd4e4cc45dd6d4dcbd",
+      "baselineContentSha256": "0813db246bc38032dab3ba68d973d8b3852cde5ca961fee57f59ddf46035cb7c",
+      "currentContentSha256": "0813db246bc38032dab3ba68d973d8b3852cde5ca961fee57f59ddf46035cb7c",
+      "selectedSeedSha256": "bea953092326a6bbf54e067f42cb9ec13070fd43e2c409591f9f51867acbb652"
+    },
+    {
+      "city": "singapore",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/singapore.json",
+      "baselineBriefSha256": "9a840fde584c610bb2e475292c7f5de471bfcd5b89c511ad4ba4d83a5fbc0117",
+      "currentBriefSha256": "ee1b216850770eddfc93cc0ea7d2e431a56d3d6173f93da40d0ae8aec5ed6e95",
+      "baselineContentSha256": "61de63ff344c0c7ec3a1d2dc823a56a01ddbc68908de26fdddbf8a1378ef913e",
+      "currentContentSha256": "61de63ff344c0c7ec3a1d2dc823a56a01ddbc68908de26fdddbf8a1378ef913e",
+      "selectedSeedSha256": "25a6040ca14e1e4053aa6cb9984dac7f78402382f9871573dc2192d763417c73"
+    },
+    {
+      "city": "skopje",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/skopje.json",
+      "baselineBriefSha256": "e6663eb24187517265d275dd8806d926199cb20deb06fd7e817e13d5bade505d",
+      "currentBriefSha256": "f8b5965a48eac4a6c8dbee6519d66bb5fb5b85436d85510ad7536442683f1261",
+      "baselineContentSha256": "9f35648152800c7bebf8ac57d388a928252249eb0402883854223f4e664d0c51",
+      "currentContentSha256": "9f35648152800c7bebf8ac57d388a928252249eb0402883854223f4e664d0c51",
+      "selectedSeedSha256": "c67b4752d3e3b04f53523a0cd52506dc43adab71aff3a653c6d90c7d129e5e9f"
+    },
+    {
+      "city": "sofia",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/sofia.json",
+      "baselineBriefSha256": "e0dec6cbecc7855e5d0af0e1b592a815ab9560f0923191b76b66e1255478adbc",
+      "currentBriefSha256": "edd89e12470eb2ca6f308ee4072589320c743320176b9affd5985aecf181b980",
+      "baselineContentSha256": "a5a8729db5b7f430a27bdb6c9fc91a5a0b215eba1fa7d0b9977d11b144ba0591",
+      "currentContentSha256": "a5a8729db5b7f430a27bdb6c9fc91a5a0b215eba1fa7d0b9977d11b144ba0591",
+      "selectedSeedSha256": "3e85d32070930b2c82d834a1d7c6262fdc0a2f712b5db167ec40eb4ee0cd124c"
+    },
+    {
+      "city": "sokoto",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/sokoto.json",
+      "baselineBriefSha256": "23c109a4a8d702c25933c0582c1d13074ec39d1eed967a30891d33ad46d3f9db",
+      "currentBriefSha256": "ad7671c2cde52b6f9f40d9bd556b98ae6f98082f90ef38643f151e52dd7793b6",
+      "baselineContentSha256": "d83d70ea74b9549922c526bea8291d0d4140baa1823b67ebfe7f6727ca0be53b",
+      "currentContentSha256": "d83d70ea74b9549922c526bea8291d0d4140baa1823b67ebfe7f6727ca0be53b",
+      "selectedSeedSha256": "dfb3cadb3715833f5ee0c4bb42be104b85028da52bf991dc320387291a311586"
+    },
+    {
+      "city": "st-georges",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/st-georges.json",
+      "baselineBriefSha256": "7756751b78ebd5d863567aaf1c0246c7c77658211175f47ab1746b03d0218fd6",
+      "currentBriefSha256": "c6bc622285c78f1e92c469834a3bfea21162614cb61bcc0b1532c896c52a115b",
+      "baselineContentSha256": "541405d20945f10ccea6279538e4a945dfb74d4a6c412ce204cc30a0c9a2eb28",
+      "currentContentSha256": "541405d20945f10ccea6279538e4a945dfb74d4a6c412ce204cc30a0c9a2eb28",
+      "selectedSeedSha256": "96e7b6807f146733427df1e29c0519d8bea3ee347dfca67257b6dfedfdd43a0d"
+    },
+    {
+      "city": "st-helier",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/st-helier.json",
+      "baselineBriefSha256": "bd5c5ef067cd6e457ff9159088ccbe8657ae050918eaa5b9c0618fab76d5aeb4",
+      "currentBriefSha256": "a4ccd78ab09b590ed08b8e4d8c799020297dd0a5b392a297a66b3b54d2a20718",
+      "baselineContentSha256": "b6b7b3f6d9c94d23e527251fa41f098449d443b0965f28a39007c1141d434875",
+      "currentContentSha256": "b6b7b3f6d9c94d23e527251fa41f098449d443b0965f28a39007c1141d434875",
+      "selectedSeedSha256": "033da8fdcfee1de023229fb377a17d901149fc0d9be31158a00e279922160202"
+    },
+    {
+      "city": "st-johns",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/st-johns.json",
+      "baselineBriefSha256": "13cb3a48c21c31e7b919c77ab2e15ee633439907fb2a92ae06a29aaf057ad0c9",
+      "currentBriefSha256": "bcb575b05d18f491841f1d8dedff0d552a3419d6abd6ebf5f9c0cc19768e0f26",
+      "baselineContentSha256": "e142db10c7b5024dcff314556c47e789c3160044567c69be1864128bbb29be13",
+      "currentContentSha256": "e142db10c7b5024dcff314556c47e789c3160044567c69be1864128bbb29be13",
+      "selectedSeedSha256": "3f0c1c37c5b2a124e9b705d92d1fb67eec3cf52e4be0f405990735b5b2257d0f"
+    },
+    {
+      "city": "st-peter-port",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/st-peter-port.json",
+      "baselineBriefSha256": "837a78e4527f1ed2a2afceb0df2116a55d703ddb715d5ef1691aa38732fc3724",
+      "currentBriefSha256": "cf9563a8afe0d532deaa3dbbd7727c41841740180911b4f053a1263f09a6a1e1",
+      "baselineContentSha256": "0ca37f1930cb99d55761d2efbedd068bb5d44c4d8863b7cb9da38fa1757823ed",
+      "currentContentSha256": "0ca37f1930cb99d55761d2efbedd068bb5d44c4d8863b7cb9da38fa1757823ed",
+      "selectedSeedSha256": "1be0149047382beb229bed4c9bb7f8e3b087607d7a3a32e7fcb1c295368fd5fb"
+    },
+    {
+      "city": "stanley",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/stanley.json",
+      "baselineBriefSha256": "e51834854e56ba795dcf3fac772be90d0ab2be8c0cbf0c6ac766de89893c49fb",
+      "currentBriefSha256": "c74161a1ab17d8cb9f6912ad5e112353ac6eb3d17205a46c29f13e20b959dd1e",
+      "baselineContentSha256": "d0423089d3051c8b9f7dc091e0360a8d53209545e9164e7b84556321defccbeb",
+      "currentContentSha256": "d0423089d3051c8b9f7dc091e0360a8d53209545e9164e7b84556321defccbeb",
+      "selectedSeedSha256": "d7da354f8c21ec0abd7f45ee1e9e61e91fcf6feced3f8d62c778e9077ee376ba"
+    },
+    {
+      "city": "stockholm",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/stockholm.json",
+      "baselineBriefSha256": "f4a5e8ced02b22e09530a4e5568bb666e1ae529a1f461531e640980dac9c44c1",
+      "currentBriefSha256": "2ff6ff8cb5e25cff48eae0de7dec0e727213dd229892bea233145f9e298c4a5d",
+      "baselineContentSha256": "75ba60d9e32743543ea1d1012e8e55787e2d427dfc15a67cc31bc5a021d165b0",
+      "currentContentSha256": "75ba60d9e32743543ea1d1012e8e55787e2d427dfc15a67cc31bc5a021d165b0",
+      "selectedSeedSha256": "4138714c4db03eab2d4119400ea557717268a6c3d9b3127995fffe2c7285c584"
+    },
+    {
+      "city": "suva",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/suva.json",
+      "baselineBriefSha256": "5f2aa00ce06c8df8ca34e750020629b9a38034c6054bc750cde4930fff694a27",
+      "currentBriefSha256": "6731d0625731c09ec938a90e2a65fc22d480945b917083fe10799f639b958785",
+      "baselineContentSha256": "55cb23f8bf965d05bd45bf3adff98d97317a59124cb7d8113d3de611503e8cf7",
+      "currentContentSha256": "55cb23f8bf965d05bd45bf3adff98d97317a59124cb7d8113d3de611503e8cf7",
+      "selectedSeedSha256": "0f45b42fecd091bb3c19de33a92e3e9f7df0352956b7c4fa1e962808ace8325b"
+    },
+    {
+      "city": "sydney",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/sydney.json",
+      "baselineBriefSha256": "5281204d5301c56ea493984d6919882494418246bc66ce47e6486dfe34cba496",
+      "currentBriefSha256": "5199c57452c54cb1e70dc3b52145b39321ddcca65d8a19a6d855ea625efd24ef",
+      "baselineContentSha256": "16495aac27dc850be3ccecfcdf3b37491903277e5c59fdd72ee384988e9de146",
+      "currentContentSha256": "16495aac27dc850be3ccecfcdf3b37491903277e5c59fdd72ee384988e9de146",
+      "selectedSeedSha256": "d8dbaaaf665ba4a719bcaaebce7b8cdab594b58ceaaff3fcb5cd071d9bb8c14d"
+    },
+    {
+      "city": "taipei",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/taipei.json",
+      "baselineBriefSha256": "82b401b3981fbf52dcc066e8381c4aa35b0b4251d9e2194c9e0c4183602d6e6c",
+      "currentBriefSha256": "4109c689d54e60e4bbddecec47647f5d31b3f85a809e08c9e1dfabc4c4a0dcc0",
+      "baselineContentSha256": "1c81e5c9beada1d04d51b010bc624560124a1e68fcbb76dffa477c3559d73e95",
+      "currentContentSha256": "1c81e5c9beada1d04d51b010bc624560124a1e68fcbb76dffa477c3559d73e95",
+      "selectedSeedSha256": "96daf79cfe761560d67f01053a231eaf824ad9393c3b99d97742921902198760"
+    },
+    {
+      "city": "tallinn",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/tallinn.json",
+      "baselineBriefSha256": "f3e26aa4bb4f2752f2ebfe8f4c57f8b34fdf775a18241d0498164ae55e62b883",
+      "currentBriefSha256": "cb5cfbcdf526c322560f21427278b0752bdf10987a624f80d9f30cfb79384f42",
+      "baselineContentSha256": "f60e4036c5addf6dacafc4f0fd2ff4f95dc561e862f01f6293da9e415a3b1500",
+      "currentContentSha256": "f60e4036c5addf6dacafc4f0fd2ff4f95dc561e862f01f6293da9e415a3b1500",
+      "selectedSeedSha256": "fc583a69124c11eb980a25a42cc13fdb313d06e5216b63dba7cef29a3b27672d"
+    },
+    {
+      "city": "tarawa",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/tarawa.json",
+      "baselineBriefSha256": "cd2eb2a32e8452fdd1708a93b5a94cd6746a44b5dc9f7e21c6d60b706c529e88",
+      "currentBriefSha256": "484ccdac853bb55e275d7c9369b3a963f746f745101451d8c83cecd8e1848ad8",
+      "baselineContentSha256": "688a6c2d9241d41098d143429e0ee62e6c9200e301da4ba64b48db2030cf6282",
+      "currentContentSha256": "688a6c2d9241d41098d143429e0ee62e6c9200e301da4ba64b48db2030cf6282",
+      "selectedSeedSha256": "72e36def102a04527b5ce5a2d70ab6103841c0f5e4380985b80b492f321649ca"
+    },
+    {
+      "city": "tashkent",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/tashkent.json",
+      "baselineBriefSha256": "4e56e205f4b5f98bb27357f0f1914813c32ed06bc2877b147de878e79a3a92fe",
+      "currentBriefSha256": "262ed6509af3d43c5bcd50eae07aa11b11f613cadcc48a0ed9491d8badbd4253",
+      "baselineContentSha256": "1ef57fd6fbed9bb764542e286d984894e73a4cfc14e8621288121b75302594ae",
+      "currentContentSha256": "1ef57fd6fbed9bb764542e286d984894e73a4cfc14e8621288121b75302594ae",
+      "selectedSeedSha256": "3f3650428348d78c5b0b354d9f76b3a0cdca4d10e6d64c76d29e54435bfef898"
+    },
+    {
+      "city": "tbilisi",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/tbilisi.json",
+      "baselineBriefSha256": "cdd4c7913357b174550ffba6708ccf8da5ce297f967b4dcd99b54fbf275b96e7",
+      "currentBriefSha256": "4b7975e1ecdefeeafefb1ed382bcb16071d10fb966d77e457a38c1e0e050c623",
+      "baselineContentSha256": "a867baf23179c626822cefbf6908fcc737e6e9cc8cfe0306b641bdff643a3407",
+      "currentContentSha256": "a867baf23179c626822cefbf6908fcc737e6e9cc8cfe0306b641bdff643a3407",
+      "selectedSeedSha256": "b1b5065192ab1f5388768e6e873ab7c33c8f01475d8629428bb8cf1a6314cfae"
+    },
+    {
+      "city": "tegucigalpa",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/tegucigalpa.json",
+      "baselineBriefSha256": "cb8e2a7e11173557185fbc79c73bc68a77d8d7281a9e2e1d167b529305b7190e",
+      "currentBriefSha256": "d703ac1bbb246574a5e978fe2d29808ff1284788bd13d046d07b5fa3030fd74e",
+      "baselineContentSha256": "6c52166f36ca66140a1bf5eed92c784e51bdc88976078810628af09b2023dcba",
+      "currentContentSha256": "6c52166f36ca66140a1bf5eed92c784e51bdc88976078810628af09b2023dcba",
+      "selectedSeedSha256": "07bf5371af84a38f718c6f19a9dc8ba74a89029ac322e06a848f0acf1983fd50"
+    },
+    {
+      "city": "tehran",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/tehran.json",
+      "baselineBriefSha256": "3d7c40c01e908c02b31f2fd4b554e81044bbeb3f8de6d66d1d2f6cc48ad10286",
+      "currentBriefSha256": "827da0684c49b8575f89e4df15e52ec8f8ec74608e949a3d85aeceb498c75fb7",
+      "baselineContentSha256": "4e2823191b8dd1d00a495e0140a3580f1be3956f4f333e6a1ff60da3bf0fc3b3",
+      "currentContentSha256": "4e2823191b8dd1d00a495e0140a3580f1be3956f4f333e6a1ff60da3bf0fc3b3",
+      "selectedSeedSha256": "1df7ca36580416c3b3e1225da17ae779939b7cf96028d605a025e03288c53e94"
+    },
+    {
+      "city": "tel-aviv-yafo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/tel-aviv-yafo.json",
+      "baselineBriefSha256": "eaf5e70459eae9ba4fdce6cb092183383010fc6e79212c6782713b976b89cfcb",
+      "currentBriefSha256": "5565b3eacd2bed434b9cbab0c78b64d0a4f5dd5204348ad3f9a15c2520a473dc",
+      "baselineContentSha256": "5b90a3b435bf875f1a446907ad5a8459640e2c984c170a31131bbff2eec7df08",
+      "currentContentSha256": "5b90a3b435bf875f1a446907ad5a8459640e2c984c170a31131bbff2eec7df08",
+      "selectedSeedSha256": "83a97fcf875a01d40453bc9599a05aa870f3d1dadd7dde90df4f82835a6946ec"
+    },
+    {
+      "city": "the-valley",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/the-valley.json",
+      "baselineBriefSha256": "8b5020c375207de0370fa3f009ab452b9d1d976e778f1192d6b7e149876b5916",
+      "currentBriefSha256": "bf6dc6150331ed0c64b1fadf9532f6ace3758957b0bcb726300a49734426841d",
+      "baselineContentSha256": "1349174feb763a1b637333122146036d38119dfe528f9077b342f73b21fe9cca",
+      "currentContentSha256": "1349174feb763a1b637333122146036d38119dfe528f9077b342f73b21fe9cca",
+      "selectedSeedSha256": "6721c8fa144589857912a511a2abaee8ae60ed36930c9633625ffa7ff55a03e9"
+    },
+    {
+      "city": "thimphu",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/thimphu.json",
+      "baselineBriefSha256": "8922c35923a2fac5a64471f2e766985d7147e443e9d26d2dbba18d6ce6fd594c",
+      "currentBriefSha256": "4a849526ab10cad9a4aaaba12a1320460101d477e4626bf65715188d3b3011be",
+      "baselineContentSha256": "2cd02e5b97170f23da213261f1be00e41acb369f2891805e83b6052b74740840",
+      "currentContentSha256": "2cd02e5b97170f23da213261f1be00e41acb369f2891805e83b6052b74740840",
+      "selectedSeedSha256": "12537b981d5a12c8f4fc2f63b3696b0c499599d8629b623f9f5744d5933ed1a1"
+    },
+    {
+      "city": "tirana",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/tirana.json",
+      "baselineBriefSha256": "92005bd18fbb65c6831d3d9fc7e03e9612b336c98f0f81322ab81f2b5e137aae",
+      "currentBriefSha256": "58e599e0cbd4044fe95e13c4cec6ee004ba04c023940e054986e123844584497",
+      "baselineContentSha256": "99153bd23a2351f3b05e82f5c65fb8c26ac8dc3e3a4a86cc8a25eacadaf307d8",
+      "currentContentSha256": "99153bd23a2351f3b05e82f5c65fb8c26ac8dc3e3a4a86cc8a25eacadaf307d8",
+      "selectedSeedSha256": "1ae229fd2dc929fcdce56c71edbee2cd64d6c089460d7aa585b35b699557076b"
+    },
+    {
+      "city": "tokyo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/tokyo.json",
+      "baselineBriefSha256": "cdb99170eec1caf6ac5b941dd889fd6b7e2b610effd8f87af30e454ca2c47d66",
+      "currentBriefSha256": "f256343ff9a956c41c0f4bf7ea1ad13cea92301136c7d13b33e6bed5f16fa2c0",
+      "baselineContentSha256": "28f5a07f47e8c2172b02e42ff43f8215a505b378414d264198e4cd9ee4f5fc73",
+      "currentContentSha256": "28f5a07f47e8c2172b02e42ff43f8215a505b378414d264198e4cd9ee4f5fc73",
+      "selectedSeedSha256": "101ce3d5592e016b257aebf670e75689181b628631a882c56309d84332c055e3"
+    },
+    {
+      "city": "toronto",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/toronto.json",
+      "baselineBriefSha256": "67584f984836627e36dec316e760520291c5baafa601806c95e5c300719aab26",
+      "currentBriefSha256": "08b21c2ab731c8124f201bbab2a700883952e396d982e5cad3101b4d0a5a80c1",
+      "baselineContentSha256": "cd35126016de8b09bf4d324fcee50672e188fc7243e16da6de244c182896b7ee",
+      "currentContentSha256": "cd35126016de8b09bf4d324fcee50672e188fc7243e16da6de244c182896b7ee",
+      "selectedSeedSha256": "71c01a7d92d7e2898f07a46a4b71da0918f9b9d06af12b20a34a9c1dee1d3cb9"
+    },
+    {
+      "city": "torshavn",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/torshavn.json",
+      "baselineBriefSha256": "44784a91b01ff369a20e92c8aa97f58e24be7f3d3208b049c012b8b08cf1c6be",
+      "currentBriefSha256": "1440245f0a4939f48858f12687ddd1077bc044253ec380d77350245f1c304414",
+      "baselineContentSha256": "ce7efc3599cba3c0cba49e8a1a7df50637afa5876292d6bbc20f00dc005066a2",
+      "currentContentSha256": "ce7efc3599cba3c0cba49e8a1a7df50637afa5876292d6bbc20f00dc005066a2",
+      "selectedSeedSha256": "632dfd7b44c7271afb2750d1961c176986b92066a802bb31515ab69e28488d09"
+    },
+    {
+      "city": "tripoli",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/tripoli.json",
+      "baselineBriefSha256": "a17436cc72b03c4ae490b4ff5dd762a698d17c13690345e8edf8081eaa82ba56",
+      "currentBriefSha256": "dbd64ac9e73e3c1d00692ec3ae172ecf671c564e9c4b6a22723a753933b1ec02",
+      "baselineContentSha256": "709debd78f5ccf626df03dbbd139182b948abf77b29daf3ae70b984b3f77ba6f",
+      "currentContentSha256": "709debd78f5ccf626df03dbbd139182b948abf77b29daf3ae70b984b3f77ba6f",
+      "selectedSeedSha256": "8cd15f1432bef2deb952184caf73379fd2d2201ac8aa4f39f3aa68c9d897e850"
+    },
+    {
+      "city": "tunis",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/tunis.json",
+      "baselineBriefSha256": "75a1116bb86a336fd0902fac1c01b506cd493dac29b0763ec533bbbc3ec36f9b",
+      "currentBriefSha256": "65620374e9ffcd290e060b439e7ffa52f195a708960b702fdfe2a62e77216bbd",
+      "baselineContentSha256": "7d8b31f99a7a33ca836542a3250106ccf823bb13bb59fec651a8a665e7a43280",
+      "currentContentSha256": "7d8b31f99a7a33ca836542a3250106ccf823bb13bb59fec651a8a665e7a43280",
+      "selectedSeedSha256": "5cf66230768dd8621b8b1130b710030cd0ec71925d37cbf29f1148d5750fc854"
+    },
+    {
+      "city": "ulaanbaatar",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/ulaanbaatar.json",
+      "baselineBriefSha256": "73db6f9a4f1b5fa0eec35be75752ae352ce425271c8c965f9e6d4f6eb09aa04e",
+      "currentBriefSha256": "5746365544975c8d867f94fbc9a4db1284c5bb761144d24074928e6bb7e7da37",
+      "baselineContentSha256": "03c98ff6f31fb4b5c206128134e9bf04e797b5c53ea5e81b974bede2c9c456cf",
+      "currentContentSha256": "03c98ff6f31fb4b5c206128134e9bf04e797b5c53ea5e81b974bede2c9c456cf",
+      "selectedSeedSha256": "8c7b5ae15b6ab39041ce862428d3749f0096c745a7346a6c7808a775b62450e1"
+    },
+    {
+      "city": "umuahia",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/umuahia.json",
+      "baselineBriefSha256": "db70b48f908f2c4ab31d856ff743557069b1e132eff9bfd7b477aea802eeb345",
+      "currentBriefSha256": "a9b36ca9f560f651e4c42b79ccd1c3b24ce2376092f5fc2eb89f4ec404885697",
+      "baselineContentSha256": "0ddf65c0e8275103a32d033500dbfaa1d38c8009680b424e554841ddb05e94d1",
+      "currentContentSha256": "0ddf65c0e8275103a32d033500dbfaa1d38c8009680b424e554841ddb05e94d1",
+      "selectedSeedSha256": "69cfcd266460f769148a3ae9e6cfb169c8dafe5c00887518aa2024242ebc1697"
+    },
+    {
+      "city": "uyo",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/uyo.json",
+      "baselineBriefSha256": "8074fa21ca04fa6ab704e08470e102ec3260cba3298c34785e9e96f9754a0465",
+      "currentBriefSha256": "c36e79ba989e7de7a7ea232d407233ee3b308ca664f3a6a947de7138dffbcd52",
+      "baselineContentSha256": "70b6654769adc1ab109f55cee81871a43c74126fb75a16763fa1dda0d000402e",
+      "currentContentSha256": "70b6654769adc1ab109f55cee81871a43c74126fb75a16763fa1dda0d000402e",
+      "selectedSeedSha256": "506d7fb5bee28f33e57b051b9b3c00250eb41db51494b859a37f776bc0e781c1"
+    },
+    {
+      "city": "vaduz",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/vaduz.json",
+      "baselineBriefSha256": "277f9849c95501ac4ce822f0071758cbb90f74f29a84a28c7244f52ac85027cf",
+      "currentBriefSha256": "a7c11c0543ad144efa7098a247571da254c3afc2436a90fe917529cf1277c88a",
+      "baselineContentSha256": "0fd82eaac4c12c335217b6a7ee4cdcddf18e13be8676432db6c0b8a4cf223cd4",
+      "currentContentSha256": "0fd82eaac4c12c335217b6a7ee4cdcddf18e13be8676432db6c0b8a4cf223cd4",
+      "selectedSeedSha256": "944fb529aa3217fe042afc9ca7f591837b281817227fc7887e76d5b5bf455a31"
+    },
+    {
+      "city": "valletta",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/valletta.json",
+      "baselineBriefSha256": "9a20fefb9c803fd1a6589ca6c7551ffe730910af8bac09b60a2ade87c291b120",
+      "currentBriefSha256": "1575cddef20e9e78af58ce6aeac9703ab1a0afad9abef7c233a4f9b64ff3f266",
+      "baselineContentSha256": "9b2ce269cebf1c482346f0dfba085a2e9ae6a73ecdec0c2fc832d1aa37c9c782",
+      "currentContentSha256": "9b2ce269cebf1c482346f0dfba085a2e9ae6a73ecdec0c2fc832d1aa37c9c782",
+      "selectedSeedSha256": "6eb86bbce59a26d92df112aa9902d1d6451cbd81ede3f8b49016720ff8bc824c"
+    },
+    {
+      "city": "vatican-city",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/vatican-city.json",
+      "baselineBriefSha256": "6fd4f49df0e445a21ac8dc7a8cc62842687e189f71437c82eb8c40bea46940f9",
+      "currentBriefSha256": "706ca528ef2d545d0b0e9b192b1a0c2d5aaa4088355255cc46bb8f41a0f19e5d",
+      "baselineContentSha256": "cf55be804682d808ea0a12c42caa6ae5a37d900c94e1007060ef3fec78a9701c",
+      "currentContentSha256": "cf55be804682d808ea0a12c42caa6ae5a37d900c94e1007060ef3fec78a9701c",
+      "selectedSeedSha256": "c23262273e5052597eb278cbafbd6c013c2e2bc84fb3023ca8e7fe74a90aad4c"
+    },
+    {
+      "city": "victoria",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/victoria.json",
+      "baselineBriefSha256": "1fd697e4580b5ea86e18b76bad8b2eea1a3c036b8e2c381aa60d948fcf245e9b",
+      "currentBriefSha256": "ab5aef4e445563d1c46c7dbd01a32b6c818e2d7f699b9eed32b7e8b3441dfbb3",
+      "baselineContentSha256": "8ff3c9e5e998306d39d6c160b1011cfdc080f669b8ee5aff380ae7e43ba40577",
+      "currentContentSha256": "8ff3c9e5e998306d39d6c160b1011cfdc080f669b8ee5aff380ae7e43ba40577",
+      "selectedSeedSha256": "4f127b9c85cc4537afe4b8743aa868de50919b72d62c4c63095a86e9aa381d4f"
+    },
+    {
+      "city": "vienna",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/vienna.json",
+      "baselineBriefSha256": "35edd47cabe9c824f07fae3b78a0395eece1331eeca9222b762516e3c2f7c83a",
+      "currentBriefSha256": "bd847417a5d50d29dd8447e645df8fd70bcbe49f1daa5372254b5f65180d5319",
+      "baselineContentSha256": "578285f557c8c35bbef0cb0f140240ec8004c0b71906cf31bf2e76f33a58bd37",
+      "currentContentSha256": "578285f557c8c35bbef0cb0f140240ec8004c0b71906cf31bf2e76f33a58bd37",
+      "selectedSeedSha256": "863a6ce040ef178931e75583732f12b9cb2e133fee83e0a38e44afc5f2e51626"
+    },
+    {
+      "city": "vientiane",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/vientiane.json",
+      "baselineBriefSha256": "fcd17777054fef2f2883ce13e4f393bb57b9fed529784769a480c54398a64041",
+      "currentBriefSha256": "fa739951716cce5b3f0e93710bd36ebee533e119fd07d2df371dd75958d8de63",
+      "baselineContentSha256": "3616b8d34ecd9c115a8e8f2fc6ffb151a0980951ded69a15fa4957f8c12ebc48",
+      "currentContentSha256": "3616b8d34ecd9c115a8e8f2fc6ffb151a0980951ded69a15fa4957f8c12ebc48",
+      "selectedSeedSha256": "894c03513b1bff3144c49494f659b69ca246575da50f22cd2104524343d94acd"
+    },
+    {
+      "city": "villa-las-estrellas",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/villa-las-estrellas.json",
+      "baselineBriefSha256": "35145a97eda8270221e24a8ca6872ab54d4ad6b8db0693c90fdf3c0d3d792aec",
+      "currentBriefSha256": "fb964d51b11a907ee97a1bb8b618e61cd6675cb1682425b53ff322653133e9be",
+      "baselineContentSha256": "1e103ee75e58216ca5661b25850d4c66c6aaeab78a036719323560acbef454fa",
+      "currentContentSha256": "1e103ee75e58216ca5661b25850d4c66c6aaeab78a036719323560acbef454fa",
+      "selectedSeedSha256": "48ad66fbd4cf10e58ef8f51a6c32fadcfa2efb269510ae2880e6592902dba007"
+    },
+    {
+      "city": "vilnius",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/vilnius.json",
+      "baselineBriefSha256": "6a035ab4548a38d0d3bbad4efe18fb44d15be5141ca3d0cbb51e55136334c7c6",
+      "currentBriefSha256": "25d95c021439ac7263645b2339a0342210bb826630a04adaa69e7ac16768a739",
+      "baselineContentSha256": "9e72ca779d60fa7cbaadbcb111135a096589c48f39f5f90339a66ee849ee38f4",
+      "currentContentSha256": "9e72ca779d60fa7cbaadbcb111135a096589c48f39f5f90339a66ee849ee38f4",
+      "selectedSeedSha256": "fa762857b515f5533fbb653791979b67a62cc08bebc7aab22fc8ed8a3e604cb8"
+    },
+    {
+      "city": "warsaw",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/warsaw.json",
+      "baselineBriefSha256": "17f05fb72350d26346340f3523421ab981b3b7410e05e54342f36b69ebf67521",
+      "currentBriefSha256": "65be8cb4210db05425e20154fb20452cc32b27a88de2fd881447e24ee23647b5",
+      "baselineContentSha256": "4b012cef1847174cd1476bb892e22e59fdd9a0a6eb677051e6fb11160025a034",
+      "currentContentSha256": "4b012cef1847174cd1476bb892e22e59fdd9a0a6eb677051e6fb11160025a034",
+      "selectedSeedSha256": "f3a2c96b5690bae932931a7b152221da3a0d6194b510bdb2fc761f50914bbd55"
+    },
+    {
+      "city": "wellington",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/wellington.json",
+      "baselineBriefSha256": "0bc56fc057d6fdd01be80f8c79945ef381066b87c95a14eb87c8f699c75bb5d7",
+      "currentBriefSha256": "2a2a6d572bbb5ad0930dd40c14a3de3bf7305529604b33bf17dd29c6ca1b4619",
+      "baselineContentSha256": "e52ff497135676fe38ad7a01960be09eef18d0922b1e9b28c89788969c02e8a7",
+      "currentContentSha256": "e52ff497135676fe38ad7a01960be09eef18d0922b1e9b28c89788969c02e8a7",
+      "selectedSeedSha256": "4bb15a46adaaaffc49c66ad8f4a898555fe8e38d7a8024cf30a72d21c0227801"
+    },
+    {
+      "city": "west-island",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/west-island.json",
+      "baselineBriefSha256": "a1cc09e10271de98b4664161a97804b5959f5ff1fcaac95aec4f09519a32ef4a",
+      "currentBriefSha256": "af46dc9f4c6287ff85cf55b049e86c6ec25c164e97d0c98211f68fcf76fa4307",
+      "baselineContentSha256": "ac725c7ce0e949f65b9397d0750fa5e3bd903d68c006572da7d3de684266583b",
+      "currentContentSha256": "ac725c7ce0e949f65b9397d0750fa5e3bd903d68c006572da7d3de684266583b",
+      "selectedSeedSha256": "6e10fb570853e1ac621ec0a7b3e213da2253b4242eb909bc944ff2a4f613d1c1"
+    },
+    {
+      "city": "willemstad",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/willemstad.json",
+      "baselineBriefSha256": "0b335f40e4ecf9f2b2c27cef5d00003c3469f58a03af61483f52cc69c16c1dea",
+      "currentBriefSha256": "a886cc441896d6ae489107edf4301647cf4cf0851fee4706143c8f6a8e748ab6",
+      "baselineContentSha256": "3317f56a9958f951da962f73861708e9d874eaff002beb1c70a190d6febc0aba",
+      "currentContentSha256": "3317f56a9958f951da962f73861708e9d874eaff002beb1c70a190d6febc0aba",
+      "selectedSeedSha256": "e7cc90c6483f838598cb0356e49928077b1661f84b839f7b044b424029d8b968"
+    },
+    {
+      "city": "windhoek",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/windhoek.json",
+      "baselineBriefSha256": "7af4f87244a36d69eee22dce98b9777a138bbbed6374c831ee236d189b015c39",
+      "currentBriefSha256": "3edbff84246f48aca453b5b98382b71f67d3f4458c517eca9118a73d55087c2e",
+      "baselineContentSha256": "b005207b91403b9fd61e7c1412bfc947cdf37bd9f60a0bd87b4369be19a8485a",
+      "currentContentSha256": "b005207b91403b9fd61e7c1412bfc947cdf37bd9f60a0bd87b4369be19a8485a",
+      "selectedSeedSha256": "2b87949ac7ea564985f0d08d9ecd88ee626942a8d8b5b0d8f939681cd1a9e4a1"
+    },
+    {
+      "city": "yangon",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/yangon.json",
+      "baselineBriefSha256": "30088daa1e1de7270b4056118a453efb4fbca894f5934305e318e2bfe64621d1",
+      "currentBriefSha256": "b4dc6cccd6ffbe784b765585203bab5a4823b1ee421e15dbb1c9641a7007c7fc",
+      "baselineContentSha256": "74d03ec43235ed1dfc6754fc3cb6bb3f18c6060953705a2bf87f1b6c8c5245e3",
+      "currentContentSha256": "74d03ec43235ed1dfc6754fc3cb6bb3f18c6060953705a2bf87f1b6c8c5245e3",
+      "selectedSeedSha256": "bd4b03e2fc2ce64ebd680f79462e8ac56c0d503f28185c7ee2865afe978f74f1"
+    },
+    {
+      "city": "yaounde",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/yaounde.json",
+      "baselineBriefSha256": "e917b0e2341e4cfb1a4ed6ea70868d9f2a231f31042fec823f9bee4ae5788c9d",
+      "currentBriefSha256": "c00b18c7227715f47a3c705f79f4ad81cd6b24377d7f78edfc388b1c605c8de8",
+      "baselineContentSha256": "2edb9bf03bba6ead2f7d6f6f4474886c12112d85cead260a32e36ae459f85d8e",
+      "currentContentSha256": "2edb9bf03bba6ead2f7d6f6f4474886c12112d85cead260a32e36ae459f85d8e",
+      "selectedSeedSha256": "6c11591c802a812f0e20c73a370fe8376a754b52fb33d97248ab140b6960def8"
+    },
+    {
+      "city": "yaren",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/yaren.json",
+      "baselineBriefSha256": "322b17d855cb7bc30483ea3efdf949b931db175fd70f6efe267f8d46e83b2261",
+      "currentBriefSha256": "f66d5f7fc9675b54e5400bb081760ac3fe57547dac58486626a9956d230083c7",
+      "baselineContentSha256": "45e5e02e8cdac80a576c5eb710dc0cc69ad462ab20ddc08d82befca5db06c3d7",
+      "currentContentSha256": "45e5e02e8cdac80a576c5eb710dc0cc69ad462ab20ddc08d82befca5db06c3d7",
+      "selectedSeedSha256": "281aac89a56fe1e4d42f47c8a42c800e9bd156955aa9e268c68ebfc94b716f0e"
+    },
+    {
+      "city": "yenagoa",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/yenagoa.json",
+      "baselineBriefSha256": "0dd0a5889266d77ef8251e724d1e7cca949b75f5398b1d582c2a7f2f8b7504d7",
+      "currentBriefSha256": "616cc145ce1bf5a7c43c32915b0d8a1ee0d910def9f1dea153b544ebf1ac8c95",
+      "baselineContentSha256": "ae093f175a83f1cbd131d2291c3de3455221065e2eedf84dd6e6946b53493600",
+      "currentContentSha256": "ae093f175a83f1cbd131d2291c3de3455221065e2eedf84dd6e6946b53493600",
+      "selectedSeedSha256": "23054cfcaa6fcd7a992228e018bc057df37f1079a55faacf43a18caeb3deee2f"
+    },
+    {
+      "city": "yerevan",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/yerevan.json",
+      "baselineBriefSha256": "f361a01759a5930ca97c2e2bd07ad887c65083a3a7cfa0b07467878a4410adb4",
+      "currentBriefSha256": "6d2db0b37873e56208824531fe2fa2e439e5821c9a19784302fd289a6947bd56",
+      "baselineContentSha256": "99a3f33bb226307d437dbabccc000c1e01aa92bade4be49d27a4c3ce10e7f5a0",
+      "currentContentSha256": "99a3f33bb226307d437dbabccc000c1e01aa92bade4be49d27a4c3ce10e7f5a0",
+      "selectedSeedSha256": "94091a5c9f22fa15ae8f3011b3f0849d47d7fe8f3edcbf21a5a95f26c3d0ba98"
+    },
+    {
+      "city": "yola",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/yola.json",
+      "baselineBriefSha256": "a91be7d85c7fc9643382dc1cc5df7d5a6ee0b095edeec86ac19e03f95eda3ef6",
+      "currentBriefSha256": "5499fce4476457b88eda732868bef30497fd4bfa45446be7d874a46932450e63",
+      "baselineContentSha256": "ea5bf25d53f052e674e46465018c0e077b8878f74dc2db5c04d0499ab8109474",
+      "currentContentSha256": "ea5bf25d53f052e674e46465018c0e077b8878f74dc2db5c04d0499ab8109474",
+      "selectedSeedSha256": "d67a1e2d20674cbb88aabf7e53c295a383c8a09fbadd0d593faeceed80eadcf7"
+    },
+    {
+      "city": "zagreb",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/zagreb.json",
+      "baselineBriefSha256": "a2d260986589d965aeaeb3a22d30c5e1d95f6420844d65fc2b835503fe5e7c33",
+      "currentBriefSha256": "febf8895d0fd0a0b03da2ff68416901c7596d16758be25cf075e193cd7187357",
+      "baselineContentSha256": "db7286f176d4b2d133ba59ad8233d2b1ffcec76ad35d33fdf7ca54ffce4a95b8",
+      "currentContentSha256": "db7286f176d4b2d133ba59ad8233d2b1ffcec76ad35d33fdf7ca54ffce4a95b8",
+      "selectedSeedSha256": "1df5f8d83c74fdc048988b2b17009333d7d22fb685ecf13aaa3766d8d7624529"
+    },
+    {
+      "city": "zurich",
+      "baselineBriefPath": "scripts/scene-factory/generated/briefs/zurich.json",
+      "baselineBriefSha256": "64cd5714a486555d168a0720f34b39d4fc5d4796045d8351fc281f14d10cbcc3",
+      "currentBriefSha256": "ab17b12298fa2ebfa313f4a997e195b8ba54c5b3811a970c540a384fc132e8d4",
+      "baselineContentSha256": "291499ff6e92045c21de3bc402177353a5dcc837d8a03023e8e4866f0de4beb5",
+      "currentContentSha256": "291499ff6e92045c21de3bc402177353a5dcc837d8a03023e8e4866f0de4beb5",
+      "selectedSeedSha256": "7a721108679c06194bcf792d916a74c46637f44759dcd2d11fbdf4fa2101ac36"
+    }
+  ]
+}

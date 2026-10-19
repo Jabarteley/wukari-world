@@ -1,0 +1,63 @@
+[
+  {
+    "name": "creator-320.png",
+    "bytes": 77311,
+    "sha256": "934f9cee1d7cc8b48a6a36d9b3cae06822d8562dcdbb3defd249044b99ada8c9",
+    "width": 320,
+    "height": 844
+  },
+  {
+    "name": "creator-390.png",
+    "bytes": 80992,
+    "sha256": "1ac06784eb1489407d41f43305559644c1052f17b276ab1c9c4918c32aacef22",
+    "width": 390,
+    "height": 844
+  },
+  {
+    "name": "creator-native-320.png",
+    "bytes": 107373,
+    "sha256": "32a9f5177096770c92a4b067e136e72d62e80bb6a12f6c91d0c36b27c0902e6a",
+    "width": 320,
+    "height": 844
+  },
+  {
+    "name": "creator-native-390.png",
+    "bytes": 119296,
+    "sha256": "0e6fd87e1e199dba3da212b92f6d04e862d8591111ebe1c511d8ac1781c3f4aa",
+    "width": 390,
+    "height": 844
+  },
+  {
+    "name": "landing-320.png",
+    "bytes": 103401,
+    "sha256": "7ca3475c65414029ddb7c0e27f2fb8bcf42c52bc43668986037dd896cccf56e5",
+    "width": 320,
+    "height": 844
+  },
+  {
+    "name": "landing-390.png",
+    "bytes": 128838,
+    "sha256": "92b110b12bdd6ecc7ff097a969d0ba6f3d5685a2b966dc2c3b0bcb8d3ec1aeca",
+    "width": 390,
+    "height": 844
+  },
+  {
+    "name": "makola-scene-320.png",
+    "bytes": 55121,
+    "sha256": "99079bf6e000f39e63c616a8c71f5533b123724afd7033587a8cea9b1a1c9269",
+    "width": 320,
+    "height": 844
+  },
+  {
+    "name": "makola-scene-390.png",
+    "bytes": 61840,
+    "sha256": "52a2108d1dea2935468a03fc449b662c93d0cb882f58030314b3099e67c51358",
+    "width": 390,
+    "height": 844
+  },
+  {
+    "name": "receipt.json",
+    "bytes": 75967,
+    "sha256": "c62bf411c49868c578d37ac25278607aa42fdf68ced91f995cef7868fdd2267b"
+  }
+]

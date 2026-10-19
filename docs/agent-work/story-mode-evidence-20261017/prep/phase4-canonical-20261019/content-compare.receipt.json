@@ -1,0 +1,26 @@
+{
+  "name": "content-compare",
+  "command": [
+    "node",
+    "--experimental-strip-types",
+    "scripts/agent-slot.ts",
+    "heavy",
+    "--wait-ms",
+    "0",
+    "--",
+    "python3",
+    "/tmp/phase4-seed-correction-20261019-lg52i_y_/compare-content.py"
+  ],
+  "pid": 39779,
+  "exitCode": 0,
+  "timeout": false,
+  "seconds": 14.940055415965617,
+  "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/content-compare.log",
+  "logSha256": "c5defac463d14256b9102eaccba434b15f45444bcd4813978a299586c8de9e81",
+  "limits": {
+    "oldSpaceMiB": 512,
+    "semiSpaceMiB": 16,
+    "GOMAXPROCS": 2,
+    "externalTimeoutSeconds": 280
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "head": "b4d7099eb88921f1920dc5b23db1f0d2ea91834f",
+  "ownedSources": 24,
+  "changedPaths": 1732,
+  "generatedChanged": 1707,
+  "generatedOutputs": 1722,
+  "hostSourcePins": 1227,
+  "allPinsCurrent": true,
+  "v2Recipes": 6423,
+  "retainedSeedCities": 284,
+  "parentOwnedDocsExcluded": [
+    "docs/SCENE-FACTORY.md",
+    "docs/STORY-MODE.md"
+  ],
+  "sourceWritesComplete": true
+}

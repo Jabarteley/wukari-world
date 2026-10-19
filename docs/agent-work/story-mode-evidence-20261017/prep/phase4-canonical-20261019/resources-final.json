@@ -1,0 +1,26 @@
+{
+  "checkedUtc": "2026-10-19T02:50:36.374875+00:00",
+  "ownedUnitPids": [
+    39165,
+    39779,
+    44825,
+    43031,
+    45671,
+    43812,
+    20913,
+    15804,
+    21734,
+    23083,
+    51310,
+    18622,
+    20303,
+    19544,
+    24025,
+    34002,
+    32692
+  ],
+  "liveOwnedPids": [],
+  "slotStatus": "heavy: 0/1 busy\n  1  free\nserver: 0/1 busy\n  1  free\nbrowser: 0/1 busy\n  1  free\n",
+  "ownedServers": [],
+  "ownedBrowsers": []
+}

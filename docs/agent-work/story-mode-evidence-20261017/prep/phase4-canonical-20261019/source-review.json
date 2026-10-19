@@ -1,0 +1,63 @@
+{
+  "at": "2026-10-19T02:48:16.895867+00:00",
+  "base": "b4d7099eb88921f1920dc5b23db1f0d2ea91834f",
+  "checkout": "/Users/anthonyakpan/work/joinallworld-story",
+  "branch": "story/phase4-realism",
+  "scope": "read-only consequential source review; no tests, imports, app builds, services, browser, provider, Git or production mutations",
+  "pins": {
+    "src/scene/recipe/contract.ts": "af06046ee2c88d31b7c9ae90c1a9538d62936bcab1c62d0bc508188ae369a29c",
+    "src/scene/recipe/compile.ts": "0d03d34b49b39e69d45e40d6629bd167ef723977ab4622f16dcf11881ba411b9",
+    "src/scene/recipe/sky.ts": "42805523f1e7920e301738a1cd6bd54a352308e614beef5b21dcabb9f979328e",
+    "src/scene/recipe/surface-material.ts": "4d24ad185a8ce7070da77ce5893474887f185b9fb0e208cd5b4f0468abe11e25",
+    "src/scene/recipe/runtime-host.ts": "b24ef9d205985e9698352e9b226b1d1d1de176e66f1caa6412f10a037b31d7ac",
+    "src/scene/recipe/measure-host.ts": "96a9eb40a58e28cc46b9a27fb34661cdd1879cc159e5af8d8e7b067da474882a",
+    "src/scene/recipe/runtime.test-support.ts": "c6dea54cda6db8dbe9c5841fdbe7b2d39e05ecb99b297fe376aa704f2c8fdee3",
+    "src/scene/types.ts": "cd461a0962ce6d0c58b24d17dbfda3ac91ad9c60bc781b1e3bdc1a186c0ebc08",
+    "src/scene/venue-scenes.ts": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71",
+    "scripts/scene-factory/layout-seeds.ts": "f15a9b3b2df16caec194bd72bdd68512b0825156f18044aece3b971407b34acf",
+    "scripts/scene-factory/layout.ts": "eeef8bce94faba2517312098c8c830e76f258d016d55b3e870b138a884887c8a",
+    "scripts/scene-factory/build.ts": "e81d3fb8f67c741ec5ca9b62c74c2e2d3b7dfa5ad699ff418a5fb8e7c0a29ee9",
+    "scripts/scene-factory/world.ts": "c842c682cc8c7caa3bc58df94ad6f9c7a2862675b1137decfce33426d466f68a",
+    "src/story/streetWalk.ts": "519429aa651bb27df528af461fa2f83abb50f9ae11da905663d9a669c4e6deb5",
+    "src/story/streetWalk.test.ts": "5d043beab5778613e21614a4d7da36aa3f902b894fafafba52d05db66c574d7d",
+    "src/story/streetWalkCoverage.generated.ts": "4e0157fb7e726cb98af5c3076840bf4c11f7d15df1b4804cae9a48672505a846",
+    "src/app/features/story/StoryStreetWalk.vue": "bec8f354a3849e1389955af33a17867b93797974a1b62d8dae06b21a1b65dd8d",
+    "src/app/features/story/StoryModePanel.vue": "1014c8f3b8471178a370e35d3322de87c703a8379df75152205dff11b62370ca",
+    "src/app/features/travel/VenueCard.vue": "422a464b54004c4a74de451de32f73951b9321f4e9d6db0f794d4d45fd4345e9",
+    "src/scene/recipe/contract.test.ts": "0b489132d1789f764dcc64677404513ef603f8abdc7b17e44a29f3bdc04ea756",
+    "src/scene/recipe/sky.test.ts": "29e85776954d96a2c0cedaef0ed85ab962f295ffb4f1b823ba4e88a44f37237c",
+    "src/scene/recipe/surface-material.test.ts": "1bbd8ab51e439024a46d8652083acd0ef27270d3baa28c555797992d3f1a00c9",
+    "scripts/scene-factory/layout.test.ts": "6b4a3f3cbb25bc1189e6e7f9ca3807f58a5864789a90481b7cd4388e0eaf8005",
+    "scripts/scene-factory/build.test.ts": "47b8d66c1627c0db0b9fefc09a501dac48b3ef2fc61220a1fdc1a98d25f7faaf"
+  },
+  "disposition": "source design accepted within pinned scope; integration and release gates remain open",
+  "introducedBlockers": [],
+  "evidence": [
+    "V2 strict exact JSON shape, version agreement, bounded finite sky gains and physical-atlas semantic opt-in; existing V1 validator reused without cap changes.",
+    "Sky gains copy input and returned arrays; hook follows existing time/weather/festival composition and changes sky only. Sun/shadow/light policy unchanged.",
+    "Surface masks modify newly merged layer geometry and host-owned fallback geometry only; cached source arrays/textures untouched. Fresh layer materials and fallback clone preserve prior shader/ghost hooks; owner removes attributes/restores clone on idempotent disposal before layer disposal.",
+    "All284 retained entries independently compared to git95: contentSha256 equals accepted95 and current generated briefs; seedSha256 equals accepted95 inputSha256. Resolver uses city+semantic digest, deterministic fallback for changed/new semantic content. Current source provenance remains separately computed and inventoried.",
+    "Legacy fixture projects only V2 sky/surface/version back to V1; recipe bytes/hash are recomputed. It is compatibility proof, not V2 physical surface proof.",
+    "Both street coverage versions match current pointer manifests; all7 Lagos and3 Ibadan declared doors exist as venue targets. Chapter3 unlocked/currentcity gating preserved.",
+    "New UI calls existing walkStreetGate and leaveCityVenue. Existing server authority validates current saved city/estate/venue journey and returns saved point. No direct state/progress grant added. StoryTalkCard retained.",
+    "No Phase4 delta in src/budgets.ts, protected package admission, street authority/client, shared scene geometry/model layer or lighting policy."
+  ],
+  "acceptedDesignAdjustment": {
+    "files": [
+      "src/scene/recipe/surface-material.ts:69",
+      "scripts/scene-factory/blender/construction.py:62"
+    ],
+    "finding": "Shader and affected atlas contain variation, base grime and band, not window rows. Parent accepted narrower repo-driven replacement because affected boundary walls/gates/kiosk panels must not receive false windows; parent will document. No visual acceptance inferred."
+  },
+  "remainingGates": [
+    "Two existing optional crowd assertions expect12 but report4; implementation owner is diagnosing. Do not weaken assertions or protected admission. No green direct-consumer claim until disposition.",
+    "Final corrected generated preservation and all-source freshness receipts: recipe cores,298GLBs,284semantic digests, fullTalk semantic entries plus classified evidence substitutions.",
+    "Hosted type/build, download and package budgets including lazy-import effects; required full phase suites.",
+    "Actual matched rendered V1/V2, time/weather/festival, disposal/performance and320/390 game journeys; ordinary earned street entry and exact return; final public release adoption."
+  ],
+  "foreignBaseFinding": {
+    "path": "server/feed/service.ts:571-573",
+    "status": "pre-existing in base, unchanged by Phase4",
+    "impact": "Failed locals badge validation follows pending cover consumption in committing transaction. Separate owner/release disposition; no Story edit dependency or authority to repair. User scope exception unresolved; do not claim unconditional combined release acceptance."
+  }
+}

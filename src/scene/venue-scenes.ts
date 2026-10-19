@@ -444,7 +444,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     return true;
   }
   /** The preset in use: the mood's light for this time of day, as the city's conditions leave it and a festival dresses it. */
-  const lit = (): Lighting => { const base = adjustLighting(lightingFor(mood, view.time), view.weather); return festive && festiveLib ? festiveLib.festiveLighting(base, festive) : base; };
+  const lit = (): Lighting => { const base = adjustLighting(lightingFor(mood, view.time), view.weather), dressed = festive && festiveLib ? festiveLib.festiveLighting(base, festive) : base; return def.skyTint ? { ...dressed, sky: def.skyTint([...dressed.sky]) } : dressed; };
   const hints: Record<string, string> = options.anchors && typeof options.anchors === 'object' ? options.anchors : {};
   let layout: SceneLayout | null = null, resolved: Resolved | null = null, live = false, disposed = false, footprints: FootprintShapes | null = null, grid: WalkGrid | null = null, entrance: SceneEntrance | null = null;
   let renderedContactTop: ReturnType<typeof contactSurfaceIndex> | null = null;

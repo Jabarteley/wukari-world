@@ -8,7 +8,7 @@ import { screenText } from '../../server/moderation/text.ts'
 import { KIT_PROP_IDS, REGION_IDS, RECIPE_LIMITS, parseCityRecipes, parseHostSceneryByVenue } from '../../src/scene/recipe/contract.ts'
 import type { HostSceneryByVenue, MeasuredAsset, MeasuredPart, RecipeAssets, RegionId } from '../../src/scene/recipe/contract.ts'
 import type { CityBriefRegularV1, CityBriefV1, CityBriefVenueV1, SourceFileHashV1, VenueProvenanceV1 } from './facts.ts'
-import { draftCityRecipes, venueForRecipe } from './layout.ts'
+import { draftCityRecipes, layoutSeed, venueForRecipe } from './layout.ts'
 import type { LayoutCandidateResult } from './layout.ts'
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
@@ -29,6 +29,7 @@ const TOOL_SOURCES: readonly string[] = [
   'scripts/scene-factory/build.ts',
   'scripts/scene-factory/facts.ts',
   'scripts/scene-factory/layout.ts',
+  'scripts/scene-factory/layout-seeds.ts',
   'src/scene/recipe/contract.ts',
   'server/moderation/text.ts',
 ]
@@ -566,6 +567,7 @@ async function prepareWithBrief(options: SceneBuildInputs, briefFile: BriefCompi
     city: brief.city.id, region: options.region, recipeFile, recipeSha256,
     input: {
       brief: { path: briefFile.path, sha256: briefFile.sha256, inputSha256: brief.digests.inputSha256, contentSha256: brief.digests.contentSha256 },
+      layoutSeed: layoutSeed(brief),
       hostScenery: { path: hostInput.path, sha256: hostInput.sha256, sourceFiles: hostInput.sourceFiles, value: host },
       kit: { reportPath: kitInput.reportPath, reportSha256: kitInput.reportSha256, assetPath: kitInput.filePath, assetSha256: kitInput.asset.sha256, rawBytes: kitInput.asset.rawBytes, brotliBytes: kitInput.asset.brotliBytes },
       hero: {

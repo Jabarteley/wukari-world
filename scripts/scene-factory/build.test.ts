@@ -144,6 +144,12 @@ test('actual CLI builds a new deterministic stage and checks it read-only', asyn
   assert.deepEqual(timesAfter.map(item => item.mtimeMs), timesBefore.map(item => item.mtimeMs))
 
   const manifestText = manifestBefore.toString('utf8')
+  const seedInput: { input: { layoutSeed: { kind: string; contentSha256: string; seedSha256: string }; toolSourcesSha256: Record<string, string> } } = JSON.parse(manifestText)
+  assert.equal(seedInput.input.layoutSeed.kind, 'semantic-v1', 'new cities record their fresh semantic seed selection')
+  assert.equal(seedInput.input.layoutSeed.contentSha256, '2'.repeat(64))
+  assert.match(seedInput.input.layoutSeed.seedSha256, /^[a-f0-9]{64}$/)
+  assert.equal(seedInput.input.toolSourcesSha256['scripts/scene-factory/layout-seeds.ts'], digest(await readFile(new URL('./layout-seeds.ts', import.meta.url))))
+
   assert.match(manifestText, /"targetVenueIds": \[\s+"fixture-market"/)
   assert.match(manifestText, /"candidateDrafting": \{\s+"targetVenueCount": 1,\s+"attemptedCandidateCount": 1,\s+"acceptedCandidateCount": 1,\s+"rejectedCandidateCount": 0,\s+"firstCandidateSuccessCount": 1,\s+"firstCandidateSuccessRate": 1,\s+"venues": \[\s+\{\s+"venue": "fixture-market",\s+"attempts": \[\s+\{\s+"candidate": 1,\s+"outcome": "accepted"\s+\}\s+\]\s+\}\s+\]/)
   assert.match(manifestText, /"preservedVenueIds": \[\s+"authored-park"/)
@@ -163,7 +169,7 @@ test('authored-only city validates its hero asset but emits no recipe or hero pl
   assert.equal(built.recipes, 0)
   const recipePath = join(f.output, 'fixture-city.json'), manifestPath = join(f.output, 'manifest.json')
   const recipeBefore = await readFile(recipePath), manifestBefore = await readFile(manifestPath)
-  assert.equal(recipeBefore.toString('utf8'), '{"schema":"allworld-city-scenes","version":1,"city":"fixture-city","recipes":[]}\n')
+  assert.equal(recipeBefore.toString('utf8'), '{"schema":"allworld-city-scenes","version":2,"city":"fixture-city","recipes":[]}\n')
   assert.match(manifestBefore.toString('utf8'), /"heroVenueId": null/)
   assert.match(manifestBefore.toString('utf8'), /"heroPlacementReason": "all-public-venues-authored"/)
   assert.match(manifestBefore.toString('utf8'), /"candidateDrafting": \{\s+"targetVenueCount": 0,\s+"attemptedCandidateCount": 0,\s+"acceptedCandidateCount": 0,\s+"rejectedCandidateCount": 0,\s+"firstCandidateSuccessCount": 0,\s+"firstCandidateSuccessRate": null,\s+"venues": \[\]\s+\}/)

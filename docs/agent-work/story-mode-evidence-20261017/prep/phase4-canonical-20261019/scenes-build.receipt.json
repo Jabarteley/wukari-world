@@ -1,0 +1,27 @@
+{
+  "name": "scenes-build",
+  "command": [
+    "node",
+    "--experimental-strip-types",
+    "scripts/agent-slot.ts",
+    "heavy",
+    "--wait-ms",
+    "0",
+    "--",
+    "npm",
+    "run",
+    "scenes:build"
+  ],
+  "pid": 21734,
+  "exitCode": 0,
+  "timeout": false,
+  "seconds": 41.45755649986677,
+  "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/scenes-build.log",
+  "logSha256": "c8e760a4505a9aacd516537dac63423dd88faa0dbabff083f24e60b8781458ea",
+  "limits": {
+    "oldSpaceMiB": 512,
+    "semiSpaceMiB": 16,
+    "GOMAXPROCS": 2,
+    "externalTimeoutSeconds": 280
+  }
+}

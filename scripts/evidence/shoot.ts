@@ -39,6 +39,7 @@ export interface ViewResult {
   pixelRatio: number | null;
   size: string;
   gpu: string;
+  uncapped: boolean;
   frames: FrameSummary;
   rendersInDwell: number | null;
   png: string;
@@ -124,7 +125,7 @@ async function shootView(page: Page, base: string, spec: ViewSpec, options: Retu
     view: spec.name, ok: errors.length === 0, location: typeof d.location === 'string' ? d.location : null,
     clock: `${options.day} ${String(spec.clock.hour).padStart(2, '0')}:${String(spec.clock.minute).padStart(2, '0')} Lagos`,
     consoleErrors: errors, knownErrors: known.length, gpuName: gl.name, softwareRendered: gl.name === null ? null : /swiftshader|llvmpipe|software|basic render/i.test(gl.name), drawCalls: num(d.drawCalls), triangles: num(d.triangles), geometries: num(d.geometries), textures: num(d.textures),
-    tier: typeof d.tier === 'string' ? d.tier : null, pixelRatio: num(d.pixelRatio), size: `${options.width}x${options.height}@${options.scale}x`, gpu: options.gpu,
+    tier: typeof d.tier === 'string' ? d.tier : null, pixelRatio: num(d.pixelRatio), size: `${options.width}x${options.height}@${options.scale}x`, gpu: options.gpu, uncapped: options.uncapped,
     frames: summariseGaps(gaps.slice(2)), rendersInDwell: num(d.renderCount) === null ? null : (num(d.renderCount) as number) - before,
     png, scenePng: sceneUrl ? scenePng : '',
   };
@@ -134,7 +135,7 @@ async function main(): Promise<void> {
   const options = parseShootArgs(process.argv.slice(2));
   const outDir = resolve(options.out);
   const results: ViewResult[] = [];
-  const browser = await launchBrowser({ width: options.width, height: options.height, scale: options.scale, gpu: options.gpu });
+  const browser = await launchBrowser({ width: options.width, height: options.height, scale: options.scale, gpu: options.gpu, uncapped: options.uncapped });
   try {
     for (const name of options.views) {
       const result = await shootView(browser.page, options.base, VIEWS[name], options, outDir);

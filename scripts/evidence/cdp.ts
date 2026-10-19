@@ -102,7 +102,8 @@ export class Page {
   close(): void { try { this.socket.close(); } catch { /* already closed */ } }
 }
 
-export interface BrowserOptions { width: number; height: number; scale: number; gpu?: 'swiftshader' | 'metal' }
+/** `uncapped`: do not hold frames to the screen's refresh rate, so frame gaps show how long a frame takes rather than the 16.7 ms of a 60 Hz screen. */
+export interface BrowserOptions { width: number; height: number; scale: number; gpu?: 'swiftshader' | 'metal'; uncapped?: boolean }
 
 /** A running browser: a page, and `close()` which stops the process and deletes the profile folder. */
 export interface Browser { page: Page; profile: string; close(): Promise<void> }
@@ -111,7 +112,7 @@ export async function launchBrowser(options: BrowserOptions): Promise<Browser> {
   const profile = mkdtempSync(join(tmpdir(), 'aw-evidence-'));
   const port = 9600 + Math.floor(Math.random() * 300);
   const gl = options.gpu === 'metal' ? ['--use-gl=angle', '--use-angle=metal', '--enable-gpu'] : ['--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader'];
-  const child: ChildProcess = spawn(findChrome(), [`--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, ...gl, '--hide-scrollbars', '--mute-audio', '--no-first-run', 'about:blank'], { stdio: 'ignore' });
+  const child: ChildProcess = spawn(findChrome(), [`--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, ...gl, ...(options.uncapped ? ['--disable-gpu-vsync', '--disable-frame-rate-limit'] : []), '--hide-scrollbars', '--mute-audio', '--no-first-run', 'about:blank'], { stdio: 'ignore' });
   const cleanup = async (): Promise<void> => {
     page?.close();
     if (child.exitCode === null) {

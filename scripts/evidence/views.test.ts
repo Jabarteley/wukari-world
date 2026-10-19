@@ -54,6 +54,8 @@ test('arguments: defaults, lists, and clear refusals', () => {
   assert.equal(defaults.scale, 2);
   assert.equal(defaults.dwellMs, 10_000);
   assert.equal(defaults.day, '2026-10-19');
+  assert.equal(defaults.uncapped, false);
+  assert.equal(parseShootArgs(['--uncapped']).uncapped, true);
   const asked = parseShootArgs(['--view', 'kano-noon,home-night', '--base=http://localhost:5300/', '--scale', '1', '--size', '800x600', '--dwell', '3', '--gpu', 'swiftshader'], '2026-10-19');
   assert.deepEqual(asked.views, ['kano-noon', 'home-night']);
   assert.equal(asked.base, 'http://localhost:5300');

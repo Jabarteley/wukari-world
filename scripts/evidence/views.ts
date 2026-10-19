@@ -75,9 +75,9 @@ export function summariseGaps(gaps: readonly number[]): FrameSummary {
   return { frames: sorted.length, p50: at(0.5), p95: at(0.95), max: sorted.length ? round1(sorted[sorted.length - 1]!) : null, over42: sorted.filter((gap) => gap > 42).length, over100: sorted.filter((gap) => gap > 100).length };
 }
 
-export interface ShootOptions { base: string; views: ViewName[]; out: string; scale: number; width: number; height: number; dwellMs: number; gpu: 'swiftshader' | 'metal'; day: string }
+export interface ShootOptions { base: string; views: ViewName[]; out: string; scale: number; width: number; height: number; dwellMs: number; gpu: 'swiftshader' | 'metal'; uncapped: boolean; day: string }
 
-/** `--base URL --view name[,name|all] --out DIR --scale N --size WxH --dwell SECONDS --gpu swiftshader|metal --day YYYY-MM-DD`. */
+/** `--uncapped` is a switch. `--base URL --view name[,name|all] --out DIR --scale N --size WxH --dwell SECONDS --gpu swiftshader|metal --day YYYY-MM-DD`. */
 export function parseShootArgs(argv: readonly string[], today = new Date().toISOString().slice(0, 10)): ShootOptions {
   const value = (name: string): string | undefined => {
     const at = argv.indexOf(`--${name}`);
@@ -96,7 +96,7 @@ export function parseShootArgs(argv: readonly string[], today = new Date().toISO
   if (gpu !== 'swiftshader' && gpu !== 'metal') throw new Error('--gpu is swiftshader or metal.');
   const day = value('day') ?? today;
   lagosInstant(day, { hour: 12, minute: 0 });
-  return { base, views, out: value('out') ?? 'docs/evidence/out', scale, width: Number(size[1]), height: Number(size[2]), dwellMs: dwell * 1000, gpu, day };
+  return { base, views, out: value('out') ?? 'docs/evidence/out', scale, width: Number(size[1]), height: Number(size[2]), dwellMs: dwell * 1000, gpu, uncapped: argv.includes('--uncapped'), day };
 }
 
 /**

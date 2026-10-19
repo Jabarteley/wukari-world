@@ -17,7 +17,7 @@ import { isRecord } from './util.ts';
 import { cleanSourceWord } from './attribution.ts';
 import type { ShareFacts, ShareKind } from '../types/growth.ts';
 
-export const SHARE_KINDS: readonly ShareKind[] = Object.freeze(['invite', 'house', 'missions', 'week', 'table', 'event', 'wedding', 'election', 'news', 'gist', 'space']);
+export const SHARE_KINDS: readonly ShareKind[] = Object.freeze(['invite', 'house', 'missions', 'week', 'table', 'event', 'wedding', 'election', 'news', 'gist', 'space', 'street']);
 const KIND_NAMES: readonly string[] = SHARE_KINDS;
 const isKind = (value: unknown): value is ShareKind => typeof value === 'string' && KIND_NAMES.includes(value);
 export const BRAND = 'Allworld';
@@ -26,6 +26,8 @@ export const TAGLINE = 'A whole world to live in.';
 const clip = (value: unknown, max: number): string => { const text = String(value ?? '').replace(/[\u0000-\u001f\u007f]/g, ' ').trim(); return text.length > max ? `${text.slice(0, max - 1)}…` : text; };
 const count = (value: unknown, max = 100000): number => (typeof value === 'number' && Number.isSafeInteger(value) && value >= 0 ? Math.min(value, max) : 0);
 const days = (n: number): string => `${n} day${n === 1 ? '' : 's'}`;
+/** A street card's place: a city id, or a city id and one of its local units or districts (src/paths.ts, `/street/<city>/<place>`). */
+const STREET_PLACE = /^[a-z0-9-]{1,40}(\/[a-z0-9-]{1,40})?$/;
 
 /** A facts record reduced to known fields of bounded size. Unknown kinds become 'invite'. */
 export function cleanFacts(input: unknown): ShareFacts {
@@ -35,7 +37,8 @@ export function cleanFacts(input: unknown): ShareFacts {
     done: count(facts.done, 9), total: count(facts.total, 9), days: count(facts.days), stamps: count(facts.stamps, 7), title: clip(facts.title, 24),
     game: clip(facts.game, 24), won: facts.won === true, event: clip(facts.event, 48), venue: clip(facts.venue, 32),
     tableId: typeof facts.tableId === 'string' && /^[a-z0-9-]{1,40}$/.test(facts.tableId) ? facts.tableId : '',
-    partner: clip(facts.partner, 24), headline: clip(facts.headline, 120), record: count(facts.record, 999999999) };
+    partner: clip(facts.partner, 24), headline: clip(facts.headline, 120), record: count(facts.record, 999999999),
+    place: typeof facts.place === 'string' && STREET_PLACE.test(facts.place) ? facts.place : '' };
 }
 
 /** The launch offer as GET /api/world/bonus tells it (server/bonus/service.ts). */
@@ -58,6 +61,7 @@ function previewOf(facts: unknown): { title: string; description: string } {
   const f = cleanFacts(facts), place = f.district ? `${f.district}, ${f.city}` : f.city;
   switch (f.kind) {
     case 'house': return { title: `Come to ${f.name}’s house in ${place}`, description: `Knock at the door in ${BRAND}. No sign-up: pick a name and walk in.` };
+    case 'street': return { title: `Come and see ${f.district || f.city} on ${BRAND}`, description: `${f.name} sent you ${place}: walk its streets and meet the people who live there. No sign-up: pick a name and press Play.` };
     case 'space': return { title: `${f.name}’s place in ${place}`, description: `${f.headline ? `“${f.headline}”. ` : ''}Come and see it in ${BRAND}. No sign-up: pick a name and walk in.` };
     case 'missions': return { title: `${f.name} finished ${f.done} of ${f.total || 3} missions today`, description: `${days(f.days)} in ${f.city}${f.title ? ` · ${f.title}` : ''}. Start your own life in ${BRAND}.` };
     case 'week': return { title: `${f.name}’s week in ${f.city}`, description: `${f.stamps} of 7 days played · ${days(f.days)} in the city${f.title ? ` · ${f.title}` : ''}.` };
@@ -87,6 +91,7 @@ export function shareText(facts: unknown, link = '', offer?: ShareOffer | null):
     lines.push(`${BRAND} · my week in ${f.city}`, `${SQUARE.on.repeat(f.stamps)}${SQUARE.off.repeat(7 - f.stamps)} ${f.stamps}/7 days`, `${days(f.days)} in the city${f.title ? ` · ⭐ ${f.title}` : ''}`);
   } else if (f.kind === 'table') lines.push(...(f.tableId ? [`Come and play ${f.game} with me${f.venue ? ` at ${f.venue}` : ''} 🃏`, `I am at the table in ${BRAND}. Tap to sit down.`] : [f.won ? `I just won at ${f.game} in ${BRAND} 🏆` : `I am at the ${f.game} table in ${BRAND}`, 'Come and play me.']));
   else if (f.kind === 'house') lines.push(`Come to my house in ${f.district || f.city} 🏠`, `Knock in ${BRAND}. No sign-up.`);
+  else if (f.kind === 'street') lines.push(`Come and see ${f.district || f.city} on ${BRAND} 📍`, 'Walk the streets with me. No sign-up.');
   else if (f.kind === 'space') lines.push(`I designed my place in ${BRAND}${f.headline ? `: ${f.headline}` : ''} 🏠`, 'Come and see it. No sign-up.');
   else if (f.kind === 'event') lines.push(`${f.event} · ${f.venue}`, `I am going. Meet me there in ${BRAND}.`);
   else if (f.kind === 'wedding') lines.push(`${f.partner ? `${f.name} and ${f.partner} are` : `${f.name} is`} married in ${BRAND} 💍`, 'Come and celebrate with us.');
@@ -118,6 +123,7 @@ export function shareCard(facts: unknown): ShareCard {
   if (f.kind === 'news' || f.kind === 'gist') return { ...base, headline: f.headline || `News from ${f.city}`, lines: [f.city, 'From the public record'] };
   if (f.kind === 'house') return { ...base, headline: 'Come to my house', lines: [f.name, place, 'Knock at the door'] };
   if (f.kind === 'space') return { ...base, headline: f.headline || 'Come and see my place', lines: [f.name, place, 'Come and see it'] };
+  if (f.kind === 'street') return { ...base, headline: `Come and see ${f.district || f.city}`, lines: [place, `Sent by ${f.name}`, 'Walk the streets'] };
   if (f.kind === 'event') return { ...base, headline: f.event, lines: [f.venue, `${f.name} is going`] };
   return { ...base, headline: `Come and live in ${BRAND}`, lines: [f.name, f.district ? `Home in ${place}` : `Now in ${f.city}`, 'Make your character and come through'] };
 }
@@ -137,6 +143,7 @@ export const xUrl = (text: string): string => `https://twitter.com/intent/tweet?
 
 /** The preview picture of a kind: a path on the site and its type. Kinds without their own picture keep the game's general one. Files: public/og/card-*.png (scripts/make-share-cards.ts). */
 export function cardImage(kind: unknown): { path: string; type: 'image/png' | 'image/jpeg' } {
+  if (kind === 'street') return { path: '/og/entry-cities.jpg', type: 'image/jpeg' }; // the map of the world, as the street's own address previews
   return kind === 'table' || kind === 'wedding' || kind === 'election' || kind === 'news' || kind === 'gist' ? { path: `/og/card-${kind === 'gist' ? 'news' : kind}.png`, type: 'image/png' } : { path: '/og/allworld.jpg', type: 'image/jpeg' };
 }
 
@@ -155,7 +162,8 @@ export function sourceQuery(query: { get(name: string): string | null } | null |
 
 /**
  * Where a person who opens a share is sent: the game's own landing hook (src/quick-start/model.ts), so a new visitor is placed
- * by the quick start and a returning player goes straight there. A civic card (election, news) opens the Governor's panel;
+ * by the quick start and a returning player goes straight there. A civic card (election, news) opens the Governor's panel; a street
+ * card opens that street's own address (`/street/<city>/<place>`, or `/visit/<city>`: the entry page with the dive, src/paths.ts);
  * every other kind lands the visitor beside the sharer (and at the table, when the link names one). `ref` attaches the referral.
  */
 export function shareTarget(share: { by?: string; facts?: unknown } | null, code: unknown, query = ''): string {
@@ -164,6 +172,7 @@ export function shareTarget(share: { by?: string; facts?: unknown } | null, code
   if (!share || !isShareCode(code)) return '/';
   const f = cleanFacts(share.facts);
   if (f.kind === 'election' || f.kind === 'news') return `/?go=governor&ref=${code}${tail}`;
+  if (f.kind === 'street') return f.place ? `${f.place.includes('/') ? '/street/' : '/visit/'}${f.place}?ref=${code}${tail}` : '/';
   if (!uuid.test(share.by ?? '')) return '/';
   return `/?join=${share.by}&ref=${code}${f.tableId ? `&table=${f.tableId}` : ''}${tail}`;
 }

@@ -77,7 +77,7 @@ test('privacy: a card holds the public line and the sharer’s shown name only, 
     const found = /voters|"hash"|"prev"|e-?mail|"device/i.exec(text)?.[0];
     assert.equal(found, undefined, 'nothing of the record but its sentence, no device or e-mail');
   }
-  assert.deepEqual(Object.keys(made.share.facts).sort(), ['city', 'days', 'district', 'done', 'event', 'game', 'headline', 'kind', 'name', 'partner', 'record', 'stamps', 'tableId', 'title', 'total', 'venue', 'won']);
+  assert.deepEqual(Object.keys(made.share.facts).sort(), ['city', 'days', 'district', 'done', 'event', 'game', 'headline', 'kind', 'name', 'partner', 'place', 'record', 'stamps', 'tableId', 'title', 'total', 'venue', 'won']);
   assert.ok(!/₦|naira|\$\d/.test(`${tag(html, 'og:title')} ${made.share.facts.headline}`), 'no amounts of money in the card (the open launch offer, which is public, may end the description)');
 });
 
@@ -157,6 +157,30 @@ test('the share link and text carry the ad-source words in the owner’s utm con
   assert.equal(sourceQuery(new URLSearchParams('utm_source=%22%3E%3Cscript%3E&utm_campaign=x')), 'utm_source=direct&utm_medium=direct&utm_campaign=x');
   assert.equal(sourceQuery(new URLSearchParams('')), '');
   assert.deepEqual(cleanSource({ source: 'share', medium: 'card', campaign: 'election' }), { source: 'share', medium: 'card', campaign: 'election', content: 'none' });
+});
+
+test('a street card: "Come and see Yaba on Allworld", named from the city\'s rules, leading to the street\'s own address', async (t) => {
+  const { f, ada, post } = await harness(t);
+  const made = await post('/api/growth/share', { cityId: 'lagos', kind: 'street', place: 'yaba' }, ada);
+  assert.equal(made.ok, true, made.reason);
+  assert.deepEqual([made.share.facts.kind, made.share.facts.district, made.share.facts.city, made.share.facts.place], ['street', 'Yaba', 'Lagos', 'lagos/yaba']);
+  const html = await (await fetch(`${f.base}/s/${made.share.code}?utm_source=share&utm_medium=card&utm_campaign=street`)).text();
+  assert.equal(tag(html, 'og:title'), 'Come and see Yaba on Allworld');
+  assert.match(tag(html, 'og:description') ?? '', /Yaba, Lagos: walk its streets/);
+  assert.equal(tag(html, 'og:image'), 'https://play.example/og/entry-cities.jpg');
+  assert.ok(html.includes(`content="0;url=/street/lagos/yaba?ref=${made.share.code}&amp;utm_source=share&amp;utm_medium=card&amp;utm_campaign=street"`), 'it opens the street, with the referral and the ad-source words');
+  // A local unit, a city alone (a community's place), and what is refused: a place the city does not have, a city that is not open, a malformed id.
+  assert.equal((await post('/api/growth/share', { cityId: 'lagos', kind: 'street', place: 'ikeja' }, ada)).share.facts.place, 'lagos/ikeja');
+  const city = await post('/api/growth/share', { cityId: 'lagos', kind: 'street', city: 'abuja' }, ada);
+  assert.deepEqual([city.ok, city.share.facts.place, city.share.facts.district, city.share.facts.city], [true, 'abuja', '', 'Abuja']);
+  assert.equal(shareTarget({ by: ADA, facts: city.share.facts }, 'abcdefghij'), '/visit/abuja?ref=abcdefghij');
+  assert.equal((await post('/api/growth/share', { cityId: 'lagos', kind: 'street', place: 'no-such-place' }, ada)).code, 'nothing_to_share');
+  assert.equal((await post('/api/growth/share', { cityId: 'lagos', kind: 'street', city: 'nowhere' }, ada)).code, 'nothing_to_share');
+  for (const bad of [{ place: '../x' }, { city: 'A B' }, { place: 7 }]) assert.equal((await post('/api/growth/share', { cityId: 'lagos', kind: 'street', ...bad }, ada)).status, 400, JSON.stringify(bad));
+  // The card says nothing of where the sharer lives; a forged place never reaches a link.
+  assert.equal(cleanFacts({ kind: 'street', place: '/street/../admin' }).place, '');
+  assert.equal(shareTarget({ by: ADA, facts: { kind: 'street', place: '' } }, 'abcdefghij'), '/');
+  assert.match(shareText(made.share.facts, 'https://play.example/s/x'), /^Come and see Yaba on Allworld/);
 });
 
 test('the deep link resolves to the right place for a new visitor and a returning player', () => {

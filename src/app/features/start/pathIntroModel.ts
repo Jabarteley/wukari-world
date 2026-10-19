@@ -1,6 +1,6 @@
 // What the landing says to a new visitor who opened a short address (`/games`, `/games/oro`, `/abuja`, …), without a DOM: the one line,
 // the button, and whether "Find my city" is offered. The address table is src/paths.ts.
-import { placeFacts } from '../../../paths.ts'
+import { placeFacts, streetPlace } from '../../../paths.ts'
 import type { GameSlug, PathIntent } from '../../../paths.ts'
 
 export interface IntroLine {
@@ -33,6 +33,12 @@ export function introFor(intent: PathIntent | null): IntroLine | null {
     if (!rules || !rules.open) return null
     const games = intent.page === 'games'
     return { strong: games ? `Games in ${rules.name}.` : `Live in ${rules.name}.`, text: games ? 'Tables at its venues, chess, today’s word and more.' : rules.teaser, button: `Start in ${rules.name}`, action: 'start', city: rules.id }
+  }
+  if (intent.kind === 'street') {
+    // A street or a visit: the place as the city's rules name it (when they are in), and the life starts in that city.
+    const rules = placeFacts(intent.city), place = streetPlace(intent.city, intent.place)
+    if (!rules || !rules.open) return null
+    return { strong: place ? `Walk ${place.name}, ${rules.name}.` : `Visit ${rules.name}.`, text: rules.teaser, button: `Start in ${rules.name}`, action: 'start', city: rules.id }
   }
   if (intent.kind === 'panel' && intent.panel === 'signup') return { strong: 'Keep your character safe.', text: 'A free account keeps your life and your streaks on any device.', button: 'Sign up free', action: 'signup', city: null }
   if (intent.kind === 'panel' && intent.panel === 'login') return { strong: 'Welcome back.', text: 'Log in to play the character you saved.', button: 'Log in', action: 'login', city: null }

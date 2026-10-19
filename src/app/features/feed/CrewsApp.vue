@@ -134,6 +134,9 @@ async function enterWorld(): Promise<void> {
 const link = computed(() => (current.value?.code ? `/c/${current.value.code}` : ''))
 async function share(): Promise<void> { if (current.value && (await shareLink(link.value, `Join ${current.value.name} on Allworld`)) === 'copied') toast('Link copied.') }
 const big = computed(() => Boolean(current.value && current.value.kind !== 'crew'))
+// A community based on a real, open city: "Share place" sends a street card of that city (growth/shareMoment.ts), linking to /visit/<city>.
+const sharedCity = computed(() => { const id = current.value?.place?.real ? current.value.place.city : null; return id && cityCatalogue().some((c) => c.id === id && c.open) ? id : null })
+function sharePlace(): void { if (sharedCity.value) void import('../growth/shareMoment.ts').then(({ shareStreet }) => { shareStreet({ city: sharedCity.value ?? undefined }, () => { toast('That could not be shared.', 'error') }) }) }
 </script>
 
 <template>
@@ -146,6 +149,7 @@ const big = computed(() => Boolean(current.value && current.value.kind !== 'crew
         <p v-if="placeLine(current)" class="feed-note">{{ current.place?.real ? 'Based on' : 'An imagined place:' }} {{ placeLine(current) }}</p>
         <p v-if="current.locals" class="feed-note" data-feed="locals">📍 Locals only: people whose device confirmed they are in this {{ current.locals }}.<template v-if="!current.mine && !current.qualifies"> Get your location badge in My profile to join.</template></p>
         <label v-if="current.owned && current.place?.real" class="feed-row">Who can join<select :value="current.locals ?? ''" @change="setLocals(($event.target as HTMLSelectElement).value)"><option value="">Anyone</option><option v-if="current.place?.city" value="city">Only people confirmed in its city</option><option value="state">Only people confirmed in its state</option><option value="country">Only people confirmed in its country</option></select></label>
+        <button v-if="sharedCity" type="button" class="feed-pill" data-crew-share-place @click="sharePlace">Share place</button>
         <p v-if="current.about" class="feed-body">{{ current.about }}</p>
         <div class="feed-strip" style="margin-top:8px">
           <button v-for="m in current.members" :key="m.id" type="button" class="feed-person" @click="shell.open('person', { player: m.id, name: m.name })">

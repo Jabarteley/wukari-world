@@ -51,7 +51,7 @@ import { openDevRefusal } from './open-dev-refusal.ts';
 import { oldCharacterLanding } from './legacy-bridge.ts';
 import { PLAY_SIGNING_ENV, siteFile } from '../server/site-files.ts';
 import { ADMIN_HOST_ENV, ADMIN_ROBOTS, ADMIN_SHELL, adminAddress, adminHostName, adminHostRoute, isAdminHost } from '../server/admin/host.ts';
-import { withPathMeta } from '../server/path-meta.ts';
+import { preparePathMeta, withPathMeta } from '../server/path-meta.ts';
 import { sceneCataloguePage } from '../server/scene-catalogue.ts';
 import { createSqliteStore } from './sqlite-store.ts';
 import { parseLayout } from '../server/keyed.ts';
@@ -204,6 +204,13 @@ export default {
 /** Which admin-address name this deployment answers for (server/admin/host.ts). */
 const adminNameOf = (env: WorkerEnv): string => adminHostName(env[ADMIN_HOST_ENV], cleanOrigin(env.PUBLIC_ORIGIN));
 
+/** The city content assets, read through the asset binding: the object reads a life's city with it, the page a street's names (server/path-meta.ts). */
+const cityAssets = (env: WorkerEnv) => async (path: string): Promise<Uint8Array> => {
+  const response = await env.ASSETS.fetch(new Request(`https://allworld-assets.invalid${path}`, { redirect: 'manual' }));
+  if (!response.ok) throw new Error('City asset request failed');
+  return new Uint8Array(await response.arrayBuffer());
+};
+
 async function respond(request: Request, env: WorkerEnv): Promise<Response> {
   const url = new URL(request.url);
   const state = () => env.JOINALLWORLD.getByName('joinallworld-v1');
@@ -270,6 +277,8 @@ async function respond(request: Request, env: WorkerEnv): Promise<Response> {
   const origin = publicOrigin(env, url);
   // A short address (/games, /abuja, …) gets its own title, description and link-preview tags; the page's scripts are untouched, so the hashes below are the same.
   const html = await (head ? await env.ASSETS.fetch(new Request(request.url, { method: 'GET' })) : response).text();
+  // A street's head names its place from the city's rules: they are read first (at most a moment; without them the head is the city's visit).
+  if (/^\/street\//.test(url.pathname)) { installCityAssetReader(cityAssets(env)); await preparePathMeta(url.pathname); }
   const text = sceneCataloguePage(url.pathname) ? html : withPathMeta(html, url.pathname, origin, url.search);
   for (const [name, value] of Object.entries(appHeaders({ ...factsOfUrl(url), scriptHashes: await inlineScriptHashes(text), telemetry: telemetryOrigins(readTelemetryConfig(env, { buildId: env.BUILD_ID })), avatarAssets: text.includes('name="allworld-3d-assets"'), accounts: accountsConfig(env), trustProviders: trustHeaderConfig(envReader(env), accountsConfig(env)) }))) headers.set(name, value);
   if (head || response.status !== 200) return new Response(head ? null : text, { status: response.status, headers });
@@ -382,11 +391,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
   ready: Promise<void>;
   constructor(ctx: DurableObjectState, env: WorkerEnv) {
     super(ctx, env); this.env = env; this.meter = createWriteMeter(ctx.storage.sql); this.sql = this.meter.sql; this.peers = new Map(); this.inflight = new Map();
-    installCityAssetReader(async path => {
-      const response = await env.ASSETS.fetch(new Request(`https://allworld-assets.invalid${path}`, { redirect: 'manual' }));
-      if (!response.ok) throw new Error('City asset request failed');
-      return new Uint8Array(await response.arrayBuffer());
-    });
+    installCityAssetReader(cityAssets(env));
     installDictionaryAssetReader(async path => {
       const response = await env.ASSETS.fetch(new Request(`https://allworld-assets.invalid${path}`, { redirect: 'manual' }));
       if (!response.ok) throw new Error('Dictionary asset request failed');

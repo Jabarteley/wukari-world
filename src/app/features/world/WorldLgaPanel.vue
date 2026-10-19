@@ -7,7 +7,8 @@
 // The counts and the first page of residents are read when the page opens (and again after a new
 // search, the online filter or a retry); "Show more" reads the page after the last one. Names are
 // text: nothing a player typed is ever markup. Players who hide themselves from the directory are
-// not listed; their houses stay on the map without a name.
+// not listed; their houses stay on the map without a name. "Share" sends a street card of the unit
+// (growth/shareMoment.ts shareStreet: its city and its id; the server names it), linking to /street/<city>/<unit>.
 import '../../../ui/controls.css'
 import { computed, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
@@ -20,6 +21,7 @@ import { addressLabel, lgaOf } from './worldContent.ts'
 import { count, createLgaDirectory, emptyPeopleText, focusMap, lgaParam, track } from './worldModel.ts'
 import type { LgaDirectory } from './worldModel.ts'
 import { keepLga, recallLga } from './lgaCache.ts'
+import { shareStreet } from '../growth/shareMoment.ts'
 
 const props = defineProps<{ params?: unknown }>()
 const { game, shell } = useApp()
@@ -54,6 +56,9 @@ function sayHi(playerId: string, name: string): void {
   track('neighbour_card_opened', { from: 'directory' })
   shell.open('person', { player: playerId, name })
 }
+function share(): void {
+  if (id.value) shareStreet({ city: city.value, place: id.value }, () => { game.toast('That could not be shared.', 'error') })
+}
 const addressOf = (estateNumber: number | undefined, plot: number): string => (id.value ? addressLabel(city.value, id.value, estateNumber ?? 0, plot) : '')
 </script>
 
@@ -84,6 +89,7 @@ function useDirectory(): LgaDirectory {
     <div class="ui-cluster">
       <button class="ui-button is-quiet" type="button" @click="showOnMap"><GameIcon name="map" inline /><span>Show on the map</span></button>
       <button v-if="yours && estate.plot" class="ui-button is-quiet" type="button" @click="showMyHouse"><GameIcon name="home" inline /><span>Show my house</span></button>
+      <button class="ui-button is-quiet" type="button" data-lga-share @click="share"><GameIcon name="link" inline /><span>Share {{ unit.name }}</span></button>
     </div>
     <LgaCard v-if="!yours" :heading="estate.placed ? 'Change where you live' : 'Choose where to live'" compact @chosen="page.items = null" />
     <SectionTitle>Residents</SectionTitle>

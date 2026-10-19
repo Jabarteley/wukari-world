@@ -37,8 +37,6 @@ The data is stored as generated modules under `src/map3d/geo/data/` and `src/mod
 | [Rapier](https://rapier.rs/) (`@dimforge/rapier3d-compat`, physics in the 3D space screen) | Apache-2.0 |
 | [postprocessing](https://github.com/pmndrs/postprocessing) (the HIGH tier's post-processing pass: bloom, anti-aliasing, grade, vignette) | Zlib |
 | [N8AO](https://github.com/N8python/n8ao) (ambient occlusion on the HIGH tier) | ISC |
-| [three-nebula](https://github.com/creativelifeform/three-nebula) (particles: smoke, dust, exhaust, confetti) | MIT |
-| [Yuka](https://github.com/Mugen87/yuka) (steering and navigation for people who walk about a venue) | MIT |
 | [ONNX Runtime Web](https://onnxruntime.ai/) 1.30.0 (`dist/ort.wasm.bundle.min.mjs` and `dist/ort-wasm-simd-threaded.wasm`; kept in the model store and fetched only to make a world from a photo, not part of the game's download) | MIT |
 | [Depth Anything V2 Small](https://github.com/DepthAnything/Depth-Anything-V2) (onnx-community's quantized ONNX export; works out a photo's depth on the player's own device) | Apache-2.0 |
 

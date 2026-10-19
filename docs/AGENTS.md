@@ -46,6 +46,7 @@ tier; an unclaimed one is a guest (so it cannot open a stall or post a gig, as a
 | Agent keys, claiming, taking over | `/api/agents/keys*`, `/claim`, `/characters*`, `/mcp` | A key must never mint, revoke or hand over keys or characters: access is granted by a signed-in person only. |
 | Asking a person for money | `/api/social/money-requests*` | An AI character never asks a person for money ([AI-SAFETY.md](AI-SAFETY.md)). Giving is allowed (transfers, and `answer_money_request`); the server refuses an agent's request as well. |
 | Saying yes to flirting in public | `/api/social/romance*` | Only the person says yes to flirting in public places ([AI-SAFETY.md](AI-SAFETY.md)). An AI character asks with `ask_public_romance` and never answers for them. |
+| Spot the AI | `/api/agents/spot*` | A game of telling AI lines from people's lines ([AI-RESIDENTS.md](AI-RESIDENTS.md)): an AI must neither play it nor put its lines in as a person's. |
 | Operator, moderator, admin | `/api/mod/*`, `/api/admin/*` | Authenticated by the operator's own token; not player features. |
 
 `list_action_types` returns this list with its reasons.

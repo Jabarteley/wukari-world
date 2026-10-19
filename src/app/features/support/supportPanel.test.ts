@@ -131,3 +131,15 @@ test('filing: the receipt id is kept for the toast, and a retry reuses the same 
   assert.equal(keys[0], keys[1], 'one id for one report')
   assert.equal(support.lastReceipt.value, 'P-7')
 })
+
+test('feedback is one tap away: an idea category first, the Feedback buttons in Lite, the 3D menu, Settings and Help, and /feedback', async () => {
+  const { readFileSync } = await import('node:fs')
+  const { SUPPORT_CATEGORIES } = await import('../../../types/support.ts')
+  const { parsePath } = await import('../../../paths.ts')
+  assert.equal(SUPPORT_CATEGORIES[0], 'idea')
+  assert.equal(CATEGORY_LABELS.idea, 'An idea or feedback')
+  const src = (path: string): string => readFileSync(new URL(path, import.meta.url), 'utf8')
+  for (const file of ['../lite/LiteShell.vue', '../hud/HudSidebar.vue', '../sim/SettingsTab.vue', '../help/HelpBody.vue']) assert.match(src(file), /shell\.open\('support', \{ category: 'idea' \}\)/, file)
+  assert.match(src('../panels.ts'), /phonePanel\('support', 'Feedback and help'.*short: 'Feedback'.*order: 1, group: 'life'/)
+  assert.deepEqual(parsePath('/feedback'), { kind: 'panel', panel: 'feedback' })
+})

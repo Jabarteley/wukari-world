@@ -4,14 +4,17 @@
 import '../../../ui/controls.css'
 import '../../../ui/panels/social.css'
 import './feed.css'
-import { onMounted, ref } from 'vue'
+import { defineAsyncComponent, onMounted, ref } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { feedApi } from './feedApi.ts'
 import { shareLink, whatsappUrl } from './feedShare.ts'
 import { FEED } from '../../../feed/model.ts'
 import type { EventView } from '../../../types/feed.ts'
 
-const props = defineProps<{ params?: { event?: string; code?: string } | null }>()
+// The area's noticeboard and its monthly meetup (docs/NEIGHBOURHOOD.md) are the Neighbours side of this app, fetched only when it is opened.
+const NoticeboardApp = defineAsyncComponent(() => import('../neighbourhood/NoticeboardApp.vue'))
+const props = defineProps<{ params?: { event?: string; code?: string; tab?: string } | null }>()
+const side = ref<'plans' | 'hood'>(props.params?.tab === 'neighbours' ? 'hood' : 'plans')
 const { game, shell } = useApp()
 const api = feedApi((path, options) => game.fetchJson(path, options))
 const events = ref<EventView[]>([]), mine = ref<EventView[]>([]), open = ref<EventView | null>(null), busy = ref(false), making = ref(false)
@@ -66,7 +69,9 @@ const go = (e: EventView): void => { if (/square/i.test(e.place.label ?? '')) sh
 
 <template>
   <section class="feed" aria-label="Plans" data-feed="plans">
-    <template v-if="open">
+    <nav v-if="!open" class="feed-tabs"><button type="button" :class="{ 'is-on': side === 'plans' }" @click="side = 'plans'">Plans</button><button type="button" :class="{ 'is-on': side === 'hood' }" @click="side = 'hood'">Neighbours</button></nav>
+    <NoticeboardApp v-if="!open && side === 'hood'" />
+    <template v-else-if="open">
       <button type="button" class="feed-pill" @click="open = null">← All plans</button>
       <div class="feed-card feed-form">
         <small class="feed-note">{{ when(open) }} · {{ open.place.label }} · {{ open.place.cityName }}</small>

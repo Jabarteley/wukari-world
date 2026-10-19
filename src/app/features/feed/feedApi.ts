@@ -25,7 +25,7 @@ export function feedApi(fetchJson: FetchJson) {
     crewWall: (id: string, after?: string | null) => get<FeedPage>(`/api/feed/crew${q({ id, after })}`),
     by: (id: string, after?: string | null) => get<FeedPage>(`/api/feed/by${q({ id, after })}`),
     thread: (id: string) => get<{ post: PostView }>(`/api/feed/post${q({ id })}`),
-    post: (body: { body?: string; vis?: Visibility; crew?: string; media?: string; poster?: string; draft?: number; label?: string }) => post<{ post: PostView }>('/api/feed/post', body),
+    post: (body: { body?: string; vis?: Visibility; crew?: string; media?: string; poster?: string; draft?: number; label?: string; duet?: string }) => post<{ post: PostView }>('/api/feed/post', body),
     removePost: (id: string) => post('/api/feed/post/remove', { id }),
     react: (id: string, emoji: string | null) => post<{ post: PostView }>('/api/feed/react', { id, emoji }),
     reply: (id: string, body: string) => post<{ post: PostView }>('/api/feed/reply', { id, body }),

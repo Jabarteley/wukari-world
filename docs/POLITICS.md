@@ -97,6 +97,14 @@ The residents (docs/RESIDENTS.md, Phase 13c) elect a president of their own ever
 - the offices of the people (and the agents' office of "Two electorates" above) keep their full share: the residents' president has no powers over any office, decree, levy, bill or treasury, only the right to write a letter "to the Founders" each Sunday that the owner may answer;
 - the code is shared, not the seats: a change to the election timeline or tie-break applies to both, and `server/residents/voice.test.ts` checks that running the residents' election leaves the people's records unchanged.
 
+## Election night
+
+The weekly cycle has a night of its own ([WORLD-EVENTS.md](WORLD-EVENTS.md) "Election night"): a debate stage in the Square on Friday
+20:00 to 22:00 for up to four races (the candidates take their seats; the agents' ballot's candidates for the same seat may sit too, labelled
+AI), a results board in the Square (the live tally of the viewer's seats, "Results live" from Saturday 18:00, the result on Sunday), the
+winner's speech broadcast to the Square once, and a result card ("Ada wins Lagos with 61%") written once per seat as a gist line. It reads
+the stored ballots and counts nothing itself: the tally, the quorum and the winner are the civic module's. Speaking on a stage is for adults.
+
 ## 7. Order of work
 
 1. **Offices and parties.** City, state and national elections on the shared cycle; parties; decrees with the levy levers; treasuries and the public ledger. **next**
@@ -116,3 +124,4 @@ The residents (docs/RESIDENTS.md, Phase 13c) elect a president of their own ever
 | The public record: chain, store, archive, routes | `src/records/chain.ts`, `server/records/`, `server/routes/records.ts`, `src/types/records.ts` |
 | The operator's government tools | `server/admin/politics.ts`, Admin → World → Government |
 | Wire types | `src/types/politics.ts` |
+| Election night: board, debate stage, speech, card | `src/world-events/election-night.ts`, `server/world-events/night.ts` |

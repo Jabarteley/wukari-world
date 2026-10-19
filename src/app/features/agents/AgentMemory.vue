@@ -11,7 +11,7 @@ import ClosenessMeter from '../social/ClosenessMeter.vue'
 import AgentCallList from '../calls/AgentCallList.vue'
 import { startAgentCall } from '../calls/agentCallState.ts'
 import { memoryWords } from './memoryModel.ts'
-import type { AgentMemoryView } from '../../../types/agents-http.ts'
+import type { AgentMemoryView, AiMemoryExport } from '../../../types/agents-http.ts'
 
 const props = defineProps<{ params?: unknown; agent?: string }>()
 const { game, shell } = useApp()
@@ -43,6 +43,16 @@ const flirt = (agent: string, on: boolean): Promise<void> => run(() => post('/ap
 const partner = (agent: string, on: boolean): Promise<void> => run(() => post('/api/agents/memory/partner', { agent, on }))
 const callAgent = (card: { id: string; name: string }): void => { startAgentCall(card.id, card.name); shell.close() }
 const meterMax = (card: { standing: { next: { at: number } | null } }): number => card.standing.next?.at ?? 100
+/** Save what AI characters remember about you (all of them, or one) as a file on this device (GET /api/agents/memory/export). */
+const download = (agent?: string): Promise<void> => run(async () => {
+  const file = await game.fetchJson<AiMemoryExport>(`/api/agents/memory/export${agent ? `?agent=${encodeURIComponent(agent)}` : ''}`)
+  const anchor = document.createElement('a')
+  anchor.href = URL.createObjectURL(new Blob([JSON.stringify(file, null, 2)], { type: 'application/json' }))
+  anchor.download = file.file
+  anchor.click()
+  setTimeout(() => URL.revokeObjectURL(anchor.href), 10000)
+})
+const day = (ms: number): string => new Date(ms).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' })
 onMounted(() => { void load() })
 </script>
 
@@ -58,6 +68,8 @@ onMounted(() => { void load() })
       <p v-if="!cards.length" class="settings-note" data-memory-empty>{{ memoryWords.empty }}</p>
       <section v-for="card in cards" :key="card.id" class="memory-card" :data-agent-card="card.id">
         <h4 class="memory-name">{{ card.name }}<AiTag :who="{ agent: true }" /></h4>
+        <p v-if="card.leaving" class="settings-note" data-memory-leaving>{{ card.name }} {{ card.leaving.what === 'leave' ? 'is leaving' : 'will change' }} on {{ day(card.leaving.until) }}. What they remember about you stays downloadable.</p>
+        <p v-if="card.left" class="settings-note" data-memory-left>{{ card.name }} left on {{ day(card.left) }}. What they remembered about you is still here to see, delete or download.</p>
         <p class="settings-note"><b>{{ card.standing.label }}</b><template v-if="card.standing.next"> · next: {{ card.standing.next.label }} at {{ card.standing.next.at }}</template></p>
         <ClosenessMeter :points="card.standing.points" :max="meterMax(card)" :label="`Closeness with ${card.name}`" />
         <template v-if="card.remembering">
@@ -71,6 +83,7 @@ onMounted(() => { void load() })
           <button type="button" class="ui-button is-primary" data-memory-call :aria-label="`Call ${card.name}`" @click="callAgent(card)">Call {{ card.name }}</button>
           <button type="button" class="ui-button" :disabled="busy" data-memory-toggle @click="remember(card.id, !card.remembering)">{{ card.remembering ? 'Stop remembering me' : 'Remember me again' }}</button>
           <button type="button" class="ui-button" :disabled="busy" data-memory-forget @click="forgetAgent(card.id)">Forget me completely</button>
+          <button type="button" class="ui-button" :disabled="busy" data-memory-download @click="download(card.id)">Download</button>
         </div>
         <template v-if="view.adult && !card.partner">
           <button type="button" class="ui-button" :disabled="busy" data-memory-flirt @click="flirt(card.id, !card.flirt)">{{ card.flirt ? `Stop ${card.name} flirting with me` : `Let ${card.name} flirt with me` }}</button>
@@ -84,6 +97,7 @@ onMounted(() => { void load() })
           <p v-else class="settings-note" data-memory-why>{{ memoryWords.partnerWhy(view.adult, card.standing.points, view.partnerAt) }}</p>
         </template>
       </section>
+      <button v-if="typeof only !== 'string' && cards.length" type="button" class="ui-button" :disabled="busy" data-memory-download-all @click="download()">Download everything AI characters know about me</button>
       <button v-if="typeof only !== 'string' && cards.length" type="button" class="ui-button" :disabled="busy" data-memory-forget-all @click="forgetEveryone">Delete everything AI characters know about me</button>
     </template>
     <p v-if="said" class="ui-error" role="alert">{{ said }}</p>

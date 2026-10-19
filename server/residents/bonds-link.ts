@@ -14,6 +14,7 @@ import type { Db, RouteContext } from '../types.ts';
 import { bondsOf, emptyBonds } from './bonds.ts';
 import type { Bonds, BondsStored } from './bonds.ts';
 import { residentService } from './resident.ts';
+import { continuityFor } from '../house/continuity.ts';
 
 const wired = new WeakMap<object, Bonds>();
 /** The engine of this host, once linked (tests and the admin page read it). */
@@ -49,7 +50,8 @@ export function linkBonds(ctx: RouteContext): void {
       venue: (city) => { const id = venueFor(city, ['square', 'park', 'market'], 'guide'); return id ? { room: venueRoomKey(city, id, ''), label: venueLabel(id, city) } : null; },
       announce: async ({ city, kind, text, key }) => { await ctx.store.transact((db) => { gistService(ctx).add(db, { city, kind, text, refs: { key } }); }, { durable: false }); },
       say: async (id, room, text) => { const who = runner.roster.find((item) => `resident.${item.city}.${item.key}` === id); if (who) await ctx.checks?.agentRoom?.say({ id, name: who.name, mark: { agent: true } }, room, text, null); },
-      farewells: () => String(setting('residentFarewell') ?? '').split(',').map((key) => key.trim().toLowerCase()).filter(Boolean),
+      // The continuity rule (server/house/continuity.ts): a resident somebody follows or partners leaves only after seven days' notice in their inbox.
+      farewells: () => continuityFor(ctx).farewells(String(setting('residentFarewell') ?? '').split(',').map((key) => key.trim().toLowerCase()).filter(Boolean)),
       save: (value) => ctx.store.transact((db) => { Object.assign(ctx.collection(db, 'bonds', emptyBonds()), structuredClone(value)); }, { durable: false }),
     }, loadFrom(found));
     wired.set(ctx, engine);

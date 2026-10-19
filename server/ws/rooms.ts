@@ -117,6 +117,7 @@ import { characterCity } from '../character.ts';
 import { checkLook } from '../../src/game/systems/onboarding.ts';
 import { screenText } from '../moderation/text.ts';
 import { addressedIn, agentWords } from '../moderation/agent-words.ts';
+import { looksLikeScam } from '../moderation/scam-words.ts';
 import { aiAnswer, asksIfAi, countryOfCity, crisisWords, helpText } from '../moderation/ai-intercept.ts';
 import { screenFee } from '../../src/game/trust/fees.ts';
 import type { CityId, ChatFrame, GroupSummary, PresenceDeltaFrame, PresenceMember, PublicSession, RoomCounts, SignalData, VoiceTextFrame } from '../../src/types/protocol.ts';
@@ -767,6 +768,9 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
   if (ctx.checks) {
     ctx.checks.groupPeers = (id, room) => { const venue = venues.get(room), group = venue?.groups.get(venue.where.get(id) ?? ''); return group ? [...group.players] : null; };
     ctx.checks.venueCounts = (room) => { const venue = venues.get(room); return venue ? { total: venue.where.size, groups: venue.groups.size } : null; };
+    // Stage mode and the world event (server/world-events/): is this player in that room now, and who is (one entry per player).
+    ctx.checks.inRoom = (id, room) => [...(inRooms.get(id) ?? [])].some(ws => ws.room === room);
+    ctx.checks.roomMembers = (room) => [...new Set([...(rooms.get(room) ?? [])].map(ws => ws.session.id))];
   }
   // A visit the social module ended (left, removed, blocked): that guest leaves the host's Home room at once.
   ctx.on?.('visit-ended', ({ hostId, guestId }) => {
@@ -915,6 +919,8 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       // The voice circle is the group's: its cap counts the people around you, not the whole venue.
       const enabled = new Set([...audience(room, ws.group)].filter(peer => peer.voice.enabled).map(peer => peer.session.id));
       if (message.enabled && !enabled.has(ws.session.id) && enabled.size >= MAX_VOICE_MEMBERS) throw Error('voice_room_full');
+      // STAGE MODE (server/world-events/stages.ts): while a stage is open in this room only its speakers and moderator may unmute.
+      if (message.enabled && !message.muted && ctx.checks?.stageMayTalk?.(room, ws.session.id) === false) throw Object.assign(Error('stage_listener'), { reason: 'Only the people on the stage can talk. Raise your hand to ask.' });
       ws.voice = { enabled: message.enabled, muted: message.muted }; announce(room, ws.group ?? null, { voice: [ws.session.id], causes: [ws.session.id] });
     }),
     signal: guarded((ws, message, room) => {
@@ -924,7 +930,8 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       // A blocked pair cannot signal: the answer is the same as for a peer who is not there.
       const peers = hidden(ws.session.id, to) ? [] : [...audience(room, ws.group)].filter(peer => peer.session.id === to && peer !== ws);
       if (!peers.length) throw Error('peer_not_in_room');
-      const radius = room.split(':')[1] === 'neighbourhood' ? VOICE_RADIUS * STREET_NETWORK_SCALE : VOICE_RADIUS;
+      // On a stage the speakers reach everyone in the group whatever the distance (and everyone reaches them); other pairs keep the radius.
+      const radius = ctx.checks?.stagePair?.(room, ws.session.id, to) === true ? Infinity : room.split(':')[1] === 'neighbourhood' ? VOICE_RADIUS * STREET_NETWORK_SCALE : VOICE_RADIUS;
       const nearby = peers.filter(peer => withinVoiceDistance(ws.position, peer.position, radius));
       if (!nearby.length) throw Error('peer_out_of_range');
       // The server relays `data` untouched: any object of at most 12 000 characters of JSON. The protocol type SignalData
@@ -1003,7 +1010,8 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
         if (vendor) refusal = vendor.verdict;
       }
       if (refusal) throw Object.assign(Error(refusal.code), { reason: refusal.reason });
-      const chat: ChatFrame = { type: 'chat', id: core.newId(), ...(typeof clientId === 'string' ? { clientId } : {}), from: { ...ws.session }, body, at: now() };
+      // A line that asks for money, a withdrawal, an account number or a code is delivered as typed but flagged, so the people who read it see the calm scam warning (scam-words.ts).
+      const chat: ChatFrame = { type: 'chat', id: core.newId(), ...(typeof clientId === 'string' ? { clientId } : {}), from: { ...ws.session }, body, at: now(), ...(looksLikeScam(body) ? { scam: true as const } : {}) };
       if (clientId) {
         history.set(clientId, chat);
         if (history.size > 100) { const oldest = history.keys()[Symbol.iterator]().next(); if (!oldest.done) history.delete(oldest.value); }

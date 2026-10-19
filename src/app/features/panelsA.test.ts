@@ -354,7 +354,7 @@ test('Sim tabs: Needs has a meter per need, Skills ten segments per skill, Setti
   assert.match(text(settings), /Data and battery .*Light mode .*Data used: 0 B this session · 0 B today/)
   assert.match(settings, /type="range"[^>]*aria-label="Music"/)
   assert.match(settings, /role="group" aria-label="Phone wallpaper"/)
-  assert.ok(text(settings).includes('device session') && text(settings).includes('Report a problem'))
+  assert.ok(text(settings).includes('device session') && text(settings).includes('Feedback and help'))
 })
 
 test('Boutique: the wallet, a section per kind and a Try on button on what is not worn', async () => {

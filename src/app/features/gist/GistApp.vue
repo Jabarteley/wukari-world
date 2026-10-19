@@ -15,6 +15,8 @@ import { agoText } from './gistModel.ts'
 
 // The works card and the home-city pin are fetched when this app opens, never at first paint.
 const EpisodeCard = defineAsyncComponent(() => import('./EpisodeCard.vue'))
+// The city front page (docs/SHARE-LOOPS.md): yesterday's newspaper of the city, shareable as a picture.
+const FrontPageCard = defineAsyncComponent(() => import('../shareloops/FrontPageCard.vue'))
 const CityWorks = defineAsyncComponent(() => import('./CityWorks.vue'))
 const HomePin = defineAsyncComponent(() => import('./HomePin.vue'))
 const BirthdayCard = defineAsyncComponent(() => import('./BirthdayCard.vue'))
@@ -32,6 +34,7 @@ const shareFailed = (): void => game.toast('That could not be shared. Try again.
     <SectionTitle>The gist</SectionTitle>
     <p class="social-note">What is happening around the city. Only things everybody can already see.</p>
     <p v-if="offline" class="ui-note" role="status">You are offline. Showing the last gist.</p>
+    <FrontPageCard />
     <EpisodeCard />
     <CityWorks />
     <HomePin />

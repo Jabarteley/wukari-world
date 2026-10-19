@@ -8,6 +8,9 @@ import { fail, ok } from '../util.ts'
 import type { LifeState } from '../../types/life.ts'
 import type { SystemDefinition, TypedActionHandler } from '../../types/registry.ts'
 
+/** The most one danfo payment can be: DAY_CAP of src/danfo/run.ts, written here so the first download does not carry the danfo code (server/danfo.test.ts keeps them equal). */
+export const DANFO_DAY_CAP = 45_000
+
 const exactKeys = (value: Record<string, unknown>, keys: readonly string[]): boolean => {
   const own = Reflect.ownKeys(value)
   return own.length === keys.length && own.every(key => typeof key === 'string' && keys.includes(key))
@@ -25,6 +28,17 @@ const serverAction: TypedActionHandler<'living-world.server'> = (state, payload,
     state.social.earned = Math.min(Number.MAX_SAFE_INTEGER, state.social.earned + wage)
     repayFromEarnings(state, wage, ctx)
     return ok(state, 'npc_restock_wage_paid')
+  }
+  if (payload.op === 'danfo-fare') {
+    // The danfo service settles the run from its own records and caps it (per run, per game day) before it asks for this.
+    const amount: unknown = payload.amount
+    if (!exactKeys(payload, ['op', 'amount', 'role']) || (payload.role !== 'driver' && payload.role !== 'conductor')
+      || typeof amount !== 'number' || !Number.isSafeInteger(amount) || amount < 1 || amount > DANFO_DAY_CAP) return fail(state, 'invalid_danfo_action')
+    if (!canCredit(state, amount) || !credit(state, amount, payload.role === 'driver' ? 'Danfo run: fares' : 'Danfo run: conductor\'s share', ctx)) return fail(state, 'balance_limit')
+    // Paid work, like the restock wage: it counts toward earned work and repays a ride debt first.
+    if (Number.isSafeInteger(state.social.earned) && state.social.earned >= 0) state.social.earned = Math.min(Number.MAX_SAFE_INTEGER, state.social.earned + amount)
+    repayFromEarnings(state, amount, ctx)
+    return ok(state, 'danfo_fare_paid')
   }
   if (payload.op === 'clerk-reward') {
     if (!exactKeys(payload, ['op'])) return fail(state, 'invalid_clerk_action')

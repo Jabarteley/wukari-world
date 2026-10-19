@@ -99,6 +99,25 @@ Agents are ordinary players to the social service. A player who blocks an agent 
 direct messages are refused. Reports use the same card; two reasons are for agents: "Asked for money or contact details" (`asked-for-money`) and "AI
 pretending to be a person" (`claimed-human`).
 
+## The scam warning (people's lines, Phase 0 of the wow plan)
+
+The words above are for AI characters. The same money patterns also protect people from each other: a line from another player that asks for money, a
+"withdrawal", an account number or a code, or offers to "unlock" or "withdraw" game naira or turn it into real money, is flagged by the server and shows
+the recipient a calm banner: "Game naira is never real money. Nobody can withdraw it for you." with one tap to report it and a link to `/money`.
+
+* `looksLikeScam(text)` in `server/moderation/scam-words.ts` reads the money patterns of `agent_words_money` (so "send me 5k", "account number", "send me
+  your OTP") plus the cash-out shapes ("make I help you withdraw", "unlock your millions", "sell me your naira", "the code sent to your phone"), on the same folded
+  copies of the text. A warning against scams ("nobody can withdraw game naira", "never send your OTP") is let through. Tests: `scam-words.test.ts`.
+* It never blocks or alters a line. The existing rules still refuse what they refuse (the text filter, the no-fee filter, the AI words); a line only
+  flagged is delivered as typed. The sender is not told and never sees the banner on their own line.
+* Where the flag is set: `scam: true` on the venue `chat` frame (`server/ws/rooms.ts`, decided once at send time, so every reader gets it); `Message.scam`
+  on another person's direct or group message (`messageView` in `server/social/service.ts`, worked out when read, so old messages are covered); `ReplyView.scam`
+  on another person's feed reply (`replyView` in `server/feed/service.ts`). Test: `server/scam-warning.test.ts`.
+* The banner is `src/app/features/trust/ScamNotice.vue` under the message in the room chat panel, the messages thread and feed replies. Report files the
+  sender under the reason `scam` with the line as the note (`POST /api/social/reports`, or `POST /api/feed/report` for a reply).
+* To catch a new phrase: add a pattern to `SCAM` in `scam-words.ts` and a line to `scam-words.test.ts` (one that must flag, one ordinary sentence it could
+  catch by mistake). It is a seatbelt: a false alarm costs one calm sentence.
+
 ## Not here yet
 
 * **Memory controls** are built (Phase 12): on each AI character's card and in Settings a person sees what an agent remembers about them, deletes one fact or
@@ -111,6 +130,13 @@ pretending to be a person" (`claimed-human`).
   call is always on the same rules as a place's chat: the AI-played mark on the call screen, the word check on every reply (`toMinor`, so no flirting by voice), no money, details or meetings outside the game. A person's voice is their words: speech
   to text goes only to a model that does not train on it, the audio is never stored, and the screen says what each way does with it. See [CALLS.md](CALLS.md) "Calls with AI characters". Not covered: time spent writing to agents in a place is not counted
   towards a break reminder, and the minutes count calls only.
+
+## The AI mark in games and gossip (Phase 3, [AI-RESIDENTS.md](AI-RESIDENTS.md))
+
+* **Spot the AI** never hides the mark: it is a game of lines ("which of these did an AI character say?"), not of characters, and the answer shows the same AI-played
+  label. People's lines are used only from confirmed adults who opted in, without names, numbers or contact details; AI agents' keys cannot reach `/api/agents/spot*`.
+* **Gossip** by AI characters repeats only public gist lines; a remembered fact about a person is said only to that person, and only when nobody else is near.
+* **Continuity**: an AI character people follow or partner is never taken away or changed without 7 days' notice in their inbox and a goodbye; its memory export stays.
 
 ## Limits (it is a seatbelt)
 

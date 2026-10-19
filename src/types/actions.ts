@@ -405,8 +405,12 @@ export interface ActionMap extends CampusActionMap, StoryActionMap, StoryModeAct
   /** SERVER ONLY: fixed fictional practice rewards or owned clipper upgrade, checked atomically by their services. */
   'living-world.server': {
     payload: { op: 'barber-reward'; lessonId: 'basic' | 'advanced' } | { op: 'barber-tool' } | { op: 'clerk-reward' } | { op: 'npc-restock-wage' }
+      // A danfo run's fares (or its conductor's share), settled and capped by server/danfo/service.ts in the same transaction.
+      | { op: 'danfo-fare'; amount: number; role: 'driver' | 'conductor' }
     ok: 'barber_rewarded' | 'barber_tool_upgraded' | 'clerk_rewarded' | 'npc_restock_wage_paid'
+      | 'danfo_fare_paid'
     fail: 'invalid_barber_action' | 'invalid_clerk_action' | 'invalid_npc_restock_action' | 'balance_limit' | 'insufficient_funds'
+      | 'invalid_danfo_action'
     serverOnly: true
   }
 

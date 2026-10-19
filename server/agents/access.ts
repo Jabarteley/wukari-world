@@ -23,6 +23,8 @@ export const AGENT_DENY: readonly Denied[] = Object.freeze([
     reason: 'An AI character never asks a person for money (docs/AI-SAFETY.md). Giving is allowed (transfers; answer_money_request pays or declines a request a person made); asking is not, and the server refuses it as well.' },
   { id: 'romance-consent', label: 'Saying yes to flirting in public', prefixes: ['/api/social/romance'],
     reason: 'Only the person says yes to flirting in public places (docs/AI-SAFETY.md). An AI character asks with ask_public_romance and never answers for them.' },
+  { id: 'spot-the-ai', label: 'Spot the AI', prefixes: ['/api/agents/spot'],
+    reason: 'A game of telling AI lines from people\'s lines (docs/AI-RESIDENTS.md): an AI must neither play it nor put its lines in as a person\'s.' },
   { id: 'operator', label: 'Operator, moderator and admin routes', prefixes: ['/api/mod/', '/api/admin/'],
     reason: 'These are authenticated by the operator\'s own token and are not player features.' },
 ]);

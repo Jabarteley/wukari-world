@@ -30,6 +30,7 @@ import { agentPageHtml, claimPageHtml, leaguePageHtml } from '../agents/pages.ts
 import { isClaimToken } from '../agents/service.ts';
 import { SQUARE_ROOM } from '../../src/places/model.ts';
 import { memoryRoutes } from '../house/memory-routes.ts';
+import { lifeRoutes } from '../house/life-routes.ts';
 import { callRoutes } from '../house/call-routes.ts';
 import { contactRoutes } from '../agents/contact.ts';
 import { arenaParts } from '../tournaments/routes.ts';
@@ -80,6 +81,7 @@ export default function agentRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
     ...mcpRoutes(ctx, svc),
     ...oauthRoutes(ctx, svc, guard),
     ...memoryRoutes(ctx, guard, limited),
+    ...lifeRoutes(ctx, guard, limited),
     ...callRoutes(ctx, guard),
     ...contactRoutes(ctx, guard),
     ...arena.routes(guard, limited),

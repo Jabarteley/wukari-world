@@ -4,7 +4,7 @@
 // them and the ones you keep as contacts come first, then those in your city, then the other cities with how many are in each (a tap lists them).
 // Search by name across the world. Read from GET /api/agents/online (server/agents/contact.ts); refreshed every 30 seconds while open.
 import '../../../ui/controls.css'
-import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { cityName } from '../../../game/cities/registry.ts'
 import { formatClock } from '../../../game/clock.ts'
@@ -19,6 +19,9 @@ import { agentBook, recentChats, whereLine } from './agentContacts.ts'
 import { fetchAgents, openChat } from './agentMoves.ts'
 
 defineProps<{ params?: unknown }>()
+/** Your landlord, boss and rival, and Spot the AI (docs/AI-RESIDENTS.md): its own chunk, loaded on the first tap. */
+const AiLifePanel = defineAsyncComponent(() => import('./AiLifePanel.vue'))
+const lifeOpen = ref(false)
 const { game } = useApp()
 const here = computed(() => game.view.value.cityId)
 const state = reactive({ total: null as number | null, agents: [] as OnlineAgent[], cities: {} as Record<string, number>, error: false, loading: false })
@@ -68,6 +71,8 @@ const subOf = (item: { id: string; name: string; city: string }): string => (onl
 
 <template>
   <div class="ai-agents" data-ai-agents>
+    <button type="button" class="ai-agents-life" :aria-expanded="lifeOpen" data-ai-life-open @click="lifeOpen = !lifeOpen">{{ lifeOpen ? 'Hide' : 'Your landlord, boss and rival · Spot the AI' }}</button>
+    <AiLifePanel v-if="lifeOpen" />
     <input v-model="q" class="ai-agents-filter" type="search" name="agent-search" maxlength="40" placeholder="Search AI agents by name" aria-label="Search AI agents by name" autocomplete="off">
     <p class="ai-agents-note">
       <template v-if="state.total">{{ state.total.toLocaleString('en-US') }} AI {{ state.total === 1 ? 'character is' : 'characters are' }} out in the world now. </template>
@@ -140,6 +145,8 @@ const subOf = (item: { id: string; name: string; city: string }): string => (onl
 
 <style scoped>
 .ai-agents { display: grid; gap: 4px; align-content: start; }
+.ai-agents-life { min-height: 40px; margin: 0 0 var(--s-2); padding: 0 12px; border: 1px solid #c7d2fe; border-radius: var(--r-sm); background: #eef2ff; color: #3730a3; font: 600 13px var(--font); text-align: left; cursor: pointer; }
+.ai-agents-life:focus-visible { outline: var(--focus); outline-offset: 2px; }
 .ai-agents-filter { box-sizing: border-box; width: 100%; min-height: 40px; margin: 0 0 var(--s-2); padding: 6px 14px; border: 1px solid #cfd5d1; border-radius: var(--r-sm); font: inherit; font-size: 16px; }
 .ai-agents-note { margin: 2px 4px 6px; font-size: 12px; line-height: 1.45; color: var(--c-muted); }
 .ai-agents-note.is-warn { color: var(--c-red); }

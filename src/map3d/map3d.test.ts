@@ -13,6 +13,8 @@ import { tripOf, createTripClock, tripPose, tripShares, TRIP_LOOKS } from './tri
 import type { TripMode, TripSource } from './trip.ts';
 import { createMap3D, timeOfDay } from './map3d.ts';
 import { createActor } from './actor.ts';
+import { createOverlays } from './overlays.ts';
+import { fillBoards } from '../promote/boards.ts';
 import type { TravelVehicleBuilder } from './actor.ts';
 import { buildTravelVehicle } from '../models/integration/scene-models.ts';
 import { createKit } from '../scene/kit.ts';
@@ -803,4 +805,25 @@ test('the dive draws the aerial city: fetched when it starts, inside the aerial 
   } finally {
     if (device) Object.defineProperty(globalThis, 'navigator', device); else delete (globalThis as { navigator?: unknown }).navigator;
   }
+});
+
+test('billboards: a business\'s running boost fills a free board; its chip carries the listing id and photo (never as markup) and costs the geometry of a rented board', () => {
+  const h = harness();
+  const near = Object.keys(pack.sites)[0]!;
+  const palette = { colours: [{ id: 'green', label: 'Green', bg: '#256b45', ink: '#ffffff' }, { id: 'red', label: 'Red', bg: '#b23a2e', ink: '#ffffff' }], icons: [{ id: 'star', icon: '⭐' }, { id: 'food', icon: '🍲' }] };
+  const rented = { text: 'Buy <b>now</b>', colour: 'green', icon: 'star', by: { id: 'p', name: 'Ada' }, at: 0, expiresAt: 9, mine: false, price: 1 };
+  const base = { city: 'lagos', palette, sea: { rows: 0, cols: 0, shoreRows: 0, shorePrice: 0, price: 0, days: 0, maxPerPlayer: 0, plots: [] },
+    billboards: { price: 1, days: 1, maxPerPlayer: 1, slots: [{ slot: 'bb-01', near, road: 'Road', price: 1, ad: rented }, { slot: 'bb-02', near, road: 'Road', price: 1, ad: null }] } };
+  const board = { id: 'Bx1', name: '<img src=x> Iya Basira', category: 'food' as const, categoryLabel: 'Food and drinks', area: 'Yaba', photo: 'ab12cd', tier: 'boost' as const, owner: { id: 'o1', name: 'Basira' } };
+  const filled = fillBoards(base as never, [board], 0);
+  const chips = (ads: unknown) => { const o = createOverlays(createKit(), h.map.city); o.set({ billboards: true }, { ads: ads as never }); return { chips: o.chips(), triangles: o.triangles }; };
+  const withBusiness = chips(filled), withoutBusiness = chips(base);
+  const mine = withBusiness.chips.find((c) => c.key === 'board:bb-02')!;
+  assert.deepEqual([mine.business, mine.photo, mine.kind, mine.text], ['Bx1', 'ab12cd', 'board', '<img src=x> Iya Basira'], 'plain text for the page to escape; the id and photo are fields of their own');
+  assert.equal(withBusiness.chips.find((c) => c.key === 'board:bb-01')!.business, undefined, 'a rented board is a rented board');
+  assert.equal(withoutBusiness.chips.find((c) => c.key === 'board:bb-02')!.kind, 'board-free');
+  const bothRented = chips({ ...base, billboards: { ...base.billboards, slots: base.billboards.slots.map((slot) => ({ ...slot, ad: rented })) } });
+  assert.equal(withBusiness.triangles, bothRented.triangles, 'a business\'s board is drawn like a rented one: a few boxes, and the photo is a lazy image on the chip, not in the scene');
+  assert.ok(withoutBusiness.triangles > 0);
+  h.map.destroy();
 });

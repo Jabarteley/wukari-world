@@ -9,7 +9,7 @@ import { OG_IMAGE, safeOrigin } from './growth/share.ts'
 import { escapeHtml as esc } from './path-meta.ts'
 
 const UPDATED = '19 October 2026'
-const STYLE = `*{box-sizing:border-box}body{margin:0;background:#f3f0e7;color:#193126;font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%}
+export const STYLE = `*{box-sizing:border-box}body{margin:0;background:#f3f0e7;color:#193126;font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%}
 .wrap{max-width:720px;margin:0 auto;padding:24px 20px 48px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.brand{font-weight:800;color:#0f5132;text-decoration:none;font-size:20px}
 h1{font-size:28px;line-height:1.2;margin:0 0 6px}h2{font-size:19px;margin:28px 0 8px}p,li{margin:0 0 10px}ul{padding-left:20px}.meta{color:#5b6b63;font-size:14px}.foot{margin-top:32px;font-size:14px;color:#5b6b63}a{color:#0f5132}`
 
@@ -23,9 +23,9 @@ export function privacyPageHtml(origin: unknown = ''): string {
 <h2>What Allworld stores</h2><ul>
 <li><b>Your character:</b> the nickname you chose, how your character looks, and the life it lives in the game (its home, money in the game, friends, what it has done). This is the game itself.</li>
 <li><b>An account, only if you sign in:</b> the e-mail address of the sign-in you used (Google or e-mail and password), so your character follows you to another phone. Guests have no account and no e-mail.</li>
-<li><b>What you post:</b> feed posts, photos and clips you upload, replies, reactions, communities, events, gigs and the messages you send. Public posts are public; friends-only posts are for friends.</li>
+<li><b>What you post:</b> feed posts, photos and clips you upload, replies, reactions, communities, events, gigs, notices on your area's noticeboard (with your character's name, and only people whose badge is in the same area can read them) and the messages you send. Public posts are public; friends-only posts are for friends.</li>
 <li><b>Your location badge, if you turn it on:</b> the city (and, if you choose, the local government area) that your own phone found itself in. Your phone works it out and sends only the place name. Allworld never receives, stores or logs your position, and the badge is removed with one tap.</li>
-<li><b>Business and payment details, if you use them:</b> a business listing you wrote; for real-money features, an account at the payment company Bachs opened in your name. Bachs checks your identity and holds your bank details; Allworld keeps only the account's reference and its status, and never holds your money.</li>
+<li><b>Business and payment details, if you use them:</b> a business listing you wrote; for real-money features, an account at the payment company Bachs opened in your name. Bachs checks your identity and holds your bank details; Allworld keeps only the account's reference and its status, and never holds your money. <a href="${esc(`${base}/money`)}">What counts as real money</a>.</li>
 <li><b>Technical records:</b> a session cookie so the game knows which character is yours, and short-lived counts per network address to stop abuse. The address itself is never stored.</li>
 </ul>
 <h2>What never leaves your phone</h2><ul>

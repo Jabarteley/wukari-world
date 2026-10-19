@@ -65,7 +65,11 @@ import type { SpacesHttpRoutes } from './spaces.ts'
 import type { FeedHttpRoutes } from './feed.ts'
 import type { PromoteHttpRoutes } from './promote.ts'
 import type { EarnHttpRoutes } from './earn.ts'
+import type { WorldEventsHttpRoutes, WorldLiveFrame } from './world-events.ts'
+import type { DanfoHttpRoutes } from './danfo.ts'
+import type { NeighbourhoodHttpRoutes, EconomyHttpRoutes, BillboardHttpRoutes } from './neighbourhood.ts'
 import type { StoryHttpRoutes } from './story-http.ts'
+import type { ShareLoopsHttpRoutes } from './shareloops.ts'
 import type { StoryTalkView, StoryTalkTurn, TalkHistoryLine } from './story-talk.ts'
 
 // ---- shared primitives ---------------------------------------------------------------------------
@@ -298,12 +302,18 @@ export interface CoreHttpRoutes {
  * telemetry endpoints are added beside them by server/server.ts: growth.ts TelemetryHttpRoutes.)
  */
 export interface HttpRoutes extends CoreHttpRoutes, SocialHttpRoutes, CivicHttpRoutes, SupportHttpRoutes, ModerationHttpRoutes, WorldHttpRoutes,
-  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, ProjectHttpRoutes, RetentionHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes, PublicProfileHttpRoutes, ArenaHttpRoutes, ClansHttpRoutes, StoryHttpRoutes, SpacesHttpRoutes, FeedHttpRoutes, PromoteHttpRoutes, EarnHttpRoutes {
+  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, ProjectHttpRoutes, RetentionHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes, PublicProfileHttpRoutes, ArenaHttpRoutes, ClansHttpRoutes, StoryHttpRoutes, SpacesHttpRoutes, FeedHttpRoutes, PromoteHttpRoutes, EarnHttpRoutes, WorldEventsHttpRoutes, NeighbourhoodHttpRoutes, EconomyHttpRoutes, BillboardHttpRoutes {
+  'GET /api/loops/passport': ShareLoopsHttpRoutes['GET /api/loops/passport']
+  'GET /api/loops/wrapped': ShareLoopsHttpRoutes['GET /api/loops/wrapped']
+  'GET /api/loops/fame': ShareLoopsHttpRoutes['GET /api/loops/fame']
+  'GET /api/loops/frontpage': ShareLoopsHttpRoutes['GET /api/loops/frontpage']
   'GET /api/story/talk': { response: Ok<StoryTalkView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'character_required' | 'city_content_unavailable' | 'talk_venue_unavailable' }
   'POST /api/story/talk': { body: { npc: string; clientId: string; question: string; history?: TalkHistoryLine[] }; response: Ok<StoryTalkTurn>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | JsonBodyErrorCode | OnceErrorCode | 'character_required' | 'city_content_unavailable' | 'talk_venue_unavailable' | 'talk_regular_unavailable' | 'invalid_talk_request' | 'invalid_talk_history' }
   'GET /api/world/land': { query: { city: CityId }; response: Ok<LandView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'invalid_city' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' }
   'POST /api/world/land/buy': { body: LandBuyRequest; response: Ok<{ ok: boolean; code: string; duplicate?: true; pending?: true }>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | JsonBodyErrorCode | OnceErrorCode | 'invalid_city' | 'invalid_land_purchase' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' | 'land_pending' | 'not_owned_home' | 'land_price_changed' | 'land_intent_changed' }
 }
+/** Drive a danfo (docs/DANFO.md): merged into HttpRoutes here, beside the list above rather than in it. */
+export interface HttpRoutes extends DanfoHttpRoutes {}
 export type HttpRouteKey = keyof HttpRoutes
 export type ResponseOf<K extends HttpRouteKey> = HttpRoutes[K]['response']
 export type ErrorCodeOf<K extends HttpRouteKey> = HttpRoutes[K]['errors']
@@ -456,6 +466,8 @@ export interface ChatFrame {
   speaker?: 'agent'
   /** A stable number for the speaker (the same every time for the same player) from which a client picks one voice. Only on lines with a `speaker`. */
   voiceSeed?: number
+  /** The server read the line as asking for money, a withdrawal, an account number or a code (server/moderation/scam-words.ts): other people's phones show a calm warning with Report. Absent on every other line; the line itself is delivered as typed. */
+  scam?: true
 }
 /**
  * An AI character's line as speakable text, for the people in the place's VOICE circle only (the same line also goes to everyone as a `chat` frame). Each listener's phone
@@ -558,7 +570,7 @@ export interface PulseFrame { type: 'pulse'; online: number; visits: number; tod
  * socket and the social client's socket both receive every frame addressed to the player.
  * WORKER: also `HeartbeatFrame`.
  */
-export type ServerFrame = RoomServerFrame | SocialServerFrame | TableServerFrame | ArenaServerFrame | CallServerFrame | LifeChangedFrame | LiveServerFrame | NoticeFrame | PulseFrame | AnnounceFrame | SpaceServerFrame | FeedInboxFrame
+export type ServerFrame = RoomServerFrame | SocialServerFrame | TableServerFrame | ArenaServerFrame | CallServerFrame | LifeChangedFrame | LiveServerFrame | NoticeFrame | PulseFrame | AnnounceFrame | SpaceServerFrame | FeedInboxFrame | WorldLiveFrame
 export type ClientFrameType = ClientFrame['type']
 export type ServerFrameType = ServerFrame['type']
 
@@ -569,6 +581,7 @@ export { registeredCityIds } from '../game/cities/registry.ts'
 export const HTTP_ROUTE_KEYS = [
   'GET /api/feed/me', 'POST /api/feed/seen', 'GET /api/feed/list', 'GET /api/feed/crew', 'GET /api/feed/by', 'GET /api/feed/post', 'POST /api/feed/post', 'POST /api/feed/post/remove', 'POST /api/feed/react', 'POST /api/feed/reply', 'POST /api/feed/reply/remove', 'POST /api/feed/report', 'POST /api/feed/draft/remove', 'POST /api/feed/media', 'GET /api/feed/media/:hash', 'GET /api/feed/portrait/:id', 'GET /api/feed/profile', 'POST /api/feed/profile', 'POST /api/feed/handle', 'GET /api/feed/code', 'POST /api/feed/follow', 'GET /api/feed/suggestions', 'POST /api/feed/vouch', 'POST /api/feed/crews', 'POST /api/feed/crews/join', 'POST /api/feed/crews/leave', 'GET /api/feed/crews/one', 'GET /api/feed/events', 'GET /api/feed/events/one', 'POST /api/feed/events', 'POST /api/feed/events/rsvp', 'POST /api/feed/events/cancel', 'GET /api/feed/gigs', 'POST /api/feed/gigs', 'POST /api/feed/gigs/act', 'GET /api/mod/feed', 'POST /api/mod/feed', 'GET /api/feed/communities', 'POST /api/feed/crews/mod', 'POST /api/feed/crews/locals', 'POST /api/feed/located', 'POST /api/feed/crews/world', 'GET /api/feed/contacts', 'POST /api/feed/contacts/self', 'POST /api/feed/contacts/match', 'POST /api/feed/contacts/forget', 'GET /api/promote/me', 'GET /api/promote/directory', 'POST /api/promote/listings', 'POST /api/promote/listings/remove', 'POST /api/promote/order', 'POST /api/promote/order/verify', 'POST /api/promote/contact', 'GET /api/admin/promote', 'POST /api/admin/promote/act', 'GET /api/earn/me', 'POST /api/earn/account', 'POST /api/earn/account/refresh', 'GET /api/earn/ready', 'POST /api/earn/price', 'POST /api/earn/pay', 'POST /api/earn/pay/verify', 'GET /api/admin/earn', 'POST /api/admin/earn/pay', 'GET /api/admin/feed', 'POST /api/admin/feed/undo', 'POST /api/admin/feed/act',
   'GET /api/profiles/:id',
+  'GET /api/danfo/park', 'POST /api/danfo/start', 'POST /api/danfo/stop', 'POST /api/danfo/finish', 'POST /api/danfo/abandon', 'GET /api/danfo/run', 'POST /api/danfo/join', 'POST /api/danfo/leave', 'POST /api/danfo/shout', 'POST /api/danfo/collect', 'GET /api/danfo/board',
   'GET /api/living-world/assessment', 'POST /api/living-world/assessment/start', 'POST /api/living-world/assessment/step',
   'GET /api/living-world/justice-practice', 'POST /api/living-world/justice-practice/start', 'POST /api/living-world/justice-practice/step',
   'GET /api/living-world/barber',
@@ -770,6 +783,7 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/story/help/seat', 'POST /api/story/help/errand', 'POST /api/story/help/end',
   'GET /api/story/signature', 'POST /api/story/signature',
   'GET /api/story/talk', 'POST /api/story/talk',
+  'GET /api/loops/passport', 'GET /api/loops/wrapped', 'GET /api/loops/fame', 'GET /api/loops/frontpage',
   'GET /api/spaces/status', 'POST /api/spaces/design', 'POST /api/spaces/check', 'POST /api/spaces/apply', 'GET /api/spaces/host', 'POST /api/spaces/host', 'GET /api/spaces/games', 'GET /api/spaces/game', 'POST /api/spaces/games',
   'GET /api/spaces/models', 'POST /api/spaces/models', 'POST /api/spaces/models/rename', 'POST /api/spaces/models/delete', 'POST /api/spaces/models/report', 'GET /api/spaces/model-file/:hash', 'GET /api/mod/spaces/models', 'POST /api/mod/spaces/models', 'POST /api/mod/spaces/switch', 'GET /api/spaces/world', 'POST /api/spaces/world/layout', 'POST /api/spaces/world/script',
   'GET /api/spaces/worlds', 'POST /api/spaces/worlds', 'POST /api/spaces/worlds/update', 'POST /api/spaces/worlds/delete', 'POST /api/spaces/worlds/like', 'POST /api/spaces/worlds/builders', 'POST /api/spaces/models/upload-link', 'POST /api/spaces/models/upload/:token', 'POST /api/spaces/house', 'POST /api/spaces/worlds/cover', 'GET /api/spaces/world-cover/:id',
@@ -918,7 +932,7 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/agents/arena', 'POST /api/agents/arena/enter', 'POST /api/agents/arena/challenge', 'GET /api/agents/arena/challenge/:code', 'GET /api/agents/arena/cup/:id', 'GET /api/agents/arena/now',
   'GET /api/agents/call/config', 'POST /api/agents/call/start', 'POST /api/agents/call/transcribe', 'POST /api/agents/call/turn', 'POST /api/agents/call/end',
   'GET /api/agents/online', 'POST /api/agents/talk',
-  'GET /api/agents/memory', 'POST /api/agents/memory/forget', 'POST /api/agents/memory/remember', 'POST /api/agents/memory/flirt', 'POST /api/agents/memory/partner',
+  'GET /api/agents/memory', 'POST /api/agents/memory/forget', 'POST /api/agents/memory/remember', 'POST /api/agents/memory/flirt', 'POST /api/agents/memory/partner', 'GET /api/agents/memory/export', 'GET /api/agents/spot', 'POST /api/agents/spot/guess', 'POST /api/agents/spot/opt', 'GET /api/agents/roles', 'POST /api/agents/roles/ask',
   'POST /api/trust/phone/complete',
   'POST /api/trust/dojah/webhook',
   'POST /api/trust/id/start',
@@ -926,6 +940,11 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/trust/profile/:id',
   'POST /api/trust/check/:kind/start',
   'POST /api/trust/report',
+  'GET /api/world/event', 'GET /api/world/event/me', 'POST /api/world/event/step', 'GET /api/world/stage', 'POST /api/world/stage',
+  'GET /api/world/election-night', 'POST /api/world/election-night/speech', 'POST /api/world/election-night/card', 'GET /api/admin/world-events', 'POST /api/admin/world-events',
+  'GET /api/neighbourhood/board', 'POST /api/neighbourhood/notices', 'POST /api/neighbourhood/notices/vote', 'POST /api/neighbourhood/notices/report', 'POST /api/neighbourhood/notices/remove', 'GET /api/neighbourhood/meetups', 'POST /api/neighbourhood/meetups/plan',
+  'GET /api/admin/neighbourhood', 'POST /api/admin/neighbourhood/act', 'POST /api/admin/neighbourhood/meetup',
+  'GET /api/economy', 'GET /api/promote/boards', 'GET /api/promote/street',
 ] as const satisfies readonly HttpRouteKey[]
 
 /** WORKER: the same registry, so the same routes. (`/api/mod/*` answers only when the MODERATOR_TOKEN secret is set, as on Node.) */
@@ -961,6 +980,7 @@ export const SERVER_FRAME_TYPES = [
   'notice', 'pulse', 'announce',
   'space-room', 'space-peer', 'space-screen',
   'feed-inbox',
+  'world-live',
 ] as const satisfies readonly ServerFrameType[]
 /** WORKER: every frame type the shared modules send, and its application heartbeat. */
 export const WORKER_SERVER_FRAME_TYPES: readonly (ServerFrameType | HeartbeatFrame['type'])[] = [...SERVER_FRAME_TYPES, 'heartbeat']

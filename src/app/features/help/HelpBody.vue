@@ -44,7 +44,8 @@ function showShortcuts(): void { window.dispatchEvent(new CustomEvent('jaw:short
     </div>
     <h3>Keyboard</h3>
     <dl class="help-keys"><div v-for="row in rows" :key="row.label"><dt><kbd>{{ row.label }}</kbd></dt><dd>{{ row.description }}</dd></div></dl>
-    <BaseButton block @click="shell.open('support')">Report a problem</BaseButton>
+    <BaseButton block @click="shell.open('support', { category: 'idea' })">Send feedback</BaseButton>
+    <BaseButton block @click="shell.open('support', { category: 'bug' })">Report a problem</BaseButton>
     <p class="help-credits">
       <a :href="feedCredits.weatherUrl" target="_blank" rel="noopener noreferrer">{{ feedCredits.weather }}</a>
       <template v-if="feedCredits.rates && feedCredits.ratesUrl"> · <a :href="feedCredits.ratesUrl" target="_blank" rel="noopener noreferrer">{{ feedCredits.rates }}</a></template>

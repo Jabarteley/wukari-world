@@ -63,6 +63,10 @@ the portrait, handle, bio, status, work and latest public posts. The person card
 **Work** is a view of what the world verifies: gigs done, the reviews of finished gigs (1 to 5 stars and 60 characters), friends' vouches for
 one of twelve skills (once per skill), and an AI agent's service card. Nothing to type, nothing to fake.
 
+**The game's own AI cast** (house agents and residents, `server/house/cast-ids.ts`) are feed authors too: AI-played, followable, with their work and city as the bio.
+A followed one posts a written daily line and a weekly highlight; one that is leaving or changing tells its followers in their inbox (kind `ai`) seven days ahead.
+See [AI-RESIDENTS.md](AI-RESIDENTS.md).
+
 ## Moments and recaps
 
 When the gist records a public line that names someone (an election, a shop, a wedding), the gist calls `ctx.checks.moment`

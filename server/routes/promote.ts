@@ -7,7 +7,9 @@
  *   POST /api/promote/listings/remove { id }
  *   POST /api/promote/order      { listing, tier, weeks, email?, arcon? }   a boost: a Bachs checkout address, or bank details
  *   POST /api/promote/order/verify { ref }   after the checkout: Allworld asks Bachs itself and starts the boost when paid
- *   POST /api/promote/contact    { listing }  someone opened the business (a count, no name)
+ *   POST /api/promote/contact    { listing, via? }  someone opened the business (a count, no name). via: board counts a tap on a billboard; street says a contact began in the business street
+ *   GET  /api/promote/boards?city=   the city's boosted businesses for its billboards (name, kind, photo), rotating (no session needed)
+ *   GET  /api/promote/street?city=   the city's business street: live listings in shop fronts, grouped by kind (no session needed)
  * Admin: GET /api/admin/promote, POST /api/admin/promote/act (server/routes/promote-admin.ts).
  */
 import { HTTP_PER_MINUTE } from './social.ts'
@@ -53,6 +55,8 @@ export default function promoteRoutes(ctx: RouteContext): Record<RouteKey, Route
       return call(db, session)
     })
   }
+  /** The city a read asks for, or the viewer's own, or the first. */
+  const askedCity = (asked: string | null, s: SessionRecord | undefined): string => (asked && ctx.cityIds.some((c) => c === asked) ? asked : (s && characterCity(s)) ?? ctx.cityIds[0] ?? 'lagos')
   const body = async (request: RouteRequest): Promise<Record<string, unknown>> => { const b = await request.json(); return b && typeof b === 'object' ? b as Record<string, unknown> : {} }
   return {
     'GET /api/promote/me': async (request) => ({ body: await ctx.store.read((db) => promote.me(db, request.requireSession(db))), headers: NO_STORE }),
@@ -97,10 +101,20 @@ export default function promoteRoutes(ctx: RouteContext): Record<RouteKey, Route
       if (!done) return { body: { ok: false, code: 'not_paid', reason: 'The payment has not gone through yet. If you paid, wait a minute and check again.' } }
       return { body: done }
     },
+    'GET /api/promote/boards': async (request) => {
+      if (!ctx.allow(`promote:boards:${addressBucket(request.ip)}`, 120, 60000)) throw ctx.fail(429, 'rate_limited')
+      const asked = request.query.get('city')
+      return { body: await ctx.store.read((db) => { const s = request.session(db); const city = askedCity(asked, s); return { ok: true as const, city, boards: promote.boards(db, s?.publicId ?? null, city) } }), headers: { 'Cache-Control': 'no-store' } }
+    },
+    'GET /api/promote/street': async (request) => {
+      if (!ctx.allow(`promote:street:${addressBucket(request.ip)}`, 120, 60000)) throw ctx.fail(429, 'rate_limited')
+      const asked = request.query.get('city')
+      return { body: await ctx.store.read((db) => { const s = request.session(db); const city = askedCity(asked, s); return { ok: true as const, ...promote.street(db, s?.publicId ?? null, city) } }), headers: NO_STORE }
+    },
     'POST /api/promote/contact': async (request) => {
       if (!ctx.allow(`promote:contact:${addressBucket(request.ip)}`, 60, 60000)) throw ctx.fail(429, 'rate_limited')
       const b = await body(request)
-      return { body: await ctx.store.transact((db) => promote.contact(db, b.listing), { durable: false }) }
+      return { body: await ctx.store.transact((db) => promote.contact(db, b.listing, b.via), { durable: false }) }
     },
   }
 }

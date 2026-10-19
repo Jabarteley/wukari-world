@@ -48,6 +48,9 @@ export interface OverlayChip {
   ink?: string
   label?: string
   lift?: number
+  /** A business's running boost on a free board: its listing id (not player text) and its photo hash; a tap opens the business. */
+  business?: string
+  photo?: string
   homeGlyph?: string
   homes?: ChipHome[]
   more?: number
@@ -92,7 +95,7 @@ export function createOverlays(kit: MapKit, city: City) {
       if (slot.ad) b.box(x, 2.82, z + 0.12, 3.4, 0.14, 0.02, colour.ink);
       else sign(b, x, 3.5, z + 0.12, 'FOR RENT', { size: 0.3, color: '#8a7a4a' });
       chipList.push(slot.ad
-        ? { key: `board:${slot.slot}`, kind: 'board', x, y: 4.7, z, icon: iconOf(ads, slot.ad.icon), glyph: glyphOf(ads, slot.ad.icon), text: slot.ad.text, bg: colour.bg, ink: colour.ink, label: `Billboard on ${slot.road}: ${slot.ad.text}, by ${slot.ad.by.name}` }
+        ? { key: `board:${slot.slot}`, kind: 'board', x, y: 4.7, z, icon: iconOf(ads, slot.ad.icon), glyph: glyphOf(ads, slot.ad.icon), text: slot.ad.text, bg: colour.bg, ink: colour.ink, label: `Billboard on ${slot.road}: ${slot.ad.text}, by ${slot.ad.by.name}`, ...(slot.ad.business ? { business: slot.ad.business.id, ...(slot.ad.business.photo ? { photo: slot.ad.business.photo } : {}) } : {}) }
         : { key: `board:${slot.slot}`, kind: 'board-free', x, y: 4.7, z, icon: '', glyph: iconFor('ad', 'megaphone'), text: 'For rent', label: `Billboard on ${slot.road}: for rent` });
     }
     for (const mesh of b.build(shared).meshes) push(mesh, `billboards-${mesh.name}`);

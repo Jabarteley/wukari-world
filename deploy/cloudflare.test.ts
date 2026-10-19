@@ -1850,3 +1850,22 @@ test('Worker row budget: a connected player who only polls writes nothing; an ac
   assert.equal((await f.request('/api/session', null, ada.cookie)).status, 200);
   assert.equal((await (await f.request('/api/action', trip, ada.cookie)).json()).duplicate, true);
 });
+
+// OWNER: social — the public economy page of a city (docs/NEIGHBOURHOOD.md): ctx.pages on the Worker as on Node. The Worker lists the prefix, so the
+// object serves the page with the page headers and no cookie; an unknown city is a plain 404 page; the JSON read answers without a session.
+test('Worker: the economy page of a city is served by the object with no cookie, an unknown city is 404, the JSON read needs no session', async t => {
+  const f = await fixture(t);
+  const page = await f.request('/economy/lagos'); const html = await page.text();
+  assert.equal(page.status, 200);
+  assert.match(page.headers.get('content-type') as string, /^text\/html/);
+  assert.equal(page.headers.get('set-cookie'), null);
+  assert.match(html, /The economy of Lagos/);
+  assert.match(html, /never real money/);
+  assert.doesNotMatch(html, /<script/i);
+  assert.match(page.headers.get('content-security-policy') as string, /^default-src 'none'; /);
+  const unknown = await f.request('/economy/atlantis'); await unknown.arrayBuffer();
+  assert.equal(unknown.status, 404);
+  const api = await f.request('/api/economy?city=lagos'); const body = await api.json() as { ok: boolean; city: string; circulation: { total: number } };
+  assert.deepEqual([api.status, body.ok, body.city, body.circulation.total], [200, true, 'lagos', 0]);
+  assert.equal((await f.request('/api/economy?city=atlantis')).status, 400);
+});

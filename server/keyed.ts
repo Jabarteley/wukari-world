@@ -136,7 +136,10 @@ export const KEYED_SPECS: Readonly<Record<string, readonly KeyedSpec[]>> = Objec
   agents: [{ path: ['keys'] }, { path: ['owners'] }, { path: ['chars'] }, { path: ['claims'] }, { path: ['names'] }],
   promote: [{ path: ['listings'] }, { path: ['orders'] }, { path: ['owners'] }, { path: ['cities'] }],
   earn: [{ path: ['accounts'] }, { path: ['sales'] }, { path: ['owners'] }],
+  worldEvents: [{ path: ['badges'] }, { path: ['runs', '*', 'by'] }, { path: ['runs', '*', 'keys'] }],
+  danfo: [{ path: ['runs'] }, { path: ['active'] }, { path: ['riding'] }, { path: ['days'] }, { path: ['boards'] }],
   contacts: [{ path: ['me'] }, { path: ['keys'] }, { path: ['edges'] }, { path: ['mine'] }, { path: ['found'] }],
+  neighbourhood: [{ path: ['notices'] }, { path: ['meetups'] }],
   feed: [{ path: ['authors'] }, { path: ['posts'] }, { path: ['cities'] }, { path: ['handles'] }, { path: ['codes'] }, { path: ['crews'] }, { path: ['events'] }, { path: ['gigs'] }],
 });
 export const isKeyedCollection = (name: string): boolean => Object.hasOwn(KEYED_SPECS, name);

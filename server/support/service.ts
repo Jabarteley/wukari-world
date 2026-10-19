@@ -35,7 +35,7 @@ export interface Refused { ok: false; code: string; reason: string }
 type Filed = { ok: true; code: 'filed'; id: string; duplicate?: true };
 
 export const LIMITS = Object.freeze({ reports: 2000, own: 30, openPerPlayer: 5, text: 600, note: 300, perHour: 3, perAddressPerHour: 10, actions: 10, ledger: 10 });
-export const CATEGORIES: readonly SupportCategory[] = Object.freeze<SupportCategory[]>(['money', 'stuck', 'messages', 'people', 'bug', 'other']);
+export const CATEGORIES: readonly SupportCategory[] = Object.freeze<SupportCategory[]>(['idea', 'money', 'stuck', 'messages', 'people', 'bug', 'other']);
 export const STATUSES: readonly SupportStatus[] = Object.freeze<SupportStatus[]>(['received', 'reviewing', 'resolved', 'dismissed']);
 const OPEN: readonly SupportStatus[] = ['received', 'reviewing'];
 const CONTROL = /[\u0000-\u0008\u000b-\u001f\u007f]/;

@@ -89,7 +89,7 @@ export interface MapLayers { billboards: boolean; sea: boolean; neighbours: bool
 /** The billboards and sea plots the Map panel sends with its `jaw:map-ui` event (/api/civic/ads). */
 export interface AdsData {
   palette?: { colours?: { id: string; bg: string; ink: string }[]; icons?: { id: string; icon: string }[] };
-  billboards?: { slots: { slot: string; near: string; road: string; ad?: { colour: string; icon?: string; text: string; by: { name: string } } | null }[] };
+  billboards?: { slots: { slot: string; near: string; road: string; ad?: { colour: string; icon?: string; text: string; by: { name: string }; business?: { id: string; photo?: string } } | null }[] };
   sea?: { rows: number; cols: number; shoreRows: number; plots: { slot: string; colour: string; icon?: string; text: string; by: { name: string } }[] };
 }
 /** The player homes of each district, as /api/civic/neighbours sends them. */
@@ -105,7 +105,7 @@ export interface Map2DDiagnostics {
   people: { key: string; kind: string; text: string; hidden: boolean; transform: string }[];
 }
 /** A floating chip: a billboard, the sea-plots title or the Governor's. */
-interface Chip { key: string; kind: string; x: number; z: number; lift?: number; glyph: string; text: string; bg?: string; ink?: string; label: string }
+interface Chip { key: string; kind: string; x: number; z: number; lift?: number; glyph: string; text: string; bg?: string; ink?: string; label: string; business?: string; photo?: string }
 /** Where a place stands on the map; Home also says which district and whether it is the player's own plot. */
 interface Spot { x: number; z: number; district?: string; own?: boolean }
 export interface Map2D {
@@ -255,20 +255,24 @@ export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, ve
       const at = spotOf(slot.near);
       if (!at) continue;
       const colour = slot.ad ? colourOf(slot.ad.colour) : null;
-      list.push({ key: `board:${slot.slot}`, kind: slot.ad ? 'board' : 'board-free', x: at.x + 5.2, z: at.z - 3.2, glyph: iconFor('ad', slot.ad?.icon ?? 'megaphone', '📢'), text: slot.ad ? slot.ad.text : '', bg: colour?.bg, ink: colour?.ink, label: slot.ad ? `Billboard on ${slot.road}: ${slot.ad.text}, by ${slot.ad.by.name}` : `Billboard on ${slot.road}: for rent` });
+      list.push({ key: `board:${slot.slot}`, kind: slot.ad ? 'board' : 'board-free', x: at.x + 5.2, z: at.z - 3.2, glyph: iconFor('ad', slot.ad?.icon ?? 'megaphone', '📢'), text: slot.ad ? slot.ad.text : '', bg: colour?.bg, ink: colour?.ink, label: slot.ad ? `Billboard on ${slot.road}: ${slot.ad.text}, by ${slot.ad.by.name}` : `Billboard on ${slot.road}: for rent`, ...(slot.ad?.business ? { business: slot.ad.business.id, ...(slot.ad.business.photo ? { photo: slot.ad.business.photo } : {}) } : {}) });
     }
     if (layers.sea && ads?.sea && model.sea) list.push({ key: 'sea-title', kind: 'title', x: (model.sea.x0 + model.sea.x1) / 2, z: model.sea.z0 - 2.5, glyph: iconFor('ad', 'sea', '🌊'), text: `Sea plots · ${ads.sea.plots.length} of ${ads.sea.rows * ads.sea.cols} rented`, label: `Sea plots: ${ads.sea.plots.length} of ${ads.sea.rows * ads.sea.cols} rented` });
     if (layers.gov && data.gov && stateHouseId) { const seat = spotOf(stateHouseId), title = civicTitle(cityId); if (seat) list.push({ key: 'gov', kind: 'gov', lift: 40, x: seat.x, z: seat.z, glyph: iconFor('panel', 'governor', '🏛️'), text: data.gov.governor ? `${title} ${data.gov.governor.name}` : `No ${title} yet`, label: data.gov.governor ? `The ${title} is ${data.gov.governor.name}` : `There is no ${title} yet` }); }
-    const next = JSON.stringify(list.map((chip) => [chip.key, chip.text, chip.bg]));
+    const next = JSON.stringify(list.map((chip) => [chip.key, chip.text, chip.bg, chip.business, chip.photo]));
     if (next === chipKey) return;
     chipKey = next;
     for (const { node } of chips.values()) node.remove();
     chips.clear();
     for (const chip of list) {
-      const node = document.createElement('div');
+      const node = document.createElement(chip.business ? 'button' : 'div') as HTMLDivElement;
       node.className = `m3-chip is-${chip.kind}`; node.setAttribute('role', 'img'); node.setAttribute('aria-label', chip.label);
       if (chip.bg) { node.style.background = chip.bg; node.style.color = chip.ink!; }
       const icon = document.createElement('span'); icon.className = 'm3-chip-icon'; icon.innerHTML = chip.glyph || ''; node.append(icon);
+      if (chip.business) {   // a business's board: a button, its photo a small lazy image (see map3d.ts)
+        node.removeAttribute('role'); node.setAttribute('type', 'button'); node.dataset.business = chip.business; node.classList.add('is-tap');
+        if (chip.photo) { const img = document.createElement('img'); img.className = 'm3-chip-photo'; img.alt = ''; img.loading = 'lazy'; img.width = img.height = 28; img.src = `/api/feed/media/${encodeURIComponent(chip.photo)}`; node.prepend(img); }
+      }
       if (chip.text) { const text = document.createElement('span'); text.className = 'm3-chip-text'; text.textContent = chip.text; node.append(text); }   // player text: text, never markup
       labelLayer.append(node);
       chips.set(chip.key, { node, chip });
@@ -511,7 +515,7 @@ export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, ve
   const local = (event: { clientX: number, clientY: number }) => { const page = container.getBoundingClientRect(); return { x: event.clientX - page.left, y: event.clientY - page.top }; };
   function onPointerDown(event: PointerEvent) {
     if (event.pointerType === 'mouse' && event.button !== 0) return;
-    if ((event.target as Element).closest('[data-m3]')) return;
+    if ((event.target as Element).closest('[data-m3],[data-business]')) return;
     if (event.isPrimary) pointers.clear();
     pointers.set(event.pointerId, local(event));
     if (pointers.size === 1) { suppressClick = false; drag = { id: event.pointerId, from: local(event), ox, oy, moved: false, down: performance.now(), type: event.pointerType, onControl: Boolean((event.target as Element).closest('.m3-label,.m3-lga,.m3-person')) }; pinch = null; }
@@ -583,6 +587,8 @@ export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, ve
     const target = event.target as Element;
     const control = target.closest<HTMLElement>('[data-m3]');
     if (control) { onControl(control.dataset.m3!); return; }
+    const biz = target.closest<HTMLElement>('[data-business]');
+    if (biz) { window.dispatchEvent(new CustomEvent('jaw:map-business', { detail: { listing: biz.dataset.business } })); return; }
     if (suppressClick) { suppressClick = false; if (event.detail !== 0) return; }
     const plate = target.closest<HTMLElement>('.m3-lga');
     if (plate) { onSelectLga(plate.dataset.lga!); return; }

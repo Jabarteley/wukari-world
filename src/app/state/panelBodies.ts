@@ -75,6 +75,7 @@ const loaders = {
   'lite/LiteShell': () => import('../features/lite/LiteShell.vue'),
   'promote/BusinessesApp': () => import('../features/promote/BusinessesApp.vue'),
   'earn/EarnApp': () => import('../features/earn/EarnApp.vue'),
+  'danfo/DanfoApp': () => import('../features/danfo/DanfoApp.vue'),
 } satisfies Record<string, () => Promise<BodyModule>>
 
 export type PanelBody = keyof typeof loaders

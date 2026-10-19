@@ -7,7 +7,7 @@ import type { FileReportBody, FileReportResponse, MyReportsResponse, SupportCate
 import type { CityId } from '../../../types/protocol.ts'
 import type { ApiError, FetchJson } from '../../types/client.ts'
 
-export const CATEGORY_LABELS: Readonly<Record<SupportCategory, string>> = { money: 'Money or balance', stuck: 'I am stuck', messages: 'Messages or invites', people: 'Another player', bug: 'Something is broken', other: 'Something else' }
+export const CATEGORY_LABELS: Readonly<Record<SupportCategory, string>> = { idea: 'An idea or feedback', money: 'Money or balance', stuck: 'I am stuck', messages: 'Messages or invites', people: 'Another player', bug: 'Something is broken', other: 'Something else' }
 export const STATUS_LABELS: Readonly<Record<SupportStatus, string>> = { received: 'Received — waiting for a moderator', reviewing: 'Being looked at', resolved: 'Resolved', dismissed: 'Closed without action' }
 export const DEFAULT_LIMITS: SupportLimits = { text: 600, open: 5 }
 export const MIN_TEXT = 3

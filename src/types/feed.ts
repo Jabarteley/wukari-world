@@ -18,7 +18,8 @@ export interface FeedPerson {
 }
 export interface FeedMedia { hash: string; type: 'jpeg' | 'png' | 'webp' | 'webm' | 'mp4'; w: number; h: number; ms?: number }
 export interface FeedPlace { city: string; cityName: string; venue?: string; label?: string }
-export interface ReplyView { n: number; by: FeedPerson; at: number; body: string; mine?: true }
+/** `scam`: the reply reads as asking for money or a withdrawal (server/moderation/scam-words.ts); only on other people's replies, which show a calm warning with Report. */
+export interface ReplyView { n: number; by: FeedPerson; at: number; body: string; mine?: true; scam?: true }
 export interface PostView {
   id: string
   by: FeedPerson
@@ -43,6 +44,8 @@ export interface PostView {
   mine?: true
   hidden?: true
   ai?: true
+  /** A duet (docs/SHARE-LOOPS.md): the clip this clip answers, shown beside it; null when that clip is gone or the viewer may not see it. */
+  duet?: { id: string; by: FeedPerson; media: FeedMedia; poster?: string } | null
 }
 export interface NewsLine { n: number; at: number; city: string; text: string }
 /**
@@ -52,7 +55,7 @@ export interface NewsLine { n: number; at: number; city: string; text: string }
 export interface NearLine { city: string; cityName: string; n: number; lga?: string; lgaName?: string; lgaN?: number }
 export interface FeedPage { ok: true; tab: FeedTab | 'crew' | 'author'; posts: PostView[]; next: string | null; news?: NewsLine[]; near?: NearLine; sponsored?: (import('./promote.ts').ListingView & { order: string })[] }
 export interface Draft { n: number; at: number; city: string; kind: string; text: string }
-export interface InboxLine { at: number; kind: 'reply' | 'reaction' | 'follow' | 'crew' | 'rsvp' | 'gig' | 'vouch' | 'review' | 'mention' | 'moderation'; text: string; post?: string; from?: FeedPerson; seen?: true }
+export interface InboxLine { at: number; kind: 'reply' | 'reaction' | 'follow' | 'crew' | 'rsvp' | 'gig' | 'vouch' | 'review' | 'mention' | 'moderation' | 'ai'; text: string; post?: string; from?: FeedPerson; seen?: true }
 export interface ProfileView extends FeedPerson {
   bio?: string
   status?: { text: string; place?: string; at: number }
@@ -130,7 +133,7 @@ export interface FeedHttpRoutes {
   'GET /api/feed/crew': { query: { id: string; after?: string }; response: Ok<FeedPage | Refused>; errors: E }
   'GET /api/feed/by': { query: { id: string; after?: string }; response: Ok<FeedPage | Refused>; errors: E }
   'GET /api/feed/post': { query: { id: string }; response: Done<{ post: PostView }>; errors: E }
-  'POST /api/feed/post': { body: { body?: string; vis?: Visibility; crew?: string; media?: string; poster?: string; draft?: number; label?: string }; response: Done<{ post: PostView }>; errors: E }
+  'POST /api/feed/post': { body: { body?: string; vis?: Visibility; crew?: string; media?: string; poster?: string; draft?: number; label?: string; duet?: string }; response: Done<{ post: PostView }>; errors: E }
   'POST /api/feed/post/remove': { body: { id: string }; response: Done; errors: E }
   'POST /api/feed/react': { body: { id: string; emoji: string | null }; response: Done<{ post: PostView }>; errors: E }
   'POST /api/feed/reply': { body: { id: string; body: string }; response: Done<{ post: PostView }>; errors: E }

@@ -21,6 +21,8 @@ import { initialOf, hueOf } from '../../ui/format.ts'
 import { lineParts } from '../../../game/trust/links.ts'
 import type { OutboundLink } from '../../../game/trust/links.ts'
 import type { ChatLine, MemberRow } from '../../../types/community.ts'
+import ScamNotice from '../trust/ScamNotice.vue'
+import { SCAM_REPORT_REASON, scamReportText } from '../trust/scamNotice.ts'
 import '../../../community.css'
 const LinkInterstitial = defineAsyncComponent(() => import('../trust/LinkInterstitial.vue'))
 
@@ -35,6 +37,18 @@ const leaving = ref<{ link: OutboundLink; line: ChatLine } | null>(null)
 const linkOpened = ref(false)
 const unseen = ref(0)
 function openLink(link: OutboundLink, line: ChatLine): void { linkOpened.value = true; leaving.value = { link, line } }
+
+const scamNote = ref('')
+/** The scam banner's Report: the speaker is reported as a scam with the line as the note (the same report a player's card files). */
+async function reportScam(line: ChatLine): Promise<void> {
+  if (!line.authorId) return
+  try {
+    // The application's client is fetched only when someone taps Report (it is not part of what this panel needs to draw).
+    const { useApp } = await import('../../state/app.ts')
+    const sent = await useApp().game.fetchJson<{ ok?: boolean; code?: string; reason?: string }>('/api/social/reports', { method: 'POST', body: { id: line.authorId, reason: SCAM_REPORT_REASON, text: scamReportText(line.body) } })
+    scamNote.value = sent.ok === false ? sent.reason ?? 'That report was not sent.' : 'Report received. A moderator will look at it.'
+  } catch (error) { scamNote.value = error instanceof Error ? error.message : 'That report was not sent. Try again.' }
+}
 
 async function saveName(): Promise<void> { await control()?.saveName(nickname.value) }
 function send(): void {
@@ -256,10 +270,12 @@ onBeforeUnmount(() => { viewport?.removeEventListener('resize', lift); viewport?
             <li v-for="line in s.chat" :key="line.key" :class="{ 'is-npc': line.npc, 'is-mine': mine(line) }" :data-npc-line="line.npc ? '' : undefined">
               <div class="community-meta"><strong><NpcBadge v-if="line.npc" lead />{{ mine(line) ? 'You' : line.author }}</strong><time v-if="line.at">{{ clock(line.at) }}</time><small v-if="line.delivery && line.delivery !== 'Sent'">{{ line.delivery }}</small></div>
               <p><template v-for="(part, i) in lineParts(line.body)" :key="i"><button v-if="part.link" type="button" class="community-link" data-community-link @click="openLink(part.link, line)">{{ part.text }}</button><template v-else>{{ part.text }}</template></template></p>
+              <ScamNotice v-if="line.scam && !mine(line)" @report="reportScam(line)" />
               <button v-if="line.canRetry" type="button" data-community-retry-message @click="control()?.retryMessage(line.key)">Retry message</button>
             </li>
           </ol>
           <p v-if="!s.chat.length" class="community-empty">No messages yet. Say hello.</p>
+          <p v-if="scamNote" class="community-empty" role="status" data-scam-note>{{ scamNote }}</p>
           <button v-if="unseen" type="button" class="community-jump" @click="toBottom">New messages ↓</button>
         </div>
       </div>

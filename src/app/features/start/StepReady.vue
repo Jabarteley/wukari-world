@@ -44,6 +44,7 @@ const rows = computed<{ step: StepId; label: string; value: string }[]>(() => [
     </div>
     <p class="cr-note" data-cr-first>When you start, the first screen shows what is happening near you and who is here, with one thing to do: say hello, join your area's community or walk to the Square.</p>
     <p class="cr-note">Your birth lottery is rolled when you start. It decides your start cash. You keep going from there: jobs, friends, a house to make your own.</p>
+    <p class="cr-note" data-cr-start-card>Once you start, "What did you get?" makes a card of your start (job, home, money and a title) to post on your Status.</p>
     <p class="cr-note" data-cr-world>Allworld is the real world, one city at a time: travel between cities to see what life is like in each. Call and chat with the people you meet, earn, invest and advertise as you go, and open a business of your own.</p>
   </div>
 </template>

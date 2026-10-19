@@ -8,6 +8,7 @@ export const PASSPORT_TABS = [
   ['story', 'My Story'],
   ['achievements', 'Achievements'],
   ['people', 'My People'],
+  ['moments', 'Share'],
 ] as const
 
 export type PassportTab = typeof PASSPORT_TABS[number][0]

@@ -231,6 +231,8 @@ export interface Ad {
   mine: boolean
   /** What the slot costs to rent (not what was paid). */
   price: number
+  /** Set on a free board the map filled with a business's running Boost or Spotlight (src/promote/boards.ts): a tap opens the business. Never sent by the ads route. */
+  business?: { id: string; label: string; photo?: string }
 }
 export interface BillboardSlot {
   /** `bb-01` … */

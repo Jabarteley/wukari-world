@@ -27,6 +27,8 @@ import { useRetention } from './useRetention.ts'
 
 const PublicProfile = defineAsyncComponent(() => import('../social/PublicProfile.vue'))
 const StoryModePanel = defineAsyncComponent(() => import('../story/StoryModePanel.vue'))
+// The share loops (docs/SHARE-LOOPS.md): passport, Wrapped, street fame, the start card and the street video, fetched when the tab is opened.
+const LoopsHub = defineAsyncComponent(() => import('../shareloops/LoopsHub.vue'))
 
 const props = defineProps<{ params?: unknown }>()
 const askedTab = (props.params as { tab?: unknown } | null)?.tab
@@ -312,6 +314,10 @@ onMounted(() => { void retention.load() })
         <div v-for="record in records" :key="record.id"><dt>{{ record.label }}</dt><dd>{{ record.value }}</dd></div>
       </dl>
       <p class="passport-honesty">Lifetime totals and titles come from your saved record. Badges appear only after their criteria are recorded.</p>
+    </section>
+
+    <section v-else-if="tab === 'moments'" id="passport-panel-moments" role="tabpanel" aria-labelledby="passport-tab-moments" tabindex="0">
+      <LoopsHub />
     </section>
 
     <section v-else id="passport-panel-people" role="tabpanel" aria-labelledby="passport-tab-people" tabindex="0">

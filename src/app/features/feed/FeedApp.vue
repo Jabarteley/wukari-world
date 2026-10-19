@@ -100,6 +100,13 @@ async function pickPhoto(event: Event): Promise<void> {
   if (file) await attach(await encodePhoto(file))
 }
 const snap = async (): Promise<void> => attach(await snapshotScene(sceneCanvas))
+/** A duet being answered (docs/SHARE-LOOPS.md): the clip the next posted clip answers, shown beside it. */
+const duetOf = ref<PostView | null>(null)
+function answerDuet(post: PostView): void {
+  duetOf.value = post
+  toast(hasScene.value && canRecord() ? `Record a clip to answer ${post.by.name}. It will show beside theirs.` : 'Duets are recorded from the 3D scene. Open the world on this device to record one.')
+  document.querySelector('[data-feed="compose"]')?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+}
 async function clip(): Promise<void> {
   if (recording.value) { recording.value.stop(); return }
   // The clip's still, taken as it starts: the reviewer looks at it and the player shows it before the clip plays.
@@ -118,10 +125,10 @@ async function dropDraft(n: number): Promise<void> { await api.dropDraft(n); if 
 async function publish(): Promise<void> {
   if (busy.value || (!text.value.trim() && !media.value && draftN.value === null)) return
   busy.value = true
-  const r = await api.post({ body: text.value, vis: vis.value || undefined, ...(vis.value === 'crew' && crew.value ? { crew: crew.value } : {}), ...(media.value ? { media: media.value.hash, ...(poster.value ? { poster: poster.value } : {}) } : {}), ...(draftN.value !== null ? { draft: draftN.value } : {}), ...(label.value.trim() ? { label: label.value.trim() } : {}) })
+  const r = await api.post({ body: text.value, vis: vis.value || undefined, ...(vis.value === 'crew' && crew.value ? { crew: crew.value } : {}), ...(media.value ? { media: media.value.hash, ...(poster.value ? { poster: poster.value } : {}) } : {}), ...(draftN.value !== null ? { draft: draftN.value } : {}), ...(label.value.trim() ? { label: label.value.trim() } : {}), ...(duetOf.value && media.value && (media.value.type === 'webm' || media.value.type === 'mp4') ? { duet: duetOf.value.id } : {}) })
   busy.value = false
   if (!r.ok) { toast(r.reason, 'error'); return }
-  text.value = ''; label.value = ''; clearMedia(); poster.value = null
+  text.value = ''; label.value = ''; clearMedia(); poster.value = null; duetOf.value = null
   if (draftN.value !== null && me.value) me.value.drafts = me.value.drafts.filter((d) => d.n !== draftN.value)
   draftN.value = null
   posts.value = [r.post, ...posts.value]
@@ -168,7 +175,7 @@ async function addFriend(s: Suggestion): Promise<void> {
 
     <template v-if="open">
       <button type="button" class="feed-pill" @click="open = null">← Back</button>
-      <PostCard :post="open" :api="api" :now="now" full @changed="replace" @removed="removed" @person="person" @toast="toast" @share="share" @event="openEvent" @gig="openGig" />
+      <PostCard :post="open" :api="api" :now="now" full @changed="replace" @removed="removed" @person="person" @toast="toast" @share="share" @event="openEvent" @gig="openGig" @duet="answerDuet" />
     </template>
 
     <template v-else-if="tab === 'inbox'">
@@ -196,6 +203,7 @@ async function addFriend(s: Suggestion): Promise<void> {
       </div>
 
       <form class="feed-card feed-compose" data-feed="compose" @submit.prevent="publish">
+        <p v-if="duetOf" class="feed-answering" data-feed="answering"><span>Answering {{ duetOf.by.name }}'s clip with a duet: record yours below.</span><button type="button" class="feed-pill" @click="duetOf = null">Cancel</button></p>
         <textarea v-model="text" :maxlength="FEED.body" :placeholder="draftN !== null ? 'Add a few words to your moment (optional)' : tab === 'city' ? `What is happening in ${cityName}?` : tab === 'near' ? `What is happening around ${near?.lgaName ?? near?.cityName ?? cityName}?` : 'What are you up to?'" aria-label="Write a post" />
         <img v-if="preview && media && media.type !== 'webm' && media.type !== 'mp4'" class="feed-media" :src="preview" alt="Your photo">
         <video v-else-if="preview" class="feed-media" :src="preview" controls muted playsinline />
@@ -240,7 +248,7 @@ async function addFriend(s: Suggestion): Promise<void> {
       <p v-if="failed" class="feed-error" role="alert">{{ failed }} <button type="button" class="social-btn" @click="load()">Try again</button></p>
       <EmptyState v-else-if="!posts.length && !loading" icon="people" :title="tab === 'friends' ? 'Your friends have not posted yet' : 'Quiet so far'" :text="tab === 'friends' ? 'Post the first thing, add people you meet, or start a crew. The World tab is never empty.' : 'Be the first to post here.'" />
       <template v-for="(p, i) in posts" :key="p.id">
-        <PostCard :post="p" :api="api" :now="now" @changed="replace" @removed="removed" @person="person" @open="openPost" @toast="toast" @share="share" @event="openEvent" @gig="openGig" />
+        <PostCard :post="p" :api="api" :now="now" @changed="replace" @removed="removed" @person="person" @open="openPost" @toast="toast" @share="share" @event="openEvent" @gig="openGig" @duet="answerDuet" />
         <SponsoredCard v-if="i === 0 && sponsored[0]" :listing="sponsored[0]" />
         <SponsoredCard v-if="i === 5 && sponsored[1]" :listing="sponsored[1]" />
       </template>

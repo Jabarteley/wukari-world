@@ -61,6 +61,7 @@
 
 /* Layer chips: what a billboard or a sea plot says, the homes of an estate, the Governor. Ads are text only — never a link or a button. */
 .m3-chip{position:absolute;left:0;top:0;display:flex;align-items:center;gap:4px;max-width:150px;padding:3px 8px;border-radius:8px;background:#fffffff2;color:#20232c;font-size:10px;font-weight:700;line-height:1.2;box-shadow:0 2px 6px #0b2b3a40;pointer-events:none;will-change:transform}
+.m3-chip.is-tap{pointer-events:auto;cursor:pointer;font-family:inherit;text-align:left;margin:0}.m3-chip-photo{flex:none;width:28px;height:28px;border-radius:4px;object-fit:cover}
 .m3-chip-icon{flex:none;display:inline-grid;font-size:12px;line-height:1}
 .m3-chip-icon:empty{display:none}
 .m3-label-icon svg{width:16px;height:16px}.m3.is-far .m3-label-icon svg{width:13px;height:13px}.m3-chip-icon svg{width:14px;height:14px}.m3-house svg{width:15px;height:15px}

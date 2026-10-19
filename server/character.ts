@@ -3,6 +3,7 @@ import { cityName, isCityId } from '../src/game/cities/registry.ts'
 import { hasPlace } from '../src/game/systems/estate.ts'
 import type { CityId } from '../src/types/protocol.ts'
 import type { CityLifeRecord, SessionRecord } from './types.ts'
+import { stampPassport } from './shareloops/stamp.ts'
 
 /** A pin this code wrote (version 2, or a recorded move). A bare `{v:1, city}` is the start-up pin of an older build, fixed at one moment and never updated. */
 const isCurrentPin = (character: SessionRecord['character']): boolean => Boolean(character && (character.v === 2 || character.movedAt !== undefined))
@@ -69,7 +70,9 @@ export function fileCharacter(session: SessionRecord, from: CityId, now: number)
     session.cities[to as CityId] = entry
     delete session.cities[from]
     session.character = { v: 2, city: to, from, movedAt: now }
+    stampPassport(session, from, now) // a life that began in the city it left (docs/SHARE-LOOPS.md)
   } else session.character = { ...session.character, v: 2, city: to }
+  stampPassport(session, to, now)
 }
 
 export function swapLegacyLife(session: SessionRecord, id: string): { ok: true; city: string } {

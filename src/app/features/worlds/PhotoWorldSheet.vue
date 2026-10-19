@@ -2,10 +2,10 @@
 // A world from a photo (docs/WORLDS.md, phase 8): the player picks a photo, their own device works out how far away everything in it
 // is and builds a place from it (src/spaces/photo/), and a link-only world is made around it; they walk in where the photo was taken.
 // The photo is never sent anywhere but as the picture on the player's own model, like any model they upload.
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { track } from '../world/worldModel.ts'
-import { modelUpload, worldCreate, worldSave, type WorldCard } from '../spaces/spacesClient.ts'
+import { modelUpload, modelsMine, worldCreate, worldSave, type WorldCard } from '../spaces/spacesClient.ts'
 import { WORLD_SIZES } from '../../../spaces/worlds.ts'
 import type { PhotoPlace, PhotoStep } from '../../../spaces/photo/depth.ts'
 
@@ -34,6 +34,13 @@ const WHY: Record<string, string> = {
   memory: 'This device ran out of memory. Close other apps or tabs and try again, or use a smaller photo.',
   download: 'The depth helper did not download. Check your connection and try again.',
 }
+
+/** Why this player cannot keep a model (a guest, uploads paused), asked first so nobody does the work for nothing. */
+const blocked = ref<string | null>(null)
+onMounted(async () => {
+  const mine = await modelsMine(game)
+  if (mine.ok && !mine.canUpload) blocked.value = mine.why ?? 'You cannot upload models right now.'
+})
 
 function forget(): void { if (picture.value) URL.revokeObjectURL(picture.value); picture.value = null }
 onBeforeUnmount(forget)
@@ -86,7 +93,8 @@ async function make(): Promise<void> {
     <template v-if="state === 'pick'">
       <p class="ui-muted">Pick a photo of a room, a street or a view. Your device works out how far away everything is and builds a place you can walk into, standing where the photo was taken. The first time, it fetches a 41 MB helper.</p>
       <p class="ui-muted">Works best with a level photo that shows the floor or the ground. Things hidden behind others stay hidden.</p>
-      <label class="ui-button is-primary is-block worlds-photo-pick" data-worlds="photo-pick">
+      <p v-if="blocked" class="ui-why" data-worlds="photo-blocked">{{ blocked }}</p>
+      <label v-else class="ui-button is-primary is-block worlds-photo-pick" data-worlds="photo-pick">
         Choose a photo
         <input type="file" accept="image/*" class="worlds-photo-input" @change="pick">
       </label>

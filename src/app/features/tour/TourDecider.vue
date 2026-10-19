@@ -5,6 +5,7 @@
 // Due: once per player, after the first landing in the world (the creator finished, or Play now), when nothing else
 // is in front: no sheet, no activity, no call, the venue view, the HUD drawn. Never for a life that has already
 // played, or with Hints off. Phone → Help and Settings start it again ('jaw:tour'); ? opens the shortcuts ('jaw:shortcuts').
+// When it is due by itself, the first-minute strip takes its turn instead (handOff below); asked for, it runs as before.
 import { defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { coachHints } from '../hud/coachModel.ts'
@@ -62,7 +63,17 @@ function startWhenIdle(): void {
   if (verdict() !== 'start') return
   const quiet = Date.now() - lastInput
   if (quiet < IDLE_MS) { timer = window.setTimeout(startWhenIdle, IDLE_MS - quiet + 250); return }
-  begin(false)
+  handOff()
+}
+/**
+ * A new player's first minute is the first-minute strip's (features/firstminute, docs/FEED.md "First minute"): one social action instead of
+ * the walkthrough, which stays one tap away (the strip's "Show me around", Phone → Help, ?). Marked seen as if it had run; the things that
+ * wait for the tour wait until the strip's code is here, so the strip is first. A strip that cannot be fetched gives the walkthrough back.
+ */
+function handOff(): void {
+  held.add(who())
+  markTourSeen(store(), who())
+  void import('../firstminute/startFirstMinute.ts').then(({ startFirstMinute }) => { startFirstMinute(true); tour.pending = false }, () => { begin(false) })
 }
 function begin(again: boolean): void {
   if (running.value) return

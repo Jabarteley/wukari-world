@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Step 5, "Ready": the whole character on one card, each line with a way back to change it. The
-// buttons that start the life are the creator's footer.
+// buttons that start the life are the creator's footer. What comes right after is one social action, not a tour (features/firstminute).
 import { computed, defineAsyncComponent, ref } from 'vue'
 import { DREAMS, TRAITS } from '../../../game/content/traits.ts'
 import { dreamFor } from '../../../game/cities/characterContent.ts'
@@ -42,6 +42,7 @@ const rows = computed<{ step: StepId; label: string; value: string }[]>(() => [
       <button v-if="!showCard" type="button" class="cr-btn is-small" data-key="share-card" @click="showCard = true"><GameIcon name="share" inline /> Share my character</button>
       <CharacterCard v-else :name="name" @close="showCard = false" />
     </div>
+    <p class="cr-note" data-cr-first>When you start, the first screen shows what is happening near you and who is here, with one thing to do: say hello, join your area's community or walk to the Square.</p>
     <p class="cr-note">Your birth lottery is rolled when you start. It decides your start cash. You keep going from there: jobs, friends, a house to make your own.</p>
     <p class="cr-note" data-cr-world>Allworld is the real world, one city at a time: travel between cities to see what life is like in each. Call and chat with the people you meet, earn, invest and advertise as you go, and open a business of your own.</p>
   </div>

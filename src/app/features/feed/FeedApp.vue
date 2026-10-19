@@ -23,6 +23,7 @@ import { agoText, confirmedText, FEED, visibilityWord } from '../../../feed/mode
 import { cityName as registryCityName } from '../../../game/cities/registry.ts'
 import { social } from '../social/useSocial.ts'
 import { enterRoom, enterSquare, loadPlaces, places } from '../places/placesStore.ts'
+import { keepBadge } from './badgeMark.ts'
 import type { FeedTab, Visibility } from '../../../feed/model.ts'
 import type { FeedMe, FeedMedia, InboxLine, NearLine, NewsLine, PostView, Suggestion } from '../../../types/feed.ts'
 
@@ -45,7 +46,7 @@ const toast = (text: string, tone?: 'error'): void => game.toast(text, tone === 
 // ---- loading -----------------------------------------------------------------------------------------------------------------------
 async function loadMe(): Promise<void> {
   const r = await api.me()
-  if (r.ok) { me.value = r; feedUnseen.value = r.unseen }
+  if (r.ok) { me.value = r; feedUnseen.value = r.unseen; keepBadge(Boolean(r.profile.located)) }
 }
 async function load(more = false): Promise<void> {
   if (loading.value || tab.value === 'inbox') return

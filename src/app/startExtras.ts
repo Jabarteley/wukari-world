@@ -40,6 +40,8 @@ export function startAfterReady(): void {
   void import('./chatter/ambient.ts').then(({ startAmbient }) => { startAmbient() }, () => undefined)
   // "Add Allworld to your phone", once per device after a first session in the game: fetched only for a device that has not been asked (features/start/installPrompt.ts).
   try { if (globalThis.localStorage?.getItem(INSTALL_ASKED_KEY) === null) void import('./features/start/installPrompt.ts').then(({ startInstallPrompt }) => { startInstallPrompt() }, () => undefined) } catch { /* no storage: no bar */ }
+  // The first minute (features/firstminute, docs/FEED.md): what is near, who is here and one thing to do, once per session, fetched only for a tab that has not shown it.
+  try { if (globalThis.sessionStorage?.getItem('allworld-first-minute') !== '1') void import('./features/firstminute/startFirstMinute.ts').then(({ startFirstMinute }) => { startFirstMinute() }, () => undefined) } catch { /* no storage: no strip */ }
   // A tab that stood in a place before a reload goes back to it (a few lines unless there is one to go back to).
   try { if (globalThis.sessionStorage?.getItem('allworld-place') || globalThis.sessionStorage?.getItem('allworld-place-link')) void import('./features/places/placeEntry.ts').then((module) => { module.startPlaceEntry() }, () => undefined) } catch { /* no storage: nothing was kept */ }
 }

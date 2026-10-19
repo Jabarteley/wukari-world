@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // Mounted once in App.vue (in the stack above the navigation) and tiny on purpose: the banner and everything behind it
 // (noticeStore.ts: the clock, the check of the host's build) are fetched when the first update notice arrives.
-import { defineAsyncComponent, ref } from 'vue'
+import { defineAsyncComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import { onCallFrame } from '../social/useSocial.ts'
 
 const wanted = ref(false), announced = ref(false)
@@ -13,11 +13,18 @@ onCallFrame((frame) => {
 })
 const NoticeBanner = defineAsyncComponent(() => import('./NoticeBanner.vue'))
 const AnnounceBanner = defineAsyncComponent(() => import('../announce/AnnounceBanner.vue'))
+// The city news strip (src/news/, Ticker.vue) shares this slot: fetched ten seconds after the game is up, so the first frames are not competing with it.
+const Ticker = defineAsyncComponent(() => import('../gist/Ticker.vue'))
+const news = ref(false)
+let newsTimer: ReturnType<typeof setTimeout> | undefined
+onMounted(() => { newsTimer = setTimeout(() => { news.value = true }, 10000) })
+onBeforeUnmount(() => clearTimeout(newsTimer))
 </script>
 
 <template>
   <NoticeBanner v-if="wanted" />
   <AnnounceBanner v-if="announced" />
+  <Ticker v-if="news" variant="hud" />
 </template>
 
 <style>

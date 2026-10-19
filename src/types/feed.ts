@@ -52,7 +52,7 @@ export interface NewsLine { n: number; at: number; city: string; text: string }
 export interface NearLine { city: string; cityName: string; n: number; lga?: string; lgaName?: string; lgaN?: number }
 export interface FeedPage { ok: true; tab: FeedTab | 'crew' | 'author'; posts: PostView[]; next: string | null; news?: NewsLine[]; near?: NearLine; sponsored?: (import('./promote.ts').ListingView & { order: string })[] }
 export interface Draft { n: number; at: number; city: string; kind: string; text: string }
-export interface InboxLine { at: number; kind: 'reply' | 'reaction' | 'follow' | 'crew' | 'rsvp' | 'gig' | 'vouch' | 'review' | 'mention' | 'moderation'; text: string; post?: string; from?: FeedPerson; seen?: true }
+export interface InboxLine { at: number; kind: 'reply' | 'reaction' | 'follow' | 'crew' | 'rsvp' | 'gig' | 'vouch' | 'review' | 'mention' | 'moderation' | 'ai'; text: string; post?: string; from?: FeedPerson; seen?: true }
 export interface ProfileView extends FeedPerson {
   bio?: string
   status?: { text: string; place?: string; at: number }

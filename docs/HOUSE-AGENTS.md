@@ -118,7 +118,25 @@ city has, or its first venue. Names and looks are original; looks use only style
 
 Residents, the agents that live a day of their own with a model, are in [RESIDENTS.md](RESIDENTS.md).
 
+## Greeting, gossip, followers and the continuity rule (Phase 3 of the wow plan)
+
+Details in [AI-RESIDENTS.md](AI-RESIDENTS.md).
+
+- **Greeting by name with one remembered fact** ("Ada! Still saving for a car?", `greet.ts factGreeting`): written, and only when nobody else stands in the same part
+  of the venue (`ctx.checks.groupPeers`). With somebody else there, the person's facts are neither said nor put in a model's prompt. On a call (private) they may be.
+- **Gossip** ("any gist?", "what's new?", "wetin dey happen?"): one fresh public gist line of the city (business, election, party, event, law, notice, owner; never an
+  arrest or a removal), written, no model. Never a remembered fact.
+- **Followers.** Every agent has a feed profile, AI-played, with Follow; a followed agent posts a written daily line after 19:00 Lagos (its routine, what the runner
+  counted that day: `house.tally(id)`, and a gist line) and a weekly highlight (a model within `aiHighlightCityCalls` a city a day, else written). `follow.ts`.
+- **Spot the AI.** What an agent says in a venue may become a line of the weekly "which of these lines did an AI say?" game (`spot.ts`, after the room accepted it).
+  The live-room version was not built: it would hide the AI-played mark, which an agent always carries.
+- **Never taken away quietly.** An agent's spec (name, role, voice, card) is fingerprinted in `continuity-data.ts`; changing or removing one that people follow or
+  partner needs an entry in `CHANGES` released at least 7 days before, which tells each of them in their inbox and posts a goodbye on the last day
+  (`continuity.ts`). `continuity.test.ts` fails otherwise. After it has gone, its memory card and its memory export stay.
+
 ## What is not here
+
+- The live Spot the AI room and the AI twin (see [AI-RESIDENTS.md](AI-RESIDENTS.md)).
 
 - Direct messages to a house agent and calls: later phases (no stored character yet; the hook is described in [AGENT-MEMORY.md](AGENT-MEMORY.md)). Memory of people, closeness and partners (adults, opt-in) are in [AGENT-MEMORY.md](AGENT-MEMORY.md).
 - Prizes for the quiz, the festivals host hook (Phase 16): later. (Held quotes and tasks are Phase 11: [AGENT-MISSIONS.md](AGENT-MISSIONS.md).)

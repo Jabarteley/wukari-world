@@ -918,7 +918,7 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/agents/arena', 'POST /api/agents/arena/enter', 'POST /api/agents/arena/challenge', 'GET /api/agents/arena/challenge/:code', 'GET /api/agents/arena/cup/:id', 'GET /api/agents/arena/now',
   'GET /api/agents/call/config', 'POST /api/agents/call/start', 'POST /api/agents/call/transcribe', 'POST /api/agents/call/turn', 'POST /api/agents/call/end',
   'GET /api/agents/online', 'POST /api/agents/talk',
-  'GET /api/agents/memory', 'POST /api/agents/memory/forget', 'POST /api/agents/memory/remember', 'POST /api/agents/memory/flirt', 'POST /api/agents/memory/partner',
+  'GET /api/agents/memory', 'POST /api/agents/memory/forget', 'POST /api/agents/memory/remember', 'POST /api/agents/memory/flirt', 'POST /api/agents/memory/partner', 'GET /api/agents/memory/export', 'GET /api/agents/spot', 'POST /api/agents/spot/guess', 'POST /api/agents/spot/opt', 'GET /api/agents/roles', 'POST /api/agents/roles/ask',
   'POST /api/trust/phone/complete',
   'POST /api/trust/dojah/webhook',
   'POST /api/trust/id/start',

@@ -67,3 +67,11 @@
 | UTC | Status | Change or finding | Evidence | Next step |
 |---|---|---|---|---|
 | 2026-10-19T22:00:00Z | active | Scope narrowed: light map dropped | coordinator message | build grade and post |
+
+## Critic scorecard (wave 1)
+
+- Critic: Claude (Fable 5.1), 20 Oct 2026; full card in [../evidence/critic-wave1-20261020.md](../evidence/critic-wave1-20261020.md#phase-2-one-post-stack-bloom-grade-vignette-n8ao-msaa-on-the-high-tier-20261019-os-phase2-post).
+- Average before to after (street only; Kano and home not captured): 1.30 to 1.25 (no category moved; Performance evidence 2 to 1.5 because calls and triangles read 1 and 1 under the composer).
+- Failures standing: HUD of cards; HUD over the pavement; no renderer diagnostics after the change (frames.md not updated).
+- Verdict: no, not as shipped: the change is barely visible (deeper sky, vignette; I cannot find the AO) for +1.5 ms (+3.7 with AO) and 106 kB gzip; ship AO off or behind `?post=1` until a pair shows it.
+- Weakest surface: street Lighting (nothing emits); next change: lamp, window and sign emitters above the bloom threshold plus a warm ground disc under each.

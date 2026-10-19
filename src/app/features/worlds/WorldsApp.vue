@@ -10,6 +10,7 @@ import { track } from '../world/worldModel.ts'
 import { liteGames, myFriends, worldBuilders, worldCoverUrl, worldCreate, worldDelete, worldLike, worldUpdate, worldsList, type WorldCard } from '../spaces/spacesClient.ts'
 import { cardLine, emptyForm, formOf, groundChoices, groundForTemplate, groundTint, likeLabel, makeWhy, openChoices, sizeChoices, skyChoices, skyTint, templateChoices, worldUrl, WORLDS, type WorldForm } from './worldsModel.ts'
 const WorldScreen = defineAsyncComponent(() => import('../spaces/WorldScreen.vue'))
+const PhotoWorldSheet = defineAsyncComponent(() => import('./PhotoWorldSheet.vue'))
 
 type Tab = 'new' | 'popular' | 'friends'
 const props = defineProps<{ params?: unknown }>()
@@ -21,6 +22,9 @@ const others = ref<WorldCard[]>([])
 const which = ref<Tab>('new')
 const count = ref(0)
 const limit = ref<number>(WORLDS.perPlayer)
+/** A world may be made from a photo here (docs/WORLDS.md, phase 8), and the sheet for it is open. */
+const photoOn = ref(false)
+const photo = ref(false)
 const loading = ref(true)
 const error = ref('')
 const note = ref('')
@@ -43,7 +47,7 @@ async function refresh(): Promise<void> {
   loading.value = false
   if (!own.ok) { on.value = own.code !== 'worlds_off'; error.value = own.code === 'worlds_off' ? '' : own.reason; return }
   on.value = true
-  mine.value = own.worlds; count.value = own.mine; limit.value = own.limit
+  mine.value = own.worlds; count.value = own.mine; limit.value = own.limit; photoOn.value = own.photo === true
   if (rest.ok) others.value = rest.worlds.filter((w) => !w.mine && !w.builder)
 }
 onMounted(async () => {
@@ -54,7 +58,14 @@ onMounted(async () => {
 })
 watch(which, () => { void refresh() })
 
-function startMaking(): void { editing.value = null; form.value = emptyForm(); note.value = ''; error.value = '' }
+function startMaking(): void { photo.value = false; editing.value = null; form.value = emptyForm(); note.value = ''; error.value = '' }
+function startPhoto(): void { form.value = null; editing.value = null; photo.value = true; note.value = ''; error.value = '' }
+function photoMade(world: WorldCard): void {
+  photo.value = false
+  track('world_created', { size: world.size, ground: world.ground, open: world.open, template: 'photo' })
+  void refresh()
+  enter(world, 'mine')
+}
 async function startEditing(world: WorldCard): Promise<void> {
   editing.value = world; form.value = formOf(world); note.value = ''; error.value = ''
   builders.value = (world.builders ?? []).map((b) => b.id)
@@ -120,8 +131,11 @@ const tintOf = (world: WorldCard): string => `linear-gradient(${skyTint(world.sk
       <strong>Your world, your rules</strong>
       <p>Open ground of your own. Start from a hangout, a treasure hunt or a race, put your 3D models in it, write what happens, and send friends the link. Or walk into a world somebody else made.</p>
       <button type="button" class="ui-button is-primary is-block" data-worlds="make" :disabled="Boolean(makeOff) || form !== null" :title="makeOff ?? undefined" @click="startMaking">Make a world</button>
+      <button v-if="photoOn" type="button" class="ui-button is-block worlds-photo-start" data-worlds="photo" :disabled="Boolean(makeOff) || form !== null || photo" :title="makeOff ?? undefined" @click="startPhoto">Walk into a photo</button>
       <p v-if="makeOff && !loading" class="ui-why">{{ makeOff }}</p>
     </section>
+
+    <PhotoWorldSheet v-if="photo" @made="photoMade" @close="photo = false" />
 
     <section v-if="form" class="ui-card worlds-form" data-worlds="form" :aria-label="editing ? `Change ${editing.name}` : 'Make a world'">
       <h3>{{ editing ? `Change ${editing.name}` : 'A new world' }}</h3>

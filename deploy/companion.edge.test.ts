@@ -80,7 +80,7 @@ test('on the Worker: a reply from the gateway, the exact request, limits kept in
   const seen = f.gateway.seen[0]!;
   assert.equal(seen.path, '/v1/chat/completions');
   assert.equal(seen.headers['authorization'], `Bearer ${KEY}`);
-  assert.equal(seen.body['model'], 'openai/gpt-5.6-luna');
+  assert.equal(seen.body['model'], 'openai/gpt-6-luna');
   assert.ok(!seen.raw.includes('Ada') || seen.raw.includes('Player: Ada'));
   assert.ok(!/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(seen.raw));
 

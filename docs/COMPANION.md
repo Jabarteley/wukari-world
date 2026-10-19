@@ -44,7 +44,7 @@ The in-game guide always has its own built-in replies (the deterministic brain).
 
 ### What happens to a question
 
-`POST /api/companion/ask` with `{ message, clientId, turnId?, history? }` (or `{ rephrase: true, localText, clientId }` when `COMPANION_AI_REPHRASE=on`). It needs a device session with a started life (guests are fine). The answer is always `{ ok: true, via, text, suggest, topic?, turnId? }`:
+`POST /api/companion/ask` with `{ message, clientId, turnId?, history? }` (or `{ rephrase: true, localText, asked?, clientId }`: the brain's own answer to `asked`, said again in Lumo's words; on unless `COMPANION_AI_REPHRASE=off`. The client asks it for every confident answer but a safety one, and keeps the brain's buttons). It needs a device session with a started life (guests are fine). The answer is always `{ ok: true, via, text, suggest, topic?, turnId? }`:
 
 | `via` | meaning |
 | --- | --- |
@@ -69,10 +69,10 @@ History is sent by the client with each question (at most six turns; each is cut
 `POST {AI_GATEWAY_BASE_URL}/v1/chat/completions`, `Authorization: Bearer <key>`, JSON:
 
 ```json
-{ "model": "openai/gpt-5.6-luna", "messages": [{ "role": "system", "content": "..." }, { "role": "user", "content": "<player>...</player>" }],
+{ "model": "openai/gpt-6-luna", "messages": [{ "role": "system", "content": "..." }, { "role": "user", "content": "<player>...</player>" }],
   "max_tokens": 220, "temperature": 0.6, "stream": false,
   "providerOptions": { "gateway": { "user": "p_<32 hex of a salted SHA-256 of the player id>",
-    "tags": ["product:allworld", "feature:companion", "role:primary", "model:openai/gpt-5.6-luna"] } } }
+    "tags": ["product:allworld", "feature:companion", "role:primary", "model:openai/gpt-6-luna"] } } }
 ```
 
 The path, the bearer header and `providerOptions.gateway.{user, tags}` follow the gateway's OpenAI-compatible interface as documented when this was written; confirm them once against the gateway's current documentation or with the self-test below. The fallback request is identical with `role:fallback` and the fallback model. There is no `ai` SDK: it is one `fetch`.
@@ -108,7 +108,7 @@ All optional. Set on both hosts as environment values (Node: `.env`; Worker: sec
 | --- | --- | --- |
 | `AI_GATEWAY_API_KEY` | none | secret. Absent: the feature is off |
 | `AI_GATEWAY_BASE_URL` | `https://ai-gateway.vercel.sh` | https only |
-| `COMPANION_MODEL` | `openai/gpt-5.6-luna` | |
+| `COMPANION_MODEL` | `openai/gpt-6-luna` | |
 | `COMPANION_FALLBACK_MODEL` | `xai/grok-4.1-fast-non-reasoning` | asked once if the first fails (429, 5xx, timeout, wrong id, bad answer). A refused key (401/403) is not retried |
 | `COMPANION_AI` | on when a key exists | `off` switches it off |
 | `COMPANION_DAILY_REQUESTS` | 25000 | everybody together, rolling 24 hours |
@@ -116,7 +116,7 @@ All optional. Set on both hosts as environment values (Node: `.env`; Worker: sec
 | `COMPANION_PLAYER_BURST` | 8 | per player per minute |
 | `COMPANION_MAX_OUTPUT_TOKENS` | 220 | |
 | `COMPANION_TIMEOUT_MS` | 8000 | the whole question, both tries: the first gets 60 percent, the fallback the rest |
-| `COMPANION_AI_REPHRASE` | off | `on` allows `{ rephrase: true, localText }` |
+| `COMPANION_AI_REPHRASE` | on | `off` refuses `{ rephrase: true, localText }`, so every confident answer is the brain's own line |
 | `COMPANION_PRICE_IN_PER_M`, `COMPANION_PRICE_OUT_PER_M` | 0.10, 0.50 | US$ per million tokens, used only for the operator's estimated cost. The defaults are the default model's prices at the time of writing; check the gateway dashboard |
 
 The live host needs: the secret `AI_GATEWAY_API_KEY`. Everything else has a default.

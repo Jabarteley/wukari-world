@@ -102,7 +102,7 @@ export const EVENTS: Record<string, EventSpec> = {
   estate_viewed: { from: 'world', props: { lga: 'string' }, when: 'A local government’s page (its estates and residents directory) was opened.', why: 'Do people look around their area?' },
   neighbour_card_opened: { from: 'world', props: { from: 'string' }, when: 'A resident’s card was opened (from: directory | map).', why: 'Does the directory lead to people?' },
   // ---- Worlds (docs/WORLDS.md; src/app/features/worlds). Sizes, surfaces and openness are words from fixed lists; never a name or an id.
-  world_created: { from: 'world', props: { size: 'string', ground: 'string', open: 'string', template: 'string' }, when: 'A player made a world (size: small | big | huge; ground: grass | sand | stone | snow | island; open: everyone | friends | link; template: empty | hangout | treasure | race | obby | island).', why: 'How many make worlds, and what kind.' },
+  world_created: { from: 'world', props: { size: 'string', ground: 'string', open: 'string', template: 'string' }, when: 'A player made a world (size: small | big | huge; ground: grass | sand | stone | snow | island; open: everyone | friends | link; template: empty | hangout | treasure | race | obby | island | photo).', why: 'How many make worlds, and what kind.' },
   world_entered: { from: 'world', props: { mine: 'boolean', from: 'string' }, when: 'A world was opened in 3D (mine: the player’s own; from: mine | new | popular | link).', why: 'Do people go into worlds, and how do they find them?' },
   world_shared: { from: 'world', props: { channel: 'string' }, when: 'A world’s link was sent (channel: native | copy).', why: 'The top of the world-invite funnel.' },
   house_skill_copied: { from: 'world', props: { what: 'string' }, when: 'Copy my real house: the instructions for the player\'s own AI were copied (what: prompt) or the skill opened (what: skill).', why: 'Do players hand their house to their own AI?' },
@@ -112,6 +112,7 @@ export const EVENTS: Record<string, EventSpec> = {
   danfo_run: { from: 'world', props: { action: 'string', route: 'string', earned: 'number' }, when: 'A danfo run started (action: start) or was settled by the server (action: end, earned: game naira) on a line (route).', why: 'Runs per day and per person, and which lines are driven (docs/DANFO.md).' },
   danfo_clip: { from: 'world', props: { what: 'string' }, when: 'A danfo run\'s clip (what: clip) or card (what: card) was handed to Capture to share.', why: 'Are runs shared?' },
   danfo_crew: { from: 'world', props: { role: 'string' }, when: 'A player joined someone\'s danfo run (role: passenger | conductor).', why: 'Do friends ride along?' },
+  photo_world: { from: 'world', props: { step: 'string', ground: 'string', seconds: 'number' }, when: 'A world from a photo was made or failed (step: made | failed | off | picture | memory | download; ground: fitted, a ground was found | level, assumed | none; seconds: how long the device took). Never the photo.', why: 'Does walking into a photo work on players’ phones, and how long does it take?' },
   world_liked: { from: 'world', props: { on: 'boolean' }, when: 'A world was liked (on: true) or the like taken back.', why: 'Which worlds people value, beyond visits.' },
 
   // ---- Missions, tables, sharing and outreach (the growth panels: src/ui/panels/*, src/tables/client.ts)

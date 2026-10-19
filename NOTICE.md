@@ -35,5 +35,7 @@ The data is stored as generated modules under `src/map3d/geo/data/` and `src/mod
 | [@sentry/browser](https://github.com/getsentry/sentry-javascript) | MIT |
 | [posthog-js](https://github.com/PostHog/posthog-js) | Apache-2.0 AND MIT |
 | [Rapier](https://rapier.rs/) (`@dimforge/rapier3d-compat`, physics in the 3D space screen) | Apache-2.0 |
+| [ONNX Runtime Web](https://onnxruntime.ai/) 1.30.0 (`dist/ort.wasm.bundle.min.mjs` and `dist/ort-wasm-simd-threaded.wasm`; kept in the model store and fetched only to make a world from a photo, not part of the game's download) | MIT |
+| [Depth Anything V2 Small](https://github.com/DepthAnything/Depth-Anything-V2) (onnx-community's quantized ONNX export; works out a photo's depth on the player's own device) | Apache-2.0 |
 
 Transitive dependencies keep their own licences in `node_modules`.

@@ -3,7 +3,9 @@
  * PHYSICS IN A SPACE (docs/SPACES-3D.md, phase 3): Rapier (Apache-2.0), loaded only when the 3D space screen opens.
  *
  *  - The house is solid as drawn: every wall, floor, step, rail, window and roof mesh becomes a fixed collider of the same shape.
- *  - Furniture is a solid box over its footprint; a player's fixed model is solid in the shape of its convex hull.
+ *  - Furniture is a solid box over its footprint; a player's fixed model is solid in the shape of its convex hull, or exactly as
+ *    drawn when its root is named `allworld_solid` (a place made from a photo: docs/WORLDS.md, phase 8), in the shape of its
+ *    `allworld_collider` node when it has one.
  *  - A model marked loose is a dynamic body (its convex hull, wood-like density): it falls, rolls, stacks, is pushed by the walker
  *    and can be picked up and thrown.
  *  - The walker is a capsule moved by Rapier's character controller: it slides along walls, steps up stairs and kerbs, follows
@@ -48,6 +50,25 @@ function pointsOf(root: Object3D, frame: Object3D | null, max: number, scale = 1
     }
   })
   return new Float32Array(out)
+}
+
+/** Every triangle of `root`'s meshes, in the frame of `frame` at `scale`: a solid model's exact shape (src/spaces/photo/glb-write.ts). */
+function trianglesOf(root: Object3D, frame: Object3D, scale: number): { vertices: Float32Array; index: Uint32Array } {
+  const vertices: number[] = [], index: number[] = []
+  const inverse = new THREE.Matrix4().copy(frame.matrixWorld).invert(), m = new THREE.Matrix4(), v = new THREE.Vector3()
+  root.updateWorldMatrix(true, true)
+  root.traverse((n) => {
+    const mesh = n as InstanceType<typeof THREE.Mesh>
+    const position = mesh.isMesh ? mesh.geometry.attributes['position'] : undefined
+    if (!position) return
+    const base = vertices.length / 3
+    m.multiplyMatrices(inverse, mesh.matrixWorld)
+    for (let i = 0; i < position.count; i++) { v.fromBufferAttribute(position, i).applyMatrix4(m).multiplyScalar(scale); vertices.push(v.x, v.y, v.z) }
+    const order = mesh.geometry.index
+    if (order) for (let i = 0; i < order.count; i++) index.push(base + order.getX(i))
+    else for (let i = 0; i < position.count; i++) index.push(base + i)
+  })
+  return { vertices: new Float32Array(vertices), index: new Uint32Array(index) }
 }
 
 export interface Loose { key: string; object: Object3D }
@@ -134,7 +155,10 @@ export async function startPhysics(): Promise<Physics> {
       for (const { key, object } of fixed) {
         object.updateWorldMatrix(true, true)
         // In the model's own frame, on a body that only a script moves (kinematic: it pushes what it meets, nothing pushes it).
-        const hull = R.ColliderDesc.convexHull(pointsOf(object, object, PHYSICS.hullPoints, object.scale.x))
+        // A model that says it is solid (a place made from a photo) is solid as drawn: its hull would fill the whole scene. The walker
+        // must not catch on the seams between its triangles.
+        const solid = object.userData['solid'] === true ? trianglesOf(object.getObjectByName('allworld_collider') ?? object, object, object.scale.x) : null
+        const hull = solid ? (solid.index.length ? R.ColliderDesc.trimesh(solid.vertices, solid.index, R.TriMeshFlags.FIX_INTERNAL_EDGES) : null) : R.ColliderDesc.convexHull(pointsOf(object, object, PHYSICS.hullPoints, object.scale.x))
         if (!hull) continue
         const q = object.quaternion
         const body = world.createRigidBody(R.RigidBodyDesc.kinematicPositionBased().setTranslation(object.position.x, object.position.y, object.position.z).setRotation({ x: q.x, y: q.y, z: q.z, w: q.w }))

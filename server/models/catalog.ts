@@ -8,7 +8,7 @@
  *   openrouter  OpenRouter, secret OPENROUTER_API_KEY (base https://openrouter.ai/api/v1; the address is not a setting)
  *
  * A MODEL LIST is text: entries separated by commas or new lines, each `provider:model-id` (a bare id means the gateway), FREE ONES
- * FIRST and paid after. Example: `openrouter:google/gemma-4-31b-it:free, gateway:openai/gpt-5.6-luna`. The defaults below are
+ * FIRST and paid after. Example: `openrouter:google/gemma-4-31b-it:free, gateway:openai/gpt-6-luna`. The defaults below are
  * in code; an admin setting per purpose (modelsCompanion, modelsAgentTalk, modelsResident, modelsSafety) replaces a list without a
  * release, and an empty setting means the default again.
  *
@@ -16,7 +16,7 @@
  * training by their provider, so a request that carries a player's words never goes to one (router.ts). Every other model is
  * treated as paid, and a paid model that is not in the price table is priced high (UNKNOWN_PRICE) so the budget errs safe.
  *
- * Model ids and free lists are as of 14 Oct 2026 (docs/agent-plans/world-alive/DESIGN.md Part 7). They change; that is why they are settings.
+ * Model ids and free lists are as of 14 Oct 2026 (the paid default moved to gpt-6-luna on 19 Oct 2026; prices are the Vercel AI Gateway's) (docs/agent-plans/world-alive/DESIGN.md Part 7). They change; that is why they are settings.
  */
 
 export const PROVIDERS = ['gateway', 'openrouter'] as const;
@@ -57,7 +57,8 @@ export const formatList = (entries: readonly Entry[]): string => entries.map(ent
 export interface Price { input: number; output: number }
 /** US$ per million tokens. Free models are 0. */
 export const PRICES: Readonly<Record<string, Price>> = Object.freeze({
-  'openai/gpt-5.6-luna': { input: 0.10, output: 0.50 },
+  'openai/gpt-6-luna': { input: 0.10, output: 0.50 },
+  'openai/gpt-5.6-luna': { input: 0.20, output: 1.20 },
   'openai/gpt-4o-mini': { input: 0.165, output: 0.66 },
   'xai/grok-4.1-fast-non-reasoning': { input: 0.20, output: 0.50 },
   'nvidia/nemotron-3.5-lightning-free': { input: 0, output: 0 },
@@ -71,7 +72,7 @@ export const isFree = (id: string, prices: Readonly<Record<string, Price>> = PRI
 export const priceOf = (id: string, prices: Readonly<Record<string, Price>> = PRICES): Price => (isFree(id, prices) ? { input: 0, output: 0 } : prices[id] ?? UNKNOWN_PRICE);
 
 export const SAFETY_MODEL = 'nvidia/nemotron-3.5-content-safety:free';
-export const COMPANION_PRIMARY = 'openai/gpt-5.6-luna';
+export const COMPANION_PRIMARY = 'openai/gpt-6-luna';
 export const COMPANION_FALLBACK = 'xai/grok-4.1-fast-non-reasoning';
 
 const gw = (id: string): Entry => ({ provider: 'gateway', id });

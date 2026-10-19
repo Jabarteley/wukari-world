@@ -130,6 +130,20 @@ test('the hosted seam: used only for what the local brain is unsure of; its butt
   assert.equal(suggestToAction('start-trip:lagos', ctx()), null, 'a trip to the city you are in is not offered')
 })
 
+test('a confident answer is said again in Lumo\'s words with the brain\'s own buttons; a failure or a hard moment keeps the brain\'s line', async () => {
+  const input = (message: string) => ({ context: ctx(), message, memory: { explained: [], asked: 0 } })
+  const local = answerFor('how do i earn money', ctx(), { explained: [], asked: 0 })
+  const seen: [string, string][] = []
+  const rephrase = async (localText: string, asked: string): Promise<Hosted> => { seen.push([localText, asked]); return { text: 'Want some cash? Here is how.', suggest: ['rm-rf'], via: 'primary' } }
+  const said = await askCompanion(input('how do i earn money'), null, [], rephrase)
+  assert.deepEqual([said.via, said.text, said.topic], ['primary', 'Want some cash? Here is how.', local.topic])
+  assert.deepEqual(said.actions, local.actions, 'the buttons are the brain\'s, never the model\'s')
+  assert.deepEqual(seen, [[local.text, 'how do i earn money']])
+  assert.equal((await askCompanion(input('how do i earn money'), null, [], async () => { throw new Error('offline') })).text, local.text)
+  assert.equal((await askCompanion(input('i want to hurt myself'), null, [], rephrase)).via, 'local', 'a hard moment is never rephrased')
+  assert.equal(seen.length, 1, 'and never sent')
+})
+
 test('the changelog and the explainers name labels that exist in the interface', () => {
   assert.ok(CHANGELOG.length >= 3)
   const missing: string[] = []

@@ -106,6 +106,8 @@ export interface BuiltSpace {
   modelObject(key: string): InstanceType<typeof THREE.Object3D> | undefined
   /** Every placement's object, for picking. */
   modelObjects(): InstanceType<typeof THREE.Object3D>[]
+  /** Where a solid model placed here was taken from (docs/WORLDS.md, phase 8), or null. */
+  modelSpawn(): { x: number; y: number; z: number; yaw: number } | null
   /** The furniture as solid boxes, measured from what is drawn: [x0, z0, x1, z1], the floor height and how tall. */
   furnitureBoxes(): { rect: [number, number, number, number]; y: number; height: number }[]
   /** Whether a mesh is part of the house itself (walls, floors, stairs, windows, roof, yard), for physics. */
@@ -475,11 +477,15 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
         holder.position.set(p.x, p.floor * H + p.y, p.z)
         holder.rotation.y = (p.ry * Math.PI) / 180
         holder.scale.setScalar(p.s)
-        holder.userData = { key: p.k, hash: p.hash, floor: p.floor, loose: p.loose === true }
+        // A place made from a photo says it is solid as drawn (src/spaces/photo/glb-write.ts): physics follows its triangles, those of
+        // its collider, which is never drawn.
+        let solid = false
+        if (!prop) object.traverse((n) => { if (n.name === 'allworld_solid') solid = true; if (n.name === 'allworld_collider') n.visible = false })
+        holder.userData = { key: p.k, hash: p.hash, floor: p.floor, loose: p.loose === true, ...(solid ? { solid: true } : {}) }
         holder.name = `model-${p.k}`
         modelGroup.add(holder)
         placed.set(p.k, holder)
-        if (!p.loose && p.y < 1.5) {
+        if (!p.loose && !solid && p.y < 1.5) {
           const bounds = new THREE.Box3().setFromObject(holder)
           if (bounds.max.y - p.floor * H > 0.3) blocks.push({ floor: p.floor, rect: [bounds.min.x, bounds.min.z, bounds.max.x, bounds.max.z] })
         }
@@ -488,6 +494,17 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
     },
     modelObject: (key) => placed.get(key),
     modelObjects: () => [...placed.values()],
+    modelSpawn() {
+      // The first solid model that says where it was taken from (a photo place): there, looking where the camera looked.
+      for (const holder of placed.values()) {
+        if (holder.userData['solid'] !== true) continue
+        const mark = holder.getObjectByName('allworld_spawn')
+        if (!mark) continue
+        const p = mark.getWorldPosition(new THREE.Vector3())
+        return { x: p.x, y: p.y, z: p.z, yaw: holder.rotation.y }
+      }
+      return null
+    },
     furnitureBoxes: () => boxes.map((b) => ({ ...b, rect: [...b.rect] as [number, number, number, number] })),
     isShell(node) {
       // The open front door is drawn, not solid: it would close the doorway.

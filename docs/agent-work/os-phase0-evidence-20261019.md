@@ -7,7 +7,7 @@
 - **Model / effort:** Sonnet 5.5 / default
 - **Thread:** local subagent of the integrator
 - **UTC updated:** 2026-10-19T00:00:00Z
-- **Status:** `active`
+- **Status:** `ready-for-review`
 - **Work state:** `implementation`
 
 ## Goal and boundaries
@@ -34,16 +34,24 @@
 
 ### Done and exact evidence
 
-- Read the plan, the learnings and the dev docs.
+- Tools: `scripts/evidence/{cdp,views,shoot,png,metrics,inspect,walk}.ts` — `node --experimental-strip-types --test scripts/evidence/*.test.ts` gives 18 passing tests; glob added to the `test` script in `package.json`.
+- Typecheck: `NODE_OPTIONS=--max-old-space-size=7168 npm run typecheck` through the heavy slot: clean, 5 projects (3584 MB runs out of memory in the test project).
+- Anchors: `docs/evidence/anchors/` (three views, page and scene PNG each), taken with `shoot.ts --view all --scale 1 --dwell 3` on 19 Oct 2026.
+- Frame table: `docs/evidence/frames.md` from `shoot.ts --view all --scale 2` (capped and `--uncapped`) and `walk.ts`; the walk exits 1 today (8 stalls, worst 233 ms stepping out to the street).
+- Docs: `docs/EVIDENCE.md`, critic prompt and process rules in `docs/AGENT-PROMPTS.md`; skills in `.claude/skills/`.
+- Merged `origin/main` (7ec83aab5) as the integrator asked.
+- Server on 5211 and every browser stopped; `/tmp/aw-evidence-*` profiles deleted; `.data-open` of this worktree removed.
 
 ### In progress / blockers
 
 - `.gitignore` line 10 (`evidence/`) hides every folder called `evidence`, including `docs/evidence/` and `scripts/evidence/`. Files are added with `git add -f`. Integrator request: change the line to `/evidence/` and add `docs/evidence/out/`.
+- Android emulator column of the frame table is "not measured".
+- CI run: see the checkpoint history.
 
 ### Immediate resume steps
 
-1. `git log --oneline -10` in the worktree to see what is committed.
-2. Run `node --experimental-strip-types --test scripts/evidence/*.test.ts`.
+1. `git log --oneline -10` in the worktree.
+2. `gh run list -R kromate/joinallworld --branch claude/os-p0-evidence` and read the budget lines.
 
 ## Release state
 
@@ -57,3 +65,4 @@
 | UTC | Status | Change or finding | Evidence | Next step |
 |---|---|---|---|---|
 | 2026-10-19 | active | Work record opened | this file | start the dev server and build the harness |
+| 2026-10-19 | ready-for-review | Tools, docs, anchors, skills committed; typecheck clean | git log | push and run CI |

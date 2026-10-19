@@ -199,3 +199,13 @@ test('an own message ends with a tick that screen readers hear as "Sent"', async
   assert.match(html, /class="bubble-tick" aria-hidden="true"/); assert.match(html, /class="sr-only"[^>]*> Sent</)
   assert.ok(!(await bubble(line())).includes('bubble-tick'), 'the other person\'s line has no tick')
 })
+
+test('a flagged line shows the calm scam warning with Report and a link to /money; your own line and an ordinary line show none', async () => {
+  const html = await bubble(line({ body: 'send me 5k make I help you withdraw', scam: true }))
+  assert.match(html, /<div class="scam-notice" role="note" data-scam-notice>/)
+  assert.ok(words(html).includes('Game naira is never real money. Nobody can withdraw it for you.'))
+  assert.match(html, /<a href="\/money" target="_blank" rel="noopener">What is real money\?<\/a>/)
+  assert.match(html, /<button type="button" class="scam-report"[^>]*data-scam-report[^>]*>Report<\/button>/)
+  assert.ok(!(await bubble(line({ body: 'Hello' }))).includes('scam-notice'))
+  assert.ok(!(await bubble(line({ body: 'send me 5k', scam: true, from: { id: 'ada', name: 'Ada' } }))).includes('scam-notice'), 'the sender is never warned about their own line')
+})

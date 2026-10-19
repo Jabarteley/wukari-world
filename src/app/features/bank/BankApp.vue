@@ -79,6 +79,7 @@ async function pay(which: 'rent' | 'week' | 'all'): Promise<void> {
           <template v-else-if="bills.tail === 'no-job'"> You have no job yet. Open Jobs to start earning.</template>
         </template>
         <template v-else>No weekly bills yet.</template>
+        <small class="bank-real">Game naira is never real money and cannot be withdrawn. <a href="/money" target="_blank" rel="noopener">What is real money?</a></small>
       </div>
     </section>
     <p class="ui-note">Game money only. Real store earnings are shown in My Store.</p>
@@ -172,6 +173,8 @@ async function pay(which: 'rent' | 'week' | 'all'): Promise<void> {
 .bank-day { margin: 0 0 var(--s-3); }
 .bank-day h4 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 0 2px var(--s-1); font-size: 12px; font-weight: 700; color: var(--c-ink-2); }
 .bank-day h4 small { font-size: 11px; font-weight: 600; color: var(--c-muted); font-variant-numeric: tabular-nums; }
+.bank-real { display: block; margin-top: 8px; font-size: 12px; color: #d6eee7; }
+.bank-real a { color: #fff; font-weight: 700; }
 .bank-wallet-note { font-size: 13px; line-height: 1.5; color: #d6eee7; border-top: 1px solid #3e626c; padding-top: 12px; }
 
 .bank { overflow-wrap: anywhere; }

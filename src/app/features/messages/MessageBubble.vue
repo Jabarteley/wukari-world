@@ -7,13 +7,14 @@ import GameIcon from '../../ui/GameIcon.vue'
 import EmojiPicker from './EmojiPicker.vue'
 import PictureView from './PictureView.vue'
 import MoneyRequestCard from './MoneyRequestCard.vue'
+import ScamNotice from '../trust/ScamNotice.vue'
 import { QUICK_REACTIONS } from './emojiData.ts'
 import { emojiOnly, giftDetail, giftLine, pieces } from './messagesText.ts'
 import type { RequestOp } from './moneyRequestModel.ts'
 import type { Message } from '../../../types/social.ts'
 
 const props = defineProps<{ item: Message; meId: string; group: boolean; head: boolean; tail: boolean; time: string; canReact: boolean; canActions: boolean; canPin?: boolean; pinned?: boolean; pinPending?: boolean; pinBlocked?: boolean; pinOffline?: boolean; preview?: boolean; voiceEnabled?: boolean; now?: number; partner?: string; requestBusy?: boolean; requestOffline?: boolean }>()
-const emit = defineEmits<{ reply: [item: Message]; react: [item: Message, emoji: string | null]; player: [id: string]; jump: [seq: number]; reportVoice: [item: Message]; picture: [item: Message]; edit: [item: Message]; remove: [item: Message]; forward: [item: Message]; pin: [item: Message, pinned: boolean]; request: [id: string, op: RequestOp]; menu: [open: boolean] }>()
+const emit = defineEmits<{ reply: [item: Message]; react: [item: Message, emoji: string | null]; player: [id: string]; jump: [seq: number]; reportVoice: [item: Message]; reportScam: [item: Message]; picture: [item: Message]; edit: [item: Message]; remove: [item: Message]; forward: [item: Message]; pin: [item: Message, pinned: boolean]; request: [id: string, op: RequestOp]; menu: [open: boolean] }>()
 const mine = computed(() => props.item.from?.id === props.meId)
 const parts = computed(() => pieces(props.item.body, props.item.mentions))
 const big = computed(() => (props.item.mentions?.length || props.item.replyTo || props.item.image || props.item.voice ? 0 : emojiOnly(props.item.body)))
@@ -78,6 +79,7 @@ onBeforeUnmount(cancel)
       <span v-if="item.body || !item.image" class="bubble-text" :class="{ 'is-big': big > 0 }" :style="big ? { fontSize: `${big === 1 ? 44 : big === 2 ? 36 : 30}px` } : undefined"><template v-for="(piece, index) in parts" :key="index"><button v-if="piece.mention && piece.mention.id !== 'everyone'" type="button" class="chip" :aria-label="`Open ${piece.text.slice(1)}'s card`" @click.stop="emit('player', piece.mention.id)">{{ piece.text }}</button><span v-else-if="piece.mention" class="chip is-all">{{ piece.text }}</span><template v-else>{{ piece.text }}</template></template></span>
       <VoiceNote v-if="item.voice && !preview" :voice="item.voice" :me-id="meId" :off="!mine && voiceEnabled === false" />
       <span v-else-if="item.voice" class="bubble-media-label">Voice message</span>
+      <ScamNotice v-if="item.scam && !mine && !item.deleted" @report="emit('reportScam', item)" />
       <small v-if="tail">{{ time }}<template v-if="item.editedAt && !item.deleted"> · Edited</template><template v-if="mine && !item.deleted"> <span class="bubble-tick" aria-hidden="true">✓</span><span class="sr-only"> Sent</span></template></small>
     </div>
     <div v-if="item.reactions?.length" class="reactions" role="group" aria-label="Reactions">

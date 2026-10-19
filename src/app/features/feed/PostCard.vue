@@ -4,10 +4,12 @@
 import './feed.css'
 import { computed, ref } from 'vue'
 import PlayerAvatar from '../social/PlayerAvatar.vue'
+import ScamNotice from '../trust/ScamNotice.vue'
+import { SCAM_REPORT_REASON } from '../trust/scamNotice.ts'
 import { agoText, badgePlaceText, visibilityWord } from '../../../feed/model.ts'
 import { mediaUrl, portraitUrl } from './feedApi.ts'
 import type { FeedApi } from './feedApi.ts'
-import type { PostView } from '../../../types/feed.ts'
+import type { PostView, ReplyView } from '../../../types/feed.ts'
 
 const props = defineProps<{ post: PostView; api: FeedApi; now: number; full?: boolean }>()
 const emit = defineEmits<{ changed: [post: PostView]; removed: [id: string]; person: [id: string, name: string]; open: [id: string]; toast: [text: string, tone?: 'error']; share: [post: PostView]; event: [id: string]; gig: [id: string] }>()
@@ -37,6 +39,11 @@ async function remove(): Promise<void> {
   if (!confirm('Delete this post? Replies go with it.')) return
   const r = await props.api.removePost(props.post.id)
   if (r.ok) emit('removed', props.post.id); else emit('toast', r.reason, 'error')
+}
+/** The scam banner under a reply: reported in one tap (the feed's report of a reply names the post and the reply number). */
+async function reportScam(r: ReplyView): Promise<void> {
+  const done = await props.api.report('reply', props.post.id, SCAM_REPORT_REASON, r.n)
+  emit('toast', done.ok ? 'Thanks. We will look at it.' : done.reason, done.ok ? undefined : 'error')
 }
 async function report(): Promise<void> {
   menu.value = false
@@ -88,7 +95,7 @@ async function dropReply(n: number): Promise<void> {
     </div>
     <div v-if="picking" class="feed-bar"><button v-for="e in QUICK" :key="e" type="button" :class="{ 'is-mine': e === mine }" @click="react(e)">{{ e }}</button></div>
     <ul v-if="post.thread.length" class="feed-replies">
-      <li v-for="r in post.thread" :key="r.n"><b><button type="button" class="feed-name" @click="emit('person', r.by.id, r.by.name)">{{ r.by.name }}</button><template v-if="r.by.ai"> <span class="ai-tag">AI</span></template></b>{{ r.body }} <small class="feed-note">{{ agoText(r.at, now) }}</small> <button v-if="r.mine || post.mine" type="button" class="feed-name feed-note" @click="dropReply(r.n)">Delete</button></li>
+      <li v-for="r in post.thread" :key="r.n"><b><button type="button" class="feed-name" @click="emit('person', r.by.id, r.by.name)">{{ r.by.name }}</button><template v-if="r.by.ai"> <span class="ai-tag">AI</span></template></b>{{ r.body }} <small class="feed-note">{{ agoText(r.at, now) }}</small> <button v-if="r.mine || post.mine" type="button" class="feed-name feed-note" @click="dropReply(r.n)">Delete</button><ScamNotice v-if="r.scam && !r.mine" @report="reportScam(r)" /></li>
     </ul>
     <form v-if="post.canReply" class="feed-reply" @submit.prevent="send">
       <input v-model="reply" maxlength="280" placeholder="Reply" aria-label="Reply">

@@ -456,6 +456,8 @@ export interface ChatFrame {
   speaker?: 'agent'
   /** A stable number for the speaker (the same every time for the same player) from which a client picks one voice. Only on lines with a `speaker`. */
   voiceSeed?: number
+  /** The server read the line as asking for money, a withdrawal, an account number or a code (server/moderation/scam-words.ts): other people's phones show a calm warning with Report. Absent on every other line; the line itself is delivered as typed. */
+  scam?: true
 }
 /**
  * An AI character's line as speakable text, for the people in the place's VOICE circle only (the same line also goes to everyone as a `chat` frame). Each listener's phone

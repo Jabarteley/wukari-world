@@ -16,6 +16,7 @@ import type { BadgePlace, FeedTab, LocalScope, Nearness, Relation, Skill, Visibi
 import type { CrewView, Draft, EventView, FeedMe, FeedPage, FeedPerson, NearLine, FeedPlace, GigView, InboxLine, NewsLine, PostView, ProfileView, ReplyView, Suggestion, WorkView, FeedMedia } from '../../src/types/feed.ts'
 import { screenText } from '../moderation/text.ts'
 import { agentWords } from '../moderation/agent-words.ts'
+import { looksLikeScam } from '../moderation/scam-words.ts'
 import { friendsIn } from '../social/founder.ts'
 import { lagosTime } from '../../src/game/clock.ts'
 import { cityName, cityCatalogue, cityCatalogueEntry, cityRules } from '../../src/game/cities/registry.ts'
@@ -151,7 +152,7 @@ function buildService(ctx: RouteContext) {
     return [...counts].sort((a, b) => b[1] - a[1]).map(([emoji, count]) => ({ emoji, count, ...(emoji === mine ? { mine: true as const } : {}) }))
   }
   function replyView(db: Db, f: FeedCollection, r: Reply, viewer: string | null): ReplyView {
-    return { n: r.n, by: person(db, f, r.by, viewer), at: r.at, body: r.body, ...(viewer === r.by ? { mine: true as const } : {}) }
+    return { n: r.n, by: person(db, f, r.by, viewer), at: r.at, body: r.body, ...(viewer === r.by ? { mine: true as const } : viewer && looksLikeScam(r.body) ? { scam: true as const } : {}) }
   }
   function postView(db: Db, f: FeedCollection, post: PostRecord, viewer: string | null, full = false): PostView {
     const rel = relation(db, f, post, viewer)

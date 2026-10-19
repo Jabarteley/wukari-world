@@ -1,0 +1,53 @@
+✔ actual CLI builds a new deterministic stage and checks it read-only (196.901625ms)
+✔ authored-only city validates its hero asset but emits no recipe or hero placement (17.240708ms)
+▶ hero placement selection matches target coverage
+  ✔ nonempty target set refuses no placement (3.147291ms)
+  ✔ authored-only city refuses a chosen venue (2.9405ms)
+✔ hero placement selection matches target coverage (6.365125ms)
+✔ build refuses an existing stage without changing either file (23.546833ms)
+✔ check detects a changed deterministic recipe and leaves it untouched (10.632ms)
+▶ missing, incomplete, and hash-mismatched measured assets fail before staging
+  ✔ missing hero asset (2.381584ms)
+  ✔ hero hash mismatch (4.763292ms)
+  ✔ incomplete kit report (2.640041ms)
+✔ missing, incomplete, and hash-mismatched measured assets fail before staging (10.140125ms)
+▶ host scenery requires pinned source bytes and exact target-venue coverage
+  ✔ source pin changed (12.307542ms)
+  ✔ target missing (6.634375ms)
+  ✔ unrelated venue present (3.54ms)
+✔ host scenery requires pinned source bytes and exact target-venue coverage (22.721833ms)
+✔ host scenery accepts a large pinned source book and refuses duplicate or changed evidence (58.407625ms)
+✔ optional measured hero atlas must be byte-identical to the selected regional kit atlas (23.294ms)
+▶ coverage and hero identities are fail-closed
+  ✔ coverage omits the preserved venue (1.518541ms)
+  ✔ hero report names another city (5.619291ms)
+✔ coverage and hero identities are fail-closed (7.349833ms)
+✔ unsafe venue display text is filtered rather than copied into a sign (7.2555ms)
+✔ output parent must already be a real directory (19.425208ms)
+✔ drafts a deterministic city pack from actual Accra targets (93.535125ms)
+✔ offline candidate diagnostics preserve the recipe and propagate observer failures (1.643625ms)
+✔ Lagos authored precedence and home exclusion leave no recipe targets (55.14375ms)
+✔ recipes use each actual registered effective spot and the entrance yaw (36.532375ms)
+✔ actual profile layouts stay compact and place twelve residents in separated small groups (25.673125ms)
+✔ a larger effective-spot inventory remains exact and reachable (3.3285ms)
+✔ preserved and home venues cannot be drafted as recipes (0.212084ms)
+✔ a selected hero appears only at its explicitly selected target (19.281292ms)
+✔ completed physical market measurements reserve a disjoint resident lane (0.73475ms)
+✔ city references use the existing sign to identify a model without changing geometry or budgets (1.5185ms)
+✔ recipe validation rejects a missing actual effective spot instead of accepting a partial route (0.631958ms)
+✔ kit mismatch and host mesh limits stop layout generation (0.10925ms)
+✔ filtered venue signs stay out and unsafe manual signs fail the recipe contract (0.601792ms)
+✔ actual Belize transit label is preserved while its unsupported sign stays out (35.484708ms)
+✔ same-kind Accra venues differ in layout data without relying on venue labels (1.509625ms)
+✔ focused actual-city geometry signatures do not collide without identity, text, palette or material fields (39.419125ms)
+✔ city layout requires exact venue support maps and allocates each venue independently (12.850041ms)
+✔ a broad reference model leaves every actual meal activity reachable (17.435291ms)
+✔ retained art seeds keep layouts stable across source provenance changes; semantic changes select fresh seeds (57.654958ms)
+ℹ tests 41
+ℹ suites 0
+ℹ pass 41
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1304.422167

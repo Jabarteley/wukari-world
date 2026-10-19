@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-19T02:50:47.500845+00:00",
+  "baseRevision": "b4d7099eb88921f1920dc5b23db1f0d2ea91834f",
+  "scope": "Uncommitted Phase 4 source snapshot; subsequent commit must bind these exact files. No GPU/hosted/game/release acceptance implied.",
+  "verifiedSourceGeneratedPins": 1747,
+  "verifiedHostSourcePins": 1227,
+  "verifiedContentInputPins": 866,
+  "recipesExactExcludingOnlyVersionSkySurfaceStyle": 6423,
+  "assetsExact": 298,
+  "bankNpcVenueOrderExact": 13726,
+  "evidenceOnlyDigestSubstitutions": 59336,
+  "sourceReviewSha256": "994d281f601272a07d04ca7143ebde42f001493bfbc18d02923fc287fde31317",
+  "crowdBaselineDisposition": "Both expected12/actual4 optional crowd assertions reproduce on exact95 source. Existing admission caps and assertions retained. Full closure receipt follows.",
+  "foreignFeedDisposition": "Non-blocking bounded failed-creation base defect, separate owner, unchanged by Story. Pending exception does not authorize repair. Feed feature acceptance not claimed.",
+  "remaining": [
+    "hosted CI and download budgets",
+    "GPU/shader/material visual and resource checks",
+    "four-city phone-width gameplay, strict8cold and9warm",
+    "earned Ibadan physical street/gate/Chapter3 door/return",
+    "PR merge and protected release/public adoption"
+  ],
+  "verifiedExact95LoadedSourceClosure": 270,
+  "fixtureBaselineSha256": "53451ac6eda127f9aefdd4bb89351718f259b6b67ee6bb6a5480803ee2f74db9",
+  "handoffSha256": "8b2da2bae21802e7439de1d171237bb719f2adf078ad18abceb011ac750254b8"
+}

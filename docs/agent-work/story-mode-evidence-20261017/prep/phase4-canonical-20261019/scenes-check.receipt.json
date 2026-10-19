@@ -1,0 +1,27 @@
+{
+  "name": "scenes-check",
+  "command": [
+    "node",
+    "--experimental-strip-types",
+    "scripts/agent-slot.ts",
+    "heavy",
+    "--wait-ms",
+    "0",
+    "--",
+    "npm",
+    "run",
+    "scenes:check"
+  ],
+  "pid": 23083,
+  "exitCode": 0,
+  "timeout": false,
+  "seconds": 35.06451950012706,
+  "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/scenes-check.log",
+  "logSha256": "cae0c1749b5f3a209b036a6f74ce056f1f85c0ef339cd4b7d238b630cedc66c0",
+  "limits": {
+    "oldSpaceMiB": 512,
+    "semiSpaceMiB": 16,
+    "GOMAXPROCS": 2,
+    "externalTimeoutSeconds": 280
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "street-walk.log": {
+    "sha256": "c8c4799dae6426e301736423060fe25f7b4d9bced172f30dc85d3f0578b89a43",
+    "bytes": 542
+  },
+  "cover-receipt.json": {
+    "sha256": "ba89096dc6f09c0c441ab787f1a99b0a9904960a88ef1e96c419a03d708f7966",
+    "bytes": 2232
+  },
+  "feed-located.log": {
+    "sha256": "a16459bc66f9e520d5f6d05ccf553e0e45e653bb11e7e4139631335729c1080f",
+    "bytes": 395
+  },
+  "cover-probe.mts.txt": {
+    "sha256": "92bf76a5e03d6b965793491d9dde2757151e51ca28ce96e35eccb4ee892e054f",
+    "bytes": 7481
+  },
+  "cover-probe.log": {
+    "sha256": "cccff4c88c85dd54af1a4c7d64594a01ebe47afbccf6b0286cd07b59fa65d2e9",
+    "bytes": 489
+  },
+  "receipt.json": {
+    "sha256": "17eac6663b8edd034cd382d5434da869389f763436653c1691fccc64b0c8a9db",
+    "bytes": 1266
+  }
+}

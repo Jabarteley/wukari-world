@@ -40,6 +40,10 @@ export interface SceneRecipeV1 {
   camera: Pick<SceneCamera, 'landscape' | 'portrait'>;
 }
 export interface CityRecipesV1 { schema: 'allworld-city-scenes'; version: 1; city: string; recipes: SceneRecipeV1[] }
+/** Linear RGB multipliers, each 0.85..1. Artistic grading, not atmospheric or geographic measurements. */
+export interface RecipeSky { horizon: [number, number, number]; zenith: [number, number, number] }
+export interface SceneRecipeV2 extends Omit<SceneRecipeV1, 'version'> { version: 2; sky: RecipeSky; surfaceStyle: 'physical-atlas-v1' }
+export interface CityRecipesV2 { schema: 'allworld-city-scenes'; version: 2; city: string; recipes: SceneRecipeV2[] }
 export interface SceneryEstimate { triangles: number; meshes: number; lights: number }
 export type HostSceneryByVenue = Readonly<Record<string, SceneryEstimate>>;
 /** Exact target coverage; no inherited, default, kind-level or legacy allowance. */
@@ -67,7 +71,8 @@ export interface ValidatedPlacement {
   scale: number; bounds: Bounds3; footprint: WalkRect; triangles: number;
 }
 export interface ValidatedRecipe {
-  recipe: SceneRecipeV1; placements: ValidatedPlacement[]; walk: WalkDescription;
+  /** Geometry core normalized to V1; V2 sky is retained separately and original wire text remains hash-bound. */
+  recipe: SceneRecipeV1; sky?: RecipeSky; surfaceStyle?: 'physical-atlas-v1'; placements: ValidatedPlacement[]; walk: WalkDescription;
   solids: Bounds3[]; estimate: SceneryEstimate;
   evidence: 'recipe-validation-only';
 }
@@ -171,6 +176,24 @@ function assetParts(asset: MeasuredAsset, kind: 'kit' | 'hero', id: string): Map
 
 /** Validates data and conservative estimates only; see REQUIRES_SCENE_PROOF before runtime acceptance. */
 export function validateRecipe(input: unknown, context: RecipeContext): ValidatedRecipe {
+  if (input && typeof input === 'object' && Object.getOwnPropertyDescriptor(input, 'version')?.value === 2) {
+    const r = object(input, [...['schema', 'version', 'units', 'city', 'venue', 'kind', 'region', 'mood', 'palette', 'footprint', 'entrance', 'shell', 'props', 'signs', 'spots', 'crowd', 'lamps', 'camera'], 'sky', 'surfaceStyle'], ['hero'], 'recipe');
+    requireValue(r.surfaceStyle === 'physical-atlas-v1', 'recipe.surfaceStyle', 'unsupported surface style');
+    const value = object(r.sky, ['horizon', 'zenith'], [], 'sky');
+    const channel = (key: 'horizon' | 'zenith'): [number, number, number] => {
+      const rgb = triple(value[key], `sky.${key}`);
+      rgb.forEach((v, i) => number(v, 0.85, 1, `sky.${key}[${i}]`));
+      return rgb;
+    };
+    const sky = { horizon: channel('horizon'), zenith: channel('zenith') };
+    const { sky: omitted, surfaceStyle, ...core } = r;
+    void omitted;
+    return { ...validateRecipeV1({ ...core, version: 1 }, context), sky, surfaceStyle };
+  }
+  return validateRecipeV1(input, context);
+}
+
+function validateRecipeV1(input: unknown, context: RecipeContext): ValidatedRecipe {
   const r = object(input, ['schema', 'version', 'units', 'city', 'venue', 'kind', 'region', 'mood', 'palette', 'footprint', 'entrance', 'shell', 'props', 'signs', 'spots', 'crowd', 'lamps', 'camera'], ['hero'], 'recipe');
   requireValue(r.schema === 'allworld-scene' && r.version === 1 && r.units === 'scene', 'recipe', 'unsupported schema, version or units');
   const city = identifier(r.city, 'city'), venue = identifier(r.venue, 'venue'), kind = identifier(r.kind, 'kind');
@@ -291,12 +314,13 @@ export function parseCityRecipes(json: string, context: CityRecipeContext): { re
   const utf8Bytes = new TextEncoder().encode(json).length;
   requireValue(utf8Bytes <= RECIPE_LIMITS.cityBytes, 'city', 'UTF-8 byte budget exceeded');
   const input: unknown = JSON.parse(json), pack = object(input, ['schema', 'version', 'city', 'recipes'], [], 'city');
-  requireValue(pack.schema === 'allworld-city-scenes' && pack.version === 1 && pack.city === context.city, 'city', 'unsupported schema, version or city');
+  requireValue(pack.schema === 'allworld-city-scenes' && (pack.version === 1 || pack.version === 2) && pack.city === context.city, 'city', 'unsupported schema, version or city');
   const seen = new Set<string>(), venues = new Map(context.venues.map(venue => [venue.id, venue]));
   requireValue(venues.size === context.venues.length, 'venues', 'duplicate venue IDs');
   const hostScenery = parseHostSceneryByVenue(context.hostScenery, context.venues.map(venue => identifier(venue.id, 'venue.id')));
   const recipes = list(pack.recipes, 256, 'city.recipes').map(value => {
-    const r = object(value, ['schema', 'version', 'units', 'city', 'venue', 'kind', 'region', 'mood', 'palette', 'footprint', 'entrance', 'shell', 'props', 'signs', 'spots', 'crowd', 'lamps', 'camera'], ['hero'], 'recipe');
+    const r = object(value, [...['schema', 'version', 'units', 'city', 'venue', 'kind', 'region', 'mood', 'palette', 'footprint', 'entrance', 'shell', 'props', 'signs', 'spots', 'crowd', 'lamps', 'camera'], ...(pack.version === 2 ? ['sky', 'surfaceStyle'] : [])], ['hero'], 'recipe');
+    requireValue(r.version === pack.version, 'recipe', 'unsupported recipe version for city pack');
     const id = identifier(r.venue, 'recipe.venue'), venue = venues.get(id);
     requireValue(venue && !seen.has(id), 'recipe.venue', 'unknown or duplicate venue'); seen.add(id);
     return validateRecipe(value, { ...context, venue, hostScenery: hostScenery[id]! });

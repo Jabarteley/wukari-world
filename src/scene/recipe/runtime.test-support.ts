@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { draftCityRecipes } from '../../../scripts/scene-factory/layout.ts';
 import type { CityBriefV1 } from '../../../scripts/scene-factory/facts.ts';
 import { screenText } from '../../../server/moderation/text.ts';
-import type { MeasuredAsset } from './contract.ts';
+import type { CityRecipesV1, MeasuredAsset } from './contract.ts';
 import type { RecipeAssetRef, RecipeCityPack } from './pack.ts';
 import { sha256 } from './pack.ts';
 
@@ -20,7 +20,9 @@ export async function fixturePack(): Promise<RecipeCityPack> {
   const brief = JSON.parse(await readFile(new URL('accra.brief.json', fixture), 'utf8')) as CityBriefV1;
   // The canonical map is generated from the actual support signature audit, including near/goal states.
   const hostScenery = JSON.parse(await readFile(new URL('../../../scripts/scene-factory/host-scenery.json', import.meta.url), 'utf8')).cities.accra;
-  const pack = draftCityRecipes({ brief, assets: { kit: assets.kit.measurement, hero: assets.hero.measurement }, screenText, hostScenery, heroVenueId: 'accra-market-game' });
+  const draft = draftCityRecipes({ brief, assets: { kit: assets.kit.measurement, hero: assets.hero.measurement }, screenText, hostScenery, heroVenueId: 'accra-market-game' });
+  // These retained GLBs use the legacy atlas; keep this compatibility fixture explicitly V1.
+  const pack: CityRecipesV1 = { ...draft, version: 1, recipes: draft.recipes.map(({ sky, surfaceStyle, ...recipe }) => ({ ...recipe, version: 1 })) };
   const text = `${JSON.stringify(pack)}\n`, bytes = new TextEncoder().encode(text);
   return { text, metadata: { schema: 'allworld-recipe-runtime', version: 1, city: 'accra', region: 'gulf-guinea', recipeBytes: bytes.length, recipeSha256: await sha256(bytes),
     targetVenueIds: brief.targetVenueIds, assets: { kit: assets.kit, hero: assets.hero }, hostScenery } };

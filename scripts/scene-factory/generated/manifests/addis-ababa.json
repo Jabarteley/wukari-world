@@ -5,17 +5,22 @@
   "city": "addis-ababa",
   "region": "east-africa",
   "recipeFile": "addis-ababa.json",
-  "recipeSha256": "04b48fc67d71a9e868a1d056d29780bbcca2c05f64c8d44e7a9ec51fc6998b52",
+  "recipeSha256": "4a2774f76ec0a0b68d2fad7ab760c6252d4581fc02e295bba15506f45a9f8084",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/addis-ababa.json",
-      "sha256": "7eabb26a5d0030212dadc0ded83e44d9dfe862a69449e2ea7260e4ca319a51cb",
-      "inputSha256": "2e233e52f5590bcb8b4fd7e8d5eaac60ee3b6160ad53bb4387f80f59addd0a05",
+      "sha256": "b0c20f9109d5549c6f0fa31f3aef54d1cc1d25330e8e9071c24b0905c2de8d0f",
+      "inputSha256": "96a39838a2fc66e1ecdb1e03ef624a065dd736fc794c883e3903e2643600e99e",
       "contentSha256": "6c8cfd382ad33b29c5859fff3a656c9f1caeda15e7aea03d5ef5296476905471"
+    },
+    "layoutSeed": {
+      "kind": "retained-v1",
+      "contentSha256": "6c8cfd382ad33b29c5859fff3a656c9f1caeda15e7aea03d5ef5296476905471",
+      "seedSha256": "2e233e52f5590bcb8b4fd7e8d5eaac60ee3b6160ad53bb4387f80f59addd0a05"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
+      "sha256": "3fffc83003326ed459d5c8a012773583440d2d4c8baf283da146050303db9e48",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -170,8 +175,12 @@
           "sha256": "85d6704c517e2170c09232f099eb757177e5a35828145dd110e823568e150375"
         },
         {
+          "path": "scripts/scene-factory/layout-seeds.ts",
+          "sha256": "f15a9b3b2df16caec194bd72bdd68512b0825156f18044aece3b971407b34acf"
+        },
+        {
           "path": "scripts/scene-factory/layout.ts",
-          "sha256": "ceb8da08af8973ec0f030e7f2277d60a810e1635c28bf4c098f6d8c3517559b4"
+          "sha256": "eeef8bce94faba2517312098c8c830e76f258d016d55b3e870b138a884887c8a"
         },
         {
           "path": "scripts/scene-factory/regions.json",
@@ -4811,11 +4820,11 @@
         },
         {
           "path": "src/scene/recipe/compile.ts",
-          "sha256": "02ba73cf13f87cd4862820a3bc1acab069a420c23d82b98f66894f9db2b8ae01"
+          "sha256": "0d03d34b49b39e69d45e40d6629bd167ef723977ab4622f16dcf11881ba411b9"
         },
         {
           "path": "src/scene/recipe/contract.ts",
-          "sha256": "7a34b42b00172f70f390e465e46f01219670538c8e1e70f5b9f9de1a81a3c03e"
+          "sha256": "af06046ee2c88d31b7c9ae90c1a9538d62936bcab1c62d0bc508188ae369a29c"
         },
         {
           "path": "src/scene/recipe/fixtures/outer-host-calibration.json",
@@ -4831,7 +4840,7 @@
         },
         {
           "path": "src/scene/recipe/measure-host.ts",
-          "sha256": "8e34fea93d3862f6049850f3ca28d3252ae72647279602037e58c55da356c930"
+          "sha256": "96a9eb40a58e28cc46b9a27fb34661cdd1879cc159e5af8d8e7b067da474882a"
         },
         {
           "path": "src/scene/recipe/measure-outer-host.ts",
@@ -4847,7 +4856,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
+          "sha256": "b24ef9d205985e9698352e9b226b1d1d1de176e66f1caa6412f10a037b31d7ac"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4858,8 +4867,20 @@
           "sha256": "6dba773dd492ccfdbe5beb3475e5088e4718e662b354f87827c71ff86843fe2e"
         },
         {
+          "path": "src/scene/recipe/sky.ts",
+          "sha256": "42805523f1e7920e301738a1cd6bd54a352308e614beef5b21dcabb9f979328e"
+        },
+        {
+          "path": "src/scene/recipe/surface-material.ts",
+          "sha256": "24d96f4f54c18967cad1c96cd74cf6c281d4f6301ff6d685432c7a7fb9bedf02"
+        },
+        {
+          "path": "src/scene/types.ts",
+          "sha256": "cd461a0962ce6d0c58b24d17dbfda3ac91ad9c60bc781b1e3bdc1a186c0ebc08"
+        },
+        {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5048,10 +5069,11 @@
       "placementReason": null
     },
     "toolSourcesSha256": {
-      "scripts/scene-factory/build.ts": "38327267d2db33dc124b6f82950a717609421b1fa8a9ee656fae33bfbc6ddacb",
+      "scripts/scene-factory/build.ts": "e81d3fb8f67c741ec5ca9b62c74c2e2d3b7dfa5ad699ff418a5fb8e7c0a29ee9",
       "scripts/scene-factory/facts.ts": "b6e2b08a30c822c5fc6664aed0a5ba25e54838cae6a55870634b3e5ccfe125a5",
-      "scripts/scene-factory/layout.ts": "ceb8da08af8973ec0f030e7f2277d60a810e1635c28bf4c098f6d8c3517559b4",
-      "src/scene/recipe/contract.ts": "7a34b42b00172f70f390e465e46f01219670538c8e1e70f5b9f9de1a81a3c03e",
+      "scripts/scene-factory/layout.ts": "eeef8bce94faba2517312098c8c830e76f258d016d55b3e870b138a884887c8a",
+      "scripts/scene-factory/layout-seeds.ts": "f15a9b3b2df16caec194bd72bdd68512b0825156f18044aece3b971407b34acf",
+      "src/scene/recipe/contract.ts": "af06046ee2c88d31b7c9ae90c1a9538d62936bcab1c62d0bc508188ae369a29c",
       "server/moderation/text.ts": "2aa9dee38564b5a8206b3779a9d3095cea03e2c506f4fbae7c7a8f57b7b9f70a"
     }
   },
@@ -5355,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31908,
+    "utf8Bytes": 33966,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,

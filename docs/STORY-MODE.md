@@ -58,6 +58,14 @@ Story locks are server rules. The Story system contributes one `action.block` mo
 
 Both pure guards return immediately in Free Roam, so the existing open-world behavior stays available. The Story mode switch fixes the first start city; completing a city opens its connected non-closed neighbours. UI locks and map presentation are projections of the server view, never separate authority.
 
+## Mapped street access
+
+In Story Path, a character at Roots or Complete can enter a mapped Chapter 3 venue through the current city's street route. At the neighbourhood, `Walk into the city` uses the existing walk to the physical estate gate; the existing gate callback and accepted server journey remain authoritative. A mapped, open and unlocked Chapter 3 venue in the current city presents street entry as the primary Map action. The Map card explains the route from home through the estate gate and retains the existing timed trip as an explicit alternative.
+
+A return action is available at a mapped Chapter 3 venue only when the character arrived there through the accepted current-city street journey. It uses the existing venue exit to return through the same entrance to the saved street point. Arriving by map or timed trip does not create a street-return action. Existing gate, capacity, asset, position and journey checks continue to control access; this route adds no teleport, progress grant, endpoint or authority bypass. Free Roam, other cities, unmapped venues, locked or closed venues and ordinary travel retain their existing behavior.
+
+The mapped public-door coverage is 25/25 venues in Lagos, including all seven Chapter 3 venues, and 23/24 in Ibadan, including all three Chapter 3 venues; Ibadan's `iita-forest` has no mapped door. Before release, verify the actual gate-to-street-to-venue journey, same-journey return, map/timed-trip fallback and authority refusals in the browser at supported viewport sizes.
+
 ## Friend help and the solo path
 
 Roots help is friends-only. AI-played friends remain visibly marked. The host must be in Story Mode, at Roots, and standing at the country-tale venue. The server allows three calls per player per day, expires an offer after 30 minutes, and verifies one of three kinds:

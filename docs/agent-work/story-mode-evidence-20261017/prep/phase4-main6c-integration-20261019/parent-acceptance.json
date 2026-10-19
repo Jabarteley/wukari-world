@@ -1,0 +1,48 @@
+{
+  "at": "2026-10-19T04:30:52.671303+00:00",
+  "merge": "b5dae9d7bb29af6dc6bc3ec7ef48d00827d5ea3d",
+  "parents": [
+    "8d0c2b29a63934410d84905f176f188af8fb9c91",
+    "6c5e8b784fdcdd75b6888ba42b3190e9d284f660"
+  ],
+  "feedResolutionSha256": "41a3a685ec5273ba28158ab299b5db2dfdab32944fdadcea8434958166554460",
+  "repairPinsReverified": 2951,
+  "feedTests": {
+    "feed": 17,
+    "located": 6,
+    "fail": 0
+  },
+  "scope": "Accepted main integration and preserved narrow cover fix; disposal repair remains working-tree changes awaiting next exactsource commit/CI. Foreign ad-ready features are dependencies, not Story delivery.",
+  "files": [
+    {
+      "file": "review.json",
+      "sha256": "70acf7af2aad077f13909fe3f4031e0024e85d1aa44ed5db3f030404d2beebbc",
+      "bytes": 6020
+    },
+    {
+      "file": "incoming-pins.json",
+      "sha256": "a5b4ca727db02da53468df72b6f3004190df35506561e3d4769c628d374354fb",
+      "bytes": 18683
+    },
+    {
+      "file": "feed-checks.json",
+      "sha256": "a3a8d5f58efe6f816956a570f2769d1245b1bcdcf59f43ed4d6eec4193cbf84f",
+      "bytes": 2499
+    },
+    {
+      "file": "merge-preservation.json",
+      "sha256": "3a437476ec79d315f591b378486ccb1ce0410f2d257ce8eccd325fbeec45dfc9",
+      "bytes": 558
+    },
+    {
+      "file": "feed-located.log",
+      "sha256": "e885d82a35b4cc6b5e4b92142b4342e7d4f0ef2a22772d6e4dcb77ac0d5dbe1a",
+      "bytes": 863
+    },
+    {
+      "file": "feed.log",
+      "sha256": "af7905e98ff5d88bde05955738b10043edf7b42be9f2c64c05678eb77221942c",
+      "bytes": 1968
+    }
+  ]
+}

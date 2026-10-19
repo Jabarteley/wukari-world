@@ -143,8 +143,10 @@ export async function markVideo(clip: Blob, options: MarkOptions, job: MarkJob, 
       else frame = requestAnimationFrame(tick)
     }
     recorder.start(1000)
-    await video.play()
+    // A clip of a moment or less can end before play() settles; it is still marked from the frame already painted.
+    try { await video.play() } catch (error) { if (!video.ended) throw error }
     tick()
+    if (video.ended) { paint(); setTimeout(() => { if (recorder?.state === 'recording') recorder.stop() }, 250) }
     const blob = await stopped
     if (job.cancelled) throw new MarkFailure('cancelled')
     if (!blob.size) throw new MarkFailure('record_failed')

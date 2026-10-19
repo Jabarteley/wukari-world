@@ -1,0 +1,32 @@
+{
+  "name": "host-audit",
+  "command": [
+    "node",
+    "--experimental-strip-types",
+    "scripts/agent-slot.ts",
+    "heavy",
+    "--wait-ms",
+    "0",
+    "--",
+    "node",
+    "--experimental-strip-types",
+    "src/scene/recipe/measure-host.ts",
+    "--kits",
+    "scripts/scene-factory/kit-inputs.json",
+    "/tmp/phase4-seed-correction-20261019-lg52i_y_/host-audit.json",
+    "all",
+    "/tmp/phase4-seed-correction-20261019-lg52i_y_/host-scenery.json"
+  ],
+  "pid": 20913,
+  "exitCode": 0,
+  "timeout": false,
+  "seconds": 12.87484279111959,
+  "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/host-audit.log",
+  "logSha256": "db1e5719f0605c5d393ebe515fbb5fdeb081194653fb3b4afce3588d28ded4ca",
+  "limits": {
+    "oldSpaceMiB": 512,
+    "semiSpaceMiB": 16,
+    "GOMAXPROCS": 2,
+    "externalTimeoutSeconds": 280
+  }
+}

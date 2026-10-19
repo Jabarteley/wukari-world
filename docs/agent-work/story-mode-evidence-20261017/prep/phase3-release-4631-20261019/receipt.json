@@ -1,0 +1,52 @@
+{
+  "schema": "phase3-protected-release-acceptance-v1",
+  "sourceSha": "4631de32e5e784f79104d3a30670831f77e6de2c",
+  "policySha": "c61b1a2bfa849378b97aea2f9114555721aac3e6",
+  "runId": 39188617351,
+  "url": "https://github.com/kromate/joinallworld/actions/runs/39188617351",
+  "conclusion": "success",
+  "versionId": "2935dcd3-797d-4a08-900f-b1ab92b572e8",
+  "deploymentId": "db90797c-6227-4535-bf97-a6e1fb023148",
+  "trafficPercent": 100,
+  "deploymentCreatedAt": "2026-10-19T02:21:20.551484Z",
+  "healthAdopted": {
+    "at": "2026-10-19T02:28:10.988971+00:00",
+    "status": 200,
+    "body": {
+      "ok": true,
+      "build": "joinallworld-4631de32e5e784f79104d3a3067",
+      "relay": true,
+      "companionAi": true,
+      "serverTime": 1792376890938,
+      "transport": "cloudflare",
+      "buildId": "joinallworld-4631de32e5e784f79104d3a3067"
+    }
+  },
+  "publicStaticManifest": "docs/agent-work/story-mode-evidence-20261017/release-browser-20261019/phase3-public-4631-static/manifest.json",
+  "publicStaticManifestSha256": "4357c4b1175c5692844a9c1e38339e9be4db2c00e264701b36ea1e1a2b28bc68",
+  "parentVerifiedManifestFiles": 9,
+  "parentVerifiedPngHashesAndDimensions": 8,
+  "metrics": {
+    "startupRaw": 611653,
+    "startupGzip": 222249,
+    "startupBrotli": 195584,
+    "sceneHostRaw": 80122,
+    "sceneHostGzip": 30339,
+    "kitMaxBrotli": 141446,
+    "heroMaxBrotli": 37645,
+    "largestCombinedCityRaw": 783868,
+    "originalStartupBrotliCap": 196100
+  },
+  "rawControlReceiptsPrivateHashes": {
+    "deployments": "a2da024175bdfeafe796ffd48e9c7843ab3b235e402ae5a6bf757da8e363459b",
+    "version": "ccaa6205fc9788283a13a19cdbeb55d3ed734143f6ded495fbc64bc2695a5500"
+  },
+  "publicAuthenticatedTalkTested": false,
+  "localExactArtifactTalkTested": true,
+  "retainedLimitations": [
+    "Optional companion 3D used existing flat fallback in local session.",
+    "Greeting actors were actual market regulars, not labelled sellers.",
+    "Native language phrases remain beta; house runtime hook remains deferred."
+  ],
+  "productionMutations": "One accepted protectedrelease; two prior ownruns cancelled beforedeployment; no route/env/DOreset."
+}

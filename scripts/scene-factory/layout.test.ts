@@ -8,7 +8,7 @@ import { validateRecipe } from '../../src/scene/recipe/contract.ts'
 import { AVATAR_RADIUS } from '../../src/scene/walk-grid.ts'
 import { extractCityBrief, type CityBriefV1, type CityBriefVenueV1 } from './facts.ts'
 import { PHYSICAL_MARKET_RECIPE_ASSETS } from './fixtures/physical-market-measurements.ts'
-import { draftCityRecipes, draftVenueRecipe, venueForRecipe } from './layout.ts'
+import { draftCityRecipes, draftVenueRecipe, layoutSeed, venueForRecipe } from './layout.ts'
 
 const request = {
   accra: { cityId: 'accra', region: 'gulf-guinea' },
@@ -65,14 +65,15 @@ function firstTarget(value: CityBriefV1): CityBriefVenueV1 {
 
 function withMirror(source: CityBriefV1, venue: CityBriefVenueV1, expected: -1 | 1): CityBriefV1 {
   for (let index = 0; index < 256; index++) {
-    const inputSha256 = createHash('sha256').update(`layout-mirror/${index}`).digest('hex')
-    const seed = createHash('sha256').update(`${source.city.id}/${venue.id}/${inputSha256}`).digest()
-    if ((seed[11]! % 2 ? -1 : 1) === expected) return { ...source, digests: { ...source.digests, inputSha256 } }
+    const contentSha256 = createHash('sha256').update(`layout-mirror/${index}`).digest('hex')
+    const candidate = { ...source, digests: { ...source.digests, contentSha256 } }
+    const seed = createHash('sha256').update(`${source.city.id}/${venue.id}/${layoutSeed(candidate).seedSha256}`).digest()
+    if ((seed[11]! % 2 ? -1 : 1) === expected) return candidate
   }
   throw new Error('Could not construct both deterministic mirror fixtures')
 }
 
-function geometrySignature(recipe: SceneRecipeV1): string {
+function geometrySignature(recipe: Omit<SceneRecipeV1, 'version'>): string {
   return JSON.stringify({
     footprint: recipe.footprint, entrance: recipe.entrance,
     shell: recipe.shell.map(({ position, size, ry }) => ({ position, size, ry })),
@@ -88,6 +89,11 @@ test('drafts a deterministic city pack from actual Accra targets', async () => {
   const city = await brief('accra'), input = inputFor(city)
   const first = draftCityRecipes(input), second = draftCityRecipes(input)
   assert.deepEqual(first, second)
+  assert.equal(first.version, 2)
+  assert.ok(first.recipes.every(recipe => recipe.version === 2))
+  for (const recipe of first.recipes) assert.deepEqual(recipe.sky, recipe.mood === 'outdoor'
+    ? { horizon: [1, 0.98, 0.95], zenith: [0.94, 0.98, 1] }
+    : { horizon: [1, 1, 1], zenith: [1, 1, 1] })
   assert.deepEqual(first.recipes.map(recipe => recipe.venue), city.targetVenueIds)
   assert.ok(first.recipes.length > 0)
   assert.ok(first.recipes.every(recipe => recipe.city === 'accra' && recipe.region === 'gulf-guinea'))
@@ -98,7 +104,10 @@ test('offline candidate diagnostics preserve the recipe and propagate observer f
   const baseline = draftVenueRecipe(venue, input), events: unknown[] = []
   const observed = draftVenueRecipe(venue, { ...input, onCandidateResult: result => events.push(result) })
   assert.deepEqual(observed, baseline)
-  assert.deepEqual(events, [{ kind: 'accepted', city: city.city.id, venue: venue.id, candidate: 1 }])
+  assert.deepEqual(events, [
+    { kind: 'rejected', city: city.city.id, venue: venue.id, candidate: 1, reason: 'crowd[6]: exact target is blocked' },
+    { kind: 'accepted', city: city.city.id, venue: venue.id, candidate: 2 },
+  ])
   assert.throws(() => draftVenueRecipe(venue, {
     ...input,
     onCandidateResult: () => { throw new Error('observer failure') },
@@ -308,4 +317,22 @@ test('a broad reference model leaves every actual meal activity reachable', asyn
   assert.deepEqual(recipe.spots.map(spot => spot.key), venue.effectiveSpots.map(spot => spot.id))
   for (const spot of recipe.spots) assert.ok(spot.z > hero.footprint[3] + AVATAR_RADIUS)
   assert.equal(recipe.crowd.length, 12)
+})
+
+
+test('retained art seeds keep layouts stable across source provenance changes; semantic changes select fresh seeds', async () => {
+  const city = await brief('accra'), retained = layoutSeed(city)
+  assert.equal(retained.kind, 'retained-v1')
+  const repinned = { ...city, digests: { ...city.digests, inputSha256: 'f'.repeat(64) }, provenance: { ...city.provenance, files: city.provenance.files.map(file => ({ ...file, sha256: 'e'.repeat(64) })) } }
+  assert.deepEqual(layoutSeed(repinned), retained)
+  assert.deepEqual(draftCityRecipes(inputFor(repinned)), draftCityRecipes(inputFor(city)))
+  const revised = { ...repinned, digests: { ...repinned.digests, contentSha256: 'd'.repeat(64) } }
+  const fresh = layoutSeed(revised)
+  assert.equal(fresh.kind, 'semantic-v1')
+  assert.notEqual(fresh.seedSha256, retained.seedSha256)
+  assert.deepEqual(layoutSeed({ ...revised, digests: { ...revised.digests, inputSha256: 'a'.repeat(64) } }), fresh)
+  assert.notDeepEqual(draftCityRecipes(inputFor(revised)), draftCityRecipes(inputFor(city)))
+  const unknown = { ...city, city: { ...city.city, id: 'new-art-city' } }
+  assert.equal(layoutSeed(unknown).kind, 'semantic-v1')
+  assert.deepEqual(layoutSeed(unknown), layoutSeed({ ...unknown, digests: { ...unknown.digests, inputSha256: 'b'.repeat(64) } }))
 })

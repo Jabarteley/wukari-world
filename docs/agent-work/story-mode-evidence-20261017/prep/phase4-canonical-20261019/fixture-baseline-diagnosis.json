@@ -1,0 +1,3277 @@
+{
+  "baselineCommit": "95a878bdea878e2ab7c29eb09ee053e6ef4be52a",
+  "loadedSourceClosurePaths": 270,
+  "loadedSourceClosureVerifiedExact95": true,
+  "closure": [
+    {
+      "pid": 45684,
+      "path": "scripts/scene-factory/layout-host.test.ts",
+      "currentSha256": "43ba330d79847059c3a4c0f3dab5d194935fa76061cbe0179865a2f2a284e264",
+      "loadedSha256": "43ba330d79847059c3a4c0f3dab5d194935fa76061cbe0179865a2f2a284e264",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/node-test-fixture.ts",
+      "currentSha256": "d2d84856d015255274b2cb4f7c4d7bcde7d38a1cba25140310130d9237ef4f61",
+      "loadedSha256": "d2d84856d015255274b2cb4f7c4d7bcde7d38a1cba25140310130d9237ef4f61",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/body/native-test-fixture.ts",
+      "currentSha256": "3aee106be90992d135cfd5ef1d106c7cee9c6a0213970a964fcb68551dd6abc0",
+      "loadedSha256": "3aee106be90992d135cfd5ef1d106c7cee9c6a0213970a964fcb68551dd6abc0",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/budgets.ts",
+      "currentSha256": "b30825d8f11e82fa3918e3d8e9c48f1f5ed8bc6e681c1dcdc722960bd4ed22e9",
+      "loadedSha256": "d320770969f0b328e7effbbb665ee79a2cb24d042e000453352d7a60598bd90d",
+      "baseline": true,
+      "overlaid": true
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/image-header-fixture.ts",
+      "currentSha256": "e18bb76ee280724f6f3274cc8466ed0c837a87ebb0d229a73cb6a45846eba68f",
+      "loadedSha256": "e18bb76ee280724f6f3274cc8466ed0c837a87ebb0d229a73cb6a45846eba68f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "scripts/assets/glb.ts",
+      "currentSha256": "4fad0b6a3e0423cdcdbfe7898bf70226894afe115e1e30282d31e2e59274198d",
+      "loadedSha256": "4fad0b6a3e0423cdcdbfe7898bf70226894afe115e1e30282d31e2e59274198d",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "server/moderation/text.ts",
+      "currentSha256": "2aa9dee38564b5a8206b3779a9d3095cea03e2c506f4fbae7c7a8f57b7b9f70a",
+      "loadedSha256": "2aa9dee38564b5a8206b3779a9d3095cea03e2c506f4fbae7c7a8f57b7b9f70a",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "server/moderation/terms.ts",
+      "currentSha256": "a15b1ab14e9ded7e568efdf2bf936893e29e1e13583aa38cd4d42e8924cf7551",
+      "loadedSha256": "a15b1ab14e9ded7e568efdf2bf936893e29e1e13583aa38cd4d42e8924cf7551",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/registry.ts",
+      "currentSha256": "6dab5697fe16dc888e11b37976fdf9f2644f091753070069ba53717d201fcf1a",
+      "loadedSha256": "6dab5697fe16dc888e11b37976fdf9f2644f091753070069ba53717d201fcf1a",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/catalogue.ts",
+      "currentSha256": "bec1fa8e817c965a39f257c7542c4d0690f50a95080820eb01ad19e6dc4af14d",
+      "loadedSha256": "bec1fa8e817c965a39f257c7542c4d0690f50a95080820eb01ad19e6dc4af14d",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/loaders.generated.ts",
+      "currentSha256": "d595e539e22f63399fd75c9c20662ff785b693b275f1ff0ba4cdefbdf9413111",
+      "loadedSha256": "d595e539e22f63399fd75c9c20662ff785b693b275f1ff0ba4cdefbdf9413111",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/generatedLinks.ts",
+      "currentSha256": "d67b7fbeba312804b1480b896c86459abb658ecd5ac4999ce7106172c5548e63",
+      "loadedSha256": "d67b7fbeba312804b1480b896c86459abb658ecd5ac4999ce7106172c5548e63",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/travel.ts",
+      "currentSha256": "5f8f5a5c659d07da0c0ce0a0d50d609c88a74b616acb5312b2adad8b80d82f1f",
+      "loadedSha256": "5f8f5a5c659d07da0c0ce0a0d50d609c88a74b616acb5312b2adad8b80d82f1f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/mapEntry.ts",
+      "currentSha256": "bc8848eb6eb1e1e90cda9944db0a10a26d49c2b8ec150c9f082c7bd422dc4bad",
+      "loadedSha256": "bc8848eb6eb1e1e90cda9944db0a10a26d49c2b8ec150c9f082c7bd422dc4bad",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/price-levels.ts",
+      "currentSha256": "f0c29eb6ee7839afae5c6835b44d1c8ce15145dec2646cb9fedcf078e964fb96",
+      "loadedSha256": "f0c29eb6ee7839afae5c6835b44d1c8ce15145dec2646cb9fedcf078e964fb96",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/money.ts",
+      "currentSha256": "c0196ba1da498e42628d3200d0fdf5305a30ac8dc723906d60ce31242d015891",
+      "loadedSha256": "c0196ba1da498e42628d3200d0fdf5305a30ac8dc723906d60ce31242d015891",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/network-static.ts",
+      "currentSha256": "556f489b5b2fe20f2a6911020eb9acc2c0ba619600b1d7e065a76669ef2aa211",
+      "loadedSha256": "556f489b5b2fe20f2a6911020eb9acc2c0ba619600b1d7e065a76669ef2aa211",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/network.ts",
+      "currentSha256": "c2806a49f47ca485c980a76b46b07327ba432fce4f8d94a5095e45d2ccce2994",
+      "loadedSha256": "c2806a49f47ca485c980a76b46b07327ba432fce4f8d94a5095e45d2ccce2994",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/catalogue.generated.ts",
+      "currentSha256": "073ea2a360200d384e117bc2bea450f05ded832cd7522d952a93e40807f339fc",
+      "loadedSha256": "073ea2a360200d384e117bc2bea450f05ded832cd7522d952a93e40807f339fc",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/land-components.generated.ts",
+      "currentSha256": "6d52cd322549b029ebfb483b21835c0c70472ae79ef2ac58e45cb4009753e1a5",
+      "loadedSha256": "6d52cd322549b029ebfb483b21835c0c70472ae79ef2ac58e45cb4009753e1a5",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/routes.generated.ts",
+      "currentSha256": "5cd1352f6211d9b0d32870e7a96e23f95626cdb16279d1cac20a8ed297b62bcf",
+      "loadedSha256": "5cd1352f6211d9b0d32870e7a96e23f95626cdb16279d1cac20a8ed297b62bcf",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/catalogueRows.ts",
+      "currentSha256": "81282e12b23adb3613eb67f727983643bb1e192d6ffa5b01fbb3797803f885f6",
+      "loadedSha256": "81282e12b23adb3613eb67f727983643bb1e192d6ffa5b01fbb3797803f885f6",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/life.ts",
+      "currentSha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f",
+      "loadedSha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/terminology.ts",
+      "currentSha256": "f6e48770ab9f8488a4fec1bae2a388806b49f75324850f05dccd9e9c709bc954",
+      "loadedSha256": "f6e48770ab9f8488a4fec1bae2a388806b49f75324850f05dccd9e9c709bc954",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/index.ts",
+      "currentSha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705",
+      "loadedSha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/progression/source-provider.ts",
+      "currentSha256": "e8b85965f1f3755648d669fe4a2b51a41af3f2180a90519a6e1dd565b87b6030",
+      "loadedSha256": "e8b85965f1f3755648d669fe4a2b51a41af3f2180a90519a6e1dd565b87b6030",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/missions.ts",
+      "currentSha256": "f8e1932671785e42409980a8d8644b7ab67eb18fd483e169a04e4a3f0d3337d7",
+      "loadedSha256": "f8e1932671785e42409980a8d8644b7ab67eb18fd483e169a04e4a3f0d3337d7",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/episodes-source.ts",
+      "currentSha256": "728f7a343dc74e79a70e2d51d12a4469b06042973933f3cdc5876b0afa64ea07",
+      "loadedSha256": "728f7a343dc74e79a70e2d51d12a4469b06042973933f3cdc5876b0afa64ea07",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/world-progression.generated.ts",
+      "currentSha256": "22d7ca92ca8b95d18cc96fce0dbeb6f31422cea02af0e396a132b382ec4f7f14",
+      "loadedSha256": "22d7ca92ca8b95d18cc96fce0dbeb6f31422cea02af0e396a132b382ec4f7f14",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/world-episodes.ts",
+      "currentSha256": "42f16a706941f25c251774578d381d10060f2b60be03fa15de51759e4cb1d85d",
+      "loadedSha256": "42f16a706941f25c251774578d381d10060f2b60be03fa15de51759e4cb1d85d",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/local-episodes.ts",
+      "currentSha256": "140583797cb0bb99523b47ec3e9dc01ef3ff54d8b921a71b5f49daefdb9b976a",
+      "loadedSha256": "140583797cb0bb99523b47ec3e9dc01ef3ff54d8b921a71b5f49daefdb9b976a",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/local-tales-source.ts",
+      "currentSha256": "edd710b3604b377c5a8bf8502a9082f0a38e118896e64cef1ce0b564da3b636a",
+      "loadedSha256": "edd710b3604b377c5a8bf8502a9082f0a38e118896e64cef1ce0b564da3b636a",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/local-tales/batch-01.ts",
+      "currentSha256": "3a8b9a81bacc423eab5a58ab66ec2beb5d762af9c3490871fd166fe251d3d253",
+      "loadedSha256": "3a8b9a81bacc423eab5a58ab66ec2beb5d762af9c3490871fd166fe251d3d253",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/local-tales/batch-02.ts",
+      "currentSha256": "a8b92e3b77619299221f8bf971c65fc48663db333b60c15a4e39435717ee8a08",
+      "loadedSha256": "a8b92e3b77619299221f8bf971c65fc48663db333b60c15a4e39435717ee8a08",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/local-tales/batch-03.ts",
+      "currentSha256": "74ab58f77e39605b83957beba04c2548bbfb2bd44f91d93bdd6531cbbaf7bab0",
+      "loadedSha256": "74ab58f77e39605b83957beba04c2548bbfb2bd44f91d93bdd6531cbbaf7bab0",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/local-tales/batch-04.ts",
+      "currentSha256": "3b443ee53625cf990f19fc6066b69b24ca27fc0133db5b19277c4416b1b5e891",
+      "loadedSha256": "3b443ee53625cf990f19fc6066b69b24ca27fc0133db5b19277c4416b1b5e891",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/local-tales/batch-05.ts",
+      "currentSha256": "de973b64500cfd266b236836ae6110a8e5241b230fd4a727b38b97a8caec80e0",
+      "loadedSha256": "de973b64500cfd266b236836ae6110a8e5241b230fd4a727b38b97a8caec80e0",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/local-tales/batch-06.ts",
+      "currentSha256": "86bf83216d1fd37f5995958a44414cc42b5fcbe24b005f0bb0ee95b23e3402f1",
+      "loadedSha256": "86bf83216d1fd37f5995958a44414cc42b5fcbe24b005f0bb0ee95b23e3402f1",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/local-tales/batch-07.ts",
+      "currentSha256": "dcc8998307cdbafbd1ad6677bae8d87489403c4d650713cd363844200a266b6f",
+      "loadedSha256": "dcc8998307cdbafbd1ad6677bae8d87489403c4d650713cd363844200a266b6f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/local-tales/batch-08.ts",
+      "currentSha256": "d9832619720b0cc7361e12f38f32e075a410b193f4098d1e0d155239f159e40f",
+      "loadedSha256": "d9832619720b0cc7361e12f38f32e075a410b193f4098d1e0d155239f159e40f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/episode-validation.ts",
+      "currentSha256": "2b49685c6f885e7597044a53b4386a8de3e9e54b00b1469c077c3fc4b78e98d4",
+      "loadedSha256": "2b49685c6f885e7597044a53b4386a8de3e9e54b00b1469c077c3fc4b78e98d4",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/journeys-source.ts",
+      "currentSha256": "e9d4e1609e8973f9bdb297857419628a45ba7852fc5ab1a74b80f58b9a8cf7be",
+      "loadedSha256": "e9d4e1609e8973f9bdb297857419628a45ba7852fc5ab1a74b80f58b9a8cf7be",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/local-missions.ts",
+      "currentSha256": "142ac9e4033eb99bbc0d8acb67aa523d870b9b7cf66cf2f470995d21a71e69bf",
+      "loadedSha256": "142ac9e4033eb99bbc0d8acb67aa523d870b9b7cf66cf2f470995d21a71e69bf",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/missions.ts",
+      "currentSha256": "9b20247535c9c2e66e290775870deac91ddb25c8cea6e8d540e25b960ca49ac4",
+      "loadedSha256": "9b20247535c9c2e66e290775870deac91ddb25c8cea6e8d540e25b960ca49ac4",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/references.ts",
+      "currentSha256": "762390470ff2212d09337596a3f0346d50247f7485b46404403068715a2165e7",
+      "loadedSha256": "762390470ff2212d09337596a3f0346d50247f7485b46404403068715a2165e7",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/profile.ts",
+      "currentSha256": "82c0d6676a1d2c38157ff323295c5048923c66610467c08bb4b45b78c3f48bf7",
+      "loadedSha256": "82c0d6676a1d2c38157ff323295c5048923c66610467c08bb4b45b78c3f48bf7",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/conditions/pack.ts",
+      "currentSha256": "af04bbe080cc143bb33a2de51a94620b71b4f613d0f9a85750133fefc1e9d6ac",
+      "loadedSha256": "af04bbe080cc143bb33a2de51a94620b71b4f613d0f9a85750133fefc1e9d6ac",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/conditions/billing-words.ts",
+      "currentSha256": "9f4cd88f5acba7b2026304cf5c21def94dc6e90e192a93645dbbec489875818f",
+      "loadedSha256": "9f4cd88f5acba7b2026304cf5c21def94dc6e90e192a93645dbbec489875818f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/util.ts",
+      "currentSha256": "6daa5feb07ab1e3f6a71a3a4222104488a6873cc08374e854e89e797f364afa9",
+      "loadedSha256": "6daa5feb07ab1e3f6a71a3a4222104488a6873cc08374e854e89e797f364afa9",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/conditions/grid.ts",
+      "currentSha256": "506e9f808fc73020852140c668139561cd582bf23c9a1d429afb8f50f1af31da",
+      "loadedSha256": "506e9f808fc73020852140c668139561cd582bf23c9a1d429afb8f50f1af31da",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/clock.ts",
+      "currentSha256": "8d9540396068eae38b4fb99102664f7f8abe33f7b80232a598883adbb9e81ad3",
+      "loadedSha256": "8d9540396068eae38b4fb99102664f7f8abe33f7b80232a598883adbb9e81ad3",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/conditions/generator.ts",
+      "currentSha256": "090589f73d0c54a5785b84e9d759aab56b25865d85e970968213ba11470d1fb3",
+      "loadedSha256": "090589f73d0c54a5785b84e9d759aab56b25865d85e970968213ba11470d1fb3",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/conditions/power.ts",
+      "currentSha256": "0b78fe00743aa5b95f02f51ab8570420ee34827f91cd0a1298bb0a3e5f63b9e7",
+      "loadedSha256": "0b78fe00743aa5b95f02f51ab8570420ee34827f91cd0a1298bb0a3e5f63b9e7",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/conditions/power-words.ts",
+      "currentSha256": "21f8100bbac8ee7e82670372b6bb916bbcd024a2cf8189b5be66f55eb8c142df",
+      "loadedSha256": "21f8100bbac8ee7e82670372b6bb916bbcd024a2cf8189b5be66f55eb8c142df",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/conditions/rush.ts",
+      "currentSha256": "2d229687ed3d6e656e160f25b589feba28419497e3705f3b7a7320448aaa68ce",
+      "loadedSha256": "2d229687ed3d6e656e160f25b589feba28419497e3705f3b7a7320448aaa68ce",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/conditions/slot.ts",
+      "currentSha256": "9dbc0fc83659599751c307ef311fcc29dab8c92a7924d71ff8e8cb26acf9da01",
+      "loadedSha256": "9dbc0fc83659599751c307ef311fcc29dab8c92a7924d71ff8e8cb26acf9da01",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/registry.ts",
+      "currentSha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115",
+      "loadedSha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/api.ts",
+      "currentSha256": "99791aae08273e07e804ed7a1005cc54cef26890108b8137b5731bedaed2c433",
+      "loadedSha256": "99791aae08273e07e804ed7a1005cc54cef26890108b8137b5731bedaed2c433",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/wallet.ts",
+      "currentSha256": "0c3789efac595f26473a5abf4adb1bb75b0371117d2348031495c1015913ddf6",
+      "loadedSha256": "0c3789efac595f26473a5abf4adb1bb75b0371117d2348031495c1015913ddf6",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/needs.ts",
+      "currentSha256": "8c87403238c6354e8c965f1b09cce70b2880896e0f313c6120bdfc030ad1318a",
+      "loadedSha256": "8c87403238c6354e8c965f1b09cce70b2880896e0f313c6120bdfc030ad1318a",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/skills.ts",
+      "currentSha256": "50de65a93a62e4017c441aed4b0f9cf35c9e05b8f30da0369bf88f1799f41552",
+      "loadedSha256": "50de65a93a62e4017c441aed4b0f9cf35c9e05b8f30da0369bf88f1799f41552",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/inventory.ts",
+      "currentSha256": "d76c94408ecdffbfd677a74a3973f9e5fa288befab84a3ff6888695596f78503",
+      "loadedSha256": "d76c94408ecdffbfd677a74a3973f9e5fa288befab84a3ff6888695596f78503",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/activities.ts",
+      "currentSha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a",
+      "loadedSha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/runtime.ts",
+      "currentSha256": "e85b67b5927a419be203d568c5ca79e6e55cd9965fbd81758490bebce3f9987a",
+      "loadedSha256": "e85b67b5927a419be203d568c5ca79e6e55cd9965fbd81758490bebce3f9987a",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/living-world/teaching-state.ts",
+      "currentSha256": "68f2a6ac8fc1a06e5ba0cbfc4c2efc481135e73d102f1814cd1f701a6a33080b",
+      "loadedSha256": "68f2a6ac8fc1a06e5ba0cbfc4c2efc481135e73d102f1814cd1f701a6a33080b",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/teaching-gate.ts",
+      "currentSha256": "9399e0561a43a8487ba761a0c70e5f89060c3097dd7f54d5af94fc93469568c2",
+      "loadedSha256": "9399e0561a43a8487ba761a0c70e5f89060c3097dd7f54d5af94fc93469568c2",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/snapshot-fields.ts",
+      "currentSha256": "d7c4e3ab990930ba3de1485dae2045462648577a15460b67dd5bd7716a99e25e",
+      "loadedSha256": "d7c4e3ab990930ba3de1485dae2045462648577a15460b67dd5bd7716a99e25e",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/features.ts",
+      "currentSha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391",
+      "loadedSha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/venues.ts",
+      "currentSha256": "9d77b54b1a93b9ed648fee2065681afff920b7a7466df8f36cdc4401e2d03744",
+      "loadedSha256": "9d77b54b1a93b9ed648fee2065681afff920b7a7466df8f36cdc4401e2d03744",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/relief.ts",
+      "currentSha256": "e163f3a9b4d826631a9ae323497f244b66567f6f62730df8df85ae454db999a6",
+      "loadedSha256": "e163f3a9b4d826631a9ae323497f244b66567f6f62730df8df85ae454db999a6",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/relief.ts",
+      "currentSha256": "bc7b59a9251e4c83a0cc53b3402a5d1a948b48b118d9e12b946e59f832b781fa",
+      "loadedSha256": "bc7b59a9251e4c83a0cc53b3402a5d1a948b48b118d9e12b946e59f832b781fa",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/core.ts",
+      "currentSha256": "7d1209fee18835a1d98b71407d8fc5fafd5322a3161fd32678b41813063fa25b",
+      "loadedSha256": "7d1209fee18835a1d98b71407d8fc5fafd5322a3161fd32678b41813063fa25b",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/estate.ts",
+      "currentSha256": "45b77c35a8dbdfc966c617ef4aef2aff63de8544cf040db7ec4e493c9b97ddf2",
+      "loadedSha256": "45b77c35a8dbdfc966c617ef4aef2aff63de8544cf040db7ec4e493c9b97ddf2",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/routeAvailability.ts",
+      "currentSha256": "8028fcef6fbabff32bd9a542d88691e1e546c98cca651d8b35c74e122f6ef75c",
+      "loadedSha256": "8028fcef6fbabff32bd9a542d88691e1e546c98cca651d8b35c74e122f6ef75c",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/housingRuntime.ts",
+      "currentSha256": "513ff7b4e13138e468fdc96d674a8749d132501032ab7632f50c34fe53fff6fd",
+      "loadedSha256": "513ff7b4e13138e468fdc96d674a8749d132501032ab7632f50c34fe53fff6fd",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/world.ts",
+      "currentSha256": "86c462927225ed892a27b25a3d3c4a499a252a5e0d2c9731adedf61ff9be19b6",
+      "loadedSha256": "86c462927225ed892a27b25a3d3c4a499a252a5e0d2c9731adedf61ff9be19b6",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/residence.ts",
+      "currentSha256": "b7353aa3466b3b1287568744227ad3a87c6e74e8b653030ca2ea03948a441c87",
+      "loadedSha256": "b7353aa3466b3b1287568744227ad3a87c6e74e8b653030ca2ea03948a441c87",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/homeward-gate.ts",
+      "currentSha256": "62d260f49807fd80f7457d9160ea2bde3bb5b07b73c7095e834103061cb4c270",
+      "loadedSha256": "62d260f49807fd80f7457d9160ea2bde3bb5b07b73c7095e834103061cb4c270",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/calendar.ts",
+      "currentSha256": "adf04894b9a34a2567a83d2d4cd8e0a4d47fc5c8404827132b6b7326a5c7d1cd",
+      "loadedSha256": "adf04894b9a34a2567a83d2d4cd8e0a4d47fc5c8404827132b6b7326a5c7d1cd",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/calendar-export.ts",
+      "currentSha256": "68896f143c925a59b87ef4a877227aa6ecf829fe6aefc4c8083197f0145d64ae",
+      "loadedSha256": "68896f143c925a59b87ef4a877227aa6ecf829fe6aefc4c8083197f0145d64ae",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/goals.ts",
+      "currentSha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720",
+      "loadedSha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/characterContent.ts",
+      "currentSha256": "dfad81ffdca741d501165f5062d3198ece39ce73d908edbd9a9acc2536ed8cb3",
+      "loadedSha256": "dfad81ffdca741d501165f5062d3198ece39ce73d908edbd9a9acc2536ed8cb3",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/traits.ts",
+      "currentSha256": "68d84ac542c009b5b8a0292d269eda4d683cca333ba0b87e542d8124243e7702",
+      "loadedSha256": "68d84ac542c009b5b8a0292d269eda4d683cca333ba0b87e542d8124243e7702",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/with-ids.ts",
+      "currentSha256": "f4ff62e3d202740a929fe79781003373beb467e7ed3ad2bab3205c40189f9f0f",
+      "loadedSha256": "f4ff62e3d202740a929fe79781003373beb467e7ed3ad2bab3205c40189f9f0f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/character-effects.ts",
+      "currentSha256": "456715cb2e1539c2dabd19d5b8ea18546b4815c9c98ebcc8e716e29449020d2b",
+      "loadedSha256": "456715cb2e1539c2dabd19d5b8ea18546b4815c9c98ebcc8e716e29449020d2b",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/goals.ts",
+      "currentSha256": "8ca02ff6fde2c46fef40990d1c94a1a428c2d78093c8fe0a3b4f2379e386e5b4",
+      "loadedSha256": "8ca02ff6fde2c46fef40990d1c94a1a428c2d78093c8fe0a3b4f2379e386e5b4",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/agent-missions.ts",
+      "currentSha256": "e288a048e1f4e5d3e2e0d1a19278c4ec1da6ff2e2d3835552cc6b1e067d5a84c",
+      "loadedSha256": "e288a048e1f4e5d3e2e0d1a19278c4ec1da6ff2e2d3835552cc6b1e067d5a84c",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/business-limits.ts",
+      "currentSha256": "93d708bc0c3a6b77e69a676e746861c8b4f4b47cf2dd87f072a91e8151114aff",
+      "loadedSha256": "93d708bc0c3a6b77e69a676e746861c8b4f4b47cf2dd87f072a91e8151114aff",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/progression/provider.ts",
+      "currentSha256": "aecbc781910adbd3e4886f6d5b339416723d3f56d1571303d3d0f10cc639df43",
+      "loadedSha256": "aecbc781910adbd3e4886f6d5b339416723d3f56d1571303d3d0f10cc639df43",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/world-missions.ts",
+      "currentSha256": "22a61d43814aefd8398b410eb8bef4242526f6e2536e2d4da4094741fcfd10ae",
+      "loadedSha256": "22a61d43814aefd8398b410eb8bef4242526f6e2536e2d4da4094741fcfd10ae",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/base.ts",
+      "currentSha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556",
+      "loadedSha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/career.ts",
+      "currentSha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473",
+      "loadedSha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/living-world/teaching-practice.ts",
+      "currentSha256": "f1b68487917f3527fb18cb75b12fc38bd0512c7b865546090f2a97083f811376",
+      "loadedSha256": "f1b68487917f3527fb18cb75b12fc38bd0512c7b865546090f2a97083f811376",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/dilemma-book.ts",
+      "currentSha256": "2b1955195c178a49404c3b2352c2fb845fbcc3ba04bd5338535ca34cf535cfdd",
+      "loadedSha256": "2b1955195c178a49404c3b2352c2fb845fbcc3ba04bd5338535ca34cf535cfdd",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/jobs.ts",
+      "currentSha256": "61fb35edfc220903398cb9c56ecfefa43020a57c43b919a9f2a75ea848125fa5",
+      "loadedSha256": "61fb35edfc220903398cb9c56ecfefa43020a57c43b919a9f2a75ea848125fa5",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/travel.ts",
+      "currentSha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99",
+      "loadedSha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/geo/frame.ts",
+      "currentSha256": "e2c1ce1a7696f6285b67118936122bf24bcb25d657fbc911db19ef40eaf2d24f",
+      "loadedSha256": "e2c1ce1a7696f6285b67118936122bf24bcb25d657fbc911db19ef40eaf2d24f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/events.ts",
+      "currentSha256": "f17ed80631cf3f55f8c816e8f85706769945b3939d2a100041fb16a1a48f419f",
+      "loadedSha256": "f17ed80631cf3f55f8c816e8f85706769945b3939d2a100041fb16a1a48f419f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/trip-skip.ts",
+      "currentSha256": "5c1c67af3ccb1092c9459cd3982def7a705c11bd4f70ec19d1cf2f1a3ca73416",
+      "loadedSha256": "5c1c67af3ccb1092c9459cd3982def7a705c11bd4f70ec19d1cf2f1a3ca73416",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/health.ts",
+      "currentSha256": "c8387e50d520948e73abab99339b79ad0c02e9be2b17245220ffa6ee5374afeb",
+      "loadedSha256": "c8387e50d520948e73abab99339b79ad0c02e9be2b17245220ffa6ee5374afeb",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/health.ts",
+      "currentSha256": "fdd9e2af661e001d9f6e364712dda5d0fe91ffc99830f89421ae9d65c9eeb4cd",
+      "loadedSha256": "fdd9e2af661e001d9f6e364712dda5d0fe91ffc99830f89421ae9d65c9eeb4cd",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/economy.ts",
+      "currentSha256": "01ecba6e6f867b14631fdf8ca124fe732278a160124fa726930de39a8c5b3406",
+      "loadedSha256": "01ecba6e6f867b14631fdf8ca124fe732278a160124fa726930de39a8c5b3406",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/property.ts",
+      "currentSha256": "858c6f46e9ce8f8b870c4fabd726bf17054d07748ed1300d23b87a7dbf3fa5f1",
+      "loadedSha256": "858c6f46e9ce8f8b870c4fabd726bf17054d07748ed1300d23b87a7dbf3fa5f1",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/cars.ts",
+      "currentSha256": "f602e4871544ed6feea97fda3c62e424ff154506dd174875ef7c366baac23995",
+      "loadedSha256": "f602e4871544ed6feea97fda3c62e424ff154506dd174875ef7c366baac23995",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/homeward.ts",
+      "currentSha256": "136e17b26bc5da22a7b52064cc771228a997b4fdb2125f0691e74ce77f2eb22c",
+      "loadedSha256": "136e17b26bc5da22a7b52064cc771228a997b4fdb2125f0691e74ce77f2eb22c",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/home.ts",
+      "currentSha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48",
+      "loadedSha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/furniture.ts",
+      "currentSha256": "c5f4380d9a54b9f88fb1979a20d802fc3b89c7df166a0c661fdf3d35a9dd62c5",
+      "loadedSha256": "c5f4380d9a54b9f88fb1979a20d802fc3b89c7df166a0c661fdf3d35a9dd62c5",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/food.ts",
+      "currentSha256": "6b20224cb02b8b686a68a797e90707f90fa657964bd80bd7594b4f1e5d765b36",
+      "loadedSha256": "6b20224cb02b8b686a68a797e90707f90fa657964bd80bd7594b4f1e5d765b36",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/housing.ts",
+      "currentSha256": "31f383933c1ac41dd65b52b8b52e365f5232ce367506dc525f55ee3a51240494",
+      "loadedSha256": "31f383933c1ac41dd65b52b8b52e365f5232ce367506dc525f55ee3a51240494",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/home-layout.ts",
+      "currentSha256": "0fa1f8aa8482dceb2cd4caa45afe781f98d53a92729f405a8c645709f92ece31",
+      "loadedSha256": "0fa1f8aa8482dceb2cd4caa45afe781f98d53a92729f405a8c645709f92ece31",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/stories.ts",
+      "currentSha256": "113964758ffa2cf117cdeab13d5b4fd9f50120dc5b083cde811dd85a15d024c0",
+      "loadedSha256": "113964758ffa2cf117cdeab13d5b4fd9f50120dc5b083cde811dd85a15d024c0",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/stories/model.ts",
+      "currentSha256": "17a263b53bc2f9ceff4eb564b4ec60de37eeb6cb82a692c329a878915cc96713",
+      "loadedSha256": "17a263b53bc2f9ceff4eb564b4ec60de37eeb6cb82a692c329a878915cc96713",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/land.ts",
+      "currentSha256": "f2bd559bafe97a9a8c7653489428fab2840dbc4ccea89536eeae219c467c53f9",
+      "loadedSha256": "f2bd559bafe97a9a8c7653489428fab2840dbc4ccea89536eeae219c467c53f9",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/land.ts",
+      "currentSha256": "fbda806d0add9e60d8de6736fd6c7ceef065ecbcc2dc963ed203eb9bc7b9e2a6",
+      "loadedSha256": "fbda806d0add9e60d8de6736fd6c7ceef065ecbcc2dc963ed203eb9bc7b9e2a6",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/street.ts",
+      "currentSha256": "db67a25f0d894ae4863126a58c0e362c3d447effef3beeffdf63eadf73069176",
+      "loadedSha256": "db67a25f0d894ae4863126a58c0e362c3d447effef3beeffdf63eadf73069176",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/onboarding.ts",
+      "currentSha256": "2784ef9da41282031b98e6049638d95471e7d47f8d8e9644e6e727f39a3ea90b",
+      "loadedSha256": "2784ef9da41282031b98e6049638d95471e7d47f8d8e9644e6e727f39a3ea90b",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/types/avatar.ts",
+      "currentSha256": "612d9ccf82dbd32a06926ca79dc837bbc3179ffa11ddb8ec45a9f312ec76eb6d",
+      "loadedSha256": "612d9ccf82dbd32a06926ca79dc837bbc3179ffa11ddb8ec45a9f312ec76eb6d",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/wardrobe/catalogue.ts",
+      "currentSha256": "d353e15e8817a9d6ee6990a003e553cdce957badcba98942ce6a23e4e4539d84",
+      "loadedSha256": "d353e15e8817a9d6ee6990a003e553cdce957badcba98942ce6a23e4e4539d84",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/wardrobe/rules.ts",
+      "currentSha256": "1f8bcbd76da268032f0f33dccf8318d218086679cb4aaf384581ec1f7854780d",
+      "loadedSha256": "1f8bcbd76da268032f0f33dccf8318d218086679cb4aaf384581ec1f7854780d",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/wardrobe/prices.ts",
+      "currentSha256": "5ffdd39e21089099da26d353d2a8918690a6ebf04b0eb443d3f7c12e54129df1",
+      "loadedSha256": "5ffdd39e21089099da26d353d2a8918690a6ebf04b0eb443d3f7c12e54129df1",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/wardrobe/look.ts",
+      "currentSha256": "7bb221f98da1316076e56f7c61cbacd881a52ec29b1913eebdb97256dbd4fc08",
+      "loadedSha256": "7bb221f98da1316076e56f7c61cbacd881a52ec29b1913eebdb97256dbd4fc08",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/character/native-recipe.ts",
+      "currentSha256": "2617c1bf26f73b67052be78e8ac4686ce73be3b544da98ab54b97d2210768e5f",
+      "loadedSha256": "2617c1bf26f73b67052be78e8ac4686ce73be3b544da98ab54b97d2210768e5f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/character/native-catalog.ts",
+      "currentSha256": "f4e7a58946770f8ae6656a0ecab3c0c6837054c957de34c72d07aa15f25a941b",
+      "loadedSha256": "f4e7a58946770f8ae6656a0ecab3c0c6837054c957de34c72d07aa15f25a941b",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/character/native-migration.ts",
+      "currentSha256": "e0fac618891b467caf89cfd0ef03faacc4ecbf0ea088593e2d36af83fba8d027",
+      "loadedSha256": "e0fac618891b467caf89cfd0ef03faacc4ecbf0ea088593e2d36af83fba8d027",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/social.ts",
+      "currentSha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2",
+      "loadedSha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/routines-hook.ts",
+      "currentSha256": "71b2b1cc0825f9ce7c12397fc9135f1a565b12680f8adb27b8d86016c297bcfc",
+      "loadedSha256": "71b2b1cc0825f9ce7c12397fc9135f1a565b12680f8adb27b8d86016c297bcfc",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/growth.ts",
+      "currentSha256": "6a2f94f44fae28c9dffb7a2b9ffa1041b9b5f3b648fc6314f905d4d9bdca439c",
+      "loadedSha256": "6a2f94f44fae28c9dffb7a2b9ffa1041b9b5f3b648fc6314f905d4d9bdca439c",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/growth.ts",
+      "currentSha256": "4fc1b76a62734ed79b0babd7111edb7386077f9781dd10ff23a84033c6c2b266",
+      "loadedSha256": "4fc1b76a62734ed79b0babd7111edb7386077f9781dd10ff23a84033c6c2b266",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/table-stakes.ts",
+      "currentSha256": "5ed2683fd0b0297a0f5e7d0b9d5dd657ec403a91bb1690f18e656955e974f4f7",
+      "loadedSha256": "5ed2683fd0b0297a0f5e7d0b9d5dd657ec403a91bb1690f18e656955e974f4f7",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/npcs.ts",
+      "currentSha256": "7790b25f181102dbbbe457eee3573a172a32b4935da25fbb8bf0dc7bb8cf1134",
+      "loadedSha256": "7790b25f181102dbbbe457eee3573a172a32b4935da25fbb8bf0dc7bb8cf1134",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/memory/facts.ts",
+      "currentSha256": "59f95403b3308c3ef681cf3eeeada2c5aa28509fd53a9441d48c23115fe172af",
+      "loadedSha256": "59f95403b3308c3ef681cf3eeeada2c5aa28509fd53a9441d48c23115fe172af",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/memory/mind.ts",
+      "currentSha256": "b1a363d81301d14506a735fc9653befdcab047288646c88c7ac3e95064e5ce11",
+      "loadedSha256": "b1a363d81301d14506a735fc9653befdcab047288646c88c7ac3e95064e5ce11",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/memory/lines.ts",
+      "currentSha256": "1eae0c3377a9f09bd26e0a06a19ecaa2a8666c075518704af57afdbe9553aaf3",
+      "loadedSha256": "1eae0c3377a9f09bd26e0a06a19ecaa2a8666c075518704af57afdbe9553aaf3",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/civic.ts",
+      "currentSha256": "e58d5f6ce7c57e73a7dbe3361f50587a37ea6ad869f4f85fe92cd5ba049dcd15",
+      "loadedSha256": "e58d5f6ce7c57e73a7dbe3361f50587a37ea6ad869f4f85fe92cd5ba049dcd15",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/civic.ts",
+      "currentSha256": "cca43fe730aab05204b4982f66da401884be8744e5d75dd933b5c030a4acaf8a",
+      "loadedSha256": "cca43fe730aab05204b4982f66da401884be8744e5d75dd933b5c030a4acaf8a",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/civic-ads.ts",
+      "currentSha256": "10bd9be677f7ffc76ecf40e3427699e5562f098933de23c48e257378c8564fe8",
+      "loadedSha256": "10bd9be677f7ffc76ecf40e3427699e5562f098933de23c48e257378c8564fe8",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/politics-core.ts",
+      "currentSha256": "6af72f29bd9067e1217335a4b157135978deb070ac00a188d0202fdd0f2aa443",
+      "loadedSha256": "6af72f29bd9067e1217335a4b157135978deb070ac00a188d0202fdd0f2aa443",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/events.ts",
+      "currentSha256": "ab169b6797c4046c3658849525520ea62aea912e8d115d0a304d4b235cebe401",
+      "loadedSha256": "ab169b6797c4046c3658849525520ea62aea912e8d115d0a304d4b235cebe401",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/calendar.ts",
+      "currentSha256": "b75172a5a8e974096786c55ebc04ecb24965751423a810c1926957452d0f93ed",
+      "loadedSha256": "b75172a5a8e974096786c55ebc04ecb24965751423a810c1926957452d0f93ed",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/business.ts",
+      "currentSha256": "19e34b826740d4c75edabc3cc9417e1fee894891435534d6b0f7b97128d4bcd9",
+      "loadedSha256": "19e34b826740d4c75edabc3cc9417e1fee894891435534d6b0f7b97128d4bcd9",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/homeward-rules.ts",
+      "currentSha256": "0324e4486a89c1f484deecf1922f48f1f00d179fd6f0001171848c7beb543d27",
+      "loadedSha256": "0324e4486a89c1f484deecf1922f48f1f00d179fd6f0001171848c7beb543d27",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/homewardRoute.ts",
+      "currentSha256": "79038a4965ec9a47ce360ce341dcfa29884289c8c96a1cda40532b459646fe0b",
+      "loadedSha256": "79038a4965ec9a47ce360ce341dcfa29884289c8c96a1cda40532b459646fe0b",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/achievements.ts",
+      "currentSha256": "15bc2de9732f5a22d4811de70a37a6dea53dabf31b74f1437a3abcbbb11c5c0d",
+      "loadedSha256": "15bc2de9732f5a22d4811de70a37a6dea53dabf31b74f1437a3abcbbb11c5c0d",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/types/achievements.ts",
+      "currentSha256": "c8cfb583130d22fd143b6a5f884dd4de748fd7616a0e3f8e5232be5e83fd4b8b",
+      "loadedSha256": "c8cfb583130d22fd143b6a5f884dd4de748fd7616a0e3f8e5232be5e83fd4b8b",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/achievements.ts",
+      "currentSha256": "eebcc07afdf428dbcc56b198499199c0cbc27634c367098c1ac5d4f1ebcbb2e3",
+      "loadedSha256": "eebcc07afdf428dbcc56b198499199c0cbc27634c367098c1ac5d4f1ebcbb2e3",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/episodes.ts",
+      "currentSha256": "9e982633efe5a5e7ce5c2aee731c9aeb9b2ab2d023732bd6f436075cd97234aa",
+      "loadedSha256": "9e982633efe5a5e7ce5c2aee731c9aeb9b2ab2d023732bd6f436075cd97234aa",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/episodes.ts",
+      "currentSha256": "5c1d7bbe8ed857ebddc586c9e313f6b310dfe35262c296e2ae37425345d8f869",
+      "loadedSha256": "5c1d7bbe8ed857ebddc586c9e313f6b310dfe35262c296e2ae37425345d8f869",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/projects.ts",
+      "currentSha256": "3aa9bd57dbb84ece2c78020ffdeec433804d9857bfdf540e84e79622f84a4cf5",
+      "loadedSha256": "3aa9bd57dbb84ece2c78020ffdeec433804d9857bfdf540e84e79622f84a4cf5",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/types/projects.ts",
+      "currentSha256": "068ae0cb2c38d91664097c26732f1a8c778a40c6ee80f1e76809cb507da9dd24",
+      "loadedSha256": "068ae0cb2c38d91664097c26732f1a8c778a40c6ee80f1e76809cb507da9dd24",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/projects.ts",
+      "currentSha256": "6ca9be44b53547fef967ee7820d5254506c4aa2c729ea90763a1fdcb28508873",
+      "loadedSha256": "6ca9be44b53547fef967ee7820d5254506c4aa2c729ea90763a1fdcb28508873",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/story.ts",
+      "currentSha256": "6947838dde8f2ae914a3dcdb5524043dc9682341c0575dde2987fd735fa83518",
+      "loadedSha256": "6947838dde8f2ae914a3dcdb5524043dc9682341c0575dde2987fd735fa83518",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/story/coop.ts",
+      "currentSha256": "bcbca5a1d0a1bcbe1933fc82c868022665cb0cefba10f4be9837315dd78fb807",
+      "loadedSha256": "bcbca5a1d0a1bcbe1933fc82c868022665cb0cefba10f4be9837315dd78fb807",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/story/ladder.ts",
+      "currentSha256": "e7d26fb81ed58c7b313691450ba7d67420a725cb080a9277c31f56c15adcaa2d",
+      "loadedSha256": "e7d26fb81ed58c7b313691450ba7d67420a725cb080a9277c31f56c15adcaa2d",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/journeys.ts",
+      "currentSha256": "1b84aded1b1f21a60febb77664bab729f37bc45abaeef9a24cfbeb93868bf11c",
+      "loadedSha256": "1b84aded1b1f21a60febb77664bab729f37bc45abaeef9a24cfbeb93868bf11c",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/journeys.ts",
+      "currentSha256": "c2ab4aac758d36cd3815f6065e061159bac6e1c6c697b3fd2073df288464426a",
+      "loadedSha256": "c2ab4aac758d36cd3815f6065e061159bac6e1c6c697b3fd2073df288464426a",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/content/local-tales.ts",
+      "currentSha256": "d40a40ebc3c37e9a9eeb9aadd9273b62d7f1f25b0a516f5091026512212f3f22",
+      "loadedSha256": "d40a40ebc3c37e9a9eeb9aadd9273b62d7f1f25b0a516f5091026512212f3f22",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/story/signatures.ts",
+      "currentSha256": "0fc52e9d6a79ce52cb4cdf959ec0a549b9553fb1475029180f65871a0e2d83a4",
+      "loadedSha256": "0fc52e9d6a79ce52cb4cdf959ec0a549b9553fb1475029180f65871a0e2d83a4",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/story/slots.ts",
+      "currentSha256": "9c0541da04c4221bb756cfc358d96f78546c1a3dd2e94db6898f20d7a1db2ca7",
+      "loadedSha256": "9c0541da04c4221bb756cfc358d96f78546c1a3dd2e94db6898f20d7a1db2ca7",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/living-world.ts",
+      "currentSha256": "bcbcbdc6601ea06b1508983b2b9ca1c50b801bd66fab523a63a0778cfa41be7a",
+      "loadedSha256": "bcbcbdc6601ea06b1508983b2b9ca1c50b801bd66fab523a63a0778cfa41be7a",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/living-world/barber-catalogue.ts",
+      "currentSha256": "1ea8bbf8cdf32ab193b09018258c340766d9260339d9ac69a44ff0eb25e94758",
+      "loadedSha256": "1ea8bbf8cdf32ab193b09018258c340766d9260339d9ac69a44ff0eb25e94758",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/living-world/restock-policy.ts",
+      "currentSha256": "1721d6f180b5d25bd3f13ccd00a3eb87e51904446b79686c7f602c63e4401cb4",
+      "loadedSha256": "1721d6f180b5d25bd3f13ccd00a3eb87e51904446b79686c7f602c63e4401cb4",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/systems/market.ts",
+      "currentSha256": "b21c0e453e1f10e2158cd586919bd28de410ba0eb1a8fabdff1b26f1faff8914",
+      "loadedSha256": "b21c0e453e1f10e2158cd586919bd28de410ba0eb1a8fabdff1b26f1faff8914",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/student.ts",
+      "currentSha256": "73ee14bb3343bf4f38575276bf08df61557752111a090874963d8b02549559a8",
+      "loadedSha256": "73ee14bb3343bf4f38575276bf08df61557752111a090874963d8b02549559a8",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/slices.ts",
+      "currentSha256": "635c749a6a156ddf175b0c63792e9c691b0ce0e502788af62208c0ab132bbc91",
+      "loadedSha256": "635c749a6a156ddf175b0c63792e9c691b0ce0e502788af62208c0ab132bbc91",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/volunteer.ts",
+      "currentSha256": "f92e46457e7c8583f8d4a8438a9672a15b97db443a36313eab02868f6b73201b",
+      "loadedSha256": "f92e46457e7c8583f8d4a8438a9672a15b97db443a36313eab02868f6b73201b",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/curriculum.ts",
+      "currentSha256": "de22c69acdf95720f11d99ffe233f77bec90936c63ac47c56fd6674095884174",
+      "loadedSha256": "de22c69acdf95720f11d99ffe233f77bec90936c63ac47c56fd6674095884174",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/games.ts",
+      "currentSha256": "f4839685cef6ceaa84631781300f7a0ce94414735230d56e1f6db7e0c44d808f",
+      "loadedSha256": "f4839685cef6ceaa84631781300f7a0ce94414735230d56e1f6db7e0c44d808f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/trail.ts",
+      "currentSha256": "e9bd108163378b299b26558af731dfd5786e3554db7b0c3dbd02707bb8878fd9",
+      "loadedSha256": "e9bd108163378b299b26558af731dfd5786e3554db7b0c3dbd02707bb8878fd9",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/tables/places.ts",
+      "currentSha256": "c3f6a0fdbaeddaa3cea768ced00f2aa92e56573bbb96dd03b9b7f5aac511ca8b",
+      "loadedSha256": "c3f6a0fdbaeddaa3cea768ced00f2aa92e56573bbb96dd03b9b7f5aac511ca8b",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/shuttle.ts",
+      "currentSha256": "df5607482ceab5f3646c3a887e1e00a564f794127c0764dda1eb002c102c989f",
+      "loadedSha256": "df5607482ceab5f3646c3a887e1e00a564f794127c0764dda1eb002c102c989f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/navigation-data-source.ts",
+      "currentSha256": "bc113cb02e4adc02ed1c101d63da7517981c72158a71d23227786bab25b21ad1",
+      "loadedSha256": "bc113cb02e4adc02ed1c101d63da7517981c72158a71d23227786bab25b21ad1",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/map.generated.ts",
+      "currentSha256": "14fcb5e7ad0c88a805096c55783cba6a7212beaac2857e9d8c7c975c6ea17594",
+      "loadedSha256": "14fcb5e7ad0c88a805096c55783cba6a7212beaac2857e9d8c7c975c6ea17594",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/layout.ts",
+      "currentSha256": "860078f7bde1b8eb9221f5f095af03e22c6e804977274794ccb446a26f61a448",
+      "loadedSha256": "860078f7bde1b8eb9221f5f095af03e22c6e804977274794ccb446a26f61a448",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/spot-names.ts",
+      "currentSha256": "0d4be477ed8f4fc3b6815603457762cf69304b6b5621143d4916887f24a39ccd",
+      "loadedSha256": "0d4be477ed8f4fc3b6815603457762cf69304b6b5621143d4916887f24a39ccd",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/geo.ts",
+      "currentSha256": "0192b72561bc15182545c5da70397ec7987c2e14692c70fcffa1d0279dfba72d",
+      "loadedSha256": "0192b72561bc15182545c5da70397ec7987c2e14692c70fcffa1d0279dfba72d",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/landscape.ts",
+      "currentSha256": "79d921c270896f14234237fef40b6f5c0a27b42dc1839d3696a7b6f06fb9faaa",
+      "loadedSha256": "79d921c270896f14234237fef40b6f5c0a27b42dc1839d3696a7b6f06fb9faaa",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/walk-grid.ts",
+      "currentSha256": "941c0210de6b4585546b416cd29c987e6703b1c9208adeb3e79bf456b737ff29",
+      "loadedSha256": "941c0210de6b4585546b416cd29c987e6703b1c9208adeb3e79bf456b737ff29",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/navigation-data.ts",
+      "currentSha256": "49c0b75c7d0d073aefa233683839615df9d8ad3a02c88ffdee5f02450396fa0d",
+      "loadedSha256": "49c0b75c7d0d073aefa233683839615df9d8ad3a02c88ffdee5f02450396fa0d",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/shuttle-clearance.ts",
+      "currentSha256": "c8482c6fc983a4b15947437a3aeb8e13798fa7e4b9ce9b67a5226d2ee4294f8d",
+      "loadedSha256": "c8482c6fc983a4b15947437a3aeb8e13798fa7e4b9ce9b67a5226d2ee4294f8d",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/walk.ts",
+      "currentSha256": "ebe85bb7f2882275d690260d48ed42a4718ab8ea72814abbd140a4d3879a4b54",
+      "loadedSha256": "ebe85bb7f2882275d690260d48ed42a4718ab8ea72814abbd140a4d3879a4b54",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/campus/unilag/navigation.ts",
+      "currentSha256": "a6b9f598d14d4ba09ff12bed840cca447d02a250db1fcd031fecdd459b5096ac",
+      "loadedSha256": "a6b9f598d14d4ba09ff12bed840cca447d02a250db1fcd031fecdd459b5096ac",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/kit.ts",
+      "currentSha256": "4c2bd7e3bf0785d2be7a195d56f60251b019bcfce4279c5dd5069ff47a661630",
+      "loadedSha256": "4c2bd7e3bf0785d2be7a195d56f60251b019bcfce4279c5dd5069ff47a661630",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/city-scenes.ts",
+      "currentSha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa",
+      "loadedSha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/contract.ts",
+      "currentSha256": "af06046ee2c88d31b7c9ae90c1a9538d62936bcab1c62d0bc508188ae369a29c",
+      "loadedSha256": "7a34b42b00172f70f390e465e46f01219670538c8e1e70f5b9f9de1a81a3c03e",
+      "baseline": true,
+      "overlaid": true
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/runtime.test-support.ts",
+      "currentSha256": "c6dea54cda6db8dbe9c5841fdbe7b2d39e05ecb99b297fe376aa704f2c8fdee3",
+      "loadedSha256": "4794dcee17e65087b65a3935ad70cf0c36c2269d107d2cf53e35c8347280fe8b",
+      "baseline": true,
+      "overlaid": true
+    },
+    {
+      "pid": 47351,
+      "path": "scripts/scene-factory/layout.ts",
+      "currentSha256": "eeef8bce94faba2517312098c8c830e76f258d016d55b3e870b138a884887c8a",
+      "loadedSha256": "ceb8da08af8973ec0f030e7f2277d60a810e1635c28bf4c098f6d8c3517559b4",
+      "baseline": true,
+      "overlaid": true
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/pack.ts",
+      "currentSha256": "4f40e2aaf4dd3b996df1dccaa87b1fe2989dcb95297b86ff5ce7886981ded0c1",
+      "loadedSha256": "4f40e2aaf4dd3b996df1dccaa87b1fe2989dcb95297b86ff5ce7886981ded0c1",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/testing/nativeGeometry.test-fixture.ts",
+      "currentSha256": "80d9460ddab16b99889781e21ee5272369e2ec0cee188ee33825cbd4bd34a6bc",
+      "loadedSha256": "80d9460ddab16b99889781e21ee5272369e2ec0cee188ee33825cbd4bd34a6bc",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/body/skinned.ts",
+      "currentSha256": "b0aff91dd79548f2609b3abe22d5361e2980ed0296c97c3d21a077e2d16e4a03",
+      "loadedSha256": "b0aff91dd79548f2609b3abe22d5361e2980ed0296c97c3d21a077e2d16e4a03",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/character-lab/native-body.ts",
+      "currentSha256": "457454cdc58247352fa6ee779c3712f51dd3680eddbe1e256e5b3250a291463c",
+      "loadedSha256": "457454cdc58247352fa6ee779c3712f51dd3680eddbe1e256e5b3250a291463c",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/character-lab/runtime/characters.js",
+      "currentSha256": "82d57fd059e68ba7ba4b1d41c4ff2338fd1d7c6fcf10235ebdc239426836653a",
+      "loadedSha256": "82d57fd059e68ba7ba4b1d41c4ff2338fd1d7c6fcf10235ebdc239426836653a",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/character-lab/runtime/foot-planting.js",
+      "currentSha256": "3f2079a401fbec2c52722727e5fe8e43a5917135554868de3034a10fcfdd90e6",
+      "loadedSha256": "3f2079a401fbec2c52722727e5fe8e43a5917135554868de3034a10fcfdd90e6",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/character-lab/runtime/knee-alignment.js",
+      "currentSha256": "bbbc23567f7a72669e6a257d71d9c6b66298363ad57a3ec5d9196b214ed28d94",
+      "loadedSha256": "bbbc23567f7a72669e6a257d71d9c6b66298363ad57a3ec5d9196b214ed28d94",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/character-lab/runtime/rig-motion.js",
+      "currentSha256": "5bb5e5756920574de1df5361a2bd58c9704654d5edc8074a581cdf96747b694e",
+      "loadedSha256": "5bb5e5756920574de1df5361a2bd58c9704654d5edc8074a581cdf96747b694e",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/character-lab/runtime/rig-motion-world.js",
+      "currentSha256": "57ddd3364c837617d945b6589c8b8befc93c7138c54ebd6e5d19111e41b6560b",
+      "loadedSha256": "57ddd3364c837617d945b6589c8b8befc93c7138c54ebd6e5d19111e41b6560b",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/character-lab/runtime/seated-drape.js",
+      "currentSha256": "21f9958ef3ffd42fa3479c342d95196aaeadaaa112e496139c7ba82593264506",
+      "loadedSha256": "21f9958ef3ffd42fa3479c342d95196aaeadaaa112e496139c7ba82593264506",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/character-lab/runtime/gait-cloth.js",
+      "currentSha256": "4470f8b6c740c0c9239fc092e1169746172052179ea4bbd56bcb162eb6de4847",
+      "loadedSha256": "4470f8b6c740c0c9239fc092e1169746172052179ea4bbd56bcb162eb6de4847",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/character-lab/runtime/action-support.js",
+      "currentSha256": "2a5c663a856ab186caa20178aeb5451609f4886f5758d21fb6eb9b83feac3c10",
+      "loadedSha256": "2a5c663a856ab186caa20178aeb5451609f4886f5758d21fb6eb9b83feac3c10",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/character-lab/runtime/seated-contact.js",
+      "currentSha256": "9632a65082556e4094c9b6c3d60f7e638ddabda318d5a927b5d4dde0712728f3",
+      "loadedSha256": "9632a65082556e4094c9b6c3d60f7e638ddabda318d5a927b5d4dde0712728f3",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/body/bake-slicer.ts",
+      "currentSha256": "e5c519334b2f679f1dffeb5a23aa7a9e7652a85cde7ad239326cd206aa1521f5",
+      "loadedSha256": "e5c519334b2f679f1dffeb5a23aa7a9e7652a85cde7ad239326cd206aa1521f5",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/shared-gpu.ts",
+      "currentSha256": "da60cba87b0e9c37a756fa5de7b7dd41ef263718deb21bbdb455ea02a8090d9c",
+      "loadedSha256": "da60cba87b0e9c37a756fa5de7b7dd41ef263718deb21bbdb455ea02a8090d9c",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/body/native-static-lod.ts",
+      "currentSha256": "8f3319126a6224131c761cc0de3cdf771edaf8ca27b30455eb8a3873a3f6538d",
+      "loadedSha256": "8f3319126a6224131c761cc0de3cdf771edaf8ca27b30455eb8a3873a3f6538d",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/body/native-static-lod-job.ts",
+      "currentSha256": "913c1fd8f646c8cfa02c51b720e0094191429d845028f174470f558c51ea852f",
+      "loadedSha256": "913c1fd8f646c8cfa02c51b720e0094191429d845028f174470f558c51ea852f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/venue-scenes.ts",
+      "currentSha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71",
+      "loadedSha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da",
+      "baseline": true,
+      "overlaid": true
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/build.ts",
+      "currentSha256": "f3c02fbc45dacb9310fe03f16f105ac5fbb1b0d5a86fdb71b0f0eb17d69ce6ba",
+      "loadedSha256": "f3c02fbc45dacb9310fe03f16f105ac5fbb1b0d5a86fdb71b0f0eb17d69ce6ba",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/ao-bake.ts",
+      "currentSha256": "67dd0bf2a876dbc1ae2e0bc93cc8f9f83687b714ad5941161e0b63a6b62112f0",
+      "loadedSha256": "67dd0bf2a876dbc1ae2e0bc93cc8f9f83687b714ad5941161e0b63a6b62112f0",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/look.ts",
+      "currentSha256": "0636d74ae35452e7c53a315aee498d947d94f877305a9c091f29c15baf03f463",
+      "loadedSha256": "0636d74ae35452e7c53a315aee498d947d94f877305a9c091f29c15baf03f463",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/frame-gate.ts",
+      "currentSha256": "40fa061a7bf33bf85e7a784fb5508e38677451e89440f4d9a6b1989052da9bc7",
+      "loadedSha256": "40fa061a7bf33bf85e7a784fb5508e38677451e89440f4d9a6b1989052da9bc7",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/lightMode.ts",
+      "currentSha256": "75425e33bfa74405232d139bab53953c2ee4e02a4ccaebc48fa96d80d79888fe",
+      "loadedSha256": "75425e33bfa74405232d139bab53953c2ee4e02a4ccaebc48fa96d80d79888fe",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/body/canonical-crowd.ts",
+      "currentSha256": "2bec6c2fda21183292dd51f0e738b351a072d7ca1e11ea8c7342f4e465dc90be",
+      "loadedSha256": "2bec6c2fda21183292dd51f0e738b351a072d7ca1e11ea8c7342f4e465dc90be",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/characters.ts",
+      "currentSha256": "dc851ae66e0cd16b4d8eded2a854095196573e61bafb0082971ab02b34d7e8cf",
+      "loadedSha256": "dc851ae66e0cd16b4d8eded2a854095196573e61bafb0082971ab02b34d7e8cf",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/body/render-cost.ts",
+      "currentSha256": "8ddf0064f41ae36f86cb216f750bbc3ce9e5449dcb2c466d2f58206b14402216",
+      "loadedSha256": "8ddf0064f41ae36f86cb216f750bbc3ce9e5449dcb2c466d2f58206b14402216",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/body/static-extras.ts",
+      "currentSha256": "bb709d6fb370c4cba4c9367370c5adfa4d992adaca5dcf41b849cd26d63bbf03",
+      "loadedSha256": "bb709d6fb370c4cba4c9367370c5adfa4d992adaca5dcf41b849cd26d63bbf03",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/avatar-rig.ts",
+      "currentSha256": "3de58c97459fed66cefd1372ab721232bdc81073b09eb6bfeb3aaaed52b7840d",
+      "loadedSha256": "3de58c97459fed66cefd1372ab721232bdc81073b09eb6bfeb3aaaed52b7840d",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/movement.ts",
+      "currentSha256": "1451cc3c050542ac777ae43380dfa584d7a4c82db87246b02f49e4813c1bbed9",
+      "loadedSha256": "1451cc3c050542ac777ae43380dfa584d7a4c82db87246b02f49e4813c1bbed9",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/space.ts",
+      "currentSha256": "1a116b8f239fe3c77099ad58256e9546d7cb447073ff19e90b6a419d4f796e51",
+      "loadedSha256": "1a116b8f239fe3c77099ad58256e9546d7cb447073ff19e90b6a419d4f796e51",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/props.ts",
+      "currentSha256": "08e2a3019e6bc4d9e6037cb180d7ba708dfc040839923b0cdb45a999bd2a96bd",
+      "loadedSha256": "08e2a3019e6bc4d9e6037cb180d7ba708dfc040839923b0cdb45a999bd2a96bd",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/ambient/hub.ts",
+      "currentSha256": "38d1625619ebf07666758036d8840d1d1c1bb0b072408bbaac7bcc32f52c92a9",
+      "loadedSha256": "38d1625619ebf07666758036d8840d1d1c1bb0b072408bbaac7bcc32f52c92a9",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/tables/city-places.ts",
+      "currentSha256": "266d0e532d49d35299d79c5149cd91e0e1d9352b11292f29373ac169c0b7a87b",
+      "loadedSha256": "266d0e532d49d35299d79c5149cd91e0e1d9352b11292f29373ac169c0b7a87b",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/tables/derive.ts",
+      "currentSha256": "62e9ca11927f1fa8d16a06c89c6dc27d148f4338a9b67599be5d5e5f77ca6fdc",
+      "loadedSha256": "62e9ca11927f1fa8d16a06c89c6dc27d148f4338a9b67599be5d5e5f77ca6fdc",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/conditions/look.ts",
+      "currentSha256": "44ff06b58b87c7f580338401244a934c22a9a9a3e27472708ed937c2ae095511",
+      "loadedSha256": "44ff06b58b87c7f580338401244a934c22a9a9a3e27472708ed937c2ae095511",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/world-time.ts",
+      "currentSha256": "a394fbaf7813d85156b31113056619ef7da0f9bdcb104567f1d56b89e8e402a2",
+      "loadedSha256": "a394fbaf7813d85156b31113056619ef7da0f9bdcb104567f1d56b89e8e402a2",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/conditions/conditions.ts",
+      "currentSha256": "fed42df4780f8c33184f180f4e171c6bd10c147411762d21b03940d61cf613bd",
+      "loadedSha256": "fed42df4780f8c33184f180f4e171c6bd10c147411762d21b03940d61cf613bd",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/lighting.ts",
+      "currentSha256": "0a5b803c1ed5581a082376efb8ec063eae910417a5a2e31aed89c1e767f37665",
+      "loadedSha256": "0a5b803c1ed5581a082376efb8ec063eae910417a5a2e31aed89c1e767f37665",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/venues-outdoor.ts",
+      "currentSha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681",
+      "loadedSha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/venues-social.ts",
+      "currentSha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c",
+      "loadedSha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/assets/kenney-food.generated.ts",
+      "currentSha256": "38f59214b8a4086762653ff321be87143f737aee13a9fb286ecfa4d6094bc313",
+      "loadedSha256": "38f59214b8a4086762653ff321be87143f737aee13a9fb286ecfa4d6094bc313",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/venues-work.ts",
+      "currentSha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4",
+      "loadedSha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/venues-civic.ts",
+      "currentSha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed",
+      "loadedSha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/venues-transport.ts",
+      "currentSha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397",
+      "loadedSha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/venue-world.ts",
+      "currentSha256": "64bc12dc2c736e28315757c1cf7d9647e34d1e4f73789483a9c962e676764420",
+      "loadedSha256": "64bc12dc2c736e28315757c1cf7d9647e34d1e4f73789483a9c962e676764420",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/neighbourhood-space.ts",
+      "currentSha256": "e96333b8e2d2762e0c19b62b8a1e5047f8d02dbd053ed32aab8ff67354eeef2e",
+      "loadedSha256": "e96333b8e2d2762e0c19b62b8a1e5047f8d02dbd053ed32aab8ff67354eeef2e",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/camera-controls.ts",
+      "currentSha256": "040040e13977ae62170af58519387c420f5a049c350170234268e84147146b76",
+      "loadedSha256": "040040e13977ae62170af58519387c420f5a049c350170234268e84147146b76",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/gesture.ts",
+      "currentSha256": "e3ad7fb0e76350e39e25abe5a07dc89f816ce8b20a6650c8f0906276c7b3d228",
+      "loadedSha256": "e3ad7fb0e76350e39e25abe5a07dc89f816ce8b20a6650c8f0906276c7b3d228",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/camera-collision.ts",
+      "currentSha256": "f0de4c96ce475a00efb2871a17839bdbe6dbb1cc0c6c61d861d66ffa02cd3d8f",
+      "loadedSha256": "f0de4c96ce475a00efb2871a17839bdbe6dbb1cc0c6c61d861d66ffa02cd3d8f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/motion-loop.ts",
+      "currentSha256": "b7e5a16035065da5acdc25fa77e85b9cf6167a9dcda29c9171a327533c315088",
+      "loadedSha256": "b7e5a16035065da5acdc25fa77e85b9cf6167a9dcda29c9171a327533c315088",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/controls.ts",
+      "currentSha256": "79a294a75794f78d9b1eda49ac9f341f9b15e942ee0117c0485fd1b48116a07a",
+      "loadedSha256": "79a294a75794f78d9b1eda49ac9f341f9b15e942ee0117c0485fd1b48116a07a",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/home-scene.ts",
+      "currentSha256": "e577798bb81881505d3ccb83accee33779eca36827d9f57ded643b186cdf5b18",
+      "loadedSha256": "e577798bb81881505d3ccb83accee33779eca36827d9f57ded643b186cdf5b18",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/mementos.ts",
+      "currentSha256": "465c085477b462610f818eb85d7c0d8312fc483114c17e4b32f52a0bc38e36a7",
+      "loadedSha256": "465c085477b462610f818eb85d7c0d8312fc483114c17e4b32f52a0bc38e36a7",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/smart-objects/sequence.ts",
+      "currentSha256": "d875aa8fe8405d0b2df81ac0f5f9dfdb480b39db57ce2da9322be4dc7c33cde7",
+      "loadedSha256": "d875aa8fe8405d0b2df81ac0f5f9dfdb480b39db57ce2da9322be4dc7c33cde7",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/smart-objects/props.ts",
+      "currentSha256": "714e62e4a552748f4855cb638a115b7e526c427987a2cc7f83ebfa857163aaae",
+      "loadedSha256": "714e62e4a552748f4855cb638a115b7e526c427987a2cc7f83ebfa857163aaae",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/smart-objects/door.ts",
+      "currentSha256": "0984d8c3dd2097eab0bd187ab25c43aab372f0879c57de2211df78f2f541a3ec",
+      "loadedSha256": "0984d8c3dd2097eab0bd187ab25c43aab372f0879c57de2211df78f2f541a3ec",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/home-zones.ts",
+      "currentSha256": "7ede8da281bc2bc193ef5a2ee6f8b29a41a5f8874edd710c1fdeb4b3a217fc2c",
+      "loadedSha256": "7ede8da281bc2bc193ef5a2ee6f8b29a41a5f8874edd710c1fdeb4b3a217fc2c",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/home-plan.ts",
+      "currentSha256": "7c40c33cd986101eb2ebcdf45de753d3933dbeca80376e4bbd8c412cf152dffa",
+      "loadedSha256": "7c40c33cd986101eb2ebcdf45de753d3933dbeca80376e4bbd8c412cf152dffa",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/body/stand-in.ts",
+      "currentSha256": "766fd4f34327f65866717654321765a692443a991d53df9077c66744dc3f88a2",
+      "loadedSha256": "766fd4f34327f65866717654321765a692443a991d53df9077c66744dc3f88a2",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/ui/inputMode.ts",
+      "currentSha256": "2361eaefe7fbd56012cccdb57308beb456e7a2f1f3e026569dc74d842ef65044",
+      "loadedSha256": "2361eaefe7fbd56012cccdb57308beb456e7a2f1f3e026569dc74d842ef65044",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/ui/npc-mark.ts",
+      "currentSha256": "8b75b0d32ec8b5e3b972dd4f36fb8a4969c4ed06e66aacbcb2fc4078bf8a6881",
+      "loadedSha256": "8b75b0d32ec8b5e3b972dd4f36fb8a4969c4ed06e66aacbcb2fc4078bf8a6881",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/shader-warmup.ts",
+      "currentSha256": "66548ff380ba7f8c6c55e481751208c0a21f36e31164c2ab8fd5f9c37f777a1e",
+      "loadedSha256": "66548ff380ba7f8c6c55e481751208c0a21f36e31164c2ab8fd5f9c37f777a1e",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/accra/index.ts",
+      "currentSha256": "3bcaffbfb2e9ee48d2afc38ce23d3fe4a743cec3628dd4d2b04621f3bb52eed0",
+      "loadedSha256": "3bcaffbfb2e9ee48d2afc38ce23d3fe4a743cec3628dd4d2b04621f3bb52eed0",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/africa/module.ts",
+      "currentSha256": "471d08873ef432337a2b3096569d2f4d843028dc69022a188da02ab6e00a432d",
+      "loadedSha256": "471d08873ef432337a2b3096569d2f4d843028dc69022a188da02ab6e00a432d",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/africa/types.ts",
+      "currentSha256": "048aed65f32fe66fa82b6249ca454f28b8ba70a9c8b24f34902d9c8c35946080",
+      "loadedSha256": "048aed65f32fe66fa82b6249ca454f28b8ba70a9c8b24f34902d9c8c35946080",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/africa/rules.ts",
+      "currentSha256": "c663ee280b9215d889cf41768777e09334c548484555e365893985288607048b",
+      "loadedSha256": "c663ee280b9215d889cf41768777e09334c548484555e365893985288607048b",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/accra/facts.ts",
+      "currentSha256": "2bce46327fe15e4f3b3a6148b3b62c1cfec630712063d0482b02ec8dcb5f7163",
+      "loadedSha256": "2bce46327fe15e4f3b3a6148b3b62c1cfec630712063d0482b02ec8dcb5f7163",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/accra/content.ts",
+      "currentSha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb",
+      "loadedSha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/africa/contentBuilder.ts",
+      "currentSha256": "5aa6ef827ce1f5768233d41cd75c11a8aab1fb8ac64f0dc7aac56a34fcc1d857",
+      "loadedSha256": "5aa6ef827ce1f5768233d41cd75c11a8aab1fb8ac64f0dc7aac56a34fcc1d857",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/contentBuilder.ts",
+      "currentSha256": "12a451def9e37c99c936dc7d8fd510f33e297cdf8c35847f325ff23bfb2d445e",
+      "loadedSha256": "12a451def9e37c99c936dc7d8fd510f33e297cdf8c35847f325ff23bfb2d445e",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/cities/accra/places.ts",
+      "currentSha256": "7e05be38574f073a2737f04cbde5cb1ffaaed176de99131f01187c8e0e6cc872",
+      "loadedSha256": "7e05be38574f073a2737f04cbde5cb1ffaaed176de99131f01187c8e0e6cc872",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/game/price-levels-data.ts",
+      "currentSha256": "a6ab691e20f0153ef87c023469526f120411163f2789c05bb58fe1cc50e5b5f0",
+      "loadedSha256": "a6ab691e20f0153ef87c023469526f120411163f2789c05bb58fe1cc50e5b5f0",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/venues-campus.ts",
+      "currentSha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd",
+      "loadedSha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/load.ts",
+      "currentSha256": "4a968eaa23fc50ae5cd49007f3b0da711b3324bf52bfe228b218770f97473d62",
+      "loadedSha256": "4a968eaa23fc50ae5cd49007f3b0da711b3324bf52bfe228b218770f97473d62",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/compile.ts",
+      "currentSha256": "0d03d34b49b39e69d45e40d6629bd167ef723977ab4622f16dcf11881ba411b9",
+      "loadedSha256": "02ba73cf13f87cd4862820a3bc1acab069a420c23d82b98f66894f9db2b8ae01",
+      "baseline": true,
+      "overlaid": true
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/models/runtime-host.ts",
+      "currentSha256": "033e4c24bcae21094adf2865bc898c9cdb30d00f9765280cdae0d52220a06a80",
+      "loadedSha256": "033e4c24bcae21094adf2865bc898c9cdb30d00f9765280cdae0d52220a06a80",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/runtime-host.ts",
+      "currentSha256": "b24ef9d205985e9698352e9b226b1d1d1de176e66f1caa6412f10a037b31d7ac",
+      "loadedSha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0",
+      "baseline": true,
+      "overlaid": true
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/models/scene-models.ts",
+      "currentSha256": "24e61b0e7eacedbb128363971602876633896ff6875aa24f3642c5fdbb8499c5",
+      "loadedSha256": "24e61b0e7eacedbb128363971602876633896ff6875aa24f3642c5fdbb8499c5",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/cache.ts",
+      "currentSha256": "5ec3c9e3864d08019c9094bcaacbba7d2d717cc78ebc7a7803721ea32a81f6e3",
+      "loadedSha256": "5ec3c9e3864d08019c9094bcaacbba7d2d717cc78ebc7a7803721ea32a81f6e3",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/signs.ts",
+      "currentSha256": "2929739eb7498448df8d490b4c15ef4ed7567a6716d7fcd739136f462b24da20",
+      "loadedSha256": "2929739eb7498448df8d490b4c15ef4ed7567a6716d7fcd739136f462b24da20",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/camera-fit.ts",
+      "currentSha256": "3f14542a2c3c1fc376f01d0fc575c5544238d5a968b5d489b59900f6c5cae74e",
+      "loadedSha256": "3f14542a2c3c1fc376f01d0fc575c5544238d5a968b5d489b59900f6c5cae74e",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/prepare.ts",
+      "currentSha256": "cb67900961257c29d78071ddab278de71a0aeaf636c80f15dc2f65db67b16c41",
+      "loadedSha256": "cb67900961257c29d78071ddab278de71a0aeaf636c80f15dc2f65db67b16c41",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/models/gltf-source.ts",
+      "currentSha256": "e0a3b1f5ec2a4b3778dfbbb21424d304470162cf8018387defabe7ec67ccd32f",
+      "loadedSha256": "e0a3b1f5ec2a4b3778dfbbb21424d304470162cf8018387defabe7ec67ccd32f",
+      "baseline": true,
+      "overlaid": false
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/runtime.test.ts",
+      "currentSha256": "24910f51696bd1c8f156a222fc60281044d801f5a8224fbde167bab6c313fcb9",
+      "loadedSha256": "24910f51696bd1c8f156a222fc60281044d801f5a8224fbde167bab6c313fcb9",
+      "baseline": true,
+      "overlaid": false
+    }
+  ],
+  "overlayPaths": [
+    {
+      "pid": 47351,
+      "path": "src/budgets.ts",
+      "currentSha256": "b30825d8f11e82fa3918e3d8e9c48f1f5ed8bc6e681c1dcdc722960bd4ed22e9",
+      "loadedSha256": "d320770969f0b328e7effbbb665ee79a2cb24d042e000453352d7a60598bd90d",
+      "baseline": true,
+      "overlaid": true
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/contract.ts",
+      "currentSha256": "af06046ee2c88d31b7c9ae90c1a9538d62936bcab1c62d0bc508188ae369a29c",
+      "loadedSha256": "7a34b42b00172f70f390e465e46f01219670538c8e1e70f5b9f9de1a81a3c03e",
+      "baseline": true,
+      "overlaid": true
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/runtime.test-support.ts",
+      "currentSha256": "c6dea54cda6db8dbe9c5841fdbe7b2d39e05ecb99b297fe376aa704f2c8fdee3",
+      "loadedSha256": "4794dcee17e65087b65a3935ad70cf0c36c2269d107d2cf53e35c8347280fe8b",
+      "baseline": true,
+      "overlaid": true
+    },
+    {
+      "pid": 47351,
+      "path": "scripts/scene-factory/layout.ts",
+      "currentSha256": "eeef8bce94faba2517312098c8c830e76f258d016d55b3e870b138a884887c8a",
+      "loadedSha256": "ceb8da08af8973ec0f030e7f2277d60a810e1635c28bf4c098f6d8c3517559b4",
+      "baseline": true,
+      "overlaid": true
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/venue-scenes.ts",
+      "currentSha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71",
+      "loadedSha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da",
+      "baseline": true,
+      "overlaid": true
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/compile.ts",
+      "currentSha256": "0d03d34b49b39e69d45e40d6629bd167ef723977ab4622f16dcf11881ba411b9",
+      "loadedSha256": "02ba73cf13f87cd4862820a3bc1acab069a420c23d82b98f66894f9db2b8ae01",
+      "baseline": true,
+      "overlaid": true
+    },
+    {
+      "pid": 47351,
+      "path": "src/scene/recipe/runtime-host.ts",
+      "currentSha256": "b24ef9d205985e9698352e9b226b1d1d1de176e66f1caa6412f10a037b31d7ac",
+      "loadedSha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0",
+      "baseline": true,
+      "overlaid": true
+    }
+  ],
+  "instrumentation": "Temporary load hook inserts console.log after existing cost calculation only. It preserves condition, assertions and actual checkout. Synthetic recipe registry hook is existing exact95 runtime.test.ts behavior. npm dependencies are shared installed versions pinned in host sourceFiles; this is source-baseline CPU evidence, not an old hosted artifact/browser replay.",
+  "hookSha256": "fcb1a9a27c5840d822b67cc3b7d7e52f9261e813a14342e6385a7ef9546904d9",
+  "fixtureDataExact95": [
+    {
+      "path": "src/scene/recipe/fixtures/runtime/accra.brief.json",
+      "sha256": "7ee389249569509693265d32dd223da45aa1532c134e38a15c168f1cbea0ec88"
+    },
+    {
+      "path": "src/scene/recipe/fixtures/runtime/accra.glb",
+      "sha256": "615ab02286fc0d2584d95831edaede8d35d47d4a8ced5932ae082b5d5ead0237"
+    },
+    {
+      "path": "src/scene/recipe/fixtures/runtime/accra.measurement.json",
+      "sha256": "50fccdc9ba05791a41493ed33aaa5106bab67e9a1710cc4065ebfe81ce28cd11"
+    },
+    {
+      "path": "src/scene/recipe/fixtures/runtime/gulf-guinea.glb",
+      "sha256": "e23701456dab835707d6710c3f28b8c209be96e9eeb49f74a74a4284bc3bbe7f"
+    },
+    {
+      "path": "src/scene/recipe/fixtures/runtime/gulf-guinea.measurement.json",
+      "sha256": "7c030cdc6ef12dc7e7d7d0cae311230063fc389eac311c5a288cfbfe180f57ae"
+    },
+    {
+      "path": "src/scene/recipe/fixtures/runtime/provenance.json",
+      "sha256": "19b09af378b1f7a8cd825b2cba8f6fc123dd90893141488171f934ecb2bb87c7"
+    }
+  ],
+  "hostCostMapsExact95": true,
+  "fixtureSeed": {
+    "original95InputSha256": "c41879505b06d83fd5aa951ed3c309583df5d14d4640b6582c4b5e2b862cb9be",
+    "contentSha256": "d0a561b71ee75dc1f247f2dcee305b1eadcad4a84bd2329fb379b7c6c81fb874",
+    "correctedCanonicalSelection": {
+      "kind": "retained-v1",
+      "contentSha256": "d0a561b71ee75dc1f247f2dcee305b1eadcad4a84bd2329fb379b7c6c81fb874",
+      "seedSha256": "9ea5a116e7e5855d9635617980a245e72f149c55d8b2aa525fd2e5f6b7400ef8"
+    },
+    "sameSeed": false
+  },
+  "currentDiagnostics": [
+    {
+      "placed": 12,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 127,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 11,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 117,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 10,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 107,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 9,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 97,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 8,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 87,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 7,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 77,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 6,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 67,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 5,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 57,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 4,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 47,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 12,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3290,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 127,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 11,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3290,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 117,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 10,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3290,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 107,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 9,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3290,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 97,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 8,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3290,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 87,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 7,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3290,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 77,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 6,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3290,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 67,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 5,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3290,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 57,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 4,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3290,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 47,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 3,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3290,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 37,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 12,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 127,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 11,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 117,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 10,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 107,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 9,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 97,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 8,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 87,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 7,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 77,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 6,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 67,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 5,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 57,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 4,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2958,
+        "drawCalls": 8
+      },
+      "characterCalls": 47,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    }
+  ],
+  "baselineDiagnostics": [
+    {
+      "placed": 12,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 127,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 11,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 117,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 10,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 107,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 9,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 97,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 8,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 87,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 7,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 77,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 6,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 67,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 5,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 57,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 4,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 47,
+      "budget": {
+        "triangles": 17000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 12,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3022,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 127,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 11,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3022,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 117,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 10,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3022,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 107,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 9,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3022,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 97,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 8,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3022,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 87,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 7,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3022,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 77,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 6,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3022,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 67,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 5,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3022,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 57,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 4,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3022,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 47,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 3,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 3022,
+        "meshes": 6,
+        "drawCalls": 10
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 37,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 12,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 127,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 11,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 117,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 10,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 107,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 9,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 97,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 8,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 87,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 7,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 77,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 6,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 67,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 5,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 57,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    },
+    {
+      "placed": 4,
+      "mandatory": 0,
+      "cost": {
+        "triangles": 356,
+        "meshes": 3,
+        "drawCalls": 4
+      },
+      "reservation": {
+        "triangles": 2690,
+        "drawCalls": 8
+      },
+      "characterCalls": 47,
+      "budget": {
+        "triangles": 15000,
+        "drawCalls": 60
+      }
+    }
+  ],
+  "conclusion": "Both exact95-source tests and corrected current tests fail 4 !== 12. Optional actor draw admission is causal: mandatory0; at5 actors 4+8+57=69>60, at4 actors 4+8+47=59<=60. No Phase4 regression established by this assertion; unchanged assertion remains failing. Original fixture geometry seed differs from retained canonical95 art seed and reservations differ, but admission draw arithmetic and count are identical."
+}

@@ -1,0 +1,36 @@
+{
+  "name": "fixture-baseline-95",
+  "command": [
+    "node",
+    "--experimental-strip-types",
+    "scripts/agent-slot.ts",
+    "heavy",
+    "--wait-ms",
+    "0",
+    "--",
+    "env",
+    "PHASE4_BASELINE=95",
+    "node",
+    "--experimental-strip-types",
+    "--import",
+    "/tmp/phase4-seed-correction-20261019-lg52i_y_/admission-hook.mjs",
+    "--test",
+    "--test-concurrency=1",
+    "--test-name-pattern",
+    "factory crowd positions|normal city loading",
+    "scripts/scene-factory/layout-host.test.ts",
+    "src/scene/recipe/runtime.test.ts"
+  ],
+  "pid": 45671,
+  "exitCode": 1,
+  "timeout": false,
+  "seconds": 8.126275833928958,
+  "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/fixture-baseline-95.log",
+  "logSha256": "f68573da8869f01738efad8ad987e765a6a32868802e2ec6693962e7d8c00d46",
+  "limits": {
+    "oldSpaceMiB": 512,
+    "semiSpaceMiB": 16,
+    "GOMAXPROCS": 2,
+    "externalTimeoutSeconds": 280
+  }
+}

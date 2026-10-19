@@ -181,6 +181,8 @@ export interface SceneDef {
   mood: Mood | ((context: SceneContext) => Mood)
   accent?: Colour
   camera?: SceneCamera
+  /** Optional scene-owned sky grading after time, weather and festival adjustment; must not mutate its input. */
+  skyTint?: (sky: readonly [Colour, Colour]) => [Colour, Colour]
   /** Replaces the walkable description of the scene's kind (a variant that is walled, or open, where its kind is not). */
   walk?: SceneWalkSpec
   /** Dedicated scenery with fixed navigation and a matching procedural build() fallback. */

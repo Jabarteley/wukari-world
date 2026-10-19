@@ -48,7 +48,9 @@ The source dispatch and provenance checks are implemented. The installed 284-cit
 
 `scripts/scene-factory/host-scenery.json` records the measured host allowance for every current recipe target. Its values are per city and venue. It has no global, kind-level or legacy fallback, and its source-file hashes must still match before compilation.
 
-`scripts/scene-factory/build.ts` combines one fresh brief, one measured regional kit, one measured city hero, the explicit hero venue selection, and that city's exact host map. It emits compact `CityRecipesV1` JSON plus an offline manifest. A city with no targets emits an empty recipe set and places no hero.
+`scripts/scene-factory/build.ts` combines one fresh brief, one measured regional kit, one measured city hero, the explicit hero venue selection, and that city's exact host map. It emits compact `CityRecipesV2` JSON plus an offline manifest. A city with no targets emits an empty recipe set and places no hero.
+
+Layout seeds are separate from source provenance. `layout-seeds.ts` retains the accepted layout seed for each city whose semantic content digest still matches. Changes to tool or source hashes refresh provenance without moving the scene. New cities and changed content use a deterministic seed derived from the city and semantic digest. Each build manifest records which seed was selected.
 
 `scripts/scene-factory/world.ts` reconstructs all 284 briefs from current source, verifies complete region, hero, asset and host coverage, validates the actual GLB bytes against their measurement reports, and plans:
 
@@ -64,7 +66,7 @@ The world planner requires `scripts/scene-factory/asset-index.json`. The current
 - `npm run scenes:build` plans the world and atomically installs only the factory-owned paths. It refuses foreign or changed files, removes only verified obsolete outputs, and writes the world manifest last.
 - `npm run scenes:check` rebuilds the plan in memory and compares the installed inventory and bytes without creating files or temporary directories.
 
-Both commands run Node with a 512 MiB heap limit. `prebuild` runs `scenes:check`, so an ordinary application build cannot proceed with missing or stale generated scene outputs. The actual world build installed 1,436 files. A fresh `scenes:check` matched all 1,436 without writing or deleting files; the current generated world manifest SHA-256 is `af22bdc227d2d5683520fa8cb2c1ec004dbee109515918cc77ac9e4a49c5a53d`.
+Both commands run Node with a 512 MiB heap limit. `prebuild` runs `scenes:check`, so an ordinary application build cannot proceed with missing or stale generated scene outputs. The actual world build installed 1,436 files. A fresh `scenes:check` matched all 1,436 without writing or deleting files; that recorded world manifest SHA-256 was `af22bdc227d2d5683520fa8cb2c1ec004dbee109515918cc77ac9e4a49c5a53d`. Current source and output identities are recorded in each generated manifest.
 
 The first actual checks exposed two integration issues. Narrow normalization for the legacy Nigerian country alias (`nigeria`/`ng`) now passes its focused 20/20 cases. A wider hero could obstruct activity; rear-band reservation now passes its actual-venue 19/19 cases. The current recorded world build and mutation-free check pass. The corrected phone-sheet fixture and full typecheck pass all five projects with zero errors in r15. Camera projection/reset13, city-scenes8, venue-world23, public-venue-budget and companion checks pass at their recorded source scopes. An earlier full all-city run passed all six logical cases; see the programme record for exact evidence. Browser and release acceptance remain separate.
 
@@ -99,3 +101,13 @@ The reviewed front/side views do not certify phone composition or materials in g
 With `?diagnostics`, the existing renderer snapshot now includes recipe runtime status and visible native-root readiness. Cold-load verification uses ready roots followed by a later natural submitted frame at the same location; an idle host without that later frame leaves the timing inconclusive.
 
 Generated recipe cameras opt into a lazy perspective fitter. The shared host passes its existing field of view, projection shift, HUD insets and current player position; authored cameras retain their original behavior. Reset refits the current position, while normal zoom and collision handling remain available.
+
+## Recipe presentation
+
+City recipe V2 adds `sky` presentation multipliers and the `surfaceStyle: physical-atlas-v1` marker. Outdoor recipes use linear RGB gains of `[1, 0.98, 0.95]` at the horizon and `[0.94, 0.98, 1]` at the zenith; other moods use neutral `[1, 1, 1]` gains. The sky tint composes after the existing time-of-day, weather and festival treatment. These values describe art direction, not geographic atmosphere. V1 city packs remain supported through the strict V1 geometry validation path and do not opt into V2 presentation fields. V2 validates its additive fields while preserving the same geometry core.
+
+The physical-atlas surface style adds shader modulation to existing recipe meshes and the procedural fallback. A per-vertex `Float32` mask selects surfaces, adding 4 bytes per vertex to the runtime attribute. It reuses the existing GLB geometry and UVs. No geometry or texture files are added or rewritten. The V2 fields add recipe JSON bytes and must fit the existing limits. The shader and mask add runtime work and memory use; GPU cost has not been measured. The existing shadow policy remains unchanged, including the phone-tier setting.
+
+Surface treatment uses ground variation, base grime and a horizontal band. Its mask includes boundary walls, gates and kiosk panels, so it leaves window placement to the existing geometry and atlas rather than painting uniform window rows across those surfaces.
+
+Before release, verify legacy V1 loading, generated V2 world bytes against existing budgets, shader compilation, visible day/night and festival scenes, and device performance. No performance or image-quality result is implied by this format description.

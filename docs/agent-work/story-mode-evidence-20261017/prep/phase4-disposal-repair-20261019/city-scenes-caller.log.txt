@@ -1,0 +1,17 @@
+✔ every city with authored scenes, including Lagos, waits for its own download (388.433958ms)
+✔ the adapter draws nothing for a city whose scenes are on their way, says so, and builds the venue host when they arrive (76.030166ms)
+✔ a failed download is retried by itself with growing waits, then stops until the player asks again (43.808708ms)
+✔ an automatic retry that succeeds builds the scene without the player doing anything (46.862583ms)
+✔ arriving in another city: the old city leaves the screen, the new one is built when its scenes arrive, and a place change meanwhile is kept (113.289375ms)
+✔ leaving for a city that is ready while another was awaited builds at once, and the late arrival changes nothing (163.07125ms)
+✔ every venue of every city is drawn from its own city's download alone (57457.079041ms)
+✔ the shared scene chunk holds no city's own scenes: each is a chunk of its own, fetched on demand (20.980042ms)
+ℹ world-adapter-71ede97.js 188939 raw 70896 gzip; city-abuja-scenes-5710377.js 72113 raw 24417 gzip; city-ibadan-scenes-18f032e.js 35002 raw 13422 gzip; city-kano-scenes-31fabe5.js 67922 raw 24090 gzip; city-ogun-scenes-a-6a978d8.js 35719 raw 13249 gzip; city-ogun-scenes-b-234fe9f.js 61555 raw 20192 gzip; city-port-harcourt-scenes-fda8714.js 75103 raw 26507 gzip
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 59082.057333

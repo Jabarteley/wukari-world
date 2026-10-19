@@ -27,23 +27,33 @@ performance.now = () => clock
 
 test('a large moment throws confetti and nudges the camera once; a second one inside 2 s is played as medium', () => {
   const before = made.length
-  const first = feel('goal-done', { sound: false })
+  const first = feel('goal-done', {})
   assert.equal(first.tier, 'large')
   assert.deepEqual(shakes, [0.6])
   assert.ok(made.length > before + 20, 'confetti pieces were made')
   clock += 1000
-  const second = feel('level-up', { sound: false })
+  const second = feel('level-up', {})
   assert.equal(second.tier, 'medium')
   assert.deepEqual(shakes, [0.6], 'no second shake')
   clock += 1500
-  assert.equal(feel('election-won', { sound: false }).tier, 'large')
+  assert.equal(feel('election-won', {}).tier, 'large')
   assert.deepEqual(shakes, [0.6, 0.6])
+})
+
+test('the tier\'s sound is played only when the caller gives a way to play it', () => {
+  clock += 10000
+  const heard: string[] = []
+  feel('danfo-stop', { sound: (name) => heard.push(name) })
+  feel('pay-received', { sound: (name) => heard.push(name), burst: false })
+  feel('election-won', { sound: (name) => heard.push(name), burst: false })
+  feel('level-up', {}) // silent
+  assert.deepEqual(heard, ['toast', 'success', 'goal'])
 })
 
 test('small and medium moments never shake', () => {
   clock += 10000
   shakes.length = 0
-  feel('danfo-stop', { sound: false }); feel('pay-received', { sound: false }); feel('fight-hit', { sound: false })
+  feel('danfo-stop', {}); feel('pay-received', {}); feel('fight-hit', {})
   assert.deepEqual(shakes, [])
 })
 
@@ -51,7 +61,7 @@ test('the system setting stops the shake (the confetti is also left out by the b
   clock += 10000
   shakes.length = 0
   media = true
-  feel('goal-done', { sound: false })
+  feel('goal-done', {})
   assert.deepEqual(shakes, [])
   media = false
 })

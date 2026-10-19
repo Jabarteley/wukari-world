@@ -66,11 +66,11 @@ export function showReward(parent: Element | null | undefined, detail: RewardInp
   node.lastChild!.addEventListener('animationend', () => node.remove(), { once: true })
   parent.append(node)
   // Money coming in makes the chips pop (medium tier). Money has its own sound already, and a pay chip alone gets no confetti.
-  if ((detail.cash ?? 0) > 0) feel('pay-received', { pop: node, sound: false, burst: false })
+  if ((detail.cash ?? 0) > 0) feel('pay-received', { pop: node, burst: false })
   return true
 }
 
 /** A finished goal's moment (large tier): confetti and one nudge of the camera. Its sound already plays with the toast (src/app/state/toasts.ts). */
 export function cheer(parent: Element | null | undefined = globalThis.document?.body) {
-  feel('goal-done', { parent, sound: false });
+  feel('goal-done', { parent });
 }

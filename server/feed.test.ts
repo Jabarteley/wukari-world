@@ -399,3 +399,22 @@ test('communities: a city based on a real place, open to join from Discover, mod
   assert.match((await get(`/api/feed/crews/one?id=${made.crew.id}`, bola)).crew.world.link, /^\/r\//, 'members get the way in');
   assert.equal((await get(`/api/feed/crews/one?id=${made.crew.id}`, chi)).crew.world.link, undefined, 'a non-member does not');
 });
+
+test('activation: a first post, community or "going" activates a person once, under their landing words, and nothing else does', async (t) => {
+  const { f, get, post, player } = await setup(t);
+  const ada = await player('Ada'), bola = await player('Bola');
+  const growth = () => f.server.store.read((db) => JSON.parse(JSON.stringify((db as Record<string, any>).growth?.metrics?.activation ?? {})) as Record<string, Record<string, number>>);
+  const total = async () => Object.values(await growth()).reduce((sum, keys) => sum + Object.values(keys).reduce((a, b) => a + b, 0), 0);
+  assert.equal(await total(), 0, 'saying hello and reading the feed is not an action');
+  await get('/api/feed/communities?city=lagos', ada);
+  assert.equal(await total(), 0);
+  assert.equal((await post('/api/feed/post', { body: 'Hello Yaba' }, ada)).ok, true);
+  assert.equal(await total(), 1);
+  assert.equal((await post('/api/feed/post', { body: 'Hello again' }, ada)).ok, true);
+  const made = await post('/api/feed/crews', { name: 'Yaba Ballers', colour: 'gold', about: 'Football on Saturdays' }, ada);
+  assert.equal(made.ok, true);
+  assert.equal(await total(), 1, 'a second action is not a second activation');
+  assert.equal((await post('/api/feed/crews/join', { code: made.crew.code }, bola)).ok, true);
+  assert.equal(await total(), 2, 'a different person joining a community is the second');
+  assert.deepEqual(Object.values(await growth()).flatMap((keys) => Object.keys(keys)), ['direct|direct|direct'], 'no utm words came with the hello');
+});

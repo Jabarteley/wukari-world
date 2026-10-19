@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { accountsPerDay, fillTone, returning, shortDate, sizeTone, tileChange, attentionOf, trendOf } from './dashboardModel.ts'
+import { accountsPerDay, activationCell, campaignRows, day7Cell, fillTone, returning, shortDate, sizeTone, tileChange, attentionOf, trendOf } from './dashboardModel.ts'
 import type { DayRow } from './dashboardModel.ts'
 
 const row = (accounts: number | null, over: Partial<DayRow> = {}): DayRow => ({ day: 1, date: '2026-10-06', new: 0, seen: 0, sessions: 0, funnel: {}, daily: accounts === null ? null : { accounts }, ...over })
@@ -30,4 +30,21 @@ test('the attention list names what needs an admin and where to go, and is empty
   assert.deepEqual(busy.map((item) => [item.id, item.tone, item.view]), [['reports', 'warn', 'moderation'], ['sessions', 'bad', 'world'], ['tests', 'info', 'players'], ['email', 'info', 'world']])
   assert.equal(busy[0]?.text, '2 player reports waiting for a decision')
   assert.equal(busy[2]?.filter, 'test')
+})
+
+test('campaign rows put activation and day-7 return side by side, with the sample size and "not yet observed" for young cohorts', () => {
+  const cell = (lives: number, returned: number) => ({ lives, returned, rate: lives ? Math.round((returned / lives) * 1000) / 10 : null })
+  const zero = cell(0, 0)
+  const rows = campaignRows(
+    [{ source: 'tiktok', medium: 'paid', campaign: 'visit-home', landed: 400, activated: 52, rate: 13 }, { source: 'direct', medium: 'direct', campaign: 'direct', landed: 90, activated: 9, rate: 10 }, { source: 'ig', medium: 'paid', campaign: 'new', landed: 12, activated: 3, rate: 25 }],
+    { bySource: [{ source: 'tiktok', medium: 'paid', campaign: 'visit-home', d1: zero, d7: cell(40, 10), d30: zero }, { source: 'ig', medium: 'paid', campaign: 'new', d1: zero, d7: zero, d30: zero }, { source: 'old', medium: 'ref', campaign: 'x', d1: zero, d7: cell(5, 1), d30: zero }] },
+  )
+  assert.deepEqual(rows.map((row) => row.label), ['tiktok / paid / visit-home', 'direct / direct / direct', 'ig / paid / new', 'old / ref / x'])
+  assert.equal(rows[0]?.activation, '13% (52 of 400 landed)'); assert.equal(rows[0]?.day7, '25% (10 of 40)'); assert.equal(rows[0]?.observed, 40)
+  assert.equal(rows[1]?.day7, 'not yet observed', 'no life of this campaign has reached day 7 yet')
+  assert.equal(rows[2]?.activation, '25% (3 of 12 landed), small sample'); assert.equal(rows[2]?.day7, 'not yet observed')
+  assert.equal(rows[3]?.activation, 'no landings yet'); assert.equal(rows[3]?.day7, '20% (1 of 5), small sample')
+  assert.equal(activationCell({ landed: 0, activated: 2, rate: null }), '2 activated, no landings counted')
+  assert.equal(day7Cell(undefined), 'not yet observed')
+  assert.deepEqual(campaignRows(undefined, undefined), [])
 })

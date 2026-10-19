@@ -45,7 +45,7 @@ import { removeAnnouncement } from '../civic/elections.ts';
 import { liveShoutouts, removeShoutout } from '../civic/radio.ts';
 import { businessService } from '../business/service.ts';
 import { growthOf } from '../growth/data.ts';
-import { returnSplit } from '../growth/metrics.ts';
+import { activationReport, returnSplit } from '../growth/metrics.ts';
 import { outreachService } from '../growth/outreach.ts';
 import { moderationService } from '../moderation/service.ts';
 import { noticeOf } from '../notice.ts';
@@ -171,7 +171,7 @@ export default function adminRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
       const days = Math.min(400, Math.max(1, Number(request.query.get('days')) || 30)), now = ctx.now();
       return { ...historyOf(db, now, days), funnel: { today: funnelOf(db, now, 1), week: funnelOf(db, now, 7) },
         // Day-1/7/30 return by ad source and by "made a friend" (server/growth/metrics.ts); absent until the growth collection exists.
-        ...(db.growth ? { returns: returnSplit(db.growth) } : {}) };
+        ...(db.growth ? { returns: returnSplit(db.growth), activation: activationReport(db.growth) } : {}) };
     }),
     'GET /api/admin/economy': read((db, _admin, request) => stats.economy(db, request.query.get('fresh') === '1')),
     'GET /api/admin/tools': read(() => ({ tools: adminTools(ctx) })),

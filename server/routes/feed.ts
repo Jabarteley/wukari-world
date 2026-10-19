@@ -36,7 +36,8 @@ import { cleanCode, FEED } from '../../src/feed/model.ts'
 import { CONTENT_TYPES, FAULT_WORDS, claimedType, cleanPicture } from '../social/images.ts'
 import { characterCity } from '../character.ts'
 import { growthOf } from '../growth/data.ts'
-import { count, notePosted } from '../growth/metrics.ts'
+import { count, noteActivated, notePosted } from '../growth/metrics.ts'
+import { requestOrigin } from '../execution-origin.ts'
 import type { FeedMedia } from '../../src/types/feed.ts'
 import type { Db, RouteContext, RouteHandler, RouteKey, RouteRequest, SessionRecord } from '../types.ts'
 import type { ServerFrame } from '../../src/types/protocol.ts'
@@ -106,6 +107,8 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
     return ctx.store.read((db) => { const s = request.session(db); return (s && characterCity(s)) ?? ctx.cityIds[0] ?? 'lagos' })
   }
   const counted = (name: string) => (db: Db): void => { count(growthOf(ctx, db), ctx.now(), name) }
+  /** A person's first meaningful action in the feed (a post, a community, a "going"): once per life, and never an AI agent's (growth/metrics.ts noteActivated). */
+  const activated = (request: RouteRequest, db: Db, s: SessionRecord): void => { noteActivated(growthOf(ctx, db), ctx.now(), s.publicId, requestOrigin(request, s)) }
   const noStore = { 'Cache-Control': 'no-store' }
 
   async function upload(request: RouteRequest) {
@@ -174,7 +177,7 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
     'GET /api/feed/post': async (request) => ({ body: await readAs(request, (db, viewer) => feed.thread(db, viewer, request.query.get('id'))), headers: noStore }),
     'POST /api/feed/post': async (request) => {
       const b = await body(request)
-      const answer = await write(request, (db, s) => { const r = feed.createPost(db, s, b); if (r.ok) { counted('feed.post')(db); notePosted(growthOf(ctx, db), ctx.now(), s.publicId) } return r })
+      const answer = await write(request, (db, s) => { const r = feed.createPost(db, s, b); if (r.ok) { counted('feed.post')(db); notePosted(growthOf(ctx, db), ctx.now(), s.publicId); activated(request, db, s) } return r })
       // Every public photo or clip is looked at once when it is posted (there is no other scanning of pictures).
       if (answer.ok && answer.post.media && (answer.post.vis === 'public' || answer.post.vis === 'city')) reviewLater({ kind: 'post', id: answer.post.id }, 'new')
       return { body: answer, renew: true }
@@ -230,8 +233,8 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
     },
     'POST /api/feed/contacts/forget': async (request) => ({ body: await ctx.store.transact((db) => contacts.forget(db, request.requireSession(db, { renew: true }).publicId)), headers: noStore }),
     'POST /api/feed/vouch': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.vouch(db, s, b)) } },
-    'POST /api/feed/crews': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.createCrew(db, s, b); if (r.ok) counted('crew.made')(db); return r }), renew: true } },
-    'POST /api/feed/crews/join': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.joinCrew(db, s, b); if (r.ok) counted('crew.joined')(db); return r }), renew: true } },
+    'POST /api/feed/crews': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.createCrew(db, s, b); if (r.ok) { counted('crew.made')(db); activated(request, db, s) } return r }), renew: true } },
+    'POST /api/feed/crews/join': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.joinCrew(db, s, b); if (r.ok) { counted('crew.joined')(db); activated(request, db, s) } return r }), renew: true } },
     'POST /api/feed/crews/leave': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.leaveCrew(db, s, b)) } },
     'GET /api/feed/communities': async (request) => { const city = await cityOf(request); return { body: await readAs(request, (db, viewer) => feed.discover(db, viewer, city, request.query.get('kind'))), headers: noStore } },
     'POST /api/feed/crews/mod': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.setMod(db, s, b)) } },
@@ -243,7 +246,7 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
     'GET /api/feed/events': async (request) => { const city = await cityOf(request); return { body: await readAs(request, (db, viewer) => feed.events(db, viewer, city)), headers: noStore } },
     'GET /api/feed/events/one': async (request) => ({ body: await readAs(request, (db, viewer) => feed.event(db, viewer, request.query.get('id') ?? request.query.get('code'))), headers: noStore }),
     'POST /api/feed/events': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.createEvent(db, s, b); if (r.ok) counted('event.made')(db); return r }), renew: true } },
-    'POST /api/feed/events/rsvp': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.rsvp(db, s, b); if (r.ok && b.answer === 'going') counted('event.going')(db); return r }) } },
+    'POST /api/feed/events/rsvp': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.rsvp(db, s, b); if (r.ok && b.answer === 'going') { counted('event.going')(db); activated(request, db, s) } return r }) } },
     'POST /api/feed/events/cancel': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.cancelEvent(db, s, b)) } },
     'GET /api/feed/gigs': async (request) => { const city = await cityOf(request); return { body: await readAs(request, (db, viewer) => feed.gigs(db, viewer, city)), headers: noStore } },
     'POST /api/feed/gigs': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.createGig(db, s, b); if (r.ok) counted('gig.posted')(db); return r }), renew: true } },

@@ -66,3 +66,11 @@
 - feel/ lands in the lazy `fx` chunk (3,043 bytes raw before the changes below); reward and fight-3d import it.
 - Second finding: importing `audio/play.ts` from fx split play.ts and toasts.ts out of their chunks (+870 raw in the startup closure). feel() now takes the sound as a parameter. After that startup raw equals main (613,913) and gzip is 223,139-223,149 (main 223,153).
 - STARTUP_BROTLI (provisional, 196,300; main 196,250) moves by tens of bytes with the content hashes of changed lazy chunks: the same code gave 196,309 / 196,369 / 196,329 / 196,304 / 196,297 with the hit-stop cap at 120 / 110 / 100 / 105 / 95. The cap is 95 because that build passed (196,297). Any merge that changes a lazy chunk's hash can tip it either way: the integrator should expect to re-roll or to rule on the 50-byte headroom.
+
+## Critic scorecard (wave 1)
+
+- Critic: Claude (Fable 5.1), 20 Oct 2026; full card in [../evidence/critic-wave1-20261020.md](../evidence/critic-wave1-20261020.md#phase-3-feel-tiers-shake-hit-stop-pop-reduce-shake-os-phase3-feel-20261019).
+- Average before to after: 1.30 to 1.30; every category not captured (no picture or recording), so VFX stays 1 although by code a goal's confetti is a 2.
+- Failures standing: HUD of cards; HUD over the pavement; no active-play screenshot.
+- Verdict: yes, but tune: cheap, lazy and reduce-shake exists, but it is not shown, and four of seven events (level-up, football goal, danfo stop, election won) have no caller.
+- Weakest surface: its evidence; next change: a harness `--query feel=goal` and a three-frame strip at the shake's peak, then wire level-up.

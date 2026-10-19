@@ -55,3 +55,11 @@
 | UTC | Status | Change or finding | Evidence | Next step |
 |---|---|---|---|---|
 | 2026-10-19 | active | Record created; scope narrowed by the coordinator | this file | rain-plan.ts first |
+
+## Critic scorecard (wave 1)
+
+- Critic: Claude (Fable 5.1), 20 Oct 2026; full card in [../evidence/critic-wave1-20261020.md](../evidence/critic-wave1-20261020.md#phase-1-weather-you-can-see-os-phase1-weather-20261019).
+- Average before to after: street 1.30 to 1.35, Kano 1.20 to 1.30, home 1.56 to 1.56 (VFX 1 to 1.5 street, 1 to 2 Kano, unchanged at home).
+- Failures standing: HUD of cards; HUD over the pavement; frames.md has no wet rows. Smoke is not captured in any picture, so not scored.
+- Verdict: yes, but tune (the ground is not wet, one near-lens streak, rain falls through the home cutaway).
+- Weakest surface: the rainy street's ground; next change: darken, gloss and dim the sun when wet (one uniform on ground and wall materials).

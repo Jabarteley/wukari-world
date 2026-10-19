@@ -7,7 +7,8 @@ revenue**. Code: `src/earn/model.ts` (rules), `server/earn/` (service), `server/
 and Admin → Moderation → Earn. Tests: `server/earn.test.ts`.
 
 Bachs (bachs.io) is the provider the owner already uses in Goalmatic; the business boosts in [PROMOTE.md](PROMOTE.md) are paid through
-it too. Game money is never part of any of this, and Allworld never holds a player's money.
+it too. Game money is never part of any of this, and Allworld never holds a player's money. The public page `/money` (`server/money-page.ts`) says this for players,
+and lists tickets, gig pay and the creator pool; change it when these rules change.
 
 ## Payout account
 

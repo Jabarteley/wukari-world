@@ -76,7 +76,7 @@ type Incoming =
   | { type: 'presence-delta'; joined?: RoomMember[]; left?: string[]; moved?: { id: string; x: number; z: number }[]; voice?: { id: string; enabled: boolean; muted?: boolean }[]; counts?: GroupCounts }
   | { type: 'group'; event?: string; here?: number; text?: string; friend?: { id: string; name: string } }
   | { type: 'groups'; total?: number; more?: number; groups?: { id: string; no: number; size: number; open: boolean; mine: boolean; friends?: { id: string; name: string }[]; clan?: { name: string; hex: string } }[] }
-  | { type: 'chat'; id: string; clientId?: string; from?: PublicSession; body: string; speaker?: 'agent'; voiceSeed?: number }
+  | { type: 'chat'; id: string; clientId?: string; from?: PublicSession; body: string; speaker?: 'agent'; voiceSeed?: number; scam?: true }
   | { type: 'voice-text'; id: string; from?: PublicSession; body: string; voiceSeed?: number; x?: number; z?: number }
   | { type: 'signal'; from: string; data?: unknown }
   | { type: 'error'; error?: string; code?: string; message?: string; clientId?: string; to?: string }
@@ -437,8 +437,8 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
   }
 
   // ---- chat --------------------------------------------------------------------------------------------------
-  function appendChat(message: { body: string; from?: PublicSession }, delivery = 'Sent', key?: string): ChatLine {
-    const line: ChatLine = { key: key ?? `line-${++lineCounter}`, author: message.from?.name || session?.name || '', ...(message.from?.id ? { authorId: message.from.id } : {}), body: message.body, delivery, canRetry: false, at: Date.now() }
+  function appendChat(message: { body: string; from?: PublicSession; scam?: true }, delivery = 'Sent', key?: string): ChatLine {
+    const line: ChatLine = { key: key ?? `line-${++lineCounter}`, author: message.from?.name || session?.name || '', ...(message.from?.id ? { authorId: message.from.id } : {}), body: message.body, delivery, canRetry: false, ...(message.scam === true && message.from?.id !== session?.id ? { scam: true as const } : {}), at: Date.now() }
     chat.push(line)
     while (chat.length > 80) chat.shift()
     emit()

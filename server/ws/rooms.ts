@@ -117,6 +117,7 @@ import { characterCity } from '../character.ts';
 import { checkLook } from '../../src/game/systems/onboarding.ts';
 import { screenText } from '../moderation/text.ts';
 import { addressedIn, agentWords } from '../moderation/agent-words.ts';
+import { looksLikeScam } from '../moderation/scam-words.ts';
 import { aiAnswer, asksIfAi, countryOfCity, crisisWords, helpText } from '../moderation/ai-intercept.ts';
 import { screenFee } from '../../src/game/trust/fees.ts';
 import type { CityId, ChatFrame, GroupSummary, PresenceDeltaFrame, PresenceMember, PublicSession, RoomCounts, SignalData, VoiceTextFrame } from '../../src/types/protocol.ts';
@@ -1003,7 +1004,8 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
         if (vendor) refusal = vendor.verdict;
       }
       if (refusal) throw Object.assign(Error(refusal.code), { reason: refusal.reason });
-      const chat: ChatFrame = { type: 'chat', id: core.newId(), ...(typeof clientId === 'string' ? { clientId } : {}), from: { ...ws.session }, body, at: now() };
+      // A line that asks for money, a withdrawal, an account number or a code is delivered as typed but flagged, so the people who read it see the calm scam warning (scam-words.ts).
+      const chat: ChatFrame = { type: 'chat', id: core.newId(), ...(typeof clientId === 'string' ? { clientId } : {}), from: { ...ws.session }, body, at: now(), ...(looksLikeScam(body) ? { scam: true as const } : {}) };
       if (clientId) {
         history.set(clientId, chat);
         if (history.size > 100) { const oldest = history.keys()[Symbol.iterator]().next(); if (!oldest.done) history.delete(oldest.value); }

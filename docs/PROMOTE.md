@@ -2,7 +2,8 @@
 
 The owner's idea of 18 October 2026: welcome businesses and services, and charge far less for advertising than in-game billboards cost
 elsewhere (₦50,000 a week was recorded in [REAL-VALUE.md](REAL-VALUE.md)). This is Level L1 of that page ("paid visibility"): Allworld
-sells advertising to businesses. It does not pay players or hold their money.
+sells advertising to businesses. It does not pay players or hold their money. The public page `/money` (`server/money-page.ts`, linked from the Bank panel and
+the privacy page) says so in plain words for players: what game naira is, what real money exists and who holds it. Change it when this page changes.
 
 Code: `src/promote/model.ts` (rules), `src/types/promote.ts` (wire shapes), `server/promote/service.ts`, `server/routes/promote.ts`,
 `server/routes/promote-admin.ts`, `src/app/features/promote/` (the Businesses app and the Sponsored card), the admin card

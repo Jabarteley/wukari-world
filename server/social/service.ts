@@ -91,6 +91,7 @@ import type { Directory, DirectoryRow } from './pages.ts';
 import { playerIsAdmin } from '../admin/gate.ts';
 import { AGENT_LIMITS, agentMark } from '../agents/policy.ts';
 import { agentWords } from '../moderation/agent-words.ts';
+import { looksLikeScam } from '../moderation/scam-words.ts';
 import { aiAnswer, asksIfAi, countryOfCity, crisisWords, helpText } from '../moderation/ai-intercept.ts';
 import { noteAgent, noteFriend, noteThreeFriends } from '../growth/metrics.ts';
 import { growthOf } from '../growth/data.ts';
@@ -673,7 +674,9 @@ function buildService(ctx: RouteContext) {
       ...(message.req ? { request: requestView(s, message.req, message.from, viewer) } : {}),
       ...(message.rom ? { romance: { agent: pub(s, message.rom.a), state: (message.rom.s ?? 'open') as 'open' | 'yes' | 'no', answerable: !message.rom.s && viewer !== message.rom.a && !blockedEither(s, viewer, message.rom.a) } } : {}),
       ...(picture ? { image: picture } : {}), ...(voice ? { voice } : {}), ...(message.version ? { version: message.version } : {}),
-      ...(message.editedAt ? { editedAt: message.editedAt } : {}), ...(message.deletedAt ? { deleted: true as const } : {}), ...(message.forwarded ? { forwarded: true as const } : {}) };
+      ...(message.editedAt ? { editedAt: message.editedAt } : {}), ...(message.deletedAt ? { deleted: true as const } : {}), ...(message.forwarded ? { forwarded: true as const } : {}),
+      // Other people's lines that ask for money, a withdrawal or a code carry the scam warning for the reader (server/moderation/scam-words.ts); worked out when read, so it also covers old messages.
+      ...(message.from && message.from !== viewer && !message.sys && !message.auto && !message.gift && !message.req && !message.deletedAt && looksLikeScam(bodyOf(message)) ? { scam: true as const } : {}) };
   }
   const visibleTo = (s: SocialCollection, viewer: string, message: MessageRecord): boolean => !(message.noAi && s.players[viewer]?.agent?.char === true) && (!message.from || !s.players[viewer]?.blocked[message.from]);
   const scopeOf = (conv: ConversationRecord): string => {

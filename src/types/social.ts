@@ -132,6 +132,8 @@ export interface Message {
   editedAt?: number
   deleted?: true
   forwarded?: true
+  /** The line asks the reader for money, a withdrawal, an account number or a code (server/moderation/scam-words.ts); only on other people's messages. The thread shows a calm warning with Report. */
+  scam?: true
 }
 export interface MessagePinsView {
   scope: string

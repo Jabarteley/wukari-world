@@ -3,6 +3,7 @@ import { publicProfilePageHtml, unavailableProfilePageHtml } from '../public-pro
 import { feedService } from '../feed/service.ts'
 import { profileSocialHtml } from '../feed/pages.ts'
 import { privacyPageHtml } from '../privacy-page.ts'
+import { moneyPageHtml } from '../money-page.ts'
 import { sourceQuery } from '../../src/game/share-model.ts'
 import type { Db, RouteContext, RouteHandler, RouteKey } from '../types.ts'
 
@@ -16,6 +17,8 @@ export default function profileRoutes(ctx: RouteContext): Record<RouteKey, Route
   const socialOf = (db: Db, id: string, origin: string): string => { const found = feed.profile(db, null, id); if (!found.ok) return ''; const page = feed.read(db, null, { tab: 'author', by: id }); return profileSocialHtml(found.profile, 'posts' in page ? page.posts.filter((p) => p.vis === 'public') : [], origin) }
   // The public privacy page (server/privacy-page.ts): plain HTML, cacheable, the same on both hosts.
   ctx.pages?.set('/privacy', async ({ origin }) => ({ status: 200, cache: true, html: privacyPageHtml(origin) }))
+  // The public money page (server/money-page.ts): what game naira is, what real money exists, who holds it, how to report a scam.
+  ctx.pages?.set('/money', async ({ origin }) => ({ status: 200, cache: true, html: moneyPageHtml(origin) }))
   ctx.pages?.set('/p/', async ({ path, query, origin, ip, method }) => {
     if (method !== 'GET' && method !== 'HEAD') return { status: 405, cache: false, html: unavailableProfilePageHtml(origin) }
     if (!ctx.allow(`profile:page:${ip}`, 60, 60000)) return { status: 429, cache: false, html: unavailableProfilePageHtml(origin) }

@@ -76,13 +76,14 @@ function unspell(value: string): string {
 }
 /** Single letters separated by one space ("h e y  b a b e", two spaces between words) joined into words, before folding. */
 const joinSpelt = (text: string): string => text.replace(/(?<![^\s])(?:[A-Za-z]\s){2,}[A-Za-z](?![^\s])/g, (run) => run.replace(/\s/g, ''));
-function variants(text: string): string[] {
+/** Every folded reading of a line; exported for the scam warning (scam-words.ts). */
+export function variants(text: string): string[] {
   const base = fold(text), joined = fold(joinSpelt(text));
   const list = new Set([base, squeeze(base, 2), squeeze(base, 1), unspell(base), unspell(squeeze(base, 1)), joined, squeeze(joined, 1)]);
   return [...list];
 }
 /** Phrases checked with every space removed, so "s e n d m e m o n e y" and "send.me.money" are caught. */
-const SPACELESS: readonly [string, AgentWordsCode][] = [
+export const SPACELESS: readonly [string, AgentWordsCode][] = [
   ['sendmemoney', 'agent_words_money'], ['sendmecash', 'agent_words_money'], ['givememoney', 'agent_words_money'], ['givemecash', 'agent_words_money'], ['accountnumber', 'agent_words_money'],
   ['dropyournumber', 'agent_words_contact'], ['giveyournumber', 'agent_words_contact'], ['sendyournumber', 'agent_words_contact'], ['whatsyournumber', 'agent_words_contact'], ['mynumberis', 'agent_words_contact'], ['whatsappme', 'agent_words_contact'], ['sendmeyourlocation', 'agent_words_contact'],
   ['meetmeoutside', 'agent_words_meet'], ['meetmeinreallife', 'agent_words_meet'],
@@ -94,10 +95,10 @@ const SPACELESS: readonly [string, AgentWordsCode][] = [
 
 const PLATFORM = '(?:whatsapp|whats app|telegram|snapchat|snap|instagram|insta|signal|imo|discord|wechat|kik|messenger|tiktok|facebook|fb|twitter|ig|wa|tg|sms|email|mail|dm|dms|inbox)';
 const w = (source: string): RegExp => new RegExp(source, 'i');
-type Rule = [AgentWordsCode, RegExp];
+export type Rule = [AgentWordsCode, RegExp];
 
 const MONEY_NOUN = '(?:money|cash|naira|funds?|airtime|data|recharge|dollars?|ngn|\\d{3,}|\\d+k|\\d+ ?(?:naira|ngn)|something small|small something|small money|a little money|few naira|transport|fare|upkeep|feeding|chop money|gift|tip|bundle)';
-const MONEY: Rule[] = [
+export const MONEY: Rule[] = [
   // "send me some money", "abeg give me small money", "pay me 5k", "help me with cash", "buy me airtime"
   ['agent_words_money', w(`\\b(?:send|give|lend|loan|drop|transfer|wire|pay|credit|topup|top up|borrow|gift|donate|dash|bless|settle|help|assist|remit|buy|load|recharge|support|fund|sponsor)\\s+(?:me|us|my)(?:\\s+\\w+){0,5}?\\s+${MONEY_NOUN}\\b`)],
   ['agent_words_money', w('\\bpay (?:me|us)\\b|\\bdash (?:me|us)\\b|\\b(?:fund|sponsor|tip|invest in|donate to|donate for)\\s+(?:me|my|us)\\b')],
@@ -198,7 +199,7 @@ const DIGIT_WORDS = /(?:\b(?:zero|nought|one|two|three|four|five|six|seven|eight
 const BARE_HANDLE = /(?:^|[\s(,])@([a-z0-9._]{3,})/gi;
 const DOT_COM = /\b[a-z0-9-]+\s+dot\s+(?:com|ng|org|net|io|co|app|me)\b/i;
 
-function firstMatch(rules: readonly Rule[], forms: readonly string[]): AgentWordsCode | null {
+export function firstMatch(rules: readonly Rule[], forms: readonly string[]): AgentWordsCode | null {
   for (const [code, pattern] of rules) for (const form of forms) if (pattern.test(form)) return code;
   return null;
 }

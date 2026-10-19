@@ -18,7 +18,8 @@ export interface FeedPerson {
 }
 export interface FeedMedia { hash: string; type: 'jpeg' | 'png' | 'webp' | 'webm' | 'mp4'; w: number; h: number; ms?: number }
 export interface FeedPlace { city: string; cityName: string; venue?: string; label?: string }
-export interface ReplyView { n: number; by: FeedPerson; at: number; body: string; mine?: true }
+/** `scam`: the reply reads as asking for money or a withdrawal (server/moderation/scam-words.ts); only on other people's replies, which show a calm warning with Report. */
+export interface ReplyView { n: number; by: FeedPerson; at: number; body: string; mine?: true; scam?: true }
 export interface PostView {
   id: string
   by: FeedPerson

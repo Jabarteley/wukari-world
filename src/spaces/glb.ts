@@ -21,6 +21,12 @@ export const GLB_LIMITS = Object.freeze({
   animations: 32,
   depth: 64,
 })
+export type GlbLimits = { readonly [K in keyof typeof GLB_LIMITS]: number }
+
+/**
+ * A model used as a whole house (docs/HOUSE-FROM-PHOTOS.md): every room, inside and out, so it may be bigger. One per player.
+ */
+export const HOUSE_GLB_LIMITS: GlbLimits = Object.freeze({ ...GLB_LIMITS, bytes: 50_000_000, jsonBytes: 8_000_000, triangles: 500_000, textures: 32, nodes: 5_000, meshes: 1_500, materials: 128 })
 
 /** Extensions a model may require: three.js draws all of them with what the screen already loads (the meshopt decoder). */
 export const GLB_EXTENSIONS: ReadonlySet<string> = new Set([
@@ -130,18 +136,18 @@ export function pictureSize(bytes: Uint8Array, mime: string): { w: number; h: nu
 }
 
 /** Check a .glb file. Never throws: anything unreadable is a refusal with a reason a player can act on. */
-export function checkGlb(bytes: Uint8Array): GlbCheck {
-  try { return check(bytes) } catch { return no('unreadable', 'This file could not be read as a 3D model. Export it again as .glb (glTF binary).') }
+export function checkGlb(bytes: Uint8Array, limits: GlbLimits = GLB_LIMITS): GlbCheck {
+  try { return check(bytes, limits) } catch { return no('unreadable', 'This file could not be read as a 3D model. Export it again as .glb (glTF binary).') }
 }
 
-function check(bytes: Uint8Array): GlbCheck {
-  if (bytes.byteLength > GLB_LIMITS.bytes) return no('too_large', `This file is ${(bytes.byteLength / 1e6).toFixed(1)} MB. A model may be at most ${GLB_LIMITS.bytes / 1e6} MB.`)
+function check(bytes: Uint8Array, L: GlbLimits): GlbCheck {
+  if (bytes.byteLength > L.bytes) return no('too_large', `This file is ${(bytes.byteLength / 1e6).toFixed(1)} MB. A model may be at most ${L.bytes / 1e6} MB.`)
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength)
   if (bytes.byteLength < 20 || view.getUint32(0, true) !== MAGIC) return no('not_glb', 'This is not a .glb file. Export your model as glTF binary (.glb).')
   if (view.getUint32(4, true) !== 2) return no('old_gltf', 'This model is an old glTF version. Export it again as glTF 2.0.')
   if (view.getUint32(8, true) !== bytes.byteLength) return no('cut_off', 'This file is incomplete. Upload it again.')
   const jsonLength = view.getUint32(12, true)
-  if (view.getUint32(16, true) !== JSON_CHUNK || jsonLength > GLB_LIMITS.jsonBytes || 20 + jsonLength > bytes.byteLength) return no('unreadable', 'This file could not be read as a 3D model. Export it again as .glb (glTF binary).')
+  if (view.getUint32(16, true) !== JSON_CHUNK || jsonLength > L.jsonBytes || 20 + jsonLength > bytes.byteLength) return no('unreadable', 'This file could not be read as a 3D model. Export it again as .glb (glTF binary).')
   const gltf: unknown = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes.subarray(20, 20 + jsonLength)))
   if (!isRecord(gltf)) return no('unreadable', 'This file could not be read as a 3D model. Export it again as .glb (glTF binary).')
   let bin: Uint8Array | null = null
@@ -184,7 +190,7 @@ function check(bytes: Uint8Array): GlbCheck {
 
   // Pictures: inside the file, PNG, JPEG or WebP, and no larger than texturePx on a side.
   const images = list(gltf['images'])
-  if (images.length > GLB_LIMITS.textures) return no('too_many_textures', `This model has ${images.length} pictures. A model may have at most ${GLB_LIMITS.textures}.`)
+  if (images.length > L.textures) return no('too_many_textures', `This model has ${images.length} pictures. A model may have at most ${L.textures}.`)
   let texturePx = 0
   for (const image of images) {
     if (!isRecord(image)) return no('unreadable', 'This file could not be read as a 3D model.')
@@ -194,16 +200,16 @@ function check(bytes: Uint8Array): GlbCheck {
     const data = viewBytes(image['bufferView'])
     const size = data ? pictureSize(data, mime) : null
     if (!size || size.w < 1 || size.h < 1) return no('texture_kind', 'A picture in this model could not be read. Export it again with PNG, JPEG or WebP pictures.')
-    if (Math.max(size.w, size.h) > GLB_LIMITS.texturePx) return no('texture_too_large', `A picture in this model is ${size.w}×${size.h}. Pictures may be at most ${GLB_LIMITS.texturePx} pixels on a side.`)
+    if (Math.max(size.w, size.h) > L.texturePx) return no('texture_too_large', `A picture in this model is ${size.w}×${size.h}. Pictures may be at most ${L.texturePx} pixels on a side.`)
     texturePx = Math.max(texturePx, size.w, size.h)
   }
 
   const nodes = list(gltf['nodes']), meshes = list(gltf['meshes']), accessors = list(gltf['accessors'])
   const materials = count(gltf['materials']), animations = count(gltf['animations'])
-  if (nodes.length > GLB_LIMITS.nodes) return no('too_complex', `This model has ${nodes.length} parts. A model may have at most ${GLB_LIMITS.nodes}.`)
-  if (meshes.length > GLB_LIMITS.meshes) return no('too_complex', `This model has ${meshes.length} meshes. A model may have at most ${GLB_LIMITS.meshes}.`)
-  if (materials > GLB_LIMITS.materials) return no('too_complex', `This model has ${materials} materials. A model may have at most ${GLB_LIMITS.materials}.`)
-  if (animations > GLB_LIMITS.animations) return no('too_complex', `This model has ${animations} animations. A model may have at most ${GLB_LIMITS.animations}.`)
+  if (nodes.length > L.nodes) return no('too_complex', `This model has ${nodes.length} parts. A model may have at most ${L.nodes}.`)
+  if (meshes.length > L.meshes) return no('too_complex', `This model has ${meshes.length} meshes. A model may have at most ${L.meshes}.`)
+  if (materials > L.materials) return no('too_complex', `This model has ${materials} materials. A model may have at most ${L.materials}.`)
+  if (animations > L.animations) return no('too_complex', `This model has ${animations} animations. A model may have at most ${L.animations}.`)
   const accessorCount = (index: unknown): number => {
     if (!whole(index) || index >= accessors.length) throw new Error('accessor')
     const a = accessors[index]
@@ -245,7 +251,7 @@ function check(bytes: Uint8Array): GlbCheck {
   let triangles = 0, skinned = false
   const lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity]
   const walk = (index: unknown, parent: Mat, path: Set<number>): void => {
-    if (!whole(index) || index >= nodes.length || path.has(index) || path.size >= GLB_LIMITS.depth) throw new Error('node')
+    if (!whole(index) || index >= nodes.length || path.has(index) || path.size >= L.depth) throw new Error('node')
     const node = nodes[index]
     if (!isRecord(node)) throw new Error('node')
     const world = multiply(parent, localMatrix(node))
@@ -257,7 +263,7 @@ function check(bytes: Uint8Array): GlbCheck {
       const translation = isRecord(instancing) && isRecord(instancing['attributes']) ? instancing['attributes']['TRANSLATION'] : undefined
       const copies = translation !== undefined ? accessorCount(translation) : 1
       triangles += facts.triangles * copies
-      if (triangles > GLB_LIMITS.triangles * 4) throw new RangeError('triangles')
+      if (triangles > L.triangles * 4) throw new RangeError('triangles')
       if (facts.box) {
         const [a, b] = facts.box
         for (let corner = 0; corner < 8; corner++) {
@@ -271,11 +277,11 @@ function check(bytes: Uint8Array): GlbCheck {
     path.delete(index)
   }
   try { for (const root of roots) walk(root, IDENTITY, new Set()) } catch (error) {
-    if (error instanceof RangeError) return no('too_many_triangles', `This model has far more than ${GLB_LIMITS.triangles.toLocaleString('en')} triangles. Simplify it (Blender: Decimate) and export it again.`)
+    if (error instanceof RangeError) return no('too_many_triangles', `This model has far more than ${L.triangles.toLocaleString('en')} triangles. Simplify it (Blender: Decimate) and export it again.`)
     return no('unreadable', 'The parts of this model could not be read. Export it again as .glb (glTF binary).')
   }
   if (triangles === 0 || !Number.isFinite(lo[0]!)) return no('empty', 'This model has nothing to draw. Check that the export included the meshes.')
-  if (triangles > GLB_LIMITS.triangles) return no('too_many_triangles', `This model has ${triangles.toLocaleString('en')} triangles. A model may have at most ${GLB_LIMITS.triangles.toLocaleString('en')}: simplify it (Blender: Decimate) and export it again.`)
+  if (triangles > L.triangles) return no('too_many_triangles', `This model has ${triangles.toLocaleString('en')} triangles. A model may have at most ${L.triangles.toLocaleString('en')}: simplify it (Blender: Decimate) and export it again.`)
   const cm = (v: number): number => Math.round(v * 100) / 100
   const size = [0, 1, 2].map((i) => cm(hi[i]! - lo[i]!)) as [number, number, number]
   if (size.some((v) => !Number.isFinite(v)) || Math.max(...size) > 1000) return no('too_big_world', 'This model is more than a kilometre across. Check its scale (1 unit should be 1 metre) and export it again.')

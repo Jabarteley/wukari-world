@@ -13,7 +13,7 @@ import { operatorGuard } from './growth-mod.ts';
 import type { RouteContext, RouteHandler, RouteKey } from '../types.ts';
 
 /** The settings the operator's switch may change, by body field. */
-const SWITCHES = { models: 'spacesModels', world: 'spaces3d', scripts: 'spacesScripts', worlds: 'spacesWorlds', screen: 'spacesScreen' } as const;
+const SWITCHES = { models: 'spacesModels', world: 'spaces3d', scripts: 'spacesScripts', worlds: 'spacesWorlds', screen: 'spacesScreen', house: 'spacesHouseCopy' } as const;
 
 export default function spacesOperatorRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
   const operator = operatorGuard(ctx);

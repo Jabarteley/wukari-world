@@ -25,6 +25,8 @@ const PassOn = defineAsyncComponent(() => import('../legacy/PassOn.vue'))
 const DesignSheet = defineAsyncComponent(() => import('../spaces/DesignSheet.vue'))
 const HostSheet = defineAsyncComponent(() => import('../spaces/HostSheet.vue'))
 const ModelsSheet = defineAsyncComponent(() => import('../spaces/ModelsSheet.vue'))
+const CopyHouseSheet = defineAsyncComponent(() => import('../spaces/CopyHouseSheet.vue'))
+const copyOpen = ref(false)
 const WorldScreen = defineAsyncComponent(() => import('../spaces/WorldScreen.vue'))
 const designOpen = ref(false)
 const hostOpen = ref(false)
@@ -82,6 +84,7 @@ onMounted(async () => {
 onBeforeUnmount(() => { gone = true })
 
 const tiles = computed(() => [
+  { id: 'copy', title: 'Copy my real house', line: 'Photos in, your AI builds it, friends come over', icon: 'building', go: () => { copyOpen.value = true } },
   { id: 'design', title: 'Design with AI', line: 'Describe a room; it gets furnished', icon: 'pen', go: () => { designOpen.value = true } },
   { id: 'host', title: 'AI host', line: hostLine.value, icon: 'mic', go: () => { hostOpen.value = true } },
   { id: 'models', title: 'My 3D models', line: modelsLine.value, icon: 'box', go: () => { modelsOpen.value = true } },
@@ -91,7 +94,7 @@ const tiles = computed(() => [
 ])
 
 /** Walk in 3D, with a model to put down first when one was just uploaded or chosen. */
-function walkIn(model: ModelView | null = null): void { placing.value = model; modelsOpen.value = false; designOpen.value = false; worldOpen.value = true }
+function walkIn(model: ModelView | null = null): void { placing.value = model; modelsOpen.value = false; designOpen.value = false; copyOpen.value = false; worldOpen.value = true }
 const visitors = ref<HTMLDetailsElement | null>(null)
 /** Invite: the Visitors fold opens on its first button. */
 async function invite(): Promise<void> {
@@ -109,6 +112,7 @@ async function invite(): Promise<void> {
   <div v-else class="houses-app">
     <DesignSheet v-if="designOpen" target="home" @close="designOpen = false" @walk="walkIn()" />
     <HostSheet v-if="hostOpen" @close="hostOpen = false" @saved="(line: string) => { hostLine = line }" />
+    <CopyHouseSheet v-if="copyOpen" @close="copyOpen = false" @walk="walkIn()" />
     <ModelsSheet v-if="modelsOpen" @close="modelsOpen = false" @place="walkIn" />
     <WorldScreen v-if="worldOpen" :where="{ target: 'home' }" :place="placing" @close="worldOpen = false; placing = null" />
 

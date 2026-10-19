@@ -15,7 +15,9 @@ onMounted(async () => {
   try {
     const answer = await worldRead(game, { target: 'home' })
     if (gone || !answer.ok) return
-    const url = await photographHouse({ grid: answer.world.grid, owned: answer.world.owned, style: answer.world.style as Record<string, number> | null, items: answer.world.items })
+    // A described copy of the player's real house is photographed as it is built; a model house keeps the drawing (its file is large).
+    if (answer.world.house?.kind === 'model') return
+    const url = await photographHouse({ grid: answer.world.grid, owned: answer.world.owned, style: answer.world.style as Record<string, number> | null, items: answer.world.items, house: answer.world.house?.kind === 'spec' ? { kind: 'spec', spec: answer.world.house.spec } : null })
     if (!gone) src.value = url
   } catch {
     // The drawing stays.

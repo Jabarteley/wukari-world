@@ -193,6 +193,16 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
   const recent = new Map<string, { room: string; group: string; at: number }>(); // player → the group they just left (a reload goes back to it)
   const RECENT_MS = 60000;
   const seeking = new Map<string, { room: string; friend: string }>(); // player → the friend whose group they will be moved to when it has room
+  // 'player-walked': once per connection, when it has really moved WALK_AWAY from the first place it reported in a room (a spawn that differs from the server's start is not a walk).
+  const WALK_AWAY = 1.5, walkers = new WeakMap<WsConnection, { room: string; x: number; z: number } | true>();
+  function noteStep(ws: WsConnection, room: string, position: { x: number; z: number }): void {
+    const seen = walkers.get(ws);
+    if (seen === true) return;
+    if (!seen || seen.room !== room) { walkers.set(ws, { room, x: position.x, z: position.z }); return; }
+    if (Math.hypot(position.x - seen.x, position.z - seen.z) < WALK_AWAY) return;
+    walkers.set(ws, true);
+    ctx.emit?.('player-walked', { id: ws.session.id });
+  }
   const dirty = new Set<string>(); // venues whose total changed since it was last sent
   const pendingMoves = new Map<string, { moves: Map<string, { x: number; z: number }>; timer: unknown; last: number }>();
   const grouped = (room: string): boolean => { const venue = room.split(':')[1]; return venue !== 'home' && !(room.startsWith(`${PLACES.city}:`) && venue === PLACES.roomVenue); };
@@ -898,6 +908,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       if (room.split(':')[1] === 'neighbourhood' && streetGate.move(ws.session.id, room, position, now())) for (const peer of rooms.get(room) ?? []) if (peer.session.id === ws.session.id) peer.streetGateProof = streetGate.snapshot(ws.session.id);
       for (const peer of rooms.get(room) ?? []) if (peer.session.id === ws.session.id) peer.position = position;
       queueMove(ws, room, position);
+      noteStep(ws, room, position);
     }),
     'voice-state': guarded((ws, message, room) => {
       if (typeof message.enabled !== 'boolean' || typeof message.muted !== 'boolean') throw Error('invalid_voice_state');

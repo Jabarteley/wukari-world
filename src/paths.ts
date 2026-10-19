@@ -7,6 +7,10 @@
  * `/<state>` (a state with exactly one open city is that city), so a city added to the registry has its address with no
  * change here. The fixed words below win over a city: the path-table test asserts that no city id, state id or alias is one of
  * them, so a future city called "games" fails the test instead of breaking the address.
+ *
+ * A street or a visit (`/street/<city>/<place>`, `/visit/<city>`: docs/ENTRY.md) names an open city and, for a street, one of its local
+ * units or districts. The place is checked against the city's rules only where they are loaded (streetPlace): the address itself is read
+ * before they are, so an unknown place is kept as a word and given up on arrival, as a venue under `/<city>/<venue>` is.
  */
 import { cityCatalogue, cityCatalogueEntry, cityRules, knownCityIds } from './game/cities/registry.ts'
 
@@ -25,9 +29,11 @@ export type PathIntent =
   | { kind: 'state'; state: string }
   | { kind: 'atlas'; level: 'nigeria' | 'world' }
   | { kind: 'panel'; panel: PanelWord }
+  /** `/street/<city>/<place>` (a local unit or a district of the city) or, with `place` null, `/visit/<city>`. */
+  | { kind: 'street'; city: string; place: string | null }
 
 /** First segments that belong to something else: the API, the build, the share and invite links, the mail pages, the operator pages, the socket and the image folders. Never a place. */
-export const RESERVED_PREFIXES: readonly string[] = Object.freeze(['api', 'assets', 's', 'j', 'v', 'e', 'shop', 'agents', 'admin', 'socket', 'og', 'icons', 'c', 'ev', 'app']);
+export const RESERVED_PREFIXES: readonly string[] = Object.freeze(['api', 'assets', 's', 'j', 'v', 'e', 'shop', 'agents', 'admin', 'socket', 'og', 'icons', 'c', 'ev', 'app', '.well-known']);
 
 const games = (game: GameSlug | null): PathIntent => ({ kind: 'games', game });
 /** The words that always mean what they say, whatever the registry holds. */
@@ -37,8 +43,10 @@ const FIXED: Readonly<Record<string, PathIntent>> = Object.freeze({
   sell: { kind: 'panel', panel: 'shops' },
   ...Object.fromEntries(PANEL_WORDS.map((panel): [string, PathIntent] => [panel, { kind: 'panel', panel }])),
 });
+/** The two words that start the address of a place to walk (`/street/…`, `/visit/…`). */
+export const PLACE_WORDS = ['street', 'visit'] as const
 /** Every word a path may start with that is not a place. */
-export const FIXED_WORDS: readonly string[] = Object.freeze(Object.keys(FIXED));
+export const FIXED_WORDS: readonly string[] = Object.freeze([...Object.keys(FIXED), ...PLACE_WORDS]);
 
 /** Other ways to write a city's name. A target that is not in the registry is ignored. */
 export const CITY_ALIASES: Readonly<Record<string, string>> = Object.freeze({ ph: 'port-harcourt', portharcourt: 'port-harcourt', ijebuode: 'ijebu-ode', ijebu: 'ijebu-ode' });
@@ -105,11 +113,21 @@ export function isReservedPath(pathname: string): boolean {
   return RESERVED_PREFIXES.includes(first) || /\.[a-z0-9]+$/i.test(parts.at(-1) ?? '');
 }
 
+/** An open city named by its id or an alias (never a state: a street is in one city). */
+function openCityOf(word: string | undefined): string | null {
+  const id = word && Object.hasOwn(CITY_ALIASES, word) ? CITY_ALIASES[word] ?? word : word;
+  return id && realCity(id) && placeFacts(id)?.open ? id : null;
+}
+
 /** What an address asks for, or null (the home page, an unknown word, a reserved prefix, a file). Query and fragment are not part of the path. */
 export function parsePath(pathname: string): PathIntent | null {
   const parts = segments(pathname.split(/[?#]/, 1)[0] ?? '');
   const first = parts?.[0], second = parts?.[1];
   if (!first) return null;
+  if (first === 'street' || first === 'visit') {
+    const city = openCityOf(second);
+    return city ? { kind: 'street', city, place: first === 'street' ? parts?.[2] ?? null : null } : null;
+  }
   const fixed = Object.hasOwn(FIXED, first) ? FIXED[first] : undefined;
   if (fixed) return first === 'games' && second && isGameSlug(second) ? games(second) : fixed;
   const place = placeOf(first);
@@ -125,7 +143,19 @@ export function pathOf(intent: PathIntent): string {
     case 'state': return `/${intent.state}`;
     case 'atlas': return `/${intent.level}`;
     case 'panel': return `/${intent.panel}`;
+    case 'street': return intent.place ? `/street/${intent.city}/${intent.place}` : `/visit/${intent.city}`;
   }
+}
+
+/** A street's place as the city's rules name it: a local unit, or a district (and the unit it lies in). Null when the rules are not loaded or have no such place. */
+export interface StreetPlace { id: string; name: string; unit: string }
+export function streetPlace(city: string, place: string | null): StreetPlace | null {
+  const rules = place ? cityRules(city) : null;
+  if (!rules || !place) return null;
+  const unit = rules.units.find((item) => item.id === place);
+  if (unit) return { id: unit.id, name: unit.name, unit: unit.id };
+  const district = rules.districts.find((item) => item.id === place);
+  return district && rules.units.some((item) => item.id === district.localUnitId) ? { id: district.id, name: district.name, unit: district.localUnitId } : null;
 }
 
 /** A city's address as one string (what "Share Abuja" copies, after the origin). */

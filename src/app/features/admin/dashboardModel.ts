@@ -40,6 +40,37 @@ export const returnCell = (cell: ReturnCellRow): string => (cell.rate === null ?
 /** "tiktok / paid / test1": a campaign as the owner wrote it. */
 export const sourceLabel = (row: { source: string; medium: string; campaign: string }): string => `${row.source} / ${row.medium} / ${row.campaign}`
 
+/** Activated / landed for one campaign, as the history answer carries it (server/growth/metrics.ts activationReport). */
+export interface ActivationRead { source: string; medium: string; campaign: string; landed: number; activated: number; rate: number | null }
+/** One campaign's two advert measures, as words for a table row. */
+export interface CampaignRow { label: string; landed: number; activated: number; activation: string; observed: number; day7: string }
+/** Fewer lives than this and a rate is a hint, not a result. */
+export const SMALL_SAMPLE = 20
+/** "3.5% (12 of 340 landed)", or why there is no rate. */
+export const activationCell = (row: Pick<ActivationRead, 'landed' | 'activated' | 'rate'> | undefined): string => {
+  if (!row || row.rate === null) return row && row.activated > 0 ? `${row.activated} activated, no landings counted` : 'no landings yet'
+  return `${row.rate}% (${row.activated} of ${row.landed} landed)${row.landed < SMALL_SAMPLE ? ', small sample' : ''}`
+}
+/** "42% (12 of 29)", or "not yet observed" while no life of the campaign has reached its day 7 (a cohort needs eight days). */
+export const day7Cell = (cell: ReturnCellRow | undefined): string => {
+  if (!cell || cell.rate === null) return 'not yet observed'
+  return `${cell.rate}% (${cell.returned} of ${cell.lives})${cell.lives < SMALL_SAMPLE ? ', small sample' : ''}`
+}
+/** The campaigns that landed or were followed to day 7, most landings first, with activation and day-7 return side by side. */
+export function campaignRows(activation: readonly ActivationRead[] | undefined, returns: Pick<ReturnsRead, 'bySource'> | undefined): CampaignRow[] {
+  const rows = new Map<string, { label: string; act?: ActivationRead; d7?: ReturnCellRow }>()
+  const at = (row: { source: string; medium: string; campaign: string }) => {
+    const key = sourceLabel(row)
+    let found = rows.get(key)
+    if (!found) rows.set(key, found = { label: key })
+    return found
+  }
+  for (const row of activation ?? []) at(row).act = row
+  for (const row of returns?.bySource ?? []) at(row).d7 = row.d7
+  return [...rows.values()].map((row): CampaignRow => ({ label: row.label, landed: row.act?.landed ?? 0, activated: row.act?.activated ?? 0, activation: activationCell(row.act), observed: row.d7?.lives ?? 0, day7: day7Cell(row.d7) }))
+    .sort((a, b) => b.landed - a.landed || b.observed - a.observed || a.label.localeCompare(b.label))
+}
+
 /** Today against yesterday as a chip: the direction, the change in words, and whether up is good for this number. */
 export interface Trend { dir: 'up' | 'down' | 'flat' | 'none'; text: string }
 export function trendOf(now: number, before: number | null | undefined): Trend {

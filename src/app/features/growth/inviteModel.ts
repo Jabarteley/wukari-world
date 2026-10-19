@@ -4,8 +4,8 @@
 // The sheet's own lines are in inviteLines.ts, fetched with it.
 
 /** The surfaces a share sheet is opened from (telemetry: share_opened). */
-export type ShareSurface = 'hud' | 'prompt' | 'phone' | 'table' | 'other'
-export const SHARE_SURFACES: readonly ShareSurface[] = Object.freeze(['hud', 'prompt', 'phone', 'table', 'other'])
+export type ShareSurface = 'hud' | 'prompt' | 'phone' | 'table' | 'capture' | 'other'
+export const SHARE_SURFACES: readonly ShareSurface[] = Object.freeze(['hud', 'prompt', 'phone', 'table', 'capture', 'other'])
 /** The channels the sheet offers (telemetry: share_channel). */
 export type ShareChannel = 'copy' | 'native' | 'whatsapp' | 'x' | 'telegram' | 'qr'
 

@@ -15,7 +15,7 @@ import type { ConsentView, GrowthMetricsResponse, HelloResult, ShareFacts } from
 import type { ActionType, LifeState } from '../src/types/index.ts';
 import type { SessionResponse } from '../src/types/protocol.ts';
 import type { GrowthCollection } from './types.ts';
-import { KEEP, noteAgent, noteClan, noteFriend, prune, report, touch } from './growth/metrics.ts';
+import { KEEP, activationReport, countSource, noteActivated, noteAgent, noteClan, noteFriend, prune, report, touch } from './growth/metrics.ts';
 
 type Dict = Record<string, unknown>;
 interface Who { cookie: string; id: string }
@@ -410,4 +410,39 @@ test('day-7 return by clan and by agent chat: yes and no cohorts, early only, mi
   assert.deepEqual(report(g, t0 + 9 * DAY + 2 * 3600000).returns, r, 'counted once');
   assert.equal(JSON.stringify(r).includes('"a"'), false);
   assert.ok(KEEP.window > 0);
+});
+
+test('activation: once per person, under the words they arrived with, never an AI agent; day-7 return bucketed by campaign with young cohorts left out', () => {
+  const DAY = 86400000, t0 = 1_800_000_000_000 + 12 * 3600000;
+  const life = (since: number): LifeState => ({ civic: { since }, estate: { city: 'lagos' } } as unknown as LifeState);
+  const g: GrowthCollection = { salt: 's', players: {}, shares: {}, metrics: {}, tables: {}, sweptAt: 0 };
+  const tiktok = { source: 'tiktok', medium: 'paid', campaign: 'visit-home' };
+  for (const id of ['a1', 'a2', 'a3']) touch(g, t0, id, life(t0), null, tiktok);
+  for (const id of ['b1', 'b2']) touch(g, t0, id, life(t0)); // no utm words: direct
+  for (let n = 0; n < 10; n++) countSource(g, t0, { ...tiktok, content: n % 2 ? 'clip-a' : 'clip-b' }, 'landed');
+  for (let n = 0; n < 4; n++) countSource(g, t0, {}, 'landed');
+  // a1 posts, then walks, then posts again: counted once. a2 is an AI agent's request: never. b1 joins a community. Someone not followed: ignored.
+  assert.equal(noteActivated(g, t0, 'a1'), true);
+  assert.equal(noteActivated(g, t0 + DAY, 'a1'), false);
+  assert.equal(noteActivated(g, t0 + DAY, 'a1', 'human'), false);
+  assert.equal(noteActivated(g, t0, 'a2', 'delegated-agent'), false);
+  assert.equal(noteActivated(g, t0, 'a2', 'agent-character'), false);
+  assert.equal(noteActivated(g, t0, 'b1'), true);
+  assert.equal(noteActivated(g, t0, 'not-followed'), false);
+  const rows = activationReport(g);
+  assert.deepEqual(rows.map((row) => [row.source, row.medium, row.campaign, row.landed, row.activated, row.rate]), [['tiktok', 'paid', 'visit-home', 10, 1, 10], ['direct', 'direct', 'direct', 4, 1, 25]], 'both content words are one campaign');
+  assert.deepEqual(report(g, t0).activation, rows);
+  // A later first action by a2 as a person is still its first (the agent attempt left no mark).
+  assert.equal(noteActivated(g, t0 + 2 * DAY, 'a2'), true);
+  assert.equal(activationReport(g)[0]?.activated, 2);
+  // Day 7: a1 and a3 are back on day 7, b1 and b2 are not. A campaign that began on day 5 is too young to be settled.
+  for (const id of ['a1', 'a3']) touch(g, t0 + 7 * DAY, id, life(t0), t0);
+  touch(g, t0 + 5 * DAY, 'y1', life(t0 + 5 * DAY), null, { source: 'ig', medium: 'paid', campaign: 'new' });
+  prune(g, t0 + 9 * DAY);
+  const bySource = report(g, t0 + 9 * DAY).returns.bySource;
+  const row = (campaign: string) => bySource.find((entry) => entry.campaign === campaign);
+  assert.deepEqual(row('visit-home')?.d7, { lives: 3, returned: 2, rate: 66.7 });
+  assert.deepEqual(row('direct')?.d7, { lives: 2, returned: 0, rate: 0 });
+  assert.deepEqual(row('new')?.d7, { lives: 0, returned: 0, rate: null }, 'a cohort not yet eight days old is not observed, never 0');
+  assert.equal(JSON.stringify(report(g, t0 + 9 * DAY).activation).includes('a1'), false, 'no player id in the answer');
 });

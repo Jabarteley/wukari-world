@@ -18,8 +18,8 @@ function hash(value: unknown): number {
 }
 const seeded = <Id extends string>(list: readonly Id[], seed: unknown, part: string): Id => list[hash(`${String(seed)}:${part}`) % list.length]!
 
-const SKIN: Record<string, string> = { 'skin-1': '#e0ac7e', 'skin-2': '#c98e62', 'skin-3': '#b0764c', 'skin-4': '#96603c', 'skin-5': '#7a4a2c', 'skin-6': '#5e3620', 'skin-7': '#3f2416' }
-const HAIR_COLOR: Record<string, string> = { black: '#15110f', 'soft-black': '#2a211d', 'dark-brown': '#3d2a1e', brown: '#5b3a24', auburn: '#8a3b22', blonde: '#d9b45f', purple: '#7b4bb0' }
+export const SKIN: Record<string, string> = { 'skin-1': '#e0ac7e', 'skin-2': '#c98e62', 'skin-3': '#b0764c', 'skin-4': '#96603c', 'skin-5': '#7a4a2c', 'skin-6': '#5e3620', 'skin-7': '#3f2416' }
+export const HAIR_COLOR: Record<string, string> = { black: '#15110f', 'soft-black': '#2a211d', 'dark-brown': '#3d2a1e', brown: '#5b3a24', auburn: '#8a3b22', blonde: '#d9b45f', purple: '#7b4bb0' }
 const HAIR_MIGRATION: Record<string, NativeHairId> = { 'low-cut': 'short01', lowcut: 'short01', classic: 'short02', bald: 'none', fade: 'short01', afro: 'afro01', braids: 'braid01', cornrows: 'braid01', twists: 'braid01', locs: 'braid01', 'bantu-knots': 'afro01', curls: 'afro01', ponytail: 'ponytail01', bun: 'ponytail01', long: 'bob01', gele: 'none' }
 const OUTFIT_MIGRATION: Record<string, NativeGarmentId> = { casual: 'female-casual-01', office: 'formal-suit-01', owambe: 'female-elegant-01', 'site-work': 'male-worksuit-01', sitework: 'male-worksuit-01', jersey: 'female-sport-01', hoodie: 'female-sport-01', chill: 'female-casual-02', kaftan: 'formal-suit-01', gown: 'female-elegant-01', agbada: 'formal-suit-01' }
 

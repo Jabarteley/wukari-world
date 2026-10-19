@@ -34,3 +34,4 @@ Zoom that a camera cannot take (it stands at its widest or closest view) is not 
 - Zooming never travels: nothing in the ladder calls a game action or reads where the player is.
 - One map is drawn at a time, and the one being entered; the one left is released after the hand-over.
 - The ladder adds no startup bytes: the host and the ladder are fetched with the maps.
+- The entry page of a street or a visit drives the same atlas and dive on a timer, behind its card (`src/map3d/entry-dive.ts`, `docs/ENTRY.md`).

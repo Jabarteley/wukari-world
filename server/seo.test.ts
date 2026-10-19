@@ -79,7 +79,11 @@ test('public files: robots.txt, sitemap.xml, manifest and the images they name',
   assert.equal(locs[0], `${SITE_ORIGIN}/`);
   assert.ok(locs.includes(`${SITE_ORIGIN}/games`) && locs.includes(`${SITE_ORIGIN}/abuja`), 'the games and the open cities are listed (server/path-meta.test.ts checks them all)');
   const manifest = JSON.parse(siteFile('/manifest.webmanifest', '')?.body ?? '') as { name: string; short_name: string; lang: string; start_url: string; display: string; theme_color: string; background_color: string; icons: { src: string; purpose: string; sizes: string }[] };
-  assert.deepEqual([manifest.name, manifest.short_name, manifest.lang, manifest.start_url, manifest.display, manifest.theme_color, manifest.background_color], ['Allworld', 'Allworld', 'en-NG', '/', 'standalone', '#183b2a', '#183b2a']);
+  assert.deepEqual([manifest.name, manifest.short_name, manifest.lang, manifest.start_url, manifest.display, manifest.theme_color, manifest.background_color], ['Allworld', 'Allworld', 'en-NG', '/?utm_source=pwa', 'standalone', '#183b2a', '#183b2a']);
+  // A store listing (docs/STORE.md): a stable id apart from the start address, a scope, categories, and maskable icons at both sizes.
+  const listing = manifest as unknown as { id: string; scope: string; categories: string[]; related_applications?: unknown; screenshots?: unknown };
+  assert.deepEqual([listing.id, listing.scope, listing.categories, listing.related_applications, listing.screenshots], ['/', '/', ['games', 'social', 'entertainment'], undefined, undefined]);
+  assert.deepEqual(manifest.icons.filter(icon => icon.purpose === 'maskable').map(icon => icon.sizes).sort(), ['192x192', '512x512']);
   assert.ok(manifest.icons.some(icon => icon.purpose === 'maskable') && manifest.icons.some(icon => icon.purpose === 'any' && icon.sizes === '512x512') && manifest.icons.some(icon => icon.sizes === '192x192'));
   for (const icon of manifest.icons) assert.ok((await stat(new URL(`public${icon.src}`, root))).size > 0, icon.src);
   const png = await readFile(new URL('public/og/allworld.png', root));

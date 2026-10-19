@@ -11,14 +11,14 @@
  * Text passes the game's text filter with contacts refused (server/moderation/text.ts) and the sender's mute (ctx.checks.muted).
  * Portable: no Node imports.
  */
-import { FEED, LOCATED, isLocalScope, SKILLS, COMMUNITY_KINDS, isCommunityKind, sizeOf, allowedVisibility, canReply, canSee, cleanBody, cleanCode, cleanCrewName, cleanHandle, cleanLine, codeFrom, colourOk, eventPhase, eventTiming, handleRefusal, rank, rewardOf, starsOf, ratingText, followersText } from '../../src/feed/model.ts'
-import type { FeedTab, LocalScope, Relation, Skill, Visibility } from '../../src/feed/model.ts'
-import type { CrewView, Draft, EventView, FeedMe, FeedPage, FeedPerson, FeedPlace, GigView, InboxLine, NewsLine, PostView, ProfileView, ReplyView, Suggestion, WorkView, FeedMedia } from '../../src/types/feed.ts'
+import { FEED, LOCATED, isLocalScope, monthOf, nearness, nearFirst, SKILLS, COMMUNITY_KINDS, isCommunityKind, sizeOf, allowedVisibility, canReply, canSee, cleanBody, cleanCode, cleanCrewName, cleanHandle, cleanLine, codeFrom, colourOk, eventPhase, eventTiming, handleRefusal, rank, rewardOf, starsOf, ratingText, followersText } from '../../src/feed/model.ts'
+import type { BadgePlace, FeedTab, LocalScope, Nearness, Relation, Skill, Visibility } from '../../src/feed/model.ts'
+import type { CrewView, Draft, EventView, FeedMe, FeedPage, FeedPerson, NearLine, FeedPlace, GigView, InboxLine, NewsLine, PostView, ProfileView, ReplyView, Suggestion, WorkView, FeedMedia } from '../../src/types/feed.ts'
 import { screenText } from '../moderation/text.ts'
 import { agentWords } from '../moderation/agent-words.ts'
 import { friendsIn } from '../social/founder.ts'
 import { lagosTime } from '../../src/game/clock.ts'
-import { cityName, cityCatalogue, cityCatalogueEntry } from '../../src/game/cities/registry.ts'
+import { cityName, cityCatalogue, cityCatalogueEntry, cityRules } from '../../src/game/cities/registry.ts'
 import { roomLinkPath } from '../../src/places/model.ts'
 import { feedOf, peekFeed } from './data.ts'
 import { gigPaid, needsTicket, ticketOf } from '../earn/data.ts'
@@ -26,6 +26,21 @@ import type { AuthorRecord, CrewRecord, DecisionRecord, EventRecord, FeedCollect
 import type { Db, RouteContext, SessionRecord } from '../types.ts'
 
 export interface Refused { ok: false; code: string; reason: string }
+/** One of a city's local units (its local governments, or the local equivalent), when the city's rules are in (the route loads them first). */
+const unitOf = (city: string, id: unknown): { id: string; name: string } | null => (typeof id === 'string' && id ? cityRules(city)?.units.find((u) => u.id === id) ?? null : null)
+/** A local unit's name; from its id ("lagos-mainland" → "Lagos Mainland") while the city's rules are not in. */
+const unitName = (city: string, id: string): string => unitOf(city, id)?.name ?? id.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+/**
+ * Near you's counts (FeedCollection.here): add or take one person at a badge's city and local government for the month of `at`. A new month
+ * starts from nothing; taking from a month that is over does nothing.
+ */
+function countHere(f: FeedCollection, badge: BadgePlace, delta: 1 | -1, at: number): void {
+  const m = monthOf(at)
+  if (!f.here || f.here.m !== m) { if (delta < 0) return; f.here = { m, n: {} } }
+  for (const key of [badge.city, ...(badge.lga ? [`${badge.city}/${badge.lga}`] : [])]) { const n = (f.here.n[key] ?? 0) + delta; if (n > 0) f.here.n[key] = n; else delete f.here.n[key] }
+}
+/** A badge set this month was counted this month: take it off the count when it changes or goes. */
+const uncount = (f: FeedCollection, badge: AuthorRecord['located'], at: number): void => { if (badge && monthOf(badge.at) === monthOf(at)) countHere(f, badge, -1, at) }
 export type Push = [string, { type: 'feed-inbox'; unseen: number; line?: InboxLine }][]
 const no = (code: string, reason: string): Refused => ({ ok: false, code, reason })
 const isRecord = (v: unknown): v is Record<string, unknown> => v !== null && typeof v === 'object' && !Array.isArray(v)
@@ -95,17 +110,20 @@ function buildService(ctx: RouteContext) {
   function person(db: Db, f: FeedCollection | undefined, id: string, viewer: string | null): FeedPerson {
     const a = f?.authors[id], badge = badgeOf(a)
     return { id, name: nameOf(db, f, id), ...(a?.handle ? { handle: a.handle } : {}), ...(a?.portrait ? { portrait: a.portrait.hash } : {}), ...(aiOf(db, id) ? { ai: true as const } : {}), ...(viewer && friends(db, viewer, id) ? { friend: true as const } : {}),
-      ...(badge ? { located: { city: badge.city, name: cityCatalogueEntry(badge.city)?.name ?? badge.city, ...(badge.net ? { net: true as const } : {}) } } : {}) }
+      ...(badge ? { located: { city: badge.city, name: cityCatalogueEntry(badge.city)?.name ?? badge.city, ...(badge.net ? { net: true as const } : {}), ...(badge.lga ? { lga: badge.lga, lgaName: unitName(badge.city, badge.lga) } : {}) } } : {}) }
   }
+  /** How near someone's badge is to the viewer's (src/feed/model.ts nearness); `placedIn` is where the thing is (a post's, event's or gig's city). */
+  const nearTo = (f: FeedCollection, mine: AuthorRecord['located'], who: string, placedIn?: string): Nearness | null => nearness(mine, badgeOf(f.authors[who]), placedIn)
   /** Does this badge let its holder into a locals-only community of this place? */
   function qualifies(place: CrewRecord['place'], scope: LocalScope, badge: AuthorRecord['located']): boolean {
     const here = badge ? cityCatalogueEntry(badge.city) : null
     if (!here || !place?.real) return false
+    if (scope === 'lga') return Boolean(place.city && place.lga) && here.id === place.city && badge?.lga === place.lga
     if (scope === 'city') return Boolean(place.city) && here.id === place.city
     if (scope === 'state') return Boolean(place.state) && here.state.name === place.state && (here.countryName ?? 'Nigeria') === (place.country ?? 'Nigeria')
     return (here.countryName ?? 'Nigeria') === (place.country ?? 'Nigeria')
   }
-  const scopeWords = (c: CrewRecord): string => (c.locals === 'city' ? cityCatalogueEntry(c.place?.city)?.name ?? 'its city' : c.locals === 'state' ? c.place?.state ?? 'its state' : c.place?.country ?? 'Nigeria')
+  const scopeWords = (c: CrewRecord): string => (c.locals === 'lga' && c.place?.city && c.place.lga ? `${unitName(c.place.city, c.place.lga)}, ${cityCatalogueEntry(c.place.city)?.name ?? c.place.city}` : c.locals === 'city' ? cityCatalogueEntry(c.place?.city)?.name ?? 'its city' : c.locals === 'state' ? c.place?.state ?? 'its state' : c.place?.country ?? 'Nigeria')
   function relation(db: Db, f: FeedCollection, post: PostRecord, viewer: string | null): Relation {
     if (!viewer) return { self: false, friend: false, crewMember: false, blocked: false, adult: false, player: false }
     return {
@@ -168,7 +186,7 @@ function buildService(ctx: RouteContext) {
     return { id: c.id, name: c.name, colour: c.colour, about: c.about, at: c.at, owner: person(db, f, c.owner, viewer),
       members: people.map((m) => person(db, f, m, viewer)),
       size: c.members.length, cap: sizeOf(c.kind), mine, owned: viewer === c.owner, mod, kind: c.kind ?? 'crew', kindLabel: COMMUNITY_KINDS.find(([k]) => k === (c.kind ?? 'crew'))?.[1] ?? 'A crew of friends',
-      ...(c.place ? { place: c.place } : {}), open: c.open === 1, mods: (c.mods ?? []).map((m) => person(db, f, m, viewer)), ...(c.cover ? { cover: c.cover } : {}),
+      ...(c.place ? { place: { ...c.place, ...(c.place.city && c.place.lga ? { lgaName: unitName(c.place.city, c.place.lga) } : {}) } } : {}), open: c.open === 1, mods: (c.mods ?? []).map((m) => person(db, f, m, viewer)), ...(c.cover ? { cover: c.cover } : {}),
       ...(world ? { world } : {}), ...(mine || c.open ? { code: c.code } : {}),
       ...(c.locals ? { locals: c.locals, qualifies: Boolean(viewer) && qualifies(c.place, c.locals, badgeOf(f.authors[viewer ?? ''])) } : {}) }
   }
@@ -226,9 +244,18 @@ function buildService(ctx: RouteContext) {
     const lines = [...(gist?.cities?.[city] ?? []), ...(city === 'world' ? Object.entries(gist?.cities ?? {}).filter(([k]) => k !== 'world').flatMap(([, v]) => v.slice(-3)) : [])]
     return lines.filter((l) => l.at > now() - 3 * 86400000).sort((a, b) => b.at - a.at).slice(0, limit).map((l) => ({ n: l.n, at: l.at, city: l.city, text: l.text }))
   }
+  /** The line at the top of Near you: this month's counts at the viewer's badge city and local government (numbers, never who). */
+  function nearLine(f: FeedCollection, badge: NonNullable<AuthorRecord['located']>): NearLine {
+    const counts = f.here?.m === monthOf(now()) ? f.here.n : {}
+    return { city: badge.city, cityName: cityCatalogueEntry(badge.city)?.name ?? badge.city, n: counts[badge.city] ?? 0,
+      ...(badge.lga ? { lga: badge.lga, lgaName: unitName(badge.city, badge.lga), lgaN: counts[`${badge.city}/${badge.lga}`] ?? 0 } : {}) }
+  }
   function read(db: Db, viewer: string | null, { tab, city, after, crew, by }: { tab: FeedTab | 'crew' | 'author'; city?: string; after?: string | null; crew?: string; by?: string }): FeedPage | Refused {
     const f = peekFeed(db)
-    if (!f) return { ok: true, tab, posts: [], next: null, ...(tab !== 'friends' ? { news: newsOf(db, tab === 'world' ? 'world' : city ?? 'world', 8) } : {}) }
+    // Near you reads the viewer's badge city (and, below its neighbours, the world); without a badge it is the city tab.
+    const mine = tab === 'near' && viewer ? badgeOf(f?.authors[viewer]) : undefined
+    const home = tab === 'world' ? 'world' : mine?.city ?? city ?? 'world'
+    if (!f) return { ok: true, tab, posts: [], next: null, ...(tab !== 'friends' ? { news: newsOf(db, home, 8) } : {}) }
     const c = cursorOf(after ?? null)
     let ids: string[] = []
     if (tab === 'friends') {
@@ -236,6 +263,7 @@ function buildService(ctx: RouteContext) {
       const circle = new Set([viewer, ...Object.keys(playersOf(db)[viewer]?.friends ?? {}).filter((x) => friends(db, viewer, x)), ...Object.keys(f.authors[viewer]?.follows ?? {}), ...(f.authors[viewer]?.crews ?? []).flatMap((k) => f.crews[k]?.members ?? [])])
       for (const id of circle) ids.push(...(f.authors[id]?.posts ?? []).slice(-40))
     } else if (tab === 'city') ids = (f.cities[city ?? '']?.posts ?? []).slice()
+    else if (tab === 'near') ids = [...(f.cities[home]?.posts ?? []), ...(mine ? f.world : [])]
     else if (tab === 'world') ids = f.world.slice()
     else if (tab === 'crew') { const k = f.crews[crew ?? '']; if (!k || !viewer || !k.members.includes(viewer)) return no('not_member', 'Only the crew can read its wall.'); ids = k.members.flatMap((m) => (f.authors[m]?.posts ?? []).slice(-60)) }
     else ids = (f.authors[by ?? '']?.posts ?? []).slice()
@@ -246,14 +274,15 @@ function buildService(ctx: RouteContext) {
       const post = f.posts[id]
       if (!post || !olderThan(post, c) || !canSee(post, relation(db, f, post, viewer))) continue
       if (tab === 'crew' && post.crew !== crew) continue
-      if (tab === 'city' && post.vis === 'crew') continue
+      if ((tab === 'city' || (tab === 'near' && !mine)) && post.vis === 'crew') continue
+      if (tab === 'near' && mine && post.vis !== 'public' && post.vis !== 'city') continue
       candidates.push(post)
     }
-    if (tab === 'city' || tab === 'world') {
+    if (tab === 'city' || tab === 'world' || tab === 'near') {
       const offset = offsetOf(after)
-      const ranked = rank(candidates.map((p) => ({ post: p, at: p.at, kind: p.kind, replies: p.replies?.length ?? 0, reactions: Object.keys(p.rx ?? {}).length, friend: Boolean(viewer && friends(db, viewer, p.by)), mine: p.by === viewer, ai: p.ai === 1 })), now())
+      const ranked = rank(candidates.map((p) => ({ post: p, at: p.at, kind: p.kind, replies: p.replies?.length ?? 0, reactions: Object.keys(p.rx ?? {}).length, friend: Boolean(viewer && friends(db, viewer, p.by)), mine: p.by === viewer, ai: p.ai === 1, near: mine ? nearTo(f, mine, p.by, p.place?.city) : null })), now())
       const page = ranked.slice(offset, offset + FEED.page).map((r) => r.post)
-      return { ok: true, tab, posts: page.map((p) => postView(db, f, p, viewer)), next: ranked.length > offset + FEED.page ? `r${offset + FEED.page}` : null, ...(!offset ? { news: newsOf(db, tab === 'world' ? 'world' : city ?? 'world', 8) } : {}) }
+      return { ok: true, tab, posts: page.map((p) => postView(db, f, p, viewer)), next: ranked.length > offset + FEED.page ? `r${offset + FEED.page}` : null, ...(!offset ? { news: newsOf(db, home, 8), ...(mine ? { near: nearLine(f, mine) } : {}) } : {}) }
     }
     const ordered = candidates.sort((a, b) => b.at - a.at || (a.id < b.id ? 1 : -1))
     const page = ordered.slice(0, FEED.page), oldest = page.at(-1)
@@ -564,12 +593,17 @@ function buildService(ctx: RouteContext) {
     // A real place from the catalogue (bringing in a city or a state the game knows), or one the founder imagined.
     let place: CrewRecord['place'] | undefined
     const real = cityCatalogueEntry(body.city)
-    if (real) place = { city: real.id, state: real.state.name, ...(real.countryName ? { country: real.countryName } : {}), real: 1 }
+    if (real) {
+      // Its local government (one of the city's local units, the route loads them first), for a neighbours' community.
+      const unit = unitOf(real.id, body.lga)
+      if (typeof body.lga === 'string' && body.lga && !unit) return no('unknown_area', 'That area is not part of this city.')
+      place = { city: real.id, state: real.state.name, ...(real.countryName ? { country: real.countryName } : {}), real: 1, ...(unit ? { lga: unit.id } : {}) }
+    }
     else if (typeof body.state === 'string') { const st = cityCatalogue().find((x) => x.state.id === body.state); if (st) place = { state: st.state.name, ...(st.countryName ? { country: st.countryName } : {}), real: 1 } }
     if (!place && typeof body.placeName === 'string') { const pn = cleanLine(body.placeName, 40); if (pn) { const bad = screened(pn, 'The place'); if (bad) return bad; place = { name: pn } } }
     let cover: string | undefined
     if (typeof body.cover === 'string' && body.cover) { const m = (a.media ?? []).find((x) => x.hash === body.cover && x.use === 'post' && x.type !== 'webm' && x.type !== 'mp4'); if (m) { cover = m.hash; a.media = (a.media ?? []).filter((x) => x !== m) } }
-    const locals = kind !== 'crew' && place?.real && isLocalScope(body.locals) && (body.locals !== 'city' || place.city) ? body.locals : undefined
+    const locals = kind !== 'crew' && place?.real && isLocalScope(body.locals) && (body.locals !== 'city' || place.city) && (body.locals !== 'lga' || place.lga) ? body.locals : undefined
     if (locals && !qualifies(place, locals, badgeOf(a))) return no('badge_needed', 'To keep it for locals, first confirm where you are in My profile: your own badge must be in that place.')
     const crew: CrewRecord = { id: newId(f, 'c'), name, colour, about, owner: id, members: [id], code: randomCode((c) => Object.hasOwn(f.codes, c)), at: now(), ...(kind !== 'crew' ? { kind } : {}), ...(place ? { place } : {}), ...(locals ? { locals } : {}), ...(body.open === true && kind !== 'crew' ? { open: 1 as const } : {}), ...(cover ? { cover } : {}) }
     f.crews[crew.id] = crew; f.codes[crew.code] = { k: 'crew', id: crew.id }
@@ -623,32 +657,38 @@ function buildService(ctx: RouteContext) {
     return { ok: true, communities: list.slice(0, FEED.community.directory).map((c) => crewView(db, f, c, viewer)) }
   }
   /** The founder names or removes a moderator (a member). */
-  /** The founder keeps a community for locals (city, state or country of its real place) or opens it to all again. Members stay. */
+  /** The founder keeps a community for locals (local government, city, state or country of its real place) or opens it to all again. Members stay. */
   function setLocals(db: Db, session: SessionRecord, body: Record<string, unknown>): { ok: true; crew: CrewView } | Refused {
     const id = session.publicId, f = peekFeed(db), crew = f && typeof body.id === 'string' ? f.crews[body.id] : undefined
     if (!f || !crew || crew.owner !== id) return no('not_owner', 'Only the founder decides who may join.')
     if (body.locals === null || body.locals === 'all') { delete crew.locals; return { ok: true, crew: crewView(db, f, crew, id) } }
-    if (!isLocalScope(body.locals) || !crew.place?.real || (body.locals === 'city' && !crew.place.city)) return no('invalid_scope', 'Only a community based on a real place can be kept for its locals.')
+    if (!isLocalScope(body.locals) || !crew.place?.real || (body.locals === 'city' && !crew.place.city) || (body.locals === 'lga' && !crew.place.lga)) return no('invalid_scope', 'Only a community based on a real place can be kept for its locals.')
     if (!qualifies(crew.place, body.locals, badgeOf(f.authors[id]))) return no('badge_needed', 'First confirm where you are in My profile: your own badge must be in that place.')
     crew.locals = body.locals
     return { ok: true, crew: crewView(db, f, crew, id) }
   }
   /**
-   * The location badge. The device found itself in `city` (the position stayed on it); `country` is the network's two-letter country as
-   * the host saw this request (Cloudflare), compared with the city's and kept only as yes. `on: false` removes it.
+   * The location badge. The device found itself in `city` (the position stayed on it), and maybe in `lga`, one of that city's local units
+   * (the route loads the city's rules first); `country` is the network's two-letter country as the host saw this request (Cloudflare),
+   * compared with the city's and kept only as yes. `on: false` removes it. Each change keeps this month's counts (countHere) right.
    */
   function setLocated(db: Db, session: SessionRecord, body: Record<string, unknown>, country: string): { ok: true; profile: ProfileView } | Refused {
     const id = session.publicId, f = feedOf(ctx, db), a = author(f, db, id)
-    if (body.on === false) { delete a.located; return { ok: true, profile: profileView(db, f, id, id) } }
+    if (body.on === false) { uncount(f, a.located, now()); delete a.located; return { ok: true, profile: profileView(db, f, id, id) } }
     if (!adult(db, id)) return no('adults_only', 'The location badge is for players confirmed as 18 or older.')
     const city = cityCatalogueEntry(body.city)
     if (!city) return no('unknown_city', 'That place is not on the world map.')
+    // A local unit the city does not have is refused; one the server cannot check (the city's rules did not load) is left out.
+    const unit = unitOf(city.id, body.lga)
+    if (typeof body.lga === 'string' && body.lga && !unit && cityRules(city.id)) return no('unknown_area', 'That area is not part of this city.')
     const day = String(today())
     if (a.locatedDay?.day !== day) a.locatedDay = { day, n: 0 }
     if (a.locatedDay.n >= LOCATED.perDay) return no('daily_limit', 'You have checked enough times today. Try again tomorrow.')
     a.locatedDay.n += 1
     const iso = (city.countryISO ?? 'ng').toLowerCase(), net = /^[A-Za-z]{2}$/.test(country) && country.toLowerCase() === iso
-    a.located = { city: city.id, at: now(), ...(net ? { net: 1 as const } : {}) }
+    uncount(f, a.located, now())
+    a.located = { city: city.id, at: now(), ...(net ? { net: 1 as const } : {}), ...(unit ? { lga: unit.id } : {}) }
+    countHere(f, a.located, 1, now())
     return { ok: true, profile: profileView(db, f, id, id) }
   }
   function setMod(db: Db, session: SessionRecord, body: Record<string, unknown>): { ok: true; crew: CrewView } | Refused {
@@ -730,7 +770,11 @@ function buildService(ctx: RouteContext) {
     if (!f) return { ok: true, events: [], mine: [] }
     const list = (f.cities[city]?.events ?? []).map((k) => f.events[k]).filter((e): e is EventRecord => Boolean(e) && !e!.gone && eventPhase(e!, now()) !== 'over' && !blocked(viewer ?? '', e!.by))
     const mine = viewer ? (f.authors[viewer]?.events ?? []).map((k) => f.events[k]).filter((e): e is EventRecord => Boolean(e) && !e!.gone && eventPhase(e!, now()) !== 'over' && (e!.going.includes(viewer) || e!.maybe.includes(viewer))) : []
-    return { ok: true, events: list.sort((a, b) => a.start - b.start).map((e) => eventView(db, f, e, viewer)), mine: mine.sort((a, b) => a.start - b.start).slice(0, 20).map((e) => eventView(db, f, e, viewer)) }
+    // Near you first: events hosted by someone with a badge in the viewer's local government (or held at a place named after it), then in
+    // the viewer's badge city; soonest first within each.
+    const badge = viewer ? badgeOf(f.authors[viewer]) : undefined, area = badge?.lga ? unitName(badge.city, badge.lga).toLowerCase() : ''
+    const near = (e: EventRecord): Nearness | null => (badge && area && e.city === badge.city && `${e.label} ${e.venue ?? ''}`.toLowerCase().includes(area) ? 'lga' : nearTo(f, badge, e.by, e.city))
+    return { ok: true, events: nearFirst(list.sort((a, b) => a.start - b.start), near).map((e) => eventView(db, f, e, viewer)), mine: mine.sort((a, b) => a.start - b.start).slice(0, 20).map((e) => eventView(db, f, e, viewer)) }
   }
   function event(db: Db, viewer: string | null, value: unknown): { ok: true; event: EventView } | Refused {
     const f = peekFeed(db)
@@ -815,7 +859,9 @@ function buildService(ctx: RouteContext) {
     if (!f) return { ok: true, gigs: [], mine: [] }
     const open = (f.cities[city]?.gigs ?? []).map((k) => f.gigs[k]).filter((g): g is GigRecord => Boolean(g) && g!.state === 'open' && !blocked(viewer ?? '', g!.by))
     const mine = viewer ? (f.authors[viewer]?.gigs ?? []).map((k) => f.gigs[k]).filter((g): g is GigRecord => Boolean(g) && g!.state !== 'closed' && (g!.by === viewer || g!.worker === viewer || g!.applicants.includes(viewer))) : []
-    return { ok: true, gigs: open.reverse().map((g) => gigView(db, f, g, viewer)), mine: mine.reverse().map((g) => gigView(db, f, g, viewer)) }
+    // Near you first (posted by someone with a badge in the viewer's local government, then in the viewer's badge city), newest first within each.
+    const badge = viewer ? badgeOf(f.authors[viewer]) : undefined
+    return { ok: true, gigs: nearFirst(open.reverse(), (g) => nearTo(f, badge, g.by, g.city)).map((g) => gigView(db, f, g, viewer)), mine: mine.reverse().map((g) => gigView(db, f, g, viewer)) }
   }
   function vouch(db: Db, session: SessionRecord, body: Record<string, unknown>): { ok: true; profile: ProfileView; push: Push } | Refused {
     const id = session.publicId, target = typeof body.id === 'string' ? body.id : '', skill = SKILLS.find((s) => s === body.skill) as Skill | undefined
@@ -1022,6 +1068,7 @@ export function forgetFeedPlayers(db: Db, ids: ReadonlySet<string>): void {
     if (a.handle && f.handles[a.handle] === id) delete f.handles[a.handle]
     if (a.code && f.codes[a.code]?.id === id) delete f.codes[a.code]
     for (const followed of Object.keys(a.follows ?? {})) { const t = f.authors[followed]; if (t?.followers) t.followers -= 1 }
+    uncount(f, a.located, Date.now())
     delete f.authors[id]
   }
   const alive = (pid: string): boolean => Object.hasOwn(f.posts, pid)

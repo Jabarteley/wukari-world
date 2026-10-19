@@ -25,7 +25,7 @@ import type { SourceEvent } from '../game/attribution.ts'
 // ---- shares and the events calendar ---------------------------------------------------------------
 
 /** src/game/share-model.ts SHARE_KINDS. */
-export type ShareKind = 'invite' | 'house' | 'missions' | 'week' | 'table' | 'event' | 'wedding' | 'election' | 'news' | 'gist' | 'space'
+export type ShareKind = 'invite' | 'house' | 'missions' | 'week' | 'table' | 'event' | 'wedding' | 'election' | 'news' | 'gist' | 'space' | 'street'
 
 /**
  * What a share says (share-model.js cleanFacts): facts the server took from the sharer's own life.
@@ -63,6 +63,8 @@ export interface ShareFacts {
   headline: string
   /** The public record entry the headline came from (election, news); 0 for none. */
   record: number
+  /** The street a card leads to (street): `<city>/<local unit or district>` or a city alone, ids from the city's rules; '' for other kinds. */
+  place: string
 }
 
 /** One occurrence of a calendar event (src/game/calendar.ts describe): server ms; `key` is unique per occurrence. */
@@ -411,6 +413,9 @@ export interface SourceCampaign extends SourceCounts { source: string; medium: s
 /** One Lagos day of one campaign. */
 export interface SourceRow extends SourceCampaign { day: number; date: string }
 
+/** Activated / landed for one "source / medium / campaign": `landed` page opens, `activated` lives that did a first meaningful action (walked, posted, joined a community, said going). `rate` is a percent, or null when nothing landed. */
+export interface ActivationRow { source: string; medium: string; campaign: string; landed: number; activated: number; rate: number | null }
+
 /** Lives that were old enough, and how many were seen again on that day. `rate` is a percent, or null when there are none. */
 export interface ReturnCell { lives: number; returned: number; rate: number | null }
 export interface ReturnRow { d1: ReturnCell; d7: ReturnCell; d30: ReturnCell }
@@ -443,6 +448,8 @@ export interface GrowthMetricsResponse {
   sources: SourceRow[]
   /** The same, summed over the days shown, most landings first. */
   campaigns: SourceCampaign[]
+  /** Activation per source and campaign over the days kept, most landings first (server/growth/metrics.ts activationReport). */
+  activation: ActivationRow[]
   /** Day-1, day-7 and day-30 return by how a life arrived (ad source) and by whether it made a friend in its first two days. Aggregate only. */
   returns: ReturnSplit
   /** Of the followed lives at least eight days old, how many had three real friends within their first week (the social platform's north star). */
@@ -716,7 +723,7 @@ export const OUTREACH_MINE_KEYS = ['channel', 'comeback', 'email', 'live', 'push
 export const DIGEST_KEYS = ['caps', 'delivery', 'footer', 'greeting', 'lines', 'more', 'subject', 'tasks'] as const satisfies readonly (keyof (Digest & { delivery: 'dry-run' }))[]
 export const CALENDAR_OCCURRENCE_KEYS = ['blurb', 'end', 'icon', 'id', 'key', 'live', 'spray', 'start', 'table', 'title', 'venue', 'venueLabel'] as const satisfies readonly (keyof CalendarOccurrence)[]
 export const SHARE_FACTS_KEYS = [
-  'city', 'days', 'district', 'done', 'event', 'game', 'headline', 'kind', 'name', 'partner', 'record', 'stamps', 'tableId', 'title', 'total', 'venue', 'won',
+  'city', 'days', 'district', 'done', 'event', 'game', 'headline', 'kind', 'name', 'partner', 'place', 'record', 'stamps', 'tableId', 'title', 'total', 'venue', 'won',
 ] as const satisfies readonly (keyof ShareFacts)[]
 export const CONSENT_VIEW_KEYS = ['age', 'at', 'email', 'push'] as const satisfies readonly (keyof ConsentView)[]
 export const TABLE_SUMMARY_KEYS = [
@@ -726,11 +733,11 @@ export const TABLE_STATE_FRAME_KEYS = [
   'clock', 'cityId', 'host', 'log', 'n', 'optionList', 'result', 'stakes', 'table', 'toMove', 'type', 'view', 'you',
 ] as const satisfies readonly (keyof TableStateFrame)[]
 export const GROWTH_METRICS_RESPONSE_KEYS = [
-  'analytics', 'campaigns', 'cohorts', 'days', 'funnel', 'generatedAt', 'northStar', 'retention', 'returns', 'serverTime', 'source', 'sources', 'timezone', 'totals', 'tracked',
+  'activation', 'analytics', 'campaigns', 'cohorts', 'days', 'funnel', 'generatedAt', 'northStar', 'retention', 'returns', 'serverTime', 'source', 'sources', 'timezone', 'totals', 'tracked',
 ] as const satisfies readonly (keyof Ok<GrowthMetricsResponse>)[]
 export const OUTREACH_OPERATOR_RESPONSE_KEYS = [
   'comeback', 'email', 'log', 'previews', 'push', 'quietNow', 'rules', 'serverTime', 'whatsapp',
 ] as const satisfies readonly (keyof Ok<OutreachOperatorResponse>)[]
-export const SHARE_KINDS = ['invite', 'house', 'missions', 'week', 'table', 'event', 'wedding', 'election', 'news', 'gist', 'space'] as const satisfies readonly ShareKind[]
+export const SHARE_KINDS = ['invite', 'house', 'missions', 'week', 'table', 'event', 'wedding', 'election', 'news', 'gist', 'space', 'street'] as const satisfies readonly ShareKind[]
 export const CLIENT_SIGNALS = ['webgl-missing', 'opera-mini', 'save-data', 'slow-start', 'installed', 'share-sheet', 'share-fallback'] as const satisfies readonly ClientSignal[]
 export const FUNNEL_STEPS = ['onboarded', 'goal-1', 'settled', 'job', 'shift', 'goals-done', 'mission', 'table', 'day-two-work'] as const satisfies readonly FunnelStep[]

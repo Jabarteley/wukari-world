@@ -92,6 +92,9 @@ export function warmLookPreview(): Promise<void> {
 /** The preview alone follows a Face / Full body switch. */
 export function setPreviewFocus(focus: PreviewFocus): void { preview?.setFocus(focus) }
 
+/** The figure on the stage, full length and facing front, as a canvas drawn at once (the share card starts from it); null when no preview is showing. */
+export const snapshotLookPreview = (): HTMLCanvasElement | null => preview?.snapshot() ?? null
+
 /** Turn the character with a short ease: a quarter turn, or π to see it from behind. */
 export function turnPreview(radians: number): void { preview?.turnBy(radians) }
 

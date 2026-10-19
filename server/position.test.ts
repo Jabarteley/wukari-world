@@ -128,3 +128,23 @@ test('the session response exposes only the active life, and a GET cannot create
   assert.deepEqual(Object.keys(isFrame(chat.from) ? chat.from : {}).sort(), ['id', 'name'], 'a chat line carries the public identity only');
   assert.equal((await f.request('/api/session')).status, 401, 'without a session there is nothing to list');
 });
+
+test('walking activates a person once: a spawn offset or a nudge is not a walk, a real step is, and walking on is not a second', async (t) => {
+  const f = await fixture(t);
+  const ada = await f.device('Ada Walker');
+  await f.request('/api/life?city=lagos', null, ada.cookie);
+  await f.request('/api/growth/hello', { cityId: 'lagos' }, ada.cookie);
+  const activated = () => f.server.store.read((db) => Object.values((db as { growth?: { metrics?: { activation?: Record<string, Record<string, number>> } } }).growth?.metrics?.activation ?? {}).reduce((sum, keys) => sum + Object.values(keys).reduce((a, b) => a + b, 0), 0));
+  const settled = async (want: number): Promise<number> => { for (let i = 0; i < 20; i++) { const n = await activated(); if (n === want) return n; await new Promise((resolve) => setTimeout(resolve, 10)); } return activated(); };
+  const a = await f.joinRoom(ada);
+  say(a, { type: 'move', x: 3, z: 0 }); // the first report: where the client spawned
+  f.advance(1500); say(a, { type: 'move', x: 3.5, z: 0.5 });
+  await nextPresence(a, (message) => member(message, ada.id)?.position.x === 3.5);
+  assert.equal(await settled(0), 0, 'under two steps from the spawn is not a walk');
+  f.advance(1500); say(a, { type: 'move', x: 8, z: 0 });
+  await nextPresence(a, (message) => member(message, ada.id)?.position.x === 8);
+  assert.equal(await settled(1), 1);
+  f.advance(1500); say(a, { type: 'move', x: -8, z: 4 });
+  await nextPresence(a, (message) => member(message, ada.id)?.position.x === -8);
+  assert.equal(await settled(1), 1, 'walking on is not a second activation');
+});

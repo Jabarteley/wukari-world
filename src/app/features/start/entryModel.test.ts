@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { ENTRY_VARIANTS, VARIANT_PATHS, variantOf, withFigures } from '../../../entry-variants.ts'
+import { ENTRY_VARIANTS, VARIANT_PATHS, variantOf, withFigures, withPlace } from '../../../entry-variants.ts'
 import { AGENT_CHOICES, SETUP_NEEDS, SETUP_STEPS, entryShown, isPathAddress, liveLine, worldFigures } from './entryModel.ts'
 import { ENTRY_WORDS, entryVariantId, isEntryAddress } from './pathAddress.ts'
 
@@ -65,6 +65,33 @@ test('every variant has a head that fits, tiles, and a primary button; setup var
   assert.equal(withFigures('{cities} real cities in {countries} countries', { cities: 60, countries: 21 }), '60 real cities in 21 countries')
   assert.deepEqual(ENTRY_VARIANTS.find((variant) => variant.id === 'home')?.tiles.map((tile) => tile.label), ['Live in a real city', 'Work and earn', 'Open a shop for your real business', 'Friends, voice and games'])
   assert.equal(ENTRY_VARIANTS.find((variant) => variant.id === 'home')?.pitch, '{cities} real-world places to explore. Free, in your browser, no download.')
+})
+
+test('a street, a visit and politics are addresses of the entry page: their own rows, their own campaign content, never the creator', () => {
+  for (const [path, id] of [['/street/lagos/yaba', 'street'], ['/street/lagos', 'street'], ['/Street/Lagos/Yaba/', 'street'], ['/visit/lagos', 'visit'], ['/visit', 'visit'], ['/street', 'street'], ['/politics', 'politics']] as const) {
+    assert.equal(variantOf(path)?.id, id, path)
+    assert.equal(entryVariantId(path), id, path)
+    assert.equal(isEntryAddress(path), true, path)
+    assert.equal(isPathAddress(path), false, path)
+  }
+  for (const path of ['/street/a/b/c', '/visit/a/b', '/streets', '/street/ya ba']) { assert.equal(entryVariantId(path), null, path); assert.equal(variantOf(path), null, path) }
+  assert.equal(isPathAddress('/records'), true, 'the Hall of Records is still a short address')
+})
+
+test('the words of a street and a visit: the place and the city from the rules, and every head fits', () => {
+  const street = ENTRY_VARIANTS.find((variant) => variant.id === 'street'), visit = ENTRY_VARIANTS.find((variant) => variant.id === 'visit')
+  assert.ok(street?.place && visit?.place)
+  assert.equal(withPlace(street.place.title, { city: 'Lagos', name: 'Yaba' }), 'Walk Yaba, Lagos on Allworld')
+  assert.equal(withPlace(street.place.headline, { city: 'Lagos', name: null }), 'Walk Lagos')
+  assert.equal(withPlace(visit.place.title, { city: 'Lagos', name: null }), 'Visit Lagos on Allworld')
+  assert.equal(visit.headline, 'Visit home from London')
+  // The longest names a description could carry still fit a search result.
+  const long = { city: 'Port Harcourt', name: 'Ajeromi-Ifelodun' }
+  for (const variant of [street, visit]) assert.ok(withPlace(variant.place!.description, long).length <= 155, variant.id)
+  assert.ok(ENTRY_VARIANTS.filter((variant) => variant.secondary.some((action) => action.kind === 'find' && action.label === 'Find my street')).map((variant) => variant.id).join() === 'home,street,visit')
+  const politics = ENTRY_VARIANTS.find((variant) => variant.id === 'politics')
+  assert.deepEqual([politics?.headline, politics?.og], ['Become governor of Lagos this week', '/og/card-election.png'])
+  assert.match(politics?.pitch ?? '', /One-week terms\. Real elections/)
 })
 
 test('the campaign content is the variant name, for the addresses of the entry page only', () => {

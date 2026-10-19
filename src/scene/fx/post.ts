@@ -3,11 +3,14 @@
  * The HIGH tier's one post stack, built once per renderer and fetched only when a high-tier host asks for it (a phone or the
  * wide tier never imports this file):
  *
- *   RenderPass          the scene into a half-float buffer (no MSAA: ambient occlusion and MSAA do not mix, SMAA closes the edges)
+ *   RenderPass          the scene into a half-float buffer with 4x MSAA (hardware edges, no extra code)
  *   N8AOPostPass        ambient occlusion at half resolution in its "Performance" quality: contact shadows under eaves, cars, steps
  *   EffectPass          bloom (only what is brighter than the threshold, so only lamps and signs), tone mapping, the colour grade
  *                       (a 16^3 table made in code, grade.ts) and a gentle vignette, all in one shader
- *   EffectPass          SMAA on the finished picture (edge detection works on what the player sees, not on raw light)
+ *
+ * NO SMAA. Its two lookup images are about 60 kB gzipped inside the lazy chunk, more than every other effect here together, and
+ * MSAA gives the same clean edges on the scene before tone mapping. The depth-aware upsampling of the half-resolution AO keeps its
+ * own edges clean, so the AO needs no screen-space anti-aliasing either.
  *
  * TONE MAPPING. The renderer's own tone mapper is off while a composer draws, so the stack applies the same one the renderer
  * was set up with (src/scene/look.ts: Khronos Neutral by default, ?tm=aces|agx to compare) at exposure 1. The art is
@@ -31,7 +34,6 @@ export interface PostLibs {
   BloomEffect: new (options?: Record<string, unknown>) => unknown
   LUT3DEffect: new (lut: THREE.Texture, options?: Record<string, unknown>) => unknown
   VignetteEffect: new (options?: Record<string, unknown>) => unknown
-  SMAAEffect: new (options?: Record<string, unknown>) => unknown
   ToneMappingEffect: new (options?: Record<string, unknown>) => unknown
   ToneMappingMode: { NEUTRAL: number; ACES_FILMIC: number; AGX: number }
   /** Absent when ambient occlusion is off, so its code is never fetched. */
@@ -58,6 +60,8 @@ export const BLOOM_SETTINGS = Object.freeze({ intensity: 0.45, radius: 0.6, lumi
 export const VIGNETTE_SETTINGS = Object.freeze({ offset: 0.35, darkness: 0.4 });
 /** The frame buffers draw at up to this pixel ratio (the canvas keeps the tier's): a retina screen costs about half the pixels. */
 export const DEFAULT_MAX_RATIO = 1.5;
+/** Hardware multisampling of the scene buffer. */
+export const MSAA_SAMPLES = 4;
 
 export interface PostOptions {
   /** Bloom threshold (linear luminance). */
@@ -93,7 +97,7 @@ function toneModeFor(THREE: ThreeModule, renderer: THREE.WebGLRenderer, modes: P
 export async function loadPostLibs(ao: boolean): Promise<PostLibs> {
   // Destructured in the `then` so the bundler can drop every other export of the library.
   const [pp, n8] = await Promise.all([
-    import('postprocessing').then(({ EffectComposer, RenderPass, EffectPass, BloomEffect, LUT3DEffect, VignetteEffect, SMAAEffect, ToneMappingEffect, ToneMappingMode }) => ({ EffectComposer, RenderPass, EffectPass, BloomEffect, LUT3DEffect, VignetteEffect, SMAAEffect, ToneMappingEffect, ToneMappingMode })),
+    import('postprocessing').then(({ EffectComposer, RenderPass, EffectPass, BloomEffect, LUT3DEffect, VignetteEffect, ToneMappingEffect, ToneMappingMode }) => ({ EffectComposer, RenderPass, EffectPass, BloomEffect, LUT3DEffect, VignetteEffect, ToneMappingEffect, ToneMappingMode })),
     // @ts-ignore n8ao ships no type declarations; what is used from it is described by PostLibs above.
     ao ? import('n8ao').then(({ N8AOPostPass }: { N8AOPostPass: PostLibs['N8AOPostPass'] }) => ({ N8AOPostPass })) : Promise.resolve(null),
   ]);
@@ -103,7 +107,7 @@ export async function loadPostLibs(ao: boolean): Promise<PostLibs> {
 /** Build the stack from libraries already in hand. The passes are added in this order, which a test pins. */
 export function buildPost(THREE: ThreeModule, renderer: THREE.WebGLRenderer, libs: PostLibs, width: number, height: number, options: PostOptions = {}): Post {
   const { threshold = 0.85, grade = { kind: 'clear' as GradeKind, band: 'day' as HourBand }, maxRatio = DEFAULT_MAX_RATIO } = options;
-  const composer = new libs.EffectComposer(renderer, { frameBufferType: THREE.HalfFloatType, multisampling: 0 });
+  const composer = new libs.EffectComposer(renderer, { frameBufferType: THREE.HalfFloatType, multisampling: MSAA_SAMPLES });
   const camera = new THREE.PerspectiveCamera(), scene = new THREE.Scene();
 
   const size = 16;
@@ -132,8 +136,7 @@ export function buildPost(THREE: ThreeModule, renderer: THREE.WebGLRenderer, lib
   const graded = new libs.LUT3DEffect(lut);
   const vignette = new libs.VignetteEffect({ ...VIGNETTE_SETTINGS });
   const grading = new libs.EffectPass(camera, bloom, tone, graded, vignette);
-  const smaa = new libs.EffectPass(camera, new libs.SMAAEffect());
-  composer.addPass(grading); composer.addPass(smaa);
+  composer.addPass(grading);
 
   let sizeKey = '';
   return {
@@ -141,7 +144,7 @@ export function buildPost(THREE: ThreeModule, renderer: THREE.WebGLRenderer, lib
       // postprocessing's passes take the scene and camera as mainScene / mainCamera; n8ao's takes them as scene / camera.
       render.mainScene = view; render.mainCamera = eye;
       if (ao) { ao.scene = view; ao.camera = eye; }
-      grading.mainCamera = eye; smaa.mainCamera = eye;
+      grading.mainCamera = eye;
       composer.render();
     },
     setSize(w, h, ratio) {

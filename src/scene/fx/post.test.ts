@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { AO_SETTINGS, BLOOM_SETTINGS, buildPost, postAoRequested, type PostLibs } from './post.ts'
+import { AO_SETTINGS, BLOOM_SETTINGS, MSAA_SAMPLES, buildPost, postAoRequested, type PostLibs } from './post.ts'
 import type { ThreeModule } from '../types.ts'
 
 // The stack is checked through stand-ins for the libraries (postprocessing needs a real GL context): what is built, in which
@@ -26,7 +26,7 @@ function fakes(log: string[]) {
     EffectComposer: Composer,
     RenderPass: class extends Pass { scene: unknown; camera: unknown; constructor(scene: unknown, camera: unknown) { super('render'); this.scene = scene; this.camera = camera } },
     EffectPass: class extends Pass { camera: unknown; effects: unknown[]; constructor(camera: unknown, ...effects: unknown[]) { super('effects'); this.camera = camera; this.effects = effects } },
-    BloomEffect: effect('bloom'), LUT3DEffect: effect('lut'), VignetteEffect: effect('vignette'), SMAAEffect: effect('smaa'), ToneMappingEffect: effect('tone'),
+    BloomEffect: effect('bloom'), LUT3DEffect: effect('lut'), VignetteEffect: effect('vignette'), ToneMappingEffect: effect('tone'),
     ToneMappingMode: { NEUTRAL: 9, ACES_FILMIC: 7, AGX: 8 },
     N8AOPostPass: class extends Pass {
       configuration = { aoRadius: 0, distanceFalloff: 0, intensity: 0, halfRes: false, depthAwareUpsampling: false }; quality = ''
@@ -49,27 +49,27 @@ const THREE = {
 } as unknown as ThreeModule
 const renderer = (toneMapping = 7) => ({ toneMapping }) as never
 
-test('the passes are added in order: render, ambient occlusion, the grading pass, then SMAA', () => {
+test('the passes are added in order: render, ambient occlusion, then one grading pass', () => {
   const log: string[] = []
   buildPost(THREE, renderer(), fakes(log), 1280, 720, { ao: true })
-  assert.deepEqual(log.filter((l) => l.startsWith('add ')), ['add render', 'add ao', 'add effects', 'add effects'])
-  assert.deepEqual(log.filter((l) => l.startsWith('effect ')), ['effect bloom', 'effect tone', 'effect lut', 'effect vignette', 'effect smaa'])
+  assert.deepEqual(log.filter((l) => l.startsWith('add ')), ['add render', 'add ao', 'add effects'])
+  assert.deepEqual(log.filter((l) => l.startsWith('effect ')), ['effect bloom', 'effect tone', 'effect lut', 'effect vignette'])
 })
 
-test('the frame buffers are half float with no MSAA', () => {
+test('the frame buffers are half float with 4x MSAA', () => {
   const log: string[] = [], libs = fakes(log)
   let made: { options: Record<string, unknown> } | null = null
   const Base = libs.EffectComposer as unknown as new (...a: unknown[]) => { options: Record<string, unknown> }
   libs.EffectComposer = class extends Base { constructor(...a: unknown[]) { super(...a); made = this } } as never
   buildPost(THREE, renderer(), libs, 800, 600)
-  assert.deepEqual(made!.options, { frameBufferType: 1016, multisampling: 0 })
+  assert.deepEqual(made!.options, { frameBufferType: 1016, multisampling: MSAA_SAMPLES })
 })
 
 test('without ao the pass is not built, even if the library was handed in', () => {
   const log: string[] = []
   buildPost(THREE, renderer(), fakes(log), 1280, 720, { ao: false })
   assert.ok(!log.includes('new ao'))
-  assert.deepEqual(log.filter((l) => l.startsWith('add ')), ['add render', 'add effects', 'add effects'])
+  assert.deepEqual(log.filter((l) => l.startsWith('add ')), ['add render', 'add effects'])
 })
 
 test('ao settings reach the pass', () => {

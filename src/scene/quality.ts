@@ -50,7 +50,7 @@ export interface Bloom {
 }
 /**
  * The HIGH tier's post stack (src/scene/fx/post.ts): bloom for the night's lamps and signs (threshold high so only emissive
- * surfaces glow), contact shading, a gentle vignette, SMAA and the climate grade, in one lazy chunk. This keeps its old
+ * surfaces glow), contact shading, a gentle vignette, MSAA and the climate grade, in one lazy chunk. This keeps its old
  * signature: the stack is built here and drawn at up to BLOOM_RATIO.
  */
 export async function createBloom(THREE: ThreeModule, renderer: Renderer, width: number, height: number, threshold = 0.85, grade?: { kind: GradeKind; band: HourBand }): Promise<Bloom> {

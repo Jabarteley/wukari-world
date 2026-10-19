@@ -1,0 +1,12 @@
+✔ semantic masks require known prop, complete UV cell and vertical triangle (1.007375ms)
+✔ actual Batch floor/shell use isolated clone and explicit roles, restore on disposal (3.695209ms)
+✔ shader composes prior hook/cache key, isolates owners and works for both lit material types (1.015791ms)
+✔ real ModelLayer merge masks preserve transforms, arrays and hero exclusion with shared atlas (1.216208ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 95.487875

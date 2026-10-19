@@ -16,6 +16,7 @@ import { useTravelActions } from './useTravelActions.ts'
 import { useCrowd } from './useCrowd.ts'
 import { copyText } from '../../../ui/share.ts'
 import { storyVenueLock } from '../story/storyUi.ts'
+import { STORY_STREET_COVERAGE } from '../../../story/streetWalkCoverage.generated.ts'
 
 const props = defineProps<{ item: TravelDestination }>()
 const { game, shell } = useApp()
@@ -24,6 +25,12 @@ const { travel, pending } = useTravelActions()
 const chosen = computed(() => chosenMode(props.item, mapUi.mode, game.view.value.travel.defaultMode))
 const block = computed(() => goBlock(game.state.value, game.view.value, props.item, chosen.value))
 const storyLock = computed(() => storyVenueLock(game.view.value.story, props.item.id))
+const streetEntry = computed(() => {
+  const story = game.view.value.story
+  if (!story.enabled || story.mode !== 'story' || story.chapter < 3 || story.cityId !== game.cityId.value || props.item.here || !props.item.open) return false
+  const venue = story.venues.find(row => row.id === props.item.id)
+  return venue?.chapter === 3 && !venue.locked && STORY_STREET_COVERAGE.some(city => city.cityId === story.cityId && city.venueIds.includes(props.item.id))
+})
 const chips = computed(() => (mapUi.showAll ? props.item.preview : props.item.preview.slice(0, CHIP_LIMIT)))
 const more = computed(() => props.item.preview.length - chips.value.length)
 const crowd = useCrowd()
@@ -77,9 +84,14 @@ const onAbout = (event: Event): void => { mapUi.aboutOpen = (event.currentTarget
       <p>{{ block.reason }}</p>
       <GoFix v-if="block.fix" :fix="block.fix" look="map-fix" @mode="mapUi.mode = $event" />
     </div>
+    <template v-if="streetEntry">
+      <p class="map-trip">Enter {{ item.label }} through its city-street doorway. Start from your home, step outside, then walk through the estate gate. Already on the city street? Continue walking to its entrance.</p>
+      <button type="button" class="map-go" :disabled="pending !== null" @click="shell.open('neighbourhood')">Enter from the city street <span aria-hidden="true">→</span></button>
+      <p class="map-trip">If walking is unavailable, you can use the timed trip below.</p>
+    </template>
     <button v-if="storyLock" type="button" class="map-go" disabled :aria-label="`Cannot go: ${storyLock}`">Story path locked</button>
     <button v-else-if="block || !chosen" type="button" class="map-go" disabled :aria-label="`Cannot go: ${block?.label || 'unavailable'}`">{{ block ? block.label : '' }}</button>
-    <button v-else type="button" class="map-go" :disabled="pending !== null" @click="go">Go · {{ fareText(chosen) }} <span aria-hidden="true">→</span></button>
+    <button v-else type="button" :class="streetEntry ? 'map-chip-button' : 'map-go'" :disabled="pending !== null" @click="go">{{ streetEntry ? 'Use timed trip instead' : 'Go' }} · {{ fareText(chosen) }} <span aria-hidden="true">→</span></button>
     <button v-if="item.id === 'state-house'" type="button" class="map-chip-button" @click="shell.open('state-house')"><GameIcon inline name="governor" /><span>Who governs? Open the {{ civicOffice(game.view.value.cityId) }}</span></button>
     <button v-else-if="item.id === 'polling-unit'" type="button" class="map-chip-button" @click="shell.open('governor')"><GameIcon inline name="ballot" /><span>Election: candidates, voting and results</span></button>
     <details v-if="item.description || chips.length" class="ui-details map-about" :open="mapUi.aboutOpen" @toggle="onAbout">

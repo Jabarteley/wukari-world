@@ -116,7 +116,7 @@ test('safe signs use existing portable text filter with public contact protectio
 
 test('unknown fields, versions, external URLs, raw colliders and malformed data fail closed', () => {
   const mutations: Array<(r: SceneRecipeV1) => void> = [
-    r => Object.assign(r, { version: 2 }), r => Object.assign(r, { units: 'metres' }),
+    r => Object.assign(r, { version: 3 }), r => Object.assign(r, { units: 'metres' }),
     r => Object.assign(r, { url: 'https://example.com/model.glb' }), r => Object.assign(r, { block: [[0, 0, 1, 1]] }),
     r => Object.assign(r.props[0]!, { footprint: [0, 0, 1, 1] }), r => Object.assign(r.palette, { extra: '#ffffff' }),
     r => Object.assign(r.camera, { bounds: [0, 0, 1, 1] }), r => Object.assign(r.props[0]!, { id: 'unknown-model' }),
@@ -157,7 +157,7 @@ test('city parser validates aggregate UTF-8 bytes, strict wrapper and venue uniq
   const result = parseCityRecipes(json, cityContext);
   assert.equal(result.utf8Bytes, Buffer.byteLength(json)); assert.equal(result.recipes.length, 1);
   assert.throws(() => parseCityRecipes(json + ' '.repeat(RECIPE_LIMITS.cityBytes), cityContext), /UTF-8 byte budget/);
-  assert.throws(() => parseCityRecipes(JSON.stringify({ ...pack(recipe), version: 2 }), cityContext), /unsupported/);
+  assert.throws(() => parseCityRecipes(JSON.stringify({ ...pack(recipe), version: 3 }), cityContext), /unsupported/);
   assert.throws(() => parseCityRecipes(JSON.stringify({ ...pack(recipe), provider: 'remote' }), cityContext), /unknown field/);
   assert.throws(() => parseCityRecipes(JSON.stringify({ ...pack(recipe), recipes: [recipe, recipe] }), cityContext), /duplicate venue/);
   assert.throws(() => parseCityRecipes(json, { ...cityContext, venues: [], hostScenery: {} }), /unknown or duplicate venue/);
@@ -216,4 +216,41 @@ test('host measurements require every exact venue, reject defaults and freeze co
     ...context, venues: [context.venue, { ...context.venue, id: 'second' }], hostScenery: { market: estimate, second: { ...estimate, triangles: 718 } },
   });
   assert.equal(value.recipes[1]!.estimate.triangles - value.recipes[0]!.estimate.triangles, 284);
+});
+
+
+test('V2 sky survives validation while its geometry core is identical to strict V1', () => {
+  const { recipe, context } = fixture();
+  const sky = { horizon: [1, 0.98, 0.95], zenith: [0.94, 0.98, 1] };
+  const v2 = { ...recipe, version: 2, sky, surfaceStyle: 'physical-atlas-v1' };
+  const checked = validateRecipe(v2, context), original = validateRecipe(recipe, context);
+  const { sky: retained, surfaceStyle, ...core } = checked;
+  assert.equal(surfaceStyle, 'physical-atlas-v1'); assert.equal(original.surfaceStyle, undefined);
+  assert.deepEqual(core, original); assert.deepEqual(retained, sky);
+  assert.throws(() => validateRecipe({ ...v2, surfaceStyle: undefined }, context), /surfaceStyle/);
+  assert.throws(() => validateRecipe({ ...v2, surfaceStyle: 'other' }, context), /surface style/);
+  const { surfaceStyle: removed, ...missingStyle } = v2;
+  assert.throws(() => validateRecipe(missingStyle, context), /surfaceStyle/);
+  assert.throws(() => validateRecipe({ ...recipe, surfaceStyle: 'physical-atlas-v1' }, context), /unknown field/);
+  assert.equal(original.sky, undefined); assert.equal(checked.recipe.version, 1);
+  const city = { ...context, venues: [context.venue], hostScenery: { market: context.hostScenery } };
+  assert.deepEqual(parseCityRecipes(JSON.stringify({ ...pack(recipe), version: 2, recipes: [v2] }), city).recipes[0], checked);
+  assert.throws(() => validateRecipe({ ...recipe, sky }, context), /unknown field/);
+  assert.throws(() => validateRecipe({ ...v2, sky: undefined }, context), /sky/);
+  assert.throws(() => parseCityRecipes(JSON.stringify({ ...pack(recipe), recipes: [v2] }), city), /unknown field|version/);
+  assert.throws(() => parseCityRecipes(JSON.stringify({ ...pack(recipe), version: 2 }), city), /missing field|version/);
+  assert.throws(() => parseCityRecipes(JSON.stringify({ ...pack(recipe), version: 3 }), city), /unsupported/);
+});
+
+test('sky rejects out-of-range, nonfinite, ambiguous and additional data without raising byte caps', () => {
+  const { recipe, context } = fixture();
+  const make = (sky: unknown) => ({ ...recipe, version: 2, sky, surfaceStyle: 'physical-atlas-v1' });
+  for (const sky of [null, {}, { horizon: [1, 1], zenith: [1, 1, 1] },
+    { horizon: [0.849, 1, 1], zenith: [1, 1, 1] }, { horizon: [1.001, 1, 1], zenith: [1, 1, 1] },
+    { horizon: [NaN, 1, 1], zenith: [1, 1, 1] }, { horizon: [1, 1, 1], zenith: [1, Infinity, 1] },
+    { horizon: [1, 1, 1], zenith: [1, 1, 1], sun: '#ffffff' }]) assert.throws(() => validateRecipe(make(sky), context));
+  const v2 = make({ horizon: [0.85, 1, 1], zenith: [1, 1, 1] });
+  assert.ok(validateRecipe(v2, context).sky);
+  const text = JSON.stringify({ ...pack(recipe), version: 2, recipes: [v2] });
+  assert.throws(() => parseCityRecipes(text + ' '.repeat(RECIPE_LIMITS.cityBytes), { ...context, venues: [context.venue], hostScenery: { market: context.hostScenery } }), /UTF-8 byte budget/);
 });

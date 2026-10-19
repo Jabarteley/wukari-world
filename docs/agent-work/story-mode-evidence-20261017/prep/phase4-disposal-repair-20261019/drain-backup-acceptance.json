@@ -1,0 +1,66 @@
+{
+  "at": "2026-10-19T04:15:21.182981+00:00",
+  "sourceSha": "8d0c2b29a63934410d84905f176f188af8fb9c91",
+  "pid": 63958,
+  "execSession": 98539,
+  "exitCode": 0,
+  "pidAbsent": true,
+  "port5357ConnectionRefused": 61,
+  "finalSnapshot": "/private/tmp/story-phase4-game-8d0c2b29-gpmuva55/snapshots/story-phase3-bank-qa-000397-shutdown.json",
+  "finalSnapshotSha256": "3179cd77414c5d46901c31ac6422a72a2d6bd564e03b3f128cfd82b84c7ff40a",
+  "sourceIntegrity": {
+    "ok": true
+  },
+  "bindings": {
+    "sourcePinManifestSha256": "3c8bb132aaaeee1336fc1891393ea4021e52d04af4cdd336fe95661bc75c7f29",
+    "sourcePinCount": 15423,
+    "artifactReceiptSha256": "438cc8bdcd969466b86c1fd4a215ac73daa8c6d20e3361ca938ed389a00b5250",
+    "artifactManifestSha256": "ed66fca4f1d77e3f0ed1d095be2a13bc924c61b19f0c72f66e7f7466b74bc71e",
+    "artifactFileCount": 9438
+  },
+  "finalAggregate": {
+    "routerAskInvocations": 0,
+    "routerAskByPurpose": {},
+    "ledgerSuccessfulReplies": 0,
+    "ledgerSpendMicro": 0,
+    "ledgerEstimatedSpendMicro": 0,
+    "routerReservedMicro": 0,
+    "ledgerRefusals": {},
+    "ledgerByPurpose": {}
+  },
+  "finalDelta": {
+    "routerAskInvocations": 0,
+    "routerAskByPurpose": {},
+    "ledgerSuccessfulReplies": 0,
+    "ledgerSpendMicro": 0,
+    "ledgerEstimatedSpendMicro": 0,
+    "routerReservedMicro": 0,
+    "ledgerRefusals": {},
+    "ledgerByPurpose": {}
+  },
+  "backup": "/private/tmp/story-phase4-game-8d0c2b29-gpmuva55/post-shutdown-backup-5c22h11t/data",
+  "backupManifest": "/private/tmp/story-phase4-game-8d0c2b29-gpmuva55/post-shutdown-backup-5c22h11t/manifest.json",
+  "backupManifestSha256": "f9d866cacf0fb74a36d175b817432397f53c335d9816d7a00651826d0a366119",
+  "dataFiles": 10,
+  "dataBytes": 188240,
+  "dataAndCopyClosureEqual": true,
+  "sourceDataModes": "0700 directories/0600 files",
+  "markerPreserved": true,
+  "mixedContrast": {
+    "supportedByFrozenR3": false,
+    "runnerSha256": "e1195ba4aa95680131388dd4fae180d20a9ea912854088de3af932bbc3124086",
+    "guardReferences": [
+      "runner.corrected.mts:132",
+      "runner.corrected.mts:135",
+      "runner.corrected.mts:144",
+      "runner.corrected.mts:147"
+    ],
+    "reason": "One sourceSha must equal actual GitHEAD, source manifest, embedded prepared-DIST receipt and artifact inventory. Immutable95 receipt cannot satisfy current8d source binding. No guards/helpers/95DIST mutated or relabelled; no new source clone or service launch.",
+    "actual95Receipt": "/private/tmp/story-phase3-bank-qa-95a878bd-owa_6ip3/prepared-dist/story-phase2-qa-preparation.json",
+    "actual95ReceiptSha256": "802488fc62162130f8cb3ad5518dc5509426da996786f9ac0dadc3c3dafe2e31",
+    "actual95SourceSha": "95a878bdea878e2ab7c29eb09ee053e6ef4be52a",
+    "next": "Parent decides whether a different explicitly scoped contrast workflow is warranted; no automatic expansion."
+  },
+  "privatePatchApplied": false,
+  "sourceGitBrowserProviderActions": false
+}

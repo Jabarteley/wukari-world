@@ -1,0 +1,5 @@
+
+> joinallworld@0.1.0 scenes:build
+> node --max-old-space-size=512 --experimental-strip-types scripts/scene-factory/scenes.ts build
+
+{"command":"build","planned":1436,"written":285,"deleted":0,"unchanged":1151,"manifestSha256":"a06875cf174cdcf0b8e8570d07c878e7b7ecaf02fe0c8e00405b1a421dc8d67a"}

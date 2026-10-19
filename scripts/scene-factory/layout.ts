@@ -1,9 +1,17 @@
 import { createHash } from 'node:crypto';
+import { RETAINED_LAYOUT_SEEDS } from './layout-seeds.ts';
 import { METRES_TO_SCENE, RECIPE_LIMITS, isRecipeSignText, parseCityRecipes, parseHostSceneryByVenue, validateRecipe } from '../../src/scene/recipe/contract.ts';
-import type { CityRecipesV1, MeasuredPart, RecipeAssets, CityRecipeContext, RecipeProp, RegionId, SceneRecipeV1, HostSceneryByVenue, SignTextFilter, ValidatedRecipe } from '../../src/scene/recipe/contract.ts';
+import type { CityRecipesV2, RecipeSky, MeasuredPart, RecipeAssets, CityRecipeContext, RecipeProp, RegionId, SceneRecipeV1, HostSceneryByVenue, SignTextFilter, ValidatedRecipe } from '../../src/scene/recipe/contract.ts';
 import { createWalkGrid } from '../../src/scene/walk-grid.ts';
 import type { SceneVenue } from '../../src/scene/types.ts';
 import type { CityBriefV1, CityBriefVenueV1 } from './facts.ts';
+
+/** Explicit art direction, independent of city latitude, atlas colors and weather. Indoor/club grading is neutral. */
+export function factoryRecipeSky(mood: SceneRecipeV1['mood']): RecipeSky {
+  return mood === 'outdoor'
+    ? { horizon: [1, 0.98, 0.95], zenith: [0.94, 0.98, 1] }
+    : { horizon: [1, 1, 1], zenith: [1, 1, 1] };
+}
 
 type Palette = SceneRecipeV1['palette'];
 type Profile = 'market' | 'park' | 'transit' | 'meal' | 'civic';
@@ -58,6 +66,15 @@ const COMPOSITIONS: Record<Profile, Composition> = {
   civic: { w: 25, d: 21, propWidth: 4.4, propDepth: 4.2, anchors: [[-.30, -.24, .1], [-.35, -.02, Math.PI / 2], [-.28, .17, -.1], [.30, -.24, -.1], [.35, -.02, -Math.PI / 2], [.28, .17, .1]] },
 };
 const digest = (value: string): Buffer => createHash('sha256').update(value).digest();
+
+/** Layout art remains stable across provenance-only changes; semantic revisions get a fresh deterministic seed. */
+export function layoutSeed(brief: CityBriefV1): { kind: 'retained-v1' | 'semantic-v1'; contentSha256: string; seedSha256: string } {
+  const contentSha256 = brief.digests.contentSha256, retained = RETAINED_LAYOUT_SEEDS[brief.city.id];
+  return retained?.contentSha256 === contentSha256
+    ? { kind: 'retained-v1', contentSha256, seedSha256: retained.seedSha256 }
+    : { kind: 'semantic-v1', contentSha256, seedSha256: digest(`allworld-layout-seed-v1/${brief.city.id}/${contentSha256}`).toString('hex') };
+}
+
 const rounded = (n: number): number => Math.round(n * 1e6) / 1e6;
 function tint(hex: string, delta: number): string {
   return '#' + [1, 3, 5].map(at => Math.max(0, Math.min(255, Number.parseInt(hex.slice(at, at + 2), 16) + delta)).toString(16).padStart(2, '0')).join('');
@@ -155,7 +172,7 @@ export function draftVenueRecipe(venue: CityBriefVenueV1, input: LayoutInput): S
   const city = input.brief.city.id, region = input.brief.style.region;
   if (input.assets.kit.id !== region) throw new Error('Kit does not match the explicitly selected art palette');
   if (input.heroVenueId !== undefined && !input.brief.targetVenueIds.includes(input.heroVenueId)) throw new Error('Hero venue must be a recipe target');
-  const seed = digest(`${city}/${venue.id}/${input.brief.digests.inputSha256}`), palette = paletteOf(region, seed);
+  const seed = digest(`${city}/${venue.id}/${layoutSeed(input.brief).seedSha256}`), palette = paletteOf(region, seed);
   const profile = profileOf(venue), composition = COMPOSITIONS[profile], spotPlan = spotLayout(venue, seed);
   const heroBackBand = input.heroVenueId === venue.id ? 18 - 2 * Math.min(0, ...spotPlan.spots.map(spot => spot.z)) : 0;
   const budget = RECIPE_LIMITS.meshes - hostScenery.meshes - 1 - 1 - (input.heroVenueId === venue.id ? 1 : 0);
@@ -223,10 +240,13 @@ export function draftVenueRecipe(venue: CityBriefVenueV1, input: LayoutInput): S
   throw new Error(`Exhausted bounded layout candidates for ${city}/${venue.id}${reason}`);
 }
 
-export function draftCityRecipes(input: LayoutInput): CityRecipesV1 {
+export function draftCityRecipes(input: LayoutInput): CityRecipesV2 {
   parseHostSceneryByVenue(input.hostScenery, input.brief.targetVenueIds);
   const targets = input.brief.venues.filter(venue => venue.scene.disposition === 'target-recipe');
-  const pack: CityRecipesV1 = { schema: 'allworld-city-scenes', version: 1, city: input.brief.city.id, recipes: targets.map(venue => draftVenueRecipe(venue, input)) };
+  const pack: CityRecipesV2 = { schema: 'allworld-city-scenes', version: 2, city: input.brief.city.id, recipes: targets.map(venue => {
+    const core = draftVenueRecipe(venue, input);
+    return { ...core, version: 2, sky: factoryRecipeSky(core.mood), surfaceStyle: 'physical-atlas-v1' };
+  }) };
   const context: CityRecipeContext = { city: pack.city, assets: input.assets, screenText: input.screenText, hostScenery: input.hostScenery, venues: targets.map(venueForRecipe) };
   parseCityRecipes(JSON.stringify(pack), context);
   return pack;

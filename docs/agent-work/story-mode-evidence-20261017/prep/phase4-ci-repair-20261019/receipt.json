@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-19T03:06:21.126812+00:00",
+  "beforeCommit": "736d9eeb5a25e3cde35468486488b15009c0e867",
+  "serviceSha256": "7bb537f4f57c30ea43637732f2156885e4cb04248dc31e4348507e57dbb9c361",
+  "streetTestSha256": "a489581275ba7d43f23af2ae6a663824db9be0338df83db93d4902e26a9fa18e",
+  "existingChecks": {
+    "feedLocated": {
+      "pass": 2,
+      "fail": 0
+    },
+    "streetWalk": {
+      "pass": 4,
+      "fail": 0
+    }
+  },
+  "realHttpCoverProbe": {
+    "pass": 1,
+    "fail": 0,
+    "receiptSha256": "ba89096dc6f09c0c441ab787f1a99b0a9904960a88ef1e96c419a03d708f7966",
+    "preserves": "same pending record, same bytes, no refusal crew/counter/sequence mutation, ordinary badge then one cover attachment"
+  },
+  "resourceCleanup": {
+    "probePidAbsent": true,
+    "loopbackPortRefuses": true
+  },
+  "canonicalOutputs": "unchanged and source paths outside declared provenance",
+  "sourceHygiene": "Evidence hook renamed byte-identically .mjs to .mjs.txt; no policy/test whitelist change",
+  "failedHarnessAttempts": "Preserved under /tmp/feed-cover-regression-20261019-wBgtLY; none counted as passes",
+  "directExecutionReason": "One small cleanup after bounded worker handoff; parent removed stale fake-store references and verified the real file store."
+}

@@ -1,0 +1,2407 @@
+{
+  "source": "4631de32e5e784f79104d3a30670831f77e6de2c",
+  "release": "39188617351",
+  "scope": "static anonymous public UI only; backend identity unresolved",
+  "healthBefore": {
+    "ok": true,
+    "build": "joinallworld-d87b4d89fdfa721f114a0d24168",
+    "relay": true,
+    "companionAi": true,
+    "serverTime": 1792376636265,
+    "transport": "cloudflare",
+    "buildId": "joinallworld-d87b4d89fdfa721f114a0d24168"
+  },
+  "healthAfter": {
+    "ok": true,
+    "build": "joinallworld-d87b4d89fdfa721f114a0d24168",
+    "relay": true,
+    "companionAi": true,
+    "serverTime": 1792376704147,
+    "transport": "cloudflare",
+    "buildId": "joinallworld-d87b4d89fdfa721f114a0d24168"
+  },
+  "talkIndex": {
+    "sha256": "b861ccc39444f1dee4e7cda2c33a6db1b961ca8f0e6c4534b86457ade8a0ac16",
+    "bytes": 64870,
+    "expectedSha256": "b861ccc39444f1dee4e7cda2c33a6db1b961ca8f0e6c4534b86457ade8a0ac16"
+  },
+  "journey": [
+    "https://joinallworld.com/",
+    "https://joinallworld.com/county/",
+    "https://joinallworld.com/cities?country=gh",
+    "https://joinallworld.com/cities/scenes?city=accra",
+    "https://joinallworld.com/cities/scenes?city=accra&venue=accra-market-game"
+  ],
+  "views": [
+    {
+      "name": "landing-390",
+      "url": "https://joinallworld.com/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "canvas": []
+    },
+    {
+      "name": "landing-320",
+      "url": "https://joinallworld.com/",
+      "width": 320,
+      "height": 844,
+      "scrollWidth": 320,
+      "canvas": []
+    },
+    {
+      "name": "creator-320",
+      "url": "https://joinallworld.com/",
+      "width": 320,
+      "height": 844,
+      "scrollWidth": 320,
+      "canvas": [
+        {
+          "width": 320,
+          "height": 304,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "creator-390",
+      "url": "https://joinallworld.com/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "canvas": [
+        {
+          "width": 320,
+          "height": 304,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "creator-native-390",
+      "url": "https://joinallworld.com/",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "canvas": [
+        {
+          "width": 390,
+          "height": 304,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "creator-native-320",
+      "url": "https://joinallworld.com/",
+      "width": 320,
+      "height": 844,
+      "scrollWidth": 320,
+      "canvas": [
+        {
+          "width": 320,
+          "height": 304,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "makola-scene-320",
+      "url": "https://joinallworld.com/cities/scenes?city=accra&venue=accra-market-game",
+      "width": 320,
+      "height": 844,
+      "scrollWidth": 320,
+      "canvas": [
+        {
+          "width": 286,
+          "height": 348,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "makola-scene-390",
+      "url": "https://joinallworld.com/cities/scenes?city=accra&venue=accra-market-game",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "canvas": [
+        {
+          "width": 286,
+          "height": 348,
+          "visible": true
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "type": "console-error",
+      "message": "Failed to load resource: the server responded with a status of 401 ()"
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://joinallworld.com/",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/preload-helper-86ad5cf.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/app-c4c0a00.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/vue-068b552.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/app-1053440.css",
+      "status": 200
+    },
+    {
+      "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/icons/world-loader.webp",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/icons/loading-neighbours.webp",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/BonusLine-daec22f.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/shell-kit-899ad37.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/native-recipe-d6520d9.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/engine-25fa2f0.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/accountEntry-2aa9fc3.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/QuickStartApp-a4413b6.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/icons/favicon-32.png",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/cdn-cgi/rum?",
+      "status": 204
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-lagos-rules-6b1e337.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/QuickStartApp-6c3548b.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-lagos-regulars-47f87d0.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-lagos-venues-da51763.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/useAccountLite-53e5629.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/achievements-714c48b.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/native-catalog-3d4b1ef.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/accountEntry-0520445.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/BonusLine-343585d.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-lagos-content-6dc862b.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/entryModel-18ae181.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/rules-710e846.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/entry-variants-d9a7b2f.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/shell-kit-3b31df7.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/accountOpen-67fa19a.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/quickStartModel-13e1310.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/app-6cbf3ed.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/bonusStore-c8a6af4.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/shareInvite-d04f352.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/controls-89b08fa.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/touchOfferModel-036b913.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/agentCallState-eabd126.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/shownOnce-3a38def.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/startApp-67569ba.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/callsLoader-51c28c5.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/startApp-25d3fbc.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/attribution-5dd5176.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/attribution-951e69d.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/api/session",
+      "status": 401
+    },
+    {
+      "url": "https://joinallworld.com/assets/SheetBody-9c37911.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/SheetBody-1d75c87.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/api/growth/source",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/api/account",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/api/world/pulse/online",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/icons/entry-tall.webp",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/api/world/bonus",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/companionState-c998560.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/companionLoader-1ba0d1f.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/money-feed-3e4aaff.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/worldFeed-2d6978a.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/feedCredits-32c99ec.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/api/world/feed?id=lagos",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/api/health",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/talk-banks/index.json",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/lookState-9c662ba.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/lookPreview-4115db6.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-index-84fc1e8.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/routines-b06c279.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/conditions-2f066a4.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/types-df6b324.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/settings-ca4f90d.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/told-9fd0ce1.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-network-54449c6.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/audio-ee87132.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/look-30dc6db.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/kit-e2d8336.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/characters-7d10435.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/LookEditor-4c62ba2.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/world-b350674.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/HouseArt-8c980d2.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/levels-360245f.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/look-ui-5c23f76.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/avatar-preview-38749ff.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/CreatorApp-eadddf7.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/CreatorApp-9b7f22e.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/three-e09bfc1.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/house-style-51f3beb.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/lookModel-baaa509.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/paths-1db1a73.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/worldModel-482ceb6.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/CreatorApp.vue_vue_type_script_setup_true_lang-b968217.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/lgaCardModel-d99a408.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/cityPack-decdcb8.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/HouseArt-3c25c0d.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/worldContent-11fca42.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/icons/favicon-32.png",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/LookEditor-99fc3f7.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/canonical-crowd-ccd592b.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/native-body-2545f51.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/quality-762be4e.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/final-pass-20261015/catalog.json",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/candidates/iteration2-upper-palm.glb",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/RoomEnvironment-6007bfc.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/candidates/motion-iteration2-upper-palm.json",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round2/male/hair/short02.glb",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/eyes/brown.jpg",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round2/male/textures/skin-medium.jpg",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round2/male/shoes/shoes01.glb",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round4/male/base.glb",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round4/male/garments/male-worksuit-01.glb",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/6b0dadc9-b2a2-4b12-b13e-8ff389758136",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/fc8c1c70-f6d6-4e8e-bfa3-8cde82b2304b",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/b818ab07-d1d1-40fa-ac5c-130c61ded978",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/8e78dbde-f478-4be1-ab8c-5fbf8f551d57",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/259c1b57-67dd-4c79-a238-3ee61883c2bf",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/1149d469-4a56-4ac8-a017-b85e90f6a7bc",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/b6d88510-7ac8-41fe-a96b-de2e283a1e8b",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/idlePreload-759ae53.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/startExtras-db31405.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/client-1d7a538.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-core-3e9c1b8.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/chatter-5c04d82.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/moments-0e6c550.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/conditions-pack-6731f88.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/dilemmas-6dfaa75.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/gate-a1d887f.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/index-05b9175.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/CommunityHost-4b79c0f.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/emit-7be17cb.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/AppArtwork.vue_vue_type_script_setup_true_lang-ec8b249.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/HelpBody-8475d5e.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/wallpapers-8653aca.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/HelpBody-70c3dcf.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/openCities-c6886e6.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/PhoneDevice-8349af3.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/wallpapers-409fe9b.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/tourWorld-6fc7ca8.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/PhoneDevice-d5267c1.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/map-ac1e55a.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/LazyList-bae97f3.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/levelMenu-d1b9a3f.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/MapApp-fb0f592.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/travelModel-a941977.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/LazyList-2561326.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/useCivic-3d76afb.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/civicModel-9a94512.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/share-model-60c9f07.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/share-61082ce.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/SkipTrip.vue_vue_type_script_setup_true_lang-354ec58.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/travelBoundary-740bae4.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/act-f5c34d9.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/atlasMetadata-f9ef4e0.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/storyUi-fd01961.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/travelMapState-495bcd2.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/TextField-5b18edc.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/JobsApp-547d88d.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/HowItWorks-a72851d.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/JobsApp-af20280.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/TextField-cadc2cf.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/jobsModel-6179ed6.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/HowItWorks-98ee4b6.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/section-7a6485a.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/GroceriesApp-8284ead.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/GroceriesApp-1a5dcc1.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/buy-c6adbba.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/home-zones-228fa94.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/furniture-blurbs-1e57066.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/home-plan-ddc0e59.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/BuyMode-63c5aed.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/homeScene-9d4144c.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/SettleNotice-349c8c7.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/LookStage-0c7d647.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/BoutiqueApp-3998202.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/BoutiqueApp-2f8e4f7.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/LookStage-6f226fa.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/SettleNotice-81a8d5d.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/settleModel-d957c05.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/runtime-host-0261146.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/dynamic-import-helper-036760a.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/gltf-source-0deb955.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-recipes-896336e.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-models-c8d31bc.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/recipe-city-ota-2b0d1c2.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-factory/kits/yoruba-southwest-760ca364fc233d764bb61c4e4f5f4d32c94ed70ea42180a73febb9c11fbca398.glb",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-factory/heroes/ota-fe874952428cd5b6265944c938cf74ece9625f0e276388676fcbebc85cbce28d.glb",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/recipe-city-sagamu-f4f64fc.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-factory/heroes/sagamu-4188ff54f4231dc20a18e0ed376991d54b42155d87bf3aa4c1bebc74ad782fcc.glb",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/recipe-city-ijebu-ode-3e338a9.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-factory/heroes/ijebu-ode-a9ca2f8373ca994c0f6e12f2f3751e205d893ab7f6d81b47fc1b36345dd0837c.glb",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/county",
+      "status": 307
+    },
+    {
+      "url": "https://joinallworld.com/county/",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/preload-helper-86ad5cf.js",
+      "status": 200
+    },
+    {
+      "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/main-66804e1.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/main-2e51dc3.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/engine-25fa2f0.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/vue-068b552.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/native-recipe-d6520d9.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-network-54449c6.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/cdn-cgi/rum?",
+      "status": 204
+    },
+    {
+      "url": "https://joinallworld.com/assets/data-94cdbe3.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-index-84fc1e8.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/cdn-cgi/rum?",
+      "status": 204
+    },
+    {
+      "url": "https://joinallworld.com/cdn-cgi/rum?",
+      "status": 204
+    },
+    {
+      "url": "https://joinallworld.com/cdn-cgi/rum?",
+      "status": 204
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-accra-rules-ac0a5ae.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/cdn-cgi/rum?",
+      "status": 204
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-accra-facts-7ff19cc.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/rules-7dbf06c.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-africa-types-0a59aa8.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-africa-module-de67728.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-accra-places-05979f6.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-content-builder-e413ff8.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-africa-contentBuilder-def7db4.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-accra-content-12b17f3.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/price-levels-data-216ddaf.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/kit-e2d8336.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/three-e09bfc1.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/native-body-2545f51.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/rules-710e846.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/characters-7d10435.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/look-30dc6db.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/canonical-crowd-ccd592b.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-core-3e9c1b8.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/conditions-2f066a4.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/routines-b06c279.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/neighbourhood-space-f5cfcb6.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/world-adapter-72f62e9.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/controls-2556ecd.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-places-9f40ede.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/inputMode-8cbdca9.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-scenes-f324ae0.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/gesture-cf73db6.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/controls-52a30be.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/shader-warmup-b34f5c9.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/cdn-cgi/rum?",
+      "status": 204
+    },
+    {
+      "url": "https://joinallworld.com/cdn-cgi/rum?",
+      "status": 204
+    },
+    {
+      "url": "https://joinallworld.com/assets/renderer-def3c04.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/venues-campus-293ebc3.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-recipes-896336e.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/dynamic-import-helper-036760a.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/runtime-host-0261146.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-models-c8d31bc.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/gltf-source-0deb955.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/app-6cbf3ed.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/achievements-714c48b.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/shell-kit-3b31df7.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/shell-kit-899ad37.css",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/recipe-city-accra-9d0d5ea.js",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-factory/kits/gulf-guinea-a1d8e205700feccbed0a08f03b4cfdab8293b23fa3c8eb30bff477a00375e20d.glb",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/meshopt_decoder.module-63d403c.js",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/96c83ead-a13d-436f-90cd-76ebc6879950",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-factory/heroes/accra-963572c102fe770373c28f406a019302410c0b6e0051d69808371dc08b802de0.glb",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/51fae2cf-5213-4ec7-b4e7-09ce73d4774c",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/final-pass-20261015/catalog.json",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/candidates/iteration2-upper-palm.glb",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/candidates/motion-iteration2-upper-palm.json",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/eyes/brown.jpg",
+      "status": 304
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round2/female/shoes/shoes01.glb",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round2/female/hair/short01.glb",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round4/female/base.glb",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round4/female/garments/female-casual-01.glb",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/eacd26bd-b6a2-44b4-9c4d-abbc70a32a1b",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/9912b475-9332-4eef-ac49-3ddacb9bce8e",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/d4a424e4-cfcd-4f4f-a9b0-b5f23b37c7c7",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/095d053a-24ff-4213-929f-442484355e94",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/a1cadcec-0efb-4654-8f90-7609a33d8be0",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/8915dd2d-b2a3-44cc-a7d8-a86e0db6b152",
+      "status": 200
+    },
+    {
+      "url": "blob:https://joinallworld.com/bffac6be-17e7-4672-8ff8-efede8be44df",
+      "status": 200
+    },
+    {
+      "url": "https://joinallworld.com/api/health",
+      "status": 200
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://joinallworld.com/assets/preload-helper-86ad5cf.js",
+      "status": 200,
+      "bytes": 1260,
+      "sha256": "f89e939f4dc92fd3b8e17cf77dbfd48afc960cde72299d5c88aa866dc478ddff"
+    },
+    {
+      "url": "https://joinallworld.com/assets/app-c4c0a00.js",
+      "status": 200,
+      "bytes": 6003,
+      "sha256": "4430aa02e2884775b000076c586316b6e9377e1935deb1d5dd8eddc0c269b545"
+    },
+    {
+      "url": "https://joinallworld.com/assets/vue-068b552.js",
+      "status": 200,
+      "bytes": 83136,
+      "sha256": "15bed5bf45b464fd78c3145086033e82df4c9fe8688502be3d19d573aab28d2a"
+    },
+    {
+      "url": "https://joinallworld.com/icons/world-loader.webp",
+      "status": 200,
+      "bytes": 3032,
+      "sha256": "1a50438983a0c1ec20fa596e2a345e9dd4092fdff2636f08182b4d5ef4d56004"
+    },
+    {
+      "url": "https://joinallworld.com/assets/native-recipe-d6520d9.js",
+      "status": 200,
+      "bytes": 4834,
+      "sha256": "a31e3f7ea91c0e0dfc1a2c3e0bf95f1c9fb6264d7f6f9b7c3b21a76b7bee7a2f"
+    },
+    {
+      "url": "https://joinallworld.com/icons/loading-neighbours.webp",
+      "status": 200,
+      "bytes": 42758,
+      "sha256": "f80e8217d56c3f21df16774535c0e0e6681c3477335f5095e82591067fbc3d0c"
+    },
+    {
+      "url": "https://joinallworld.com/assets/engine-25fa2f0.js",
+      "status": 200,
+      "bytes": 249998,
+      "sha256": "4ffe55bc1df06cb8d6dd26c4421d5db429f52f0b511fb92f7750f811c7fcf511"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-lagos-rules-6b1e337.js",
+      "status": 200,
+      "bytes": 3508,
+      "sha256": "6c28261a0f74983f6124fbb0c81be47c9efc7b6b40baa86c1c85f3af080bba49"
+    },
+    {
+      "url": "https://joinallworld.com/icons/favicon-32.png",
+      "status": 200,
+      "bytes": 1332,
+      "sha256": "6665cbdc4dbfbdc8addece46610e6e2aaa37d4abe4b2dffc7341be42901d67b5"
+    },
+    {
+      "url": "https://joinallworld.com/assets/QuickStartApp-6c3548b.js",
+      "status": 200,
+      "bytes": 12610,
+      "sha256": "0a1f9f076a104ba319c749e1a15824ce1e51a405f9f9ac209c608a543b33537c"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-lagos-regulars-47f87d0.js",
+      "status": 200,
+      "bytes": 9010,
+      "sha256": "e325fb9c06e30a69fc9d1a6d25f1625d0bb83b094d53471710542b679611b58a"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-lagos-venues-da51763.js",
+      "status": 200,
+      "bytes": 48802,
+      "sha256": "7419a123001460e35e4d5d8642fe2198eba7d0503cee70b2ea5358194abf9417"
+    },
+    {
+      "url": "https://joinallworld.com/assets/useAccountLite-53e5629.js",
+      "status": 200,
+      "bytes": 176,
+      "sha256": "0f2ba446643acaa23650cda6b87355d0f954c4a1d78e5f67179384a7b24b5b1a"
+    },
+    {
+      "url": "https://joinallworld.com/assets/achievements-714c48b.js",
+      "status": 200,
+      "bytes": 165,
+      "sha256": "95023c3455297fce624698b05bd8aaf3ea7182fd4a442c4e55a355685d7022c5"
+    },
+    {
+      "url": "https://joinallworld.com/assets/native-catalog-3d4b1ef.js",
+      "status": 200,
+      "bytes": 3165,
+      "sha256": "c19f1dd4b9526e4c20265f783f60637371b2eb63754f0a4f553d31916699d623"
+    },
+    {
+      "url": "https://joinallworld.com/assets/accountEntry-0520445.js",
+      "status": 200,
+      "bytes": 1426,
+      "sha256": "ac9e9fd7b6bc6b834ae1e97b10b44a3361df428edb0b6be4434b1bba2c767ce3"
+    },
+    {
+      "url": "https://joinallworld.com/assets/BonusLine-343585d.js",
+      "status": 200,
+      "bytes": 447,
+      "sha256": "a1b0ae6d889a717826dfb520f37ba58372edfed7c93b88b58b8353fa2fa8c24b"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-lagos-content-6dc862b.js",
+      "status": 200,
+      "bytes": 3514,
+      "sha256": "be7b2256e3cfdab2e6c816863e3e961114a47c61da628496e7b1657a01c65f68"
+    },
+    {
+      "url": "https://joinallworld.com/assets/entryModel-18ae181.js",
+      "status": 200,
+      "bytes": 1890,
+      "sha256": "79ca2bbb538798de9c3b1232b2c1620a9dadf3cc51bc826f96b057305fcbc1df"
+    },
+    {
+      "url": "https://joinallworld.com/assets/rules-710e846.js",
+      "status": 200,
+      "bytes": 6038,
+      "sha256": "51230ce629fba1c583124806b58bde8a29611a1ede48edc4157e13c69f2f647e"
+    },
+    {
+      "url": "https://joinallworld.com/assets/entry-variants-d9a7b2f.js",
+      "status": 200,
+      "bytes": 4968,
+      "sha256": "af17f73bf3715f04075d649ed41b0a88d1c35963e25fb1d4b0105adc91319fee"
+    },
+    {
+      "url": "https://joinallworld.com/assets/shell-kit-3b31df7.js",
+      "status": 200,
+      "bytes": 26315,
+      "sha256": "4a2a1a6a10bf7dd91f8f5392a924a7f25ec70221fb87471bf19c68c5e575aafe"
+    },
+    {
+      "url": "https://joinallworld.com/assets/accountOpen-67fa19a.js",
+      "status": 200,
+      "bytes": 357,
+      "sha256": "87f4b8c76823c5329355c1066477c242a6a4230775c135d5f695d79b24982905"
+    },
+    {
+      "url": "https://joinallworld.com/assets/quickStartModel-13e1310.js",
+      "status": 200,
+      "bytes": 6223,
+      "sha256": "ef7ddc50f6af3e1fd677a2b2f466dcfb75088e6e246202660e9fef0f3cff31f6"
+    },
+    {
+      "url": "https://joinallworld.com/assets/app-6cbf3ed.js",
+      "status": 200,
+      "bytes": 104990,
+      "sha256": "aa6fe676ed53d05f6099d6f3fe219347cc0b8cc285405161f61118b09ded1ce0"
+    },
+    {
+      "url": "https://joinallworld.com/assets/bonusStore-c8a6af4.js",
+      "status": 200,
+      "bytes": 1417,
+      "sha256": "163a4d7dd3c91224172671c74690bf3ab1dfecb335a4688652161cda7e5ed669"
+    },
+    {
+      "url": "https://joinallworld.com/assets/shareInvite-d04f352.js",
+      "status": 200,
+      "bytes": 927,
+      "sha256": "60f6339bc70601680686a026089c56f0ef35390ce9c74383dcb373c5977de4ce"
+    },
+    {
+      "url": "https://joinallworld.com/assets/touchOfferModel-036b913.js",
+      "status": 200,
+      "bytes": 436,
+      "sha256": "1314834958d6d945fa2b2832f5bdb75a6b78136763b653ae484552a36097c566"
+    },
+    {
+      "url": "https://joinallworld.com/assets/agentCallState-eabd126.js",
+      "status": 200,
+      "bytes": 190,
+      "sha256": "3341176da9f77b0d6a824ea195fde8437feab182333d700a6e9fae051e07f9ce"
+    },
+    {
+      "url": "https://joinallworld.com/assets/shownOnce-3a38def.js",
+      "status": 200,
+      "bytes": 136,
+      "sha256": "3a5760c6f75aa43a6b2667468b967f072e1311e7495b99bc1278368bb51e008e"
+    },
+    {
+      "url": "https://joinallworld.com/assets/startApp-67569ba.js",
+      "status": 200,
+      "bytes": 65652,
+      "sha256": "d96a137c213c3fb51625e2dc92749f6d22772f3a68775b786aa0d8b1fb08dd29"
+    },
+    {
+      "url": "https://joinallworld.com/assets/callsLoader-51c28c5.js",
+      "status": 200,
+      "bytes": 2244,
+      "sha256": "d90939c5dcb736f10b807cdb77cebdad41266ddf3c3b2eb67bfc1c81048cd65d"
+    },
+    {
+      "url": "https://joinallworld.com/assets/attribution-5dd5176.js",
+      "status": 200,
+      "bytes": 784,
+      "sha256": "09d9be98590aaeb3c701cf0188154657e4d8daaa9b18e980322130cf51cab27f"
+    },
+    {
+      "url": "https://joinallworld.com/assets/attribution-951e69d.js",
+      "status": 200,
+      "bytes": 335,
+      "sha256": "2ef683f750fd56aa256c9b18e6503c4bfa6f259df25202b87326da21092bccf0"
+    },
+    {
+      "url": "https://joinallworld.com/assets/SheetBody-9c37911.js",
+      "status": 200,
+      "bytes": 4106,
+      "sha256": "0266b431f9e10ebe8119bb9f699951e997520d83ae2a436426290f6198961163"
+    },
+    {
+      "url": "https://joinallworld.com/icons/entry-tall.webp",
+      "status": 200,
+      "bytes": 36652,
+      "sha256": "bec69bc3b33cab7a0b8a47deaf365f83b891de17386ac53eae91eb4855bfb8b8"
+    },
+    {
+      "url": "https://joinallworld.com/assets/companionState-c998560.js",
+      "status": 200,
+      "bytes": 90,
+      "sha256": "64be75243678f9dc86d48fb961a4f6ae861886e9a496c0eea87595bed570b576"
+    },
+    {
+      "url": "https://joinallworld.com/assets/companionLoader-1ba0d1f.js",
+      "status": 200,
+      "bytes": 1099,
+      "sha256": "2aa6f5e808e08bd7b16cc55d21009f66f04000b0940ca97c081495045f820c7f"
+    },
+    {
+      "url": "https://joinallworld.com/assets/money-feed-3e4aaff.js",
+      "status": 200,
+      "bytes": 920,
+      "sha256": "a0f2852abbe0727f700c0122c2e7d0b7ce402c0432e7264fa90db3e85358b2dc"
+    },
+    {
+      "url": "https://joinallworld.com/assets/worldFeed-2d6978a.js",
+      "status": 200,
+      "bytes": 3680,
+      "sha256": "1e90a1589c1f29e2b4e81e76b84516ba4a511b9176fa73b9838a459b01261578"
+    },
+    {
+      "url": "https://joinallworld.com/assets/feedCredits-32c99ec.js",
+      "status": 200,
+      "bytes": 576,
+      "sha256": "252d6e7b96a90fc96eb11de2a8ab4c90ff3b629f72b54b96376245cd4e387289"
+    },
+    {
+      "url": "https://joinallworld.com/assets/talk-banks/index.json",
+      "status": 200,
+      "bytes": 64870,
+      "sha256": "b861ccc39444f1dee4e7cda2c33a6db1b961ca8f0e6c4534b86457ade8a0ac16"
+    },
+    {
+      "url": "https://joinallworld.com/assets/lookState-9c662ba.js",
+      "status": 200,
+      "bytes": 301,
+      "sha256": "b36c3d3c1c2e36348662dc751d06ba49cf81bc0a53c5522e7137ff95cf1a7efc"
+    },
+    {
+      "url": "https://joinallworld.com/assets/lookPreview-4115db6.js",
+      "status": 200,
+      "bytes": 1853,
+      "sha256": "5c00968aaac75a811aadc5de476a810abcf9b0caf76f6cdf83072fe544262044"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-index-84fc1e8.js",
+      "status": 200,
+      "bytes": 9723,
+      "sha256": "df60f453c9fd037b680503e5313fefa90d30507b66a2a2ce8fe8a0777bc1fe93"
+    },
+    {
+      "url": "https://joinallworld.com/assets/routines-b06c279.js",
+      "status": 200,
+      "bytes": 12894,
+      "sha256": "7c46f9e22cfca76f016dc310f8835a5c1d85f5ec75cd1c39a65eeaedb33e73a2"
+    },
+    {
+      "url": "https://joinallworld.com/assets/conditions-2f066a4.js",
+      "status": 200,
+      "bytes": 3704,
+      "sha256": "307dd025a0378dcfaf1cdfc91f42b4941dfee85377b09a32e6d5295f996862c7"
+    },
+    {
+      "url": "https://joinallworld.com/assets/types-df6b324.js",
+      "status": 200,
+      "bytes": 89,
+      "sha256": "2de756ce15038f5695c5489a4f9a2f614e66dfec3e4b74ca28d33c10b7ab8abd"
+    },
+    {
+      "url": "https://joinallworld.com/assets/settings-ca4f90d.js",
+      "status": 200,
+      "bytes": 897,
+      "sha256": "7111490dad8fec30901e91fd7a6fe2eb5ca06481ab3cbc9cb1c1ca16c39f0b04"
+    },
+    {
+      "url": "https://joinallworld.com/assets/told-9fd0ce1.js",
+      "status": 200,
+      "bytes": 16518,
+      "sha256": "c4e250d098540e9b40ff99c9ffa57786b4999ef256aa4e297172ee47dcbf4dc8"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-network-54449c6.js",
+      "status": 200,
+      "bytes": 53575,
+      "sha256": "e86afde9b8c9fc2f4159250dc5e3645b5af65121670dc870ea37a52500f05ed6"
+    },
+    {
+      "url": "https://joinallworld.com/assets/audio-ee87132.js",
+      "status": 200,
+      "bytes": 40380,
+      "sha256": "0f92922e63127829459d8674a930688728e0569e97e4ba18446ba1943e622cf7"
+    },
+    {
+      "url": "https://joinallworld.com/assets/look-30dc6db.js",
+      "status": 200,
+      "bytes": 5481,
+      "sha256": "1f66fc0c79c9f5ea32dfd866b27905c25d91e14b0c6378abf7b3a77925bade9e"
+    },
+    {
+      "url": "https://joinallworld.com/assets/kit-e2d8336.js",
+      "status": 200,
+      "bytes": 1089,
+      "sha256": "d44c6a9d26120f06a9252b9fe30b1144f907b830957245195c0ca9f8ebbaefa6"
+    },
+    {
+      "url": "https://joinallworld.com/assets/characters-7d10435.js",
+      "status": 200,
+      "bytes": 15567,
+      "sha256": "b99108a035b705927d90f3cef999fbd9bae73b23f2abc0d6d9219049c5b14cbf"
+    },
+    {
+      "url": "https://joinallworld.com/assets/levels-360245f.js",
+      "status": 200,
+      "bytes": 254,
+      "sha256": "17a2d2267a015d05402cfa281bbcce6b204b6c2d241c412b72589e9ca4ed19ab"
+    },
+    {
+      "url": "https://joinallworld.com/assets/avatar-preview-38749ff.js",
+      "status": 200,
+      "bytes": 10953,
+      "sha256": "02bcb1d56aecd9fa1e086f7ef18e1dc8d426ee1b303182e2b05714c7f07890fa"
+    },
+    {
+      "url": "https://joinallworld.com/assets/CreatorApp-eadddf7.js",
+      "status": 200,
+      "bytes": 1052,
+      "sha256": "f6038f22a6fd5ba9b19df3034a5bbeebc3ab31877264dae5c45e5cb6dfd8276e"
+    },
+    {
+      "url": "https://joinallworld.com/assets/three-e09bfc1.js",
+      "status": 200,
+      "bytes": 713692,
+      "sha256": "cedb3bcd0a6f673a8ba14f3614b1fabae72ddb1aef8e1eee5bb7afebfd04d220"
+    },
+    {
+      "url": "https://joinallworld.com/assets/house-style-51f3beb.js",
+      "status": 200,
+      "bytes": 317,
+      "sha256": "5f4e1e0f7744794d97c03abcdef409f730cccd4ce81ee98b47b32418552461a0"
+    },
+    {
+      "url": "https://joinallworld.com/assets/lookModel-baaa509.js",
+      "status": 200,
+      "bytes": 9684,
+      "sha256": "6f56cb6e8af7fb43cdea1b9dab523592fb81ab72a4df79c849c11551a5fc3c25"
+    },
+    {
+      "url": "https://joinallworld.com/assets/paths-1db1a73.js",
+      "status": 200,
+      "bytes": 8612,
+      "sha256": "7f0d1eda34c1f66a0978e135c84efe2569349aa6929906c3a0451d4ea5ffd6c1"
+    },
+    {
+      "url": "https://joinallworld.com/assets/worldModel-482ceb6.js",
+      "status": 200,
+      "bytes": 3270,
+      "sha256": "bb949eea85d54ddd7f1f4f7d4fdc235abe0315ef60ad683f84223d00b4a92a50"
+    },
+    {
+      "url": "https://joinallworld.com/assets/CreatorApp.vue_vue_type_script_setup_true_lang-b968217.js",
+      "status": 200,
+      "bytes": 50210,
+      "sha256": "129e249ca1e4e1a256707414c540c986707e39df672d576294c76d526ee96c14"
+    },
+    {
+      "url": "https://joinallworld.com/assets/lgaCardModel-d99a408.js",
+      "status": 200,
+      "bytes": 1403,
+      "sha256": "c6cd946db14e942cc4fd4c9549e7f398ed5b2f9a22319d3c854f049653dfbf39"
+    },
+    {
+      "url": "https://joinallworld.com/assets/cityPack-decdcb8.js",
+      "status": 200,
+      "bytes": 668,
+      "sha256": "9491f65d36200663647240e195aee1bbf98968655f99d5bd292776aa1d4c37bd"
+    },
+    {
+      "url": "https://joinallworld.com/assets/HouseArt-3c25c0d.js",
+      "status": 200,
+      "bytes": 2153,
+      "sha256": "5510e580aea9bada2b4fd31e46c52719f92cfe483e597242ee8c713be5c16f3d"
+    },
+    {
+      "url": "https://joinallworld.com/assets/worldContent-11fca42.js",
+      "status": 200,
+      "bytes": 291,
+      "sha256": "dbb142536e66245ed39e1da470a05ab1731d25dd02a4a6477b4b3480788e716c"
+    },
+    {
+      "url": "https://joinallworld.com/icons/favicon-32.png",
+      "status": 200,
+      "bytes": 1332,
+      "sha256": "6665cbdc4dbfbdc8addece46610e6e2aaa37d4abe4b2dffc7341be42901d67b5"
+    },
+    {
+      "url": "https://joinallworld.com/assets/LookEditor-99fc3f7.js",
+      "status": 200,
+      "bytes": 6798,
+      "sha256": "f6e4013c571b3b03d9d5f8a90ca039a8f96a7e03d9539050946ba415e15f71f0"
+    },
+    {
+      "url": "https://joinallworld.com/assets/canonical-crowd-ccd592b.js",
+      "status": 200,
+      "bytes": 96049,
+      "sha256": "cc9910e7aab5d675541a31b7c134d12f4344d5dd69aa2af09aa0169b8b20213e"
+    },
+    {
+      "url": "https://joinallworld.com/assets/native-body-2545f51.js",
+      "status": 200,
+      "bytes": 105498,
+      "sha256": "b214dd1aac81df30ee558f8c6b56672cd09cbcda27ffd13eedc5eeb4e053cd7a"
+    },
+    {
+      "url": "https://joinallworld.com/assets/quality-762be4e.js",
+      "status": 200,
+      "bytes": 1735,
+      "sha256": "a1d6f1307fa25b090410f799b9a671edadef65a7294a72735dd8fae7c0b1c849"
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/final-pass-20261015/catalog.json",
+      "status": 200,
+      "bytes": 565423,
+      "sha256": "cecee35dffe7aedb036409a580977fed82bbcca1b71c514c039f0b73c12ec563"
+    },
+    {
+      "url": "https://joinallworld.com/assets/RoomEnvironment-6007bfc.js",
+      "status": 200,
+      "bytes": 2024,
+      "sha256": "eb669a51b0056d5a195c6773f635baaadfa5d647ffae242ec0b5b1477e7872c4"
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/candidates/iteration2-upper-palm.glb",
+      "status": 200,
+      "bytes": 652660,
+      "sha256": "337549dff096fee3a539fa661d6941875778834a8a024a6ff21237d5908d7cba"
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/candidates/motion-iteration2-upper-palm.json",
+      "status": 200,
+      "bytes": 16608,
+      "sha256": "af3d9fb954f33cdf287e81ca7f338055b9a370f9cb99ab88f292ae0921e7df37"
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round2/male/hair/short02.glb",
+      "status": 200,
+      "bytes": 423580,
+      "sha256": "9b97ad7586c69eb145422f2301fc1b370ea299d6e8f128d0ac157887909d7c0c"
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round2/male/shoes/shoes01.glb",
+      "status": 200,
+      "bytes": 797148,
+      "sha256": "e0f53ef35bc2a006473577ccf894537eac5f282e7df1a11c6b9597ae1b4a5ba8"
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round4/male/garments/male-worksuit-01.glb",
+      "status": 200,
+      "bytes": 2730260,
+      "sha256": "c47a43948975b3e16b16f20027684b9a75af8d26afbcfc8c1f6bba53bf4030a4"
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round4/male/base.glb",
+      "status": 200,
+      "bytes": 3460568,
+      "sha256": "42456b825e124bbf7562e6abd10968a519c267ecec443ee3a96b153d67e84eb0"
+    },
+    {
+      "url": "https://joinallworld.com/assets/idlePreload-759ae53.js",
+      "status": 200,
+      "bytes": 3673,
+      "sha256": "165a672e29a2b49f8b5194302568da8bb8b15b36480d18011979244fc6a2291d"
+    },
+    {
+      "url": "https://joinallworld.com/assets/startExtras-db31405.js",
+      "status": 200,
+      "bytes": 4325,
+      "sha256": "81d47ac82ba898d3edc1c444341e2af725c7a5f3b1e8cfeeeb7c20cf12be4733"
+    },
+    {
+      "url": "https://joinallworld.com/assets/client-1d7a538.js",
+      "status": 200,
+      "bytes": 9609,
+      "sha256": "1e5b85658efa936613ab6740f362fc4d86c2d56aaf0c96047d2dfecdd641b28a"
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-core-3e9c1b8.js",
+      "status": 200,
+      "bytes": 13982,
+      "sha256": "e6a7c8d078578b6472675f582e54867a374af6c8b8c96a18971014051d3bb9cb"
+    },
+    {
+      "url": "https://joinallworld.com/assets/chatter-5c04d82.js",
+      "status": 200,
+      "bytes": 26764,
+      "sha256": "f6008033f02dd0059a968083325e91a1aa8f4028154501ca1ff25fa4ba3bf5cd"
+    },
+    {
+      "url": "https://joinallworld.com/assets/moments-0e6c550.js",
+      "status": 200,
+      "bytes": 1787,
+      "sha256": "2fb79a5a1fa2b98a15b6eb8e74e4f551406e2c1632da1d9d33f49a40d1e8190d"
+    },
+    {
+      "url": "https://joinallworld.com/assets/conditions-pack-6731f88.js",
+      "status": 200,
+      "bytes": 3902,
+      "sha256": "8ed66e8f1a6757badf9a1ce58b883f53da02746355defd1269850970730dd4c6"
+    },
+    {
+      "url": "https://joinallworld.com/assets/dilemmas-6dfaa75.js",
+      "status": 200,
+      "bytes": 35852,
+      "sha256": "e880e3182940463262661446f040732dcaaefcfe766c0e76a4b8cecdfbe049c2"
+    },
+    {
+      "url": "https://joinallworld.com/assets/gate-a1d887f.js",
+      "status": 200,
+      "bytes": 1020,
+      "sha256": "05a9074805478000f7170c83f70d728e98d7bdf6438bf5455bac739d57d31499"
+    },
+    {
+      "url": "https://joinallworld.com/assets/index-05b9175.js",
+      "status": 200,
+      "bytes": 33302,
+      "sha256": "d120db15667c2f9d458b71c57be6c2eff052aa422acec209404e2bbb3f941a6c"
+    },
+    {
+      "url": "https://joinallworld.com/assets/CommunityHost-4b79c0f.js",
+      "status": 200,
+      "bytes": 1931,
+      "sha256": "4bbc43010ed7e2792fae14532649826c6e6898ac64fd3cb9ef539295989ca87b"
+    },
+    {
+      "url": "https://joinallworld.com/assets/emit-7be17cb.js",
+      "status": 200,
+      "bytes": 211,
+      "sha256": "0e283168b6f12948f174052801c7823a69ebb9c201587fc8efe2ec8b944cde9d"
+    },
+    {
+      "url": "https://joinallworld.com/assets/AppArtwork.vue_vue_type_script_setup_true_lang-ec8b249.js",
+      "status": 200,
+      "bytes": 6268,
+      "sha256": "e3a57ba706380aa70743a556b59704f97b2d9db85df8ac1188766ffb4e79253f"
+    },
+    {
+      "url": "https://joinallworld.com/assets/HelpBody-70c3dcf.js",
+      "status": 200,
+      "bytes": 6690,
+      "sha256": "13c063d0974294e1282af8b887cf406f377772cb27d851f9a4bd3061ad921ad5"
+    },
+    {
+      "url": "https://joinallworld.com/assets/openCities-c6886e6.js",
+      "status": 200,
+      "bytes": 193,
+      "sha256": "0996a0102477ae63ffb1adb41bf6689005428f9a4863519b1fcd517ac1fae8d8"
+    },
+    {
+      "url": "https://joinallworld.com/assets/PhoneDevice-8349af3.js",
+      "status": 200,
+      "bytes": 13923,
+      "sha256": "7064cf324beabd1d4b27919d9ec74dd10b6a8c96707de4f66dfe0efd9294c233"
+    },
+    {
+      "url": "https://joinallworld.com/assets/wallpapers-409fe9b.js",
+      "status": 200,
+      "bytes": 529,
+      "sha256": "3ace091a6b9a39fddcec118351bf5360e47c98d7a6acef60b411dae379c12d85"
+    },
+    {
+      "url": "https://joinallworld.com/assets/tourWorld-6fc7ca8.js",
+      "status": 200,
+      "bytes": 285,
+      "sha256": "6523feb48128d9e82824e487bdd97e2cf1750fb05302327c3ab06b1f90f469ff"
+    },
+    {
+      "url": "https://joinallworld.com/assets/MapApp-fb0f592.js",
+      "status": 200,
+      "bytes": 18250,
+      "sha256": "c24138922088edda4e512c353fee71e1efb4ca22d4f04c813af315818dde93e8"
+    },
+    {
+      "url": "https://joinallworld.com/assets/travelModel-a941977.js",
+      "status": 200,
+      "bytes": 9738,
+      "sha256": "ab944ef3553d7347c839e3800793f680f2f56974cf263f8659677547d02bb50c"
+    },
+    {
+      "url": "https://joinallworld.com/assets/LazyList-2561326.js",
+      "status": 200,
+      "bytes": 6857,
+      "sha256": "8cd1f4411b3786c803820b806c9257d733bad0e5d388eb1975d2e135630d9eed"
+    },
+    {
+      "url": "https://joinallworld.com/assets/useCivic-3d76afb.js",
+      "status": 200,
+      "bytes": 6910,
+      "sha256": "066097e4519de10f9823ff1125cb3f65b4772fd901b6e11636c960c0d0fe3ee4"
+    },
+    {
+      "url": "https://joinallworld.com/assets/civicModel-9a94512.js",
+      "status": 200,
+      "bytes": 7743,
+      "sha256": "64b71f31d3a5e7584fd0aec1bf94a7c3ff8f14c8325c91195c2d23fc92c55bd3"
+    },
+    {
+      "url": "https://joinallworld.com/assets/share-model-60c9f07.js",
+      "status": 200,
+      "bytes": 4608,
+      "sha256": "80e38713b18c68d94f793c406e9b5dffb2fc85030701a60c2d9b85d0986a6e26"
+    },
+    {
+      "url": "https://joinallworld.com/assets/share-61082ce.js",
+      "status": 200,
+      "bytes": 4564,
+      "sha256": "abd09f3dc2ebcbe245e5024b499184c540e2e1f24bf3aef9ceb503f71014788e"
+    },
+    {
+      "url": "https://joinallworld.com/assets/SkipTrip.vue_vue_type_script_setup_true_lang-354ec58.js",
+      "status": 200,
+      "bytes": 2691,
+      "sha256": "1bd9238dfb16f9716b4868342bc85408bd948f424a541172b6a193baa4fbca14"
+    },
+    {
+      "url": "https://joinallworld.com/assets/travelBoundary-740bae4.js",
+      "status": 200,
+      "bytes": 63,
+      "sha256": "3bc11153c5d641cb802c15724ff22880435ec6543fcaf9b9040443ba71b02361"
+    },
+    {
+      "url": "https://joinallworld.com/assets/act-f5c34d9.js",
+      "status": 200,
+      "bytes": 457,
+      "sha256": "c1755f721eb89ed4c6ec93dc772c818c18d790f03d61263f496e71678e1a1067"
+    },
+    {
+      "url": "https://joinallworld.com/assets/atlasMetadata-f9ef4e0.js",
+      "status": 200,
+      "bytes": 2025,
+      "sha256": "a3ffe42812960c920dc9f46d04f0f258d1b83ae6c166a2de7e4d491038cb32ef"
+    },
+    {
+      "url": "https://joinallworld.com/assets/storyUi-fd01961.js",
+      "status": 200,
+      "bytes": 608,
+      "sha256": "1c7038af2e6bbd8e2f10afdc95cca027833dd9bb019fa5add5abbf469a837799"
+    },
+    {
+      "url": "https://joinallworld.com/assets/travelMapState-495bcd2.js",
+      "status": 200,
+      "bytes": 1410,
+      "sha256": "7cd0c08fcf804c198918af5c780aa9fb88f8f883d11d650c6077d7617c5ec871"
+    },
+    {
+      "url": "https://joinallworld.com/assets/JobsApp-af20280.js",
+      "status": 200,
+      "bytes": 9131,
+      "sha256": "41f17988bfb9942d4f2881b9d5a527a7836048d1c67940f471832f2f49f29c0f"
+    },
+    {
+      "url": "https://joinallworld.com/assets/TextField-cadc2cf.js",
+      "status": 200,
+      "bytes": 1721,
+      "sha256": "d20ecf8399e585736b0a0ae0effcb570aef3be99a49677bf156f15f9c142d8ba"
+    },
+    {
+      "url": "https://joinallworld.com/assets/jobsModel-6179ed6.js",
+      "status": 200,
+      "bytes": 1269,
+      "sha256": "6ee23e733a1b966811dcd84f6c1d6df6925740a9c89378dfbae3da0a79f067d4"
+    },
+    {
+      "url": "https://joinallworld.com/assets/HowItWorks-98ee4b6.js",
+      "status": 200,
+      "bytes": 720,
+      "sha256": "6df5d5116bad3e7ad4f39f9530d92240ccb1e92070c43c33e048edf1ebde65a6"
+    },
+    {
+      "url": "https://joinallworld.com/assets/section-7a6485a.js",
+      "status": 200,
+      "bytes": 556,
+      "sha256": "707e25f9bd5e979405eec419feba8c5f82c765c985487ce7c4e0fe2b6daad942"
+    },
+    {
+      "url": "https://joinallworld.com/assets/GroceriesApp-1a5dcc1.js",
+      "status": 200,
+      "bytes": 8890,
+      "sha256": "f4c1ecc2a6c513b00c43fe90b1a71caf334a8e9218ce99aa1dda834e110ebc52"
+    },
+    {
+      "url": "https://joinallworld.com/assets/home-zones-228fa94.js",
+      "status": 200,
+      "bytes": 1674,
+      "sha256": "bae21460537da29c2f5c94e4136fc5fa1fbdb5108880de1173237a4d58f58cc9"
+    },
+    {
+      "url": "https://joinallworld.com/assets/furniture-blurbs-1e57066.js",
+      "status": 200,
+      "bytes": 3044,
+      "sha256": "3584de8726fe974f0cc67721472b92e35def5f918a309e60afe8faa0dc53d77f"
+    },
+    {
+      "url": "https://joinallworld.com/assets/home-plan-ddc0e59.js",
+      "status": 200,
+      "bytes": 4001,
+      "sha256": "899b21eb4f1c49a36e41a83e09fd67fdcb927a6f1ec192b4a0b7f2324994fead"
+    },
+    {
+      "url": "https://joinallworld.com/assets/BuyMode-63c5aed.js",
+      "status": 200,
+      "bytes": 9603,
+      "sha256": "e9782303344b47bcf8f6f9d03470b6bf5c3ce2a8220b62761077517c1c2d114a"
+    },
+    {
+      "url": "https://joinallworld.com/assets/homeScene-9d4144c.js",
+      "status": 200,
+      "bytes": 6676,
+      "sha256": "f34a67a35345a653c7601fd17046aa87c71ef4684729f9027b9133d13be9ff53"
+    },
+    {
+      "url": "https://joinallworld.com/assets/BoutiqueApp-2f8e4f7.js",
+      "status": 200,
+      "bytes": 5664,
+      "sha256": "a2179d07bf20674cd215583fc108e49429aa68388f0e05511cae9b80c4526ed0"
+    },
+    {
+      "url": "https://joinallworld.com/assets/LookStage-6f226fa.js",
+      "status": 200,
+      "bytes": 2205,
+      "sha256": "e41ab7f22a3c77dd10bdec23517558b6d103d442e552cf4a5f81f7b6e850415c"
+    },
+    {
+      "url": "https://joinallworld.com/assets/SettleNotice-81a8d5d.js",
+      "status": 200,
+      "bytes": 858,
+      "sha256": "209d3aa14b3c4b11f316a71e5f7313a4ec6466869371085c6802872bf49125e9"
+    },
+    {
+      "url": "https://joinallworld.com/assets/settleModel-d957c05.js",
+      "status": 200,
+      "bytes": 823,
+      "sha256": "99dc99789465a22c93cc53cbc993029eb519908b78bd6b47f58f291332adc525"
+    },
+    {
+      "url": "https://joinallworld.com/assets/runtime-host-0261146.js",
+      "status": 200,
+      "bytes": 4105,
+      "sha256": "b8c2d8a4f0fce0520e38fcd5cfd6cb9fc24a0d1a54de064f95a2435effde2d0c"
+    },
+    {
+      "url": "https://joinallworld.com/assets/dynamic-import-helper-036760a.js",
+      "status": 200,
+      "bytes": 2745,
+      "sha256": "dc9b46391653b9f045c77ba40e7bb9ea42e84cbd8bd8105b7fcd8ad14d2a63bf"
+    },
+    {
+      "url": "https://joinallworld.com/assets/gltf-source-0deb955.js",
+      "status": 200,
+      "bytes": 3162,
+      "sha256": "f8297f5ee309872027decfee022e25ea0a3829f6660e5b32dd3c5d6dd73af98c"
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-recipes-896336e.js",
+      "status": 200,
+      "bytes": 63103,
+      "sha256": "5b486c92096f936f68c6f9e443e135493c2be208fb07be90654e7517937e8c6b"
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-models-c8d31bc.js",
+      "status": 200,
+      "bytes": 8543,
+      "sha256": "700eb9f1816cf0ecef344990def7acfbd13a17467488380af09ccaa348ffcc56"
+    },
+    {
+      "url": "https://joinallworld.com/assets/recipe-city-ota-2b0d1c2.js",
+      "status": 200,
+      "bytes": 12979,
+      "sha256": "e326e5b01cbea4282c5026364ce3261bc833b4e1361c9ebf118567c1c6547454"
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-factory/kits/yoruba-southwest-760ca364fc233d764bb61c4e4f5f4d32c94ed70ea42180a73febb9c11fbca398.glb",
+      "status": 200,
+      "bytes": 279500,
+      "sha256": "760ca364fc233d764bb61c4e4f5f4d32c94ed70ea42180a73febb9c11fbca398"
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-factory/heroes/ota-fe874952428cd5b6265944c938cf74ece9625f0e276388676fcbebc85cbce28d.glb",
+      "status": 200,
+      "bytes": 21120,
+      "sha256": "fe874952428cd5b6265944c938cf74ece9625f0e276388676fcbebc85cbce28d"
+    },
+    {
+      "url": "https://joinallworld.com/assets/recipe-city-sagamu-f4f64fc.js",
+      "status": 200,
+      "bytes": 12912,
+      "sha256": "4742abd837fe505688cf7c20d4fdcc1d2e65aeedc8258e37d5e1e7f5c8b1d35a"
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-factory/heroes/sagamu-4188ff54f4231dc20a18e0ed376991d54b42155d87bf3aa4c1bebc74ad782fcc.glb",
+      "status": 200,
+      "bytes": 31372,
+      "sha256": "4188ff54f4231dc20a18e0ed376991d54b42155d87bf3aa4c1bebc74ad782fcc"
+    },
+    {
+      "url": "https://joinallworld.com/assets/recipe-city-ijebu-ode-3e338a9.js",
+      "status": 200,
+      "bytes": 13079,
+      "sha256": "64dde9d423732fe674a9f855b63530e5cb645e2bc0acb16cc399d8f6053d5d95"
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-factory/heroes/ijebu-ode-a9ca2f8373ca994c0f6e12f2f3751e205d893ab7f6d81b47fc1b36345dd0837c.glb",
+      "status": 200,
+      "bytes": 23200,
+      "sha256": "a9ca2f8373ca994c0f6e12f2f3751e205d893ab7f6d81b47fc1b36345dd0837c"
+    },
+    {
+      "url": "https://joinallworld.com/assets/preload-helper-86ad5cf.js",
+      "status": 200,
+      "bytes": 1260,
+      "sha256": "f89e939f4dc92fd3b8e17cf77dbfd48afc960cde72299d5c88aa866dc478ddff"
+    },
+    {
+      "url": "https://joinallworld.com/assets/main-2e51dc3.js",
+      "status": 200,
+      "bytes": 12534,
+      "sha256": "105ec691e0ef132142424896af0d2a6e729079d4ef77f8a49fd23c8ed3adc0ac"
+    },
+    {
+      "url": "https://joinallworld.com/assets/engine-25fa2f0.js",
+      "status": 200,
+      "bytes": 249998,
+      "sha256": "4ffe55bc1df06cb8d6dd26c4421d5db429f52f0b511fb92f7750f811c7fcf511"
+    },
+    {
+      "url": "https://joinallworld.com/assets/vue-068b552.js",
+      "status": 200,
+      "bytes": 83136,
+      "sha256": "15bed5bf45b464fd78c3145086033e82df4c9fe8688502be3d19d573aab28d2a"
+    },
+    {
+      "url": "https://joinallworld.com/assets/native-recipe-d6520d9.js",
+      "status": 200,
+      "bytes": 4834,
+      "sha256": "a31e3f7ea91c0e0dfc1a2c3e0bf95f1c9fb6264d7f6f9b7c3b21a76b7bee7a2f"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-network-54449c6.js",
+      "status": 200,
+      "bytes": 53575,
+      "sha256": "e86afde9b8c9fc2f4159250dc5e3645b5af65121670dc870ea37a52500f05ed6"
+    },
+    {
+      "url": "https://joinallworld.com/assets/data-94cdbe3.js",
+      "status": 200,
+      "bytes": 340,
+      "sha256": "ba3fbe8f460306f6052a3b6d9d0bce02786cff6cc8e59b77af44654d32792059"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-index-84fc1e8.js",
+      "status": 200,
+      "bytes": 9723,
+      "sha256": "df60f453c9fd037b680503e5313fefa90d30507b66a2a2ce8fe8a0777bc1fe93"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-accra-rules-ac0a5ae.js",
+      "status": 200,
+      "bytes": 1251,
+      "sha256": "3dd55e0f57d66cf6cbe44036308f699f07aee75cc61d38daa533521ca56396bd"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-accra-facts-7ff19cc.js",
+      "status": 200,
+      "bytes": 1271,
+      "sha256": "98211733e44603ff89b8ea17807628648f503924544cdd56b060b6c6a0204c37"
+    },
+    {
+      "url": "https://joinallworld.com/assets/rules-7dbf06c.js",
+      "status": 200,
+      "bytes": 2275,
+      "sha256": "375be2025c8f1dd8bc0e3277975b7a5b8bb00b1848f44b3930e0e3e31466ef90"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-africa-types-0a59aa8.js",
+      "status": 200,
+      "bytes": 3923,
+      "sha256": "2c183409d60cbbd61ff888b680ef75b3a9a239af53a1b12a94d7e9e5640923a0"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-africa-module-de67728.js",
+      "status": 200,
+      "bytes": 1371,
+      "sha256": "30a5417a78fd96c3240469971fe3b511c527cf965e6467e5005059a22353048a"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-accra-places-05979f6.js",
+      "status": 200,
+      "bytes": 6305,
+      "sha256": "10226acd06c741821d2b73322d4839091bc5b4eeb5305c6b7ff30cbdae30299c"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-content-builder-e413ff8.js",
+      "status": 200,
+      "bytes": 8298,
+      "sha256": "01d4534f5f6b2ed69feb1a2f81568d1adfea04035561924122a27c4f5a6929ec"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-africa-contentBuilder-def7db4.js",
+      "status": 200,
+      "bytes": 10967,
+      "sha256": "11bec98eaaf7d02a022914b5a1fc7422e24c50d60df88129f86a3adb738d4e50"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-accra-content-12b17f3.js",
+      "status": 200,
+      "bytes": 425,
+      "sha256": "ef7c1112d5012a57b195bd5ae2c0a61f319366b63435ad27f14f6cf3c243d002"
+    },
+    {
+      "url": "https://joinallworld.com/assets/price-levels-data-216ddaf.js",
+      "status": 200,
+      "bytes": 3220,
+      "sha256": "904fa28ddb7abaecacf50633743725b7b8c8d5ccd79ad6725f69892052c7cfa6"
+    },
+    {
+      "url": "https://joinallworld.com/assets/kit-e2d8336.js",
+      "status": 200,
+      "bytes": 1089,
+      "sha256": "d44c6a9d26120f06a9252b9fe30b1144f907b830957245195c0ca9f8ebbaefa6"
+    },
+    {
+      "url": "https://joinallworld.com/assets/three-e09bfc1.js",
+      "status": 200,
+      "bytes": 713692,
+      "sha256": "cedb3bcd0a6f673a8ba14f3614b1fabae72ddb1aef8e1eee5bb7afebfd04d220"
+    },
+    {
+      "url": "https://joinallworld.com/assets/native-body-2545f51.js",
+      "status": 200,
+      "bytes": 105498,
+      "sha256": "b214dd1aac81df30ee558f8c6b56672cd09cbcda27ffd13eedc5eeb4e053cd7a"
+    },
+    {
+      "url": "https://joinallworld.com/assets/rules-710e846.js",
+      "status": 200,
+      "bytes": 6038,
+      "sha256": "51230ce629fba1c583124806b58bde8a29611a1ede48edc4157e13c69f2f647e"
+    },
+    {
+      "url": "https://joinallworld.com/assets/characters-7d10435.js",
+      "status": 200,
+      "bytes": 15567,
+      "sha256": "b99108a035b705927d90f3cef999fbd9bae73b23f2abc0d6d9219049c5b14cbf"
+    },
+    {
+      "url": "https://joinallworld.com/assets/look-30dc6db.js",
+      "status": 200,
+      "bytes": 5481,
+      "sha256": "1f66fc0c79c9f5ea32dfd866b27905c25d91e14b0c6378abf7b3a77925bade9e"
+    },
+    {
+      "url": "https://joinallworld.com/assets/canonical-crowd-ccd592b.js",
+      "status": 200,
+      "bytes": 96049,
+      "sha256": "cc9910e7aab5d675541a31b7c134d12f4344d5dd69aa2af09aa0169b8b20213e"
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-core-3e9c1b8.js",
+      "status": 200,
+      "bytes": 13982,
+      "sha256": "e6a7c8d078578b6472675f582e54867a374af6c8b8c96a18971014051d3bb9cb"
+    },
+    {
+      "url": "https://joinallworld.com/assets/conditions-2f066a4.js",
+      "status": 200,
+      "bytes": 3704,
+      "sha256": "307dd025a0378dcfaf1cdfc91f42b4941dfee85377b09a32e6d5295f996862c7"
+    },
+    {
+      "url": "https://joinallworld.com/assets/routines-b06c279.js",
+      "status": 200,
+      "bytes": 12894,
+      "sha256": "7c46f9e22cfca76f016dc310f8835a5c1d85f5ec75cd1c39a65eeaedb33e73a2"
+    },
+    {
+      "url": "https://joinallworld.com/assets/neighbourhood-space-f5cfcb6.js",
+      "status": 200,
+      "bytes": 255,
+      "sha256": "a94e48e9d49bac95fb015ae2dd9bc81434439748c3a898ab5b7bd7ea0216e72d"
+    },
+    {
+      "url": "https://joinallworld.com/assets/world-adapter-72f62e9.js",
+      "status": 200,
+      "bytes": 80122,
+      "sha256": "de789ddedf8b5e416eac5b0632760d26451c134128aa7cbb38e0279bf91f747b"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-places-9f40ede.js",
+      "status": 200,
+      "bytes": 1334,
+      "sha256": "05482151eb0b6579fee5a88eee6a29aa5298bffb99061f846a235e2855ac0c1e"
+    },
+    {
+      "url": "https://joinallworld.com/assets/inputMode-8cbdca9.js",
+      "status": 200,
+      "bytes": 440,
+      "sha256": "23593f8e66b29b1e20ce894d52ce1c501dd4fa1cdc9b21c84db224998ba2c400"
+    },
+    {
+      "url": "https://joinallworld.com/assets/city-scenes-f324ae0.js",
+      "status": 200,
+      "bytes": 5867,
+      "sha256": "97776bedc9ccb6909a0fe3e4d19178ee826f752f4f9e9f42d2c7eb50ea89521c"
+    },
+    {
+      "url": "https://joinallworld.com/assets/gesture-cf73db6.js",
+      "status": 200,
+      "bytes": 1506,
+      "sha256": "308012cbe90ede15141180089dd9e3cfe4910d4b9c5a8ae824af48e107dd93ff"
+    },
+    {
+      "url": "https://joinallworld.com/assets/controls-52a30be.js",
+      "status": 200,
+      "bytes": 109912,
+      "sha256": "e46446cbbd3f58cc7751aaa0630a10f1bd59945654bc5cd515151ff790498fc5"
+    },
+    {
+      "url": "https://joinallworld.com/assets/shader-warmup-b34f5c9.js",
+      "status": 200,
+      "bytes": 17866,
+      "sha256": "60976ce5d1a3dea21e583ff51744594eb20da456994b0fb65370090278d08e31"
+    },
+    {
+      "url": "https://joinallworld.com/assets/renderer-def3c04.js",
+      "status": 200,
+      "bytes": 7807,
+      "sha256": "c748cc016e38719f7ad31f7659f2936f5fb39413604261e0c2ed70530cd997af"
+    },
+    {
+      "url": "https://joinallworld.com/assets/venues-campus-293ebc3.js",
+      "status": 200,
+      "bytes": 5244,
+      "sha256": "5e217d09e65772a7fba8d0b4e07a64266e39cc1a31d32a2515b582fe75944176"
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-recipes-896336e.js",
+      "status": 200,
+      "bytes": 63103,
+      "sha256": "5b486c92096f936f68c6f9e443e135493c2be208fb07be90654e7517937e8c6b"
+    },
+    {
+      "url": "https://joinallworld.com/assets/dynamic-import-helper-036760a.js",
+      "status": 200,
+      "bytes": 2745,
+      "sha256": "dc9b46391653b9f045c77ba40e7bb9ea42e84cbd8bd8105b7fcd8ad14d2a63bf"
+    },
+    {
+      "url": "https://joinallworld.com/assets/runtime-host-0261146.js",
+      "status": 200,
+      "bytes": 4105,
+      "sha256": "b8c2d8a4f0fce0520e38fcd5cfd6cb9fc24a0d1a54de064f95a2435effde2d0c"
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-models-c8d31bc.js",
+      "status": 200,
+      "bytes": 8543,
+      "sha256": "700eb9f1816cf0ecef344990def7acfbd13a17467488380af09ccaa348ffcc56"
+    },
+    {
+      "url": "https://joinallworld.com/assets/gltf-source-0deb955.js",
+      "status": 200,
+      "bytes": 3162,
+      "sha256": "f8297f5ee309872027decfee022e25ea0a3829f6660e5b32dd3c5d6dd73af98c"
+    },
+    {
+      "url": "https://joinallworld.com/assets/app-6cbf3ed.js",
+      "status": 200,
+      "bytes": 104990,
+      "sha256": "aa6fe676ed53d05f6099d6f3fe219347cc0b8cc285405161f61118b09ded1ce0"
+    },
+    {
+      "url": "https://joinallworld.com/assets/achievements-714c48b.js",
+      "status": 200,
+      "bytes": 165,
+      "sha256": "95023c3455297fce624698b05bd8aaf3ea7182fd4a442c4e55a355685d7022c5"
+    },
+    {
+      "url": "https://joinallworld.com/assets/shell-kit-3b31df7.js",
+      "status": 200,
+      "bytes": 26315,
+      "sha256": "4a2a1a6a10bf7dd91f8f5392a924a7f25ec70221fb87471bf19c68c5e575aafe"
+    },
+    {
+      "url": "https://joinallworld.com/assets/recipe-city-accra-9d0d5ea.js",
+      "status": 200,
+      "bytes": 37561,
+      "sha256": "0382948c0e328ea4a4c78b1caa6099ba4ff12b1dda71c6b32956a36278a4c4c2"
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-factory/kits/gulf-guinea-a1d8e205700feccbed0a08f03b4cfdab8293b23fa3c8eb30bff477a00375e20d.glb",
+      "status": 200,
+      "bytes": 279388,
+      "sha256": "a1d8e205700feccbed0a08f03b4cfdab8293b23fa3c8eb30bff477a00375e20d"
+    },
+    {
+      "url": "https://joinallworld.com/assets/meshopt_decoder.module-63d403c.js",
+      "status": 200,
+      "bytes": 22079,
+      "sha256": "c52746c4a535cb65f34e80ea04f6f4dcac876362e18112363141d5cdc218b0cb"
+    },
+    {
+      "url": "https://joinallworld.com/assets/scene-factory/heroes/accra-963572c102fe770373c28f406a019302410c0b6e0051d69808371dc08b802de0.glb",
+      "status": 200,
+      "bytes": 59304,
+      "sha256": "963572c102fe770373c28f406a019302410c0b6e0051d69808371dc08b802de0"
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/final-pass-20261015/catalog.json",
+      "status": 200,
+      "bytes": 565423,
+      "sha256": "cecee35dffe7aedb036409a580977fed82bbcca1b71c514c039f0b73c12ec563"
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/candidates/iteration2-upper-palm.glb",
+      "status": 200,
+      "bytes": 652660,
+      "sha256": "337549dff096fee3a539fa661d6941875778834a8a024a6ff21237d5908d7cba"
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/candidates/motion-iteration2-upper-palm.json",
+      "status": 200,
+      "bytes": 16608,
+      "sha256": "af3d9fb954f33cdf287e81ca7f338055b9a370f9cb99ab88f292ae0921e7df37"
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round2/female/shoes/shoes01.glb",
+      "status": 200,
+      "bytes": 796832,
+      "sha256": "83a932085712b05e96dadc7076c3c3f539ad3237990a5a7025067e64d502bb66"
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round2/female/hair/short01.glb",
+      "status": 200,
+      "bytes": 545056,
+      "sha256": "34dff85c656a6d96dabe10fe47b5982f109b5bb7e14cb16c57e54193815aeb2c"
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round4/female/garments/female-casual-01.glb",
+      "status": 200,
+      "bytes": 1978712,
+      "sha256": "1c54d93e1a0d8f26281164920f9b7c924c9f92d0cb2d77ae630f1477fbe1105e"
+    },
+    {
+      "url": "https://joinallworld.com/character-lab/models/round4/female/base.glb",
+      "status": 200,
+      "bytes": 2632124,
+      "sha256": "1c56eb28beb94d1ec8e120ef32bda97f4f173b22b8d01d9da596db619d5a562c"
+    }
+  ],
+  "sceneText": "Skip to content\nALLWORLD\nWorld scene catalogue\nCountries / Ghana / Accra\nAccra\n← Abuja\nAdamstown →\n\n23 public scenes in Accra. Private homes and player state are outside this catalogue.\n\n← All scenes in this city\nMakola Market\n\nA market, here the market stop of the game.\n\nScene\nAccra International Airport · airport\nSTC Accra Main · hub\nOdo Rise · buka\nUniversity of Ghana · office\nKorle Bu Teaching Hospital · hospital\nKwame Nkrumah Memorial Park · park\nMakola Market · market\nCathedral Church of the Most Holy Trinity · worship\nBlack Star Square · polling\nJubilee House · statehouse\nNational Museum · walk\nJames Fort · walk\nNational Theatre · walk\nEl-Wak Stadium · viewing\nAccra Zoo · walk\nMarina Mall · mall\nAccra Mall · mall\nGhana National Mosque · worship\nAccra Ghana Temple · worship\nW.E.B Du Bois Center · walk\nAccra Technical University · quad\nKaneshie Market Complex · mall\nAchimota Retail Centre · mall\n← Previous scene\nNext scene →\n\nScene loaded. Drag to orbit or use the camera controls.\n\nRotate left\nRotate right\nLook up\nLook down\nZoom in\nZoom out\nReset camera\nReload scene\nCompare geometry snapshot\nScene inspection\n\nKind: market · Variant: default\n\n32,946 rendered triangles · 14 draw calls · 13 scene meshes · 3 anchors. Runtime asset: ready (near).\n\nRecipe-derived scene\n\nThe loaded city registry resolves a compiled recipe for this exact venue. This proves recipe selection, not visual approval, realism or unique geometry.\n\nBuilder group: recipe:market",
+  "acceptance": {
+    "staticUI": true,
+    "landing320390": true,
+    "creatorNativeVisible320390": true,
+    "creatorSubmitted": false,
+    "catalogueRealLinks": true,
+    "makolaRecipeReady": true,
+    "nativePlayerVisible": true,
+    "noHorizontalOverflow": true,
+    "pageErrors": 0,
+    "publicTalkExercised": false,
+    "backendAccepted": false
+  },
+  "limitations": [
+    "Desktop viewport screenshots, not physicalphone performance",
+    "Expected unauthenticated session401 only",
+    "Native creator inspected without actor submission",
+    "Backend health d87 remains unresolved; no fullPhase3publicPASS"
+  ]
+}

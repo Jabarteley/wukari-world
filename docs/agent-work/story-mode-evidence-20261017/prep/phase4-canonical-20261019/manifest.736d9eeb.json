@@ -1,0 +1,138 @@
+{
+  "final-inventory.json": {
+    "sha256": "87f8c2b85992e030eb390baf9f6d464d1f9c25b8f00a8729b7008d10f5776c41",
+    "bytes": 383
+  },
+  "talk-build.log": {
+    "sha256": "70d7b4551eed1710605a46b3a0a84fb9c45dc2043a8b4ec6aa0b89cb775019e1",
+    "bytes": 350
+  },
+  "HANDOFF.json": {
+    "sha256": "8b2da2bae21802e7439de1d171237bb719f2adf078ad18abceb011ac750254b8",
+    "bytes": 18049
+  },
+  "content-compare.log": {
+    "sha256": "c5defac463d14256b9102eaccba434b15f45444bcd4813978a299586c8de9e81",
+    "bytes": 2156
+  },
+  "content-before.json": {
+    "sha256": "5ae6e5cbfd8a0d39b3c41a6ce9531a4061221da766ce20812afe90e9374d7e36",
+    "bytes": 895519
+  },
+  "parent-verification.json": {
+    "sha256": "96ee27d04bab33582067e928caf628bcbb4ff0609f5164215f8e82e481585e4e",
+    "bytes": 1521
+  },
+  "scenes-check.log": {
+    "sha256": "cae0c1749b5f3a209b036a6f74ce056f1f85c0ef339cd4b7d238b630cedc66c0",
+    "bytes": 293
+  },
+  "scenes-build.log": {
+    "sha256": "c8e760a4505a9aacd516537dac63423dd88faa0dbabff083f24e60b8781458ea",
+    "bytes": 294
+  },
+  "baseline-loaded-source.jsonl": {
+    "sha256": "29ca36ff93ab5cba3b551417fee7962e97bcf33babc65ba097deb6306fc94b7e",
+    "bytes": 134797
+  },
+  "talk-check-correct-command.log": {
+    "sha256": "c21543cbbe0954f9167ee6b76cafc81075adcf7ff38964d82a19bc44ff940e2c",
+    "bytes": 350
+  },
+  "host-adoption.json": {
+    "sha256": "93f689b5f27bbde99534e3084ef7955b2fbb68f8e3910f414c5c5e1adec9c4e9",
+    "bytes": 454
+  },
+  "fixture-baseline-95.receipt.json": {
+    "sha256": "35646bc4f444bf5ac2ac6edab977e7adc389295ccdc3a31e52f116f313875f8a",
+    "bytes": 931
+  },
+  "final-source-generated-pins.json": {
+    "sha256": "8fd1f09d34e7107eba372003112e5fcd51bbf24b60744eff6fb43a6d371f6703",
+    "bytes": 247645
+  },
+  "seed-focused-corrected.receipt.json": {
+    "sha256": "bf9ef4ca456b13362c77ce39ac49882693ed0b7335992e4126f8a25dff677b76",
+    "bytes": 733
+  },
+  "talk-check-correct-command.receipt.json": {
+    "sha256": "e14bf7ef8510ce78a9fd56f6e2b8a1f060971efbca1f3f469bceb989d09f26eb",
+    "bytes": 605
+  },
+  "host-audit.receipt.json": {
+    "sha256": "feae117639afa49ec5ee2c98de4ba264f5bc4e41ea5e25a655efa70895091751",
+    "bytes": 829
+  },
+  "extract-seeds.py": {
+    "sha256": "d0fe152009f2a775b3f936f9cf1a007fdf2f619e3345a386b1837e99779494df",
+    "bytes": 2153
+  },
+  "source-review.json": {
+    "sha256": "994d281f601272a07d04ca7143ebde42f001493bfbc18d02923fc287fde31317",
+    "bytes": 6370
+  },
+  "resources-final.json": {
+    "sha256": "970abf13668810095f8953dd1e180e5d16f38bd17472b2aab1abe45cda198cd0",
+    "bytes": 442
+  },
+  "host-audit.log": {
+    "sha256": "db1e5719f0605c5d393ebe515fbb5fdeb081194653fb3b4afce3588d28ded4ca",
+    "bytes": 570
+  },
+  "content-after.json": {
+    "sha256": "c7668e97cc2da804620443923b3e6242c4d0929cea59631e5fcaae74ec071e67",
+    "bytes": 895519
+  },
+  "content-comparison.json": {
+    "sha256": "37c9d3a21c84346d2100d55c8ca62bf1641d930edf7b78e6fbb23bdf99d56199",
+    "bytes": 94053
+  },
+  "seed-focused-corrected.log": {
+    "sha256": "de8651d06caf569c3042302a3a9daeaf86d6f374def699779d4811d1f249a90c",
+    "bytes": 3652
+  },
+  "fixture-baseline-diagnosis.json": {
+    "sha256": "53451ac6eda127f9aefdd4bb89351718f259b6b67ee6bb6a5480803ee2f74db9",
+    "bytes": 107114
+  },
+  "scenes-build.receipt.json": {
+    "sha256": "6dfc8980a813cbf4c7ef0fe3d8b215c4f9e834e4b3648466549a9d78bd1f42d9",
+    "bytes": 579
+  },
+  "final-changed-path-allowlist.json": {
+    "sha256": "694060961eef11cf598023018679cbda14d35fbb3c9c91cef8ca82fc7a842005",
+    "bytes": 513773
+  },
+  "seed-migration.json": {
+    "sha256": "cbc96841c92ff029e235ab2840073102fbebfe8367746ff3af2b932e15a472b0",
+    "bytes": 172650
+  },
+  "final-seed-selections.json": {
+    "sha256": "0912f2826ad4f90819d6edf97a7c8dc118a3254918095db2f0a1b44f58f9c8bf",
+    "bytes": 96040
+  },
+  "compare-content.py": {
+    "sha256": "6b0bb75cd8700a5d28b6aebddff9d67d4e472857f6204824d8853432b8b5a571",
+    "bytes": 5292
+  },
+  "admission-hook.mjs": {
+    "sha256": "fcb1a9a27c5840d822b67cc3b7d7e52f9261e813a14342e6385a7ef9546904d9",
+    "bytes": 1920
+  },
+  "content-compare.receipt.json": {
+    "sha256": "701b82a571d118528f3bc6d12b4491aac88c094f2cda5cca546bd3b465d495de",
+    "bytes": 631
+  },
+  "fixture-baseline-95.log": {
+    "sha256": "f68573da8869f01738efad8ad987e765a6a32868802e2ec6693962e7d8c00d46",
+    "bytes": 7622
+  },
+  "scenes-check.receipt.json": {
+    "sha256": "546e881f344d05f15d5ed577fe79d182dc524fdca1c435ac9dc41c5a54b0d6b1",
+    "bytes": 579
+  },
+  "talk-build.receipt.json": {
+    "sha256": "b45cfaaa78da38c343f11252c47eb59ad6bb66c72bb9fc65104df895b6e99954",
+    "bytes": 573
+  }
+}

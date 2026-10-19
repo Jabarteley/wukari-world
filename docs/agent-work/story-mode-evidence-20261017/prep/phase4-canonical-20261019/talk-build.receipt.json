@@ -1,0 +1,27 @@
+{
+  "name": "talk-build",
+  "command": [
+    "node",
+    "--experimental-strip-types",
+    "scripts/agent-slot.ts",
+    "heavy",
+    "--wait-ms",
+    "0",
+    "--",
+    "npm",
+    "run",
+    "talk:build"
+  ],
+  "pid": 24025,
+  "exitCode": 0,
+  "timeout": false,
+  "seconds": 69.71508183400147,
+  "log": "/tmp/phase4-seed-correction-20261019-lg52i_y_/talk-build.log",
+  "logSha256": "70d7b4551eed1710605a46b3a0a84fb9c45dc2043a8b4ec6aa0b89cb775019e1",
+  "limits": {
+    "oldSpaceMiB": 512,
+    "semiSpaceMiB": 16,
+    "GOMAXPROCS": 2,
+    "externalTimeoutSeconds": 280
+  }
+}

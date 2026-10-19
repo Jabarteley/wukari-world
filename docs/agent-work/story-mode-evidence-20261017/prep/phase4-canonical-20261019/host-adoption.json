@@ -1,0 +1,21 @@
+{
+  "counts": [
+    284,
+    6423,
+    34,
+    34
+  ],
+  "failures": 0,
+  "missingTables": 0,
+  "drift": 0.03271812080536913,
+  "sourcePins": 1227,
+  "costMapsEqualAcceptedBaseline": true,
+  "global": {
+    "triangles": 1264,
+    "meshes": 7,
+    "lights": 3,
+    "drawCalls": 9
+  },
+  "auditSha256": "bff3dfda35daba0f3adc64d8285cdde7adea9c6c5853a86246f62ea881c16b2c",
+  "hostSha256": "5742db9112195280e44739ea6a266984011f05105fcf50cbcb5fa76075497f2e"
+}

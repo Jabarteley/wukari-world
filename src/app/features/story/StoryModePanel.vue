@@ -7,6 +7,7 @@ import BaseButton from '../../ui/BaseButton.vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import SectionTitle from '../../ui/SectionTitle.vue'
 import CoopCard from './CoopCard.vue'
+import StoryStreetWalk from './StoryStreetWalk.vue'
 import StoryTalkCard from './StoryTalkCard.vue'
 import SignatureGame from './SignatureGame.vue'
 import { setStoryHelpFocus, signaturePanelId, unlockedCityCount } from './storyUi.ts'
@@ -100,6 +101,8 @@ function openSignature(): void {
         <span><b>{{ unlocked }}</b> of {{ story.cities.length }} cities</span>
       </div>
     </section>
+
+    <StoryStreetWalk />
 
     <section class="story-signature" aria-labelledby="story-signature-title">
       <span class="story-signature-icon" aria-hidden="true"><GameIcon name="star" :size="20" /></span>

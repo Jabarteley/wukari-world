@@ -1,0 +1,14 @@
+✔ location badge: a city and the network's word, shown on the profile and posts, removable, gone after 90 days; adults only (149.953667ms)
+✔ locals only: a community of a real place admits people whose badge is in its city, state or country (47.873208ms)
+✔ the badge's local government: one of the city's own, shown with its name, never a position; a stranger's id is refused (23.956375ms)
+✔ Near you: neighbours first, then the city, then the world; this month's counts, each person once; without a badge it is the city tab (56.946333ms)
+✔ Plans and Work list what is near you first: your local government, then your city (31.950167ms)
+✔ neighbours: a community of one local government, kept for the people confirmed there (39.922708ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 934.0665

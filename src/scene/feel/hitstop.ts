@@ -6,7 +6,7 @@
  */
 
 /** The longest a freeze can be asked for, ms. */
-export const HIT_STOP_MAX_MS = 120
+export const HIT_STOP_MAX_MS = 110
 
 export interface HitStop {
   /** Freeze for `ms` from now (a longer freeze already running is kept). */

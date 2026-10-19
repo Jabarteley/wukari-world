@@ -130,6 +130,11 @@ export function sale(spec: Spec, outcome: { ok: true; label: string; price: numb
   const table = outcome.code === 'insufficient_funds' ? SALE_SHORT : outcome.code === 'bag_full' ? SALE_FULL : outcome.code === 'not_needed' ? SALE_STUFFED : SALE_NO;
   return fill(pick(table[spec.voice], seed), { label: outcome.label, price: naira(outcome.price) });
 }
+/** A person asked the agent to come over: it is at its post, and they can find it there (said when a model's answer could not be). */
+export const atPost = (spec: Spec, place: string, seed: string): string => fill(pick(both(
+  ['I dey {place} till {close}. Come find me here in the game!', 'Ah, work dey my hand for {place} till {close}. Pass by here in the game.'],
+  ['I am at {place} till {close}. Come find me here in the game!', 'Not today, I am working at {place} till {close}. Come by here in the game and we can talk.'],
+)[spec.voice], seed), { place, close: formatHour(spec.hours.close) });
 export const callBack = (spec: Pick<Spec, 'voice'>, seed: string): string => pick(CALL_BACK[spec.voice], seed);
 export const callBusy = (spec: Pick<Spec, 'voice'>, seed: string): string => pick(CALL_BUSY[spec.voice], seed);
 export const bye = (spec: Spec, seed: string): string => pick(BYE[spec.voice], seed);

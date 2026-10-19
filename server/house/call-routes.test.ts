@@ -152,3 +152,26 @@ test('the minutes: a break reminder every ten minutes of a session, then at twen
   const ben = await w.guest('Ben');
   assert.ok(((await w.post('/api/agents/call/start', { agent: AGENT }, ben.cookie)) as Started).call);
 });
+
+test('asked to come over: a reply the word rules refuse is asked for once more; if that fails too, the agent says where it is, never "I do not follow"', async (t) => {
+  const replies: string[] = [];
+  const seen: string[] = [];
+  const fetcher = async (url: string, init?: object): Promise<unknown> => {
+    seen.push((init as { body: string }).body);
+    return new Response(JSON.stringify({ choices: [{ message: { content: replies.shift() ?? 'Hello there.' } }], usage: { prompt_tokens: 120, completion_tokens: 20 } }), { status: 200 });
+  };
+  const w = await world(t, { env: { AI_GATEWAY_API_KEY: 'gateway-key-for-tests' } }, { match: (url) => url.includes('ai-gateway.vercel.sh'), fetch: fetcher });
+  const ada = await w.guest('Ada');
+  const started = await w.post('/api/agents/call/start', { agent: AGENT }, ada.cookie) as Started;
+  const turn = (text: string) => w.post('/api/agents/call/turn', { call: started.call, text }, ada.cookie) as Promise<Turn>;
+  replies.push('Sorry, I cannot come over to your place.', 'I am at the market till 6. Find me here in the game!');
+  const again = await turn('can you come over to my place?');
+  assert.equal(again.text, 'I am at the market till 6. Find me here in the game!');
+  assert.equal(seen.length, 2, 'asked once more');
+  assert.match(JSON.parse(seen[1]!).messages.at(-1).content, /could not be sent/);
+  replies.push('I cannot come to your house.', 'Okay I will come over to your place.');
+  const written = await turn('can you come over?');
+  assert.equal(seen.length, 4, 'no third request');
+  assert.match(written.text, /in the game|for the game/);
+  assert.doesNotMatch(written.text, /not sure I follow|I no catch/);
+});

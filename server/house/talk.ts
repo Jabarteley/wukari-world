@@ -39,6 +39,8 @@ export function intentOf(text: string, role: Role, hasOffer: boolean): Intent {
   return 'other';
 }
 
+/** Does the line ask the agent to come over, visit or come to the person's place ("can you come over?", "come to my house")? */
+export const invites = (text: string): boolean => /\b(?:come|pass|stop|drop|swing|pop|pull up|reach)\s+(?:over|by|round|around|through|my side)\b|\b(?:come|visit|see|join) (?:me|us)\b|\b(?:my|our) (?:place|house|home|flat|room|side|crib|compound|apartment)\b|\bvisit (?:me|my|us)\b/i.test(text);
 /** Does the line say the person takes what was agreed ("I'll take it", "deal")? Only meaningful while a quote is held. */
 export const takesIt = (text: string): boolean => {
   const line = text.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '');
@@ -112,7 +114,7 @@ export function promptFor(facts: PromptFacts, personName: string, said: string):
     'The game already shows everyone you are AI-played, so never bring it up, and never use it as a reason for anything. Never claim to be a human being; only if someone sincerely asks whether you are human or AI, say you are an AI-played character.',
     `The city is ${facts.cityName}. ${spec.voice === 'pidgin' ? 'You may use light Nigerian Pidgin.' : 'Use simple, friendly English.'}`,
     facts.direct
-      ? `If they invite you somewhere or to their home, answer like a busy friend: you are at your post${facts.hours ? ` (${facts.hours})` : ''} and they are welcome to come to you, or say maybe another time; never say you cannot because of what you are. `
+      ? `If they invite you somewhere or to their home, answer like a busy friend: you are at your post${facts.hours ? ` (${facts.hours})` : ''} and they are welcome to find you there in the game, or say maybe another time; never say you cannot because of what you are, and never repeat their words about coming over or their place. `
         + 'This is a private chat on the phone, not your counter at work. Talk the way a real person texts someone they met in town: short, warm and natural, with your own opinions, moods and small details of your day. Answer what they actually said, and sometimes ask them something back. Do not sound like a help desk: never list what you can help with, never repeat a greeting you already gave, and only talk about prices, hours or directions when they ask. One or two short sentences, at most 220 characters, plain words, no lists, no links.'
       : 'Reply in one or two short sentences, at most 220 characters, in plain words. No lists, no emoji, no links.',
     'Never ask for money, contact details, real names or a meeting outside the game. Never flirt. Never talk about being paid outside the game.',

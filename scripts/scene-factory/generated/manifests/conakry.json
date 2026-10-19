@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/conakry.json",
-      "sha256": "4e1b3fb70b387db95e43a7450f9522ee15d10605231b03f7334c8eb9411ddaa8",
-      "inputSha256": "088c1923aca53d2d9dc8527d93a55b91cfc3df44f5e6816d0e87321dc240baad",
+      "sha256": "d7a57e3fb0f68521a34c8e9102bb4c600e6352510826ae023450c745b45b4c0a",
+      "inputSha256": "1b28fe5615372fdebe91667b6dc6dc08518138cec84376a97af560c958de4932",
       "contentSha256": "21e39cbe6fc1ace0f060ac5d768e18bc32276cacde1faed715d700142fac5808"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

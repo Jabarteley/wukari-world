@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/george-town.json",
-      "sha256": "2d62023b970a3d14cd34635f9e4305b5805362b2edd9bb685f5200634e3f2a17",
-      "inputSha256": "a6a1160b8adfa58d8670cdfcbfd6691db804908ea2caeb5c3a231e142521ef17",
+      "sha256": "f3d96eb69a55e8922fbd9faf25726bde6518541d9e4185c2f3d5112ae5eca8ff",
+      "inputSha256": "cbd72955b377533aff373f854eb298f12a72ef949587ea0f7b42a2138afd8dbe",
       "contentSha256": "67cb7773a20b267d700befa8f67526cf7d891e4ec8e0222ba6f957635a6560d7"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

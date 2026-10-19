@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/adamstown.json",
-      "sha256": "05d9f5e66f4e7ca8762f34b1088e1b4ebdf691483e0c57e3122da474ea36c0f8",
-      "inputSha256": "78cedd2c8bbf57c1d726705321600fb51347af42574ab2580d028b8ff5352740",
+      "sha256": "378d9dc1b389315cab569481a4c5e963ce0f508569d7a6ad547629c4c74d6d66",
+      "inputSha256": "1dce9012a5ff99eacd59886f46da34b1c94f66f6c724af7481a7f2560755889f",
       "contentSha256": "62a8dfd8f95dae3b818f409e9050c201fd04c6abcf16599a0af8c11775e73ab6"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

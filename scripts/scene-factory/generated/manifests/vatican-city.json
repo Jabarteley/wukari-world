@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/vatican-city.json",
-      "sha256": "706ca528ef2d545d0b0e9b192b1a0c2d5aaa4088355255cc46bb8f41a0f19e5d",
-      "inputSha256": "0b10c70bde6ca9e50416781d5d84110a191bd4ea1eadcd0e1c45d8a1854eadd6",
+      "sha256": "f94ae0a7bc400fc91292f355668aba27f479f0cccfba4be572a2d17a4c18e20e",
+      "inputSha256": "8a98c49e30d960f40964c07034cbf4da5cff7d3d90a41ef4ab00e7ec0d830545",
       "contentSha256": "cf55be804682d808ea0a12c42caa6ae5a37d900c94e1007060ef3fec78a9701c"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

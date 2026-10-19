@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/mexico-city.json",
-      "sha256": "96616c8f51ab3993e70b33e216273098a34b862528a5414d46fa68ca453b7703",
-      "inputSha256": "0084bc83bc058c32acd1947b7df739c4117211fbe9d48da2b1e11beb8dbc5618",
+      "sha256": "f944c02ff37397618884f94eac2acc82c6cb3cac328491494a0c9f5457b02c7c",
+      "inputSha256": "b64f4a7ed7a2b379f17b25bc62a5761e7dad27388e5c29804b486ef828b27769",
       "contentSha256": "7cecc90ef5c31c67822917ed253b7bac24c1f559905db29b017ba95cfbbfbd19"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

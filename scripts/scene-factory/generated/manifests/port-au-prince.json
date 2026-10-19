@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/port-au-prince.json",
-      "sha256": "38e3e0f85151583a6505ad5c60d14f02cfabc4cca15ccf647c76c3bf0f870e59",
-      "inputSha256": "a2088c13981f144cc04b5dffb3f20b3be05f7dd473c00c10bfdcaffd05a140f2",
+      "sha256": "4385653b8d4be7b56c272b63b57836720797a0dc2f4c5141d7fd9e8e543e2035",
+      "inputSha256": "ca443469ec3bfd2e242213145fc3bbe4f7ba733d6e88a5d52565337ddc4a2ef3",
       "contentSha256": "96791dc7414b53d76052e312c2522b3a5a35d4a3f52dfaabf1b7fd7c7360134b"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

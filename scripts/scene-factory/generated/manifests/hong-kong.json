@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/hong-kong.json",
-      "sha256": "8a4e37b9fe61898c8818e261326677f88a0d24dcfb917e346cf7ec9f8ae0c13b",
-      "inputSha256": "f0b155753f3beeb2df7fcc01dceb45e4279b7e30e204a3204d8f8cf107d6c51f",
+      "sha256": "b470eae4158052b5547a8970f56be1e6df239633df284f0717a9e9e9a85a96c6",
+      "inputSha256": "1c3f7accd9444576077affe828e2ebabc9363043fbe789c6b384aa413e30819f",
       "contentSha256": "d1e29d1eec9ef48bd12068803c480b4a676d2a82fb7c4df5d231cb9e432ddfdd"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/djibouti.json",
-      "sha256": "2018dde766b307b1b010f90d61f60464ab1dc0279601318cd2e2aabc2c1df48a",
-      "inputSha256": "757922e60ab1833ad0b608728305e0baabd8f1b662ffcb195e0804816e140841",
+      "sha256": "60094053fe1657f40e676a71c666a6fa3abf296559152a81818176ae083b4534",
+      "inputSha256": "a1a3b3f7429d1a463119178e06c9b469b22aef576577d2a167bc3c4b6587549a",
       "contentSha256": "b4a5248fdc3d71c99284707f155e86f27d4a42f46a87e5cdc8a9669ed25ad249"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

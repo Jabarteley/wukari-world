@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/port-aux-francais.json",
-      "sha256": "ec7297fe501883071f46f9f4b98f6b3451bc87e19429c918647705b43dfe6ec6",
-      "inputSha256": "900150ad87402713b9d5016080c759b6f125149feab4a323e09bfde4353132ae",
+      "sha256": "95773b08d51b3a9ad2f1ba25d3855fff90e971266990eeab9e58db9004e9070c",
+      "inputSha256": "04543908b42cec43c6c6866c25d89a457d77dc1feded48956737141996ae224e",
       "contentSha256": "e0876071fdcc8bcc7402382f846db5c9cba84e4343ace183f1a67d4226042ac5"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

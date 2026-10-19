@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/la-paz.json",
-      "sha256": "d1712c9ef52e98af7bc02a785306d3dbeacaf80031fe8966754bbc88a7781830",
-      "inputSha256": "4d4ab773dcbc0e97193ab05a910a0b25baa9b80b6bd1ebc8a1e881240c4b0a23",
+      "sha256": "447f9dd408762acac07623903b2a6a3035d31f84e5321ba98e41680c48fa5141",
+      "inputSha256": "83373409a9f20e7a36c0185242eb186289b2a542da35221c191df7ebe2016dd9",
       "contentSha256": "5d363bff89054a38d28c82598e6b5c26c36ec084e08484ac38a3e9060215920e"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/lahore.json",
-      "sha256": "5e1a9c99f3b9cbf842ea1a4788193f2431f67e5f4196f523b2927a3f4d500f89",
-      "inputSha256": "d30ee915ab5269bcd2f606a21117e9c1fb7b77784bd6ce0a52af817df4c59040",
+      "sha256": "974a765360e28f1fa7d53b4d06e6fb56c440f4e51290546f8e6ed99fba8b4423",
+      "inputSha256": "19caec88302e73adc0d5488ed0d822bcbe52dfd8e903761b7ad5009964df07cb",
       "contentSha256": "511c0b895af662ba65a6d765719a60a78f1cbf9fca9171f510ed4876c874b70a"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

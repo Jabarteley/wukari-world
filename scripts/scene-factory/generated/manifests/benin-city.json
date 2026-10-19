@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/benin-city.json",
-      "sha256": "a48b9675f4aa571749072e835821fdd0e03b4ec72eb3dd3fc32bff177119ac34",
-      "inputSha256": "32dffea5423b8ad46ece3258df34f8405f4a2f007c9aa5979743b691153920d7",
+      "sha256": "e6ef86dff9447b8cd33bc8495a5e3209cc73c9abaab6685d33c8baf0cb77fe78",
+      "inputSha256": "84902264cc0bc13d8cba3d2d01e90d0a761d8273884051afd4be2aef75fc1144",
       "contentSha256": "b3efb28643831e293424408118b29d8e35c06a3e4b0e75576e16fd693c0bad13"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

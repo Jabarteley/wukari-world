@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/san-salvador.json",
-      "sha256": "2dd36719c53dd64e55264f82d1b9bed269e489103f293decdaf2c58fd65a7d5b",
-      "inputSha256": "c2a2feccc182702b0b8638722b2306a1100f6bf19f5b4127dd49a36c2d21682a",
+      "sha256": "da5f261c08c659b13e4c54d2582c5478b526104a1f499bf8ad060d0e59ebcf4f",
+      "inputSha256": "bbad61740368db3650fc54414c4350ed0dbbb5d948ce26468a238f5f6ce04a02",
       "contentSha256": "694a0bb0420b3853152d1797d97e96eb916ab334ff0f539b98d8459417a43cf5"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

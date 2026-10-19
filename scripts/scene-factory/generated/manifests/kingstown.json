@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kingstown.json",
-      "sha256": "ac8859af4e20a03334d28a2b1208c5e510ff1431e3f45d76054c7fe84ae0752e",
-      "inputSha256": "4537d95a241b86d8288980aa4ca3cf11a3139205c4f9683c61908c40ceef0694",
+      "sha256": "7d396002c0ce937e2cdc87e6b35c84d287e648d7e9b8f91fff6821d4acebec2a",
+      "inputSha256": "84c7884a1c991acb4627ab0d920fe5f74e42d6c608eeb45aa584e0ecb336494a",
       "contentSha256": "35b5a8fe3e743e8af1d79424ecd4521ec09b6d551e3ea710ba2a913510a67646"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

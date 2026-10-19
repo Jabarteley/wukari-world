@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kuala-lumpur.json",
-      "sha256": "f28f4a30371cc2ac97b962881ca1dc85ce6e6227e287ce7c49ce9dc32b81f2e7",
-      "inputSha256": "8ac16af61de1d38a809f15ced46b70d4d61f77a3de4c9d0a50b6dc685e5de857",
+      "sha256": "c6937a4fafa2d51b11840656e94c3d4d6e2ff74bc87bc21b8485e53b0b2f5bd0",
+      "inputSha256": "f1269e20bab074b16a297d26cad285dd43ba1ed23776568549bd4064371aee0b",
       "contentSha256": "ad47aa31144eac278d65630aac577ad2ce967d88f21ccb5df4fd33d61f7b707d"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

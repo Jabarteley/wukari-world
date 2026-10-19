@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/port-harcourt.json",
-      "sha256": "5898ba1122d19d6eecafe9f5ea9ad38569a0e70efa8f8175d9bd382557b37a2c",
-      "inputSha256": "731ea5546350aa1b9d986cb5603333d6703705c7cb3d07df2e370363daad94a1",
+      "sha256": "b9ff6cae3db04f81aea93d2d9d51e87db2b02b20a83ef7c52195ea8b7bd07880",
+      "inputSha256": "ba4601f834b2fbc550037b767a9dd5984685d87c3ca58b2fe29d720d85a36039",
       "contentSha256": "fb5d9677a4d7f2504536c8d128fe091924e343243e7be04730696e5ba1d5d8a4"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

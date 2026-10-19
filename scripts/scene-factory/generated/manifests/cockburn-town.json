@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/cockburn-town.json",
-      "sha256": "7e4649397104edb250f2fab95a00c0661673609011b422540ec75fc06e123410",
-      "inputSha256": "c0cc03c9e64d482af0991f5179989668f961e8ff060e338c33a41445eebcc147",
+      "sha256": "73e2ebc269ee52ae45c6dc7733841f2a416a0a68d4e716dc0528bae1b26c69ca",
+      "inputSha256": "c96ac46497412a6e020b7a260717e6d7aef36c4a0d396715221bdb56859f295e",
       "contentSha256": "15e890c36420dc07528ac9ae43f76116ca86ac843015b7cec6c8e6773449da56"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/brasilia.json",
-      "sha256": "9a0f65ffb99937578ffec4a06e5b3d94588e0c98e1d6dac8a351a59ec8e4f592",
-      "inputSha256": "bd6a03f846f097a63a7c97aad9fee5732f1761d4839a538749c9ea83d2de711c",
+      "sha256": "8a09c7d6b5fe12898477e3f6b177c3f043f06f6fe4ad995425b6d2ac5b61d7ba",
+      "inputSha256": "74898fd51f96064af5227a6a8ecc163271bfd228fd2d27f45c131e5d0450f5ba",
       "contentSha256": "23580af9fb1e89b59cfbec481ec0ac51fa7ddaf8a4c35e809b93efb59443d5cb"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

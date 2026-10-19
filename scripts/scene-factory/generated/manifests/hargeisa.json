@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/hargeisa.json",
-      "sha256": "118b9fa5511de2168305247482c8af8ff01187e9a12a86e6785df5ad354c9b96",
-      "inputSha256": "d4364f5cad18fce73ead1cb55fce6dff4664a869d87d8a64fd34349dd5711811",
+      "sha256": "ef6fb2d812edcae66f8f611382459375f3c82fb146a5fde4f6ee190b9bd65a3a",
+      "inputSha256": "1f10e8615e034c2a32a591edb5681f85c5bf3c967716854ef4da6d9ee8a2057e",
       "contentSha256": "69738d40cfa641edff909a38f1516123cf1e88fa73c29d3b4f5ec03e96efb417"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

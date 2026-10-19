@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/manila.json",
-      "sha256": "a55ddf55d9ff60228d28a510d0ab5c53413675db5903e4e362ff9c2bccbb5d8a",
-      "inputSha256": "9a89a5c96cd86f54b2a7c3ab07fa9bd0fe9855952e72af47d69b8e9619df5e26",
+      "sha256": "74b49407baa7dc2ff43bda0da761487dc8b57478bb6dc5cbfbb5b6ce3fa9e610",
+      "inputSha256": "b96a5b486a255a27317ce39ca844d2dfeada0e3ada4ccb640819ed3899b6cdb6",
       "contentSha256": "7dcde045a3d5c76713e668387244c92d3dc0c8d2cb878a95a3d6e4b4bb602ccd"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

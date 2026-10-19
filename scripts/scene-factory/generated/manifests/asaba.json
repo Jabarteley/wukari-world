@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/asaba.json",
-      "sha256": "a0b8d59d46396bffce386d6a8f430f34e5f4e5d59ea40f14d1404025d9f7b1da",
-      "inputSha256": "372d256fb1fd450400476943c50b3a8c0cff55eee41be50758bf5449d6e6f779",
+      "sha256": "4999a8f56e3be777199ce9c0bf98e8d5f937af3bf3f52868c99b285a31691a7b",
+      "inputSha256": "b7bd9cf6909e576c6c23675e78f9d3de001b5437655119d8afc4dfda54cd232b",
       "contentSha256": "aaed02b6d4ca3196af5160c2dd1dcd4beac0e445897646e3ccec58ff209eaa85"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

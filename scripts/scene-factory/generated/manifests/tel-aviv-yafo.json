@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/tel-aviv-yafo.json",
-      "sha256": "5565b3eacd2bed434b9cbab0c78b64d0a4f5dd5204348ad3f9a15c2520a473dc",
-      "inputSha256": "1b0c1284c0e9782e638ef3f9c022a00c7dd63d09d52b3c461f901379392b154e",
+      "sha256": "5d0384b78d2adc6ae5e3bfa4f5aecb5bc85266f58e0e26ba80c8e782497a404b",
+      "inputSha256": "7b413a73768ddfb730c4adb4b20f77707a2bec1f1b3e9b59eada84674302585b",
       "contentSha256": "5b90a3b435bf875f1a446907ad5a8459640e2c984c170a31131bbff2eec7df08"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

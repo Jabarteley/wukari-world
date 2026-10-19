@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/cape-town.json",
-      "sha256": "a54208cc457bd51885b2680aff53378991cd148d59c81b1f8d1867fe3da9b9a9",
-      "inputSha256": "0d97d8e834fc80c088c3edea5dcddf0d5b1b90eec8e0ea4645eddd85dd4bc207",
+      "sha256": "f8f3576965278453094efe49b77bcc873e4f4f063e822d32202858fb24af2df1",
+      "inputSha256": "fd726d346cb38f78a82da130dcebb068dfa2ae4f7ef2cfd68d15fff1df2f0122",
       "contentSha256": "5b286530dfeee36b3708cacd060626c61f2786ac2d5373e79599d817295b7cfe"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

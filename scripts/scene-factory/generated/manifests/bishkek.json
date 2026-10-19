@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/bishkek.json",
-      "sha256": "b827ee381c1710e9437af1361cc9bc99c07bce15082f649781c7d70ecf240977",
-      "inputSha256": "39fcab21cded4795cabd06c7d039bd82ebcf449fa2198d20f069127c65713093",
+      "sha256": "29749f5992acc915cfe1a3aee8b78da941a417534e9a1844e64dd8d40d5d4a2d",
+      "inputSha256": "d8993330b9f3352e541c59f6be769d872cfa295c788bb7462178de208300a9a4",
       "contentSha256": "c1e488b9b44f65496e138074662ad64dce9281a0eb93e81226818843dbb39bed"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/pyongyang.json",
-      "sha256": "700a6dafef776f06a19c8c3487466376759e76ee4ca358bf82a017270e6841b2",
-      "inputSha256": "2560e75c2569eaf57745af8df0de578ed2218d900366568d13dc3e7bfbc89d72",
+      "sha256": "a4ab802c5f3f2cff309a7671cb1dca5554a7b95fc7d16136c2bc63d1114138b1",
+      "inputSha256": "24ec55866d3530bbc264b184e5da5345479efee6a720fd5d45a8719cfd1736eb",
       "contentSha256": "31107f5466414239c0080fe763319fb708bc8fd0204fb26bdfb4823b89dcde4f"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

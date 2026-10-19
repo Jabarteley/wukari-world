@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/st-johns.json",
-      "sha256": "bcb575b05d18f491841f1d8dedff0d552a3419d6abd6ebf5f9c0cc19768e0f26",
-      "inputSha256": "44136835d2ce59c8d54f39d031c835b14f1b38f2c8f6e3774c535a1c4ce93a00",
+      "sha256": "b10aaf68986a8918c7cc181eb6088d88d55e957337d715a5d7f0d26caaf37ed8",
+      "inputSha256": "00cb9a386f9d4e2fab3891470a4b241982940df58e3d0abb9e64c44842dccf9e",
       "contentSha256": "e142db10c7b5024dcff314556c47e789c3160044567c69be1864128bbb29be13"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

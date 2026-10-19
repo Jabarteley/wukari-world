@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/freetown.json",
-      "sha256": "5970c00b73734087b0c0619016b09141de808e267d2a548342c53bdc0304e6c0",
-      "inputSha256": "3d28bb44b30330d2756bb9b132c4810750a189e28738263449b1e539919d9407",
+      "sha256": "7b4b2f8f079912b0e0da752ccf4d18ff27dd9d90812abaf50a6be010c66098cd",
+      "inputSha256": "58946c1f619f7991840d618d8af06872f5fc34bcb0b0074a8a2fd7063e685a2a",
       "contentSha256": "6be37f01916aa6bb123ac3b95178e8f7115fd0bccb77cc8144e761a0f6f8395b"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/larnaca.json",
-      "sha256": "5f10cd8c483f23e7d95fa12e04545ea5004af8900cb402eaf2e26e3a12c33927",
-      "inputSha256": "442348c04087d1f2e3f5600fdd518a5550a7cb855cb5c3afe979c52cc7f9e91a",
+      "sha256": "ba796430e3ba746c759907fb3d20177013899541cafbd4bfb6dddcee611c4608",
+      "inputSha256": "bbdc42fab0a0036a9a948ca429e80078c735448578374470a6b72765e0a99e49",
       "contentSha256": "17291e6abf0f249a49c64564d105aebc946087cd6d5a4250e654d67cc68bb982"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

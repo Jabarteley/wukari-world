@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/podgorica.json",
-      "sha256": "5aa025b297bdc892cd26832af5a9ecce763b5dee6c2960d8c80e7ab90183005f",
-      "inputSha256": "3c3314405fde1d82ca0adcdc94c8e348193262e893ca667bfcded01db15dbf01",
+      "sha256": "a4583c83349019f87088378cd2a0382c4362a0af7abf76681be8e9b15bdd071c",
+      "inputSha256": "bc546a0de2d1e3d682d6d125563944138f2bf5a46b3d4feedad15fb14424cedf",
       "contentSha256": "75efe548e3e477c86993ee98df7a94ed85ccba4fffe06d4c672251a3da9c047c"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

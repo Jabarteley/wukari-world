@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ramallah.json",
-      "sha256": "3e6a080319bcc9d45e55533cb343191e0d6fec18b73fb972a9d3b648eeb2a28a",
-      "inputSha256": "ee9b89536b9829a80acb662da38195665b2f0151698506833bc51cd5c757abc6",
+      "sha256": "010c40841a0d4d3c4f758a4651eccd8aa9a8da51d4095e9fe6c58c7ef28ed78d",
+      "inputSha256": "afa5f01d951ea4cb4651e434af80f7ab1428cb3ad3bd32f910e15e7cdc601cb8",
       "contentSha256": "32f135d164be538e6c2d81b4f07b81f4756a71cbd305cac8ced26f5db4752887"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

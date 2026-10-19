@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/charlotte-amalie.json",
-      "sha256": "09a5d683ca38e5638de1a881f74735915547500f55c34aa5b56b2ca4ad53d3db",
-      "inputSha256": "e71e7f6b8442fdb1a71d81a48ae0d3dbe69338387aaa803a47f86e4118d4f748",
+      "sha256": "4bc6c9cb34ac0b5a4400971cb56e1005c5e53681c1640e5039a279713cce2c8a",
+      "inputSha256": "357a435bf2366eba3556837613c116b9f21e3782b5279ba4a8321c6a9181af6a",
       "contentSha256": "ff82dd50609c60ca7b352ac8bad0ac781527fb81adabdb53b7d506f9fa7daf1e"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

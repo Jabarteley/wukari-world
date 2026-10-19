@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/san-marino.json",
-      "sha256": "374018860dfa2e8cbf7ecac513b6bc3c52f55582293f1a834e7c6b6046e2bf77",
-      "inputSha256": "4e0e08907875422bb5652ab833e3efd76bb9e35d45136ea059308bac6acd6d5f",
+      "sha256": "9d70ccc5efcf66d3b83f3828982300bc90fc206e51387e08614783bb60745f36",
+      "inputSha256": "fde3621244668d802e9cf38a4e0b1c1850eb5c17b7b888eb18310ea987e7b5a7",
       "contentSha256": "2ea76611e1b4d5975589aeda4393ef7ff33870b45a9ecbb58927aeebc29305e4"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

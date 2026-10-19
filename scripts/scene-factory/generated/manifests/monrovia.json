@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/monrovia.json",
-      "sha256": "a036486ea584e8690c137f3487fd472268c409bf144378c0e5e7747ebb515b0a",
-      "inputSha256": "b08e3a92101d5bce32355ae173554b07eb0272601a1593a5c3144f832e387043",
+      "sha256": "d162fc8562d06ad84fd81f11c3a7aed59699d46271bb4852fb92f9d77d7dee95",
+      "inputSha256": "3f66a312918012576912198bece36ec24c0ff761f1eebe5397cdcf9d147c374f",
       "contentSha256": "66fa116a935b987dd6db32e77ea7e31ce96596b73084305bb998eb646928fdee"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

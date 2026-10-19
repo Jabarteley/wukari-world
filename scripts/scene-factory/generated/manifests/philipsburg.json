@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/philipsburg.json",
-      "sha256": "7604aa38e3e068b60d0cfce00496651512b830a839cd60a6a5d3fc1a36aa52c4",
-      "inputSha256": "011f2033fea05e96a070c1ed71258251dc2bfe02a886a3af48b488c024db64d2",
+      "sha256": "48c0f8b3532d2d532e0faf769f42945ef779075351de08e04a458ab3dcecab28",
+      "inputSha256": "27b18ce72f606af1b8a66c15d170efa4d9df955eb3bea9b96ae87a239af65c7b",
       "contentSha256": "48152e18ea0a04e902bef33a87a02b53bc019f7c09cb5328bb1e42475a084593"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

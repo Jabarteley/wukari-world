@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/georgetown.json",
-      "sha256": "27ae50c5f28eb81c3d3e4b8b0dd383337da4b2b28dd8f919e73f472f5fd4c6d9",
-      "inputSha256": "5da7056ddb420b4c9bd7c16635f1c897e79b58efbdc1b0e13b67d835a09c0a3e",
+      "sha256": "cb5bd0112dd19074666edc38ce366d0cf5a39313b1488d28212900da11dfee29",
+      "inputSha256": "f0095590e6d2aa1b7f6e94d989a642fa600d2e467ce2752ecc8ae930f665c54f",
       "contentSha256": "55504c768edf637172a99e7d60c96dffd5ab06ae147e6f4916bd88fc70f40fc5"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

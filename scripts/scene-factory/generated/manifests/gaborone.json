@@ -9,8 +9,8 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/gaborone.json",
-      "sha256": "7c99bc48888a52dab17c53407b51a0a7b672df1d9938ce2e32afe285e107daa6",
-      "inputSha256": "e56b240fdcdec5cea4717399cd91b7a7b55849ee146e7e1081d05eefee9e3026",
+      "sha256": "fd357f71c078a3750fc7626594d66f34d83d55d687a5d168f40b33c6bf3be744",
+      "inputSha256": "96cee39b0438e0d35e259c37d9b8349418e1de1a68137be3205e35e92b640d0b",
       "contentSha256": "fe89541fed7986c9d61aa1e2812376d1042518f46694b3e07cc445464f12c5f6"
     },
     "layoutSeed": {
@@ -20,7 +20,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
+      "sha256": "21fa99ad294a828fecdb77fe8516420b196e8794e6f4f309096d91c4770e9a16",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4880,7 +4880,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "c54021395249dc6fc874c5ba87ca0cdd1978e372dd62b3bbec9f6b4bd55bdd71"
+          "sha256": "59b07f453ed45826a7541e62f467bf3b1c2aa6880c773a486185e27530878cc8"
         },
         {
           "path": "src/scene/venues-campus.ts",

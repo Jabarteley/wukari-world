@@ -23,6 +23,8 @@ const view = computed(() => storyStreetWalkView({
   coverage: STORY_STREET_COVERAGE,
 }))
 
+const reason = computed(() => (view.value && view.value.kind !== 'mapped-venue' ? view.value.reason : null))
+
 function startWalk(): void {
   if (view.value?.kind !== 'start' || view.value.reason) return
   shell.close()
@@ -41,9 +43,10 @@ async function returnToStreet(): Promise<void> {
     <div>
       <small>Chapter 3 city walk</small>
       <h4 id="story-street-title">Explore on foot</h4>
-      <p v-if="view.kind === 'mapped-venue'">{{ view.venueLabel }} is on this city's walking map. Enter it from the street to keep walking from the same doorway.</p>
+      <p v-if="view.kind === 'mapped-venue'">{{ view.venueLabel }} is on this city's walking map. Next time, walk in from the street and Return to the street will bring you back to the same doorway.</p>
       <p v-else-if="view.kind === 'return'">You walked into {{ view.venueLabel }}. Leave by the same entrance to continue from where you stopped.</p>
       <p v-else>{{ view.venueCount }} Chapter 3 place{{ view.venueCount === 1 ? '' : 's' }} can be reached from this city's walking map.</p>
+      <p v-if="reason" class="story-street-reason" role="status">{{ reason }}</p>
     </div>
     <BaseButton v-if="view.kind === 'start'" small variant="primary" :reason="view.reason" @click="startWalk">{{ view.actionLabel }}</BaseButton>
     <BaseButton v-else-if="view.kind === 'walking'" small @click="shell.close()">{{ view.actionLabel }}</BaseButton>
@@ -53,6 +56,6 @@ async function returnToStreet(): Promise<void> {
 
 <style scoped>
 .story-street { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 10px; align-items: center; min-width: 0; padding: 13px; border-radius: var(--r-md); background: var(--c-green-soft); box-shadow: var(--e-1),var(--ring); }
-.story-street h4,.story-street p { margin: 0; }.story-street small { display: block; margin-bottom: 2px; color: var(--c-green-dark); font-size: 10px; text-transform: uppercase; }.story-street h4 { font-size: 15px; }.story-street p { margin-top: 3px; color: var(--c-muted); font-size: 12px; line-height: 1.4; overflow-wrap: anywhere; }
+.story-street h4,.story-street p { margin: 0; }.story-street small { display: block; margin-bottom: 2px; color: var(--c-green-dark); font-size: 10px; text-transform: uppercase; }.story-street h4 { font-size: 15px; }.story-street p { margin-top: 3px; color: var(--c-muted); font-size: 12px; line-height: 1.4; overflow-wrap: anywhere; }.story-street p.story-street-reason { color: var(--c-ink); font-weight: 600; }
 @container passport (max-width: 300px) { .story-street { grid-template-columns: 1fr; }.story-street :deep(.base-button) { justify-self: start; } }
 </style>

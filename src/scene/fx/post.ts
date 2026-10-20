@@ -75,6 +75,8 @@ export interface PostOptions {
 }
 export interface Post {
   render(scene: THREE.Scene, camera: THREE.Camera): void
+  /** The buffer the scene itself is drawn into (the composer's input). Scene materials link a different program for it than for the screen, so shader-warmup.ts compiles against it. */
+  readonly target: THREE.WebGLRenderTarget
   setSize(width: number, height: number, pixelRatio: number): void
   /** Change the colour grade (season or hour); the table is rewritten in place and re-uploaded. */
   setGrade(kind: GradeKind, band: HourBand): void
@@ -153,6 +155,7 @@ export function buildPost(THREE: ThreeModule, renderer: THREE.WebGLRenderer, lib
 
   let sizeKey = '';
   return {
+    get target() { return composer.inputBuffer; },
     render(view, eye) {
       // postprocessing's passes take the scene and camera as mainScene / mainCamera; n8ao's takes them as scene / camera.
       render.mainScene = view; render.mainCamera = eye;

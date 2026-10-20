@@ -1,0 +1,409 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "accra",
+ "venueId": "accra-accra-ghana-temple",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Ghana_Mission_247.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "Paul Moncur",
+   "view": "front",
+   "file": "/tmp/places-evidence/accra/temple.jpg",
+   "used": "low pale granite wings with horizontal courses, taller central gabled hall with a brownish-red front panel and tall arched window, stepped square spire tower behind with a lit slit and a gold statue"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/295287636",
+   "used": "overall size check only (the outline is an irregular cross; massing composed from the photo)"
+  }
+ ],
+ "camera": {
+  "yawDeg": -22,
+  "pitchDeg": 0,
+  "fovDeg": 40,
+  "aspect": 1.333,
+  "margin": 0.1
+ },
+ "review": {
+  "rounds": 2,
+  "match": "fair",
+  "gaps": "night photo: no lit glazing, wings slightly boxier and spire steps simpler than the stepped corner-pilaster tower; no Christmas tree"
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "wing-l",
+   "footprint": {
+    "rect": [
+     20,
+     22
+    ]
+   },
+   "at": [
+    -14,
+    -2
+   ],
+   "height": 7.4,
+   "storeys": 1,
+   "wall": {
+    "material": "granite",
+    "colour": "#cdd0d0",
+    "windows": "none",
+    "plinth": 0.4,
+    "cornice": true,
+    "pattern": [
+     {
+      "type": "bands",
+      "colours": [
+       "#b9bdbe"
+      ],
+      "height": 0.35,
+      "at": 0.5,
+      "proud": 0.08,
+      "floors": "all"
+     }
+    ]
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#aeb3b4",
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "wing-r",
+   "footprint": {
+    "rect": [
+     16,
+     22
+    ]
+   },
+   "at": [
+    17,
+    -2
+   ],
+   "height": 7.4,
+   "storeys": 1,
+   "wall": {
+    "material": "granite",
+    "colour": "#cdd0d0",
+    "windows": "none",
+    "plinth": 0.4,
+    "cornice": true,
+    "pattern": [
+     {
+      "type": "bands",
+      "colours": [
+       "#b9bdbe"
+      ],
+      "height": 0.35,
+      "at": 0.5,
+      "proud": 0.08,
+      "floors": "all"
+     }
+    ]
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#aeb3b4",
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "hall",
+   "footprint": {
+    "rect": [
+     14,
+     24
+    ]
+   },
+   "at": [
+    1.5,
+    -1
+   ],
+   "height": 9.6,
+   "storeys": 1,
+   "wall": {
+    "material": "granite",
+    "colour": "#d3d3d0",
+    "windows": "none",
+    "plinth": 0.4,
+    "cornice": true,
+    "faces": {
+     "front": "arched"
+    },
+    "windowRatio": 0.2,
+    "pattern": [
+     {
+      "type": "bands",
+      "colours": [
+       "#b9bdbe"
+      ],
+      "height": 0.3,
+      "at": 0.45,
+      "proud": 0.08,
+      "floors": "all"
+     }
+    ]
+   },
+   "roof": {
+    "form": "gable",
+    "colour": "#9aa1a3",
+    "pitch": 6,
+    "overhang": 0.2
+   }
+  },
+  {
+   "type": "mass",
+   "id": "front-panel",
+   "footprint": {
+    "rect": [
+     10,
+     0.8
+    ]
+   },
+   "at": [
+    1.5,
+    -13.3
+   ],
+   "height": 9.4,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#8a5a4e",
+    "windows": "none",
+    "plinth": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8a5a4e"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "front-window",
+   "footprint": {
+    "rect": [
+     3.6,
+     0.5
+    ]
+   },
+   "at": [
+    1.5,
+    -13.9
+   ],
+   "height": 6.0,
+   "storeys": 1,
+   "wall": {
+    "material": "glass-curtain",
+    "colour": "#e8c98a",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "gable",
+    "colour": "#e8c98a",
+    "pitch": 28
+   },
+   "z0": 0.8
+  },
+  {
+   "type": "mass",
+   "id": "side-window",
+   "footprint": {
+    "rect": [
+     1.3,
+     0.5
+    ]
+   },
+   "at": [
+    -7.5,
+    -13.2
+   ],
+   "height": 3.4,
+   "storeys": 1,
+   "wall": {
+    "material": "glass-curtain",
+    "colour": "#e8c98a",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#cfc7b4"
+   },
+   "z0": 1.8
+  },
+  {
+   "type": "prism",
+   "id": "spire-base",
+   "at": [
+    1.5,
+    6,
+    0
+   ],
+   "params": {
+    "rect": [
+     9,
+     9
+    ],
+    "z0": 8.5,
+    "height": 4,
+    "colour": "#d0d1ce",
+    "windows": "none"
+   }
+  },
+  {
+   "type": "prism",
+   "id": "spire-s1",
+   "at": [
+    1.5,
+    6,
+    0
+   ],
+   "params": {
+    "rect": [
+     7,
+     7
+    ],
+    "z0": 12.5,
+    "height": 3.5,
+    "colour": "#d0d1ce"
+   }
+  },
+  {
+   "type": "prism",
+   "id": "spire-s2",
+   "at": [
+    1.5,
+    6,
+    0
+   ],
+   "params": {
+    "rect": [
+     5.4,
+     5.4
+    ],
+    "z0": 16,
+    "height": 3.5,
+    "colour": "#d0d1ce"
+   }
+  },
+  {
+   "type": "prism",
+   "id": "spire-s3",
+   "at": [
+    1.5,
+    6,
+    0
+   ],
+   "params": {
+    "rect": [
+     3.6,
+     3.6
+    ],
+    "z0": 19.5,
+    "height": 7,
+    "colour": "#d0d1ce"
+   }
+  },
+  {
+   "type": "prism",
+   "id": "spire-slit",
+   "at": [
+    1.5,
+    4.1,
+    0
+   ],
+   "params": {
+    "rect": [
+     0.7,
+     0.4
+    ],
+    "z0": 19.8,
+    "height": 5.8,
+    "colour": "#f4e9c4"
+   }
+  },
+  {
+   "type": "statue-figure",
+   "id": "moroni",
+   "at": [
+    1.5,
+    6,
+    26.5
+   ],
+   "params": {
+    "height": 3.2,
+    "colour": "#c9a24a"
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    -26,
+    -22,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 9
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    26,
+    -20,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 9
+   }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    0,
+    -30,
+    0
+   ],
+   "params": {
+    "length": 70,
+    "height": 1.6,
+    "thickness": 0.4,
+    "kind": "wall",
+    "pillarEvery": 6,
+    "colour": "#d8d3c6"
+   }
+  }
+ ],
+ "site": {
+  "ground": "paving",
+  "forecourt": "garden",
+  "trees": [
+   {
+    "kind": "palm",
+    "at": [
+     -34,
+     -18
+    ]
+   },
+   {
+    "kind": "palm",
+    "at": [
+     34,
+     -18
+    ]
+   }
+  ],
+  "extent": [
+   110,
+   90
+  ]
+ }
+}

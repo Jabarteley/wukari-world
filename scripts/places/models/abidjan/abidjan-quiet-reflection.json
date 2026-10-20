@@ -1,0 +1,494 @@
+{
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:La_Cath%C3%A9drale_Saint-Paul_du_Plateau.jpg",
+   "licence": "CC BY-SA (see Commons page)",
+   "author": "see Commons page",
+   "view": "front",
+   "file": "/tmp/places-evidence/abidjan/cath5.jpg",
+   "used": "70 m cross tower: slim central shaft, two flared legs ending in horizontal arms, stay cables to the pale wedge body, weathered grey-white concrete"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:La_cath%C3%A9drale_Saint-Paul_Abidjan_03.jpg",
+   "licence": "CC BY-SA (see Commons page)",
+   "author": "see Commons page",
+   "view": "side",
+   "file": "/tmp/places-evidence/abidjan/cath3.jpg",
+   "used": "tower vs cream wedge proportion, palm-shaped mast nearby"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Cath%C3%A9drale_Saint-Paul_d%27Abidjan_100.jpg",
+   "licence": "CC BY-SA (see Commons page)",
+   "author": "see Commons page",
+   "view": "detail",
+   "file": "/tmp/places-evidence/abidjan/cath4.jpg",
+   "used": "low grey rough-cast curved entrance walls, dark ribbon glazing under a flat roof lip, paved forecourt with shallow brick steps"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/331571796",
+   "used": "overall extent only (97 x 81 m)"
+  }
+ ],
+ "camera": {
+  "yawDeg": -8,
+  "pitchDeg": 1,
+  "fovDeg": 45,
+  "aspect": 0.75,
+  "fit": "building",
+  "margin": 0.0
+ },
+ "parts": [
+  {
+   "type": "loft",
+   "params": {
+    "colour": "#e6dfd0",
+    "sections": [
+     {
+      "z": 0,
+      "poly": [
+       [
+        8,
+        -30
+       ],
+       [
+        58,
+        -6
+       ],
+       [
+        40,
+        26
+       ],
+       [
+        6,
+        22
+       ]
+      ],
+      "cx": 0
+     },
+     {
+      "z": 14,
+      "poly": [
+       [
+        8,
+        -26
+       ],
+       [
+        50,
+        -5
+       ],
+       [
+        36,
+        20
+       ],
+       [
+        7,
+        17
+       ]
+      ],
+      "cx": 0
+     },
+     {
+      "z": 24,
+      "poly": [
+       [
+        8,
+        -18
+       ],
+       [
+        22,
+        -8
+       ],
+       [
+        14,
+        10
+       ],
+       [
+        7,
+        10
+       ]
+      ],
+      "cx": 0
+     }
+    ]
+   }
+  },
+  {
+   "type": "mass",
+   "id": "entrance-wing",
+   "footprint": {
+    "polygon": [
+     [
+      -62,
+      -26
+     ],
+     [
+      -24,
+      -30
+     ],
+     [
+      -22,
+      -16
+     ],
+     [
+      -60,
+      -14
+     ]
+    ]
+   },
+   "z0": 0,
+   "height": 9,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#b8b5ae",
+    "windows": "ribbon",
+    "windowRatio": 0.35,
+    "glassColour": "#2b3033",
+    "faces": {
+     "back": "plain"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#a8a69f",
+    "overhang": 0.8,
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "mass",
+   "id": "text-wall",
+   "footprint": {
+    "rect": [
+     26,
+     2
+    ]
+   },
+   "at": [
+    -40,
+    -28
+   ],
+   "rotDeg": 4,
+   "z0": 0,
+   "height": 13,
+   "storeys": 3,
+   "wall": {
+    "material": "concrete",
+    "colour": "#c4c1ba",
+    "windows": "none",
+    "plinth": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#b8b5ae"
+   }
+  },
+  {
+   "type": "loft",
+   "params": {
+    "colour": "#cfcdc6",
+    "sections": [
+     {
+      "z": 0,
+      "rect": [
+       7,
+       6
+      ],
+      "cx": -9
+     },
+     {
+      "z": 18,
+      "rect": [
+       5.4,
+       5.2
+      ],
+      "cx": -7.2
+     },
+     {
+      "z": 38,
+      "rect": [
+       4.6,
+       4.6
+      ],
+      "cx": -6.2
+     },
+     {
+      "z": 50,
+      "rect": [
+       5.4,
+       4.6
+      ],
+      "cx": -8.6
+     }
+    ]
+   }
+  },
+  {
+   "type": "loft",
+   "params": {
+    "colour": "#cfcdc6",
+    "sections": [
+     {
+      "z": 0,
+      "rect": [
+       7,
+       6
+      ],
+      "cx": 9
+     },
+     {
+      "z": 18,
+      "rect": [
+       5.4,
+       5.2
+      ],
+      "cx": 7.2
+     },
+     {
+      "z": 38,
+      "rect": [
+       4.6,
+       4.6
+      ],
+      "cx": 6.2
+     },
+     {
+      "z": 50,
+      "rect": [
+       5.4,
+       4.6
+      ],
+      "cx": 8.6
+     }
+    ]
+   }
+  },
+  {
+   "type": "loft",
+   "params": {
+    "colour": "#d4d1c9",
+    "sections": [
+     {
+      "z": 0,
+      "rect": [
+       8,
+       6
+      ]
+     },
+     {
+      "z": 26,
+      "rect": [
+       6.4,
+       5
+      ]
+     },
+     {
+      "z": 48,
+      "rect": [
+       7,
+       5.2
+      ]
+     },
+     {
+      "z": 58,
+      "rect": [
+       6,
+       4.6
+      ]
+     },
+     {
+      "z": 70,
+      "rect": [
+       5.4,
+       4.4
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "type": "prism",
+   "at": [
+    -11.6,
+    0,
+    49.5
+   ],
+   "params": {
+    "rect": [
+     14,
+     5
+    ],
+    "height": 3.0,
+    "topScale": [
+     0.8,
+     1
+    ],
+    "colour": "#c9c7c0"
+   }
+  },
+  {
+   "type": "prism",
+   "at": [
+    11.6,
+    0,
+    49.5
+   ],
+   "params": {
+    "rect": [
+     14,
+     5
+    ],
+    "height": 3.0,
+    "topScale": [
+     0.8,
+     1
+    ],
+    "colour": "#c9c7c0"
+   }
+  },
+  {
+   "type": "sweep-path",
+   "params": {
+    "section": {
+     "circle": 0.15
+    },
+    "points": [
+     [
+      1.5,
+      2,
+      66
+     ],
+     [
+      18,
+      6,
+      22
+     ]
+    ],
+    "sag": 0.2,
+    "colour": "#3a3d40"
+   }
+  },
+  {
+   "type": "sweep-path",
+   "params": {
+    "section": {
+     "circle": 0.15
+    },
+    "points": [
+     [
+      1.0,
+      2,
+      64
+     ],
+     [
+      24,
+      8,
+      16
+     ]
+    ],
+    "sag": 0.3,
+    "colour": "#3a3d40"
+   }
+  },
+  {
+   "type": "sweep-path",
+   "params": {
+    "section": {
+     "circle": 0.15
+    },
+    "points": [
+     [
+      0.5,
+      2,
+      62
+     ],
+     [
+      30,
+      10,
+      12
+     ]
+    ],
+    "sag": 0.3,
+    "colour": "#3a3d40"
+   }
+  },
+  {
+   "type": "core/steps",
+   "at": [
+    -42,
+    -34,
+    0
+   ],
+   "params": {
+    "width": 30,
+    "rise": 0.9,
+    "run": 1.5,
+    "count": 3,
+    "colour": "#a4584a"
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -70,
+    -24,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 11,
+    "count": 3,
+    "spread": 10
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    30,
+    -40,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 10,
+    "count": 2,
+    "spread": 8
+   }
+  }
+ ],
+ "site": {
+  "ground": "paving",
+  "forecourt": "plaza",
+  "trees": [
+   {
+    "kind": "broadleaf",
+    "at": [
+     -26,
+     -55
+    ],
+    "height": 12
+   },
+   {
+    "kind": "palm",
+    "at": [
+     -60,
+     -20
+    ],
+    "height": 22
+   }
+  ],
+  "extent": [
+   100,
+   90
+  ]
+ },
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "abidjan",
+ "venueId": "abidjan-quiet-reflection"
+}

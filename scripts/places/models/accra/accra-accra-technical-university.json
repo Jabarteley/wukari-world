@@ -1,0 +1,424 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "accra",
+ "venueId": "accra-accra-technical-university",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Accra_Technical_University_Ghana.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Amuzujoe",
+   "view": "street",
+   "file": "/tmp/places-evidence/accra/atu2.jpg",
+   "used": "entrance gate: long rounded-end cream canopy with a blue board band on slim cream columns, small cream gatehouse with blue windows, grey dome behind, white railings between cream piers, three-storey cream teaching block on the left with balcony bands, big shade trees"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Accra_Technical_University_2.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Serieminou",
+   "view": "front",
+   "file": "/tmp/places-evidence/accra/atu1.jpg",
+   "used": "canopy depth and column spacing, stone-faced boundary wall with cream piers and white iron fence, cream block with balconies"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/204828062",
+   "used": "none: the campus polygon is 517 m wide, only the main gate and the nearest block are modelled"
+  }
+ ],
+ "camera": {
+  "yawDeg": 0,
+  "pitchDeg": 2,
+  "fovDeg": 52,
+  "aspect": 1.333,
+  "margin": 0.02,
+  "fit": "all"
+ },
+ "parts": [
+  {
+   "type": "prism",
+   "id": "canopy",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "points": [
+     [
+      10.0,
+      -5.0
+     ],
+     [
+      11.91341716182545,
+      -4.619397662556434
+     ],
+     [
+      13.535533905932738,
+      -3.5355339059327373
+     ],
+     [
+      14.619397662556434,
+      -1.913417161825449
+     ],
+     [
+      15.0,
+      0.0
+     ],
+     [
+      14.619397662556434,
+      1.913417161825449
+     ],
+     [
+      13.535533905932738,
+      3.5355339059327373
+     ],
+     [
+      11.91341716182545,
+      4.619397662556434
+     ],
+     [
+      10.0,
+      5.0
+     ],
+     [
+      -10.0,
+      5.0
+     ],
+     [
+      -11.913417161825448,
+      4.619397662556434
+     ],
+     [
+      -13.535533905932738,
+      3.5355339059327378
+     ],
+     [
+      -14.619397662556434,
+      1.9134171618254494
+     ],
+     [
+      -15.0,
+      6.123233995736766e-16
+     ],
+     [
+      -14.619397662556434,
+      -1.9134171618254483
+     ],
+     [
+      -13.535533905932738,
+      -3.5355339059327373
+     ],
+     [
+      -11.913417161825452,
+      -4.619397662556432
+     ],
+     [
+      -10.000000000000002,
+      -5.0
+     ]
+    ],
+    "z0": 6.4,
+    "height": 1.9,
+    "colour": "#e8d49a",
+    "topColour": "#d9c58a"
+   }
+  },
+  {
+   "type": "prism",
+   "id": "canopy-board",
+   "at": [
+    0,
+    -4.9,
+    0
+   ],
+   "params": {
+    "rect": [
+     24,
+     0.25
+    ],
+    "z0": 6.9,
+    "height": 0.9,
+    "colour": "#2b3f9a"
+   }
+  },
+  {
+   "type": "array",
+   "params": {
+    "of": {
+     "type": "prism",
+     "params": {
+      "radius": 0.55,
+      "n": 10,
+      "height": 6.4,
+      "colour": "#e2cf94"
+     }
+    },
+    "mode": "grid",
+    "cols": 4,
+    "rows": 2,
+    "dx": 6,
+    "dy": 5
+   },
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "type": "array",
+   "params": {
+    "of": {
+     "type": "prism",
+     "params": {
+      "rect": [
+       1.5,
+       1.5
+      ],
+      "height": 0.7,
+      "colour": "#8a8378",
+      "material": "stone"
+     }
+    },
+    "mode": "grid",
+    "cols": 4,
+    "rows": 2,
+    "dx": 6,
+    "dy": 5
+   },
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "type": "mass",
+   "id": "gatehouse",
+   "footprint": {
+    "rect": [
+     6,
+     5.5
+    ]
+   },
+   "at": [
+    -5,
+    0
+   ],
+   "height": 5.0,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#efe3bf",
+    "windows": "punched",
+    "windowRatio": 0.25,
+    "faces": {
+     "front": "punched",
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    },
+    "glassColour": "#2b3f9a",
+    "plinth": 0.4
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#e8d49a"
+   }
+  },
+  {
+   "type": "core/gate",
+   "lod": [
+    0,
+    1
+   ],
+   "at": [
+    5.5,
+    -0.5,
+    0
+   ],
+   "params": {
+    "width": 7,
+    "height": 2.8,
+    "pillar": 0.8,
+    "leaf": "bars",
+    "colour": "#e8d49a",
+    "leafColour": "#f0f0ee"
+   }
+  },
+  {
+   "type": "core/dome",
+   "at": [
+    0,
+    12,
+    0
+   ],
+   "params": {
+    "radius": 5,
+    "height": 3,
+    "profile": "hemi",
+    "colour": "#c8cccf"
+   }
+  },
+  {
+   "type": "core/fence-wall",
+   "at": [
+    -27,
+    0,
+    0
+   ],
+   "params": {
+    "length": 30,
+    "height": 1.8,
+    "thickness": 0.4,
+    "kind": "wall",
+    "pillarEvery": 4,
+    "colour": "#e3cf94"
+   }
+  },
+  {
+   "type": "core/fence-wall",
+   "at": [
+    27,
+    0,
+    0
+   ],
+   "params": {
+    "length": 30,
+    "height": 1.8,
+    "thickness": 0.4,
+    "kind": "wall",
+    "pillarEvery": 4,
+    "colour": "#e3cf94"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "teaching-block",
+   "footprint": {
+    "rect": [
+     34,
+     12
+    ]
+   },
+   "at": [
+    -34,
+    14
+   ],
+   "height": 11.4,
+   "storeys": 3,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#d8c294",
+    "windows": "ribbon",
+    "windowRatio": 0.4,
+    "faces": {
+     "front": "ribbon",
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    },
+    "glassColour": "#5a6e8a",
+    "pattern": [
+     {
+      "type": "bands",
+      "colours": [
+       "#efe3c0"
+      ],
+      "height": 0.5,
+      "at": 0.5,
+      "proud": 0.4,
+      "floors": "all"
+     }
+    ]
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#a8968a",
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "mass",
+   "id": "rear-block",
+   "footprint": {
+    "rect": [
+     22,
+     10
+    ]
+   },
+   "at": [
+    30,
+    18
+   ],
+   "height": 8.0,
+   "storeys": 2,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#d8c294",
+    "windows": "punched",
+    "windowRatio": 0.2,
+    "bay": 6,
+    "faces": {
+     "front": "punched",
+     "back": "plain"
+    },
+    "glassColour": "#2b3f9a"
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#9a7a5a",
+    "pitch": 12,
+    "overhang": 0.6
+   }
+  },
+  {
+   "type": "tree-grove",
+   "lod": [
+    0,
+    1
+   ],
+   "at": [
+    0,
+    22,
+    0
+   ],
+   "params": {
+    "width": 30,
+    "depth": 14,
+    "count": 6,
+    "kind": "broadleaf",
+    "min_height": 8,
+    "max_height": 12
+   }
+  },
+  {
+   "type": "tree",
+   "lod": [
+    0,
+    1
+   ],
+   "at": [
+    18,
+    -9,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 10
+   }
+  }
+ ],
+ "site": {
+  "ground": "paving",
+  "forecourt": "plaza",
+  "extent": [
+   90,
+   50
+  ]
+ }
+}

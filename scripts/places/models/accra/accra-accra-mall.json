@@ -1,0 +1,529 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "accra",
+ "venueId": "accra-accra-mall",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Accra_Mall_(Entrance).jpg",
+   "licence": "CC BY 2.0",
+   "author": "jbdodane",
+   "view": "front",
+   "file": "/tmp/places-evidence/accra/mall1.jpg",
+   "used": "yellow and cream low blocks with cream bands and glazed shopfronts, steel signage tower with dark core, louvre rails and a wide flat roof, brick piers, barrel-vault cream hall on the right, car park, palms"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Accra_Mall_Entrance.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Nkansahrexford",
+   "view": "detail",
+   "used": "tower structure: four steel posts with diagonal tie rods, big overhanging corrugated roof, blank board, rail bands, brick piers, canopy with steel brackets"
+  },
+  {
+   "kind": "osm",
+   "ref": "relation/8418096",
+   "used": "scale check only (outline is 269 m long, only the entrance frontage is modelled)"
+  }
+ ],
+ "camera": {
+  "yawDeg": 0,
+  "pitchDeg": 4,
+  "fovDeg": 58,
+  "aspect": 1.778,
+  "margin": 0.02,
+  "fit": "all"
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "left-wing",
+   "footprint": {
+    "rect": [
+     34,
+     16
+    ]
+   },
+   "at": [
+    -38,
+    0
+   ],
+   "height": 7.8,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e5c24f",
+    "windows": "curtain",
+    "windowRatio": 0.35,
+    "faces": {
+     "front": "curtain",
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    },
+    "glassColour": "#8fb1c0",
+    "cornice": true,
+    "plinth": 0.3,
+    "pattern": [
+     {
+      "type": "bands",
+      "colours": [
+       "#efe3c2"
+      ],
+      "height": 0.9,
+      "at": 0.9,
+      "proud": 0.15,
+      "floors": "all"
+     }
+    ]
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#b2b6b8",
+    "parapet": 0.7
+   }
+  },
+  {
+   "type": "mass",
+   "id": "centre-block",
+   "footprint": {
+    "rect": [
+     16,
+     14
+    ]
+   },
+   "at": [
+    -6,
+    2
+   ],
+   "height": 8.4,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#ead25e",
+    "windows": "curtain",
+    "windowRatio": 0.3,
+    "faces": {
+     "front": "curtain",
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    },
+    "glassColour": "#8fb1c0",
+    "cornice": true
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#b2b6b8",
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "low-link",
+   "footprint": {
+    "rect": [
+     14,
+     10
+    ]
+   },
+   "at": [
+    -17,
+    -3
+   ],
+   "height": 5.2,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e5c24f",
+    "windows": "curtain",
+    "windowRatio": 0.35,
+    "faces": {
+     "front": "curtain"
+    },
+    "glassColour": "#8fb1c0"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#b2b6b8",
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "mass",
+   "id": "vault-hall",
+   "footprint": {
+    "rect": [
+     30,
+     22
+    ]
+   },
+   "at": [
+    26,
+    4
+   ],
+   "height": 6.8,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#efe3c2",
+    "windows": "curtain",
+    "windowRatio": 0.25,
+    "faces": {
+     "front": "curtain",
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    },
+    "glassColour": "#8fb1c0",
+    "cornice": true,
+    "pattern": [
+     {
+      "type": "bands",
+      "colours": [
+       "#e5c24f"
+      ],
+      "height": 1.2,
+      "at": 0.8,
+      "proud": 0.12,
+      "floors": "all"
+     }
+    ]
+   },
+   "roof": {
+    "form": "curved",
+    "curve": "arch",
+    "rise": 4.2,
+    "colour": "#b9bcbc",
+    "material": "metal-sheet",
+    "overhang": 0.6
+   }
+  },
+  {
+   "type": "mass",
+   "id": "entry-low",
+   "footprint": {
+    "rect": [
+     10,
+     8
+    ]
+   },
+   "at": [
+    10.5,
+    -1
+   ],
+   "height": 6.0,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e5c24f",
+    "windows": "curtain",
+    "windowRatio": 0.3,
+    "faces": {
+     "front": "curtain"
+    },
+    "glassColour": "#8fb1c0"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#b2b6b8",
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "prism",
+   "at": [
+    -0.5,
+    -7.5,
+    0
+   ],
+   "params": {
+    "rect": [
+     1.8,
+     1.8
+    ],
+    "height": 8.5,
+    "colour": "#7b5646",
+    "material": "brick"
+   }
+  },
+  {
+   "type": "prism",
+   "at": [
+    5.5,
+    -7.5,
+    0
+   ],
+   "params": {
+    "rect": [
+     1.8,
+     1.8
+    ],
+    "height": 8.5,
+    "colour": "#7b5646",
+    "material": "brick"
+   }
+  },
+  {
+   "type": "prism",
+   "at": [
+    8.5,
+    -6.5,
+    0
+   ],
+   "params": {
+    "rect": [
+     1.8,
+     1.8
+    ],
+    "height": 6,
+    "colour": "#7b5646",
+    "material": "brick"
+   }
+  },
+  {
+   "type": "prism",
+   "at": [
+    -21,
+    -9,
+    0
+   ],
+   "params": {
+    "rect": [
+     1.8,
+     1.8
+    ],
+    "height": 5.5,
+    "colour": "#7b5646",
+    "material": "brick"
+   }
+  },
+  {
+   "type": "prism",
+   "id": "tower-core",
+   "at": [
+    2.5,
+    -3,
+    0
+   ],
+   "params": {
+    "rect": [
+     4,
+     4
+    ],
+    "height": 15.5,
+    "colour": "#3d4044"
+   }
+  },
+  {
+   "type": "array",
+   "params": {
+    "of": {
+     "type": "prism",
+     "params": {
+      "rect": [
+       0.7,
+       0.7
+      ],
+      "height": 16,
+      "colour": "#9aa0a4"
+     }
+    },
+    "mode": "grid",
+    "cols": 2,
+    "rows": 2,
+    "dx": 6.4,
+    "dy": 6.4
+   },
+   "at": [
+    2.5,
+    -3,
+    0
+   ]
+  },
+  {
+   "type": "prism",
+   "id": "tower-roof",
+   "at": [
+    2.5,
+    -3,
+    0
+   ],
+   "params": {
+    "rect": [
+     11,
+     11
+    ],
+    "z0": 16,
+    "height": 0.6,
+    "colour": "#3d4044",
+    "topScale": 0.9
+   }
+  },
+  {
+   "type": "prism",
+   "id": "tower-rails1",
+   "at": [
+    2.5,
+    -3,
+    0
+   ],
+   "params": {
+    "rect": [
+     7.4,
+     7.4
+    ],
+    "z0": 10.5,
+    "height": 0.5,
+    "colour": "#c4c8cb"
+   }
+  },
+  {
+   "type": "prism",
+   "id": "tower-rails2",
+   "at": [
+    2.5,
+    -3,
+    0
+   ],
+   "params": {
+    "rect": [
+     7.4,
+     7.4
+    ],
+    "z0": 13.2,
+    "height": 0.5,
+    "colour": "#c4c8cb"
+   }
+  },
+  {
+   "type": "sign-board",
+   "at": [
+    2.5,
+    -6.6,
+    8.3
+   ],
+   "params": {
+    "width": 4.6,
+    "height": 7.2,
+    "bottom": 0,
+    "colour": "#f2f1ea",
+    "frameColour": "#2e8a6a",
+    "posts": false
+   }
+  },
+  {
+   "type": "core/canopy",
+   "at": [
+    -38,
+    -9.5,
+    0
+   ],
+   "params": {
+    "form": "flat",
+    "width": 30,
+    "depth": 3.5,
+    "height": 4.6,
+    "thickness": 0.3,
+    "columns": 0,
+    "colour": "#6c7074"
+   }
+  },
+  {
+   "type": "array",
+   "params": {
+    "of": {
+     "type": "car",
+     "params": {
+      "colour": "#8d9296"
+     }
+    },
+    "mode": "line",
+    "start": [
+     -50,
+     -22,
+     0
+    ],
+    "end": [
+     40,
+     -22,
+     0
+    ],
+    "count": 12,
+    "lod1Step": 2,
+    "lod2Step": 4
+   }
+  },
+  {
+   "type": "array",
+   "params": {
+    "of": {
+     "type": "car",
+     "params": {
+      "colour": "#2a2d32"
+     }
+    },
+    "mode": "line",
+    "start": [
+     -46,
+     -30,
+     0
+    ],
+    "end": [
+     36,
+     -30,
+     0
+    ],
+    "count": 9,
+    "lod1Step": 2,
+    "lod2Step": 4
+   }
+  },
+  {
+   "type": "lamp",
+   "at": [
+    34,
+    -18,
+    0
+   ],
+   "params": {
+    "height": 9,
+    "count": 1
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    20,
+    -14,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 8
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    30,
+    -15,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 8
+   }
+  }
+ ],
+ "site": {
+  "ground": "asphalt",
+  "forecourt": "parking",
+  "extent": [
+   100,
+   45
+  ]
+ }
+}

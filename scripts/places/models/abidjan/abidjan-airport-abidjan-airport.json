@@ -1,0 +1,245 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "abidjan",
+ "venueId": "abidjan-airport-abidjan-airport",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:YALI_TechCamp_Abidjan_Airport._Photos_by_Peregrine_Olander.jpg",
+   "licence": "CC BY 2.0",
+   "author": "TechCampGlobal (Peregrine Olander)",
+   "view": "front",
+   "file": "/tmp/places-evidence/abidjan/airport2.jpg",
+   "used": "airside elevation: two storeys, open piered ground floor with dark voids, deep flat concrete canopy slab, glazed upper volume with cream piers, roof parapet sign band, jet bridge at the left end, cream/beige render and grey concrete"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Felix_HOUPHOUET-BOIGNY_INT._AIRPORT._ABIDJAN_-_panoramio.jpg",
+   "licence": "CC BY-SA 3.0",
+   "author": "panoramio contributor",
+   "view": "front",
+   "used": "night view: terracotta-orange fascia and paired piers, long glazed gallery, sign band above the roof edge"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/372403744",
+   "used": "overall extent only (about 180 m long, 2 levels); a 118 m portion is modelled because the scene clamps footprints"
+  }
+ ],
+ "camera": {
+  "yawDeg": -6,
+  "pitchDeg": 9,
+  "fovDeg": 52,
+  "aspect": 1.6,
+  "margin": 0.04,
+  "fit": "building"
+ },
+ "review": {
+  "rounds": 2,
+  "match": "fair",
+  "gaps": "jet bridge hidden at left end, glazing bays wider than the photo, no airside vehicles, canopy slab is flat rather than swept"
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "ground",
+   "footprint": {
+    "rect": [
+     118,
+     24
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "z0": 0,
+   "height": 6.4,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e2dccd",
+    "windows": "none",
+    "plinth": 0.3,
+    "pattern": [
+     {
+      "type": "pilotis",
+      "faces": [
+       "front"
+      ],
+      "inset": 4,
+      "spacing": 9,
+      "width": 1.4,
+      "kind": "square",
+      "colour": "#d8d1c1",
+      "backColour": "#2b2f31"
+     }
+    ]
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#a9a69c",
+    "overhang": 0.2
+   }
+  },
+  {
+   "type": "prism",
+   "id": "canopy-slab",
+   "at": [
+    0,
+    -7,
+    0
+   ],
+   "params": {
+    "rect": [
+     124,
+     16
+    ],
+    "z0": 6.0,
+    "height": 1.6,
+    "colour": "#b9b5aa"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "glazed",
+   "footprint": {
+    "rect": [
+     112,
+     15
+    ]
+   },
+   "at": [
+    0,
+    2.5
+   ],
+   "z0": 7.1,
+   "height": 5.6,
+   "storeys": 1,
+   "wall": {
+    "material": "glass-curtain",
+    "colour": "#5f7886",
+    "windows": "curtain",
+    "windowRatio": 0.75,
+    "faces": {
+     "left": "plain",
+     "right": "plain",
+     "back": "plain"
+    },
+    "pattern": [
+     {
+      "type": "fins",
+      "faces": [
+       "front"
+      ],
+      "spacing": 9,
+      "depth": 0.6,
+      "width": 1.1,
+      "colour": "#d9d3c5"
+     }
+    ]
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#aaa79d",
+    "overhang": 0.5,
+    "parapet": 0.9
+   }
+  },
+  {
+   "type": "prism",
+   "id": "parapet-band",
+   "at": [
+    0,
+    2.5,
+    0
+   ],
+   "params": {
+    "rect": [
+     116,
+     16
+    ],
+    "z0": 12.0,
+    "height": 1.6,
+    "colour": "#b4b0a5"
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    -2,
+    -4,
+    12.5
+   ],
+   "params": {
+    "width": 58,
+    "height": 1.8,
+    "bottom": 0.6,
+    "colour": "#f4f2ec",
+    "frameColour": "#f4f2ec",
+    "posts": false
+   }
+  },
+  {
+   "type": "jet-bridge",
+   "at": [
+    -58,
+    -22,
+    5.2
+   ],
+   "rotDeg": 90,
+   "params": {
+    "length": 20,
+    "colour": "#d5d9db"
+   }
+  },
+  {
+   "type": "control-tower",
+   "at": [
+    -38,
+    48,
+    0
+   ],
+   "params": {
+    "height": 42,
+    "style": "round",
+    "colour": "#dcd7cb",
+    "cabColour": "#4d6470",
+    "bandColour": "#c8532e"
+   }
+  }
+ ],
+ "site": {
+  "ground": "asphalt",
+  "forecourt": "none",
+  "trees": [
+   {
+    "kind": "palm",
+    "at": [
+     -75,
+     -34
+    ]
+   },
+   {
+    "kind": "palm",
+    "at": [
+     70,
+     -34
+    ]
+   },
+   {
+    "kind": "palm",
+    "at": [
+     80,
+     -34
+    ]
+   }
+  ],
+  "extent": [
+   160,
+   130
+  ]
+ }
+}

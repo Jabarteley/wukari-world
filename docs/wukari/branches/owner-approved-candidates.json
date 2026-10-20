@@ -1,0 +1,1110 @@
+{
+  "repository": "Jabarteley/wukari-world",
+  "approved": true,
+  "branches": [
+    {
+      "name": "claude/africa-b2-20261012",
+      "sha": "250f08d49e6b51a49d458d980743b1dc75b9b57c"
+    },
+    {
+      "name": "claude/africa-b3-20261012",
+      "sha": "348dd97048cce35ab45378a55ddc12bd5b886e71"
+    },
+    {
+      "name": "claude/alive-bonus-words",
+      "sha": "49642ae34f327fa286ff8295207c4efaecbcf09a"
+    },
+    {
+      "name": "claude/alive-cache-first",
+      "sha": "f51034cb305acfa8c2820e2fa330b8efc73ab459"
+    },
+    {
+      "name": "claude/alive-fix-full",
+      "sha": "acd2d2b77e6f60ffde8a2366724525dd724c9f51"
+    },
+    {
+      "name": "claude/alive-fix-tests",
+      "sha": "454dfca3c8578f5964c3d5bd6c7d8388f2e1417d"
+    },
+    {
+      "name": "claude/alive-legacy",
+      "sha": "28f204523757a5cb12cc5a2db5ed61daafba9a8c"
+    },
+    {
+      "name": "claude/alive-money-pin",
+      "sha": "11b9fec03ed5102c263c4f02191928a04b5b6b20"
+    },
+    {
+      "name": "claude/alive-owner-answers",
+      "sha": "e70709b6b06811e55a45cd9c9645dca2f7ae7419"
+    },
+    {
+      "name": "claude/alive-p2-safety",
+      "sha": "023f9c0d582f000e15763f8f47e793dfbc5127ef"
+    },
+    {
+      "name": "claude/alive-p3-friends",
+      "sha": "d256523dc8bb7cbff0f04a68b1dbe4bd275e4a84"
+    },
+    {
+      "name": "claude/alive-p4-feed",
+      "sha": "e8dd4fb3cfbe08ed00f6728fd15e84b7400bd689"
+    },
+    {
+      "name": "claude/alive-p5-money",
+      "sha": "a6dd60c269135077e9d9b15ebaa5db5a93dc2347"
+    },
+    {
+      "name": "claude/alive-p6-cards",
+      "sha": "7e8f3a060a5332e24546100310eef17aca067528"
+    },
+    {
+      "name": "claude/alive-p7-base",
+      "sha": "9130449fc8340410e8c807c196e7f5b4694de9c2"
+    },
+    {
+      "name": "claude/alive-p7-light2",
+      "sha": "f17e29c6da14d1cd378398c5278aa134060899e0"
+    },
+    {
+      "name": "claude/alive-p8-gist",
+      "sha": "92496375f9642ee14520ac5e9efaedafcf826eca"
+    },
+    {
+      "name": "claude/alive-p9-router",
+      "sha": "ec1dd91daf51e9a40619df7453a83a665fcbc059"
+    },
+    {
+      "name": "claude/alive-p10-agents",
+      "sha": "5cc54bf951b4bc5725ca6d875b01825311dee672"
+    },
+    {
+      "name": "claude/alive-p11-missions",
+      "sha": "03c47a98057702a1482193b3e09973cdc6fd14bc"
+    },
+    {
+      "name": "claude/alive-p12-memory",
+      "sha": "aea64cea83e19b612bcf598d8fb8d801886d5f13"
+    },
+    {
+      "name": "claude/alive-p13a-resident",
+      "sha": "6a2da9b0a0c6d5858bde80e4db2a529b3a301f06"
+    },
+    {
+      "name": "claude/alive-p13b-residents",
+      "sha": "0840cebc84dc6a7b78774cd1879426927562c428"
+    },
+    {
+      "name": "claude/alive-p13c-assembly",
+      "sha": "6c3780e2cad98de11d4b2039ed56e1f2ce34029c"
+    },
+    {
+      "name": "claude/alive-p14-prayers",
+      "sha": "732e761552ef5dde7d6c2bd3e693dac32ad970d1"
+    },
+    {
+      "name": "claude/alive-p15-calls",
+      "sha": "cc94b24376a7753e6a1ac7d253d431636e08e9a2"
+    },
+    {
+      "name": "claude/alive-p16-festivals",
+      "sha": "1ea50902fa6c61eb8c1eb635448a2b685d1abeb4"
+    },
+    {
+      "name": "claude/alive-p17-texture",
+      "sha": "687c8e1ac63c767b4e069f5efdc809d85fb79869"
+    },
+    {
+      "name": "claude/alive-p18-prices",
+      "sha": "ffcde31c598ae9f7ce85de165ce4920d005cfb71"
+    },
+    {
+      "name": "claude/alive-p19a",
+      "sha": "3b360b596642ccf54a89943b0ba866c65b962630"
+    },
+    {
+      "name": "claude/alive-p19b",
+      "sha": "a33cf2abdd1b04b2854e8f179493314785d3a74e"
+    },
+    {
+      "name": "claude/alive-p20-lives",
+      "sha": "4179db769123473b763d569c5a95ce00c733a873"
+    },
+    {
+      "name": "claude/alive-release4",
+      "sha": "170fd738edc7120ed539743e4e91b2932d30bb16"
+    },
+    {
+      "name": "claude/alive-residents-everywhere",
+      "sha": "7d6133be3401693a6f8426b955c752f6e50f2aef"
+    },
+    {
+      "name": "claude/alive-scene-room",
+      "sha": "c6e69b05441bf90b4ba0a76f0d390262bca2171a"
+    },
+    {
+      "name": "claude/alive-startup-room2",
+      "sha": "4a15798c330f577c543ba20ddad0e7107c53222b"
+    },
+    {
+      "name": "claude/alive-startup-room3",
+      "sha": "7bc25f7d106f4f251a839762289f5eaf3edc45b7"
+    },
+    {
+      "name": "claude/atlas-neighbours-20261014",
+      "sha": "36e4c61f5de322d64f442b749a69dd7300edb1e2"
+    },
+    {
+      "name": "claude/blsx-import-20261015",
+      "sha": "bb5a74c1e0b5766e0df7fc8c62fc49711786db08"
+    },
+    {
+      "name": "claude/blsx-import-base",
+      "sha": "c921b8d946d31ea634f10e6395f130a8a1a46ca8"
+    },
+    {
+      "name": "claude/boxes-import-base",
+      "sha": "4fd4a1b715aca6d39b9d7443315ffc2988dda2a6"
+    },
+    {
+      "name": "claude/build-memory-20261012",
+      "sha": "d19157db3e75ebae403787c4704ae13803ab554d"
+    },
+    {
+      "name": "claude/cleantext-20261014",
+      "sha": "9eea87c78c5506fbdce77a03a945800ff0215233"
+    },
+    {
+      "name": "claude/creator-row-align",
+      "sha": "986ffc9d352f629949792ab45e8352264aff14a1"
+    },
+    {
+      "name": "claude/estates-narrow-20261013",
+      "sha": "d5b2bb59f7c9cb8c85169255d8bc27b49b1a3754"
+    },
+    {
+      "name": "claude/estates-tiny-20261013",
+      "sha": "b9ab2deb33bf7b48edaa5a277e79358539964b41"
+    },
+    {
+      "name": "claude/factory-app-20261013",
+      "sha": "5b8fd5b9e0683c3d7b5880c2d46fba3e81710fcb"
+    },
+    {
+      "name": "claude/ferry-app-20261015",
+      "sha": "bf696dd7dd4a74ad4a3d01fd74ab0823ec1538b6"
+    },
+    {
+      "name": "claude/ferry-final-20261015",
+      "sha": "201b9bdac9f8ee9412ff98378971dd12a9463426"
+    },
+    {
+      "name": "claude/ferry-release-20261015",
+      "sha": "201b9bdac9f8ee9412ff98378971dd12a9463426"
+    },
+    {
+      "name": "claude/ferry-release-base",
+      "sha": "1e509f6dd589b73eba3396b55eeb85cca5cf82d0"
+    },
+    {
+      "name": "claude/final2-20261015",
+      "sha": "c0cd32bc1db9c0310e67da759dd9b91ee93b69e0"
+    },
+    {
+      "name": "claude/final-20261015",
+      "sha": "60eb5c38376f1b3bde1da775e771e9442d329f32"
+    },
+    {
+      "name": "claude/fix-roads-20261014",
+      "sha": "2eacf36395f0b852b1e3081e3d2cb6b2c2379790"
+    },
+    {
+      "name": "claude/home-scale-20261014",
+      "sha": "b3bf70601da97a55b765f315dbcf2f8698614bd0"
+    },
+    {
+      "name": "claude/hotfix-crowd-20261014",
+      "sha": "8b9b92124faea86ba672590d1d3fd40abea56196"
+    },
+    {
+      "name": "claude/houses-redesign",
+      "sha": "21ec28085a223dd86acfada756ec9e672f3d50fc"
+    },
+    {
+      "name": "claude/map-camera-20261014",
+      "sha": "ecc16725c811bd22afba2049152a7cdf4cd26c4f"
+    },
+    {
+      "name": "claude/os-critic-wave1",
+      "sha": "030395c32b07eb307da26f0fdadb79ca86cc9808"
+    },
+    {
+      "name": "claude/os-critic-wave2",
+      "sha": "d0f7ef9cfff26846c6164fab7d6f400442a7e3d9"
+    },
+    {
+      "name": "claude/os-p0-evidence",
+      "sha": "c2b2bf8f3a22b403957c10aa72516dcfa7a87f33"
+    },
+    {
+      "name": "claude/os-p0b-fx",
+      "sha": "249f0f7b6bf88f12f58625cfe5d042ad862fe2f9"
+    },
+    {
+      "name": "claude/os-p1-weather",
+      "sha": "378f067c3b68f247a3652714305d9315df6e5629"
+    },
+    {
+      "name": "claude/os-p2-post",
+      "sha": "e40c7718c795cc64f7ba3f2844a8d275bd9bc282"
+    },
+    {
+      "name": "claude/os-p2b-light",
+      "sha": "563e0e9d810cb4c0075644a60bb5401161eb80fe"
+    },
+    {
+      "name": "claude/os-p3-feel",
+      "sha": "aa5391c3016f5bef6d39abdaba17272b42203ef8"
+    },
+    {
+      "name": "claude/os-p4-ticker",
+      "sha": "8e33e816a871523bddf227536d80af722acda053"
+    },
+    {
+      "name": "claude/os-p7-governor",
+      "sha": "203eb9f8b03b7768ecdfbe7c0cc1613a7488023b"
+    },
+    {
+      "name": "claude/os-p12-docs",
+      "sha": "e51b908c5d1856137ba44d92084f89e288cf2094"
+    },
+    {
+      "name": "claude/outposts-code2-20261014",
+      "sha": "6e1ad00a4d2716679294d64943e98b3298eef1ea"
+    },
+    {
+      "name": "claude/outposts-code3-20261014",
+      "sha": "8bd500029ebc5f5c98028588800856ec0876dbde"
+    },
+    {
+      "name": "claude/outposts-code4-20261014",
+      "sha": "b61d632641d690cfdd2268861a07105c97499150"
+    },
+    {
+      "name": "claude/outposts-code-20261014",
+      "sha": "48d36a0ffa0025c6506b455220b72a8e781939b2"
+    },
+    {
+      "name": "claude/overlaps-final-20261015",
+      "sha": "c19a0fe7c27201477c577619feacedaa791c4098"
+    },
+    {
+      "name": "claude/overlaps-import-20261015",
+      "sha": "c19a0fe7c27201477c577619feacedaa791c4098"
+    },
+    {
+      "name": "claude/overlaps-import-base",
+      "sha": "c0cd32bc1db9c0310e67da759dd9b91ee93b69e0"
+    },
+    {
+      "name": "claude/overnight-polish",
+      "sha": "e322754d7bf1e3c8e3d8640cf1e27c41aecc5f0b"
+    },
+    {
+      "name": "claude/photo-worlds",
+      "sha": "784b396641a0ed967bb1ab2d1db16e0b10689916"
+    },
+    {
+      "name": "claude/photo-worlds-record",
+      "sha": "c039eb06ab68cfae8cc277775f0ba3a0ad7ac408"
+    },
+    {
+      "name": "claude/release-a-20261012",
+      "sha": "d0696c6eb157d8b1e33a7cbb49d8f784fa72ec6b"
+    },
+    {
+      "name": "claude/release-c-20261012",
+      "sha": "1bb37f688d7180bf52d4228b07ed1fc7c2b047b3"
+    },
+    {
+      "name": "claude/release-d-20261013",
+      "sha": "808a3ff1a0e30811ddbbcd8999171e9225e575d5"
+    },
+    {
+      "name": "claude/release-e-20261013",
+      "sha": "f887c1d65d9ca2b15fc2812d999c5ea0c4c8892d"
+    },
+    {
+      "name": "claude/release-f-20261013",
+      "sha": "82fcf203df18b24edafb7561f05de7a01a6f78b1"
+    },
+    {
+      "name": "claude/release-final-20261013",
+      "sha": "d4dd52bd173f1515d3a7a896fca087258fea3fb2"
+    },
+    {
+      "name": "claude/release-fx-20261014",
+      "sha": "7098b142a4210b5fa8ad9b8d63aa6887506db360"
+    },
+    {
+      "name": "claude/release-g-20261013",
+      "sha": "47ba227f976f23928c58679cc39ca8294cde7d76"
+    },
+    {
+      "name": "claude/release-h-20261013",
+      "sha": "c8e8cf2adf8859845226ed3da5d6aa9146e536f8"
+    },
+    {
+      "name": "claude/release-hf-20261014",
+      "sha": "1e4f08b8f690149e4e80b27498a5d6d322551cea"
+    },
+    {
+      "name": "claude/release-i-20261013",
+      "sha": "2cb356d4020d95923007a2e2945d6909c89b4d43"
+    },
+    {
+      "name": "claude/release-j-20261013",
+      "sha": "34091b277ebe7440735f6d919f580b3b277fa65a"
+    },
+    {
+      "name": "claude/release-k-20261013",
+      "sha": "da95cb0350ac284da175047bfff6acc33df855d4"
+    },
+    {
+      "name": "claude/release-k-va-20261013",
+      "sha": "eab84fed677c18a1ab5cdda1eabe2f73652af78a"
+    },
+    {
+      "name": "claude/release-l-20261013",
+      "sha": "3e119adcc9fe5ed03716400a10104512aea54dd9"
+    },
+    {
+      "name": "claude/release-l-base",
+      "sha": "74383ab470d92ca8c21a7b91d27406df8083dc37"
+    },
+    {
+      "name": "claude/release-m-20261013",
+      "sha": "63ab1e79a6e8571692dd5de7ddc65b4203b3e476"
+    },
+    {
+      "name": "claude/release-m-base",
+      "sha": "b2c61410e0d4ff5fa26a72b9d874ad0d4f469ee8"
+    },
+    {
+      "name": "claude/release-n-20261014",
+      "sha": "c0ca971847730a3489f529ac9f36d179b4fc28dc"
+    },
+    {
+      "name": "claude/release-n-base",
+      "sha": "22776588ec921fd06c807f9540cb6c8a6ed3a893"
+    },
+    {
+      "name": "claude/release-o-20261014",
+      "sha": "d1dcea6754e249182f8796806d6e1ce65916e422"
+    },
+    {
+      "name": "claude/release-o-base",
+      "sha": "79b2991622e9190a6e1521e3458b76b40091096f"
+    },
+    {
+      "name": "claude/release-p-20261014",
+      "sha": "83116903f3fbdf60090ce5d924080cbee547bbde"
+    },
+    {
+      "name": "claude/release-p-base",
+      "sha": "9a0f83aa731963d2359724002672df20dd359a0e"
+    },
+    {
+      "name": "claude/release-p-fix-20261014",
+      "sha": "83116903f3fbdf60090ce5d924080cbee547bbde"
+    },
+    {
+      "name": "claude/release-q-20261014",
+      "sha": "188e2b7fe990eff1d605f1f15cc04c1c8c9df211"
+    },
+    {
+      "name": "claude/release-q-base",
+      "sha": "83116903f3fbdf60090ce5d924080cbee547bbde"
+    },
+    {
+      "name": "claude/release-r-20261014",
+      "sha": "808e094a3550834268472849ffbfd27e1df30a1c"
+    },
+    {
+      "name": "claude/release-r-base",
+      "sha": "188e2b7fe990eff1d605f1f15cc04c1c8c9df211"
+    },
+    {
+      "name": "claude/release-slim-20261015",
+      "sha": "1a78071d3ad80b39b4f0b65d27366e6b94da440f"
+    },
+    {
+      "name": "claude/release-va-final-20261013",
+      "sha": "884fe89b75174d8b1a3be34b752680344b87719a"
+    },
+    {
+      "name": "claude/release-z-20261014",
+      "sha": "beaffb80ef83c2c2f8066e2563421bb01e1a3503"
+    },
+    {
+      "name": "claude/release-zf-20261014",
+      "sha": "c213d4e03f15c3d9d8dac817b7ea53c699761ed2"
+    },
+    {
+      "name": "claude/release-zzz-20261014",
+      "sha": "61265e62e0c65de64c567db407a2c33fdd168369"
+    },
+    {
+      "name": "claude/roads5-20261014",
+      "sha": "6610ac61732bd2e4e6146cfc333f1c8b8bdcd336"
+    },
+    {
+      "name": "claude/roads-an-20261014",
+      "sha": "078fcf1ab66ff391d431f738ff2e6be8c0bedc2d"
+    },
+    {
+      "name": "claude/roads-an-base",
+      "sha": "0273a5363ac9749c4f9ca99c680c134b6124a635"
+    },
+    {
+      "name": "claude/roads-final-20261014",
+      "sha": "1025f72d67b0fba67cf06ab5c3e70555c5342c50"
+    },
+    {
+      "name": "claude/roads-pilot-base",
+      "sha": "d33ad45cbf2ac7c60070d4145453c0652d3152fa"
+    },
+    {
+      "name": "claude/roads-regen-app-20261014",
+      "sha": "5cd8596ede182ec628824b5729e659e94ac6c9ae"
+    },
+    {
+      "name": "claude/roads-release-20261014",
+      "sha": "0273a5363ac9749c4f9ca99c680c134b6124a635"
+    },
+    {
+      "name": "claude/roads-release-base",
+      "sha": "5218f33b8dbcfdd97f37834dbefe3df30909cb7d"
+    },
+    {
+      "name": "claude/roads-snap-20261015",
+      "sha": "0bca7753ea6578441ccad9d634eceda0482f915a"
+    },
+    {
+      "name": "claude/slim-final-20261015",
+      "sha": "66504a3f59029eaade4195b1568a0cd313f380ad"
+    },
+    {
+      "name": "claude/spaces3d-phase1",
+      "sha": "dd6414661b27b7dacc28e570e793f2fc45e60425"
+    },
+    {
+      "name": "claude/spaces3d-phase2",
+      "sha": "5f8d03475c1353e5133a974ea241d3e0937a975a"
+    },
+    {
+      "name": "claude/spaces3d-phase3",
+      "sha": "ed1a7c96373fc860f18366bbfd1258fd993b289e"
+    },
+    {
+      "name": "claude/spaces3d-phase4",
+      "sha": "852e2a9b999045c21d9126b00c98e1ed79f10938"
+    },
+    {
+      "name": "claude/spaces3d-phase5",
+      "sha": "bed0bd4bb4dbd50a6e09f9e9840eedaba44808aa"
+    },
+    {
+      "name": "claude/spaces3d-r2",
+      "sha": "3962597763761ac59c386f30ba4ef8448689b757"
+    },
+    {
+      "name": "claude/spaces3d-record",
+      "sha": "60d8f09c2203730cc95529fa3498454cb01b5793"
+    },
+    {
+      "name": "claude/spaces-fix-worker",
+      "sha": "167f353661a1cba44eff741b7acec160391b8e01"
+    },
+    {
+      "name": "claude/spaces-phase1",
+      "sha": "397c4ecde0fba5dc9050736c049bb1522c75dcb7"
+    },
+    {
+      "name": "claude/spaces-phase2",
+      "sha": "ee21f6c2007703e457a51cf57a217affc7a19786"
+    },
+    {
+      "name": "claude/spaces-phase3",
+      "sha": "ea006b6520b0a32ce43bc62b393e2acaea00a606"
+    },
+    {
+      "name": "claude/spaces-phase4",
+      "sha": "8f42d14bc06791ca5b8e551dcdd536c29b9bf6d5"
+    },
+    {
+      "name": "claude/spaces-phase5",
+      "sha": "17f86e300293ae3f26f22df28f928bcaef6f03e6"
+    },
+    {
+      "name": "claude/spaces-record",
+      "sha": "c22585cf75df02569cd361b442f4932cf188d359"
+    },
+    {
+      "name": "claude/spaces-record-fix",
+      "sha": "acf3e5aaca752c7aa405827dfdb8ab7fcaa2e38c"
+    },
+    {
+      "name": "claude/startup-index-20261013",
+      "sha": "a47aea296c7fb4a7b6acdd36eb0b7a5d1308ba59"
+    },
+    {
+      "name": "claude/startup-scale-20261012",
+      "sha": "64f5f997f429aa7c9f3a8aa81a2c78cad12c8300"
+    },
+    {
+      "name": "claude/startup-slim-20261015",
+      "sha": "2593df183448d8cd114cbd85bf1c2dd8101fa88d"
+    },
+    {
+      "name": "claude/street-density-20261014",
+      "sha": "a42c3003a85924805c5431963fb18ee695aa9b82"
+    },
+    {
+      "name": "claude/switch-everything",
+      "sha": "e233eb68c35af1715c5a8826921106637b6637a4"
+    },
+    {
+      "name": "claude/tour-index-20261015",
+      "sha": "d86acb2ad4b4200d7349fad4017796455f3645e4"
+    },
+    {
+      "name": "claude/viral-agent-arena",
+      "sha": "ee203d15c9febb7e75867064647a977ec58b8f16"
+    },
+    {
+      "name": "claude/viral-assets",
+      "sha": "c254d4327f2703b2ab84a6b2544634e2682646e8"
+    },
+    {
+      "name": "claude/viral-build-names",
+      "sha": "80768f46e48c67cd7e41dedc8695634fe8d5eac6"
+    },
+    {
+      "name": "claude/viral-cartridge",
+      "sha": "1841c9093f768d752cc7f426047b88d90af63f0a"
+    },
+    {
+      "name": "claude/viral-cartridge-open",
+      "sha": "bf7eaa061dfa9bcc4a04a2638f70551a775c858b"
+    },
+    {
+      "name": "claude/viral-city-episode",
+      "sha": "f9e6b85a81aa97429111cfe1b8b3292ed7127201"
+    },
+    {
+      "name": "claude/viral-clans",
+      "sha": "01409bc9841313fc1c63c699eefc45149224d634"
+    },
+    {
+      "name": "claude/viral-fight",
+      "sha": "aa00c1087bdd867e329940b5abf220eeead5f848"
+    },
+    {
+      "name": "claude/viral-fight-real",
+      "sha": "f0f38db3436bdcba0b6a4134a8197d0e4a6fd4dd"
+    },
+    {
+      "name": "claude/viral-football",
+      "sha": "d95ee6166d62152aa892ce5f9aa19920d9e58836"
+    },
+    {
+      "name": "claude/viral-football-real",
+      "sha": "7f2db54c30f504b79fec66ce76871757800282a8"
+    },
+    {
+      "name": "claude/viral-mcp-oauth",
+      "sha": "9e8b5b3b647799a1ef6c4c66a8791d917c2f866f"
+    },
+    {
+      "name": "claude/viral-measure",
+      "sha": "cfc13f277d340d083cc425606b42e6778003c2e2"
+    },
+    {
+      "name": "claude/viral-race",
+      "sha": "b10191e66d71c991630244a3c9cdc5c92bbcaca5"
+    },
+    {
+      "name": "claude/viral-race-real",
+      "sha": "7ef4883707cdc6bf9830db1f799325e8e11e5075"
+    },
+    {
+      "name": "claude/w3-europe-20261012",
+      "sha": "321a07b7d90399c46e1ee805582d1703edb8b82d"
+    },
+    {
+      "name": "claude/w3-lima-20261012",
+      "sha": "32a8ae973fe258121864536818671db19e352953"
+    },
+    {
+      "name": "claude/w3-nz-20261012",
+      "sha": "e576bfa60dac63ff608e32a4b98d7b55667fa55e"
+    },
+    {
+      "name": "claude/wave2-world-entry-20261012",
+      "sha": "1db5378c2f857efe281f90ab0025cb7896ca5010"
+    },
+    {
+      "name": "claude/world-alive",
+      "sha": "3f3e1010c123dfee26d03ccb19383e026957e421"
+    },
+    {
+      "name": "claude/worlds",
+      "sha": "84fde91cc71db7e73ff4e39f5bc4f64c4af5c1ee"
+    },
+    {
+      "name": "claude/worlds-fullscreen",
+      "sha": "85fe1b4b01c9da394e03c2d5b2bbfe1ffca3f54e"
+    },
+    {
+      "name": "claude/worlds-house",
+      "sha": "463f454c31fc4e092e044287da5ea247e1d86dc3"
+    },
+    {
+      "name": "claude/worlds-wave2",
+      "sha": "65c84fb42e9f42353e7d02b070eb552b36db3979"
+    },
+    {
+      "name": "claude/zoom2-20261014",
+      "sha": "cab2a098db7b2dbedbf82a3b4c719361147dd05e"
+    },
+    {
+      "name": "claude/zoom3-20261014",
+      "sha": "85423f9e67889773ea9538dfe03b9bb0c1548da1"
+    },
+    {
+      "name": "claude/zoom4a-20261014",
+      "sha": "d9466f4155b86ef0de0b75dba73a67d6af19fbaf"
+    },
+    {
+      "name": "claude/zoom4b-20261014",
+      "sha": "8e0c0ea8edd53c8570af8c4f00ed33d437d9a640"
+    },
+    {
+      "name": "claude/zoom5a-20261014",
+      "sha": "754065b56bc10fad7bd3213454341b2c842955c2"
+    },
+    {
+      "name": "claude/zoom5b-20261014",
+      "sha": "5e9228340ea0e83e3d2c18c55eea7803c6029a29"
+    },
+    {
+      "name": "claude/zoom5c-20261014",
+      "sha": "c50b5e2c73db38735acf8141e672deffdb60eb19"
+    },
+    {
+      "name": "claude/zoom5d-20261014",
+      "sha": "86b73fa4e9940791773d944a7d663f80cc850470"
+    },
+    {
+      "name": "claude/zoom-20261014",
+      "sha": "0b22638b9804be447fbba0fbe29dcb8aaaf7a566"
+    },
+    {
+      "name": "claude/zoom-final-20261014",
+      "sha": "f70b5897d07b8087fcfbdb375779036f9183e6f6"
+    },
+    {
+      "name": "claude/zoom-merge-base-20261014",
+      "sha": "d45b85bdbc69951b80ce723a6a35ec284e41c6db"
+    },
+    {
+      "name": "claude/zoom-polish-20261014",
+      "sha": "2c6d68bfc900b4457137f9dbfdd5afad5efccae2"
+    },
+    {
+      "name": "codex/admin-player-erasure",
+      "sha": "e484a6bef5269429da23165233777b67476d420d"
+    },
+    {
+      "name": "codex/allworld-consolidated-delivery",
+      "sha": "3e3e0876fc50f3166a0d0968f8616b577da27870"
+    },
+    {
+      "name": "codex/allworld-eec14690-verification",
+      "sha": "eec14690544a4646e4cd8a5ad280d61bbe2709ca"
+    },
+    {
+      "name": "codex/allworld-integrated-preview",
+      "sha": "3e3e0876fc50f3166a0d0968f8616b577da27870"
+    },
+    {
+      "name": "codex/astra-africa-next-release-20261012",
+      "sha": "4fcfcfdaba2ec88ceadf955d5152e7e2cc85eded"
+    },
+    {
+      "name": "codex/astra-campus-scene-20261011",
+      "sha": "a642ac75493d0c66aa06d90fd595e9d3fe3d78ec"
+    },
+    {
+      "name": "codex/astra-cities-1-20261011",
+      "sha": "1a50116072efdfbf31c8721fd3941b4afdbcb391"
+    },
+    {
+      "name": "codex/astra-cities-10-release-20261011",
+      "sha": "bb31dba2c63ccb02be4d5dafc3a681370e338722"
+    },
+    {
+      "name": "codex/astra-cities-batch2-release-20261011",
+      "sha": "03b10fd2b7c030b884e8d384326d19f732e69186"
+    },
+    {
+      "name": "codex/astra-cities-batch3-release-20261011",
+      "sha": "435dfe81505f2fa7ae9682ba576c6fae35a928c5"
+    },
+    {
+      "name": "codex/astra-city-content-release-20261011",
+      "sha": "05c31c17aece82df2ed0de0283af4666a093cf08"
+    },
+    {
+      "name": "codex/astra-held-maps-20261011",
+      "sha": "fdba3f40dfdb244f0f75905dad677346cdc1501c"
+    },
+    {
+      "name": "codex/astra-phone-labels-20261011",
+      "sha": "fdba3f40dfdb244f0f75905dad677346cdc1501c"
+    },
+    {
+      "name": "codex/astra-world-entry-20261012",
+      "sha": "c4454b77b15b87f225eb3a58a9add7d18fbcd32e"
+    },
+    {
+      "name": "codex/audio-identity-20261013",
+      "sha": "9f08e8fd61f5a712f63a76d4d5db8dd2e7c604d3"
+    },
+    {
+      "name": "codex/ci-heap-flake",
+      "sha": "02bd41a68dfb8222f35dc490096998aa39b0da25"
+    },
+    {
+      "name": "codex/cloud-c1-third-five-release-20261010",
+      "sha": "91d0ba3346ecd74c4eb0eaf29db1a585ce246195"
+    },
+    {
+      "name": "codex/cloud-c1-third-five-sourcecheck-20261010",
+      "sha": "c12b8ebd83cd301475fb1d7bf9e143af260d6621"
+    },
+    {
+      "name": "codex/cloud-justice-evidence-order-20261010",
+      "sha": "ef92f8f182658703e3a2de5a12395f6681ce93c4"
+    },
+    {
+      "name": "codex/cont-ad-landing-20261011",
+      "sha": "f488acc2759af8cbe53b70151f2c3794530dba67"
+    },
+    {
+      "name": "codex/cont-agent-access-20261011",
+      "sha": "2e0d538f79d9ad74075d80cc3de89e39002b78b9"
+    },
+    {
+      "name": "codex/cont-batch1-integration-20261010",
+      "sha": "62156719a26c4715a375961723c9fc245fcb0668"
+    },
+    {
+      "name": "codex/cont-batch7-integration-20261011",
+      "sha": "1e120a36a8a4f928c3ae5ab5f68d2edc240fefbb"
+    },
+    {
+      "name": "codex/cont-batch9-integration-20261011",
+      "sha": "76c6069b7bd4898bf0d901bcd9237bcd865c16cc"
+    },
+    {
+      "name": "codex/cont-batch10-integration-20261011",
+      "sha": "acf06f1fcf13f066806e7800d128abd2d2f62c9a"
+    },
+    {
+      "name": "codex/cont-batch12-integration-20261012",
+      "sha": "db0fa91fca7868c8a1e6c6b4cf7eb25c5fd876a8"
+    },
+    {
+      "name": "codex/cont-batch13-integration-20261012",
+      "sha": "e5a262038e887a99af60ef6e87a52f70b0f38705"
+    },
+    {
+      "name": "codex/cont-batch14-integration-20261012",
+      "sha": "d65434ded21e13154ce726fbf8adaba26182abd1"
+    },
+    {
+      "name": "codex/cont-batch-perf1-20261012",
+      "sha": "97ff1bbdeecafffd95476a4f048520c7c90e3ebd"
+    },
+    {
+      "name": "codex/cont-batch-perf2-20261012",
+      "sha": "6360a6853c1405953ce5c5476d4587d982352e6e"
+    },
+    {
+      "name": "codex/cont-chat-ux-20261010",
+      "sha": "de836a4d6886dd92003a8eb9f8f6ef9c577d38cf"
+    },
+    {
+      "name": "codex/cont-cities10-integration-20261011",
+      "sha": "81b993bbfb9afe96b5e5d0457ed090dbd7bd9214"
+    },
+    {
+      "name": "codex/cont-city-state-boards-20261010",
+      "sha": "0eb02a24c17c532bf27239569ba81336c7759c19"
+    },
+    {
+      "name": "codex/cont-community-panel-20261010",
+      "sha": "42214432d9dead3f58e40cc0ff8a4263698a973b"
+    },
+    {
+      "name": "codex/cont-component-test-hang-20261010",
+      "sha": "5d42d5b06a9fb6d08e6c35f0f71a91d9b4bae295"
+    },
+    {
+      "name": "codex/cont-driving-replay-20261010",
+      "sha": "013242132593fa5b8aab765d132ccb09a8fa227f"
+    },
+    {
+      "name": "codex/cont-entry-page-20261011",
+      "sha": "d65434ded21e13154ce726fbf8adaba26182abd1"
+    },
+    {
+      "name": "codex/cont-feature-journeys-20261010",
+      "sha": "39a9d93c03111a49f43cb07da7113193a6bd0d32"
+    },
+    {
+      "name": "codex/cont-features1-integration-20261010",
+      "sha": "e6dc714edfcaf8799ae6d39ed2c3b6a4bcc3a166"
+    },
+    {
+      "name": "codex/cont-features2-integration-20261010",
+      "sha": "9f97511b9092587226c3e44924e975456f8aea21"
+    },
+    {
+      "name": "codex/cont-five-city-journeys-20261010",
+      "sha": "b08d1761ffd0165368b5ad2bc7f793d129603be5"
+    },
+    {
+      "name": "codex/cont-foreign-city-maps-20261010",
+      "sha": "677af84c9b9c0e7eb99f9673dcb1139560afea40"
+    },
+    {
+      "name": "codex/cont-justice-durable-20261010",
+      "sha": "26f2158b2f68035c05ab61c963e079f8963e0aae"
+    },
+    {
+      "name": "codex/cont-lesson-feedback-320-20261010",
+      "sha": "d9f2fa21d762958b5a0651e841be2e87648bef38"
+    },
+    {
+      "name": "codex/cont-loader-integration-20261011",
+      "sha": "b51ecd2282344e7b2d01630eaaceaa80c0c15f57"
+    },
+    {
+      "name": "codex/cont-mail-fix-20261012",
+      "sha": "ac7edee87a057968020ef9eb7c94d350026eb37f"
+    },
+    {
+      "name": "codex/cont-mail-optin-20261012",
+      "sha": "6a1142635049e02e1ac85c0a8ca6d860c8f206cc"
+    },
+    {
+      "name": "codex/cont-map-credit-20261010",
+      "sha": "f25a72775bc72a4c8d207b5373794b90ec5ba9ec"
+    },
+    {
+      "name": "codex/cont-maps15-integration-20261011",
+      "sha": "5933c0b049fee452431bcd4fdfad302c589c7c75"
+    },
+    {
+      "name": "codex/cont-money-requests-20261010",
+      "sha": "31164bd00f364bf68c363eaf64127c59ad1c1b70"
+    },
+    {
+      "name": "codex/cont-npc-alive-20261011",
+      "sha": "8698b4ed9a6bcad19d1ba66ae1c3f01a27ef6ac4"
+    },
+    {
+      "name": "codex/cont-open-dev-mode-20261010",
+      "sha": "83e5917fc43374fac2d3fe600a5024f4b2a0a255"
+    },
+    {
+      "name": "codex/cont-performance-20261012",
+      "sha": "6360a6853c1405953ce5c5476d4587d982352e6e"
+    },
+    {
+      "name": "codex/cont-settle-banner-20261010",
+      "sha": "a108b634722ddce4918866db8172a0f10cecc416"
+    },
+    {
+      "name": "codex/cont-settle-in-action-20261010",
+      "sha": "91eceec3ef7d25cb7b5ebef1d7377eaafa52e41d"
+    },
+    {
+      "name": "codex/cont-shop-interior-20261011",
+      "sha": "887e10b6e7c8f67b516626c3be653977e8c4f968"
+    },
+    {
+      "name": "codex/cont-shop-link-20261011",
+      "sha": "56c208b91760bc7fe67758c79836b226d578fc7a"
+    },
+    {
+      "name": "codex/cont-showcase-shops-20261010",
+      "sha": "585a5bdeed6e50ba0191f84db1d80abde974827e"
+    },
+    {
+      "name": "codex/cont-sound-fix-20261011",
+      "sha": "6c269139d7dbbde14f4b52bc3ac18f7f459bf7e3"
+    },
+    {
+      "name": "codex/cont-start-flow-fix-20261010",
+      "sha": "6976746e9e95959a878d9de30ef157ab50259eb1"
+    },
+    {
+      "name": "codex/cont-startup-size-2-20261010",
+      "sha": "58047b0917bcc642a4e85d452b911f90035c5d25"
+    },
+    {
+      "name": "codex/cont-startup-size-3-20261010",
+      "sha": "4337da3cc9a02dccdc40ff72afe6e01d44ab60aa"
+    },
+    {
+      "name": "codex/cont-startup-size-20261010",
+      "sha": "63ba19b3083d77bfae9a3cfa6c3c6956530dd342"
+    },
+    {
+      "name": "codex/cont-store-entries-20261012",
+      "sha": "5179285a25cb616e9c8ef5b137150a5a6f6e05e7"
+    },
+    {
+      "name": "codex/cont-streets-in-game-20261011",
+      "sha": "217d7c3aebc6fed2ca69d392331fa53e12ebd3a5"
+    },
+    {
+      "name": "codex/cont-vehicles-in-game-20261011",
+      "sha": "3b66a8e798d0e23489b72c94b661453a2c708c4b"
+    },
+    {
+      "name": "codex/cont-voices-20261011",
+      "sha": "7fb7d0a87af9ca2dd6002a1196065fa65e773e30"
+    },
+    {
+      "name": "codex/cont-zoom-levels-20261010",
+      "sha": "71c9f0430f7aeafe938decd61ededfc6a2c8921c"
+    },
+    {
+      "name": "codex/living-world-browser-qa-b598b08b",
+      "sha": "b598b08b8d8e7d563b97de4600ddeb759dfa2396"
+    },
+    {
+      "name": "codex/native-character-release-20261016",
+      "sha": "3d66c8c400a2d97edf73e5ed348f04ce1d02c6ff"
+    },
+    {
+      "name": "codex/nigeria-runtime-release-20261015",
+      "sha": "27ef81c790471743faea57d8e5a9c27e1397bed9"
+    },
+    {
+      "name": "codex/realism-body-ship",
+      "sha": "a22d289e5716c5b8d451b26f0b6a4dd9a9d529f4"
+    },
+    {
+      "name": "codex/realism-budgets",
+      "sha": "e5654a4284ff1eea63aba537f0304145663f9e3f"
+    },
+    {
+      "name": "codex/realism-cast",
+      "sha": "1e7e5dc0a64ef2399341cda0ce9ebe85ffd5b415"
+    },
+    {
+      "name": "codex/realism-chatter",
+      "sha": "645d4973d3ebfedcaaef8bd13e78968a54610ec2"
+    },
+    {
+      "name": "codex/realism-conditions",
+      "sha": "1986c5b13e69f59686d5f7108b6dd7c7b33667c9"
+    },
+    {
+      "name": "codex/realism-dilemmas",
+      "sha": "a4e11736784829fa32a3a238314661276af65b68"
+    },
+    {
+      "name": "codex/realism-labels",
+      "sha": "b5ddb4aecd334f9796d35d82e1eb0f480ddc07c3"
+    },
+    {
+      "name": "codex/realism-moments",
+      "sha": "5ba9c079dcee6913aa7c1c220ad9edfdcb30db25"
+    },
+    {
+      "name": "codex/realism-p0-plan",
+      "sha": "b28dea4197dd0fd1a316f1d9b0129f5f3b132643"
+    },
+    {
+      "name": "codex/realism-rails",
+      "sha": "c80b99b9bfeeaa38f220c1a671c9670f3f4e5acb"
+    },
+    {
+      "name": "codex/realism-real-value",
+      "sha": "daf69d2b29f4564519b11bc5062a856787c29142"
+    },
+    {
+      "name": "codex/realism-reliability",
+      "sha": "3bfdeece58c5b9fa491a3bf15fd60e203f977fa3"
+    },
+    {
+      "name": "codex/realism-routines",
+      "sha": "8e17fba474a6948b1978b84627ced672984eb532"
+    },
+    {
+      "name": "codex/realism-space-sound",
+      "sha": "14d157f66ea213f16bb281228c8f4f38d999733d"
+    },
+    {
+      "name": "codex/realism-trim",
+      "sha": "919e26dac11d852d5a1247a035bf84a3971956f0"
+    },
+    {
+      "name": "codex/realism-trust",
+      "sha": "c59ca4da924783a8d8a576da346ab4ef734f7d2d"
+    },
+    {
+      "name": "codex/realism-unflag",
+      "sha": "dcb396a112bcacf6b3547d4a4b4bb2a1ad513b91"
+    },
+    {
+      "name": "codex/retention-main-sync",
+      "sha": "ba33bf73b06597ada2dad918bb1478a9f4dfbe05"
+    },
+    {
+      "name": "codex/story-core-worker-startup-fix",
+      "sha": "814440393f130fd4cb4469da96d4641db48e5aa0"
+    },
+    {
+      "name": "story/phase1-core",
+      "sha": "4fddbddb22d921be75caa74e7de6a1276c6d75d0"
+    },
+    {
+      "name": "story/phase2-scenes",
+      "sha": "1851d545d1e7f7fe17241bcc5d58394d36db1a10"
+    },
+    {
+      "name": "story/phase3-talk",
+      "sha": "95a878bdea878e2ab7c29eb09ee053e6ef4be52a"
+    },
+    {
+      "name": "story/phase4-realism",
+      "sha": "96e2e155eec6aee6efe8509e51f942ff16ac92f7"
+    },
+    {
+      "name": "story/phase4-takeover",
+      "sha": "ae806ce571dd05cf27ab593c9d55096a4d8dd48a"
+    },
+    {
+      "name": "story/phase4-takeover-record",
+      "sha": "4a6d6be8ad90825b444432ba3592ded192d54e38"
+    }
+  ]
+}

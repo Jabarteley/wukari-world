@@ -6,7 +6,7 @@
 - **Owner:** Claude (T3 Code thread, owner's Mac)
 - **Model / effort:** claude-fable-5-1 (started on claude-opus-5-5) / default
 - **Thread:** local
-- **UTC updated:** `2026-10-20T00:50:00Z`
+- **UTC updated:** `2026-10-20T02:10:00Z`
 - **Status:** `active` (integration of waves 0 and 1)
 - **Work state:** `implementation`
 
@@ -68,3 +68,5 @@
 | 2026-10-19T23:50:00Z | active | Critic scorecard merged (`docs/evidence/critic-wave1-20261020.md`): rain earned its place, post stack not as shipped (now behind `?post=1`), feel unproven but cheap; rain no longer drawn over the cutaway home; talk-factory manifest committed; CI 39342130339 all budgets ok | main 53a738808 | release |
 | 2026-10-20T00:01:00Z | active | Released: live build 53a738808, continuity check passed, page 200. Next wave started: phases 4, 7, 2b in their worktrees | `/api/health` | review the three phases, critic, release |
 | 2026-10-20T00:43:00Z | active | Owner: "deploy with everything on". Post stack on by default (`?post=0` off), phase 4 ticker/radio/memory merged (105 tests), CI 39346982579 all budgets ok, released and live as 4edde99aa, continuity passed | `/api/health` | phases 7 and 2b, critic, release |
+| 2026-10-20T01:44:00Z | active | Phase 2b merged and released as c4163dabe (emitters by the hour, power-cut darkness, lamp pools, wet ground); AO back to `?ao=1` after its night pair showed a kerb smear; continuity passed | release run 39353427176 | phase 7 |
+| 2026-10-20T02:05:00Z | active | Phase 7 merged (governor, street counts that grow back, warm-up against the post buffer, loading-card hold; the gate stall is a street-build task, not fixed), venue host re-pinned, CI 39355979372 all budgets ok; release run 39357019317 dispatched | main cf8f611c7 | confirm live; then phases 12 and 13, and the critic on 2b/7 |

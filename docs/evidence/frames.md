@@ -33,6 +33,38 @@ Earlier run, kept for the history of the table (same day, before the page's cloc
 the estate scene, so the crowds were those of the real late evening): street 37 calls / 46,185 triangles, Kano 23 / 45,847, home
 22 / 32,304. They are not comparable with the rows above.
 
+## Phase 2b: light from things, ground pools, wet ground (20 October 2026)
+
+Same machine (Apple M4 Pro, ANGLE Metal), window 1280 x 800 at 2x, tier `high`, `shoot.ts` of branch `claude/os-p2b-light` (`--uncapped`, 10 s dwell;
+`--query post=0|post=1|post=0&wet=1`). "Before" is the code of main `53a738808`, "after" is the branch; each run is a fresh open-mode life, so the
+street (houses, shops, traffic caps) differs from run to run: the draw calls of identical code ranged from 25 to 46 on `street-dusk`. The machine
+was shared with other agents' browser runs, so read frame gaps as noisy (about +-1 ms plain, more with the stack).
+
+Draw calls on **one life shot before and after** (`--sid`, same street, same camera, `post=0`):
+
+| View | Before calls / triangles | After calls / triangles |
+| --- | ---: | ---: |
+| `street-dusk` | 43 / 75,574 | 44 / 75,444 |
+| `street-night` | 43 / 75,555 | 44 / 75,462 |
+| `street-dusk` with `?wet=1` | 38 / 85,580 | 39 / 85,426 |
+
+The one extra call is the light-pool mesh (not drawn on the phone tier: `quality=phone` builds no such mesh, tested in `scenery.test.ts`). The wet
+ground is a material swap on the same layer: no call. With `?post=1` the renderer reads 1 call and 1 triangle (the composer's last pass), so counts
+come from the `post=0` runs.
+
+Frame gap, uncapped, p50 / p95 / max (ms), two runs of `post=0` and one of `post=1` per view, before then after (each run its own life):
+
+| View | before `post=0` | after `post=0` | before `post=1` | after `post=1` |
+| --- | --- | --- | --- | --- |
+| `street-dusk` | 4.0 / 4.8 / 15.5; 3.5 / 4.8 / 17.6 | 4.0 / 6.5 / 10.8; 5.2 / 8.3 / 312 | 11.3 / 14.0 / 30.1 | 11.9 / 19.2 / 31.0 |
+| `street-night` | 3.1 / 4.7 / 17.0; 3.8 / 6.3 / 17.1 | 3.9 / 6.8 / 17.7; 3.9 / 5.3 / 10.7 | 11.1 / 39.1 / 95.6 | 10.8 / 14.7 / 32.3 |
+| `street-dusk` `?wet=1` | 10.9 / 17.3 / 34.2 | 4.3 / 5.7 / 14.9 | | |
+
+Reading it: the emitters, pools and wet ground cost nothing measurable (within the run-to-run noise; the 312 ms is one stall while the street
+built). The post stack costs about +7 ms p50 on this street now (11 ms against 4 ms), against +1.5 to +3.7 ms in the phase 2 record: that
+record was taken on a quiet machine, this one was not. The wet row before (10.9) is a loaded moment, not the change. Held to 60 Hz every run reads
+16.7 ms (no information at 2x on this GPU).
+
 ## Software drawing (no GPU), for reference
 
 The same street drawn by the CPU (`--gpu swiftshader`): about 850 ms a frame at 2x, 13 frames in 10 seconds. It is a way to take

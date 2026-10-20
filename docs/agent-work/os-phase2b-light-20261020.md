@@ -6,8 +6,8 @@
 - **Owner:** Claude (open-source plan, Phase 2b)
 - **Model / effort:** Sonnet 5.5 / default
 - **Thread:** local
-- **UTC updated:** 2026-10-20T01:00:00Z
-- **Status:** `active`
+- **UTC updated:** 2026-10-20T02:30:00Z
+- **Status:** `ready-for-review`
 - **Work state:** `implementation`
 
 ## Goal and boundaries
@@ -32,9 +32,13 @@
 - `street-night` view added (21:00); `node --experimental-strip-types --test scripts/evidence/*.test.ts` 20 pass.
 - Before pictures and numbers on unchanged code: `docs/evidence/out/before-{post0,post1,wet}/` (git-ignored).
 
+- Code (commits on the branch): `src/scene/street/night-lights.ts` (the hour's numbers, pure), `light-pools.ts` (one instanced additive mesh, not on the phone tier), `wet-ground.ts` (one uniform on a copy of the solid material), wiring in `neighbourhood-scene.ts` and `street-life/scenery.ts`, a per-building seed attribute in `models/scene-models.ts`, the sun losing warmth when wet in `game/conditions/look.ts`, `?outage=` in `weather-query.ts`, the `--sid` option and `street-night` view in `scripts/evidence/`.
+- Tests: `node --experimental-strip-types --test src/scene/street/night-lights.test.ts src/scene/street-life/scenery.test.ts src/game/conditions/look.test.ts src/scene/home-lighting.test.ts scripts/evidence/*.test.ts` all pass. Typecheck clean (`npm run typecheck`, 7 GB heap).
+- Pictures: `docs/agent-work/os-phase2b-light-{dusk,night,night-post,wet}.png` (left before, right after; night-post is after code, `?post=0` left and `?post=1` right). Frame and draw-call rows in `docs/evidence/frames.md`.
+
 ### In progress / blockers
 
-- Emitters, pools, wet ground.
+- Other tests in the street-life and scene folders (`draw.test.ts`, `venue-floor.test.ts`, `scenes.test.ts`, `city-scenes.test.ts` ...) fail here for reasons outside this change (the native-people catalogue and character assets are not built in this checkout); they do not import the changed code paths.
 
 ### Immediate resume steps
 

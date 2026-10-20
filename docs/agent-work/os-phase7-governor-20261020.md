@@ -35,7 +35,7 @@
 - Hooks in `src/venue-world.ts` (see the report): governor creation, `applyScale`, feed in `tick`, `reset` in `setLocation`, release in `dispose`, `data-drawn` + `allworld-drawn` at the first draw, diagnostics `governor`. `src/app/scene/ScenePane.vue` `hostUp()` waits for it (2.5 s at most).
 - Typecheck: `npm run typecheck` through the heavy slot, 5 projects, 0 errors.
 - Evidence rows: `docs/evidence/frames.md`, section "Phase 7".
-- CI run 39347457482 on the branch: typecheck-fast success; build-and-smoke-fast stopped at the expected venue-world pin. Budgets read on a throwaway branch `tmp/os-p7-pincheck` with only the pin changed (run 39350420595).
+- CI run 39353622446 on the final commit `bce655867`: typecheck-fast and release-policy success; build-and-smoke-fast stops at the expected venue-world pin (`sourceFiles[1226]`), so no STARTUP / SCENE_HOST / FX lines. A throwaway branch with only the pin changed then stopped at the next check (generated scene manifests embed the host hash), so the budgets were not read; the integrator's `npm run scenes:build` + build reads them. Size estimate (esbuild, minified): governor.ts 2.1 kB raw / 1.1 kB gzip, adaptive.ts +0.4 kB, all in the scene host; ScenePane.vue (first download) about +0.3 kB raw. The throwaway branch is deleted.
 
 ### In progress / blockers
 
@@ -44,8 +44,8 @@
 
 ### Immediate resume steps
 
-1. Integrator: re-pin `scripts/scene-factory/host-scenery.json` (venue-world.ts), delete `tmp/os-p7-pincheck`.
-2. Read the budget lines of run 39350420595 (SCENE_HOST).
+1. Integrator: re-pin `scripts/scene-factory/host-scenery.json` (venue-world.ts) with `npm run scenes:build`.
+2. Read STARTUP (ScenePane.vue grew by about 0.3 kB; STARTUP_BROTLI has been within 100 bytes of its limit) and SCENE_HOST on the pinned build.
 
 ## Release state
 

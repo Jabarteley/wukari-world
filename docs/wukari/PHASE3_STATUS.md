@@ -1,6 +1,6 @@
 # Phase 3 delivery and geographic coverage
 
-Branch: `feat/wukari-audit-offline-import`, based on verified Phase 2 head `fe29b65daf43c100c42377b8b44714c7f5afc7a8`. Review is stacked onto `feat/fuw-campus-map` so PR #1/#2 diffs remain unchanged. No merge, deployment, branch deletion, PostgreSQL, dependency manifest or game/multiplayer change.
+Branch: `feat/wukari-audit-offline-import`, based on verified Phase 2 head `fe29b65daf43c100c42377b8b44714c7f5afc7a8`. Review: [draft PR #3](https://github.com/Jabarteley/wukari-world/pull/3), stacked onto `feat/fuw-campus-map` so PR #1/#2 diffs remain unchanged. Source checkpoint `57848f4ea` is pushed. No merge, deployment, branch deletion, PostgreSQL, dependency manifest or game/multiplayer change.
 
 ## Delivered
 

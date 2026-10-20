@@ -13,3 +13,7 @@ Full 608-head audit completed 2026-10-20T12:55:41Z; 603 exact upstream-tip match
 Fresh network: official OSM capabilities200; Overpass queries timeout; Geofabrik/BBBike/Nominatim CONNECT403; institutional421. No campus location/geometry obtained. Real campus milestone blocked pending permitted licensed extract; no guessed features or navigation added. Current source files/Phase1/2 work and AGPL notices preserved.
 
 Resources: existing 5173/5194 services preserved; additional offline-mode preview 5195 uses ignored copied real boundary context for read-only browser test. No production state touched. Next: push this feature branch and open a draft stacked on Phase2; then obtain/review offline FUW extract before navigation work. Do not establish develop or approve deletion inventory automatically.
+
+## Published review handoff
+
+Source 57848f4ea pushed to feat/wukari-audit-offline-import. GitHub confirms draft/open PR #3: https://github.com/Jabarteley/wukari-world/pull/3, base feat/fuw-campus-map. PR #1/#2 remain untouched. Candidate inventory SHA matches the committed dry-run journal; execute=false, approved=false. Full five-project typecheck completed cleanly, 27 geographic tests and five safety tests remain green; Lagos/Abuja runtime smoke passed 13 checks. No merge/deletion/deployment. Next executable work is the licensed offline FUW extract/review described in OFFLINE_IMPORT.md.

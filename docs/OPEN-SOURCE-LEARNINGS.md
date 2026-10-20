@@ -270,12 +270,12 @@ this page. The GitHub columns (licence as GitHub reports it, last push) were re-
 | OpenCity | A living-city sim; its NPC memory and city-news modules | `Faizankhan17623/OpenCity` | none stated | 16 Oct 2026 | Ideas 11 and 12 (the ticker and the memory) |
 | Factory Yard | A live isometric town | `Khalidabdi1/factory` | MIT | 11 Oct 2026 | Isometric life, how it stays readable |
 | World of ClaudeCraft | A complete browser MMO (22 languages, a wiki generated from live content) | `levy-street/world-of-claudecraft` | MIT | 20 Oct 2026 | Render-only weather, generated docs, an environment for agents |
-| Fable Cities | An agent-built city builder with a critic prompt | `rawprogress/fable-cities` | none recognised by GitHub | 2 Sep 2026 | The critic and blind-pair method (EVIDENCE.md) |
-| Neon Zenith | A street-level open world; its rain, governor and per-view frame table | `billpwchan/neon-zenith` | none recognised by GitHub | 6 Oct 2026 | Ideas 1 and 17; its README's frame table |
-| Cinevva open-world series | Thirty posts on a browser open world (voice, crowds, skeletons) | `app.cinevva.com` (blog) | not code we can reuse as is | Feb to Jun 2026 | Ideas 21, 23 and 26 |
-| Lagos Life | The Lagos browser life game that went viral; now an ad business | press only (TechCabal, 12 Oct 2026) | closed | n/a | Cost per player, ad formats, retention. Its numbers are press, unverified |
-| Lagos Run | The danfo-driving game that drew about 140,000 players in a week | press only | closed | n/a | What a one-week spike looks like (the viral-week model in [CAPACITY.md](CAPACITY.md)) |
+| Fable Cities | An agent-built city builder with a critic prompt | `rawprogress/fable-cities` | custom text (read it) | 2 Sep 2026 | The critic and blind-pair method (EVIDENCE.md) |
+| Neon Zenith | A street-level open world; its rain, governor and per-view frame table | `billpwchan/neon-zenith` | custom text (read it) | 6 Oct 2026 | Ideas 1 and 17; its README's frame table |
+| Cinevva open-world series | Thirty posts on a browser open world (voice, crowds, skeletons) | `app.cinevva.com` (blog) | not checked | Feb to Jun 2026 | Ideas 21, 23 and 26 |
+| Lagos Life | The Lagos browser life game that went viral; now an ad business | press only (TechCabal, 12 Oct 2026) | not checked | n/a | Cost per player, ad formats, retention. Its numbers are press, unverified |
+| Lagos Run | The danfo-driving game that drew about 140,000 players in a week | press only | not checked | n/a | What a one-week spike looks like (the viral-week model in [CAPACITY.md](CAPACITY.md)) |
 
-Read a licence cell as GitHub's word, not a legal reading: "none stated" and "none recognised" mean there is no licence GitHub
-could name, so nothing may be copied from them at all. If a peer is archived or silent for three months, drop it from the table
-and say so in this paragraph.
+Read a licence cell as GitHub's word, not a legal reading. "None stated" means GitHub found no licence file, so nothing may be
+copied from that repository at all. "Custom text" means a licence file GitHub cannot name: read it before borrowing anything but
+an idea. If a peer is archived or silent for three months, drop it from the table and say so in this paragraph.

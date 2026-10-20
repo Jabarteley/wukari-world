@@ -2,6 +2,8 @@
 
 Working title, subject to brand review. An unofficial, community browser game set in Wukari, Taraba State, Nigeria, with Federal University Wukari (FUW) as the first development focus. The long-term world covers the town; expansion across Wukari LGA is a separate phase. No university endorsement is claimed.
 
+**Phase 2 update:** the pinned real Wukari LGA boundary is now acquired, attributed and rendered as administrative context. FUW geometry acquisition remains blocked; no explorable campus is claimed. Current status, coverage and screenshots: [PHASE2_CAMPUS_STATUS.md](PHASE2_CAMPUS_STATUS.md). Reproducible commands: [PHASE2_ACQUISITION.md](PHASE2_ACQUISITION.md). The first-milestone account below is historical.
+
 This brief implements the owner’s request and attached `WUKARI_LIFE_CODEX_HANDOFF.md`. The attachment supplies product requirements, not evidence of geographic facts. Its suggested cloud/fork operations are not repeated: this work uses the connected `Jabarteley/wukari-world` checkout, forked from `kromate/joinallworld`.
 
 ## Product constraints

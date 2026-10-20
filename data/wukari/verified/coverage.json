@@ -1,0 +1,19 @@
+{
+  "status": "boundary-only-campus-not-complete",
+  "lgaSourceId": "59680162B18982121994254",
+  "campusBoundary": "unknown",
+  "gates": "unavailable",
+  "roads": "unavailable",
+  "paths": "unavailable",
+  "buildings": "unavailable",
+  "hostels": "unavailable",
+  "sportsGrounds": "unavailable",
+  "elevation": "unavailable",
+  "fieldVerifiedFeatures": 0,
+  "discovery": "failed",
+  "reason": {
+    "category": "timeout",
+    "message": "curl: (28) Operation timed out after 25002 milliseconds with 0 bytes received",
+    "retryable": true
+  }
+}

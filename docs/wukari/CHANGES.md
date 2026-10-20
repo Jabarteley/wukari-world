@@ -1,5 +1,7 @@
 # Complete changed-file inventory
 
+The following inventory records Phase 1. Phase 2 is a separate branch/stacked draft with its own [file inventory and status](PHASE2_CAMPUS_STATUS.md#phase-2-file-inventory); the foundation branch and PR #1 are preserved.
+
 This milestone adds the following 23 files on `feat/wukari-geographic-foundation`. No pre-existing tracked application, test, dependency, licence, notice, lockfile or city file is changed. Nothing is merged to main or deployed. The owner has authorized committing/pushing the feature branch and opening a draft PR; publication outcome is recorded in the work record.
 
 | File | Purpose |

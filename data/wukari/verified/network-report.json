@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-10-20",
+  "scope": "Public geographic source diagnostics; no access restriction bypass, credentials, CAPTCHA solving or disabled TLS verification",
+  "observations": [
+    {"url":"https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/9469f09/releaseData/gbOpen/NGA/ADM2/geoBoundaries-NGA-ADM2.geojson","status":200,"result":"acquired-and-checksum-verified","receipt":"provenance.json"},
+    {"url":"https://www.geoboundaries.org/api/current/gbOpen/NGA/ADM2/","status":200,"result":"metadata-identity-year-license-verified","receipt":"provenance.json"},
+    {"url":"https://overpass-api.de/api/interpreter","status":502,"result":"provider-unavailable","detail":"Tiny diagnostic query also returned 502; response states query workers busy and queue full. Other bounded requests timed out. Three final LGA-query attempts with 1s/2s backoff are retained in provenance.json; no FUW response acquired."},
+    {"url":"https://overpass-api.de/api/status","status":406,"result":"access-denied","detail":"No workaround or browser impersonation attempted"},
+    {"url":"https://download.geofabrik.de/africa/nigeria.html","status":403,"result":"proxy-access-denied"},
+    {"url":"https://extract.bbbike.org/","status":403,"result":"proxy-access-denied"},
+    {"url":"https://overpass.private.coffee/api/status","status":403,"result":"proxy-access-denied","draftDomainRequirement":"overpass.private.coffee"},
+    {"url":"https://api.openstreetmap.org/api/0.6/capabilities","status":403,"result":"proxy-access-denied","draftDomainRequirement":"api.openstreetmap.org"},
+    {"url":"https://fuwukari.edu.ng/","status":403,"result":"proxy-access-denied","draftDomainRequirement":"fuwukari.edu.ng"},
+    {"url":"https://registry.opendata.aws/copernicus-dem/","status":403,"result":"proxy-access-denied","detail":"DEM metadata/license not verified; no terrain imported or height inferred"}
+  ],
+  "interpretation": "The original geoBoundaries restriction is resolved in this instance. Current Overpass failures are provider-capacity/timeouts, while alternate providers are denied by the proxy. These responses do not establish that FUW is unmapped or that any source is field-verified.",
+  "campusMilestoneComplete": false
+}

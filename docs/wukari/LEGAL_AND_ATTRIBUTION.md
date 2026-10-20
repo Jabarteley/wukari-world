@@ -12,7 +12,7 @@ Audit finding: the existing main game’s `src/app/features/sim/SettingsTab.vue`
 
 ## Geographic data
 
-For geoBoundaries data, retain CC BY 4.0 credit, source/release/year and modification notice. Credit for the planned selected boundary: “geoBoundaries gbOpen, William & Mary geoLab; original source GRID3; Nigeria ADM2 (NGA-ADM2-59680162), release 9469f09, year 2022. Selected Wukari feature; projected for display without rounding source coordinates.” Verify retrieved metadata before shipping; no Wukari feature is imported yet. Existing ADM1 credit remains in `NOTICE.md`.
+For geoBoundaries data, retain CC BY 4.0 credit, source/release/year and modification notice. Credit for the selected boundary: “geoBoundaries gbOpen, William & Mary geoLab; original source GRID3; Nigeria ADM2 (NGA-ADM2-59680162), release 9469f09, year 2022. Selected Wukari feature; projected for display without rounding source coordinates.” Phase 2 verified and preserved the public identity/license metadata and selected source feature in `data/wukari/verified/`. This is not a campus boundary, field survey or legal-access certification. Existing credits and the additive Wukari entry remain in `NOTICE.md`.
 
 OpenStreetMap data carries ODbL 1.0. Display “© OpenStreetMap contributors” with a link to <https://www.openstreetmap.org/copyright>; identify the ODbL and provide required database access/offer where applicable to the published derivative database or produced work. Track OSM and geoBoundaries inputs separately; AGPL on code does not relabel OSM data as AGPL. Preserve raw OSM IDs, references, provenance and the licence notices accompanying any extract. Determine obligations for the actual combined database/output before release.
 
@@ -22,7 +22,7 @@ The lab shows OSM/geoBoundaries credits in source-data mode and explicitly says 
 
 - No FUW crest, logo, uniform branding, official identity or suggestion of endorsement. Institution names may identify the project’s factual subject; marketing use requires separate review.
 - Do not trace or copy Google Maps/Street View imagery, copyrighted campus maps, photographs, or third-party/game assets without a compatible grant. A publicly visible website is not an asset licence.
-- Use original art or individually licensed assets with provenance. Approximate buildings must disclose unknown dimensions/materials; this milestone renders only flat linework.
+- Use original art or individually licensed assets with provenance. Approximate buildings must disclose unknown dimensions/materials; the current blocked milestone renders only administrative context and creates no campus buildings.
 - Public map data is not permission to enter a property. Review gates, private/residential areas, security-sensitive locations and public access before walkable navigation or real-world guidance.
 - Do not collect student identities, room assignments, private residence details or other personal data to fill mapping gaps. The current lab has no account or multiplayer data collection.
 - Before multiplayer publication, review upstream privacy, age/consent, moderation, security, retention and source-offer behavior for the actual Wukari service.

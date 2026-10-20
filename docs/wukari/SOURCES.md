@@ -1,5 +1,7 @@
 # Sources and provenance
 
+**Phase 2 supersedes the historical access status below:** geoBoundaries metadata/media and GitHub API now work. The pinned Wukari ADM2 feature is acquired and retained in `data/wukari/verified/`. FUW requests remain blocked by Overpass capacity/timeouts and alternative-provider proxy denials. Current receipts, gaps and exact source identities: [PHASE2_CAMPUS_STATUS.md](PHASE2_CAMPUS_STATUS.md), [PHASE2_ACQUISITION.md](PHASE2_ACQUISITION.md), and `data/wukari/verified/provenance.json`. The table below preserves the first milestone's observations; it is not a current assertion that ADM2 is unavailable.
+
 Status checked 2026-10-20. “Pinned” means a known expected identity/hash; “retrieved” means bytes actually available. A checksum does not establish survey accuracy, contemporary boundaries or legal access.
 
 | Source | Licence | Evidence and status |

@@ -1,5 +1,7 @@
 # Architecture and audit
 
+Phase 2 adds bounded HTTPS acquisition (`scripts/wukari/acquisition.ts`), source selection/receipts (`acquire.ts`), curated recording and offline/master-byte verification, a real administrative context view, and shared 256 m tile addressing in `src/wukari/regions.ts`. It does not add a campus navigation scene, game-city registration or multiplayer changes while FUW geometry is unavailable. See [PHASE2_CAMPUS_STATUS.md](PHASE2_CAMPUS_STATUS.md). The original audit and future integration seams below remain relevant.
+
 Audit date: 2026-10-20. Source revision: `4d229318e67667970b157e4798c533c4b5be0fad`. The checkout calls itself Allworld / `joinallworld`; the connected fork is `Jabarteley/wukari-world`. No framework migration or global rebranding is needed for the geographic milestone.
 
 ## Existing implementation

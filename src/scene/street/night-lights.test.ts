@@ -51,7 +51,7 @@ test('the light pools are one instanced mesh for every lamp and shop, shown only
   assert.equal(meshes[0]!.visible, false, 'day: nothing to show');
   pools.setLevel({ pool: 0.8, share: 0.7, power: 1, wet: false });
   assert.equal(meshes[0]!.visible, true);
-  assert.equal(meshes[0]!.material.blending, THREE.AdditiveBlending);
+  assert.equal((meshes[0]!.material as THREE.Material).blending, THREE.AdditiveBlending);
   assert.equal((meshes[0]!.material as THREE.Material).depthWrite, false);
   pools.setSource('scenery', []);
   assert.equal(pools.count, 3); assert.equal((parent.children[0] as THREE.InstancedMesh).count, 3);

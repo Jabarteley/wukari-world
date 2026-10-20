@@ -45,7 +45,8 @@ export interface LightPools {
 
 function gradientTexture(THREE: typeof import('three')): THREE.CanvasTexture | null {
   const canvas = globalThis.document?.createElement?.('canvas'), g = canvas?.getContext?.('2d');
-  if (!canvas || !g) return null;
+  // A stand-in canvas (a test's) may lack gradients: no texture then, and the pool is a plain flat square (nobody sees it there).
+  if (!canvas || !g || typeof g.createRadialGradient !== 'function') return null;
   canvas.width = canvas.height = 64;
   const ring = g.createRadialGradient(32, 32, 0, 32, 32, 32);
   // A bright, quick fall-off near the lamp and a long soft tail: what a sodium lamp does to a road.

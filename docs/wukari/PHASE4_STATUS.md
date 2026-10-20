@@ -1,6 +1,6 @@
 # Phase 4 — reproducible transfer delivered; playable campus blocked
 
-Base: `feat/wukari-audit-offline-import` at `43fb0031f189c569c90c5601ff8ca7419c523f4e`, verified against the remote before branching. New feature: `feat/fuw-data-transfer`; draft review targets that exact base branch. Previous PRs and all existing game/economy/AGPL/source data are unchanged. No merge, deployment, PostgreSQL, branch cleanup or economy modification.
+Base: `feat/wukari-audit-offline-import` at `43fb0031f189c569c90c5601ff8ca7419c523f4e`, verified against the remote before branching. New feature: `feat/fuw-data-transfer`; review is [draft PR #4](https://github.com/Jabarteley/wukari-world/pull/4), targeting that exact base branch. Source checkpoint `78a3abd79` was pushed. Previous PRs and all existing game/economy/AGPL/source data are unchanged. No merge, deployment, PostgreSQL, branch cleanup or economy modification.
 
 ## Outcome
 

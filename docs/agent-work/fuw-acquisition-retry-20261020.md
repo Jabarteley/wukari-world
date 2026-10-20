@@ -1,0 +1,7 @@
+# FUW acquisition retry
+
+Checkout /workspace/wukari-world. Branch feat/fuw-acquisition-retry from remotely verified feat/fuw-data-transfer 201634b49985cfd1f8a839cdfb89571537da1ea4. Read root AGENTS, current coordination and Phase4 handoff. Own new retry evidence/status only unless genuine data supports renderer changes. Preserve previous work/PRs. No merge, deploy, DB, economy or deletion. First action: existing acquisition command and independent permitted-source connectivity probes; stop repeats on persistent denials. Implement playable scene only with authentic sufficient geometry and access/spawn evidence.
+
+## Result
+
+Existing acquisition exit2: pinned national/metadata acquisition succeeded; FUW Overpass discovery failed after bounded retries. One explicit alternative query timed out; Geofabrik/BBBike and source-backed location lookups returned proxy CONNECT403. OSM capabilities/geoBoundaries metadata200 do not yield campus geometry. Further attempts stopped. No new gameplay/pipeline implementation without authentic geometry. Three additive evidence/status/record files only; source and generated coverage unchanged (byte reproduction passed). Geographic35, source verification, strict focused Vue/TS, build, smoke18, Chromium desktop/mobile and integration smoke13 passed. Existing whole-project types passed in Phase4; no source modifications here. Next: push evidence feature and stacked draft review, then wait for meaningful source-access change or supplied licensed extract. No merge/deploy/DB/economy/deletion. Existing runtime resources preserved.

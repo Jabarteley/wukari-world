@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "201634b49985cfd1f8a839cdfb89571537da1ea4",
+  "command": "node scripts/wukari/acquire.ts",
+  "exitCode": 2,
+  "originalRun": ".cache/wukari/acquired/runs/2026-10-20T13-27-48.907Z/",
+  "boundarySources": [
+    {
+      "schemaVersion": 1,
+      "id": "nga-adm2",
+      "url": "https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/9469f09/releaseData/gbOpen/NGA/ADM2/geoBoundaries-NGA-ADM2.geojson",
+      "license": "CC-BY-4.0",
+      "attribution": "geoBoundaries gbOpen / William & Mary geoLab; original source GRID3, Nigeria ADM2, year 2022, release 9469f09. Selected Wukari feature; no source-coordinate rounding.",
+      "status": "acquired",
+      "retrievedAt": "2026-10-20T13:27:49.924Z",
+      "bytes": 9422551,
+      "sha256": "bef7f2cfa45e012f4772eaa61c7b99e5188aeba4d5c6badae7e9f9aae8c02fcd",
+      "query": null,
+      "querySha256": null,
+      "verification": "source-backed-not-field-verified",
+      "fieldVerified": false,
+      "attempts": [
+        {
+          "number": 1,
+          "at": "2026-10-20T13:27:49.924Z",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "id": "nga-adm2-metadata",
+      "url": "https://www.geoboundaries.org/api/current/gbOpen/NGA/ADM2/",
+      "license": "CC-BY-4.0",
+      "attribution": "geoBoundaries gbOpen / William & Mary geoLab; original source GRID3, Nigeria ADM2, year 2022, release 9469f09. Selected Wukari feature; no source-coordinate rounding.",
+      "status": "acquired",
+      "retrievedAt": "2026-10-20T13:27:50.453Z",
+      "bytes": 1871,
+      "sha256": "eaa2342efbad55a3ca9967611670f7001e80e000ef8c180d2c3d5f2eb03e14da",
+      "query": null,
+      "querySha256": null,
+      "verification": "source-backed-not-field-verified",
+      "fieldVerified": false,
+      "attempts": [
+        {
+          "number": 1,
+          "at": "2026-10-20T13:27:50.453Z",
+          "status": 200
+        }
+      ]
+    }
+  ],
+  "primaryDiscovery": {
+    "schemaVersion": 1,
+    "id": "fuw-discovery",
+    "url": "https://overpass-api.de/api/interpreter",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors, https://www.openstreetmap.org/copyright (ODbL 1.0)",
+    "status": "failed",
+    "retrievedAt": null,
+    "bytes": null,
+    "sha256": null,
+    "query": "[out:json][timeout:15];\n(nwr[\"amenity\"=\"university\"](7.614686011949914,9.115716934189209,8.296087265315066,10.331658908831628);>;);\nout meta geom;\n",
+    "querySha256": "be67bb4fbb714772a782f0d6c907f2864869e297d64cf6efe3be8dfb4f800d31",
+    "verification": "not-acquired",
+    "fieldVerified": false,
+    "attempts": [
+      {
+        "number": 1,
+        "at": "2026-10-20T13:28:15.536Z",
+        "status": 0,
+        "failure": {
+          "category": "timeout",
+          "message": "curl: (28) Operation timed out after 25002 milliseconds with 0 bytes received",
+          "retryable": true
+        },
+        "nextDelayMs": 1000
+      },
+      {
+        "number": 2,
+        "at": "2026-10-20T13:28:41.562Z",
+        "status": 0,
+        "failure": {
+          "category": "timeout",
+          "message": "curl: (28) Operation timed out after 25002 milliseconds with 0 bytes received",
+          "retryable": true
+        },
+        "nextDelayMs": 2000
+      },
+      {
+        "number": 3,
+        "at": "2026-10-20T13:28:44.779Z",
+        "status": 502,
+        "failure": {
+          "category": "provider-unavailable",
+          "message": "HTTP 502; bounded retry only.",
+          "retryable": true
+        }
+      }
+    ]
+  },
+  "alternativeDiscovery": {
+    "schemaVersion": 1,
+    "id": "alternative-fuw-discovery",
+    "url": "https://overpass.private.coffee/api/interpreter",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "status": "failed",
+    "retrievedAt": null,
+    "bytes": null,
+    "sha256": null,
+    "query": "[out:json][timeout:15];\n(nwr[\"amenity\"=\"university\"](7.614686011949914,9.115716934189209,8.296087265315066,10.331658908831628);>;);\nout meta geom;\n",
+    "querySha256": "be67bb4fbb714772a782f0d6c907f2864869e297d64cf6efe3be8dfb4f800d31",
+    "verification": "not-acquired",
+    "fieldVerified": false,
+    "attempts": [
+      {
+        "number": 1,
+        "at": "2026-10-20T13:28:28.420Z",
+        "status": 0,
+        "failure": {
+          "category": "timeout",
+          "message": "curl: (28) Operation timed out after 15002 milliseconds with 0 bytes received",
+          "retryable": true
+        }
+      }
+    ]
+  },
+  "connectivity": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "url": "https://download.geofabrik.de/africa/nigeria.html",
+        "at": "2026-10-20T13:27:50.208Z",
+        "status": 0,
+        "transportCode": 56,
+        "transportError": "curl: (56) CONNECT tunnel failed, response 403",
+        "bytes": 0
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "url": "https://extract.bbbike.org/",
+        "at": "2026-10-20T13:27:50.209Z",
+        "status": 0,
+        "transportCode": 56,
+        "transportError": "curl: (56) CONNECT tunnel failed, response 403",
+        "bytes": 0
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "url": "https://api.openstreetmap.org/api/0.6/capabilities",
+        "at": "2026-10-20T13:27:50.209Z",
+        "status": 200,
+        "bytes": 961
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "url": "https://www.geoboundaries.org/api/current/gbOpen/NGA/ADM2/",
+        "at": "2026-10-20T13:27:50.209Z",
+        "status": 200,
+        "bytes": 1871
+      }
+    }
+  ],
+  "locationDiscovery": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "url": "https://nominatim.openstreetmap.org/search?q=Federal%20University%20Wukari%2C%20Nigeria&format=jsonv2&limit=1",
+        "at": "2026-10-20T13:28:29.554Z",
+        "status": 0,
+        "transportCode": 56,
+        "transportError": "curl: (56) CONNECT tunnel failed, response 403",
+        "bytes": 0
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "url": "https://en.wikipedia.org/w/api.php?action=query&titles=Federal_University%2C_Wukari&prop=coordinates&format=json",
+        "at": "2026-10-20T13:28:29.556Z",
+        "status": 0,
+        "transportCode": 56,
+        "transportError": "curl: (56) CONNECT tunnel failed, response 403",
+        "bytes": 0
+      }
+    }
+  ],
+  "campusFeaturesAcquired": 0,
+  "campusPlayable": false
+}

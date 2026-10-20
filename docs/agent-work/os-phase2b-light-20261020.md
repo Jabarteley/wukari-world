@@ -23,7 +23,7 @@
 - **Repo:** joinallworld, worktree `Allworld-notes/work/os-p2b-light`
 - **Branch / worktree:** `claude/os-p2b-light`
 - **Base:** `53a738808`
-- **Port/process ownership:** dev:open on 5216 (mine; stop with the process I started when finished).
+- **Port/process ownership:** none (the dev server on 5216 was stopped).
 
 ## Progress
 
@@ -34,6 +34,7 @@
 
 - Code (commits on the branch): `src/scene/street/night-lights.ts` (the hour's numbers, pure), `light-pools.ts` (one instanced additive mesh, not on the phone tier), `wet-ground.ts` (one uniform on a copy of the solid material), wiring in `neighbourhood-scene.ts` and `street-life/scenery.ts`, a per-building seed attribute in `models/scene-models.ts`, the sun losing warmth when wet in `game/conditions/look.ts`, `?outage=` in `weather-query.ts`, the `--sid` option and `street-night` view in `scripts/evidence/`.
 - Tests: `node --experimental-strip-types --test src/scene/street/night-lights.test.ts src/scene/street-life/scenery.test.ts src/game/conditions/look.test.ts src/scene/home-lighting.test.ts scripts/evidence/*.test.ts` all pass. Typecheck clean (`npm run typecheck`, 7 GB heap).
+- CI run 39351373544 (success; typecheck-fast, build-and-smoke-fast, release-policy). STARTUP_RAW 614,012 (main 613,913; +99 bytes from `game/conditions/look.ts`), STARTUP_GZIP 221,002, STARTUP_BROTLI 194,775, SCENE_HOST_RAW 83,315 / GZIP 31,037, FX_RAW 106,008 / FX_GZIP 29,281, LOADING ok. An earlier run (39347658102) failed on a test-file type error and on `createRadialGradient` missing in a stand-in canvas; both fixed.
 - Pictures: `docs/agent-work/os-phase2b-light-{dusk,night,night-post,wet}.png` (left before, right after; night-post is after code, `?post=0` left and `?post=1` right). Frame and draw-call rows in `docs/evidence/frames.md`.
 
 ### In progress / blockers

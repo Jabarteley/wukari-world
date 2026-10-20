@@ -32,3 +32,10 @@
 - Durable evidence: `docs/wukari/LOCAL_PBF.md`, generated `LOCAL_PBF_COVERAGE_REPORT.md`, `evidence/local-pbf-{source,extraction,exclusions}.json`. Raw sources/batches stay ignored locally. No persistent service started; all owned processing complete.
 - Next: final diff/source checks, commit and push `feat/fuw-local-pbf`, open stacked draft against `feat/fuw-data-transfer`. No main merge/deployment/DB change.
 - Status: verified-local / ready-for-review. Remote base rechecked at exactly `201634b49985cfd1f8a839cdfb89571537da1ea4`. No unrelated working changes; 22 scoped files prepared for publication.
+
+## Published handoff
+
+- Source commit `b74ece3fd6d53f69bebc11e6cb221110a1aa8595` pushed and remote hash verified.
+- Draft/open PR **#6**: https://github.com/Jabarteley/wukari-world/pull/6 . Connector readback confirms head `feat/fuw-local-pbf`, base `feat/fuw-data-transfer`, exact source/base SHAs, unmerged. Existing PRs untouched.
+- Task milestone complete: real local extraction, strict imports, coverage, scoped fixes and draft review published. Playable campus remains unsupported by the acquired data; no gameplay completion claim.
+- Next geographic dependency: georeferenced campus extent or independently corroborated FUW feature selection, plus reviewed pedestrian access/safe spawn. Existing anonymous LGA geometry can then be selected without invention. Raw regional PBF/JSON and nine imports remain in this Windows checkout's ignored cache.

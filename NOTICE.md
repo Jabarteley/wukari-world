@@ -42,3 +42,9 @@ The data is stored as generated modules under `src/map3d/geo/data/` and `src/mod
 | [Depth Anything V2 Small](https://github.com/DepthAnything/Depth-Anything-V2) (onnx-community's quantized ONNX export; works out a photo's depth on the player's own device) | Apache-2.0 |
 
 Transitive dependencies keep their own licences in `node_modules`.
+
+## Wukari geographic development context
+
+`data/wukari/verified/wukari-adm2.geojson` selects the Wukari administrative feature (`59680162B18982121994254`) from geoBoundaries gbOpen Nigeria ADM2 (`NGA-ADM2-59680162`), release `9469f09`, year 2022, original source GRID3; William & Mary geoLab. License: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Source metadata: <https://www.geoboundaries.org/api/current/gbOpen/NGA/ADM2/>. The exact national source URL/hash, public license metadata and retrieval receipts are retained in `data/wukari/verified/provenance.json` and `nga-adm2.metadata.json`.
+
+Modified by Wukari Life: selected one feature, retained original WGS84 numeric values/properties, and projected it for an administrative-context display. This is not a Federal University Wukari campus boundary, field survey, contemporary legal determination or endorsement. No FUW OSM data, DEM, university logo or third-party campus model is included in this context snapshot. The original project AGPL and all other notices above remain in force.

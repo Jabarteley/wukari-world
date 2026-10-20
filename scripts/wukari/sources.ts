@@ -10,7 +10,11 @@ export const SOURCE_CONFIG = {
     bytes: 9422551, sha256: 'bef7f2cfa45e012f4772eaa61c7b99e5188aeba4d5c6badae7e9f9aae8c02fcd',
   },
   osm: { url: 'https://overpass-api.de/api/interpreter', license: 'ODbL-1.0' },
+  // Derived by exact feature selection from the independently verified national ADM2 bytes.
+  wukariAdm2: { bytes: 7764, sha256: 'fdf3cf2421d730ca7bb0f0297b8a0b8a32058f5d95b4c1a4ced6e8c959c7a1fc' },
 } as const;
+// Explicit selection only; network policy and provider terms still apply. No automatic provider hopping.
+export const OVERPASS_ENDPOINTS: readonly string[] = [SOURCE_CONFIG.osm.url, 'https://overpass.private.coffee/api/interpreter'];
 export function checkedBytes(bytes: Uint8Array, expected: { bytes: number; sha256: string }): void {
   if (bytes.length !== expected.bytes || createHash('sha256').update(bytes).digest('hex') !== expected.sha256) throw new Error('Source byte count or SHA-256 mismatch (Git LFS pointers are not geographic data)');
 }

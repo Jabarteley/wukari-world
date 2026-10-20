@@ -5,7 +5,7 @@
 | Extent | Current state | Acceptance |
 | --- | --- | --- |
 | Taraba ADM1 | Existing pinned geoBoundaries source verified by SHA-256 | State context only |
-| Wukari LGA / ADM2 | Payload unavailable; expected national source pin recorded | Select exact source feature; retain shapeID and raw coordinates; review against Taraba and current administrative evidence |
+| Wukari LGA / ADM2 | Pinned national bytes acquired and exact source feature `59680162B18982121994254` selected; source-backed, not field-verified | Coordinates/identity/license retained, Taraba vertex checks and exact source reproduction pass; contemporary legal/field review remains separate |
 | Wukari town | Unknown, `geometry: null` | A sourced legal town boundary if available; otherwise a clearly named built-up/study area with method and date. Never equate it to the LGA |
 | FUW campus | Unknown; synthetic candidate only in fixture | Identify source way/relation, corroborate public institutional information and ground observations, establish campus edges/gates and public-access limitations |
 
@@ -17,11 +17,11 @@ From the existing checkout (no extra worktree):
 
 ```sh
 cd /workspace/wukari-world
-node scripts/wukari/import.ts --synthetic
+node scripts/wukari/verify-boundary.ts
 npx --no-install vite --config scripts/wukari/preview.config.ts
 ```
 
-The synthetic fixture is at the equator/prime meridian and is visibly labeled **NOT WUKARI**. It tests ingestion and rendering, not geographical coverage. The lab binds loopback port 5194. Use local HTTP/browser checks; do not publish it as a completed map.
+The default Phase 2 view uses the committed real administrative context, **not a FUW map**. The preserved synthetic fixture is at the equator/prime meridian and visibly labeled **NOT WUKARI**; generate it with `node scripts/wukari/import.ts --synthetic` and explicitly select it using `WUKARI_PREVIEW_MODE=foundation` when starting Vite. It tests ingestion/rendering, not coverage. The lab binds loopback port 5194. Use local HTTP/browser checks; do not publish it as a completed campus.
 
 ```sh
 node --test src/wukari/*.test.ts
@@ -53,7 +53,7 @@ node scripts/wukari/import.ts \
 
 Omit `--campus-way` if no eligible way is verified as a candidate; campus stays unknown. Import writes only the dedicated ignored `.cache/wukari/` tree (`--out` may select a child directory). Keep source inputs outside generated output paths. These generated outputs can be replaced by subsequent imports; preserve reviewed snapshots separately.
 
-The real path is **not executed successfully yet** because source retrieval is blocked. It fails closed for wrong byte counts/hashes, missing acquisition/query evidence, ambiguous/wrong-level boundaries, malformed coordinates/rings, duplicate OSM identities, inconsistent node positions, incomplete selected campus geometry, or a candidate outside the LGA. No output is promoted to a playable city.
+The real **FUW/OSM importer** path has not executed successfully because no campus source response is available. The real administrative-boundary acquisition/selection path has executed and reproduced successfully; see [PHASE2_ACQUISITION.md](PHASE2_ACQUISITION.md). Imports fail closed for wrong byte counts/hashes, missing acquisition/query evidence, ambiguous/wrong-level boundaries, malformed coordinates/rings, duplicate OSM identities, inconsistent node positions, incomplete selected campus geometry, or a candidate outside the LGA. No output is promoted to a playable city.
 
 ## Precision and uncertainty
 
@@ -61,4 +61,4 @@ WGS84 positions are `[longitude, latitude]`; raw bytes are retained. No rounding
 
 World positions use x east, y up, z south, with one unit per metre. The adapter subtracts an unrounded source-derived origin from the shared Nigeria frame, then multiplies its 100-metre map units by 100. Roundtrip tests check numerical reversibility to 1e-12 degrees, orientation and approximate metre scale. This tolerance is a software property, not a claim that source positions are accurate to that distance. Elevation is unknown; all preview linework is flat.
 
-The lab has no completed Wukari map. Real coverage counts remain unknown until import; fixture counts must never be used in a coverage claim.
+The lab has no completed Wukari/FUW game map. One real administrative feature is preserved; FUW/OSM coverage remains unknown. Fixture or rendered-element counts must never be used to claim campus coverage.

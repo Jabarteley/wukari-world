@@ -1,5 +1,7 @@
 # Roadmap and gates
 
+Phase 2 has completed real Wukari LGA acquisition/provenance and administrative rendering. The FUW data gate remains blocked, so campus walking/buildings/navigation and town expansion are not marked complete. Current actions and acceptance gaps are in [PHASE2_CAMPUS_STATUS.md](PHASE2_CAMPUS_STATUS.md); the original milestone gates below remain in force.
+
 ## Milestone 1 — geographic ingestion foundation (this branch)
 
 Delivered: codebase/licence audit, source pins, separate extent states, checksum-gated offline importer, OSM identity/precision retention, local metre projection, tests and a development-only Vue/Three.js linework lab. Synthetic preview rendering is verified. Actual Wukari geometry remains blocked by source access. No city registration, avatar spawn or completed campus/town map is claimed.

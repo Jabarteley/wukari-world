@@ -1,6 +1,8 @@
 # Wukari geographic inputs
 
-No Wukari geographic extract has been imported yet. `fixtures/` contains original **synthetic test data at the equator/prime meridian**, not real locations. Fixture IDs are invented test identifiers, never actual OSM references. They cannot pass the real importer’s pinned ADM2 checksum.
+`verified/` now contains the real Wukari LGA source feature, geoBoundaries license metadata, receipts, exact discovery query, coverage, context dataset and network diagnosis. This is **administrative context, not FUW campus geography**. No FUW OSM response has been acquired. Verify offline with `node scripts/wukari/verify-boundary.ts`; reproduce from the national source with the Phase 2 acquisition instructions in `docs/wukari/PHASE2_ACQUISITION.md`.
+
+`fixtures/` contains original **synthetic test data at the equator/prime meridian**, not real locations. Fixture IDs are invented test identifiers, never actual OSM references. They cannot pass the real importer’s pinned ADM2 checksum. The default preview now uses real administrative context; select foundation mode explicitly to view the synthetic fixture.
 
 The existing pinned Taraba ADM1 source is in `scripts/geo/sources/nigeria-adm1-9469f09.geojson`; it is state context, not a Wukari or campus outline. Exact source pins: `scripts/wukari/sources.ts`. Coverage and download evidence: `docs/wukari/SOURCES.md`.
 

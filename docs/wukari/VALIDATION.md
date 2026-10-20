@@ -1,5 +1,7 @@
 # Validation record
 
+This is the Phase 1 baseline record. Phase 2 checks and limitations are separate in [PHASE2_CAMPUS_STATUS.md](PHASE2_CAMPUS_STATUS.md); passing administrative-context checks must not be described as campus exploration validation.
+
 Cloud checkout baseline: `4d229318e67667970b157e4798c533c4b5be0fad`. Node 24.19.0, npm 11.9.0. Branch: `feat/wukari-geographic-foundation`. This record distinguishes a working development environment from a passing upstream test suite and a verified real map.
 
 ## Executed checks

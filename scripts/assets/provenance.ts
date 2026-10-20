@@ -30,7 +30,7 @@ export function groupOf(dir: 'vehicles' | 'street', name: string, images: number
 const FOLDERS = { vehicles: 'src/models/vehicles/assets', street: 'src/scene/street/assets' } as const
 
 export interface Group { id: GroupId; origin: string; evidence: string; terms: string; todo: string }
-export interface Row { path: string; licence: 'unverified'; group: GroupId; kind: 'vehicle' | 'prop' | 'texture'; bytes: number; triangles?: number; sha256: string }
+export interface Row { path: string; licence: 'unverified' | 'owned (Meshy paid output)'; group: GroupId; kind: 'vehicle' | 'prop' | 'texture'; bytes: number; triangles?: number; sha256: string }
 export interface ProvenanceRecord { format: 1; pack: 'meshy'; name: string; kind: 'generated'; page: string; author: string; licenceId: 'unverified'; fetched: string; groups: Group[]; assets: Row[] }
 
 /** Measure every file of the two folders. */
@@ -56,13 +56,16 @@ export function measure(root = repo): Row[] {
 export function problems(record: ProvenanceRecord, measured: readonly Row[]): string[] {
   const out: string[] = []
   const ids = new Set(record.groups.map((g) => g.id))
+  const groupsById = new Map(record.groups.map((g) => [g.id, g]))
   for (const g of record.groups) for (const k of ['origin', 'evidence', 'terms', 'todo'] as const) if (!g[k]) out.push(`group ${g.id} has no ${k}`)
   const have = new Map(record.assets.map((a) => [a.path, a]))
   for (const m of measured) {
     const a = have.get(m.path)
     if (!a) { out.push(`${m.path} is shipped but has no provenance row`); continue }
     if (!ids.has(a.group)) out.push(`${m.path}: group ${a.group} is not described`)
-    if (a.licence !== 'unverified') out.push(`${m.path}: licence ${a.licence} needs a real manifest (docs/ASSET-PIPELINE.md), not this record`)
+    // 'owned (Meshy paid output)' is the one other value: the owner confirmed on 20 Oct 2026 that the account was paid, so the generated files are
+    // Allworld's with no credit owed (the group's terms say so). Anything else needs a real manifest (docs/ASSET-PIPELINE.md), not this record.
+    if (a.licence !== 'unverified' && !(a.licence === 'owned (Meshy paid output)' && groupsById.get(a.group)?.terms.startsWith('Owned by Allworld'))) out.push(`${m.path}: licence ${a.licence} needs a real manifest (docs/ASSET-PIPELINE.md), not this record`)
     for (const k of ['group', 'bytes', 'triangles', 'sha256'] as const) if (a[k] !== m[k]) out.push(`${m.path}: ${k} is ${String(a[k])}, the file has ${String(m[k])}`)
   }
   const real = new Set(measured.map((m) => m.path))

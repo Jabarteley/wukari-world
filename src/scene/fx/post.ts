@@ -82,13 +82,12 @@ export interface Post {
 }
 
 /**
- * The stack itself is OFF by default until it earns its place: the wave-1 critic (docs/evidence/critic-wave1-20261020.md) could not see
- * the ambient occlusion in the after picture and found nothing for the bloom to bloom, because lamps, windows and signs do not emit
- * yet, so about 3 ms a frame bought a deeper sky and a faint vignette. `?post=1` turns it on for looking and for the next pass, which
- * makes the emitters bright and shows the before/after pair at 2x before the default changes.
+ * The stack is ON by default on the high tier (the owner's call on 20 October 2026: deploy with everything on). The wave-1 critic
+ * (docs/evidence/critic-wave1-20261020.md) found little for it to work on until lamps, windows and signs emit (phase 2b), so
+ * `?post=0` turns it off for a before/after pair and for a slow machine.
  */
 export function postEnabled(win: { location?: { search?: string } } = globalThis): boolean {
-  try { return new URLSearchParams(win.location?.search || '').get('post') === '1'; } catch { return false; }
+  try { return new URLSearchParams(win.location?.search || '').get('post') !== '0'; } catch { return true; }
 }
 
 /**

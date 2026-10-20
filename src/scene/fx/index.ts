@@ -60,7 +60,7 @@ export const fxUsesPost = (tier: FxTier): boolean => tier === 'high'
 
 /**
  * Load the fx parts this tier may use and return the host that owns them. Call `dispose` when the scene goes away.
- * The weather always; on the high tier, given a context and `?post=1` (post.ts postEnabled), the post stack as well.
+ * The weather always; on the high tier, given a context, the post stack as well (`?post=0` leaves it out: post.ts postEnabled).
  */
 export async function loadFx(tier: FxTier, context?: FxContext): Promise<FxHost> {
   let post: Post | null = null

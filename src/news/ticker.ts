@@ -5,7 +5,7 @@
  * to leave stops it, and a hidden page does nothing. No frames are asked for; no request is made of its own beyond the gist read the Square
  * already makes (refreshed at most once a minute here, through the gist store's own limit).
  *
- * Everything in src/news/ is imported by lazy chunks only; the page fetches this one once the game is ready (NoticeHost.vue).
+ * Everything in src/news/ is imported by lazy chunks only; the page fetches this one ten seconds after the game is ready (src/app/features/gist/mountTicker.ts).
  */
 import { reactive } from 'vue'
 import { createObserver } from './observer.ts'

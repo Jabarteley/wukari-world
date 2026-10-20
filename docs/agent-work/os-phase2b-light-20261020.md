@@ -55,3 +55,11 @@
 | UTC | Status | Change or finding | Evidence | Next step |
 |---|---|---|---|---|
 | 2026-10-20T01:00:00Z | active | before pictures taken, view added | docs/evidence/out/before-* | build emitters |
+
+## Critic scorecard (wave 2)
+
+- Critic: Claude (Fable 5.1, `os-critic-wave2`), 20 Oct 2026, from the committed pictures only; full card in `docs/evidence/critic-wave2-20261020.md`.
+- Scores before to after (average): dusk 1.30 to 1.30 (barely different, pools at 0.4 invisible); night 1.35 to 1.40 (Lighting 1.5 to 2: pools under far lamps and a shop front, near field unlit); wet 1.35 to 1.45 (Materials 1 to 1.5, Lighting 1 to 1.5: a banded sheen blob, the road unchanged).
+- Standing failures: HUD cards and HUD over the pavement; no HUD-on active-play picture and no `inspect.ts` figures for this phase. The `night-post` pair was shot with AO on (kerb ghost), so no picture shows the live default (post on, AO off).
+- Verdict: yes, but tune: it earns its place on cost (one call, +99 bytes, nothing in the frame rows), about a third of wave 1's "light and the wet" item; keep AO off, do not lower the bloom threshold, shoot `?post=1&ao=0` at 2x before claiming the live look.
+- Next change: headlamps, tail lamps and a contact shadow for every vehicle on the existing pool mesh (Lighting, Obstacles, and something for wet roads to reflect); raise dusk pool strength.

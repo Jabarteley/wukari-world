@@ -59,3 +59,11 @@
 | UTC | Status | Change or finding | Evidence | Next step |
 |---|---|---|---|---|
 | 2026-10-20 | active | Started | this file | baseline measurement |
+
+## Critic scorecard (wave 2)
+
+- Critic: Claude (Fable 5.1, `os-critic-wave2`), 20 Oct 2026, from the record and `frames.md` only; full card in `docs/evidence/critic-wave2-20261020.md`.
+- Performance evidence: 2 of 3 (rows, bottleneck named, budgets ok after the re-pin; not 3 because there is no phone and no release build, most rows are n = 1 to 3 on a loaded Mac; the governor alone is 1.5).
+- Measured gains are real and small: loading card gone at the first draw instead of 110 to 150 ms before it; worst frame with `?post=1` 150/117/117 to 100/83/83 ms (n = 3). The governor itself was exercised only by a fill-bound desktop stand-in and a 6x CPU throttle.
+- "No stall over 100 ms in the first 10 s" was not met: the 150 to 200 ms gate stall is the street scene's build in one JS task, which a render-scale governor (it ignores lone gaps over 150 ms) and a shader warm-up cannot shorten; it needs the scene build sliced or started earlier.
+- Verdict: yes (keep), unproven; do not count it as a speed gain until a phone row exists. Missing: a phone or Android emulator, a release build, a quiet machine with n of 5 or more, the gate stall as its own item.

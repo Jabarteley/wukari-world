@@ -1,0 +1,10 @@
+{
+  "version":0.6,
+  "generator":"Wukari synthetic test fixture; NOT OpenStreetMap data",
+  "elements":[
+    {"type":"way","id":101,"nodes":[1,2,3,4,1],"tags":{"amenity":"university","name":"SYNTHETIC CAMPUS"},"geometry":[{"lon":-0.001,"lat":-0.001},{"lon":0.001,"lat":-0.001},{"lon":0.001,"lat":0.001},{"lon":-0.001,"lat":0.001},{"lon":-0.001,"lat":-0.001}]},
+    {"type":"way","id":102,"nodes":[5,6,7],"tags":{"highway":"footway","name":"SYNTHETIC PATH"},"geometry":[{"lon":-0.0008,"lat":0},{"lon":0,"lat":0.000000123456789},{"lon":0.0008,"lat":0}]},
+    {"type":"way","id":103,"nodes":[8,9,10,11,8],"tags":{"building":"yes","name":"SYNTHETIC FOOTPRINT"},"geometry":[{"lon":0.0002,"lat":0.0002},{"lon":0.0004,"lat":0.0002},{"lon":0.0004,"lat":0.0004},{"lon":0.0002,"lat":0.0004},{"lon":0.0002,"lat":0.0002}]},
+    {"type":"relation","id":104,"members":[{"type":"way","ref":103,"role":"outer"}],"tags":{"type":"multipolygon"}}
+  ]
+}

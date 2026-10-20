@@ -31,4 +31,4 @@ The lab is separate from the production city catalogue. It renders flat linework
 | [VALIDATION.md](VALIDATION.md) | Executed checks and known baseline failures |
 | [CHANGES.md](CHANGES.md) | Complete file inventory for this branch |
 
-Branch: `feat/wukari-geographic-foundation`. Base: `4d229318e67667970b157e4798c533c4b5be0fad`. No merge or publication has been performed.
+Branch: `feat/wukari-geographic-foundation`. Base: `4d229318e67667970b157e4798c533c4b5be0fad`. Source checkpoint `fd326337` was pushed to the owner’s fork. Draft PR creation is blocked by GitHub API Forbidden; see the work record. No merge, environment publication or game deployment has been performed.

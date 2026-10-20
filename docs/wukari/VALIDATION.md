@@ -16,7 +16,7 @@ Cloud checkout baseline: `4d229318e67667970b157e4798c533c4b5be0fad`. Node 24.19.
 | `node scripts/wukari/import.ts --synthetic` | Passed and repeated; outputs retained in ignored `.cache/wukari/` with explicit synthetic mode |
 | `npx --no-install vite build --config scripts/wukari/preview.config.ts` | Passed; development lab bundle, existing Three.js dependency, warning for >500 kB isolated chunk |
 | Chromium via externally installed Playwright | Passed: WebGL canvas rendered; synthetic warning/unknown town shown; no page errors; 1200×850 desktop and 390×844 mobile, no horizontal overflow. Screenshots inspected locally. Browser tooling installed outside checkout; no dependency changes |
-| Full baseline `NODE_OPTIONS=--max-old-space-size=8192 npm run check` | Running; existing failures reproduced separately below. Not a passing suite |
+| Full baseline `NODE_OPTIONS=--max-old-space-size=8192 npm run check` | Incomplete at GitHub handoff; reached the expensive `src/game/cities/allCities.test.ts` shared-contract/generator checks. Existing failures present; not a passing suite and no final total claimed |
 | Final whole-repository typecheck | Passed: five projects, zero TypeScript/Vue errors |
 | Strict focused Vue/TypeScript check of current Wukari modules | Passed after the final source/provenance and build-path edits |
 | Real Wukari source import | Blocked before import by geographic download HTTP 403; no real geometry validated/rendered |
@@ -41,7 +41,7 @@ No existing source/test files are changed by this branch. These failures occur i
 | `src/airport-refinery.test.ts` | Airport scene exceeds the existing triangle-budget assertion (38,172 triangles, 19 meshes, 2 lights) |
 | `src/app/cityCatalogue.test.ts` | Fictional city scene test calls the renderer before its scenes are loaded |
 
-The first five were reproduced in one focused run (42 tests: 37 pass, 5 fail). The next three were reproduced in another (31 tests: 28 pass, 3 fail), the following two in a third run (4 tests: 2 pass, 2 fail), and the last three in a fourth run (9 tests: 6 pass, 3 fail). These are behavioral/expectation mismatches in the baseline, not missing npm packages. They were not repaired, suppressed or excluded to make this milestone appear green. Additional full-suite findings and final totals will be recorded after completion.
+The first five were reproduced in one focused run (42 tests: 37 pass, 5 fail). The next three were reproduced in another (31 tests: 28 pass, 3 fail), the following two in a third run (4 tests: 2 pass, 2 fail), and the last three in a fourth run (9 tests: 6 pass, 3 fail). These are behavioral/expectation mismatches in the baseline, not missing npm packages. They were not repaired, suppressed or excluded to make this milestone appear green. The broad run has also reported legacy onboarding/look and existing Story/boutique/Sim UI expectation failures; their final runner diagnostics and totals are not yet available at this checkpoint. Do not claim the table is an exhaustive final failing-test inventory or that all scheduled tests completed.
 
 ## Reproduce and interpret
 

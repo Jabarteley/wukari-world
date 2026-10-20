@@ -1,0 +1,164 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "abuja",
+ "venueId": "community-polling",
+ "verified": "text",
+ "evidence": [
+  {
+   "kind": "text",
+   "ref": "scripts/places/briefs/abuja.json#community-polling",
+   "used": "authored game venue, no real building or photo found: 24x12 m single-storey hall, shed roof in terracotta red, front veranda with awning, one flag, signage board, low wall, acacia trees beside a road"
+  }
+ ],
+ "camera": {
+  "yawDeg": -20,
+  "pitchDeg": 10,
+  "fovDeg": 50
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "hall",
+   "footprint": {
+    "rect": [
+     24,
+     12
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "z0": 0,
+   "height": 4.5,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#f7f4ee",
+    "windows": "punched",
+    "windowRatio": 0.15,
+    "plinth": 0.4,
+    "faces": {
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    },
+    "bands": "#2f6b4f",
+    "bay": 3.5
+   },
+   "roof": {
+    "form": "shed",
+    "colour": "#8a3b2e",
+    "material": "corrugated",
+    "pitch": 8,
+    "overhang": 0.8,
+    "high": "back"
+   }
+  },
+  {
+   "type": "market-open/veranda",
+   "at": [
+    0,
+    -6,
+    0
+   ],
+   "params": {
+    "length": 24,
+    "depth": 2.6,
+    "height": 3.0,
+    "balustrade": false,
+    "steps": true,
+    "roof": "lean-to",
+    "wall_colour": "#f7f4ee",
+    "roof_colour": "#8a3b2e"
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    -9,
+    -12,
+    0
+   ],
+   "params": {
+    "width": 4,
+    "height": 1.6,
+    "bottom": 1.2,
+    "colour": "#2f6b4f",
+    "frameColour": "#b0aaa0",
+    "posts": true
+   }
+  },
+  {
+   "type": "core/flag",
+   "at": [
+    10,
+    -10,
+    0
+   ],
+   "params": {
+    "height": 8,
+    "count": 1,
+    "colours": [
+     "#1b7a43"
+    ]
+   }
+  },
+  {
+   "type": "core/fence-wall",
+   "at": [
+    0,
+    -14,
+    0
+   ],
+   "params": {
+    "length": 34,
+    "height": 1.2,
+    "thickness": 0.3,
+    "kind": "wall",
+    "colour": "#b0aaa0"
+   }
+  }
+ ],
+ "site": {
+  "ground": "laterite",
+  "forecourt": "road",
+  "forecourtDepth": 6,
+  "extent": [
+   50,
+   40
+  ],
+  "trees": [
+   {
+    "kind": "acacia",
+    "at": [
+     -17,
+     -5
+    ],
+    "height": 8
+   },
+   {
+    "kind": "acacia",
+    "at": [
+     18,
+     6
+    ],
+    "height": 9
+   },
+   {
+    "kind": "acacia",
+    "at": [
+     -16,
+     10
+    ],
+    "height": 7
+   }
+  ]
+ },
+ "review": {
+  "rounds": 1,
+  "match": "rough",
+  "gaps": "No photo or real building exists for this authored venue; modest single-storey polling hall composed from the brief only."
+ }
+}

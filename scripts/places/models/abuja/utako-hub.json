@@ -1,0 +1,29 @@
+{
+ "schema": "allworld-place-model", "version": 2, "city": "abuja", "venueId": "utako-hub", "verified": "text",
+ "evidence": [
+  {"kind":"text","used":"brief: open motor park with covered loading sheds, kiosks, rows of buses, about 120 x 90 m; no photo or OSM outline found (web search returned no images)"}
+ ],
+ "camera": {"yawDeg": 25, "pitchDeg": 28, "fovDeg": 50, "aspect": 1.33, "fit": "all"},
+ "parts": [
+  {"type":"mass","id":"office","footprint":{"rect":[22,9]},"at":[-40,34],"height":7,"storeys":2,
+   "wall":{"material":"painted-render","colour":"#d9cfb5","windows":"ribbon","windowRatio":0.3,"bands":"#8a3b2e"},
+   "roof":{"form":"shed","colour":"#5b6670","rise":1.2,"overhang":0.8}},
+  {"type":"open-shelter","at":[-30,12,0],"params":{"length":44,"depth":10,"height":5,"form":"shed","colour":"#5b6670","accent":"#8a3b2e"}},
+  {"type":"open-shelter","at":[28,12,0],"params":{"length":44,"depth":10,"height":5,"form":"shed","colour":"#5b6670","accent":"#8a3b2e"}},
+  {"type":"open-shelter","at":[0,-30,0],"params":{"length":60,"depth":9,"height":4.6,"form":"curved","colour":"#8d949a","accent":"#e8d38a"}},
+  {"type":"minibus","at":[-30,0,0],"params":{"colour":"#e6b422","count":8,"spacing":3.4,"yaw":90}},
+  {"type":"minibus","at":[28,0,0],"params":{"colour":"#f2f0e8","count":8,"spacing":3.4,"yaw":90}},
+  {"type":"bus-park-row","at":[0,-16,0],"params":{"length":80,"kind":"mixed","density":0.8,"coach_share":0.4}},
+  {"type":"kiosk","at":[-55,-8,0],"params":{"kind":"container"}},
+  {"type":"kiosk","at":[-55,-20,0],"params":{"kind":"container"}},
+  {"type":"kiosk","at":[52,-8,0],"params":{"kind":"container"}},
+  {"type":"kiosk","at":[52,-22,0],"params":{"kind":"container"}},
+  {"type":"kiosk","at":[8,28,0],"params":{"kind":"container"}},
+  {"type":"pylon-sign","at":[-10,-44,0],"params":{"height":7,"width":3}},
+  {"type":"pylon-sign","at":[22,34,0],"params":{"height":6,"width":3}},
+  {"type":"fence-wall","at":[-60,-45,0],"params":{"length":120,"height":2.2,"colour":"#a8a29a"}},
+  {"type":"fence-wall","at":[-60,45,0],"params":{"length":120,"height":2.2,"colour":"#a8a29a"}}
+ ],
+ "site": {"ground":"asphalt","forecourt":"road","trees":[{"kind":"acacia","at":[-62,30]},{"kind":"acacia","at":[62,30]},{"kind":"acacia","at":[64,-30]}],"extent":[150,110]},
+ "review": {"rounds": 0, "match": "rough", "gaps": "no photo or outline; layout of sheds, kiosks and bus rows is typical, not surveyed"}
+}

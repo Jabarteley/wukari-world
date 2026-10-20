@@ -1,0 +1,439 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-osm-way-350349593",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Columbia_Road_market_in_London,_June_2013_(1).jpg",
+   "licence": "CC BY-SA 3.0",
+   "author": "Chmee2",
+   "view": "street",
+   "file": "/tmp/places-evidence/london/350349593_1.jpg",
+   "used": "view along the street: two flanking terraces of yellow-brown stock brick, arched upper windows, green painted shopfronts with signboards, green and white striped stall awnings crowding the roadway"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:London_-_Columbia_Flower_Market_-_2164.jpg",
+   "licence": "CC BY-SA 3.0",
+   "author": "Jorge Royan",
+   "view": "detail",
+   "used": "shelved plant stalls in front of dark shopfronts, flower and foliage colours"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/350349593",
+   "used": "street length (130 m) and bearing; modelled as the two terraces either side"
+  }
+ ],
+ "camera": {
+  "yawDeg": 0,
+  "pitchDeg": 5,
+  "fovDeg": 60,
+  "aspect": 1.5,
+  "fit": "building",
+  "margin": 0.12
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "terrace-west",
+   "footprint": {
+    "rect": [
+     70,
+     9
+    ]
+   },
+   "at": [
+    -9.5,
+    0
+   ],
+   "rotDeg": 90,
+   "z0": 0,
+   "height": 11.5,
+   "storeys": 3,
+   "wall": {
+    "material": "brick",
+    "colour": "#b7a169",
+    "windows": "punched",
+    "windowRatio": 0.2,
+    "bay": 3.2,
+    "plinth": 0.2,
+    "groundKind": "shopfront",
+    "groundHeight": 3.6,
+    "faces": {
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    },
+    "cornice": true,
+    "parapet": 0.5,
+    "bands": "#d8c9a2"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#4a4f57",
+    "parapet": 0.6
+   }
+  },
+  {
+   "type": "mass",
+   "id": "terrace-east",
+   "footprint": {
+    "rect": [
+     70,
+     9
+    ]
+   },
+   "at": [
+    9.5,
+    0
+   ],
+   "rotDeg": -90,
+   "z0": 0,
+   "height": 11.5,
+   "storeys": 3,
+   "wall": {
+    "material": "brick",
+    "colour": "#b39b66",
+    "windows": "punched",
+    "windowRatio": 0.2,
+    "bay": 3.2,
+    "plinth": 0.2,
+    "groundKind": "shopfront",
+    "groundHeight": 3.6,
+    "faces": {
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    },
+    "cornice": true,
+    "parapet": 0.5,
+    "bands": "#d8c9a2"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#4a4f57",
+    "parapet": 0.6
+   }
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    -3.2,
+    -24,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "count": 3,
+    "pitch": 5,
+    "kind": "umbrella",
+    "size": 2.0,
+    "colours": [
+     "#2f6b47",
+     "#f4f1e8"
+    ],
+    "goods_colours": [
+     "#d94f7a",
+     "#f2c14e",
+     "#7aa95c",
+     "#8e5ec8"
+    ]
+   }
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    3.2,
+    -8,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "count": 3,
+    "pitch": 5,
+    "kind": "umbrella",
+    "size": 2.0,
+    "colours": [
+     "#2f6b47",
+     "#f4f1e8"
+    ],
+    "goods_colours": [
+     "#d94f7a",
+     "#f2c14e",
+     "#7aa95c",
+     "#8e5ec8"
+    ]
+   }
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    -3.2,
+    8,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "count": 3,
+    "pitch": 5,
+    "kind": "umbrella",
+    "size": 2.0,
+    "colours": [
+     "#2f6b47",
+     "#f4f1e8"
+    ],
+    "goods_colours": [
+     "#d94f7a",
+     "#f2c14e",
+     "#7aa95c",
+     "#8e5ec8"
+    ]
+   }
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    3.2,
+    24,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "count": 3,
+    "pitch": 5,
+    "kind": "umbrella",
+    "size": 2.0,
+    "colours": [
+     "#2f6b47",
+     "#f4f1e8"
+    ],
+    "goods_colours": [
+     "#d94f7a",
+     "#f2c14e",
+     "#7aa95c",
+     "#8e5ec8"
+    ]
+   }
+  },
+  {
+   "type": "awning",
+   "at": [
+    -6.2,
+    -30,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "width": 5.5,
+    "depth": 2.6,
+    "colours": [
+     "#2f6b47",
+     "#f4f1e8"
+    ]
+   }
+  },
+  {
+   "type": "awning",
+   "at": [
+    6.2,
+    -27,
+    0
+   ],
+   "rotDeg": -90,
+   "params": {
+    "width": 5.5,
+    "depth": 2.6,
+    "colours": [
+     "#2f6b47",
+     "#f4f1e8"
+    ]
+   }
+  },
+  {
+   "type": "awning",
+   "at": [
+    -6.2,
+    -14,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "width": 5.5,
+    "depth": 2.6,
+    "colours": [
+     "#2f6b47",
+     "#f4f1e8"
+    ]
+   }
+  },
+  {
+   "type": "awning",
+   "at": [
+    6.2,
+    -11,
+    0
+   ],
+   "rotDeg": -90,
+   "params": {
+    "width": 5.5,
+    "depth": 2.6,
+    "colours": [
+     "#2f6b47",
+     "#f4f1e8"
+    ]
+   }
+  },
+  {
+   "type": "awning",
+   "at": [
+    -6.2,
+    2,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "width": 5.5,
+    "depth": 2.6,
+    "colours": [
+     "#2f6b47",
+     "#f4f1e8"
+    ]
+   }
+  },
+  {
+   "type": "awning",
+   "at": [
+    6.2,
+    5,
+    0
+   ],
+   "rotDeg": -90,
+   "params": {
+    "width": 5.5,
+    "depth": 2.6,
+    "colours": [
+     "#2f6b47",
+     "#f4f1e8"
+    ]
+   }
+  },
+  {
+   "type": "awning",
+   "at": [
+    -6.2,
+    18,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "width": 5.5,
+    "depth": 2.6,
+    "colours": [
+     "#2f6b47",
+     "#f4f1e8"
+    ]
+   }
+  },
+  {
+   "type": "awning",
+   "at": [
+    6.2,
+    21,
+    0
+   ],
+   "rotDeg": -90,
+   "params": {
+    "width": 5.5,
+    "depth": 2.6,
+    "colours": [
+     "#2f6b47",
+     "#f4f1e8"
+    ]
+   }
+  },
+  {
+   "type": "awning",
+   "at": [
+    -6.2,
+    32,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "width": 5.5,
+    "depth": 2.6,
+    "colours": [
+     "#2f6b47",
+     "#f4f1e8"
+    ]
+   }
+  },
+  {
+   "type": "awning",
+   "at": [
+    6.2,
+    35,
+    0
+   ],
+   "rotDeg": -90,
+   "params": {
+    "width": 5.5,
+    "depth": 2.6,
+    "colours": [
+     "#2f6b47",
+     "#f4f1e8"
+    ]
+   }
+  },
+  {
+   "type": "lamp-post",
+   "at": [
+    -5,
+    -35,
+    0
+   ],
+   "params": {
+    "height": 5
+   }
+  },
+  {
+   "type": "lamp-post",
+   "at": [
+    5,
+    20,
+    0
+   ],
+   "params": {
+    "height": 5
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    0,
+    38,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 9
+   }
+  }
+ ],
+ "site": {
+  "ground": "asphalt",
+  "extent": [
+   60,
+   90
+  ]
+ },
+ "review": {
+  "rounds": 3,
+  "match": "fair",
+  "gaps": "Terraces are plain boxes without arched upper windows or green shopfront signboards; stalls sparse vs crowded flower pitches; real street is 130 m so shortened to 70 m"
+ }
+}

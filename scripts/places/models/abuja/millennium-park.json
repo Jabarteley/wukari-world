@@ -1,0 +1,653 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "abuja",
+ "venueId": "millennium-park",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Millennium_Park_Abuja3.jpg",
+   "licence": "Public domain",
+   "author": "Elenagiussani",
+   "view": "street",
+   "file": "/tmp/places-evidence/abuja/park3.jpg",
+   "used": "open mown lawn rolling away, stone-lined drainage stream crossing it, curved yellow-green hedge and red flower beds on the left, scattered broadleaf trees, glass offices on the skyline"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Children%27s_playground,_Millennium_Park.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Turizimpressions",
+   "view": "street",
+   "file": "/tmp/places-evidence/abuja/park1.jpg",
+   "used": "timber playground with yellow pyramid roofs, red-leaved hedge, tall tree backdrop, blue lamp post"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Abuja_Millennium_Park.jpg",
+   "licence": "Public domain",
+   "author": "Hayatudeen74",
+   "view": "side",
+   "file": "/tmp/places-evidence/abuja/park2.jpg",
+   "used": "lit fountain jet in a pale concrete-edged pool"
+  },
+  {
+   "kind": "osm",
+   "ref": "relation/12181857",
+   "used": "park is about 950 x 510 m; modelled as a representative 120 m section of the central axis rather than the whole outline"
+  }
+ ],
+ "camera": {
+  "yawDeg": 0,
+  "pitchDeg": 9,
+  "fovDeg": 58,
+  "aspect": 1.5,
+  "fit": "all",
+  "margin": 0.02
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "promenade",
+   "footprint": {
+    "rect": [
+     16,
+     110
+    ]
+   },
+   "at": [
+    0,
+    5
+   ],
+   "z0": 0,
+   "height": 0.5,
+   "storeys": 1,
+   "wall": {
+    "material": "limestone",
+    "colour": "#ece6d6",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#ece6d6",
+    "overhang": 0
+   }
+  },
+  {
+   "type": "mass",
+   "id": "greenhouse-west",
+   "footprint": {
+    "rect": [
+     14,
+     8
+    ]
+   },
+   "at": [
+    -42,
+    38
+   ],
+   "height": 4.5,
+   "storeys": 1,
+   "wall": {
+    "material": "glass-curtain",
+    "colour": "#c9d8d4",
+    "windows": "curtain",
+    "windowRatio": 0.85,
+    "plinth": 0.4
+   },
+   "roof": {
+    "form": "barrel",
+    "colour": "#d4e0dc",
+    "rise": 2.2
+   }
+  },
+  {
+   "type": "mass",
+   "id": "greenhouse-east",
+   "footprint": {
+    "rect": [
+     14,
+     8
+    ]
+   },
+   "at": [
+    42,
+    38
+   ],
+   "height": 4.5,
+   "storeys": 1,
+   "wall": {
+    "material": "glass-curtain",
+    "colour": "#c9d8d4",
+    "windows": "curtain",
+    "windowRatio": 0.85,
+    "plinth": 0.4
+   },
+   "roof": {
+    "form": "barrel",
+    "colour": "#d4e0dc",
+    "rise": 2.2
+   }
+  },
+  {
+   "type": "mass",
+   "id": "skyline-offices",
+   "footprint": {
+    "rect": [
+     22,
+     12
+    ]
+   },
+   "at": [
+    -14,
+    66
+   ],
+   "height": 30,
+   "storeys": 6,
+   "wall": {
+    "material": "glass-curtain",
+    "colour": "#8fa6b8",
+    "windows": "ribbon",
+    "windowRatio": 0.5
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#aeb4b8"
+   }
+  },
+  {
+   "type": "reflecting-pool",
+   "at": [
+    0,
+    -30,
+    0
+   ],
+   "params": {
+    "width": 12,
+    "depth": 16,
+    "colour": "#5f8f9c",
+    "edgeColour": "#e6e0cf"
+   }
+  },
+  {
+   "type": "fountain-basin",
+   "at": [
+    0,
+    -30,
+    0
+   ],
+   "params": {
+    "radius": 3.2,
+    "tiers": 1
+   }
+  },
+  {
+   "type": "reflecting-pool",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "width": 12,
+    "depth": 16,
+    "colour": "#5f8f9c",
+    "edgeColour": "#e6e0cf"
+   }
+  },
+  {
+   "type": "fountain-basin",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "radius": 3.2,
+    "tiers": 1
+   }
+  },
+  {
+   "type": "reflecting-pool",
+   "at": [
+    0,
+    30,
+    0
+   ],
+   "params": {
+    "width": 12,
+    "depth": 16,
+    "colour": "#5f8f9c",
+    "edgeColour": "#e6e0cf"
+   }
+  },
+  {
+   "type": "path-strip",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "points": [
+     [
+      -55,
+      -10
+     ],
+     [
+      -30,
+      4
+     ],
+     [
+      -14,
+      6
+     ]
+    ],
+    "width": 2.4,
+    "colour": "#b49a7e"
+   }
+  },
+  {
+   "type": "path-strip",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "points": [
+     [
+      14,
+      10
+     ],
+     [
+      30,
+      22
+     ],
+     [
+      56,
+      24
+     ]
+    ],
+    "width": 2.4,
+    "colour": "#b49a7e"
+   }
+  },
+  {
+   "type": "path-strip",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "points": [
+     [
+      -58,
+      18
+     ],
+     [
+      -20,
+      22
+     ],
+     [
+      20,
+      18
+     ],
+     [
+      58,
+      20
+     ]
+    ],
+    "width": 1.6,
+    "colour": "#8f7f6a"
+   }
+  },
+  {
+   "type": "hedge",
+   "at": [
+    -44,
+    -14,
+    0
+   ],
+   "rotDeg": 20,
+   "params": {
+    "length": 16,
+    "height": 0.9,
+    "depth": 1.1,
+    "colour": "#b8c035"
+   }
+  },
+  {
+   "type": "hedge",
+   "at": [
+    -30,
+    -6,
+    0
+   ],
+   "rotDeg": 5,
+   "params": {
+    "length": 14,
+    "height": 0.9,
+    "depth": 1.1,
+    "colour": "#b8c035"
+   }
+  },
+  {
+   "type": "garden-bed",
+   "at": [
+    -48,
+    -22,
+    0
+   ],
+   "params": {
+    "width": 9,
+    "depth": 5,
+    "colour": "#a8283a",
+    "hedge": false
+   }
+  },
+  {
+   "type": "garden-bed",
+   "at": [
+    -36,
+    -16,
+    0
+   ],
+   "params": {
+    "width": 8,
+    "depth": 4,
+    "colour": "#b0303c",
+    "hedge": false
+   }
+  },
+  {
+   "type": "garden-bed",
+   "at": [
+    48,
+    -18,
+    0
+   ],
+   "params": {
+    "width": 9,
+    "depth": 4,
+    "colour": "#a8283a",
+    "hedge": false
+   }
+  },
+  {
+   "type": "park-pavilion",
+   "at": [
+    46,
+    18,
+    0
+   ],
+   "params": {
+    "width": 6,
+    "depth": 5,
+    "height": 3.4,
+    "kind": "hip",
+    "roof_colour": "#e5c53a"
+   }
+  },
+  {
+   "type": "park-pavilion",
+   "at": [
+    53,
+    14,
+    0
+   ],
+   "params": {
+    "width": 4,
+    "depth": 4,
+    "height": 2.8,
+    "kind": "hip",
+    "roof_colour": "#e5c53a"
+   }
+  },
+  {
+   "type": "park-bench",
+   "at": [
+    -8,
+    -48,
+    0
+   ],
+   "params": {
+    "count": 3,
+    "spacing": 5
+   }
+  },
+  {
+   "type": "lamp",
+   "at": [
+    -12,
+    -40,
+    0
+   ],
+   "params": {
+    "height": 6,
+    "count": 4,
+    "spacing": 25
+   }
+  },
+  {
+   "type": "tree-grove",
+   "at": [
+    -45,
+    44,
+    0
+   ],
+   "params": {
+    "width": 28,
+    "depth": 20,
+    "count": 10,
+    "kind": "broadleaf",
+    "min_height": 9,
+    "max_height": 13
+   }
+  },
+  {
+   "type": "tree-grove",
+   "at": [
+    45,
+    44,
+    0
+   ],
+   "params": {
+    "width": 28,
+    "depth": 20,
+    "count": 10,
+    "kind": "broadleaf",
+    "min_height": 9,
+    "max_height": 13
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    24,
+    -4,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 11
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    -24,
+    26,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 10
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    32,
+    44,
+    0
+   ],
+   "params": {
+    "kind": "acacia",
+    "height": 9
+   }
+  },
+  {
+   "type": "path-strip",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "points": [
+     [
+      -58,
+      -28
+     ],
+     [
+      -30,
+      -24
+     ],
+     [
+      0,
+      -26
+     ],
+     [
+      30,
+      -16
+     ],
+     [
+      58,
+      -6
+     ]
+    ],
+    "width": 3.2,
+    "colour": "#7a6a58"
+   }
+  },
+  {
+   "type": "garden-bed",
+   "at": [
+    -50,
+    -34,
+    0
+   ],
+   "params": {
+    "width": 14,
+    "depth": 7,
+    "colour": "#a8283a",
+    "hedge": false
+   }
+  },
+  {
+   "type": "garden-bed",
+   "at": [
+    -38,
+    -30,
+    0
+   ],
+   "params": {
+    "width": 12,
+    "depth": 6,
+    "colour": "#b0303c",
+    "hedge": false
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    26,
+    6,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 12
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    34,
+    -2,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 13
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    14,
+    20,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 11
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    -30,
+    40,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 12
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    56,
+    0,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 12
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    -56,
+    10,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 11
+   }
+  }
+ ],
+ "site": {
+  "ground": "grass",
+  "forecourt": "none",
+  "trees": [],
+  "extent": [
+   120,
+   130
+  ]
+ },
+ "review": {
+  "rounds": 2,
+  "match": "fair",
+  "gaps": "Only a 120 m section of the 950 m park; fountains, lawn, hedges, red beds, playground roofs and trees match the photos in colour but the stone-lined stream is a flat strip, the terrain is flat (no rolling slopes), the layout is composed not surveyed, and the skyline offices are a single block."
+ }
+}

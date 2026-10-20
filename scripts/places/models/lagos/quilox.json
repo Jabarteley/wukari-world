@@ -1,0 +1,237 @@
+{
+ "verified": "text",
+ "evidence": [
+  {
+   "kind": "text",
+   "used": "brief only: two-storey Victoria Island nightclub, dark facade, purple and gold trim, canopy, queue barriers; no photo or OSM found (Commons has no files)"
+  }
+ ],
+ "camera": {
+  "yawDeg": 20,
+  "pitchDeg": 10,
+  "fovDeg": 50
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "hall",
+   "footprint": {
+    "rect": [
+     36,
+     24
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "z0": 0,
+   "height": 10,
+   "storeys": 2,
+   "wall": {
+    "material": "glass-curtain",
+    "colour": "#2a2a35",
+    "windows": "screen",
+    "windowRatio": 0.3,
+    "bands": "#8a4fb0",
+    "plinth": 0.3,
+    "cornice": true
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#3a3a42",
+    "overhang": 0.5,
+    "parapet": 0.8
+   }
+  },
+  {
+   "type": "mass",
+   "id": "entrance-block",
+   "footprint": {
+    "rect": [
+     12,
+     5
+    ]
+   },
+   "at": [
+    -8,
+    -14.5
+   ],
+   "z0": 0,
+   "height": 6.5,
+   "storeys": 1,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#8a4fb0",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#d4a82f",
+    "overhang": 0.3,
+    "parapet": 0.3
+   }
+  },
+  {
+   "type": "mass",
+   "id": "rear-plant",
+   "footprint": {
+    "rect": [
+     10,
+     8
+    ]
+   },
+   "at": [
+    10,
+    6
+   ],
+   "z0": 0,
+   "height": 14,
+   "storeys": 3,
+   "wall": {
+    "material": "concrete",
+    "colour": "#3a3a42",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#2a2a35"
+   }
+  },
+  {
+   "type": "flat-canopy",
+   "at": [
+    8,
+    -15,
+    0
+   ],
+   "params": {
+    "width": 14,
+    "depth": 6,
+    "height": 3.9,
+    "colour": "#d4a82f"
+   }
+  },
+  {
+   "type": "neon-strip",
+   "at": [
+    -6,
+    -12.2,
+    5
+   ],
+   "params": {
+    "length": 14,
+    "height": 2,
+    "colour": "#b06ad8"
+   }
+  },
+  {
+   "type": "neon-strip",
+   "at": [
+    10,
+    -12.2,
+    8.5
+   ],
+   "params": {
+    "length": 20,
+    "height": 1,
+    "colour": "#d4a82f"
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    0,
+    -19,
+    0
+   ],
+   "params": {
+    "width": 8,
+    "height": 3,
+    "bottom": 3,
+    "colour": "#2a2a35",
+    "frameColour": "#d4a82f"
+   }
+  },
+  {
+   "type": "queue-posts",
+   "at": [
+    -10,
+    -22,
+    0
+   ],
+   "params": {
+    "count": 7,
+    "spacing": 1.6
+   }
+  },
+  {
+   "type": "core/fence-wall",
+   "at": [
+    0,
+    -27,
+    0
+   ],
+   "params": {
+    "length": 50,
+    "height": 2.2,
+    "colour": "#3a3a42"
+   }
+  },
+  {
+   "type": "core/lamp",
+   "at": [
+    -24,
+    -22,
+    0
+   ],
+   "params": {
+    "height": 7,
+    "count": 3,
+    "spacing": 12
+   }
+  }
+ ],
+ "site": {
+  "ground": "paving",
+  "forecourt": "road",
+  "trees": [
+   {
+    "kind": "palm",
+    "at": [
+     -24,
+     -18
+    ]
+   },
+   {
+    "kind": "palm",
+    "at": [
+     24,
+     -18
+    ]
+   },
+   {
+    "kind": "palm",
+    "at": [
+     26,
+     10
+    ]
+   }
+  ],
+  "extent": [
+   80,
+   70
+  ]
+ },
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "lagos",
+ "venueId": "quilox",
+ "review": {
+  "rounds": 1,
+  "match": "rough",
+  "gaps": "Real club but no photo or OSM footprint found; dark glazed box with purple entrance block and gold canopy from the brief only; queue barriers and club interior detail simplified."
+ }
+}

@@ -1,0 +1,336 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "lagos",
+ "venueId": "state-house",
+ "verified": "text",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Lagos_State_House,_Marina_02.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "King ChristLike (Commons)",
+   "view": "street",
+   "file": "/tmp/places-evidence/lagos/m-sh2.jpg",
+   "used": "gate area of Lagos House Marina only, not the main building: white rendered perimeter wall with razor wire, dark green steel gate, pale grey rendered block behind, guard booth, paved kerb planters. Not compared against the model."
+  },
+  {
+   "kind": "text",
+   "used": "Brief: stately government block, columned portico, flags, gated drive, fountain; no real match or building photo."
+  }
+ ],
+ "camera": {
+  "yawDeg": 15,
+  "pitchDeg": 10,
+  "fovDeg": 50
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "centre",
+   "footprint": {
+    "rect": [
+     34,
+     18
+    ]
+   },
+   "at": [
+    0,
+    6
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 17,
+   "storeys": 4,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#f4f1ea",
+    "windows": "punched",
+    "windowRatio": 0.25,
+    "faces": {
+     "left": "plain",
+     "right": "plain",
+     "back": "plain"
+    },
+    "plinth": 0.8,
+    "cornice": true,
+    "bands": "#a7a39c"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#9aa3a8",
+    "parapet": 0.8,
+    "overhang": 0.8
+   }
+  },
+  {
+   "type": "mass",
+   "id": "west-wing",
+   "footprint": {
+    "rect": [
+     22,
+     16
+    ]
+   },
+   "at": [
+    -28,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 14,
+   "storeys": 3,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e9e5db",
+    "windows": "punched",
+    "windowRatio": 0.25,
+    "plinth": 0.6,
+    "bands": "#a7a39c"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#9aa3a8",
+    "parapet": 0.6
+   }
+  },
+  {
+   "type": "mass",
+   "id": "east-wing",
+   "footprint": {
+    "rect": [
+     22,
+     16
+    ]
+   },
+   "at": [
+    28,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 14,
+   "storeys": 3,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e9e5db",
+    "windows": "punched",
+    "windowRatio": 0.25,
+    "plinth": 0.6,
+    "bands": "#a7a39c"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#9aa3a8",
+    "parapet": 0.6
+   }
+  },
+  {
+   "type": "mass",
+   "id": "guard-lodge",
+   "footprint": {
+    "rect": [
+     6,
+     5
+    ]
+   },
+   "at": [
+    -16,
+    -34
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 3,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#f4f1ea",
+    "windows": "punched",
+    "windowRatio": 0.3
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#3f7a52",
+    "pitch": 15,
+    "overhang": 0.5
+   }
+  },
+  {
+   "type": "core/portico",
+   "at": [
+    0,
+    -5,
+    0
+   ],
+   "params": {
+    "width": 22,
+    "depth": 6,
+    "height": 13,
+    "columns": 6,
+    "pediment": true,
+    "steps": 5,
+    "colour": "#f4f1ea",
+    "roofColour": "#a7a39c"
+   }
+  },
+  {
+   "type": "market-open/fountain",
+   "at": [
+    0,
+    -20,
+    0
+   ],
+   "params": {
+    "radius": 4.5,
+    "jet": true
+   }
+  },
+  {
+   "type": "flag",
+   "at": [
+    -12,
+    -14,
+    0
+   ],
+   "params": {
+    "height": 12,
+    "count": 3,
+    "spacing": 12,
+    "colours": [
+     "#1b7a43",
+     "#ffffff",
+     "#3f7a52"
+    ]
+   }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    -45,
+    -38,
+    0
+   ],
+   "params": {
+    "length": 90,
+    "height": 2.8,
+    "thickness": 0.4,
+    "kind": "wall",
+    "colour": "#f4f1ea"
+   }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    -45,
+    -38,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "length": 60,
+    "height": 2.8,
+    "thickness": 0.4,
+    "kind": "wall",
+    "colour": "#f4f1ea"
+   }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    45,
+    -38,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "length": 60,
+    "height": 2.8,
+    "thickness": 0.4,
+    "kind": "wall",
+    "colour": "#f4f1ea"
+   }
+  },
+  {
+   "type": "core/gate",
+   "at": [
+    0,
+    -38,
+    0
+   ],
+   "params": {
+    "width": 10,
+    "height": 3.2,
+    "pillar": 1.4,
+    "colour": "#f4f1ea",
+    "leafColour": "#2f4f3a"
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -30,
+    -22,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 11,
+    "count": 4,
+    "line": 50
+   }
+  }
+ ],
+ "site": {
+  "ground": "paving",
+  "forecourt": "garden",
+  "forecourtDepth": 18,
+  "trees": [
+   {
+    "kind": "palm",
+    "at": [
+     -34,
+     -20
+    ]
+   },
+   {
+    "kind": "palm",
+    "at": [
+     34,
+     -20
+    ]
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     0,
+     34
+    ]
+   }
+  ],
+  "cars": [
+   {
+    "at": [
+     -8,
+     -28
+    ],
+    "colour": "#1c1f24"
+   },
+   {
+    "at": [
+     10,
+     -28
+    ],
+    "colour": "#1c1f24"
+   }
+  ],
+  "extent": [
+   120,
+   100
+  ]
+ },
+ "review": {
+  "rounds": 0,
+  "match": "rough",
+  "gaps": "No photo of the main building was found, only the Marina gate; U-shaped block, portico and flags follow the brief. Real massing unknown."
+ }
+}

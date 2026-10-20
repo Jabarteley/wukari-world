@@ -1,0 +1,386 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "abuja",
+ "venueId": "wuse-market",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Wuse_Market_Abuja_Nigeria.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "EsthyR",
+   "view": "street",
+   "file": "/tmp/places-evidence/abuja/wuse3.jpg",
+   "used": "main view: a row of low lock-up shops with flat/shed roofs of grey and tan sheet, textile stalls open at the front, sagging corrugated eave canopies, many large faded umbrellas in grey-blue, red-yellow, green and mauve, bare laterite-coloured ground"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:WUSE_MARKET_ENTRANCE_GATE_ABUJA_NIGERIA.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Horlanre63",
+   "view": "front",
+   "file": "/tmp/places-evidence/abuja/wuse2.jpg",
+   "used": "entrance: pale grey stone-capped gate piers with green steel bar gate leaves, a tall blue pylon sign board (blank here), bare tarmac forecourt with cars, dense green trees behind"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/299203155",
+   "used": "size only: the market outline is about 363 x 266 m, too large for the scene clamp, so one representative corner (entrance gate, lock-up rows, umbrella stalls) is modelled"
+  }
+ ],
+ "camera": {
+  "yawDeg": 10,
+  "pitchDeg": 3,
+  "fovDeg": 50,
+  "aspect": 1.333,
+  "margin": 0.0,
+  "fit": "building",
+  "shiftY": -0.05
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "back-block",
+   "footprint": {
+    "rect": [
+     70,
+     12
+    ]
+   },
+   "at": [
+    0,
+    40
+   ],
+   "height": 6.5,
+   "storeys": 2,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#c4a98a",
+    "windows": "punched",
+    "windowRatio": 0.12,
+    "plinth": 0.3,
+    "faces": {
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#9a9fa2",
+    "material": "metal-sheet",
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "lock-up-row",
+   "at": [
+    -24,
+    20,
+    0
+   ],
+   "rotDeg": 0,
+   "params": {
+    "length": 32,
+    "depth": 3.6,
+    "height": 3.6,
+    "roof": "shed",
+    "unit_width": 2.6,
+    "veranda": 2.2,
+    "roof_colour": "#8c9296",
+    "wall_colour": "#c9ad8a",
+    "awning_colours": [
+     "#a8303c",
+     "#d9a43a",
+     "#2f9a6a",
+     "#3f6fa8"
+    ]
+   }
+  },
+  {
+   "type": "lock-up-row",
+   "at": [
+    14,
+    20,
+    0
+   ],
+   "rotDeg": 0,
+   "params": {
+    "length": 36,
+    "depth": 3.6,
+    "height": 3.6,
+    "roof": "shed",
+    "unit_width": 2.6,
+    "veranda": 2.2,
+    "roof_colour": "#a3a8ab",
+    "wall_colour": "#cdb28f",
+    "awning_colours": [
+     "#a8303c",
+     "#d9a43a",
+     "#2f9a6a",
+     "#3f6fa8"
+    ]
+   }
+  },
+  {
+   "type": "lock-up-row",
+   "at": [
+    -26,
+    30,
+    0
+   ],
+   "rotDeg": 0,
+   "params": {
+    "length": 34,
+    "depth": 3.6,
+    "height": 3.6,
+    "roof": "shed",
+    "unit_width": 2.6,
+    "veranda": 2.2,
+    "roof_colour": "#8f8a84",
+    "wall_colour": "#bfa384",
+    "awning_colours": [
+     "#a8303c",
+     "#d9a43a",
+     "#2f9a6a",
+     "#3f6fa8"
+    ]
+   }
+  },
+  {
+   "type": "lock-up-row",
+   "at": [
+    14,
+    30,
+    0
+   ],
+   "rotDeg": 0,
+   "params": {
+    "length": 30,
+    "depth": 3.6,
+    "height": 3.6,
+    "roof": "shed",
+    "unit_width": 2.6,
+    "veranda": 2.2,
+    "roof_colour": "#7f8b94",
+    "wall_colour": "#c9ad8a",
+    "awning_colours": [
+     "#a8303c",
+     "#d9a43a",
+     "#2f9a6a",
+     "#3f6fa8"
+    ]
+   }
+  },
+  {
+   "type": "market-shed",
+   "at": [
+    36,
+    8,
+    0
+   ],
+   "params": {
+    "length": 22,
+    "depth": 9,
+    "height": 3.8,
+    "roof": "gable",
+    "wall_colour": "#c9ad8a",
+    "roof_colour": "#9ba0a3"
+   }
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    -28,
+    14,
+    0
+   ],
+   "params": {
+    "count": 6,
+    "pitch": 5.5,
+    "kind": "umbrella",
+    "size": 2.4,
+    "colours": [
+     "#6f7a9c",
+     "#a8303c",
+     "#2f9a6a",
+     "#d9a43a",
+     "#8a6d9a",
+     "#3f6fa8"
+    ]
+   }
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    8,
+    13,
+    0
+   ],
+   "params": {
+    "count": 6,
+    "pitch": 5.5,
+    "kind": "umbrella",
+    "size": 2.4,
+    "colours": [
+     "#6f7a9c",
+     "#a8303c",
+     "#2f9a6a",
+     "#d9a43a",
+     "#8a6d9a",
+     "#3f6fa8"
+    ]
+   }
+  },
+  {
+   "type": "umbrella-cluster",
+   "at": [
+    -10,
+    4,
+    0
+   ],
+   "params": {
+    "count": 8,
+    "spread": 8,
+    "radius": 2.8,
+    "tables": false,
+    "colours": [
+     "#6f7a9c",
+     "#a8303c",
+     "#2f9a6a",
+     "#d9a43a",
+     "#8a6d9a",
+     "#3f6fa8"
+    ],
+    "height": 3.2
+   }
+  },
+  {
+   "type": "core/gate",
+   "at": [
+    0,
+    -22,
+    0
+   ],
+   "params": {
+    "width": 10,
+    "height": 4.2,
+    "pillar": 1.6,
+    "leaf": "bars",
+    "colour": "#c9c6bc",
+    "leafColour": "#4c6b4a"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "pylon-sign",
+   "footprint": {
+    "rect": [
+     2.4,
+     0.5
+    ]
+   },
+   "at": [
+    -9,
+    -21
+   ],
+   "height": 8,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#2a4f9a",
+    "windows": "none",
+    "plinth": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#e8e8ee"
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    -18,
+    17,
+    0
+   ],
+   "params": {
+    "width": 6,
+    "height": 1.2,
+    "bottom": 3.4,
+    "colour": "#e8e6dc",
+    "posts": false
+   }
+  },
+  {
+   "type": "car-park",
+   "at": [
+    8,
+    -10,
+    0
+   ],
+   "params": {
+    "width": 34,
+    "depth": 14,
+    "density": 0.5
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -44,
+    34,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 11,
+    "count": 5,
+    "spread": 18
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    50,
+    30,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 12,
+    "count": 5,
+    "spread": 18
+   }
+  },
+  {
+   "type": "lamp",
+   "at": [
+    -40,
+    -4,
+    0
+   ],
+   "params": {
+    "height": 7,
+    "count": 4,
+    "spacing": 26
+   }
+  }
+ ],
+ "site": {
+  "ground": "laterite",
+  "groundColour": "#b8a58c",
+  "forecourt": "road",
+  "trees": [],
+  "extent": [
+   130,
+   90
+  ]
+ },
+ "review": {
+  "rounds": 3,
+  "match": "fair",
+  "gaps": "Photo is a close street view of one lock-up row, the model is a wider corner (gate, lock-up rows, umbrella stalls); umbrellas are flat-coloured and uniform, no sagging corrugated eaves, goods or signage, and the whole 363 m market is reduced to one representative corner."
+ }
+}

@@ -1,0 +1,253 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-quiet-reflection",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Southwest_View_of_the_Church_of_Saint_Mary,_Downe_(05).jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Doyle of London",
+   "view": "street",
+   "file": "/tmp/places-evidence/london/lon-c1.jpg",
+   "used": "square flint west tower with stone quoins and one lancet window, small clock, steep shingled broach spire in dark grey, red-brown clay-tile nave roof, low flint churchyard wall with a brick coping, lime tree at the corner"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Porch_on_the_South_Face_of_the_Church_of_Saint_Mary,_Downe_(02).jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Doyle of London",
+   "view": "side",
+   "file": "/tmp/places-evidence/london/lon-c2.jpg",
+   "used": "timber south porch with a low flint and stone base, glazed timber sides, steep red clay-tile gable roof; flint walls with stone dressings; yew tree behind"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/61111910",
+   "used": "footprint split into tower, nave and chancel, south porch and north vestry"
+  }
+ ],
+ "camera": {
+  "yawDeg": -35,
+  "pitchDeg": 5,
+  "fovDeg": 45,
+  "aspect": 1.333
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "tower",
+   "footprint": {
+    "rect": [
+     6.3,
+     6.3
+    ]
+   },
+   "at": [
+    -12.55,
+    -0.25
+   ],
+   "height": 12.5,
+   "storeys": 3,
+   "wall": {
+    "material": "stone",
+    "colour": "#a29c8c",
+    "windows": "pointed-arch",
+    "windowRatio": 0.03,
+    "bay": 6,
+    "faces": {
+     "front": "plain",
+     "back": "plain",
+     "left": "pointed-arch",
+     "right": "plain"
+    },
+    "plinth": 0.4
+   },
+   "roof": {
+    "form": "pyramidal",
+    "colour": "#6a675f",
+    "rise": 9,
+    "overhang": 0.7
+   }
+  },
+  {
+   "type": "mass",
+   "id": "nave",
+   "footprint": {
+    "rect": [
+     22.5,
+     9
+    ]
+   },
+   "at": [
+    1.85,
+    -0.35
+   ],
+   "height": 4.8,
+   "storeys": 1,
+   "wall": {
+    "material": "stone",
+    "colour": "#a29c8c",
+    "windows": "pointed-arch",
+    "windowRatio": 0.1,
+    "bay": 5,
+    "faces": {
+     "front": "pointed-arch",
+     "back": "pointed-arch",
+     "left": "plain",
+     "right": "pointed-arch"
+    },
+    "plinth": 0.5
+   },
+   "roof": {
+    "form": "gable",
+    "colour": "#9a5a40",
+    "pitch": 38,
+    "axis": "x",
+    "overhang": 0.4
+   }
+  },
+  {
+   "type": "mass",
+   "id": "vestry",
+   "footprint": {
+    "rect": [
+     8,
+     3.3
+    ]
+   },
+   "at": [
+    6,
+    5.75
+   ],
+   "height": 3.6,
+   "storeys": 1,
+   "wall": {
+    "material": "stone",
+    "colour": "#9a9585",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "gable",
+    "colour": "#9a5a40",
+    "pitch": 40,
+    "axis": "x",
+    "overhang": 0.3
+   }
+  },
+  {
+   "type": "mass",
+   "id": "porch",
+   "footprint": {
+    "rect": [
+     4,
+     2.8
+    ]
+   },
+   "at": [
+    -4.1,
+    -6.2
+   ],
+   "height": 2.6,
+   "storeys": 1,
+   "wall": {
+    "material": "timber",
+    "colour": "#5b4a38",
+    "windows": "pointed-arch",
+    "windowRatio": 0.4,
+    "plinth": 0.7
+   },
+   "roof": {
+    "form": "gable",
+    "colour": "#a05c42",
+    "pitch": 40,
+    "axis": "y",
+    "overhang": 0.3
+   }
+  },
+  {
+   "type": "core/fence-wall",
+   "at": [
+    -3,
+    -12,
+    0
+   ],
+   "params": {
+    "length": 44,
+    "height": 1.4,
+    "thickness": 0.5,
+    "kind": "wall",
+    "colour": "#9c9788"
+   }
+  },
+  {
+   "type": "core/gate",
+   "at": [
+    -4,
+    -12,
+    0
+   ],
+   "params": {
+    "width": 2.4,
+    "height": 1.8,
+    "pillar": 0.5
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    12,
+    -8,
+    0
+   ],
+   "params": {
+    "kind": "conifer",
+    "height": 12,
+    "count": 1
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -24,
+    -12,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 11,
+    "count": 1
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -4,
+    12,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 9,
+    "count": 2,
+    "spread": 8
+   }
+  }
+ ],
+ "site": {
+  "ground": "grass",
+  "forecourt": "none",
+  "extent": [
+   60,
+   40
+  ]
+ },
+ "review": {
+  "rounds": 2,
+  "match": "fair",
+  "gaps": "Walls use the generic stone block texture rather than knapped flint with stone quoins; tower has no clock, buttress or belfry louvres and the spire is a plain pyramid rather than a shingled broach spire; nave and chancel are one block with no chancel step; porch glazing is simplified; yew and lime trees are generic low-poly shapes; street, bench and roundabout in the foreground are not modelled."
+ }
+}

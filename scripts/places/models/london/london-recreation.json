@@ -1,0 +1,359 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-recreation",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Wimbledon_Windmill.jpg",
+   "licence": "Public domain",
+   "author": "Adrian Robson",
+   "view": "front",
+   "file": "/tmp/places-evidence/london/lon-w2.jpg",
+   "used": "the common's landmark windmill: octagonal buff-brown brick base with a white railed gallery, black tapering smock tower, white cap with four white lattice sails; dark clipped hedge and tall pines around it, open grass in front"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Bridleway_on_Wimbledon_Common_-_geograph.org.uk_-_1670112.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "Peter Trimming",
+   "view": "street",
+   "file": "/tmp/places-evidence/london/lon-w1.jpg",
+   "used": "straight wide bridleway with open heath on the left and broadleaf oak and thorn trees along the right, a low waymarker post"
+  },
+  {
+   "kind": "osm",
+   "ref": "relation/4285108",
+   "used": "extent and character only (about 350 ha common); modelled as a 300 m vignette around the windmill, ponds and bridleway"
+  }
+ ],
+ "camera": {
+  "yawDeg": -4,
+  "pitchDeg": 4,
+  "fovDeg": 38,
+  "aspect": 1.333,
+  "fit": "building",
+  "margin": 0.15,
+  "shiftX": 0.1
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "mill-base",
+   "footprint": {
+    "kind": "round",
+    "size": [
+     10,
+     10
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "height": 6.5,
+   "storeys": 2,
+   "wall": {
+    "material": "brick",
+    "colour": "#a98a62",
+    "windows": "punched",
+    "windowRatio": 0.05,
+    "bay": 5,
+    "plinth": 0.4,
+    "parapet": 1.0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#d8d4c8",
+    "parapet": 1.0
+   }
+  },
+  {
+   "type": "core/spire",
+   "at": [
+    0,
+    0,
+    6.5
+   ],
+   "params": {
+    "baseWidth": 7,
+    "height": 8,
+    "sides": 8,
+    "colour": "#1e1e20",
+    "finial": false
+   }
+  },
+  {
+   "type": "mass",
+   "id": "cap",
+   "footprint": {
+    "rect": [
+     3.2,
+     3.2
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "z0": 14,
+   "height": 2.6,
+   "storeys": 1,
+   "wall": {
+    "material": "timber",
+    "colour": "#f0efea",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#f0efea",
+    "rise": 1.4
+   }
+  },
+  {
+   "type": "mass",
+   "id": "sail-v",
+   "footprint": {
+    "rect": [
+     1.6,
+     0.5
+    ]
+   },
+   "at": [
+    0,
+    -2.1
+   ],
+   "z0": 6.8,
+   "height": 17,
+   "storeys": 1,
+   "wall": {
+    "material": "timber",
+    "colour": "#f4f3ee",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#f4f3ee"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "sail-h",
+   "footprint": {
+    "rect": [
+     17,
+     0.5
+    ]
+   },
+   "at": [
+    0,
+    -2.1
+   ],
+   "z0": 14.5,
+   "height": 1.6,
+   "storeys": 1,
+   "wall": {
+    "material": "timber",
+    "colour": "#f4f3ee",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#f4f3ee"
+   }
+  },
+  {
+   "type": "hedge",
+   "at": [
+    -3,
+    -8,
+    0
+   ],
+   "params": {
+    "length": 22,
+    "height": 2.4,
+    "depth": 2,
+    "colour": "#27402c"
+   }
+  },
+  {
+   "type": "hedge",
+   "at": [
+    14,
+    -8,
+    0
+   ],
+   "params": {
+    "length": 14,
+    "height": 2.4,
+    "depth": 2,
+    "colour": "#27402c"
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -14,
+    -2,
+    0
+   ],
+   "params": {
+    "kind": "conifer",
+    "height": 17,
+    "count": 1
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -24,
+    6,
+    0
+   ],
+   "params": {
+    "kind": "conifer",
+    "height": 15,
+    "count": 2,
+    "spread": 7
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    14,
+    6,
+    0
+   ],
+   "params": {
+    "kind": "conifer",
+    "height": 12,
+    "count": 2,
+    "spread": 6
+   }
+  },
+  {
+   "type": "path-strip",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "points": [
+     [
+      -75,
+      -18
+     ],
+     [
+      -30,
+      -17
+     ],
+     [
+      30,
+      -19
+     ],
+     [
+      75,
+      -16
+     ]
+    ],
+    "width": 5,
+    "colour": "#b9a98a"
+   }
+  },
+  {
+   "type": "tree-avenue",
+   "at": [
+    5,
+    22,
+    0
+   ],
+   "params": {
+    "length": 120,
+    "count": 10,
+    "kind": "broadleaf",
+    "gap": 4,
+    "height_min": 9,
+    "height_max": 14
+   }
+  },
+  {
+   "type": "tree-grove",
+   "at": [
+    -52,
+    32,
+    0
+   ],
+   "params": {
+    "width": 40,
+    "depth": 40,
+    "count": 14,
+    "min_height": 8,
+    "max_height": 14
+   }
+  },
+  {
+   "type": "tree-grove",
+   "at": [
+    55,
+    40,
+    0
+   ],
+   "params": {
+    "width": 40,
+    "depth": 40,
+    "count": 14,
+    "min_height": 8,
+    "max_height": 14
+   }
+  },
+  {
+   "type": "water-surface",
+   "at": [
+    -12,
+    62,
+    0
+   ],
+   "params": {
+    "width": 60,
+    "depth": 32,
+    "shape": "oval",
+    "colour": "#6f8a85",
+    "bank": true
+   }
+  },
+  {
+   "type": "water-surface",
+   "at": [
+    45,
+    68,
+    0
+   ],
+   "params": {
+    "width": 40,
+    "depth": 26,
+    "shape": "oval",
+    "colour": "#6f8a85",
+    "bank": true
+   }
+  }
+ ],
+ "site": {
+  "ground": "grass",
+  "forecourt": "none",
+  "extent": [
+   160,
+   150
+  ]
+ },
+ "review": {
+  "rounds": 3,
+  "match": "fair",
+  "gaps": "Common is shown as a 150 m vignette (windmill, bridleway, ponds, groves), not the 350 ha outline; mill base is a round drum instead of an octagon with brown brick, gallery railing, door porch and chimneys; sails are plain cross bars without lattice and are not angled; trees are generic low-poly broadleaf and conifer; the winter snow of the photos is not shown; ponds are plain ovals."
+ }
+}

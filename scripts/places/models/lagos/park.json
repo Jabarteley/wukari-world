@@ -1,0 +1,627 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "lagos",
+ "venueId": "park",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Freedom_Park_At_Lagos,_Island,_Nigeria.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Olusola David, Ayibiowu",
+   "view": "street",
+   "used": "cream gable-fronted hall with red pitched roofs, low flanking wings, red railings, arched glazed door, bronze dancing statue on a stepped plinth, brick ruin wall at right, round-crowned trees"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Freedom_Park_-Fish_Pond.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Olusola David, Ayibiowu",
+   "view": "detail",
+   "used": "pond edged by low white piers with red brick panels, white obelisk on brick plinth with red door, red-roofed cafe pavilion, palms"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Freedom_Park_front_Gate.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Olusola David, Ayibiowu",
+   "view": "front",
+   "used": "cream gatehouse with striped blue/yellow/red band, red steel gate"
+  },
+  {
+   "kind": "text",
+   "ref": "scripts/places/briefs/lagos.json#park",
+   "used": "1885 Broad Street prison, surviving brick wall and watchtower, pond, music stage, statues"
+  }
+ ],
+ "camera": {
+  "yawDeg": 0,
+  "pitchDeg": 4,
+  "fovDeg": 50,
+  "aspect": 1.333,
+  "fit": "building",
+  "margin": 0.0,
+  "shiftY": -0.1
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "hall",
+   "footprint": {
+    "rect": [
+     15,
+     16
+    ]
+   },
+   "at": [
+    -4,
+    0
+   ],
+   "z0": 0,
+   "height": 9.5,
+   "storeys": 2,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#f3eee0",
+    "windows": "punched",
+    "windowRatio": 0.1,
+    "plinth": 0.6,
+    "bay": 3.2,
+    "faces": {
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    },
+    "cornice": true
+   },
+   "roof": {
+    "form": "gable",
+    "colour": "#b5524a",
+    "material": "clay-tile",
+    "pitch": 28,
+    "overhang": 0.8,
+    "axis": "y"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "east-wing",
+   "footprint": {
+    "rect": [
+     26,
+     12
+    ]
+   },
+   "at": [
+    17,
+    2
+   ],
+   "z0": 0,
+   "height": 5.8,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#f1ecdc",
+    "windows": "punched",
+    "windowRatio": 0.12,
+    "plinth": 0.5,
+    "bay": 3.4,
+    "faces": {
+     "back": "plain",
+     "right": "plain"
+    },
+    "cornice": true
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#b5524a",
+    "material": "clay-tile",
+    "pitch": 18,
+    "overhang": 0.8
+   }
+  },
+  {
+   "type": "mass",
+   "id": "west-wing",
+   "footprint": {
+    "rect": [
+     10,
+     10
+    ]
+   },
+   "at": [
+    -17,
+    3
+   ],
+   "z0": 0,
+   "height": 4.4,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#f1ecdc",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0.5,
+    "faces": {
+     "back": "plain",
+     "left": "plain"
+    }
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#b5524a",
+    "material": "clay-tile",
+    "pitch": 18,
+    "overhang": 0.8
+   }
+  },
+  {
+   "type": "mass",
+   "id": "gatehouse",
+   "footprint": {
+    "rect": [
+     7,
+     5
+    ]
+   },
+   "at": [
+    -38,
+    -14
+   ],
+   "z0": 0,
+   "height": 3.8,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#efe8d6",
+    "windows": "punched",
+    "windowRatio": 0.08,
+    "plinth": 0.4,
+    "bands": "#3a5ea8",
+    "cornice": true
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#e8e2d0",
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "ruin-wall",
+   "footprint": {
+    "rect": [
+     12,
+     1.2
+    ]
+   },
+   "at": [
+    32,
+    -11
+   ],
+   "z0": 0,
+   "height": 2.6,
+   "storeys": 1,
+   "wall": {
+    "material": "brick",
+    "colour": "#d3c4ad",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#a8a395"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "cell-block",
+   "footprint": {
+    "rect": [
+     30,
+     9
+    ]
+   },
+   "at": [
+    38,
+    52
+   ],
+   "z0": 0,
+   "height": 5,
+   "storeys": 1,
+   "wall": {
+    "material": "brick",
+    "colour": "#a8573f",
+    "windows": "punched",
+    "windowRatio": 0.06,
+    "bay": 3
+   },
+   "roof": {
+    "form": "gable",
+    "colour": "#8d5a3b",
+    "material": "corrugated",
+    "pitch": 18,
+    "overhang": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "watchtower",
+   "footprint": {
+    "rect": [
+     4,
+     4
+    ]
+   },
+   "at": [
+    70,
+    60
+   ],
+   "z0": 0,
+   "height": 11,
+   "storeys": 3,
+   "wall": {
+    "material": "brick",
+    "colour": "#a8573f",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#8d5a3b",
+    "pitch": 30,
+    "overhang": 0.6
+   }
+  },
+  {
+   "type": "mass",
+   "id": "stage",
+   "footprint": {
+    "rect": [
+     14,
+     8
+    ]
+   },
+   "at": [
+    -40,
+    55
+   ],
+   "z0": 0,
+   "height": 5,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#ece5d2",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0.9
+   },
+   "roof": {
+    "form": "shed",
+    "colour": "#b5524a",
+    "material": "corrugated",
+    "pitch": 10,
+    "overhang": 0.8
+   }
+  },
+  {
+   "type": "water-surface",
+   "at": [
+    -6,
+    34,
+    0
+   ],
+   "params": {
+    "width": 36,
+    "depth": 18,
+    "colour": "#3f5a44",
+    "bank": true
+   }
+  },
+  {
+   "type": "mass",
+   "id": "pond-wall-back",
+   "footprint": {
+    "rect": [
+     40,
+     0.8
+    ]
+   },
+   "at": [
+    -6,
+    44
+   ],
+   "z0": 0,
+   "height": 1.2,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e6e0d0",
+    "windows": "none",
+    "windowRatio": 0,
+    "bands": "#a8573f"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#e6e0d0"
+   }
+  },
+  {
+   "type": "obelisk",
+   "at": [
+    -6,
+    46,
+    0
+   ],
+   "params": {
+    "height": 15,
+    "base_width": 2.4,
+    "style": "square",
+    "steps": 1
+   }
+  },
+  {
+   "type": "market-open/statue-on-plinth",
+   "at": [
+    -6,
+    -10,
+    0
+   ],
+   "params": {
+    "height": 3.4,
+    "colour": "#6a5a42",
+    "plinth": 0.9
+   }
+  },
+  {
+   "type": "market-open/statue-on-plinth",
+   "at": [
+    20,
+    24,
+    0
+   ],
+   "params": {
+    "height": 2.6,
+    "colour": "#5a5148",
+    "plinth": 1.0
+   }
+  },
+  {
+   "type": "core/fence-wall",
+   "at": [
+    -45,
+    -10,
+    0
+   ],
+   "params": {
+    "length": 52,
+    "height": 2.2,
+    "thickness": 0.15,
+    "kind": "fence",
+    "colour": "#b53a2e"
+   }
+  },
+  {
+   "type": "core/fence-wall",
+   "at": [
+    10,
+    -10,
+    0
+   ],
+   "params": {
+    "length": 24,
+    "height": 2.2,
+    "thickness": 0.15,
+    "kind": "fence",
+    "colour": "#b53a2e"
+   }
+  },
+  {
+   "type": "core/gate",
+   "at": [
+    -30,
+    -14,
+    0
+   ],
+   "params": {
+    "width": 6,
+    "height": 2.6,
+    "pillar": 0.8,
+    "leaf": "bars",
+    "leafColour": "#b53a2e"
+   }
+  },
+  {
+   "type": "path-strip",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "points": [
+     [
+      -30,
+      -14
+     ],
+     [
+      -14,
+      10
+     ],
+     [
+      -6,
+      26
+     ]
+    ],
+    "width": 3,
+    "colour": "#cbc6bb"
+   }
+  },
+  {
+   "type": "path-strip",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "points": [
+     [
+      -6,
+      26
+     ],
+     [
+      30,
+      30
+     ],
+     [
+      60,
+      44
+     ]
+    ],
+    "width": 2.6,
+    "colour": "#cbc6bb"
+   }
+  },
+  {
+   "type": "lawn",
+   "at": [
+    30,
+    30,
+    0
+   ],
+   "params": {
+    "width": 50,
+    "depth": 30,
+    "colour": "#6d9a4f"
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -14,
+    -15,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 8,
+    "count": 1
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    8,
+    -14,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 8,
+    "count": 1
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    28,
+    16,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 11,
+    "count": 3,
+    "spread": 8
+   }
+  },
+  {
+   "type": "tree-grove",
+   "at": [
+    -35,
+    20,
+    0
+   ],
+   "params": {
+    "width": 20,
+    "depth": 40,
+    "count": 9,
+    "min_height": 8,
+    "max_height": 13
+   }
+  },
+  {
+   "type": "tree-grove",
+   "at": [
+    50,
+    12,
+    0
+   ],
+   "params": {
+    "width": 30,
+    "depth": 20,
+    "count": 8,
+    "min_height": 8,
+    "max_height": 12
+   }
+  },
+  {
+   "type": "kiosk",
+   "at": [
+    8,
+    42,
+    0
+   ],
+   "params": {
+    "kind": "container",
+    "width": 4,
+    "depth": 3,
+    "height": 2.8
+   }
+  },
+  {
+   "type": "umbrella-cluster",
+   "at": [
+    -24,
+    42,
+    0
+   ],
+   "params": {
+    "count": 5,
+    "spread": 5,
+    "colours": [
+     "#b5524a",
+     "#f3eee0"
+    ]
+   }
+  },
+  {
+   "type": "core/lamp",
+   "at": [
+    -30,
+    2,
+    0
+   ],
+   "params": {
+    "height": 6,
+    "count": 5,
+    "spacing": 18
+   }
+  }
+ ],
+ "site": {
+  "ground": "paving",
+  "forecourt": "road",
+  "extent": [
+   160,
+   110
+  ]
+ },
+ "review": {
+  "rounds": 2,
+  "match": "fair",
+  "gaps": "Render frames the whole 120 m site so the street-front photo detail (statue, arched door, tuk-tuk mural, black-white kerb) is tiny; hall gable, red roofs, red railings, brick ruin wall, pond with obelisk and palms are placed from photos; cell block and watchtower are from text; no OSM outline."
+ }
+}

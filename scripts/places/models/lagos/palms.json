@@ -1,0 +1,383 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "lagos",
+ "venueId": "palms",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Palms_shopping_Mall2.jpg",
+   "licence": "CC BY-SA 3.0",
+   "author": "Tbite",
+   "view": "front",
+   "used": "entrance block: tall central volume with monopitch roof over a glazed clerestory, dark stone-tiled entrance panel with flat steel canopy, peach-cream panelled flanks lower than the centre, palms and car park in front"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_The_Game,_The_Palms_Lekki.JPG",
+   "licence": "CC BY-SA 4.0",
+   "author": "Lawsonomoruyi",
+   "view": "interior",
+   "used": "not used for shape; confirms curved multi-level atrium galleries inside"
+  },
+  {
+   "kind": "text",
+   "ref": "scripts/places/briefs/lagos.json#palms",
+   "used": "Lekki mall, three levels, about 130 x 70 m, fountain court, palm-lined parking; no OSM position"
+  }
+ ],
+ "camera": {
+  "yawDeg": 0,
+  "pitchDeg": 2,
+  "fovDeg": 48,
+  "aspect": 1.333,
+  "fit": "building",
+  "margin": 0.0
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "west-block",
+   "footprint": {
+    "rect": [
+     38,
+     50
+    ]
+   },
+   "at": [
+    -39,
+    4
+   ],
+   "z0": 0,
+   "height": 11,
+   "storeys": 3,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e6cdb4",
+    "windows": "ribbon",
+    "windowRatio": 0.12,
+    "plinth": 0.5,
+    "bay": 9,
+    "bands": "#d9bea2",
+    "faces": {
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#9aa3a8",
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "east-block",
+   "footprint": {
+    "rect": [
+     38,
+     50
+    ]
+   },
+   "at": [
+    39,
+    4
+   ],
+   "z0": 0,
+   "height": 11,
+   "storeys": 3,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e6cdb4",
+    "windows": "ribbon",
+    "windowRatio": 0.12,
+    "plinth": 0.5,
+    "bay": 9,
+    "bands": "#d9bea2",
+    "faces": {
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#9aa3a8",
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "entrance",
+   "footprint": {
+    "rect": [
+     38,
+     36
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "z0": 0,
+   "height": 15,
+   "storeys": 3,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e6cdb4",
+    "windows": "curtain",
+    "windowRatio": 0.55,
+    "plinth": 0.5,
+    "bay": 4,
+    "faces": {
+     "front": "plain",
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    }
+   },
+   "roof": {
+    "form": "shed",
+    "colour": "#b9bfc3",
+    "material": "metal-sheet",
+    "pitch": 9,
+    "overhang": 1.5,
+    "high": "back"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "stone-panel",
+   "footprint": {
+    "rect": [
+     20,
+     1.2
+    ]
+   },
+   "at": [
+    0,
+    -18.6
+   ],
+   "z0": 0,
+   "height": 10.5,
+   "storeys": 2,
+   "wall": {
+    "material": "tile-cladding",
+    "colour": "#6f6d62",
+    "windows": "curtain",
+    "windowRatio": 0.35,
+    "plinth": 0,
+    "faces": {
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6f6d62"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "clerestory",
+   "footprint": {
+    "rect": [
+     22,
+     1
+    ]
+   },
+   "at": [
+    0,
+    -18.2
+   ],
+   "z0": 10.5,
+   "height": 4.4,
+   "storeys": 1,
+   "wall": {
+    "material": "glass-curtain",
+    "colour": "#c9b48f",
+    "windows": "curtain",
+    "windowRatio": 0.85,
+    "faces": {
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#b9bfc3"
+   }
+  },
+  {
+   "type": "canopy",
+   "at": [
+    0,
+    -20.5,
+    5.2
+   ],
+   "params": {
+    "form": "flat",
+    "width": 20,
+    "depth": 5,
+    "height": 0,
+    "thickness": 0.5,
+    "colour": "#3f4448",
+    "edgeColour": "#cfd3d6",
+    "columns": 0
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    0,
+    -19.4,
+    6.8
+   ],
+   "params": {
+    "width": 3,
+    "height": 3,
+    "bottom": 0,
+    "colour": "#d9873a",
+    "frameColour": "#7a4a22",
+    "posts": false
+   }
+  },
+  {
+   "type": "core/flag",
+   "at": [
+    -14,
+    -23,
+    0
+   ],
+   "params": {
+    "height": 6,
+    "colour": "#a8283a",
+    "count": 1
+   }
+  },
+  {
+   "type": "core/flag",
+   "at": [
+    14,
+    -23,
+    0
+   ],
+   "params": {
+    "height": 6,
+    "colour": "#a8283a",
+    "count": 1
+   }
+  },
+  {
+   "type": "reflecting-pool",
+   "at": [
+    -52,
+    -34,
+    0
+   ],
+   "params": {
+    "width": 18,
+    "depth": 10,
+    "colour": "#6fa8c4",
+    "edgeColour": "#cfcac0"
+   }
+  },
+  {
+   "type": "fountain-basin",
+   "at": [
+    -52,
+    -34,
+    0
+   ],
+   "params": {
+    "radius": 3,
+    "tiers": 1
+   }
+  },
+  {
+   "type": "car-park",
+   "at": [
+    -18,
+    -34,
+    0
+   ],
+   "params": {
+    "width": 34,
+    "depth": 14,
+    "density": 0.4
+   }
+  },
+  {
+   "type": "car-park",
+   "at": [
+    20,
+    -34,
+    0
+   ],
+   "params": {
+    "width": 34,
+    "depth": 14,
+    "density": 0.4
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -20,
+    -22,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 9,
+    "count": 3,
+    "spread": 3
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    20,
+    -22,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 9,
+    "count": 3,
+    "spread": 3
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -60,
+    -40,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 11,
+    "count": 3,
+    "line": 30
+   }
+  }
+ ],
+ "site": {
+  "ground": "asphalt",
+  "forecourt": "parking",
+  "extent": [
+   150,
+   110
+  ]
+ },
+ "review": {
+  "rounds": 2,
+  "match": "fair",
+  "gaps": "Photo is a close-up of one entrance, render shows the whole 116 m mall so detail is small; entrance tower, stone-tiled panel, steel canopy, glazed clerestory and palms match, but the shed roof slopes the wrong way/shape (photo has a rising monopitch with deep steel fascia), no panel joints, banner flags and trolleys; wings, fountain court and car park are from the brief (no OSM)."
+ }
+}

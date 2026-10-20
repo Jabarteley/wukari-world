@@ -1,0 +1,423 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-market-game",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Walthamstow_Market_-_geograph.org.uk_-_93317.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "John Davies",
+   "view": "street",
+   "used": "pedestrianised paved street seen end-on, awning stalls with clothes racks both sides, 2-3 storey brown brick shop terraces with sash windows and shopfront fascias, lamp posts, street decorations",
+   "file": "/tmp/places-evidence/london/london-market-game_0.jpg"
+  },
+  {
+   "kind": "osm",
+   "ref": "relation/11370057",
+   "used": "identity only: the real outline is a 520 m strip, a 120 m stretch is modelled"
+  }
+ ],
+ "camera": {
+  "yawDeg": -6,
+  "pitchDeg": 3,
+  "fovDeg": 62,
+  "aspect": 1.333,
+  "margin": 0.0,
+  "shiftY": 0.0
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "terrace-left-a",
+   "footprint": {
+    "rect": [
+     12,
+     56
+    ]
+   },
+   "at": [
+    -15,
+    12
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 11,
+   "storeys": 3,
+   "wall": {
+    "material": "brick",
+    "colour": "#8c5848",
+    "windows": "punched",
+    "windowRatio": 0.3,
+    "plinth": 0.2,
+    "cornice": true,
+    "groundKind": "curtain",
+    "groundHeight": 3.6,
+    "faces": {
+     "front": "punched",
+     "back": "plain",
+     "left": "plain",
+     "right": "punched"
+    },
+    "bay": 4.2
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#5b5650",
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "terrace-left-b",
+   "footprint": {
+    "rect": [
+     12,
+     56
+    ]
+   },
+   "at": [
+    -15,
+    68
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 8,
+   "storeys": 2,
+   "wall": {
+    "material": "brick",
+    "colour": "#a2674f",
+    "windows": "punched",
+    "windowRatio": 0.3,
+    "groundKind": "curtain",
+    "groundHeight": 3.6,
+    "faces": {
+     "front": "plain",
+     "back": "plain",
+     "left": "plain",
+     "right": "punched"
+    },
+    "bay": 4.2
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#5b5650",
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "mass",
+   "id": "terrace-right-a",
+   "footprint": {
+    "rect": [
+     12,
+     50
+    ]
+   },
+   "at": [
+    15,
+    10
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 7.5,
+   "storeys": 2,
+   "wall": {
+    "material": "brick",
+    "colour": "#8f5b49",
+    "windows": "punched",
+    "windowRatio": 0.3,
+    "groundKind": "curtain",
+    "groundHeight": 3.6,
+    "faces": {
+     "front": "punched",
+     "back": "plain",
+     "right": "plain",
+     "left": "punched"
+    },
+    "bay": 4.2
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#4a4f57",
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "mass",
+   "id": "terrace-right-b",
+   "footprint": {
+    "rect": [
+     12,
+     60
+    ]
+   },
+   "at": [
+    15,
+    65
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 10.5,
+   "storeys": 3,
+   "wall": {
+    "material": "brick",
+    "colour": "#b0765c",
+    "windows": "punched",
+    "windowRatio": 0.3,
+    "groundKind": "curtain",
+    "groundHeight": 3.6,
+    "faces": {
+     "front": "plain",
+     "back": "plain",
+     "right": "plain",
+     "left": "punched"
+    },
+    "bay": 4.2
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#5b5650",
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    -5.5,
+    5,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "count": 12,
+    "pitch": 3.4,
+    "kind": "awning",
+    "size": 1.0,
+    "colours": [
+     "#e8e6df",
+     "#e8e6df",
+     "#3a6ea5",
+     "#b83a2f"
+    ],
+    "goods_colours": [
+     "#1f1f24",
+     "#b03a40",
+     "#3a5f8f",
+     "#d8c6a8"
+    ],
+    "jitter": 0.2
+   }
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    5.5,
+    12,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "count": 12,
+    "pitch": 3.4,
+    "kind": "awning",
+    "size": 1.0,
+    "colours": [
+     "#e8e6df",
+     "#d9c9a0",
+     "#3a6ea5"
+    ],
+    "goods_colours": [
+     "#2a5f9a",
+     "#8a8f94",
+     "#c04a3a"
+    ],
+    "jitter": 0.25
+   }
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    -5.5,
+    62,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "umbrella",
+    "size": 1.0,
+    "colours": [
+     "#d9c9a0",
+     "#3a6ea5",
+     "#b83a2f"
+    ],
+    "jitter": 0.3
+   }
+  },
+  {
+   "type": "lamp-post",
+   "at": [
+    -1.5,
+    0,
+    0
+   ],
+   "params": {
+    "height": 9
+   }
+  },
+  {
+   "type": "lamp-post",
+   "at": [
+    1.5,
+    20,
+    0
+   ],
+   "params": {
+    "height": 9
+   }
+  },
+  {
+   "type": "lamp-post",
+   "at": [
+    -1.5,
+    40,
+    0
+   ],
+   "params": {
+    "height": 9
+   }
+  },
+  {
+   "type": "lamp-post",
+   "at": [
+    1.5,
+    60,
+    0
+   ],
+   "params": {
+    "height": 9
+   }
+  },
+  {
+   "type": "kiosk",
+   "at": [
+    0,
+    38,
+    0
+   ],
+   "params": {
+    "kind": "container",
+    "colour": "#3a6ea5"
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    0,
+    92,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 9
+   }
+  },
+  {
+   "type": "shopfront",
+   "at": [
+    -9.2,
+    8,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "width": 4,
+    "kind": "shutter",
+    "colour": "#2a2d33",
+    "sign_colour": "#3a6ea5",
+    "sign_height": 1.0,
+    "awning_colours": [
+     "#3a6ea5",
+     "#e8e6df"
+    ]
+   }
+  },
+  {
+   "type": "shopfront",
+   "at": [
+    -9.2,
+    16,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "width": 4,
+    "kind": "shutter",
+    "colour": "#2a2d33",
+    "sign_colour": "#b83a2f",
+    "sign_height": 1.0,
+    "awning_colours": [
+     "#b83a2f",
+     "#e8e6df"
+    ]
+   }
+  },
+  {
+   "type": "shopfront",
+   "at": [
+    -9.2,
+    26,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "width": 4,
+    "kind": "shutter",
+    "colour": "#2a2d33",
+    "sign_colour": "#e8e6df",
+    "sign_height": 1.0,
+    "awning_colours": [
+     "#e8e6df",
+     "#e8e6df"
+    ]
+   }
+  },
+  {
+   "type": "shopfront",
+   "at": [
+    -9.2,
+    36,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "width": 4,
+    "kind": "shutter",
+    "colour": "#2a2d33",
+    "sign_colour": "#3a6ea5",
+    "sign_height": 1.0,
+    "awning_colours": [
+     "#3a6ea5",
+     "#e8e6df"
+    ]
+   }
+  }
+ ],
+ "site": {
+  "ground": "paving",
+  "forecourt": "none",
+  "extent": [
+   60,
+   130
+  ]
+ },
+ "review": {
+  "rounds": 3,
+  "match": "fair",
+  "gaps": "Street seen end-on is simplified: near terraces are plain boxes with flat roofs, no varied fascias, shop signage or clothes racks, stalls are generic umbrellas/awnings, no street decorations; 120 m stretch of a 1 km market."
+ }
+}

@@ -1,0 +1,339 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "lagos",
+ "venueId": "beach",
+ "verified": "text",
+ "evidence": [
+  {
+   "kind": "text",
+   "ref": "https://commons.wikimedia.org/wiki/File:Elegushi_Beach.jpg",
+   "used": "general Lagos beach character from a photo of Elegushi Beach (CC BY-SA 4.0, see Commons): tan sand, surf, rock groin, teal-grey sea; the venue is not tied to one beach, so no photo match is claimed"
+  }
+ ],
+ "camera": {
+  "yawDeg": -20,
+  "pitchDeg": 18,
+  "fovDeg": 55
+ },
+ "parts": [
+  {
+   "type": "water-surface",
+   "at": [
+    0,
+    38,
+    0
+   ],
+   "params": {
+    "width": 120,
+    "depth": 44,
+    "colour": "#4d8087",
+    "bank": true
+   }
+  },
+  {
+   "type": "rubble",
+   "at": [
+    44,
+    34,
+    0
+   ],
+   "params": {
+    "width": 10,
+    "depth": 34,
+    "count": 16,
+    "colour": "#4a4743"
+   }
+  },
+  {
+   "type": "thatched-pavilion",
+   "at": [
+    -38,
+    -6,
+    0
+   ],
+   "params": {
+    "width": 10.12,
+    "depth": 8.28,
+    "deck_height": 0.5,
+    "post_height": 2.7,
+    "roof": "pyramid",
+    "thatch": true,
+    "rail": false,
+    "bar": false
+   }
+  },
+  {
+   "type": "thatched-pavilion",
+   "at": [
+    -22,
+    -6,
+    0
+   ],
+   "params": {
+    "width": 8.36,
+    "depth": 6.84,
+    "deck_height": 0.5,
+    "post_height": 2.7,
+    "roof": "pyramid",
+    "thatch": true,
+    "rail": false,
+    "bar": true
+   }
+  },
+  {
+   "type": "thatched-pavilion",
+   "at": [
+    30,
+    -6,
+    0
+   ],
+   "params": {
+    "width": 9.240000000000002,
+    "depth": 7.5600000000000005,
+    "deck_height": 0.5,
+    "post_height": 2.7,
+    "roof": "pyramid",
+    "thatch": true,
+    "rail": false,
+    "bar": false
+   }
+  },
+  {
+   "type": "mass",
+   "id": "beach-bar",
+   "footprint": {
+    "rect": [
+     14,
+     6
+    ]
+   },
+   "at": [
+    6,
+    -16
+   ],
+   "height": 3.4,
+   "storeys": 1,
+   "wall": {
+    "material": "render",
+    "colour": "#e8cf8a",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0.3,
+    "bands": "#3f7a8a"
+   },
+   "roof": {
+    "form": "shed",
+    "rise": 1.0,
+    "colour": "#b79b5a",
+    "overhang": 1.4,
+    "high": "back"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "kiosk-a",
+   "footprint": {
+    "rect": [
+     3.4,
+     2.6
+    ]
+   },
+   "at": [
+    -8,
+    -14
+   ],
+   "height": 2.6,
+   "storeys": 1,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#3f8fb0",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#d8d8d0",
+    "overhang": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "kiosk-b",
+   "footprint": {
+    "rect": [
+     3.4,
+     2.6
+    ]
+   },
+   "at": [
+    24,
+    -14
+   ],
+   "height": 2.6,
+   "storeys": 1,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#c9553a",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#d8d8d0",
+    "overhang": 0.5
+   }
+  },
+  {
+   "type": "beach-row",
+   "at": [
+    -30,
+    6,
+    0
+   ],
+   "params": {
+    "count": 7,
+    "spacing": 5,
+    "umbrellas": true,
+    "loungers": true,
+    "colours": [
+     "#d94f4f",
+     "#e8c040",
+     "#3f8fb0",
+     "#f2f2ee"
+    ]
+   }
+  },
+  {
+   "type": "beach-row",
+   "at": [
+    0,
+    10,
+    0
+   ],
+   "params": {
+    "count": 5,
+    "spacing": 5.5,
+    "umbrellas": true,
+    "loungers": true,
+    "colours": [
+     "#e8c040",
+     "#3f8fb0",
+     "#d94f4f"
+    ]
+   }
+  },
+  {
+   "type": "umbrella-cluster",
+   "at": [
+    14,
+    -6,
+    0
+   ],
+   "params": {
+    "count": 6,
+    "spread": 6,
+    "radius": 1.6,
+    "tables": true,
+    "colours": [
+     "#d94f4f",
+     "#e8c040",
+     "#3f8fb0",
+     "#3f7a52"
+    ]
+   }
+  },
+  {
+   "type": "pier-boardwalk",
+   "at": [
+    -6,
+    2,
+    0.3
+   ],
+   "params": {
+    "length": 40,
+    "width": 2.4,
+    "height": 0.5,
+    "rails": false,
+    "piles": false,
+    "colour": "#9a8a6a"
+   },
+   "rotDeg": 90
+  },
+  {
+   "type": "sign-board",
+   "at": [
+    -50,
+    -20,
+    0
+   ],
+   "params": {
+    "width": 7,
+    "height": 1.8,
+    "bottom": 1.2,
+    "colour": "#3f8fb0",
+    "posts": true
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    -52,
+    -8,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 11
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    -14,
+    -20,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 12
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    40,
+    -14,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 10
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    52,
+    -4,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 12
+   }
+  }
+ ],
+ "site": {
+  "ground": "sand",
+  "extent": [
+   120,
+   76
+  ]
+ },
+ "review": {
+  "rounds": 2,
+  "match": "rough",
+  "gaps": "Venue is just 'Beach' with no position, so no specific beach was matched; generic Lagos strip with thatched huts, bar, kiosks, loungers and a rock groin. Boardwalk lies parallel to shore, waves and surf not modelled."
+ }
+}

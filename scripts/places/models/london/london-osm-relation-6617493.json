@@ -1,0 +1,354 @@
+{
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Hill_Hall,_Theydon_Mount_(geograph_3375471).jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "Stephen Richards",
+   "view": "front",
+   "file": "/tmp/places-evidence/london/hill1.jpg",
+   "used": "long three-storey brick front with white stone dressings and giant pilasters, projecting end pavilions, central pedimented pavilion with balustrade, hipped red tile roof, tall brick chimneys, window rhythm of 9 bays"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Hill_Hall,_Theydon_Mount,_Essex,_England.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Acabashi",
+   "view": "front",
+   "file": "/tmp/places-evidence/london/hill2.jpg",
+   "used": "balustraded parapet, central cupola, parkland setting with timber paddock fence"
+  },
+  {
+   "kind": "osm",
+   "ref": "relation/6617493",
+   "used": "overall extent only (about 80 x 58 m); outline is a ragged courtyard plan so rectangles were composed instead"
+  }
+ ],
+ "camera": {
+  "yawDeg": 10,
+  "pitchDeg": 3,
+  "fovDeg": 36,
+  "aspect": 1.5
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "main",
+   "footprint": {
+    "rect": [
+     56,
+     18
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 13.5,
+   "storeys": 3,
+   "wall": {
+    "material": "red-brick",
+    "colour": "#8c3a2c",
+    "windows": "punched",
+    "windowRatio": 0.3,
+    "bay": 6.2,
+    "bands": "#e4d9c4",
+    "plinth": 1.0,
+    "cornice": true,
+    "faces": {
+     "front": "punched",
+     "back": "none",
+     "left": "none",
+     "right": "none"
+    }
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#7d3b2d",
+    "material": "clay-tile",
+    "pitch": 18,
+    "overhang": 0.3,
+    "parapet": 0.9
+   }
+  },
+  {
+   "type": "mass",
+   "id": "wing-w",
+   "footprint": {
+    "rect": [
+     14,
+     20
+    ]
+   },
+   "at": [
+    -33,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 16,
+   "storeys": 3,
+   "wall": {
+    "material": "red-brick",
+    "colour": "#8c3a2c",
+    "windows": "punched",
+    "windowRatio": 0.3,
+    "bay": 5.5,
+    "bands": "#e4d9c4",
+    "plinth": 1.0,
+    "cornice": true,
+    "faces": {
+     "front": "punched",
+     "back": "none",
+     "left": "punched",
+     "right": "punched"
+    }
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#7d3b2d",
+    "material": "clay-tile",
+    "pitch": 16,
+    "overhang": 0.3
+   }
+  },
+  {
+   "type": "mass",
+   "id": "wing-e",
+   "footprint": {
+    "rect": [
+     14,
+     20
+    ]
+   },
+   "at": [
+    33,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 16,
+   "storeys": 3,
+   "wall": {
+    "material": "red-brick",
+    "colour": "#8c3a2c",
+    "windows": "punched",
+    "windowRatio": 0.3,
+    "bay": 5.5,
+    "bands": "#e4d9c4",
+    "plinth": 1.0,
+    "cornice": true,
+    "faces": {
+     "front": "punched",
+     "back": "none",
+     "left": "punched",
+     "right": "punched"
+    }
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#7d3b2d",
+    "material": "clay-tile",
+    "pitch": 16,
+    "overhang": 0.3
+   }
+  },
+  {
+   "type": "mass",
+   "id": "rear",
+   "footprint": {
+    "rect": [
+     58,
+     12
+    ]
+   },
+   "at": [
+    0,
+    17
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 12.5,
+   "storeys": 3,
+   "wall": {
+    "material": "red-brick",
+    "colour": "#7f3528",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#7d3b2d",
+    "material": "clay-tile",
+    "pitch": 20
+   }
+  },
+  {
+   "type": "portico-pedimented",
+   "at": [
+    0,
+    -9.7,
+    0
+   ],
+   "params": {
+    "width": 10,
+    "depth": 1.4,
+    "height": 10,
+    "columns": 4,
+    "pediment": true,
+    "steps": 3,
+    "kind": "round",
+    "colour": "#e4d9c4"
+   }
+  },
+  {
+   "type": "balustrade",
+   "at": [
+    0,
+    -8.7,
+    13.5
+   ],
+   "params": {
+    "length": 40,
+    "height": 1.0,
+    "colour": "#e4d9c4"
+   }
+  },
+  {
+   "type": "chimney-stack",
+   "at": [
+    -22,
+    0,
+    13
+   ],
+   "params": {
+    "width": 1.6,
+    "height": 4,
+    "pots": 2,
+    "colour": "#8a3b2d"
+   }
+  },
+  {
+   "type": "chimney-stack",
+   "at": [
+    -10,
+    4,
+    13
+   ],
+   "params": {
+    "width": 1.6,
+    "height": 4,
+    "pots": 2,
+    "colour": "#8a3b2d"
+   }
+  },
+  {
+   "type": "chimney-stack",
+   "at": [
+    10,
+    4,
+    13
+   ],
+   "params": {
+    "width": 1.6,
+    "height": 4,
+    "pots": 2,
+    "colour": "#8a3b2d"
+   }
+  },
+  {
+   "type": "chimney-stack",
+   "at": [
+    22,
+    0,
+    13
+   ],
+   "params": {
+    "width": 1.6,
+    "height": 4,
+    "pots": 2,
+    "colour": "#8a3b2d"
+   }
+  },
+  {
+   "type": "chimney-stack",
+   "at": [
+    -34,
+    -3,
+    15
+   ],
+   "params": {
+    "width": 1.6,
+    "height": 4,
+    "pots": 2,
+    "colour": "#8a3b2d"
+   }
+  },
+  {
+   "type": "chimney-stack",
+   "at": [
+    34,
+    -3,
+    15
+   ],
+   "params": {
+    "width": 1.6,
+    "height": 4,
+    "pots": 2,
+    "colour": "#8a3b2d"
+   }
+  },
+  {
+   "type": "cupola",
+   "at": [
+    0,
+    6,
+    13.5
+   ],
+   "params": {}
+  }
+ ],
+ "site": {
+  "ground": "grass",
+  "forecourt": "none",
+  "trees": [
+   {
+    "kind": "broadleaf",
+    "at": [
+     -58,
+     -10
+    ]
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     60,
+     -4
+    ]
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     62,
+     20
+    ]
+   }
+  ],
+  "extent": [
+   150,
+   110
+  ]
+ },
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-osm-relation-6617493",
+ "review": {
+  "rounds": 3,
+  "match": "fair",
+  "gaps": "No giant stone pilasters or white window surrounds, no ornate pediment relief, balustrade is a thin rail, end pavilions are plain hips not the taller capped bays; courtyard plan and ragged OSM outline not modelled."
+ }
+}

@@ -1,0 +1,297 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "lagos",
+ "venueId": "polling-unit",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Area_shot_of_polling_units.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Ibukun Emiola",
+   "view": "street",
+   "used": "representative Nigerian polling unit: white-and-blue tarpaulin canopy on poles beside a dirt yard, folding tables with ballot boxes, plastic chairs, white cardboard voting screens, low block wall, cream-yellow two-storey houses with arched windows behind, bare-trunked trees, laterite ground. A typical unit, not this exact one."
+  },
+  {
+   "kind": "text",
+   "ref": "scripts/places/briefs/lagos.json#polling-unit",
+   "used": "authored venue: covered shelter with flag and ballot tables, 14 x 8 m"
+  }
+ ],
+ "camera": {
+  "yawDeg": 0,
+  "pitchDeg": 10,
+  "fovDeg": 55,
+  "aspect": 1.6,
+  "fit": "all",
+  "margin": 0.02
+ },
+ "parts": [
+  {
+   "type": "pavilion",
+   "at": [
+    8,
+    0,
+    0
+   ],
+   "params": {
+    "width": 8,
+    "depth": 6,
+    "height": 3.2,
+    "roof": "hip",
+    "rise": 1.1,
+    "posts": 4,
+    "colour": "#9aa3a8",
+    "cap_colour": "#e6e4da",
+    "floor_colour": "#b9805a"
+   }
+  },
+  {
+   "type": "pavilion",
+   "at": [
+    -4,
+    3,
+    0
+   ],
+   "params": {
+    "width": 6,
+    "depth": 5,
+    "height": 2.9,
+    "roof": "hip",
+    "rise": 0.8,
+    "posts": 4,
+    "colour": "#9aa3a8",
+    "cap_colour": "#4a76b8",
+    "floor_colour": "#b9805a"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "boundary-wall",
+   "footprint": {
+    "rect": [
+     34,
+     0.6
+    ]
+   },
+   "at": [
+    -2,
+    12
+   ],
+   "z0": 0,
+   "height": 2.2,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#b9a58a",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#a8a395"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "house",
+   "footprint": {
+    "rect": [
+     14,
+     9
+    ]
+   },
+   "at": [
+    -12,
+    20
+   ],
+   "z0": 0,
+   "height": 7,
+   "storeys": 2,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e8d08a",
+    "windows": "punched",
+    "windowRatio": 0.12,
+    "plinth": 0.4,
+    "bay": 3.4,
+    "bands": "#c9a85a"
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#7a6a5a",
+    "material": "corrugated",
+    "pitch": 14,
+    "overhang": 0.7
+   }
+  },
+  {
+   "type": "mass",
+   "id": "house-2",
+   "footprint": {
+    "rect": [
+     10,
+     8
+    ]
+   },
+   "at": [
+    14,
+    22
+   ],
+   "z0": 0,
+   "height": 6.4,
+   "storeys": 2,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e6e0cf",
+    "windows": "punched",
+    "windowRatio": 0.12,
+    "plinth": 0.4,
+    "bay": 3.4
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#6a6a66",
+    "material": "corrugated",
+    "pitch": 12,
+    "overhang": 0.6
+   }
+  },
+  {
+   "type": "table-set",
+   "at": [
+    6,
+    0,
+    0
+   ],
+   "params": {
+    "chairs": 4,
+    "table_colour": "#d8d8d4",
+    "chair_colour": "#f2f2ee"
+   }
+  },
+  {
+   "type": "table-set",
+   "at": [
+    11,
+    0.5,
+    0
+   ],
+   "params": {
+    "chairs": 2,
+    "table_colour": "#d8d8d4",
+    "chair_colour": "#f2f2ee"
+   }
+  },
+  {
+   "type": "table-set",
+   "at": [
+    -4,
+    3,
+    0
+   ],
+   "params": {
+    "chairs": 3,
+    "table_colour": "#d8d8d4",
+    "chair_colour": "#f2f2ee"
+   }
+  },
+  {
+   "type": "queue-posts",
+   "at": [
+    -4,
+    -6,
+    0
+   ],
+   "params": {
+    "count": 6,
+    "spacing": 1.5,
+    "rope_colour": "#e8e8e0",
+    "post_colour": "#8a6a45"
+   }
+  },
+  {
+   "type": "core/flag",
+   "at": [
+    14,
+    -3,
+    0
+   ],
+   "params": {
+    "height": 6,
+    "colour": "#1b7a43",
+    "count": 1
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    1,
+    -4,
+    0
+   ],
+   "params": {
+    "width": 2.4,
+    "height": 1.2,
+    "bottom": 1.0,
+    "colour": "#3f7a52",
+    "frameColour": "#b0aaa0",
+    "posts": true
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -2,
+    8,
+    0
+   ],
+   "params": {
+    "kind": "acacia",
+    "height": 10,
+    "count": 1
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    18,
+    9,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 8,
+    "count": 2,
+    "spread": 2
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -20,
+    8,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 8,
+    "count": 1
+   }
+  }
+ ],
+ "site": {
+  "ground": "laterite",
+  "forecourt": "none",
+  "extent": [
+   60,
+   40
+  ]
+ },
+ "review": {
+  "rounds": 2,
+  "match": "fair",
+  "gaps": "Tarpaulin dome is modelled as hip-roofed pavilions (no curved white/blue tent, no printed text); crowd, cardboard voting screens, ballot boxes and bare trees are simplified or missing; reference is a typical unit, houses and yard layout are estimated."
+ }
+}

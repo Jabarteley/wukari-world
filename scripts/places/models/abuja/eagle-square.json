@@ -1,0 +1,451 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "abuja",
+ "venueId": "eagle-square",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:The_Overview_of_Eagle_Square_Abuja.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Tofi (Commons user)",
+   "view": "street",
+   "file": "/tmp/places-evidence/abuja/eagleB.jpg",
+   "used": "huge empty paved arena, long low covered walkway stand along the near side with teal-green fascia and white roof, row of small white barrel-roofed cabins, flat-roofed stands on the far side, tall floodlight mast, flag rows along the far left"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Left_View_of_Eagle_square_Abuja.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Tofi (Commons user)",
+   "view": "street",
+   "used": "white corrugated barrel-roofed stand on the right side, three flat-roofed far stands, lattice floodlight masts"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Eagle_Square_fct.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "DeSt (Commons user)",
+   "view": "aerial",
+   "used": "brown-grey paving colour, road around the square, palms, sky-blue mood"
+  }
+ ],
+ "camera": {
+  "yawDeg": -28,
+  "pitchDeg": 22,
+  "fovDeg": 50,
+  "aspect": 1.333,
+  "fit": "all",
+  "margin": 0.05
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "near-terrace",
+   "footprint": {
+    "rect": [
+     84,
+     7
+    ]
+   },
+   "at": [
+    -8,
+    -32
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 2.2,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#a9a597",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#9d998c",
+    "overhang": 0.2
+   }
+  },
+  {
+   "type": "core/canopy",
+   "at": [
+    -8,
+    -32,
+    2.2
+   ],
+   "params": {
+    "form": "flat",
+    "width": 86,
+    "depth": 8,
+    "height": 3.4,
+    "thickness": 0.4,
+    "columns": 14,
+    "colour": "#d7d9d6",
+    "edgeColour": "#4f9a86",
+    "axis": "x"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "far-stand-0",
+   "footprint": {
+    "rect": [
+     34,
+     11
+    ]
+   },
+   "at": [
+    -38,
+    46
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 5.5,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#7f8c8a",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0,
+    "bands": "#2f4a58"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#c9cbc8",
+    "overhang": 2.5,
+    "parapet": 0.2
+   }
+  },
+  {
+   "type": "mass",
+   "id": "far-stand-1",
+   "footprint": {
+    "rect": [
+     34,
+     11
+    ]
+   },
+   "at": [
+    0,
+    46
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 5.5,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#7f8c8a",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0,
+    "bands": "#2f4a58"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#c9cbc8",
+    "overhang": 2.5,
+    "parapet": 0.2
+   }
+  },
+  {
+   "type": "mass",
+   "id": "far-stand-2",
+   "footprint": {
+    "rect": [
+     34,
+     11
+    ]
+   },
+   "at": [
+    38,
+    46
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 5.5,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#7f8c8a",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0,
+    "bands": "#2f4a58"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#c9cbc8",
+    "overhang": 2.5,
+    "parapet": 0.2
+   }
+  },
+  {
+   "type": "mass",
+   "id": "right-stand",
+   "footprint": {
+    "rect": [
+     13,
+     44
+    ]
+   },
+   "at": [
+    56,
+    14
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 7,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#8a9a92",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0,
+    "bands": "#2f6b4f"
+   },
+   "roof": {
+    "form": "barrel",
+    "colour": "#eceeea",
+    "overhang": 1.5,
+    "rise": 2.5,
+    "axis": "y"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "cabin-0",
+   "footprint": {
+    "rect": [
+     7.5,
+     5.5
+    ]
+   },
+   "at": [
+    24,
+    -40
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 3.4,
+   "storeys": 1,
+   "wall": {
+    "material": "whitewash",
+    "colour": "#dfe6e0",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0,
+    "bands": "#3f8a6c"
+   },
+   "roof": {
+    "form": "barrel",
+    "colour": "#f3f4f1",
+    "overhang": 0.5,
+    "rise": 1.4,
+    "axis": "x"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "cabin-1",
+   "footprint": {
+    "rect": [
+     7.5,
+     5.5
+    ]
+   },
+   "at": [
+    33,
+    -40
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 3.4,
+   "storeys": 1,
+   "wall": {
+    "material": "whitewash",
+    "colour": "#dfe6e0",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0,
+    "bands": "#3f8a6c"
+   },
+   "roof": {
+    "form": "barrel",
+    "colour": "#f3f4f1",
+    "overhang": 0.5,
+    "rise": 1.4,
+    "axis": "x"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "cabin-2",
+   "footprint": {
+    "rect": [
+     7.5,
+     5.5
+    ]
+   },
+   "at": [
+    42,
+    -40
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 3.4,
+   "storeys": 1,
+   "wall": {
+    "material": "whitewash",
+    "colour": "#dfe6e0",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0,
+    "bands": "#3f8a6c"
+   },
+   "roof": {
+    "form": "barrel",
+    "colour": "#f3f4f1",
+    "overhang": 0.5,
+    "rise": 1.4,
+    "axis": "x"
+   }
+  },
+  {
+   "type": "floodlight-mast",
+   "at": [
+    44,
+    -4,
+    0
+   ],
+   "params": {
+    "height": 34,
+    "head_width": 5,
+    "colour": "#b7bcc0"
+   }
+  },
+  {
+   "type": "floodlight-mast",
+   "at": [
+    -50,
+    36,
+    0
+   ],
+   "params": {
+    "height": 30,
+    "head_width": 4,
+    "colour": "#b7bcc0"
+   }
+  },
+  {
+   "type": "lamp",
+   "at": [
+    -45,
+    -38,
+    0
+   ],
+   "params": {
+    "height": 9,
+    "count": 6,
+    "spacing": 16
+   }
+  },
+  {
+   "type": "flag",
+   "at": [
+    -62,
+    -20,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "height": 12,
+    "count": 10,
+    "spacing": 7,
+    "colours": [
+     "#1b7a43",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "type": "flag",
+   "at": [
+    -58,
+    -20,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "height": 12,
+    "count": 10,
+    "spacing": 7,
+    "colours": [
+     "#ffffff",
+     "#1b7a43"
+    ]
+   }
+  }
+ ],
+ "site": {
+  "ground": "laterite",
+  "forecourt": "none",
+  "extent": [
+   140,
+   120
+  ],
+  "trees": [
+   {
+    "kind": "broadleaf",
+    "at": [
+     -30,
+     -44
+    ],
+    "height": 9
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     8,
+     -44
+    ],
+    "height": 8
+   },
+   {
+    "kind": "palm",
+    "at": [
+     -66,
+     10
+    ],
+    "height": 13
+   },
+   {
+    "kind": "palm",
+    "at": [
+     -66,
+     30
+    ],
+    "height": 13
+   },
+   {
+    "kind": "palm",
+    "at": [
+     62,
+     -44
+    ],
+    "height": 12
+   }
+  ]
+ },
+ "review": {
+  "rounds": 2,
+  "match": "fair",
+  "gaps": "Only a ~110 m portion of the 300 m arena is modelled; stands are simple boxes (no seating tiers, green lattice structure under the near walkway), no VIP pavilion, flags are sparse, ground tone matches the backdrop."
+ }
+}

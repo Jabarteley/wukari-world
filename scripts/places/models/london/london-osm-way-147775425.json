@@ -1,0 +1,210 @@
+{
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:London_Academy_of_Music_and_Dramatic_Art,_24_February_2020.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Surplus London Photos",
+   "view": "street",
+   "file": "/tmp/places-evidence/london/lamda2.jpg",
+   "used": "low red-brick base with railings, upper floors in buff cladding with tall glazed vertical fin bays, red-brick flytower box behind, tall gold vertically ribbed fly tower at right"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/147775425",
+   "used": "site extent, long street frontage about 50 x 20 m"
+  }
+ ],
+ "camera": {
+  "yawDeg": 0,
+  "pitchDeg": 2,
+  "fovDeg": 58,
+  "aspect": 1.333,
+  "fit": "building",
+  "shiftY": -0.05
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "base",
+   "footprint": {
+    "rect": [
+     62,
+     20
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 3.4,
+   "storeys": 1,
+   "wall": {
+    "material": "brick",
+    "colour": "#b05a42",
+    "windows": "none",
+    "windowRatio": 0,
+    "bay": 3.4,
+    "faces": {
+     "front": "curtain",
+     "back": "plain"
+    },
+    "bands": "#c4b48a",
+    "plinth": 0.2
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6b6460",
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "upper",
+   "footprint": {
+    "rect": [
+     62,
+     20
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 3.4,
+   "height": 11.6,
+   "storeys": 3,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#c6b68c",
+    "windows": "curtain",
+    "windowRatio": 0.5,
+    "bay": 3.6,
+    "faces": {
+     "front": "curtain",
+     "back": "plain"
+    },
+    "bands": "#a89a72",
+    "plinth": 0.2
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6b6460",
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "fly-brick",
+   "footprint": {
+    "rect": [
+     26,
+     16
+    ]
+   },
+   "at": [
+    -4,
+    5
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 22,
+   "storeys": 5,
+   "wall": {
+    "material": "brick",
+    "colour": "#b4563f",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6b6460",
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "mass",
+   "id": "fly-tower",
+   "footprint": {
+    "rect": [
+     24,
+     16
+    ]
+   },
+   "at": [
+    19,
+    6
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 36,
+   "storeys": 7,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#b2a27a",
+    "windows": "none",
+    "windowRatio": 0,
+    "bands": "#a89868",
+    "bay": 1.4
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6b6460",
+    "parapet": 0.3
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    0,
+    -11.5,
+    0
+   ],
+   "params": {
+    "width": 5,
+    "height": 1.2,
+    "bottom": 1.0,
+    "colour": "#2f3338",
+    "posts": false
+   }
+  }
+ ],
+ "site": {
+  "ground": "paving",
+  "forecourt": "road",
+  "forecourtDepth": 10,
+  "trees": [
+   {
+    "kind": "broadleaf",
+    "at": [
+     -14,
+     -17
+    ]
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     30,
+     -17
+    ]
+   }
+  ],
+  "extent": [
+   110,
+   70
+  ]
+ },
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-osm-way-147775425",
+ "review": {
+  "rounds": 3,
+  "match": "fair",
+  "gaps": "Upper floors are an all-glass curtain instead of buff cladding with vertical fins and solid panels, no vertical ribbing on the fly tower, no street railings or tree; brick base reads correctly."
+ }
+}

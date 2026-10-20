@@ -1,0 +1,323 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-osm-way-35597911",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Ewell,_NESCOT_theatre_and_reception_block_-_geograph.org.uk_-_3564895.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "geograph contributor",
+   "view": "street",
+   "file": "/tmp/places-evidence/london/-35597911_2.jpg",
+   "used": "tall four-storey grey-brown brick block with paired white-framed windows and roof plant, low brick theatre foyer wing with white canopy and blank sign band, steel railings, tall conifer"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:NESCOT_(North_East_Surrey_College_of_Technology)_-_geograph.org.uk_-_28046.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "Roger Miller",
+   "view": "street",
+   "used": "dark brick tower block behind a long low red-tiled hip-roofed block, mature trees and car park in front"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/35597911",
+   "used": "campus extent only (540 m across, too large for the scene clamp, so one teaching cluster is modelled)"
+  }
+ ],
+ "camera": {
+  "yawDeg": -28,
+  "pitchDeg": 6,
+  "fovDeg": 50,
+  "aspect": 1.333,
+  "margin": 0.0,
+  "fit": "building"
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "tower-block",
+   "footprint": {
+    "rect": [
+     30,
+     15
+    ]
+   },
+   "at": [
+    10,
+    10
+   ],
+   "z0": 0,
+   "height": 18,
+   "storeys": 4,
+   "wall": {
+    "material": "brick",
+    "colour": "#8c6d58",
+    "windows": "punched",
+    "windowRatio": 0.2,
+    "bay": 4.5,
+    "plinth": 0.3,
+    "glassColour": "#9fb4c4",
+    "faces": {
+     "back": "plain",
+     "left": "plain"
+    },
+    "parapet": 0.6
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6d6a66",
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "foyer-wing",
+   "footprint": {
+    "rect": [
+     30,
+     16
+    ]
+   },
+   "at": [
+    -12,
+    2
+   ],
+   "z0": 0,
+   "height": 5.5,
+   "storeys": 1,
+   "wall": {
+    "material": "brick",
+    "colour": "#86654f",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0.2,
+    "faces": {
+     "left": "plain",
+     "back": "plain"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#7d7872",
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "mass",
+   "id": "classroom-block",
+   "footprint": {
+    "rect": [
+     40,
+     13
+    ]
+   },
+   "at": [
+    -34,
+    24
+   ],
+   "z0": 0,
+   "height": 9,
+   "storeys": 2,
+   "wall": {
+    "material": "brick",
+    "colour": "#9a7358",
+    "windows": "ribbon",
+    "windowRatio": 0.3,
+    "bay": 4,
+    "plinth": 0.3,
+    "faces": {
+     "left": "plain",
+     "back": "plain"
+    }
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#a8523f",
+    "material": "clay-tile",
+    "pitch": 18,
+    "overhang": 0.6
+   }
+  },
+  {
+   "type": "mass",
+   "id": "east-link",
+   "footprint": {
+    "rect": [
+     16,
+     12
+    ]
+   },
+   "at": [
+    40,
+    8
+   ],
+   "z0": 0,
+   "height": 8,
+   "storeys": 2,
+   "wall": {
+    "material": "brick",
+    "colour": "#8c6d58",
+    "windows": "ribbon",
+    "windowRatio": 0.25,
+    "bay": 4,
+    "plinth": 0.3,
+    "faces": {
+     "right": "plain",
+     "back": "plain"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6d6a66",
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "mass",
+   "id": "canopy-box",
+   "footprint": {
+    "rect": [
+     15,
+     7
+    ]
+   },
+   "at": [
+    -12,
+    -12
+   ],
+   "z0": 3.0,
+   "height": 1.6,
+   "storeys": 1,
+   "wall": {
+    "material": "render",
+    "colour": "#f1f0ec",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#ecebe6",
+    "parapet": 0.1,
+    "overhang": 0.4
+   }
+  },
+  {
+   "type": "sign-board",
+   "at": [
+    -12,
+    -15.6,
+    3.3
+   ],
+   "params": {}
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    -30,
+    -22,
+    0
+   ],
+   "params": {
+    "length": 50,
+    "height": 1.3,
+    "thickness": 0.15,
+    "kind": "fence",
+    "colour": "#8b9399"
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    0,
+    -4,
+    0
+   ],
+   "params": {
+    "kind": "conifer",
+    "height": 15
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    -30,
+    -14,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 10
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    34,
+    -22,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 11
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    -55,
+    6,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 9
+   }
+  },
+  {
+   "type": "car-park",
+   "at": [
+    26,
+    -32,
+    0
+   ],
+   "params": {
+    "width": 16,
+    "depth": 8,
+    "density": 0.6
+   }
+  },
+  {
+   "type": "flag",
+   "at": [
+    -26,
+    -18,
+    0
+   ],
+   "params": {
+    "height": 8,
+    "count": 2,
+    "colours": [
+     "#2e3f8c",
+     "#ffffff"
+    ]
+   }
+  }
+ ],
+ "site": {
+  "ground": "asphalt",
+  "forecourt": "parking",
+  "extent": [
+   120,
+   80
+  ]
+ },
+ "review": {
+  "rounds": 3,
+  "match": "fair",
+  "gaps": "Campus is 540 m across so one cluster is modelled; conifer and hedges simplified, no antennas or railings, window rhythm approximate"
+ }
+}

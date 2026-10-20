@@ -1,0 +1,291 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-transit",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Walton_on_Thames_railway_station_-_geograph.org.uk_-_2158325.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "geograph contributor",
+   "view": "front",
+   "file": "/tmp/places-evidence/london/lon-t1.jpg",
+   "used": "long low two-storey red and yellow-stock brick station building with a low slate hipped roof, arched ground-floor openings, small first-floor windows, flat canopy over the entrance, blank fascia board, forecourt with cycle racks and a taxi lane, platform bridge/shed beyond at the left"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Walton_on_Thames_Station_-_geograph.org.uk_-_4373598.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "geograph contributor",
+   "view": "side",
+   "file": "/tmp/places-evidence/london/lon-t3.jpg",
+   "used": "tall yellow-brown stock brick retaining wall at the entrance side, blue profiled-metal clad block beside it, ticket machine shelter, station sign post"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/1422918909",
+   "used": "platform roof outline (62 m by 7 m) setting the length and angle of the platform canopy"
+  }
+ ],
+ "camera": {
+  "yawDeg": 38,
+  "pitchDeg": 6,
+  "fovDeg": 40,
+  "aspect": 1.333,
+  "fit": "building",
+  "margin": 0.1
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "building",
+   "footprint": {
+    "rect": [
+     54,
+     9
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "height": 6.4,
+   "storeys": 2,
+   "wall": {
+    "material": "red-brick",
+    "colour": "#b4905a",
+    "windows": "punched",
+    "windowRatio": 0.1,
+    "bay": 3.6,
+    "bands": "#a8503a",
+    "plinth": 0.8,
+    "cornice": true,
+    "faces": {
+     "front": "punched",
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    }
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#4a4d52",
+    "material": "slate",
+    "pitch": 14,
+    "overhang": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "blue-shed",
+   "footprint": {
+    "rect": [
+     10,
+     7
+    ]
+   },
+   "at": [
+    -32,
+    2
+   ],
+   "height": 6.5,
+   "storeys": 1,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#2f4f8f",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 1.2
+   },
+   "roof": {
+    "form": "shed",
+    "colour": "#2a3f73",
+    "pitch": 8
+   }
+  },
+  {
+   "type": "core/canopy",
+   "at": [
+    8,
+    -7.5,
+    0
+   ],
+   "params": {
+    "form": "flat",
+    "width": 14,
+    "depth": 3.5,
+    "height": 3.2,
+    "thickness": 0.3,
+    "columns": 0,
+    "colour": "#3b3f44"
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    10,
+    -5.1,
+    0
+   ],
+   "params": {
+    "width": 14,
+    "height": 0.9,
+    "bottom": 3.4,
+    "colour": "#d8d6d0",
+    "frameColour": "#444a50",
+    "posts": false
+   }
+  },
+  {
+   "type": "core/steps",
+   "at": [
+    6,
+    -9,
+    0
+   ],
+   "params": {
+    "width": 4,
+    "rise": 0.3,
+    "run": 0.6,
+    "count": 1,
+    "colour": "#a79f94"
+   }
+  },
+  {
+   "type": "station-platform",
+   "at": [
+    0,
+    8,
+    0
+   ],
+   "params": {
+    "length": 64,
+    "depth": 6,
+    "height": 1.0,
+    "colour": "#b9b4aa"
+   }
+  },
+  {
+   "type": "platform-canopy",
+   "at": [
+    -4,
+    9,
+    1
+   ],
+   "params": {
+    "width": 40,
+    "depth": 4.5,
+    "height": 3.2
+   }
+  },
+  {
+   "type": "rail-track",
+   "at": [
+    0,
+    21,
+    0
+   ],
+   "params": {
+    "length": 70,
+    "tracks": 2,
+    "spacing": 5.4
+   }
+  },
+  {
+   "type": "station-platform",
+   "at": [
+    0,
+    29,
+    0
+   ],
+   "params": {
+    "length": 64,
+    "depth": 6,
+    "height": 1.0,
+    "colour": "#a9a49a"
+   }
+  },
+  {
+   "type": "rail-track",
+   "at": [
+    0,
+    43,
+    0
+   ],
+   "params": {
+    "length": 70,
+    "tracks": 2,
+    "spacing": 5.4
+   }
+  },
+  {
+   "type": "station-platform",
+   "at": [
+    0,
+    51,
+    0
+   ],
+   "params": {
+    "length": 64,
+    "depth": 6,
+    "height": 1.0,
+    "colour": "#b9b4aa"
+   }
+  },
+  {
+   "type": "bus-park-row",
+   "at": [
+    14,
+    -14,
+    0
+   ],
+   "params": {
+    "length": 14,
+    "kind": "taxi",
+    "density": 0.4
+   }
+  },
+  {
+   "type": "core/lamp",
+   "at": [
+    -18,
+    -12,
+    0
+   ],
+   "params": {
+    "height": 8,
+    "count": 4,
+    "spacing": 12
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -32,
+    24,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 10,
+    "count": 3,
+    "spread": 5
+   }
+  }
+ ],
+ "site": {
+  "ground": "asphalt",
+  "forecourt": "parking",
+  "extent": [
+   90,
+   80
+  ]
+ },
+ "review": {
+  "rounds": 2,
+  "match": "fair",
+  "gaps": "Station building is a plain brick box with a hipped roof: no arched ground-floor shopfront openings, red brick arch dressings or distinct end gables; no cycle racks, footbridge or the real forecourt road layout; platforms, island and tracks are straight generic strips with only one canopy; the exact building outline is estimated because the OSM match is only a platform roof."
+ }
+}

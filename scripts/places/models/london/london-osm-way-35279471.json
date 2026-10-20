@@ -1,0 +1,273 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-osm-way-35279471",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Edgwarebury_Park.JPG",
+   "licence": "Public domain",
+   "author": "Dudley Miles",
+   "view": "street",
+   "file": "/tmp/places-evidence/london/-35279471_1.jpg",
+   "used": "open mown grass sloping up to a tree belt, a few lone broadleaf trees (one bare, one sapling), autumn-coloured oaks and dark conifers on the skyline"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:The_entrance_to_Edgwarebury_Park_-_geograph.org.uk_-_4044468.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "geograph contributor",
+   "view": "front",
+   "used": "dark green iron gates with fleur-de-lis finials at a park entrance onto a suburban cul-de-sac, tarmac path, brick semi-detached houses"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/35279471",
+   "used": "park extent (840 m long strip, too large for the scene clamp, so one lawn section is modelled)"
+  }
+ ],
+ "camera": {
+  "yawDeg": 0,
+  "pitchDeg": 4,
+  "fovDeg": 60,
+  "aspect": 1.333,
+  "fit": "all",
+  "margin": -0.2,
+  "shiftY": 0.1
+ },
+ "parts": [
+  {
+   "type": "lawn",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "width": 110,
+    "depth": 80,
+    "colour": "#5f9a3c"
+   }
+  },
+  {
+   "type": "tree-grove",
+   "at": [
+    0,
+    34,
+    0
+   ],
+   "params": {
+    "width": 110,
+    "depth": 16,
+    "count": 22,
+    "kind": "broadleaf",
+    "min_height": 9,
+    "max_height": 15
+   }
+  },
+  {
+   "type": "tree-grove",
+   "at": [
+    -48,
+    0,
+    0
+   ],
+   "params": {
+    "width": 12,
+    "depth": 60,
+    "count": 8,
+    "kind": "broadleaf",
+    "min_height": 8,
+    "max_height": 13
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    -8,
+    6,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 13
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    24,
+    -6,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 6
+   }
+  },
+  {
+   "type": "football-pitch",
+   "at": [
+    18,
+    12,
+    0
+   ],
+   "params": {
+    "length": 60,
+    "width": 36,
+    "stripes": 6,
+    "markings": true,
+    "goals": true
+   }
+  },
+  {
+   "type": "path-strip",
+   "params": {
+    "points": [
+     [
+      -30,
+      -36
+     ],
+     [
+      -14,
+      -14
+     ],
+     [
+      8,
+      -2
+     ],
+     [
+      40,
+      4
+     ]
+    ],
+    "width": 2.6,
+    "colour": "#bdb9ae"
+   },
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "type": "pavilion",
+   "at": [
+    -30,
+    -12,
+    0
+   ],
+   "params": {
+    "width": 9,
+    "depth": 6,
+    "height": 3.4,
+    "roof": "hip",
+    "rise": 1.4,
+    "colour": "#a2573f",
+    "cap_colour": "#7d4a3a"
+   }
+  },
+  {
+   "type": "kiosk",
+   "at": [
+    -22,
+    -20,
+    0
+   ],
+   "params": {
+    "kind": "container",
+    "colour": "#5f8d67"
+   }
+  },
+  {
+   "type": "umbrella-cluster",
+   "at": [
+    -24,
+    -16,
+    0
+   ],
+   "params": {
+    "count": 3,
+    "spread": 3,
+    "colours": [
+     "#e9e4d8",
+     "#c8362f"
+    ]
+   }
+  },
+  {
+   "type": "gate",
+   "at": [
+    -36,
+    -36,
+    0
+   ],
+   "params": {
+    "width": 6,
+    "height": 2.4,
+    "colour": "#2f5a43",
+    "board_colour": "#2f5a43",
+    "arch": false
+   }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    0,
+    -38,
+    0
+   ],
+   "params": {
+    "length": 100,
+    "height": 1.2,
+    "thickness": 0.1,
+    "kind": "fence",
+    "colour": "#2f5a43"
+   }
+  },
+  {
+   "type": "flowerbeds",
+   "at": [
+    -30,
+    -26,
+    0
+   ],
+   "params": {
+    "rows": 1,
+    "cols": 2,
+    "width": 3,
+    "depth": 2,
+    "colours": [
+     "#e0a33a",
+     "#c8362f"
+    ]
+   }
+  },
+  {
+   "type": "lamp-post",
+   "at": [
+    -34,
+    -30,
+    0
+   ],
+   "params": {
+    "height": 5.5
+   }
+  }
+ ],
+ "site": {
+  "ground": "grass",
+  "forecourt": "none",
+  "extent": [
+   110,
+   80
+  ]
+ },
+ "review": {
+  "rounds": 2,
+  "match": "fair",
+  "gaps": "No autumn colour or bare lone tree, flat lawn; real park is an 840 m strip so one 110 m section is modelled; pavilion/gate/pitch from brief and gate photo"
+ }
+}

@@ -1,0 +1,175 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "abuja",
+ "venueId": "kubwa-kitchen",
+ "verified": "text",
+ "evidence": [
+  {
+   "kind": "text",
+   "ref": "scripts/places/briefs/abuja.json#kubwa-kitchen",
+   "used": "open roadside suya grill shed, about 14 x 8 m, mono-pitch metal roof, umbrellas, kiosk, signage board (brief marks it as a typed placeholder; no photo and the OSM match is a shared containing block, so not used)"
+  }
+ ],
+ "camera": {
+  "yawDeg": -20,
+  "pitchDeg": 10,
+  "fovDeg": 50,
+  "aspect": 1.5,
+  "fit": "all",
+  "margin": 0.1
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "back-wall-kitchen",
+   "footprint": {
+    "rect": [
+     14,
+     3
+    ]
+   },
+   "at": [
+    0,
+    2.5
+   ],
+   "height": 3.4,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e3d3b0",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0.2
+   },
+   "roof": {
+    "form": "shed",
+    "colour": "#5b6670",
+    "material": "metal-sheet",
+    "rise": 0.9,
+    "overhang": 0.4
+   }
+  },
+  {
+   "type": "open-shelter",
+   "at": [
+    0,
+    -1.5,
+    0
+   ],
+   "params": {
+    "length": 14,
+    "depth": 5,
+    "height": 3.2,
+    "form": "shed",
+    "support": "steel",
+    "colour": "#5b6670",
+    "accent": "#8a3b2e"
+   }
+  },
+  {
+   "type": "kiosk",
+   "at": [
+    -4.5,
+    -3,
+    0
+   ],
+   "params": {
+    "kind": "container",
+    "width": 2.4,
+    "depth": 1.8,
+    "height": 2.4,
+    "colour": "#8a3b2e"
+   }
+  },
+  {
+   "type": "awning",
+   "at": [
+    3,
+    -3,
+    0
+   ],
+   "params": {
+    "width": 4,
+    "depth": 1.4,
+    "colours": [
+     "#8a3b2e",
+     "#e3d3b0"
+    ]
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    0,
+    -4.2,
+    0
+   ],
+   "params": {
+    "width": 5,
+    "height": 1.2,
+    "bottom": 3.2,
+    "colour": "#8a3b2e",
+    "posts": false
+   }
+  },
+  {
+   "type": "beach-row",
+   "at": [
+    0,
+    -7,
+    0
+   ],
+   "params": {
+    "count": 4,
+    "spacing": 3.2,
+    "umbrellas": true,
+    "loungers": false,
+    "colours": [
+     "#c43a2f",
+     "#d9a021",
+     "#e3d3b0",
+     "#8a3b2e"
+    ]
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    9,
+    -4,
+    0
+   ],
+   "params": {
+    "kind": "acacia",
+    "height": 7
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    -10,
+    3,
+    0
+   ],
+   "params": {
+    "kind": "acacia",
+    "height": 6
+   }
+  }
+ ],
+ "site": {
+  "ground": "laterite",
+  "forecourt": "road",
+  "trees": [],
+  "extent": [
+   40,
+   30
+  ]
+ },
+ "review": {
+  "rounds": 0,
+  "match": "rough",
+  "gaps": "No photo or real outline exists for this typed venue; built from the brief only (open grill shed, umbrellas, kiosk, signboard); plastic seating and charcoal grill are not modelled."
+ }
+}

@@ -1,0 +1,238 @@
+{
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Chase_Farm_Hospital_(1).jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Wikimedia Commons contributor",
+   "view": "front",
+   "file": "/tmp/places-evidence/london/chase3.jpg",
+   "used": "new five-storey hospital: dark grey brick ground floor with deep brick piers carrying a covered walk, upper floors in buff and terracotta louvred fins over dark glazing, flat roof, blank fascia sign board"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/24437604",
+   "used": "site only (a 37 acre campus polygon, not a building outline); hospital footprint composed from the photo and brief (about 96 x 26 m)"
+  }
+ ],
+ "camera": {
+  "yawDeg": -30,
+  "pitchDeg": 4,
+  "fovDeg": 58,
+  "aspect": 1.333,
+  "fit": "building"
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "main",
+   "footprint": {
+    "rect": [
+     90,
+     26
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 6.5,
+   "storeys": 1,
+   "wall": {
+    "material": "brick",
+    "colour": "#454344",
+    "windows": "curtain",
+    "windowRatio": 0.55,
+    "bay": 6,
+    "bands": "#d8b48a",
+    "plinth": 0.3
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#454344"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "fin-clad",
+   "footprint": {
+    "rect": [
+     90,
+     26
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 6.5,
+   "height": 15,
+   "storeys": 4,
+   "wall": {
+    "material": "timber",
+    "colour": "#d6ab80",
+    "windows": "ribbon",
+    "windowRatio": 0.45,
+    "bay": 6,
+    "faces": {
+     "back": "plain"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6b6460"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "wing",
+   "footprint": {
+    "rect": [
+     24,
+     22
+    ]
+   },
+   "at": [
+    -57,
+    -2
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 13,
+   "storeys": 3,
+   "wall": {
+    "material": "brick",
+    "colour": "#58504c",
+    "windows": "ribbon",
+    "windowRatio": 0.35,
+    "bay": 8
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6b6460",
+    "parapet": 0.6
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    -18,
+    -23,
+    5.2
+   ],
+   "params": {
+    "width": 14,
+    "height": 1.6,
+    "bottom": 0,
+    "colour": "#e9e9e6",
+    "posts": false
+   }
+  },
+  {
+   "type": "ambulance-bay",
+   "at": [
+    34,
+    -20,
+    0
+   ],
+   "params": {
+    "width": 12,
+    "depth": 6,
+    "height": 4,
+    "columns": 3,
+    "colour": "#5a5859",
+    "roofColour": "#8a8a8a",
+    "vans": 2
+   }
+  },
+  {
+   "type": "core/canopy",
+   "at": [
+    -18,
+    -15,
+    0
+   ],
+   "params": {
+    "form": "flat",
+    "width": 22,
+    "depth": 6,
+    "height": 4.6,
+    "thickness": 0.6,
+    "columns": 4,
+    "colour": "#3f3e40",
+    "edgeColour": "#2c2c2e"
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    -18,
+    -13.5,
+    6.4
+   ],
+   "params": {
+    "width": 14,
+    "height": 1.4,
+    "bottom": 0,
+    "colour": "#e9e9e6",
+    "posts": false
+   }
+  },
+  {
+   "type": "core/colonnade",
+   "at": [
+    0,
+    -14.2,
+    0
+   ],
+   "params": {
+    "length": 84,
+    "count": 6,
+    "height": 6.4,
+    "radius": 0.9,
+    "kind": "square",
+    "beamHeight": 0.5,
+    "colour": "#3b3a3c",
+    "roofColour": "#3b3a3c"
+   }
+  }
+ ],
+ "site": {
+  "ground": "paving",
+  "forecourt": "plaza",
+  "forecourtDepth": 12,
+  "trees": [
+   {
+    "kind": "broadleaf",
+    "at": [
+     -56,
+     -26
+    ]
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     50,
+     -30
+    ]
+   }
+  ],
+  "extent": [
+   150,
+   100
+  ]
+ },
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-osm-way-24437604",
+ "review": {
+  "rounds": 3,
+  "match": "fair",
+  "gaps": "Louvred terracotta fins and dark brick piers are approximated by banded cladding and a thin colonnade; entrance recess, lettered fascia and glazed lobby are missing; OSM footprint is the whole campus so size is from the brief."
+ }
+}

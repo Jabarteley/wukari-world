@@ -1,0 +1,318 @@
+{
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:The_London_Clinic,_Marylebone_Road_-_geograph.org.uk_-_7665649.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "Adam Smith",
+   "view": "front",
+   "file": "/tmp/places-evidence/london/clinic1.jpg",
+   "used": "red-brick slab over a two-storey pale stone base, tall glazed stair bays at both ends, arched top-floor windows under a cornice and zinc roof, stepped side wings, iron railings"
+  },
+  {
+   "kind": "text",
+   "ref": "https://en.wikipedia.org/wiki/London_Clinic",
+   "used": "1932, eight floors, Marylebone Road corner"
+  }
+ ],
+ "camera": {
+  "yawDeg": -8,
+  "pitchDeg": 10,
+  "fovDeg": 60,
+  "aspect": 1.333,
+  "margin": 0.1
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "base",
+   "footprint": {
+    "rect": [
+     72,
+     30
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 8,
+   "storeys": 2,
+   "wall": {
+    "material": "stone",
+    "colour": "#c9c2b0",
+    "windows": "punched",
+    "windowRatio": 0.22,
+    "plinth": 0.5,
+    "bay": 20,
+    "faces": {
+     "left": "plain",
+     "right": "plain",
+     "back": "plain"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8a847a",
+    "overhang": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "slab",
+   "footprint": {
+    "rect": [
+     56,
+     26
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 8,
+   "height": 21,
+   "storeys": 6,
+   "wall": {
+    "material": "brick",
+    "colour": "#a85a3c",
+    "windows": "punched",
+    "windowRatio": 0.15,
+    "bay": 16,
+    "faces": {
+     "left": "plain",
+     "right": "plain",
+     "back": "plain"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6b6460",
+    "overhang": 0.3,
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "attic",
+   "footprint": {
+    "rect": [
+     50,
+     22
+    ]
+   },
+   "at": [
+    0,
+    1
+   ],
+   "rotDeg": 0,
+   "z0": 29,
+   "height": 4.5,
+   "storeys": 1,
+   "wall": {
+    "material": "brick",
+    "colour": "#a85a3c",
+    "windows": "arched",
+    "windowRatio": 0.3,
+    "bay": 12,
+    "faces": {
+     "left": "plain",
+     "right": "plain",
+     "back": "plain"
+    }
+   },
+   "roof": {
+    "form": "mansard",
+    "colour": "#8d979c",
+    "material": "metal-sheet",
+    "rise": 3.5,
+    "overhang": 0.6
+   }
+  },
+  {
+   "type": "mass",
+   "id": "stair-l",
+   "footprint": {
+    "rect": [
+     10,
+     27
+    ]
+   },
+   "at": [
+    -28,
+    -0.5
+   ],
+   "rotDeg": 0,
+   "z0": 8,
+   "height": 29,
+   "storeys": 8,
+   "wall": {
+    "material": "brick",
+    "colour": "#a05238",
+    "windows": "curtain",
+    "windowRatio": 0.5,
+    "faces": {
+     "left": "plain",
+     "right": "plain",
+     "back": "plain"
+    },
+    "bay": 12
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6b6460"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "stair-r",
+   "footprint": {
+    "rect": [
+     10,
+     27
+    ]
+   },
+   "at": [
+    28,
+    -0.5
+   ],
+   "rotDeg": 0,
+   "z0": 8,
+   "height": 29,
+   "storeys": 8,
+   "wall": {
+    "material": "brick",
+    "colour": "#a05238",
+    "windows": "curtain",
+    "windowRatio": 0.5,
+    "faces": {
+     "left": "plain",
+     "right": "plain",
+     "back": "plain"
+    },
+    "bay": 12
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6b6460"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "wing-l",
+   "footprint": {
+    "rect": [
+     18,
+     28
+    ]
+   },
+   "at": [
+    -45,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 30,
+   "storeys": 8,
+   "wall": {
+    "material": "brick",
+    "colour": "#a85a3c",
+    "windows": "punched",
+    "windowRatio": 0.2,
+    "bay": 24,
+    "faces": {
+     "left": "plain",
+     "right": "plain",
+     "back": "plain"
+    }
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#4a4d52",
+    "material": "metal-sheet",
+    "rise": 3,
+    "overhang": 0.6
+   }
+  },
+  {
+   "type": "mass",
+   "id": "wing-r",
+   "footprint": {
+    "rect": [
+     18,
+     28
+    ]
+   },
+   "at": [
+    45,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 26,
+   "storeys": 7,
+   "wall": {
+    "material": "brick",
+    "colour": "#a85a3c",
+    "windows": "punched",
+    "windowRatio": 0.2,
+    "bay": 24,
+    "faces": {
+     "left": "plain",
+     "right": "plain",
+     "back": "plain"
+    }
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#4a4d52",
+    "material": "metal-sheet",
+    "rise": 3,
+    "overhang": 0.6
+   }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    0,
+    -17,
+    0
+   ],
+   "params": {
+    "length": 72,
+    "height": 1.2,
+    "colour": "#2b2d30"
+   }
+  }
+ ],
+ "site": {
+  "ground": "paving",
+  "forecourt": "road",
+  "trees": [
+   {
+    "kind": "broadleaf",
+    "at": [
+     -30,
+     -24
+    ]
+   }
+  ],
+  "extent": [
+   130,
+   90
+  ]
+ },
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-clinic",
+ "review": {
+  "rounds": 3,
+  "match": "fair",
+  "gaps": "Triangle budget forced wide window bays and no brick banding, so the dense window grid, bracketed cornice and arched top-floor windows are only approximated; stair bays and wings are simplified boxes; OSM footprint is a different 1823 Nash building so a hand-sized outline was used; railings and cars are only a fence."
+ }
+}

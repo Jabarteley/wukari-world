@@ -1,0 +1,33 @@
+{
+ "schema": "allworld-place-model", "version": 2, "city": "lagos", "venueId": "police",
+ "verified": "photo",
+ "evidence": [
+  {"kind": "photo", "url": "https://commons.wikimedia.org/wiki/File:Ilupeju_Police_Station.jpg", "licence": "CC BY-SA 3.0", "author": "Adorable3", "view": "front", "used": "representative Lagos division station (Ilupeju): long single-storey charcoal block with dark low roof, two-storey salmon block behind with red hip roof, black railings on a low wall with hedge, blue-green-yellow steel gate, blank blue sign board, flagpole, street trees. The brief's police venue is a generic Lagos station, so this real station is the visual reference, not the same building."},
+  {"kind": "text", "ref": "scripts/places/briefs/lagos.json#police", "used": "authored venue, single storey, fenced yard, flagpole, signage board"}
+ ],
+ "camera": {"yawDeg": 0, "pitchDeg": 8, "fovDeg": 50, "aspect": 1.333, "fit": "all", "margin": 0.02},
+ "parts": [
+  {"type": "mass", "id": "front-block", "footprint": {"rect": [30, 9]}, "at": [-6, 0], "z0": 0, "height": 3.8, "storeys": 1,
+   "wall": {"material": "painted-render", "colour": "#4b4f55", "windows": "punched", "windowRatio": 0.1, "plinth": 0.4, "bay": 3.2, "faces": {"back": "plain", "left": "plain"}},
+   "roof": {"form": "hip", "colour": "#3d4044", "material": "corrugated", "pitch": 10, "overhang": 0.8}},
+  {"type": "mass", "id": "rear-block", "footprint": {"rect": [20, 10]}, "at": [4, 14], "z0": 0, "height": 7.2, "storeys": 2,
+   "wall": {"material": "painted-render", "colour": "#e0a07a", "windows": "punched", "windowRatio": 0.14, "plinth": 0.4, "bay": 3.4, "bands": "#c88660"},
+   "roof": {"form": "hip", "colour": "#b5524a", "material": "corrugated", "pitch": 14, "overhang": 0.8}},
+  {"type": "mass", "id": "guardroom", "footprint": {"rect": [6, 5]}, "at": [18, -2], "z0": 0, "height": 3.2, "storeys": 1,
+   "wall": {"material": "painted-render", "colour": "#5a5e63", "windows": "none", "windowRatio": 0, "plinth": 0.3},
+   "roof": {"form": "flat", "colour": "#4a4d51", "parapet": 0.2}},
+  {"type": "core/fence-wall", "at": [-24, -8, 0], "params": {"length": 30, "height": 1.8, "thickness": 0.15, "kind": "fence", "colour": "#1f2124", "pillarEvery": 6}},
+  {"type": "core/fence-wall", "at": [10, -8, 0], "params": {"length": 14, "height": 1.8, "thickness": 0.15, "kind": "fence", "colour": "#1f2124", "pillarEvery": 6}},
+  {"type": "hedge", "at": [-9, -9, 0], "params": {"length": 30, "height": 0.9, "depth": 1.0, "colour": "#4f7d3b"}},
+  {"type": "core/gate", "at": [4, -8, 0], "params": {"width": 6, "height": 2.2, "pillar": 0.8, "leaf": "bars", "leafColour": "#2a5fa8"}},
+  {"type": "core/sign-board", "at": [-6, -8.3, 0], "params": {"width": 5, "height": 2.4, "bottom": 1.0, "colour": "#2a5fa8", "frameColour": "#d4b030", "posts": true}},
+  {"type": "core/flag", "at": [16, -6, 0], "params": {"height": 8, "colour": "#1b7a43", "count": 1}},
+  {"type": "core/tree", "at": [-28, 2, 0], "params": {"kind": "broadleaf", "height": 14, "count": 1}},
+  {"type": "core/tree", "at": [30, 6, 0], "params": {"kind": "broadleaf", "height": 11, "count": 2, "spread": 6}},
+  {"type": "core/car", "at": [-10, -14, 0], "params": {"colour": "#f1f1ee", "count": 1, "yaw": 90}},
+  {"type": "core/car", "at": [18, -14, 0], "params": {"colour": "#1f2a3a", "count": 1, "yaw": 90}},
+  {"type": "core/lamp", "at": [-34, -12, 0], "params": {"height": 9, "count": 1}}
+ ],
+ "site": {"ground": "asphalt", "forecourt": "road", "extent": [90, 60]},
+ "review": {"rounds": 1, "match": "fair", "gaps": "Reference is a different real Lagos station used as a typical example; radio mast, wall graphics, the white-black kerb and window details are omitted; sizes estimated."}
+}

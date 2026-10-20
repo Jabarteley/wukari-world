@@ -1,0 +1,358 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "lagos",
+ "venueId": "shrine",
+ "verified": "text",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:New_Afrika_Shrine,_Lagos_Ikeja,_Nigeria_1.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Zeme (Commons)",
+   "view": "interior",
+   "file": "/tmp/places-evidence/lagos/m-shrine1.jpg",
+   "used": "interior only, so not compared: two-level open mezzanine bar under a huge exposed steel-truss roof of corrugated sheet; cream painted walls with a blue upper band; rasta-coloured (green/yellow/red) hangings. Informed materials and the two-storey bar block."
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:New_Afrika_Shrine,_Lagos_Ikeja,_Nigeria_2.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Zeme (Commons)",
+   "view": "interior",
+   "used": "interior only: timber/steel posts with coloured lights carrying the sheet roof, open sides, portraits on the back wall."
+  },
+  {
+   "kind": "text",
+   "used": "Brief: open-air music venue under metal roofs, stage, murals, walled forecourt. No exterior photo or OSM position found."
+  }
+ ],
+ "camera": {
+  "yawDeg": 25,
+  "pitchDeg": 14,
+  "fovDeg": 52
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "hall",
+   "footprint": {
+    "rect": [
+     56,
+     40
+    ]
+   },
+   "at": [
+    0,
+    6
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 8.5,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#d9d2bf",
+    "windows": "none",
+    "faces": {
+     "front": "plain"
+    },
+    "plinth": 0.6,
+    "bands": "#4f7fa0"
+   },
+   "roof": {
+    "form": "gable",
+    "colour": "#8a847a",
+    "material": "metal-sheet",
+    "pitch": 10,
+    "overhang": 2.5,
+    "axis": "x"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "bar-block",
+   "footprint": {
+    "rect": [
+     26,
+     10
+    ]
+   },
+   "at": [
+    -12,
+    -12
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 7.5,
+   "storeys": 2,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e6dcc2",
+    "windows": "punched",
+    "windowRatio": 0.18,
+    "plinth": 0.4,
+    "bands": "#4f7fa0"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8d8a84",
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "stage",
+   "footprint": {
+    "rect": [
+     22,
+     10
+    ]
+   },
+   "at": [
+    0,
+    24
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 5,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#8b6a4a",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6b5a4a",
+    "overhang": 1
+   }
+  },
+  {
+   "type": "mass",
+   "id": "stage-roof",
+   "footprint": {
+    "rect": [
+     30,
+     14
+    ]
+   },
+   "at": [
+    0,
+    22
+   ],
+   "rotDeg": 0,
+   "z0": 6,
+   "height": 4,
+   "storeys": 1,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#b7312a",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "shed",
+    "colour": "#7a746c",
+    "material": "metal-sheet",
+    "pitch": 6,
+    "overhang": 1.2
+   }
+  },
+  {
+   "type": "mass",
+   "id": "merch",
+   "footprint": {
+    "rect": [
+     8,
+     5
+    ]
+   },
+   "at": [
+    22,
+    -12
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 3.2,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e8d38a",
+    "windows": "none",
+    "bands": "#c0392b"
+   },
+   "roof": {
+    "form": "shed",
+    "colour": "#8d5a3b",
+    "material": "metal-sheet",
+    "pitch": 8,
+    "overhang": 0.5
+   }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    -40,
+    -22,
+    0
+   ],
+   "params": {
+    "length": 80,
+    "height": 2.6,
+    "thickness": 0.35,
+    "kind": "wall",
+    "colour": "#d9d2bf"
+   }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    -40,
+    -22,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "length": 58,
+    "height": 2.6,
+    "thickness": 0.35,
+    "kind": "wall",
+    "colour": "#d9d2bf"
+   }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    40,
+    -22,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "length": 58,
+    "height": 2.6,
+    "thickness": 0.35,
+    "kind": "wall",
+    "colour": "#d9d2bf"
+   }
+  },
+  {
+   "type": "core/gate",
+   "at": [
+    0,
+    -22,
+    0
+   ],
+   "params": {
+    "width": 8,
+    "height": 3.4,
+    "pillar": 1.2,
+    "colour": "#c0392b",
+    "leafColour": "#2d3033"
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    14,
+    -23,
+    0
+   ],
+   "params": {
+    "width": 6,
+    "height": 2.5,
+    "bottom": 2.6,
+    "colour": "#e8d38a",
+    "frameColour": "#6b5a4a"
+   }
+  },
+  {
+   "type": "statue-on-plinth",
+   "at": [
+    -24,
+    -18,
+    0
+   ],
+   "params": {
+    "height": 3.2
+   }
+  },
+  {
+   "type": "lamp",
+   "at": [
+    -30,
+    -19,
+    0
+   ],
+   "params": {
+    "height": 7,
+    "count": 4,
+    "spacing": 20
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -34,
+    20,
+    0
+   ],
+   "params": {
+    "kind": "palm",
+    "height": 9
+   }
+  }
+ ],
+ "site": {
+  "ground": "laterite",
+  "forecourt": "road",
+  "forecourtDepth": 12,
+  "trees": [
+   {
+    "kind": "palm",
+    "at": [
+     -34,
+     20
+    ]
+   },
+   {
+    "kind": "palm",
+    "at": [
+     34,
+     22
+    ]
+   }
+  ],
+  "cars": [
+   {
+    "at": [
+     -20,
+     -30
+    ]
+   },
+   {
+    "at": [
+     -10,
+     -30
+    ],
+    "colour": "#2f4f6f"
+   },
+   {
+    "at": [
+     20,
+     -30
+    ],
+    "colour": "#8a2b2b"
+   }
+  ],
+  "extent": [
+   100,
+   90
+  ]
+ },
+ "review": {
+  "rounds": 0,
+  "match": "rough",
+  "gaps": "Only interior photos exist; exterior form (sheet roof size, wall extent, murals, real layout of the Ikeja site) is inferred from the brief. Murals shown only as blue/red/yellow bands."
+ }
+}

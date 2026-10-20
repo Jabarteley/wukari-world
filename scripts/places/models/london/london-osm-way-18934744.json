@@ -1,0 +1,273 @@
+{
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Barking_Park_-_geograph.org.uk_-_600864.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "Nigel Cox",
+   "view": "street",
+   "file": "/tmp/places-evidence/london/bark1.jpg",
+   "used": "double avenue of tall plane and lime trees with an open leaf-strewn grass walk running to the boating lake at the left"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Barking_Park_Lake_-_geograph.org.uk_-_573339.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "Nigel Cox",
+   "view": "side",
+   "file": "/tmp/places-evidence/london/bark2.jpg",
+   "used": "long boating lake with a dark tarmac path and grass bank, tree-lined far shore, dull olive water"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/18934744",
+   "used": "park outline (about 1100 x 450 m, 28 ha); a 130 m cut of it is composed as the main entrance avenue, lake edge and memorial"
+  }
+ ],
+ "camera": {
+  "yawDeg": 0,
+  "pitchDeg": 6,
+  "fovDeg": 44,
+  "aspect": 1.333,
+  "fit": "all",
+  "margin": 0.0
+ },
+ "parts": [
+  {
+   "type": "water-surface",
+   "at": [
+    -48,
+    0,
+    0
+   ],
+   "params": {
+    "width": 34,
+    "depth": 116,
+    "colour": "#7a8a70",
+    "bank": true
+   }
+  },
+  {
+   "type": "tree-grove",
+   "at": [
+    -12,
+    0,
+    0
+   ],
+   "params": {
+    "width": 7,
+    "depth": 110,
+    "count": 14,
+    "min_height": 17,
+    "max_height": 22
+   }
+  },
+  {
+   "type": "tree-grove",
+   "at": [
+    12,
+    0,
+    0
+   ],
+   "params": {
+    "width": 7,
+    "depth": 110,
+    "count": 14,
+    "min_height": 17,
+    "max_height": 22
+   }
+  },
+  {
+   "type": "path-strip",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "points": [
+     [
+      0,
+      -58
+     ],
+     [
+      0,
+      58
+     ]
+    ],
+    "width": 6,
+    "colour": "#8a7a52"
+   }
+  },
+  {
+   "type": "path-strip",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "points": [
+     [
+      -30,
+      -56
+     ],
+     [
+      -30,
+      56
+     ]
+    ],
+    "width": 3,
+    "colour": "#3d4143"
+   }
+  },
+  {
+   "type": "gate-piers",
+   "at": [
+    0,
+    -58,
+    0
+   ],
+   "params": {
+    "width": 10,
+    "height": 4.2,
+    "kind": "piers"
+   }
+  },
+  {
+   "type": "statue-plinth",
+   "at": [
+    0,
+    52,
+    0
+   ],
+   "params": {
+    "height": 6,
+    "steps": 3,
+    "shape": "tier",
+    "figure": "stand",
+    "figure_colour": "#6a583b"
+   }
+  },
+  {
+   "type": "pier-boardwalk",
+   "at": [
+    -34,
+    20,
+    0
+   ],
+   "params": {
+    "length": 10,
+    "width": 2.4,
+    "height": 0.7
+   }
+  },
+  {
+   "type": "pavilion",
+   "at": [
+    34,
+    -20,
+    0
+   ],
+   "params": {
+    "width": 10,
+    "depth": 7,
+    "height": 4,
+    "roof": "hip",
+    "rise": 2,
+    "colour": "#9b4a35",
+    "cap_colour": "#4a4f57"
+   }
+  },
+  {
+   "type": "kiosk",
+   "at": [
+    24,
+    10,
+    0
+   ],
+   "params": {
+    "kind": "container",
+    "width": 4,
+    "depth": 3,
+    "height": 2.8
+   }
+  },
+  {
+   "type": "flowerbeds",
+   "at": [
+    34,
+    30,
+    0
+   ],
+   "params": {
+    "rows": 2,
+    "cols": 3,
+    "width": 6,
+    "depth": 5
+   }
+  },
+  {
+   "type": "core/lamp",
+   "at": [
+    -26,
+    -50,
+    0
+   ],
+   "params": {
+    "height": 5,
+    "count": 8,
+    "spacing": 14
+   }
+  },
+  {
+   "type": "tree-grove",
+   "at": [
+    40,
+    -44,
+    0
+   ],
+   "params": {
+    "width": 24,
+    "depth": 20,
+    "count": 6,
+    "min_height": 9,
+    "max_height": 13
+   }
+  },
+  {
+   "type": "tree-grove",
+   "at": [
+    40,
+    44,
+    0
+   ],
+   "params": {
+    "width": 24,
+    "depth": 20,
+    "count": 6,
+    "min_height": 9,
+    "max_height": 13
+   }
+  }
+ ],
+ "site": {
+  "ground": "grass",
+  "forecourt": "none",
+  "trees": 0,
+  "extent": [
+   130,
+   120
+  ]
+ },
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-osm-way-18934744",
+ "review": {
+  "rounds": 3,
+  "match": "rough",
+  "gaps": "Photo is a ground-level tree avenue; render is a stylised 130 m cut of the park with low-poly trees, flat lake and no autumn leaf cover; bowling greens, splash park and light railway are not modelled."
+ }
+}

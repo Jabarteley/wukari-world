@@ -1,0 +1,244 @@
+{
+ "verified": "text",
+ "evidence": [
+  {
+   "kind": "text",
+   "used": "brief only: generic coastal refinery silhouette; the venue is a legacy map point with no OSM match, so no footprint or photo"
+  }
+ ],
+ "camera": {
+  "yawDeg": 25,
+  "pitchDeg": 18,
+  "fovDeg": 55,
+  "fit": "all"
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "control-block",
+   "footprint": {
+    "rect": [
+     26,
+     14
+    ]
+   },
+   "at": [
+    -35,
+    -30
+   ],
+   "z0": 0,
+   "height": 7,
+   "storeys": 2,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e8e8e4",
+    "windows": "ribbon",
+    "windowRatio": 0.2
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#9aa3a8",
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "pump-house",
+   "footprint": {
+    "rect": [
+     30,
+     12
+    ]
+   },
+   "at": [
+    10,
+    -32
+   ],
+   "z0": 0,
+   "height": 6,
+   "storeys": 1,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#b5b9bc",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "shed",
+    "colour": "#9aa3a8",
+    "high": "back",
+    "rise": 1.5
+   }
+  },
+  {
+   "type": "process-column",
+   "at": [
+    -30,
+    10,
+    0
+   ],
+   "params": {
+    "radius": 2.6,
+    "height": 45,
+    "colour": "#b9bec2"
+   }
+  },
+  {
+   "type": "process-column",
+   "at": [
+    -18,
+    14,
+    0
+   ],
+   "params": {
+    "radius": 2,
+    "height": 34,
+    "colour": "#c9cdd0"
+   }
+  },
+  {
+   "type": "process-column",
+   "at": [
+    -6,
+    8,
+    0
+   ],
+   "params": {
+    "radius": 1.8,
+    "height": 28,
+    "colour": "#b5b9bc"
+   }
+  },
+  {
+   "type": "pipe-rack",
+   "at": [
+    -18,
+    0,
+    0
+   ],
+   "params": {
+    "length": 60,
+    "height": 7,
+    "levels": 2,
+    "width": 3.6,
+    "pipes": 6
+   }
+  },
+  {
+   "type": "tank-farm",
+   "at": [
+    40,
+    25,
+    0
+   ],
+   "params": {
+    "count": 4,
+    "rows": 2,
+    "radius": 9,
+    "height": 13,
+    "bund": true,
+    "colour": "#d9dcde"
+   }
+  },
+  {
+   "type": "flare-stack",
+   "at": [
+    -55,
+    45,
+    0
+   ],
+   "params": {
+    "height": 70
+   }
+  },
+  {
+   "type": "chimney",
+   "at": [
+    20,
+    -5,
+    0
+   ],
+   "params": {
+    "height": 42,
+    "radius": 1.6,
+    "material": "concrete",
+    "colour": "#c0392b"
+   }
+  },
+  {
+   "type": "chimney",
+   "at": [
+    28,
+    -5,
+    0
+   ],
+   "params": {
+    "height": 36,
+    "radius": 1.4,
+    "material": "concrete",
+    "colour": "#e8e8e4"
+   }
+  },
+  {
+   "type": "water-tank",
+   "at": [
+    -50,
+    -20,
+    0
+   ],
+   "params": {
+    "radius": 3,
+    "height": 5,
+    "legs": 4,
+    "colour": "#b5b9bc"
+   }
+  },
+  {
+   "type": "core/fence-wall",
+   "at": [
+    0,
+    -48,
+    0
+   ],
+   "params": {
+    "length": 120,
+    "height": 2.4,
+    "kind": "fence",
+    "colour": "#8d9298"
+   }
+  }
+ ],
+ "site": {
+  "ground": "asphalt",
+  "forecourt": "road",
+  "trees": [
+   {
+    "kind": "palm",
+    "at": [
+     -60,
+     -40
+    ]
+   },
+   {
+    "kind": "palm",
+    "at": [
+     60,
+     -40
+    ]
+   }
+  ],
+  "extent": [
+   150,
+   120
+  ]
+ },
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "lagos",
+ "venueId": "refinery",
+ "review": {
+  "rounds": 1,
+  "match": "rough",
+  "gaps": "Generic coastal refinery (no OSM match, no photo); columns, tank farm, pipe rack, flare, stacks; layout invented."
+ }
+}

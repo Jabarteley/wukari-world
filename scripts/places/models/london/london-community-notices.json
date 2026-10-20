@@ -1,0 +1,220 @@
+{
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:View_Towards_Croydon_Law_Courts_-_geograph.org.uk_-_4018912.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "Peter Trimming",
+   "view": "street",
+   "file": "/tmp/places-evidence/london/courts1.jpg",
+   "used": "buff-stone stepped blocks with blank walls and dark glazed upper band, brown brick tower with narrow glazing at left, flat roofs, park setting"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/193799556",
+   "used": "footprint"
+  }
+ ],
+ "camera": {
+  "yawDeg": 10,
+  "pitchDeg": 2,
+  "fovDeg": 50,
+  "aspect": 1.5,
+  "margin": 0.1
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "osm",
+   "footprint": {
+    "osm": true
+   },
+   "at": [
+    0,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 12,
+   "storeys": 3,
+   "wall": {
+    "material": "stone",
+    "colour": "#b9ab8d",
+    "windows": "ribbon",
+    "windowRatio": 0.12,
+    "plinth": 0.3,
+    "cornice": true
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8a8f94",
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "mass",
+   "id": "upper",
+   "footprint": {
+    "rect": [
+     26,
+     14
+    ]
+   },
+   "at": [
+    10,
+    -2
+   ],
+   "rotDeg": 0,
+   "z0": 12,
+   "height": 6,
+   "storeys": 2,
+   "wall": {
+    "material": "stone",
+    "colour": "#b4a688",
+    "windows": "ribbon",
+    "windowRatio": 0.15
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8a8f94",
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "mass",
+   "id": "glazed-band",
+   "footprint": {
+    "rect": [
+     18,
+     9
+    ]
+   },
+   "at": [
+    12,
+    -2
+   ],
+   "rotDeg": 0,
+   "z0": 18,
+   "height": 3.5,
+   "storeys": 1,
+   "wall": {
+    "material": "glass-curtain",
+    "colour": "#3f4a52",
+    "windows": "curtain",
+    "windowRatio": 0.8
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#555b60"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "brick-tower",
+   "footprint": {
+    "rect": [
+     9,
+     9
+    ]
+   },
+   "at": [
+    -36,
+    6
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 20,
+   "storeys": 5,
+   "wall": {
+    "material": "brick",
+    "colour": "#8a5545",
+    "windows": "punched",
+    "windowRatio": 0.12,
+    "faces": {
+     "left": "curtain"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6b6f73"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "plant",
+   "footprint": {
+    "rect": [
+     6,
+     6
+    ]
+   },
+   "at": [
+    16,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 21.5,
+   "height": 4,
+   "storeys": 1,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#3a3f44",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#444444"
+   }
+  },
+  {
+   "type": "flag",
+   "at": [
+    -10,
+    -26,
+    0
+   ],
+   "params": {}
+  }
+ ],
+ "site": {
+  "ground": "grass",
+  "forecourt": "plaza",
+  "trees": [
+   {
+    "kind": "broadleaf",
+    "at": [
+     -20,
+     -30
+    ]
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     0,
+     -34
+    ]
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     20,
+     -30
+    ]
+   }
+  ],
+  "extent": [
+   150,
+   110
+  ]
+ },
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-community-notices",
+ "review": {
+  "rounds": 3,
+  "match": "fair",
+  "gaps": "Only the 1991 Altyre Road side is photographed (from the park); the 1968 Barclay Road front with the Royal arms panel is not modelled; stepped stone blocks and polygonal towers are approximated by the OSM outline plus a few boxes; roof heights and brick tower position are estimated."
+ }
+}

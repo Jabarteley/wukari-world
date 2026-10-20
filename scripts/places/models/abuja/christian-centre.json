@@ -1,0 +1,404 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "abuja",
+ "venueId": "christian-centre",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Catedral_Nacional_em_Abuja,_Nig%C3%A9ria.jpg",
+   "licence": "CC BY 2.0",
+   "author": "Flickr user moli (see Commons page)",
+   "view": "front",
+   "file": "/tmp/places-evidence/abuja/ncc2.jpg",
+   "used": "overall massing: long cream hall of pointed-arch buttress bays under a pleated copper-pink roof, tall pointed-arch gable end with dark glazed arch, one very tall square taupe tower topped by a cross-shaped head, lantern and cross"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:National_Christian_Centre.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Jeanva",
+   "view": "front",
+   "file": "/tmp/places-evidence/abuja/ncc1.jpg",
+   "used": "gable pointed-arch outline with brown trim, brown-copper roof panels, palm planting, cross-headed tower"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:National_christian_centre5.jpg",
+   "licence": "Public domain",
+   "author": "Chippla Vandu",
+   "view": "side",
+   "file": "/tmp/places-evidence/abuja/ncc5.jpg",
+   "used": "long side: cream pointed buttress arches on pink-brown brick plinths with dark glazed arches between, lawn and palm avenue"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/175587960",
+   "used": "overall extent only (125 x 72 m stepped outline, 25 m height tag); the model keeps the long axis and the stepped side as buttress bays"
+  }
+ ],
+ "camera": {
+  "yawDeg": 38,
+  "pitchDeg": 3,
+  "fovDeg": 40,
+  "aspect": 0.76,
+  "margin": 0.05
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "hall",
+   "footprint": {
+    "rect": [
+     84,
+     38
+    ]
+   },
+   "at": [
+    -4,
+    4
+   ],
+   "height": 14,
+   "storeys": 2,
+   "wall": {
+    "material": "render",
+    "colour": "#e6d9b6",
+    "windows": "pointed-arch",
+    "windowRatio": 0.45,
+    "faces": {
+     "front": "pointed-arch",
+     "back": "plain",
+     "left": "plain",
+     "right": "pointed-arch"
+    },
+    "bay": 11,
+    "plinth": 1.8,
+    "glassColour": "#3b4a4d"
+   },
+   "roof": {
+    "form": "gable",
+    "colour": "#e2a07c",
+    "material": "copper",
+    "pitch": 38,
+    "overhang": 1.2,
+    "axis": "x"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "aisle",
+   "footprint": {
+    "rect": [
+     84,
+     9
+    ]
+   },
+   "at": [
+    -4,
+    -19.5
+   ],
+   "height": 7.5,
+   "storeys": 1,
+   "wall": {
+    "material": "render",
+    "colour": "#e3d3a8",
+    "windows": "none",
+    "windowRatio": 0,
+    "faces": {
+     "left": "plain",
+     "right": "plain",
+     "back": "plain"
+    },
+    "bay": 7.5,
+    "plinth": 1.4,
+    "glassColour": "#2f3d40"
+   },
+   "roof": {
+    "form": "shed",
+    "colour": "#e2a07c",
+    "material": "copper",
+    "rise": 3.2,
+    "high": "back",
+    "overhang": 0.6
+   }
+  },
+  {
+   "type": "buttress-row",
+   "at": [
+    -4,
+    -24.4,
+    0
+   ],
+   "params": {
+    "length": 82,
+    "count": 8,
+    "height": 13,
+    "proud": 2.6,
+    "width": 2.2,
+    "stages": 2,
+    "colour": "#e8dcb6"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "tower",
+   "footprint": {
+    "rect": [
+     6.5,
+     6.5
+    ]
+   },
+   "at": [
+    26,
+    -26
+   ],
+   "height": 56,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#a8a090",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#9a9283"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "tower-head",
+   "footprint": {
+    "rect": [
+     11,
+     5
+    ]
+   },
+   "at": [
+    26,
+    -26
+   ],
+   "z0": 56,
+   "height": 7,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#b9b09c",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#aaa18e"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "tower-arm",
+   "footprint": {
+    "rect": [
+     5,
+     11
+    ]
+   },
+   "at": [
+    26,
+    -26
+   ],
+   "z0": 56,
+   "height": 7,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#b9b09c",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#aaa18e"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "lantern",
+   "footprint": {
+    "rect": [
+     6,
+     6
+    ]
+   },
+   "at": [
+    26,
+    -26
+   ],
+   "z0": 63,
+   "height": 4.5,
+   "storeys": 1,
+   "wall": {
+    "material": "glass-curtain",
+    "colour": "#7f8e90",
+    "windows": "curtain",
+    "windowRatio": 0.8,
+    "plinth": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#9a9283"
+   }
+  },
+  {
+   "type": "cross",
+   "at": [
+    26,
+    -26,
+    67.5
+   ],
+   "params": {
+    "height": 8
+   }
+  },
+  {
+   "type": "glazed-gable",
+   "at": [
+    39,
+    4,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "width": 20,
+    "rise": 15,
+    "height": 6,
+    "mullions": 3,
+    "glass": "#2c3a3e"
+   }
+  },
+  {
+   "type": "portal",
+   "at": [
+    38.5,
+    4,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "width": 4,
+    "height": 7,
+    "shape": "pointed",
+    "door_colour": "#4a3326",
+    "steps": 4
+   }
+  },
+  {
+   "type": "steps",
+   "at": [
+    38.2,
+    4,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "width": 9,
+    "rise": 0.9,
+    "count": 5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "rear-wing",
+   "footprint": {
+    "rect": [
+     26,
+     20
+    ]
+   },
+   "at": [
+    -30,
+    28
+   ],
+   "height": 10,
+   "storeys": 1,
+   "wall": {
+    "material": "render",
+    "colour": "#e0d2aa",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 1.2,
+    "bay": 8,
+    "glassColour": "#3b4a4d"
+   },
+   "roof": {
+    "form": "gable",
+    "colour": "#dc9874",
+    "material": "copper",
+    "pitch": 25,
+    "overhang": 0.8,
+    "axis": "x"
+   }
+  },
+  {
+   "type": "cross",
+   "at": [
+    -20,
+    4,
+    28.5
+   ],
+   "params": {
+    "height": 8
+   }
+  }
+ ],
+ "site": {
+  "ground": "grass",
+  "forecourt": "garden",
+  "forecourtDepth": 10,
+  "trees": [
+   {
+    "kind": "palm",
+    "at": [
+     30,
+     -34
+    ],
+    "height": 18
+   },
+   {
+    "kind": "palm",
+    "at": [
+     40,
+     -28
+    ],
+    "height": 20
+   },
+   {
+    "kind": "palm",
+    "at": [
+     48,
+     -22
+    ],
+    "height": 19
+   },
+   {
+    "kind": "palm",
+    "at": [
+     -34,
+     -34
+    ],
+    "height": 17
+   }
+  ],
+  "extent": [
+   140,
+   110
+  ]
+ },
+ "review": {
+  "rounds": 3,
+  "match": "fair",
+  "gaps": "The real building is a sweeping fan of folded copper-pink roof planes over a stepped crescent of pointed cream buttress arches with a tall pointed gable and a slender cross-armed tower; the model is a single gable hall with an aisle row of buttresses, the tower is a plain shaft with a boxy head instead of a cross-shaped head and arrowhead lower collar, and the folded roof and central pyramid with cross are not modelled. OSM outline (stepped, 125 m) is used only for overall extent."
+ }
+}

@@ -1,0 +1,133 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "abuja",
+ "venueId": "kubwa-salon",
+ "verified": "text",
+ "evidence": [
+  {
+   "kind": "text",
+   "ref": "scripts/places/briefs/abuja.json#kubwa-salon",
+   "used": "single-storey shop-front about 10 x 8 m, mono-pitch roof, punched windows, painted board and awning (brief marks it as a typed placeholder; no photo; OSM match is a shared containing block, not used)"
+  }
+ ],
+ "camera": {
+  "yawDeg": -18,
+  "pitchDeg": 8,
+  "fovDeg": 48,
+  "aspect": 1.5,
+  "fit": "all",
+  "margin": 0.1
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "shop",
+   "footprint": {
+    "rect": [
+     10,
+     8
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "height": 3.5,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e8d38a",
+    "windows": "punched",
+    "windowRatio": 0.3,
+    "faces": {
+     "front": "punched",
+     "back": "none",
+     "left": "none",
+     "right": "none"
+    },
+    "bands": "#b4654a",
+    "plinth": 0.3
+   },
+   "roof": {
+    "form": "shed",
+    "colour": "#8a3b2e",
+    "material": "metal-sheet",
+    "rise": 1.0,
+    "overhang": 0.5
+   }
+  },
+  {
+   "type": "awning",
+   "at": [
+    -1,
+    -4.1,
+    0
+   ],
+   "params": {
+    "width": 5.5,
+    "depth": 1.5,
+    "colours": [
+     "#b4654a",
+     "#e8d38a"
+    ]
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    0,
+    -4.3,
+    0
+   ],
+   "params": {
+    "width": 6,
+    "height": 0.9,
+    "bottom": 3.1,
+    "colour": "#b4654a",
+    "posts": false
+   }
+  },
+  {
+   "type": "kiosk",
+   "at": [
+    8,
+    -3,
+    0
+   ],
+   "params": {
+    "kind": "container",
+    "width": 2.2,
+    "depth": 2.0,
+    "height": 2.4,
+    "colour": "#5b6670"
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    -8,
+    2,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 6
+   }
+  }
+ ],
+ "site": {
+  "ground": "laterite",
+  "forecourt": "road",
+  "trees": [],
+  "extent": [
+   36,
+   28
+  ]
+ },
+ "review": {
+  "rounds": 0,
+  "match": "rough",
+  "gaps": "No photo or real outline exists for this typed venue; built from the brief only (small shop-front, board, awning, kiosk); no interior or neighbouring shops."
+ }
+}

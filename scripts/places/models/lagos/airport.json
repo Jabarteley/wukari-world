@@ -1,0 +1,218 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "lagos",
+ "venueId": "airport",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:MMIA_Intl_Terminal_2019.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Sm105",
+   "file": "/tmp/places-evidence/lagos/airport1.jpg",
+   "view": "front",
+   "used": "long four-storey ribbon-banded block, glazed ground floor, roof sign band, control tower behind right, concrete grey colours"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:2009_airport_Lagos_Nigeria_6350754168.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "Flickr user (see Commons)",
+   "view": "back",
+   "used": "tower shaft and double-cab profile, stepped storeys, roof sign band"
+  }
+ ],
+ "camera": {
+  "yawDeg": 0,
+  "pitchDeg": 3,
+  "fovDeg": 50
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "base",
+   "footprint": {
+    "rect": [
+     114,
+     24
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "height": 8,
+   "storeys": 2,
+   "wall": {
+    "material": "glass-curtain",
+    "colour": "#8f9699",
+    "windows": "ribbon",
+    "windowRatio": 0.6,
+    "faces": {
+     "left": "plain",
+     "right": "plain",
+     "back": "plain"
+    },
+    "bands": "#a9a8a2",
+    "plinth": 0.6
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#9a9a95",
+    "overhang": 1.2,
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "mass",
+   "id": "upper",
+   "footprint": {
+    "rect": [
+     108,
+     19
+    ]
+   },
+   "at": [
+    -1,
+    2
+   ],
+   "z0": 8,
+   "height": 11,
+   "storeys": 3,
+   "wall": {
+    "material": "concrete",
+    "colour": "#a8a8a2",
+    "windows": "ribbon",
+    "windowRatio": 0.5,
+    "faces": {
+     "left": "plain",
+     "right": "plain",
+     "back": "plain"
+    },
+    "bands": "#6b6e70",
+    "plinth": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8f918f",
+    "overhang": 0.6,
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "sign-block",
+   "footprint": {
+    "rect": [
+     70,
+     6
+    ]
+   },
+   "at": [
+    -14,
+    6
+   ],
+   "z0": 19,
+   "height": 2.4,
+   "storeys": 1,
+   "wall": {
+    "material": "render",
+    "colour": "#7f8a85",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8a8c8a"
+   }
+  },
+  {
+   "type": "control-tower",
+   "at": [
+    40,
+    13,
+    0
+   ],
+   "params": {
+    "height": 40,
+    "style": "round",
+    "colour": "#b0afa8",
+    "shaftRadius": 3.4,
+    "cabRadius": 6.8,
+    "cabColour": "#6d8c9d",
+    "bandColour": "#8f9aa0"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "pier",
+   "footprint": {
+    "rect": [
+     14,
+     30
+    ]
+   },
+   "at": [
+    56,
+    4
+   ],
+   "height": 8,
+   "storeys": 2,
+   "wall": {
+    "material": "concrete",
+    "colour": "#a8a8a2",
+    "windows": "ribbon",
+    "windowRatio": 0.3,
+    "bands": "#6b6e70"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8f918f"
+   }
+  },
+  {
+   "type": "lamp",
+   "at": [
+    -45,
+    -22,
+    0
+   ],
+   "params": {
+    "height": 12,
+    "count": 5,
+    "spacing": 22
+   }
+  }
+ ],
+ "site": {
+  "ground": "paving",
+  "forecourt": "road",
+  "forecourtDepth": 12,
+  "trees": [
+   {
+    "kind": "palm",
+    "at": [
+     -62,
+     18
+    ]
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     66,
+     -26
+    ]
+   }
+  ],
+  "extent": [
+   150,
+   100
+  ]
+ },
+ "review": {
+  "rounds": 2,
+  "match": "fair",
+  "gaps": "Terminal shown as 114 m of a longer block (scene clamp); no rooftop antennas, weathering, apron vehicles, glass lobby or concrete sunshade detail; tower cab simplified and slightly thin."
+ }
+}

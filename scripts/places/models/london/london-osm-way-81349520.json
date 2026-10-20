@@ -1,0 +1,181 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-osm-way-81349520",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:London_Islamic_Cultural_Society_and_Mosque_2024-07-17.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "Tom Page",
+   "view": "front",
+   "file": "/tmp/places-evidence/london/lon-m1.jpg",
+   "used": "sand-yellow brick walls with a white dentil cornice, copper ribbed dome on a low drum, green mosaic panels with white pointed-arch window surrounds, one corner minaret with open balcony lantern and small dome, black railings on brick piers"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:London_Islamic_Cultural_Centre,_389-395_Wightman_Road,_N8_0NA_-_geograph.org.uk_-_661957.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "geograph contributor (Wightman Road view)",
+   "view": "street",
+   "file": "/tmp/places-evidence/london/lon-m2.jpg",
+   "used": "overall massing: square dome hall at the left, tall slim minaret and a taller recessed green-panelled entrance block at the right end, low brick boundary wall with railings"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/81349520",
+   "used": "footprint of the hall and annex"
+  }
+ ],
+ "camera": {
+  "yawDeg": 30,
+  "pitchDeg": 8,
+  "fovDeg": 40,
+  "aspect": 1.333
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "hall",
+   "footprint": {
+    "osm": true,
+    "rotDeg": -15
+   },
+   "height": 7.5,
+   "storeys": 1,
+   "wall": {
+    "material": "brick",
+    "colour": "#d6b87c",
+    "windows": "arched",
+    "windowRatio": 0.12,
+    "bands": "#f2eee4",
+    "plinth": 0.5,
+    "cornice": true,
+    "parapet": 0.5,
+    "bay": 8,
+    "faces": {
+     "front": "arched",
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#d8d2c4",
+    "parapet": 0.5
+   }
+  },
+  {
+   "type": "mosque-domed/dome",
+   "on": "hall",
+   "at": [
+    -6,
+    2,
+    0
+   ],
+   "params": {
+    "radius": 9.5,
+    "height": 9,
+    "drum": 1.0,
+    "colour": "#a47c4c",
+    "drum_colour": "#e8e2d4",
+    "flute": 12,
+    "finial": true,
+    "finial_height": 4
+   }
+  },
+  {
+   "type": "minaret",
+   "at": [
+    17,
+    -3,
+    0
+   ],
+   "rotDeg": -15,
+   "params": {
+    "height": 22,
+    "style": "pencil",
+    "base_width": 3.2,
+    "colour": "#d6b87c",
+    "trim": "#f2eee4",
+    "cap_colour": "#a9784a"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "entrance",
+   "footprint": {
+    "rect": [
+     6,
+     7
+    ]
+   },
+   "at": [
+    20,
+    2
+   ],
+   "rotDeg": -15,
+   "z0": 0,
+   "height": 11,
+   "storeys": 2,
+   "wall": {
+    "material": "brick",
+    "colour": "#7c9a8a",
+    "windows": "arched",
+    "windowRatio": 0.1,
+    "plinth": 0.3
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8fa89a",
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "core/fence-wall",
+   "at": [
+    -5,
+    -23,
+    0
+   ],
+   "rotDeg": -15,
+   "params": {
+    "length": 50,
+    "height": 1.8,
+    "thickness": 0.3,
+    "kind": "railing",
+    "pillarEvery": 6,
+    "colour": "#2b2b2b"
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -28,
+    -16,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 8,
+    "count": 1
+   }
+  }
+ ],
+ "site": {
+  "ground": "paving",
+  "forecourt": "road",
+  "extent": [
+   90,
+   70
+  ]
+ },
+ "review": {
+  "rounds": 2,
+  "match": "fair",
+  "gaps": "Front wall shows only plain arched windows, no green mosaic panels with white pointed-arch surrounds or diamond tiles; dome is smoother and less ribbed than the real copper one; minaret lantern is a plain pencil cap; no small side dome over the secondary entrance; railings lack gold spear tips."
+ }
+}

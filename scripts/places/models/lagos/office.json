@@ -1,0 +1,142 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "lagos",
+ "venueId": "office",
+ "verified": "text",
+ "evidence": [
+  {
+   "kind": "text",
+   "ref": "scripts/places/briefs/lagos.json places.office",
+   "used": "Victoria Island style tower, 36 x 30 m plan, 14 storeys, 56 m, glass curtain wall with concrete bands, podium, atrium glass, rooftop plant and helipad, car park, plaza; no photos or OSM position exist"
+  }
+ ],
+ "camera": {
+  "yawDeg": 30,
+  "pitchDeg": 10,
+  "fovDeg": 50
+ },
+ "parts": [
+  {
+   "type": "office-tower/podium-base",
+   "at": [
+    0,
+    -6,
+    0
+   ],
+   "params": {
+    "width": 50,
+    "depth": 22,
+    "floors": 2,
+    "floor_height": 4.2,
+    "upper": "punched",
+    "ground": "curtain",
+    "roof_colour": "#9aa3a8",
+    "wall_colour": "#b0aaa0",
+    "trim_colour": "#b0aaa0"
+   }
+  },
+  {
+   "type": "office-tower/tower-block",
+   "at": [
+    0,
+    4,
+    8.4
+   ],
+   "params": {
+    "width": 36,
+    "depth": 30,
+    "height": 47.6,
+    "storeys": 12,
+    "facade": "curtain",
+    "window_ratio": 0.6,
+    "bands": "#b0aaa0",
+    "glass_colour": "#9db8c6",
+    "setback_at": 0.0,
+    "roof_colour": "#9aa3a8",
+    "wall_colour": "#b0aaa0",
+    "trim_colour": "#b0aaa0"
+   }
+  },
+  {
+   "type": "office-tower/rooftop-plant",
+   "at": [
+    0,
+    4,
+    56
+   ],
+   "params": {
+    "width": 30,
+    "depth": 24,
+    "water_tank": true,
+    "roof_colour": "#9aa3a8",
+    "wall_colour": "#b0aaa0",
+    "trim_colour": "#b0aaa0"
+   }
+  },
+  {
+   "type": "office-tower/rooftop-helipad",
+   "at": [
+    -8,
+    4,
+    56.2
+   ],
+   "params": {
+    "radius": 7
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    -18,
+    -22,
+    0
+   ],
+   "params": {
+    "width": 4,
+    "height": 1.6,
+    "bottom": 1.2,
+    "colour": "#3a4a58"
+   }
+  },
+  {
+   "type": "office-tower/tree-avenue",
+   "at": [
+    0,
+    -26,
+    0
+   ],
+   "params": {
+    "length": 56,
+    "count": 6,
+    "kind": "palm"
+   }
+  },
+  {
+   "type": "market-open/car-park",
+   "at": [
+    38,
+    4,
+    0
+   ],
+   "params": {
+    "width": 20,
+    "depth": 24
+   }
+  }
+ ],
+ "site": {
+  "ground": "paving",
+  "forecourt": "plaza",
+  "trees": 0,
+  "extent": [
+   110,
+   80
+  ]
+ },
+ "review": {
+  "rounds": 1,
+  "match": "rough",
+  "gaps": "No photo or footprint; a typed Victoria Island style tower. Actual building, crown and glazing tint unknown."
+ }
+}

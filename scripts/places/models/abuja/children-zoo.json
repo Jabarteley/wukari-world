@@ -1,0 +1,527 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "abuja",
+ "venueId": "children-zoo",
+ "verified": "text",
+ "evidence": [
+  {
+   "kind": "text",
+   "used": "red-brown bare laterite ground, scrub and shade trees inside animal paddocks (animals only, no building visible); photo shows animals only, not the buildings, so it is context for ground/fence colours and no photo comparison was possible",
+   "source": "https://commons.wikimedia.org/wiki/File:National_Children%27s_Park,_Abuja_2.jpg (CC BY-SA 4.0, Bennet Otoho)"
+  },
+  {
+   "kind": "text",
+   "used": "galvanised wire-mesh paddock fence on steel posts, red dirt paths, green undergrowth; photo shows animals only, not the buildings, so it is context for ground/fence colours and no photo comparison was possible",
+   "source": "https://commons.wikimedia.org/wiki/File:National_Children%27s_Park,_Abuja_4.jpg (CC BY-SA 4.0, Bennet Otoho)"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/1255704136",
+   "used": "nearest match is a 16 x 4 m building only (not the park); used as the small admin block by the entrance"
+  }
+ ],
+ "camera": {
+  "yawDeg": 20,
+  "pitchDeg": 32,
+  "fovDeg": 40,
+  "aspect": 1.333,
+  "fit": "all",
+  "margin": 0.08
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "lawn",
+   "footprint": {
+    "rect": [
+     92,
+     80
+    ]
+   },
+   "at": [
+    0,
+    3
+   ],
+   "height": 0.5,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#8a9a5a",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#7f9a52"
+   },
+   "z0": -0.46
+  },
+  {
+   "type": "core/gate",
+   "at": [
+    0,
+    -38,
+    0
+   ],
+   "params": {
+    "width": 10,
+    "height": 4,
+    "pillar": 1.4,
+    "leaf": "bars",
+    "colour": "#e8d9a8",
+    "leafColour": "#2d3033"
+   }
+  },
+  {
+   "type": "core/fence-wall",
+   "at": [
+    -32,
+    -38,
+    0
+   ],
+   "params": {
+    "length": 50,
+    "height": 2.2,
+    "thickness": 0.35,
+    "kind": "wall",
+    "colour": "#e8d9a8"
+   }
+  },
+  {
+   "type": "core/fence-wall",
+   "at": [
+    32,
+    -38,
+    0
+   ],
+   "params": {
+    "length": 50,
+    "height": 2.2,
+    "thickness": 0.35,
+    "kind": "wall",
+    "colour": "#e8d9a8"
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    -9,
+    -37.5,
+    0
+   ],
+   "params": {
+    "width": 5,
+    "height": 2,
+    "bottom": 3.2,
+    "colour": "#7aa05a",
+    "frameColour": "#b4654a",
+    "posts": true
+   }
+  },
+  {
+   "type": "ticket-kiosk",
+   "at": [
+    -8,
+    -32,
+    0
+   ],
+   "params": {
+    "width": 3,
+    "depth": 2.4,
+    "height": 2.7,
+    "colour": "#b4654a",
+    "sign_colour": "#7aa05a"
+   }
+  },
+  {
+   "type": "ticket-kiosk",
+   "at": [
+    8,
+    -32,
+    0
+   ],
+   "params": {
+    "width": 3,
+    "depth": 2.4,
+    "height": 2.7,
+    "colour": "#b4654a",
+    "sign_colour": "#7aa05a"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "admin",
+   "footprint": {
+    "rect": [
+     16,
+     5
+    ]
+   },
+   "at": [
+    -26,
+    -26
+   ],
+   "height": 3.4,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e8d9a8",
+    "windows": "punched",
+    "windowRatio": 0.2,
+    "plinth": 0.3,
+    "bay": 4
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#8a3b2e",
+    "material": "metal-sheet",
+    "pitch": 18,
+    "overhang": 0.6
+   }
+  },
+  {
+   "type": "park-pavilion",
+   "at": [
+    0,
+    -8,
+    0
+   ],
+   "params": {
+    "width": 12,
+    "depth": 8,
+    "height": 3.6,
+    "kind": "hip",
+    "roof_colour": "#8a3b2e"
+   }
+  },
+  {
+   "type": "carousel",
+   "at": [
+    22,
+    -10,
+    0
+   ],
+   "params": {
+    "radius": 5,
+    "height": 6.5,
+    "colour": "#d9a441"
+   }
+  },
+  {
+   "type": "bandstand",
+   "at": [
+    -22,
+    -8,
+    0
+   ],
+   "params": {
+    "radius": 3.8,
+    "height": 3.4
+   }
+  },
+  {
+   "type": "park-bench",
+   "at": [
+    -8,
+    -20,
+    0
+   ],
+   "params": {
+    "count": 4,
+    "spacing": 2.4
+   }
+  },
+  {
+   "type": "statue-plinth",
+   "at": [
+    -4,
+    -22,
+    0
+   ],
+   "params": {
+    "height": 4.0,
+    "width": 1.6,
+    "steps": 1,
+    "shape": "block",
+    "figure": "stand",
+    "figure_colour": "#6a583b"
+   }
+  },
+  {
+   "type": "statue-plinth",
+   "at": [
+    6,
+    -22,
+    0
+   ],
+   "params": {
+    "height": 4.0,
+    "width": 1.6,
+    "steps": 1,
+    "shape": "block",
+    "figure": "stand",
+    "figure_colour": "#4a3a30"
+   }
+  },
+  {
+   "type": "pen",
+   "at": [
+    -36,
+    10,
+    0
+   ],
+   "params": {
+    "width": 14,
+    "depth": 12,
+    "animals": 2,
+    "kind": "small"
+   }
+  },
+  {
+   "type": "pen",
+   "at": [
+    -18,
+    12,
+    0
+   ],
+   "params": {
+    "width": 14,
+    "depth": 12,
+    "animals": 2,
+    "kind": "small"
+   }
+  },
+  {
+   "type": "pen",
+   "at": [
+    0,
+    12,
+    0
+   ],
+   "params": {
+    "width": 14,
+    "depth": 12,
+    "animals": 2,
+    "kind": "small"
+   }
+  },
+  {
+   "type": "pen",
+   "at": [
+    18,
+    12,
+    0
+   ],
+   "params": {
+    "width": 14,
+    "depth": 12,
+    "animals": 2,
+    "kind": "small"
+   }
+  },
+  {
+   "type": "pen",
+   "at": [
+    36,
+    10,
+    0
+   ],
+   "params": {
+    "width": 14,
+    "depth": 12,
+    "animals": 2,
+    "kind": "small"
+   }
+  },
+  {
+   "type": "pen",
+   "at": [
+    -30,
+    30,
+    0
+   ],
+   "params": {
+    "width": 14,
+    "depth": 12,
+    "animals": 2,
+    "kind": "small"
+   }
+  },
+  {
+   "type": "pen",
+   "at": [
+    -8,
+    32,
+    0
+   ],
+   "params": {
+    "width": 14,
+    "depth": 12,
+    "animals": 2,
+    "kind": "small"
+   }
+  },
+  {
+   "type": "pen",
+   "at": [
+    14,
+    32,
+    0
+   ],
+   "params": {
+    "width": 14,
+    "depth": 12,
+    "animals": 2,
+    "kind": "small"
+   }
+  },
+  {
+   "type": "pen",
+   "at": [
+    34,
+    30,
+    0
+   ],
+   "params": {
+    "width": 14,
+    "depth": 12,
+    "animals": 2,
+    "kind": "small"
+   }
+  },
+  {
+   "type": "kiosk",
+   "at": [
+    26,
+    -24,
+    0
+   ],
+   "params": {
+    "kind": "container",
+    "width": 3.4,
+    "depth": 2.4,
+    "height": 2.6,
+    "colour": "#7aa05a"
+   }
+  },
+  {
+   "type": "kiosk",
+   "at": [
+    -34,
+    -12,
+    0
+   ],
+   "params": {
+    "kind": "container",
+    "width": 3.4,
+    "depth": 2.4,
+    "height": 2.6,
+    "colour": "#b4654a"
+   }
+  }
+ ],
+ "site": {
+  "ground": "laterite",
+  "forecourt": "none",
+  "trees": [
+   {
+    "kind": "broadleaf",
+    "at": [
+     -48,
+     -20
+    ],
+    "height": 13
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     -46,
+     0
+    ],
+    "height": 15
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     48,
+     -18
+    ],
+    "height": 14
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     48,
+     2
+    ],
+    "height": 16
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     -12,
+     0
+    ],
+    "height": 12
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     10,
+     2
+    ],
+    "height": 13
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     -26,
+     22
+    ],
+    "height": 14
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     24,
+     22
+    ],
+    "height": 13
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     0,
+     44
+    ],
+    "height": 15
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     -44,
+     40
+    ],
+    "height": 14
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     44,
+     42
+    ],
+    "height": 15
+   }
+  ],
+  "extent": [
+   116,
+   106
+  ]
+ },
+ "review": {
+  "rounds": 3,
+  "match": "rough",
+  "gaps": "No photo of any building or the layout exists, so this is a plausible gated children's park (gate, ticket kiosks, admin block, pavilion, carousel, bandstand, statues, nine animal paddocks) from the brief, not the real arrangement; pens are low open timber rails (the real paddocks use wire mesh) and the animals are generic."
+ }
+}

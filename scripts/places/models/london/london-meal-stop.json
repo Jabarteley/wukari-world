@@ -1,0 +1,327 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-meal-stop",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Ace_Cafe_4.jpg",
+   "licence": "CC BY-SA 3.0",
+   "author": "Tarek Chaib",
+   "view": "detail",
+   "used": "the glazed frontage: tall multi-pane windows with warm brown timber-colour mullions between cream rendered piers, a deep dark fascia board on top with a projecting flat roof edge",
+   "file": "/tmp/places-evidence/london/london-meal-stop_2.jpg"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/312403524",
+   "used": "footprint scale only (32x13 m, containing quality); modelled as simple rectangles"
+  }
+ ],
+ "camera": {
+  "yawDeg": -22,
+  "pitchDeg": 5,
+  "fovDeg": 42,
+  "aspect": 1.333,
+  "margin": 0.0,
+  "fit": "building"
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "hall",
+   "footprint": {
+    "rect": [
+     34,
+     13
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 8,
+   "storeys": 2,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#ece6d6",
+    "windows": "curtain",
+    "windowRatio": 0.7,
+    "bay": 2.8,
+    "faces": {
+     "front": "curtain",
+     "left": "plain",
+     "right": "plain",
+     "back": "punched"
+    },
+    "plinth": 0.3,
+    "bands": "#a8663a"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#3b3f48",
+    "overhang": 1.4,
+    "parapet": 0.6
+   }
+  },
+  {
+   "type": "mass",
+   "id": "annex",
+   "footprint": {
+    "rect": [
+     10,
+     13
+    ]
+   },
+   "at": [
+    -22,
+    2
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 4.5,
+   "storeys": 1,
+   "wall": {
+    "material": "brick",
+    "colour": "#a9422f",
+    "windows": "ribbon",
+    "windowRatio": 0.3
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6b6460",
+    "overhang": 0.4,
+    "parapet": 0.3
+   }
+  },
+  {
+   "type": "flat-canopy",
+   "at": [
+    6,
+    -9,
+    0
+   ],
+   "params": {
+    "width": 14,
+    "depth": 4.5,
+    "height": 3.8,
+    "colour": "#3b3f48"
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    0,
+    -7.2,
+    0
+   ],
+   "params": {
+    "width": 14,
+    "height": 1.2,
+    "bottom": 5.6,
+    "colour": "#2b2f38",
+    "posts": false
+   }
+  },
+  {
+   "type": "neon-strip",
+   "at": [
+    -4,
+    -6.6,
+    4.6
+   ],
+   "params": {
+    "length": 10,
+    "height": 1,
+    "colour": "#ff5a3c"
+   }
+  },
+  {
+   "type": "motorbike",
+   "at": [
+    -12,
+    -14,
+    0
+   ],
+   "rotDeg": 0,
+   "params": {
+    "colour": "#c43a2a"
+   }
+  },
+  {
+   "type": "motorbike",
+   "at": [
+    -9.5,
+    -14,
+    0
+   ],
+   "params": {
+    "colour": "#1f2328"
+   }
+  },
+  {
+   "type": "motorbike",
+   "at": [
+    -7,
+    -14,
+    0
+   ],
+   "params": {
+    "colour": "#e0a22a"
+   }
+  },
+  {
+   "type": "motorbike",
+   "at": [
+    -4.5,
+    -14,
+    0
+   ],
+   "params": {
+    "colour": "#8a9097"
+   }
+  },
+  {
+   "type": "motorbike",
+   "at": [
+    -2,
+    -14,
+    0
+   ],
+   "params": {
+    "colour": "#c43a2a"
+   }
+  },
+  {
+   "type": "motorbike",
+   "at": [
+    0.5,
+    -14,
+    0
+   ],
+   "params": {
+    "colour": "#1f2328"
+   }
+  },
+  {
+   "type": "motorbike",
+   "at": [
+    -11,
+    -18,
+    0
+   ],
+   "params": {
+    "colour": "#3a5f8f"
+   }
+  },
+  {
+   "type": "motorbike",
+   "at": [
+    -8,
+    -18,
+    0
+   ],
+   "params": {
+    "colour": "#c43a2a"
+   }
+  },
+  {
+   "type": "motorbike",
+   "at": [
+    -5,
+    -18,
+    0
+   ],
+   "params": {
+    "colour": "#d8d8d0"
+   }
+  },
+  {
+   "type": "motorbike",
+   "at": [
+    -2,
+    -18,
+    0
+   ],
+   "params": {
+    "colour": "#e0a22a"
+   }
+  },
+  {
+   "type": "car-park",
+   "at": [
+    16,
+    -14,
+    0
+   ],
+   "params": {
+    "width": 22,
+    "depth": 10,
+    "density": 0.5
+   }
+  },
+  {
+   "type": "table-set",
+   "at": [
+    16,
+    -8,
+    0
+   ],
+   "params": {
+    "chairs": 4
+   }
+  },
+  {
+   "type": "table-set",
+   "at": [
+    19,
+    -8,
+    0
+   ],
+   "params": {
+    "chairs": 4
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    -28,
+    -6,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 8
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    26,
+    10,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 9
+   }
+  }
+ ],
+ "site": {
+  "ground": "asphalt",
+  "forecourt": "parking",
+  "extent": [
+   80,
+   60
+  ]
+ },
+ "review": {
+  "rounds": 2,
+  "match": "fair",
+  "gaps": "Reference photo is a blurred night close-up of the glazed frontage only: mullions are thin, glazing is dark not lit, no readable fascia lettering (blank board), side wings, roof edge and forecourt layout are not evidenced; motorbikes are generic."
+ }
+}

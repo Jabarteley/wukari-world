@@ -1,0 +1,335 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "abuja",
+ "venueId": "jabi-lake-park",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Jabi_Reservoir_9.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Ibrokhan1",
+   "view": "street",
+   "file": "/tmp/places-evidence/abuja/jabi1.jpg",
+   "used": "wide pale concrete promenade beside the lake, kerbed tree pits with gravel, low trimmed hedge along the water edge, twin-arm white lamp posts, black benches and tables, slatted shelter roof on steel posts at far left, lake to the right with a far shore of trees"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Jabi_Reservoir_7.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Ibrokhan1",
+   "view": "side",
+   "file": "/tmp/places-evidence/abuja/jabi2.jpg",
+   "used": "timber lakeside deck with bamboo rail, small open timber jetty frame on the water, green and red painted boat, low green far shore"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Jabi_Reservoir_4.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Ibrokhan1",
+   "view": "aerial",
+   "file": "/tmp/places-evidence/abuja/jabi4.jpg",
+   "used": "looped path and headland shape of the shore, green fringe"
+  }
+ ],
+ "camera": {
+  "yawDeg": 14,
+  "pitchDeg": 10,
+  "fovDeg": 40,
+  "aspect": 1.333,
+  "fit": "all",
+  "margin": 0.0
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "promenade",
+   "footprint": {
+    "rect": [
+     22,
+     110
+    ]
+   },
+   "at": [
+    0,
+    10
+   ],
+   "z0": 0,
+   "height": 0.5,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#c9c1b2",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#c9c1b2"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "deck",
+   "footprint": {
+    "rect": [
+     10,
+     16
+    ]
+   },
+   "at": [
+    -17,
+    -8
+   ],
+   "z0": 0,
+   "height": 0.9,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#9a7b4f",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8a6a45"
+   }
+  },
+  {
+   "type": "water-surface",
+   "at": [
+    48,
+    15,
+    0
+   ],
+   "params": {
+    "width": 70,
+    "depth": 150,
+    "colour": "#7f9aa6",
+    "bank": true
+   }
+  },
+  {
+   "type": "pergola",
+   "at": [
+    -17,
+    30,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "width": 6,
+    "depth": 22,
+    "height": 3.2,
+    "colour": "#5b6670"
+   }
+  },
+  {
+   "type": "pergola",
+   "at": [
+    -17,
+    -8,
+    0.9
+   ],
+   "params": {
+    "width": 9,
+    "depth": 6,
+    "height": 3,
+    "colour": "#8a6a45"
+   }
+  },
+  {
+   "type": "pier-boardwalk",
+   "at": [
+    14,
+    -10,
+    0
+   ],
+   "rotDeg": 0,
+   "params": {
+    "length": 20,
+    "width": 2.6,
+    "height": 0.7,
+    "colour": "#8a6a43"
+   }
+  },
+  {
+   "type": "kiosk",
+   "at": [
+    -12,
+    22,
+    0
+   ],
+   "params": {
+    "kind": "container",
+    "width": 4,
+    "depth": 3,
+    "height": 2.6
+   }
+  },
+  {
+   "type": "kiosk",
+   "at": [
+    -12,
+    48,
+    0
+   ],
+   "params": {
+    "kind": "container",
+    "width": 4,
+    "depth": 3,
+    "height": 2.6
+   }
+  },
+  {
+   "type": "kiosk",
+   "at": [
+    -12,
+    -30,
+    0
+   ],
+   "params": {
+    "kind": "container",
+    "width": 4,
+    "depth": 3,
+    "height": 2.6
+   }
+  },
+  {
+   "type": "core/lamp",
+   "at": [
+    8,
+    -25,
+    0
+   ],
+   "params": {
+    "height": 7,
+    "count": 6,
+    "spacing": 16
+   }
+  },
+  {
+   "type": "tree-grove",
+   "at": [
+    -30,
+    20,
+    0
+   ],
+   "params": {
+    "width": 16,
+    "depth": 70,
+    "count": 10,
+    "min_height": 7,
+    "max_height": 11
+   }
+  },
+  {
+   "type": "garden-bed",
+   "at": [
+    11,
+    0,
+    0
+   ],
+   "params": {
+    "width": 1.5,
+    "depth": 60,
+    "hedge": true,
+    "colour": "#6b8f3f"
+   }
+  },
+  {
+   "type": "core/gate",
+   "at": [
+    0,
+    -48,
+    0
+   ],
+   "params": {
+    "width": 8,
+    "height": 3,
+    "pillar": 1.0
+   }
+  },
+  {
+   "type": "core/fence-wall",
+   "at": [
+    -22,
+    -45,
+    0
+   ],
+   "params": {
+    "length": 100,
+    "height": 1.6,
+    "thickness": 0.3,
+    "kind": "wall",
+    "colour": "#b0aaa0"
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    7,
+    -28,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 9,
+    "count": 1
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    7,
+    -6,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 11,
+    "count": 1
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    7,
+    16,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 9,
+    "count": 1
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    7,
+    38,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 11,
+    "count": 1
+   }
+  }
+ ],
+ "site": {
+  "ground": "grass",
+  "forecourt": "none",
+  "extent": [
+   130,
+   150
+  ]
+ },
+ "review": {
+  "rounds": 2,
+  "match": "rough",
+  "gaps": "Park has no building so the render is a wide site view, not the first-person promenade of the photo; promenade, lakeshore, shelter roofs, lamps, trees, boardwalk jetty and kiosks are placed from the photos but the twin-arm lamps, kerbed tree pits, hedge and black benches are simplified; shore outline is a straight rectangle, not the real curved headland; no OSM outline exists."
+ }
+}

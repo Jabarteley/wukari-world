@@ -91,12 +91,12 @@ export function postEnabled(win: { location?: { search?: string } } = globalThis
 }
 
 /**
- * Post-process ambient occlusion is on by default when the stack is on. Measured on an M4 Pro at 1080p: the AO pass adds about 0.7 to 1.5 ms
- * and the whole stack about 3 ms; at 2x about 2.2 ms for AO and 3.7 ms for the stack (docs/agent-work/os-phase2-post-20261019.md), inside the
- * 3 ms and 5 ms gates. `?ao=0` turns it off (and, in look.ts, the baked AO too), for comparison and for a slow machine.
+ * Post-process ambient occlusion is OFF by default: with the stack on, the phase 2b night pair (docs/agent-work/os-phase2b-light-night-post.png)
+ * shows a dark smear along the kerb and under the eaves from the half-resolution pass at this radius, and it is the stack's dearest part
+ * (about 0.7 to 2.2 ms on an M4 Pro). `?ao=1` turns it on for tuning; the rest of the stack (bloom, grade, vignette) stays on.
  */
 export function postAoEnabled(win: { location?: { search?: string } } = globalThis): boolean {
-  try { return new URLSearchParams(win.location?.search || '').get('ao') !== '0'; } catch { return true; }
+  try { return new URLSearchParams(win.location?.search || '').get('ao') === '1'; } catch { return false; }
 }
 
 /** The stack's tone mapper for the renderer's own: Neutral unless the renderer was set to ACES or AgX. */

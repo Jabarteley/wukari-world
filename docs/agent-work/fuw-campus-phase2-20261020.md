@@ -1,6 +1,7 @@
 # FUW campus Phase 2 work record
 
 - Owner: Codex; active implementation, 2026-10-20.
+- Final handoff status: ready for draft review; **FUW campus milestone blocked/incomplete**.
 - Repo: `Jabarteley/wukari-world`; baseline foundation SHA `f2e0dea50f4e0e2fc6075dc0290ffb4cdc1db3e1`, confirmed with `git ls-remote` and fetch. New branch `feat/fuw-campus-map`; preserve foundation branch and PR #1 unchanged.
 - PR #1 reviewed through GitHub API: open, foundation -> main; synthetic foundation only, known baseline test failures.
 - Owned paths: `src/wukari/`, `scripts/wukari/`, `data/wukari/`, `docs/wukari/`, this record. No changes to existing city registry or multiplayer protocols; no merge/deployment.
@@ -22,3 +23,8 @@
 - Phase 2 is **blocked/incomplete** as a campus milestone. No campus buildings, walkable roads, navigation graph, character, collision, terrain, minimap or real-campus exploration is claimed. These cannot be verified without FUW source geometry; requested tests for those behaviors are unrun, not treated as passing.
 - Full broad Phase 1 `npm run check` remains incomplete and has pre-existing failures; no duplicate full serial suite launched. Existing game/city/multiplayer code, budgets, assertions, lockfile and synthetic fixtures unchanged. Added legal credit only to `NOTICE.md`.
 - Handoff: `docs/wukari/PHASE2_CAMPUS_STATUS.md` and `PHASE2_ACQUISITION.md`. Prepare stacked draft from `feat/fuw-campus-map` into `feat/wukari-geographic-foundation`, preserving PR #1/main. No merge or deployment.
+- Source commit `6056ae1cf75da85f114d61df9c1b96d94f2a3564` pushed and verified with `git ls-remote`. Foundation remote is still exactly `f2e0dea50f4e0e2fc6075dc0290ffb4cdc1db3e1`.
+- Draft PR **#2** created: https://github.com/Jabarteley/wukari-world/pull/2 . API readback confirms `isDraft=true`, head `feat/fuw-campus-map`, base `feat/wukari-geographic-foundation`. PR #1 remains draft/open and unmerged. No main merge or deployment occurred.
+- Final current-module strict typecheck and 20 Wukari tests passed; fresh runtime Lagos/Abuja smoke passed 13 checks / 14 requests alongside the context view. Final Chromium verified source selection, changing coordinates/bearing, source/coverage endpoints and responsive screenshots without page errors.
+- Saved reusable start instructions for real administrative context versus explicit foundation mode, preserving standard game startup and the existing install script/network presets. Saving is not runtime application/publication; new alternative source hosts remain denied.
+- Next executable prerequisite: apply saved mirror/API/institution network requirements or obtain a permitted, attributed FUW extract, then run explicit discovery/acquisition and review candidates before building navigation or campus geometry. Use existing committed source/receipts and do not replace missing layers with synthetic geography.

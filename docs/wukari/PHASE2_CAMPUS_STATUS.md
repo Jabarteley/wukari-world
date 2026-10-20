@@ -4,6 +4,8 @@
 
 Development branch: `feat/fuw-campus-map`, based on confirmed foundation `f2e0dea50f4e0e2fc6075dc0290ffb4cdc1db3e1`. PR #1 was reviewed through the GitHub API: draft, open, foundation → main. It is unchanged and unmerged. Phase 2 is a separate stacked draft targeting the foundation branch.
 
+Review: [draft PR #2](https://github.com/Jabarteley/wukari-world/pull/2), head `feat/fuw-campus-map` → base `feat/wukari-geographic-foundation`; source checkpoint `6056ae1c` pushed and verified. No merge or deployment.
+
 ## What was implemented
 
 - Reusable public HTTPS acquisition with size/time bounds, exact byte/hash verification, bounded retries, rate-limit handling and structured errors/receipts. No TLS relaxation, credential guessing or access bypass.

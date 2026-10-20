@@ -31,6 +31,15 @@ from above). Sizes in metres, colours '#hex'. Parts honour detail 0/1/2 (LOD0/1/
   control-tower height=40 style=round|faceted|square colour shaftRadius cabRadius cabColour bandColour -> simple airport control tower (fallback).
   jet-bridge   length=18 colour -> passenger bridge leaving a wall at y=0 towards +Y at floor height at.z (fallback).
   airliner     scale=1 colour tailColour -> low-poly twin-engine airliner, nose towards +Y (fallback).
+
+GENERIC SHAPE PARTS (parts/_generic.py, geometry in lib/generic.py; full parameters with `python3 parts/list.py <id>`): any shape you can describe.
+  prism        points | rect | radius+n, z0, height, topScale, topOffset, + mass-style windows/faces/pattern -> extrude a polygon, taper the top.
+  revolve      profile [[r, z(, colour)]...], segments, arcade {from,to,count,width,height,sill,shape,depth} -> lathe: domes, drums, minarets, tanks.
+  loft         sections [{z, rect|circle|ellipse|poly, cx, cy, rotDeg, scale}], curve -> skin between sections: tapers, flared legs, V-fins.
+  sweep-path   section {rect|circle|poly}, points | arc, sag/bulge, closed, taper, twist -> cables, curved beams, ring beams, arches, rails.
+  array        of {type, params}, mode line|arc|grid, count, ... -> repeat any part (masses too, when top level); vary numeric params.
+  surface      kind folded|hypar|wave|dome-cap|conoid|fan|heights|points, width, depth, rise, thickness -> folded-plate and shell roofs.
+  stand        start+end | centre+radius+startDeg+endDeg, rows, rise, run, tiers, under, canopy -> raked seating seen from outside.
 """
 import copy
 import math
@@ -40,6 +49,7 @@ import lib
 from lib.facade import ROOF_SLOT, WALL_SLOT
 
 from ._xform import Xform
+from . import _generic
 
 
 def _at3(at):
@@ -474,3 +484,6 @@ PARTS = {
     'flag': flag, 'water-tank': water_tank, 'solar-panels': solar_panels, 'control-tower': control_tower, 'jet-bridge': jet_bridge,
     'airliner': airliner,
 }
+
+PARTS.update(_generic.PARTS)
+PART_DOC = _generic.PART_DOC

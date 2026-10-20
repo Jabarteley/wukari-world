@@ -99,6 +99,11 @@ back as report warnings, never crashes; numbers are clamped (mass height 138 m, 
 Triangle cost hints: every wall bay with real windows costs triangles at LOD0, so use `windows: "none"` for plain faces and `bay` to widen bays;
 large flat tiles cost triangles at LOD1 (use big single slabs and the `scale` of box-based parts).
 
+**Generic shape parts and facade patterns** (core): `prism`, `revolve`, `loft`, `sweep-path`, `array`, `surface`, `stand` (geometry in `lib/generic.py`, facades in
+`lib/patterns.py`, wrappers in `parts/_generic.py`) describe any plan, profile, section, path, roof surface or raked stand; see "Shape toolbox" in
+[MODELLER.md](../../docs/agent-plans/unique-places/MODELLER.md) and `parts/list.py <id>`. Mass walls accept `pattern` (floors, bands, fins, louvres, panels, arcade,
+pilotis, balconies; keys in `lib/patterns.py`) and `windowShape` rect|arched|pointed|round; any part takes `"lod": [0, 1]`. Fixtures: `fixtures/core-generic/`.
+
 **Parts registry** (`blender/parts/__init__.py`): every `parts/*.py` (not `_*`, not `list.py`) exports `PARTS = {id: fn(b, look, rng, detail, at, rot, **params)}`.
 `core.py` (dome, tower, spire, minaret, colonnade, portico, canopy, steps, sign-board, tree, car, lamp, fence-wall, gate, flag, water-tank,
 solar-panels, control-tower, jet-bridge, airliner) is the lowest priority. When two files define the same id, the first file alphabetically keeps the plain id
@@ -108,6 +113,19 @@ belongs to another file with different parameters. Other parts files use snake_c
 **Render queue** (`render-queue/`): `server.py` (one long-lived headless Blender watching `q/in/*.json`, atomic claim by rename into `q/work/`, result in
 `q/done/<jobid>.json`, heartbeat in `q/workers/<id>.json`), `run.sh [N]` (restart loop, logs in `logs/`), `submit.ts`. `q/` and `logs/` are gitignored.
 `blender/side_by_side.py --photo x.jpg --render out/....photo.png --out cmp.png` makes the comparison by hand (via the queue under plain python3).
+
+**Atlas slots (v2, 42 slots, ~640 KB WebP, `atlas/build.py`; `--slots DIR` dumps each slot as PNG).** Existing names kept, `tileM` of `brick` is now 1.8 m (24 courses of 75 mm, 8 bricks of 225 mm).
+Textures carry baked relief and joint AO (light from top left) and stay neutral so the vertex tint colours them.
+Walls: `plain-render 4` (painted render), `smooth-concrete 4.8x3.6` (ply sheets 2.4x1.2, tie holes), `board-concrete 4` (143 mm board-marked), `rough-concrete 4` (pitted, 2 m panels),
+`precast-panel 3.6x3` (1.2x1.5 m panels, recessed joints), `brick 1.8`, `brick-stock 1.8` (varied soft stock), `brick-dark 1.8` (engineering, flush joint), `stone-blocks 4`,
+`stone-ashlar 3.6` (0.3 m courses, fine joints), `rubble-flint 4` (random rubble or flint), `mud-render 4`, `mud-toron 4` (toron rows every 0.8 m), `metal-cladding 4` (250 mm trapezoidal),
+`terracotta-panels 3.6` (300 mm rainscreen planks of varied tone), `timber 1.6` (vertical), `timber-boards 1.68` (horizontal shiplap), `louvre 1.2` (brise-soleil blades every 150 mm, dark void),
+`shutter 2.4` (roller door, rails, head box), `stadium-seating 4.8x1.6` (two raked rows, seats of varied tone).
+Roofs: `corrugated 2` (76 mm pitch), `clay-tile 2` (100 mm gauge), `slate 2`, `metal-roof 3` (IBR 333 mm), `standing-seam 3` (500 mm pans), `roof-flat 4` (welded strips, gravel), `thatch 2`.
+Ground: `paving 2` (500 mm slabs), `paving-block 1.6` (200x100 pavers), `asphalt 4` (aggregate, patch, cracks), `grass 4`, `laterite 4`, `sand 4`.
+Glazing (tiled whole-slot, sky reflection gradient, bevelled frames): `glass-curtain 3x3.6`, `glass-punched 1.2x1.6`, `glass-shopfront 3`, `glass-ribbon 4x1.2`, `glass-dark 3` (bronze/black), `glass-green 3x3.6` (green solar). Trims: `cornice`, `frame`, `plain`.
+
+**Render look** (`lib/render.py: look()`, shared by preview and photo renders): AgX view transform, gradient sky with haze, warm 2.5 deg sun, ray-traced AO, anisotropic filtering, noise-varied ground fading to haze. Photo renders are 1024 px wide (about 1 s per view on the M1).
 
 ## Library (`import lib`)
 

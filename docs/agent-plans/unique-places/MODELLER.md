@@ -40,3 +40,16 @@ For each place:
 
 No logos and no legible names: signage is blank boards in the colours of the place. Return per place: verified, match, rounds,
 LOD0 triangles, and one line of gaps.
+
+## Shape toolbox (generic parts: use these when no named part has the shape you see)
+
+Do not approximate a real shape with a fixed part. Describe it. All are core parts (`python3 scripts/places/blender/parts/list.py prism` etc. shows every parameter; address as `core/<id>` if another file reuses the id). All honour `at`, `rotDeg`, `on`, LOD 0/1/2 and take an optional top-level `"lod": [0, 1]` to draw a part only at those levels (put a simpler stand-in with `"lod": [2]`, the LOD2 budget is 500).
+- `prism`: any plan outline extruded (L-shapes, hexagons, cross-shaped heads, tapering with `topScale`/`topOffset`). Straight prisms also take mass-style `windows`, `windowShape`, `faces`, `pattern`.
+- `revolve`: anything round about a vertical axis from an `[r, z, colour]` profile: domes of any profile, drum balconies, flared collars, whole minarets, water towers, stupas. `arcade` cuts arched openings into a straight vertical stretch (count, width, height, sill, shape, depth).
+- `loft`: skin between sections at heights (`rect`, `circle`, `ellipse`, `poly`, with `cx`/`cy` offsets): tapering towers, leaning or kinked legs and V-fins, pointed-arch silhouettes (stack rects whose width shrinks with z), twisted forms; `curve: true` bends smoothly.
+- `sweep-path`: a section (`rect`/`circle`/`poly`) along `points` or an `arc` (`plane: xy|xz|yz`): cables (`sag`), curved beams and arches (`bulge`, `xz` arc), ring beams (`closed`), handrails, canopy edges, crescents.
+- `array`: repeat any part (`of`, a list is fine) along a `line`, an `arc`/circle (`radiusY` for ovals, `facing: outward|centre`) or a `grid`; `vary` interpolates numbers; `lod1Step`/`lod2Step` thin the copies; items take `lod`. A top-level array whose `of` is a `mass` repeats masses. Use it for fins, columns, stand segments, minaret rings, stalls.
+- `surface`: roofs and shells from a height function: `folded`, `hypar`, `wave`, `dome-cap`, `conoid`, `fan` (radial folded plates, a negative `rise` makes it rise away from the apex), `heights`, `points`. Remember the camera: a roof falling away from the viewer is seen edge-on.
+- `stand`: raked seating seen from outside along a line or an arc/oval (`tiers`, `stepped` soffit, `canopy`, `seatColours` + `blocks`). Arc cost is about rows x edges x stations: raise `facetDeg` and lower `rows` to stay in budget.
+- Mass wall `pattern` (object or list, `faces` selects sides): `floors` (alternating colour per storey), `bands`, `fins`, `louvres`, `panels` (cladding grid with 2-3 colours and random `slits`, use windows `none` on that face), `arcade` and `pilotis` (replace the ground storey), `balconies`. Window shape: `windowShape` rect|arched|pointed|round. LOD1 gives flat colour quads, LOD2 only storey colours.
+Cost rule of thumb: every cut window, arcade bay or fin costs triangles at LOD0, so spend them where the photo shows them (front) and keep the rest plain. Examples: `scripts/places/fixtures/core-generic/` (`redo-*.json` are full re-compositions of three pilot places).

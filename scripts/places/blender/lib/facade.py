@@ -89,8 +89,41 @@ def _arch(shape, ou0, ou1, zs, n):
     return pts
 
 
+def _round_bay(b, seg, look, u0, u1, zb, zt, ou0, ou1, sill, top, depth, cut, glass_slot, wall_slot, col):
+    """A bay with a circular opening (oculus / porthole) inscribed in ou0..ou1 x sill..top."""
+    uc, zc = (ou0 + ou1) / 2, (sill + top) / 2
+    rho = min(ou1 - ou0, top - sill) / 2
+    n = 8
+    circ = [(uc + rho * math.cos(2 * math.pi * k / n), zc + rho * math.sin(2 * math.pi * k / n)) for k in range(n)]
+    if not cut:
+        _wall(b, seg, u0, u1, zb, zt, wall_slot, col)
+        _glass(b, seg, circ, -0.03, glass_slot, look.glass_col)
+        return
+    _wall(b, seg, u0, u1, zb, zc - rho, wall_slot, col)
+    _wall(b, seg, u0, uc - rho, zc - rho, zt, wall_slot, col)
+    _wall(b, seg, uc + rho, u1, zc - rho, zt, wall_slot, col)
+    _wall(b, seg, uc - rho, uc + rho, zc + rho, zt, wall_slot, col)
+    q = n // 4
+    for quad in range(4):   # the four corner pieces between the square and the circle
+        a0 = quad * q
+        arc = [circ[(a0 + k) % n] for k in range(q + 1)]
+        cu = uc + (rho if quad in (0, 3) else -rho)
+        cz = zc + (rho if quad in (0, 1) else -rho)
+        b.facing([seg.P(pu, pz) for pu, pz in arc + [(cu, cz)]], seg.N3(), wall_slot, col)
+    dark = shade(col, 0.8)
+    cen = seg.P(uc, zc, depth)
+    for k in range(n):
+        p, qn = circ[k], circ[(k + 1) % n]
+        m = seg.P((p[0] + qn[0]) / 2, (p[1] + qn[1]) / 2, 0)
+        b.facing([seg.P(p[0], p[1]), seg.P(qn[0], qn[1]), seg.P(qn[0], qn[1], depth), seg.P(p[0], p[1], depth)], (cen[0] - m[0], cen[1] - m[1], cen[2] - m[2]), wall_slot, dark)
+    _glass(b, seg, circ, depth, glass_slot, look.glass_col)
+    seg_box(b, seg, uc - rho - 0.1, uc + rho + 0.1, zc - rho - 0.09, zc - rho, 0.12, look.trim_col, wall_slot)
+
+
 def _punched_bay(b, seg, look, u0, u1, zb, zt, ou0, ou1, sill, top, shape, depth, cut, glass_slot, wall_slot, col, arch_n=6, frame=True):
     """One wall bay (u0..u1, zb..zt) with an opening ou0..ou1 between sill and top (top = crown height for arched shapes)."""
+    if shape == 'round':
+        return _round_bay(b, seg, look, u0, u1, zb, zt, ou0, ou1, sill, top, depth, cut, glass_slot, wall_slot, col)
     if shape == 'rect':
         zs, arch = top, None
         outline = [(ou0, sill), (ou1, sill), (ou1, top), (ou0, top)]
@@ -190,8 +223,8 @@ def facade(b, seg, z0, z1, storeys, look, kind=None, ratio=None, rng=None, bay=N
 def _storey(b, seg, look, zb, zt, kind, ratio, rng, bay, cut, ws, wc, h, ground):
     L = seg.length
     detail = b.detail
-    if kind in ('punched', 'arched', 'pointed-arch'):
-        shape = {'punched': 'rect', 'arched': 'arch', 'pointed-arch': 'pointed'}[kind]
+    if kind in ('punched', 'arched', 'pointed-arch', 'round'):
+        shape = {'punched': 'rect', 'arched': 'arch', 'pointed-arch': 'pointed', 'round': 'round'}[kind]
         bw = bay or (3.4 if shape == 'rect' else 3.8)
         if detail >= 1 or not cut:
             bw *= 1.5
@@ -199,9 +232,11 @@ def _storey(b, seg, look, zb, zt, kind, ratio, rng, bay, cut, ws, wc, h, ground)
         bw = L / nb
         oh = min(h * (0.58 if shape == 'rect' else 0.72), 2.6 if shape == 'rect' else 3.6)
         ow = max(0.7, min(bw - 0.7, ratio * bw * h / oh * (1.0 if shape == 'rect' else 0.7)))
-        if shape != 'rect':
+        if shape == 'round':
+            ow = oh = max(0.6, min(h * 0.5, bw - 0.7, 1.7))
+        elif shape != 'rect':
             ow = min(ow, oh * 0.55)
-        sill = zb + (h - oh) * 0.42
+        sill = zb + (h - oh) * (0.42 if shape != 'round' else 0.55)
         top = sill + oh
         slot = 'glass-punched'
         if not cut:
@@ -214,7 +249,10 @@ def _storey(b, seg, look, zb, zt, kind, ratio, rng, bay, cut, ws, wc, h, ground)
                 _punched_bay(b, seg, look, u0, u1, zb, zt, ou0, ou1, sill, top, shape, 0.22, True, slot, ws, wc)
             else:
                 pts = [(ou0, sill), (ou1, sill), (ou1, top), (ou0, top)]
-                if shape != 'rect' and detail < 2:
+                if shape == 'round' and detail < 2:
+                    zc_, rr_ = (sill + top) / 2, (top - sill) / 2
+                    pts = [(c + rr_ * math.cos(2 * math.pi * q / 8), zc_ + rr_ * math.sin(2 * math.pi * q / 8)) for q in range(8)]
+                elif shape != 'rect' and detail < 2:
                     rise = ow * (0.5 if shape == 'arch' else 0.866)
                     zs = top - rise
                     pts = [(ou0, sill), (ou1, sill), (ou1, zs), (c, top), (ou0, zs)]

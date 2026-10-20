@@ -16,6 +16,9 @@ mass keys: id, footprint, at [x, y], rotDeg, z0 (base height), height (to the ea
         plinth (m), bay (m), cornice (bool), parapet (m), glassColour, groundKind, groundHeight}
   roof {form, colour, material, pitch (deg), rise (m), overhang (m), parapet (m), + form extras: axis, profile, drum, lantern, finial,
         tiers, teeth, rows, cols, high, curve (arch|sweep|wave), waves, thickness, infill (wall|glass|none)}
+  wall.pattern (object or list): floors | bands | fins | louvres | panels | arcade | pilotis | balconies (lib/patterns.py has every key);
+  wall.windowShape rect|arched|pointed|round (windows kinds also accept rect, pointed, round; faces.<side> likewise)
+Parts: `array` of masses ({"type": "array", "params": {"of": {"type": "mass", ...}, "mode": "line|arc|grid", ...}}) expands into masses.
 footprint: {"rect": [w, d]} | {"polygon": [[x, y], ...]} | {"osm": true, "scale": 1, "rotDeg": 0, "fit": maxSideMetres, "simplify": metres}
            | {"kind": "L|U|T|H|cross|ring|oval|round|irregular", "size": [w, d]}
 """
@@ -25,9 +28,11 @@ import math
 import random
 import re
 import sys
+import traceback
 from pathlib import Path
 
 import lib
+from lib.patterns import normalise as _norm_patterns
 from lib.facade import GROUND_COL, GROUND_SLOT, ROOF_SLOT, WALL_SLOT
 
 HERE = Path(__file__).resolve().parent.parent
@@ -43,11 +48,13 @@ MAX_MASSES = 40
 MAX_SIDE = 118.0
 ROOF_FORMS = {'flat', 'gable', 'hip', 'shed', 'barrel', 'dome', 'multi-dome', 'tensile', 'sawtooth', 'pyramidal', 'mansard', 'stepped',
               'curved', 'wave', 'none'}
-WINDOW_KINDS = {'curtain', 'ribbon', 'punched', 'arched', 'pointed-arch', 'screen', 'louvre', 'none', 'plain'}
+WINDOW_KINDS = {'curtain', 'ribbon', 'punched', 'arched', 'pointed-arch', 'screen', 'louvre', 'none', 'plain', 'round', 'rect', 'pointed'}
+SHAPE_KIND = {'rect': 'punched', 'arched': 'arched', 'pointed': 'pointed-arch', 'round': 'round'}
+ALIAS_KIND = {'rect': 'punched', 'pointed': 'pointed-arch'}
 ROOF_KEYS = {'form', 'colour', 'material', 'pitch', 'rise', 'overhang', 'parapet', 'axis', 'profile', 'drum', 'lantern', 'finial', 'tiers', 'teeth',
              'rows', 'cols', 'high', 'curve', 'waves', 'thickness', 'infill', 'ribs'}
 WALL_KEYS = {'material', 'colour', 'windows', 'windowRatio', 'faces', 'bands', 'plinth', 'bay', 'cornice', 'parapet', 'glassColour', 'groundKind',
-             'groundHeight', 'accent', 'accentColour'}
+             'groundHeight', 'accent', 'accentColour', 'trimColour', 'pattern', 'windowShape'}
 MASS_KEYS = {'type', 'id', 'footprint', 'at', 'rotDeg', 'z0', 'height', 'storeys', 'wall', 'roof', 'note', 'notes'}
 
 
@@ -228,6 +235,14 @@ def _footprint(c, m, mid, facts, detail, rng):
     return lib.fp_rect(20, 12), 'rect'
 
 
+def _kind(k, shape):
+    """Normalise a window kind (rect->punched, pointed->pointed-arch) and apply a wall-wide windowShape to the punched family."""
+    k = ALIAS_KIND.get(k, k)
+    if shape and k in ('punched', 'arched', 'pointed-arch', 'round'):
+        k = SHAPE_KIND[shape]
+    return k
+
+
 def _side(seg):
     nx, ny = seg.n
     if abs(ny) >= abs(nx):
@@ -336,10 +351,15 @@ def _mass(c, b, lk0, m, idx, base, facts, detail, info):
     if acc:
         lk.accent_col = acc
     lk.glass_col = _col(c, f'mass {mid}.wall.glassColour', wall.get('glassColour'), lk.glass_col)
+    wshape = wall.get('windowShape')
+    if wshape is not None and wshape not in SHAPE_KIND:
+        c.w(f'mass {mid}.wall.windowShape {wshape!r} unknown (rect|arched|pointed|round)')
+        wshape = None
     wkind = wall.get('windows', lk.windows if lk.windows else 'punched')
     if wkind not in WINDOW_KINDS:
         c.w(f'mass {mid}.wall.windows {wkind!r} unknown; using punched')
         wkind = 'punched'
+    wkind = _kind(wkind, wshape)
     default_ratio = 0.65 if wkind == 'curtain' else 0.4
     ratio = _num(c, f'mass {mid}.wall.windowRatio', wall.get('windowRatio', default_ratio), default_ratio, 0.0, 0.92)
     lk.windows, lk.ratio = ('none' if wkind == 'plain' else wkind), ratio
@@ -353,20 +373,31 @@ def _mass(c, b, lk0, m, idx, base, facts, detail, info):
 
     faces = wall.get('faces') if isinstance(wall.get('faces'), dict) else {}
     groups = {}
+    seg_kind = {}
+    all_segs = []
     for seg in fp.edges():
+        all_segs.append(seg)
         s = _side(seg)
         k = faces.get(s, wkind)
         if k not in WINDOW_KINDS:
             c.w(f'mass {mid}.wall.faces.{s} {k!r} unknown; using {wkind}')
             k = wkind
+        k = _kind(k, None if s in faces else wshape)
         groups.setdefault('none' if k == 'plain' else k, []).append(seg)
+        seg_kind[id(seg)] = 'none' if k == 'plain' else k
     b.section(f'mass:{mid}')
     bay = _num(c, f'mass {mid}.wall.bay', wall.get('bay', 0) or 0, 0, 0, 20) or None
     gk = wall.get('groundKind')
     gh = _num(c, f'mass {mid}.wall.groundHeight', wall.get('groundHeight', 0) or 0, 0, 0, 12) or None
-    for k, segs in groups.items():
-        lib.walls(mb, fp, z0, z0 + H, storeys, lk, rng, kind=k, ratio=ratio, rear='same', plinth=0, bay=bay, edges=segs,
-                  ground_kind=gk if gk in WINDOW_KINDS else None, ground_h=gh)
+    pats = _norm_patterns(wall.get('pattern'), lambda msg: c.w(f'mass {mid}: {msg}')) if wall.get('pattern') is not None else []
+    if pats:
+        gkind = _kind(gk, None) if gk in WINDOW_KINDS else None
+        lib.build_walls(mb, all_segs, z0, H, storeys, lk, rng, lambda sg: seg_kind[id(sg)], ratio, bay,
+                        (lambda sg: None if sg.rear else gkind), gh, pats)
+    else:
+        for k, segs in groups.items():
+            lib.walls(mb, fp, z0, z0 + H, storeys, lk, rng, kind=k, ratio=ratio, rear='same', plinth=0, bay=bay, edges=segs,
+                      ground_kind=_kind(gk, None) if gk in WINDOW_KINDS else None, ground_h=gh)
     plinth = _num(c, f'mass {mid}.wall.plinth', wall.get('plinth', 0.35), 0.35, 0, 4)
     if plinth > 0 and detail == 0:
         lib.sweep(mb, fp, z0, [(0.06, 0), (0.06, plinth), (0, plinth)], lk.wall_slot, lib.shade(lk.wall_col, 0.78))
@@ -443,6 +474,8 @@ def _mass(c, b, lk0, m, idx, base, facts, detail, info):
 # ------------------------------------------------------------------------------------------------------------------ parts
 def _part(c, b, lk, p, idx, base, detail, info):
     pid = p.get('type')
+    if isinstance(p.get('lod'), list) and detail not in p['lod']:
+        return   # `lod`: [0, 1] draws this part only at those levels of detail
     fn = parts.REGISTRY.get(pid)
     if fn is None:
         c.w(f'unknown part type {pid!r} skipped (see parts/list.py)')
@@ -460,7 +493,7 @@ def _part(c, b, lk, p, idx, base, detail, info):
     if p.get('params') is not None and not isinstance(p.get('params'), dict):
         c.w(f'{pid}#{idx}: params must be an object')
     for k in p:
-        if k not in ('type', 'id', 'at', 'rotDeg', 'params', 'on', 'note', 'notes'):
+        if k not in ('type', 'id', 'at', 'rotDeg', 'params', 'on', 'note', 'notes', 'lod'):
             c.w(f'{pid}#{idx}: unknown key {k!r} ignored (put part options inside "params")')
     known = parts.declared_params(pid)
     clean = {}
@@ -476,7 +509,8 @@ def _part(c, b, lk, p, idx, base, detail, info):
     try:
         fn(b, copy.copy(lk), _seed(base, 1000 + idx), detail, at=tuple(at), rot=rot, **clean)
     except Exception as exc:  # noqa: BLE001 - a bad part must not lose the building
-        c.w(f'part {pid}#{idx} failed: {type(exc).__name__}: {exc}')
+        tb = traceback.extract_tb(exc.__traceback__)[-1]
+        c.w(f'part {pid}#{idx} failed: {type(exc).__name__}: {exc} ({Path(tb.filename).name}:{tb.lineno})')
         return
     for w in getattr(b, 'part_warnings', []) or []:
         c.w(f'{pid}#{idx}: {w}')
@@ -551,6 +585,51 @@ def _site(c, b, lk, site, info, base, detail):
             lib.car(b, x, y, math.radians(_num(c, 'site.cars[].yawDeg', car.get('yawDeg', 0), 0, -360, 360)), _col(c, 'site.cars[].colour', car.get('colour'), '#b8bcc2'), srng)
 
 
+# ------------------------------------------------------------------------------------------------------------------ arrays of masses
+def _expand_arrays(c, plist):
+    """`array` parts whose `of` holds masses become copies of those masses (placement as in the array part); other items stay."""
+    from parts import _generic as pg
+    out = []
+    for p in plist:
+        if not (isinstance(p, dict) and p.get('type') == 'array' and isinstance(p.get('params'), dict)):
+            out.append(p)
+            continue
+        params = p['params']
+        items = params.get('of')
+        items = items if isinstance(items, list) else [items]
+        mass_items = [it for it in items if isinstance(it, dict) and it.get('type') == 'mass']
+        if not mass_items:
+            out.append(p)
+            continue
+        rest = [it for it in items if not (isinstance(it, dict) and it.get('type') == 'mass')]
+        if rest:
+            q = copy.deepcopy(p)
+            q['params']['of'] = rest
+            out.append(q)
+        ax, ay, az = _xy(c, 'array.at', p.get('at'))
+        rota = _num(c, 'array.rotDeg', p.get('rotDeg', 0.0), 0, -360, 360)
+        ca, sa = math.cos(math.radians(rota)), math.sin(math.radians(rota))
+        plc, skip, vary = pg.placements_from_params(params, c.w, 0)
+        for (x, y, z, yaw, t, i) in plc:
+            if i in skip:
+                continue
+            cy_, sy_ = math.cos(math.radians(yaw)), math.sin(math.radians(yaw))
+            for item in mass_items:
+                m = copy.deepcopy(item)
+                at = item.get('at') if isinstance(item.get('at'), (list, tuple)) and len(item['at']) >= 2 else [0, 0]
+                lx = x + cy_ * float(at[0]) - sy_ * float(at[1])
+                ly = y + sy_ * float(at[0]) + cy_ * float(at[1])
+                m['at'] = [ax + ca * lx - sa * ly, ay + sa * lx + ca * ly]
+                m['rotDeg'] = rota + yaw + float(item.get('rotDeg', 0.0) or 0.0)
+                m['z0'] = float(item.get('z0', 0.0) or 0.0) + az + z
+                m['id'] = f"{item.get('id') or 'arr'}-{i}"
+                for k, (v0, v1) in vary.items():
+                    if k in ('height', 'z0', 'storeys'):
+                        m[k] = v0 + (v1 - v0) * t
+                out.append(m)
+    return out
+
+
 # ------------------------------------------------------------------------------------------------------------------ entry
 def build(spec, style, rng, detail, facts=None):
     global last_warnings
@@ -564,6 +643,7 @@ def build(spec, style, rng, detail, facts=None):
     if len(plist) > MAX_PARTS:
         c.w(f'{len(plist)} parts: only the first {MAX_PARTS} are built')
         plist = plist[:MAX_PARTS]
+    plist = _expand_arrays(c, plist)
     masses = [p for p in plist if isinstance(p, dict) and p.get('type') == 'mass'][:MAX_MASSES]
     others = [p for p in plist if isinstance(p, dict) and p.get('type') != 'mass']
     if not masses:

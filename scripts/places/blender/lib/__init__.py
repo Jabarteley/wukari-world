@@ -9,6 +9,9 @@ from .roofs import (barrel, cone, dome, flat_roof, gable, hip, mansard, multi_do
                     shed, stepped, tensile)
 from .elements import (beam, blob, canopy_curved, canopy_flat, car, colonnade, column, forecourt, ground, lamp, obox, portico,
                        roof_shell, sign_board, tower, tree)
+from .generic import (area2, array_placements, ccw2, extrude_profile, loft, path_points, prism_solid, revolve, shell, skin, stations_arc,
+                      stations_line, surface_grid, sweep_path)
+from .patterns import build_walls, normalise as normalise_patterns, storey_bounds
 from .export import export_glb, read_glb_json
 from .render import preview, silhouette
 

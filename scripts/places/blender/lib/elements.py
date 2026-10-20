@@ -78,7 +78,7 @@ def portico(b, cx, y_front, z0, width, depth, height, look, cols=6, pediment=Tru
     box(b, x0 - 0.3, y_front - depth - 0.2, zt, x1 + 0.3, y_front, zt + 0.7, look.wall_slot, look.trim_col)
     if pediment:
         ph = rise or width * 0.11
-        gable(b, (x0 - 0.3, y_front - depth - 0.2, x1 + 0.3, y_front), zt + 0.7, ph, look, axis='x', ov=0.0, slot=look.roof_slot, col=look.roof_col,
+        gable(b, (x0 - 0.3, y_front - depth - 0.2, x1 + 0.3, y_front), zt + 0.7, ph, look, axis='y', ov=0.0, slot=look.roof_slot, col=look.roof_col,
               gable_slot=look.wall_slot, gable_col=look.trim_col)
     else:
         box(b, x0 - 0.3, y_front - depth - 0.2, zt + 0.7, x1 + 0.3, y_front, zt + 1.0, 'roof-flat', look.roof_col)

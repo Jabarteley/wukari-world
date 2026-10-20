@@ -305,6 +305,95 @@ def _extend(rect, main, amount):
     return (x0, y0, x1, y1)
 
 
+def _poly_area(poly):
+    return abs(sum(poly[i][0] * poly[(i + 1) % len(poly)][1] - poly[(i + 1) % len(poly)][0] * poly[i][1] for i in range(len(poly)))) / 2
+
+
+def _poly_perimeter(poly):
+    return sum(math.hypot(poly[(i + 1) % len(poly)][0] - poly[i][0], poly[(i + 1) % len(poly)][1] - poly[i][1]) for i in range(len(poly)))
+
+
+def _is_round(fp):
+    """Round or oval plan: many corners AND circularity 4*pi*A/P^2 above 0.9 (a real OSM outline or an H/U union is not)."""
+    poly = fp.polys[0]
+    per = _poly_perimeter(poly)
+    return len(poly) > 10 and per > 0 and 4 * math.pi * _poly_area(poly) / (per * per) > 0.9
+
+
+def _rects_cover(fp, tol=0.12):
+    """True when fp.rects really decompose the outline (L/U/T/H/cross unions); false for free polygons whose `rects` is only the bbox."""
+    if not fp.rects:
+        return False
+    ra = sum((q[2] - q[0]) * (q[3] - q[1]) for q in fp.rects)
+    pa = sum(_poly_area(p) * (1 if i == 0 else -1) for i, p in enumerate(fp.polys))
+    return pa > 0 and abs(ra - pa) / pa <= tol
+
+
+def _obb(pts):
+    """Minimum-area oriented rectangle of a polygon: (cx, cy, w, d, angle_deg), w the longer side, angle in (-90, 90]."""
+    best = None
+    n = len(pts)
+    for i in range(n):
+        dx, dy = pts[(i + 1) % n][0] - pts[i][0], pts[(i + 1) % n][1] - pts[i][1]
+        L = math.hypot(dx, dy)
+        if L < 1e-6:
+            continue
+        ca, sa = dx / L, dy / L
+        us = [p[0] * ca + p[1] * sa for p in pts]
+        vs = [-p[0] * sa + p[1] * ca for p in pts]
+        w, d = max(us) - min(us), max(vs) - min(vs)
+        if best is None or w * d < best[0] - 1e-6:
+            best = (w * d, (min(us) + max(us)) / 2, (min(vs) + max(vs)) / 2, w, d, math.atan2(sa, ca))
+    _, cu, cv, w, d, a = best
+    cx, cy = cu * math.cos(a) - cv * math.sin(a), cu * math.sin(a) + cv * math.cos(a)
+    ang = math.degrees(a)
+    if d > w:
+        w, d = d, w
+        ang += 90
+    while ang > 90:
+        ang -= 180
+    while ang <= -90:
+        ang += 180
+    return cx, cy, w, d, ang
+
+
+class _Place:
+    """Builder proxy: everything is rotated `ang` degrees about the origin and moved to (cx, cy) (roofs over rotated rectangles)."""
+
+    def __init__(self, b, cx, cy, ang):
+        self.b, self.cx, self.cy = b, cx, cy
+        self.c, self.s = math.cos(math.radians(ang)), math.sin(math.radians(ang))
+
+    @property
+    def detail(self):
+        return self.b.detail
+
+    @property
+    def flat(self):
+        return self.b.flat
+
+    def T(self, p):
+        return (self.cx + self.c * p[0] - self.s * p[1], self.cy + self.s * p[0] + self.c * p[1], p[2])
+
+    def face(self, pts, slot='plain', col=None, **kw):
+        return self.b.face([self.T(p) for p in pts], slot, col, **kw)
+
+    def facing(self, pts, hint, slot='plain', col=None, **kw):
+        return self.b.facing([self.T(p) for p in pts], (self.c * hint[0] - self.s * hint[1], self.s * hint[0] + self.c * hint[1], hint[2]), slot, col, **kw)
+
+    def shared_grid(self, grid, slot, col, **kw):
+        return self.b.shared_grid([[self.T(p) for p in row] for row in grid], slot, col, **kw)
+
+    def site(self):
+        return self.b.site()
+
+    def section(self, label):
+        return self.b.section(label)
+
+    def __getattr__(self, name):
+        return getattr(self.b, name)
+
+
 def roof(b, form, fp, z, look, rise=None, pitch=28, ov=0.5, **kw):
     """Dispatcher. form: flat|gable|hip|shed|barrel|dome|multi-dome|tensile|sawtooth|pyramidal|mansard|stepped|none.
     fp: a Footprint (each wing rect gets a roof) or a single rect tuple. rise defaults from a `pitch` in degrees (or a sensible
@@ -312,14 +401,24 @@ def roof(b, form, fp, z, look, rise=None, pitch=28, ov=0.5, **kw):
     if form in (None, 'none'):
         return
     rects = fp.rects if isinstance(fp, Footprint) else [fp]
-    if isinstance(fp, Footprint) and len(fp.polys[0]) > 10 and form not in ('flat', 'dome', 'none'):
-        # round / oval plan: a rectangle roof would overhang the curve, so use a cone (or a flat roof for the other forms)
-        x0, y0, x1, y1 = fp.bbox
-        if form in ('gable', 'hip', 'pyramidal', 'mansard', 'stepped', 'shed'):
-            cone(b, (x0 + x1) / 2, (y0 + y1) / 2, z, min(x1 - x0, y1 - y0) / 2, rise if rise is not None else min(x1 - x0, y1 - y0) / 2 * math.tan(pitch * DEG), look, ov=ov)
-        else:
-            flat_roof(b, fp, z, look, **kw)
-        return
+    if isinstance(fp, Footprint) and form not in ('flat', 'dome', 'none') and len(fp.polys[0]) > 10:
+        if _is_round(fp):
+            # round / oval plan: a rectangle roof would overhang the curve, so use a cone
+            x0, y0, x1, y1 = fp.bbox
+            if form in ('gable', 'hip', 'pyramidal', 'mansard', 'stepped', 'shed'):
+                cone(b, (x0 + x1) / 2, (y0 + y1) / 2, z, min(x1 - x0, y1 - y0) / 2, rise if rise is not None else min(x1 - x0, y1 - y0) / 2 * math.tan(pitch * DEG), look, ov=ov)
+            else:
+                flat_roof(b, fp, z, look, **kw)
+            return
+        if not _rects_cover(fp):
+            # irregular outline (real OSM footprint): build the roof over its minimum-area rectangle, rotated to fit
+            cx, cy, w, d, ang = _obb(fp.polys[0])
+            from .shapes import fp_rect
+            return roof(_Place(b, cx, cy, ang), form, fp_rect(w, d), z, look, rise=rise, pitch=pitch, ov=ov, **kw)
+    elif isinstance(fp, Footprint) and form not in ('flat', 'dome', 'none') and not _rects_cover(fp):
+        cx, cy, w, d, ang = _obb(fp.polys[0])
+        from .shapes import fp_rect
+        return roof(_Place(b, cx, cy, ang), form, fp_rect(w, d), z, look, rise=rise, pitch=pitch, ov=ov, **kw)
     if form == 'flat':
         if isinstance(fp, Footprint):
             flat_roof(b, fp, z, look, **kw)

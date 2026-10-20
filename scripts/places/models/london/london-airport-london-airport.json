@@ -1,0 +1,274 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-airport-london-airport",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Forecourt_of_Heathrow_Terminal_3_(geograph_6090219).jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "David Martin",
+   "view": "front",
+   "file": "/tmp/places-evidence/london/forecourt2.jpg",
+   "used": "Terminal 3 frontage: huge flat translucent canopy on a grey steel grid with slim round columns, grey glazed 3-4 storey frontage with horizontal bands, patinated green curved roof edge, plaza paving"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Forecourt,_Terminal_3,_Heathrow_Airport_-_geograph.org.uk_-_1932039.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "Roger Cornfoot",
+   "view": "street",
+   "used": "canopy edge beams and column spacing, planted trees, bollards, flags on the roofline"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Airbus_A319_at_sunset_at_London_Heathrow_Terminal_3_with_Control_Tower_behind_-_Air_France_F-GRHN.jpg",
+   "licence": "CC0",
+   "author": "Mertbiol",
+   "view": "side",
+   "used": "control tower: slender grey shaft with stay cables, red band, green glass cab, green base block"
+  },
+  {
+   "kind": "osm",
+   "ref": "relation/18911624",
+   "used": "scale only: the Terminal 3 relation is 684 m across; a 100 m portion of the frontage is modelled"
+  }
+ ],
+ "camera": {
+  "yawDeg": 14,
+  "pitchDeg": 8,
+  "fovDeg": 60,
+  "aspect": 1.78
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "frontage",
+   "footprint": {
+    "rect": [
+     100,
+     28
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "height": 17,
+   "storeys": 4,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#a9b0b5",
+    "windows": "ribbon",
+    "windowRatio": 0.55,
+    "groundKind": "curtain",
+    "groundHeight": 5,
+    "bands": "#8c959b",
+    "plinth": 0.3,
+    "faces": {
+     "left": "plain",
+     "right": "plain"
+    },
+    "bay": 4.4
+   },
+   "roof": {
+    "form": "curved",
+    "curve": "arch",
+    "rise": 2.6,
+    "overhang": 0.8,
+    "colour": "#6c9482",
+    "material": "copper",
+    "infill": "wall"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "tower-base",
+   "footprint": {
+    "rect": [
+     22,
+     22
+    ]
+   },
+   "at": [
+    32,
+    52
+   ],
+   "height": 13,
+   "storeys": 2,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#6f9380",
+    "windows": "none",
+    "plinth": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#5b7d6b",
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "core/canopy",
+   "at": [
+    0,
+    -29.5,
+    0
+   ],
+   "params": {
+    "form": "flat",
+    "width": 104,
+    "depth": 31,
+    "height": 7.9,
+    "thickness": 0.6,
+    "colour": "#eef4f7",
+    "edgeColour": "#586067"
+   }
+  },
+  {
+   "type": "core/colonnade",
+   "at": [
+    0,
+    -17,
+    0
+   ],
+   "params": {
+    "length": 92,
+    "count": 7,
+    "height": 7.4,
+    "radius": 0.33,
+    "beamHeight": 0.2,
+    "colour": "#6a7176"
+   }
+  },
+  {
+   "type": "core/colonnade",
+   "at": [
+    0,
+    -29.5,
+    0
+   ],
+   "params": {
+    "length": 92,
+    "count": 7,
+    "height": 7.4,
+    "radius": 0.33,
+    "beamHeight": 0.2,
+    "colour": "#6a7176"
+   }
+  },
+  {
+   "type": "core/colonnade",
+   "at": [
+    0,
+    -42,
+    0
+   ],
+   "params": {
+    "length": 92,
+    "count": 7,
+    "height": 7.4,
+    "radius": 0.33,
+    "beamHeight": 0.2,
+    "colour": "#6a7176"
+   }
+  },
+  {
+   "type": "core/control-tower",
+   "at": [
+    32,
+    52,
+    13
+   ],
+   "params": {
+    "height": 62,
+    "style": "round",
+    "colour": "#9aa0a5",
+    "shaftRadius": 1.7,
+    "cabRadius": 3.6,
+    "cabColour": "#3f8f78",
+    "bandColour": "#b5483c"
+   }
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    0,
+    -34,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 7.5,
+    "count": 6,
+    "line": 80
+   }
+  },
+  {
+   "type": "core/flag",
+   "at": [
+    -12,
+    10,
+    17
+   ],
+   "params": {
+    "height": 6,
+    "count": 4,
+    "spacing": 5,
+    "colours": [
+     "#c8102e",
+     "#f2f2f2",
+     "#1f3d7a",
+     "#f2f2f2"
+    ]
+   }
+  },
+  {
+   "type": "core/fence-wall",
+   "at": [
+    0,
+    -46,
+    0
+   ],
+   "params": {
+    "length": 96,
+    "height": 0.7,
+    "thickness": 0.4,
+    "kind": "wall",
+    "colour": "#4f7a3c"
+   }
+  }
+ ],
+ "site": {
+  "ground": "paving",
+  "forecourt": "plaza",
+  "forecourtDepth": 18,
+  "trees": [
+   {
+    "kind": "broadleaf",
+    "at": [
+     -48,
+     -55
+    ]
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     48,
+     -55
+    ]
+   }
+  ],
+  "extent": [
+   130,
+   130
+  ]
+ },
+ "review": {
+  "rounds": 2,
+  "match": "fair",
+  "gaps": "Viewed from outside: the photo is taken standing under the canopy, so the render shows the whole frontage from above instead. Canopy is a plain flat slab on columns (no steel grid beams, no translucent panels), frontage has no entrance frame, signage panels or British Airways colour blocks (no logos by rule), no cart rows, bollards or footbridge arch. Tower is a simple cylinder without stay cables."
+ }
+}

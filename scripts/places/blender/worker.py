@@ -51,10 +51,13 @@ def archetype(name):
     return _modules[name]
 
 
-def build_lod(mod, brief, style, seed, detail):
+def build_lod(mod, brief, style, seed, detail, spec=None, facts=None):
     lib.reset()
     rng = random.Random(seed)
-    objs = mod.build(brief, style, rng, detail)
+    if spec is not None:   # PlaceModelV2 spec job: archetypes/compose.py builds it
+        objs = mod.build(spec, style, rng, detail, facts=facts)
+    else:
+        objs = mod.build(brief, style, rng, detail)
     if not isinstance(objs, (list, tuple)) or not objs:
         raise ValueError('build() returned no objects')
     return list(objs)
@@ -77,18 +80,26 @@ def check_scene(objs):
 def run_job(job, out_dir, render=True, views=()):
     city, vid = job['city'], job['venueId']
     brief, style = job.get('brief') or {}, job.get('style') or {}
+    spec, facts = job.get('spec'), job.get('facts')
+    is_spec = spec is not None
+    if is_spec:
+        brief = {'archetype': 'compose'}
     t0 = time.time()
     folder = out_dir / city
     folder.mkdir(parents=True, exist_ok=True)
     base = folder / vid
-    report = {'city': city, 'venueId': vid, 'archetype': brief.get('archetype'), 'briefDigest': digest(brief), 'styleDigest': digest(style),
+    report = {'city': city, 'venueId': vid, 'archetype': brief.get('archetype'), 'briefDigest': digest(spec if is_spec else brief), 'styleDigest': digest(style),
               'status': 'ok', 'warnings': [], 'triangles': {}, 'rawBytes': {}, 'errors': []}
+    if is_spec:
+        report['mode'] = 'spec'
+        report['verified'] = spec.get('verified')
+        report['images'] = []
     try:
         name = brief.get('archetype')
         mod = archetype(name)
         seed = seed_for(city, vid)
         supported = getattr(mod, 'FEATURES', None)
-        for f in brief.get('features', []) or []:
+        for f in ([] if is_spec else brief.get('features', []) or []):
             fid = f.get('id') if isinstance(f, dict) else f
             if fid not in lib.ALL_FEATURES:
                 report['warnings'].append(f'unknown feature id "{fid}" ignored')
@@ -98,7 +109,10 @@ def run_job(job, out_dir, render=True, views=()):
             report['warnings'].extend(mod.warnings(brief, style))
         last = None
         for detail in (2, 1, 0):
-            objs = build_lod(mod, brief, style, seed, detail)
+            objs = build_lod(mod, brief, style, seed, detail, spec, facts)
+            for w in getattr(mod, 'last_warnings', []) if is_spec else []:
+                if w not in report['warnings']:
+                    report['warnings'].append(w)
             check_scene(objs)
             tris = lib.count_triangles(objs)
             report['triangles'][f'lod{detail}'] = tris
@@ -131,7 +145,19 @@ def run_job(job, out_dir, render=True, views=()):
             lib.silhouette(f'{base}.mask.png', [o for o in last if not o.name.endswith('-site')] or last)
             if 'close' in views:
                 lib.preview(f'{base}.close.png', [o for o in last if not o.name.endswith('-site')] or last, size=1024, azimuth=22, elevation=12, ground_hex='#9aa08c')
-            lib.preview(f'{base}.png', last, ground_hex=lib.mix({'grass': '#8a9a6a', 'laterite': '#a98066', 'sand': '#cdb98f', 'asphalt': '#808387', 'snow': '#e6eaf0', 'cobble': '#9a968c'}.get(ground, '#9aa08c'), '#9ca09a', 0.45))
+            if is_spec:
+                ground = (spec.get('site') or {}).get('ground') or style.get('ground') or 'paving'
+            gh = lib.mix({'grass': '#8a9a6a', 'laterite': '#a98066', 'sand': '#cdb98f', 'asphalt': '#808387', 'snow': '#e6eaf0', 'cobble': '#9a968c'}.get(ground, '#9aa08c'), '#9ca09a', 0.45)
+            lib.preview(f'{base}.png', last, ground_hex=gh)
+            if is_spec:
+                report['images'].append(f'{base}.png')
+                if isinstance(spec.get('camera'), dict):
+                    import photo  # blender/photo.py: the render that matches the photo's viewpoint
+                    photo.render(f'{base}.photo.png', last, spec['camera'], gh, report['warnings'])
+                    report['images'].append(f'{base}.photo.png')
+                for v in ('close', 'lod1', 'lod2'):
+                    if v in views and Path(f'{base}.{v}.png').exists():
+                        report['images'].append(f'{base}.{v}.png')
     except Exception as exc:  # noqa: BLE001 - one bad job must not stop the loop
         report['status'] = 'error'
         report['errors'].append(f'{type(exc).__name__}: {exc}')
@@ -164,4 +190,5 @@ def main():
         print(f"[worker] {r['city']}/{r['venueId']} {r['status']} tris={r['triangles']} {r['seconds']}s" + (f" errors={r['errors']}" if r['errors'] else ''), flush=True)
 
 
-main()
+if __name__ == '__main__':   # importable by render-queue/server.py (which reuses run_job); a plain `blender --python worker.py` still runs main()
+    main()

@@ -18,3 +18,8 @@ dist-maps/
 # Unique places programme
 scripts/places/.cache/
 scripts/places/out/
+
+# Unique places render queue
+scripts/places/render-queue/q/
+scripts/places/render-queue/logs/
+__pycache__/

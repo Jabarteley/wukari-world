@@ -1,0 +1,302 @@
+{
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "abuja",
+ "venueId": "national-mosque",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:AbujaNationalMosque.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "Shiraz Chakera",
+   "view": "front",
+   "file": "/tmp/places-evidence/abuja/mosque1.jpg",
+   "used": "gold ribbed central dome on a crenellated drum, four small gold corner domes, four tall cream pencil minarets with two bands and pointed white caps, tan ribbed wall slabs with dark vertical recesses, low pink arcaded boundary wall, green setting"
+  },
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Main_entrance_to_the_Abuja_National_Mosque.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "Mark Fischer",
+   "view": "front",
+   "used": "entrance portal and wall colours"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/188837229",
+   "used": "main hall outline (stepped square, about 72 x 72 m)"
+  }
+ ],
+ "camera": {
+  "yawDeg": 4,
+  "pitchDeg": 3,
+  "fovDeg": 30,
+  "aspect": 1.333
+ },
+ "parts": [
+  {
+   "type": "mass",
+   "id": "hall",
+   "footprint": {
+    "osm": true,
+    "simplify": 0.8
+   },
+   "height": 16,
+   "storeys": 1,
+   "wall": {
+    "material": "sandstone",
+    "colour": "#c09a7e",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 1.2
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#d8c4a8",
+    "parapet": 1.2
+   }
+  },
+  {
+   "type": "mosque-domed/dome",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "on": "hall",
+   "params": {
+    "radius": 15,
+    "height": 14,
+    "drum": 5.5,
+    "drum_colour": "#dccdb4",
+    "colour": "#d4a82f",
+    "windows": 16,
+    "finial": true,
+    "finial_height": 9
+   }
+  },
+  {
+   "type": "mosque-domed/dome",
+   "at": [
+    -19,
+    -19,
+    0
+   ],
+   "on": "hall",
+   "params": {
+    "radius": 3.3,
+    "drum": 2,
+    "colour": "#d4a82f",
+    "drum_colour": "#dccdb4",
+    "finial_height": 2
+   }
+  },
+  {
+   "type": "mosque-domed/dome",
+   "at": [
+    19,
+    -19,
+    0
+   ],
+   "on": "hall",
+   "params": {
+    "radius": 3.3,
+    "drum": 2,
+    "colour": "#d4a82f",
+    "drum_colour": "#dccdb4",
+    "finial_height": 2
+   }
+  },
+  {
+   "type": "mosque-domed/dome",
+   "at": [
+    -19,
+    19,
+    0
+   ],
+   "on": "hall",
+   "params": {
+    "radius": 3.3,
+    "drum": 2,
+    "colour": "#d4a82f",
+    "drum_colour": "#dccdb4",
+    "finial_height": 2
+   }
+  },
+  {
+   "type": "mosque-domed/dome",
+   "at": [
+    19,
+    19,
+    0
+   ],
+   "on": "hall",
+   "params": {
+    "radius": 3.3,
+    "drum": 2,
+    "colour": "#d4a82f",
+    "drum_colour": "#dccdb4",
+    "finial_height": 2
+   }
+  },
+  {
+   "type": "minaret",
+   "at": [
+    -36.5,
+    -38.5,
+    0
+   ],
+   "params": {
+    "height": 64,
+    "style": "pencil",
+    "colour": "#dccbb0",
+    "cap_colour": "#f1eee6",
+    "base_width": 5
+   }
+  },
+  {
+   "type": "minaret",
+   "at": [
+    36.5,
+    -38.5,
+    0
+   ],
+   "params": {
+    "height": 64,
+    "style": "pencil",
+    "colour": "#dccbb0",
+    "cap_colour": "#f1eee6",
+    "base_width": 5
+   }
+  },
+  {
+   "type": "minaret",
+   "at": [
+    -36.5,
+    38.5,
+    0
+   ],
+   "params": {
+    "height": 64,
+    "style": "pencil",
+    "colour": "#dccbb0",
+    "cap_colour": "#f1eee6",
+    "base_width": 5
+   }
+  },
+  {
+   "type": "minaret",
+   "at": [
+    36.5,
+    38.5,
+    0
+   ],
+   "params": {
+    "height": 64,
+    "style": "pencil",
+    "colour": "#dccbb0",
+    "cap_colour": "#f1eee6",
+    "base_width": 5
+   }
+  },
+  {
+   "type": "mosque-domed/crenellated-wall",
+   "at": [
+    0,
+    -45.5,
+    0
+   ],
+   "params": {
+    "length": 91,
+    "height": 3.2,
+    "thickness": 0.8,
+    "colour": "#d9b59b",
+    "trim": "#e6cdb8",
+    "pitch": 1.9
+   }
+  },
+  {
+   "type": "mosque-domed/crenellated-wall",
+   "at": [
+    0,
+    45.5,
+    0
+   ],
+   "params": {
+    "length": 91,
+    "height": 3.2,
+    "thickness": 0.8,
+    "colour": "#d9b59b",
+    "trim": "#e6cdb8",
+    "pitch": 1.9
+   }
+  },
+  {
+   "type": "mosque-domed/crenellated-wall",
+   "at": [
+    -45.5,
+    0,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "length": 91,
+    "height": 3.2,
+    "thickness": 0.8,
+    "colour": "#d9b59b",
+    "trim": "#e6cdb8",
+    "pitch": 1.9
+   }
+  },
+  {
+   "type": "mosque-domed/crenellated-wall",
+   "at": [
+    45.5,
+    0,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "length": 91,
+    "height": 3.2,
+    "thickness": 0.8,
+    "colour": "#d9b59b",
+    "trim": "#e6cdb8",
+    "pitch": 1.9
+   }
+  },
+  {
+   "type": "mosque-domed/buttress-row",
+   "at": [
+    -18,
+    -36.5,
+    0
+   ],
+   "params": {
+    "length": 36,
+    "spacing": 4.6,
+    "height": 15.5,
+    "width": 1.5,
+    "proud": 1.1,
+    "crown": false,
+    "colour": "#a98368"
+   }
+  }
+ ],
+ "site": {
+  "ground": "grass",
+  "forecourt": "none",
+  "trees": 14,
+  "treeKind": "broadleaf",
+  "extent": [
+   112,
+   112
+  ]
+ },
+ "review": {
+  "rounds": 3,
+  "match": "close",
+  "gaps": "Wall slabs are a flat ribbed block: no stepped zig-zag parapet frieze, no tall dark recesses between ribs, no entrance portal; dome is a little taller than the real flatter ellipsoid and the minaret shafts are thinner with plain cones instead of the flared white caps and fluted collars; boundary wall is crenellated rather than arcaded; surrounding trees are generic."
+ }
+}

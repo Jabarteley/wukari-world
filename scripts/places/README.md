@@ -69,6 +69,46 @@ The worker checks: only mesh objects, one material named `trim`, triangle budget
   do it for you). It is exported in the same GLB but left out of the silhouette mask and the size check.
 - No logos or legible text: `sign_board` is a blank board.
 
+## Composing a place (PlaceModelV2: one hand-composed model per place)
+
+Spec format and the evidence rules: [PLACE-MODEL.md](../../docs/agent-plans/unique-places/PLACE-MODEL.md). Specs live in `scripts/places/models/<city>/<venueId>.json`.
+
+```bash
+python3 scripts/places/blender/parts/list.py [filter]        # every part id with parameters (no Blender); --json for tools
+node --experimental-strip-types scripts/places/validate-model.ts scripts/places/models/abuja/airport.json   # schema, enums, part ids, evidence
+scripts/places/render-queue/run.sh 2                          # once: 2 shared Blender servers (never start your own Blender); `stop`, `status`
+node --experimental-strip-types scripts/places/render-queue/submit.ts --city abuja --venue airport \
+     --spec scripts/places/models/abuja/airport.json [--photo /tmp/places-evidence/abuja/airport3.jpg] [--views close] [--wait 120]
+```
+
+`submit.ts` validates, adds the city style (`briefs/<city>.json`) and the OSM/Wikidata facts of the venue (`data/facts/<city>.json`, `--facts auto`),
+queues the job and prints triangles (LOD0/1/2, LOD0 by part), warnings and the image paths: `out/<city>/<venueId>.png` (standard 3/4 view),
+`<venueId>.photo.png` (768 px, rendered from `spec.camera` {yawDeg 0 = looking at the front/-Y facade, positive = camera towards +X; pitchDeg;
+fovDeg horizontal; aspect; margin; fit "building"|"all"; shiftX/shiftY}) and, when a photo is known (`--photo`, or a photo evidence entry with a
+`file`), `out/cmp-<city>-<venueId>.png` (photo left, render right: look at it with the Read tool). Exit code 0 ok, 1 rejected/error, 2 bad spec,
+3 timeout (`--collect <jobid>` later). The servers restart by themselves after 300 jobs and whenever a `.py` under `blender/` changes.
+
+**Composer** (`archetypes/compose.py`, module docstring has every key). Parts: `{"type": "mass", id, footprint, at [x,y], rotDeg, z0, height, storeys,
+wall {material, colour, windows, windowRatio, faces {front,back,left,right}, bands, plinth, bay, cornice, parapet, groundKind, groundHeight}, roof {form,
+colour, material, pitch, rise, overhang, parapet, + form extras}}` with footprint `{"rect":[w,d]}`, `{"polygon":[[x,y],..]}`, `{"osm":true,"scale","rotDeg","fit","simplify"}`
+(the real outline from `facts.osm.footprint`, auto-fitted to 118 m) or `{"kind":"L|U|T|H|cross|ring|oval|round","size":[w,d]}`; roof forms are all contract
+forms plus `curved` (curve arch|sweep|wave) and `wave` (waves, rise, thickness, infill wall|glass). Any other `type` is a part from the registry
+(`{"type": "minaret", "at": [x,y,z], "rotDeg": 30, "params": {...}}`; `"on": "<mass id>"` places it on that mass's roof, `at` relative to the mass centre).
+`site`: ground, forecourt, forecourtDepth, trees (count or `[{kind, at, height}]`), cars, extent. Unknown part types/params, bad colours or numbers come
+back as report warnings, never crashes; numbers are clamped (mass height 138 m, 118 m footprint side, budgets 20k/4k/500 triangles are checked by the worker).
+Triangle cost hints: every wall bay with real windows costs triangles at LOD0, so use `windows: "none"` for plain faces and `bay` to widen bays;
+large flat tiles cost triangles at LOD1 (use big single slabs and the `scale` of box-based parts).
+
+**Parts registry** (`blender/parts/__init__.py`): every `parts/*.py` (not `_*`, not `list.py`) exports `PARTS = {id: fn(b, look, rng, detail, at, rot, **params)}`.
+`core.py` (dome, tower, spire, minaret, colonnade, portico, canopy, steps, sign-board, tree, car, lamp, fence-wall, gate, flag, water-tank,
+solar-panels, control-tower, jet-bridge, airliner) is the lowest priority. When two files define the same id, the first file alphabetically keeps the plain id
+and the registry warns; EVERY part is also addressable as `"<file>/<id>"`, e.g. `"mosque-domed/dome"`, `"core/canopy"`: use the qualified id when the plain one
+belongs to another file with different parameters. Other parts files use snake_case parameters, core uses camelCase: always read `list.py`. `parts/_xform.py` is a builder proxy (`Xform.make(b, at, rot)`) that places any lib call in a local frame.
+
+**Render queue** (`render-queue/`): `server.py` (one long-lived headless Blender watching `q/in/*.json`, atomic claim by rename into `q/work/`, result in
+`q/done/<jobid>.json`, heartbeat in `q/workers/<id>.json`), `run.sh [N]` (restart loop, logs in `logs/`), `submit.ts`. `q/` and `logs/` are gitignored.
+`blender/side_by_side.py --photo x.jpg --render out/....photo.png --out cmp.png` makes the comparison by hand (via the queue under plain python3).
+
 ## Library (`import lib`)
 
 Slots in `atlas/slots.json` (name: tile metres): walls `plain-render 4, rough-concrete 4, brick 2, stone-blocks 4, mud-render 4,
@@ -129,3 +169,29 @@ optional newer glass wing; Lagos), `pier` (head house + finger pier with bridges
 squat tower, one turboprop). Control tower variants (round, faceted, square), jet bridges, low-poly airliners, entrance canopies (flat or
 curved), forecourt with parking, trees, lamps, apron. Fixtures: `fixtures/airport-briefs.jsonl` (Abuja, Lagos, Heathrow T5) and
 `fixtures/airport-variants.jsonl` (pier and regional test fixtures with invented, clearly marked, non-place names).
+
+## In the game: manifests, serving, upload
+
+```
+node --experimental-strip-types scripts/places/pack.ts        # packer reports + packed GLBs in out/<city>/
+node --experimental-strip-types scripts/places/manifest.ts    # manifests, runtime modules, atlas files, out/store/<sha256>.glb (--check, --merge, --city)
+node --experimental-strip-types scripts/places/upload.ts --dry-run   # then without --dry-run: R2 key places/<sha256>.glb
+```
+
+- **Manifest** (`manifest/<city>.json`, committed; format and limits in `src/scene/places/manifest.ts`): per venue the archetype and, for `lod0`,
+  `lod1`, `lod2`, `{ sha256, bytes, brotliBytes, triangles }`. Only `packed` reports whose files exist and hash as reported are published.
+  `manifest.ts` also writes `src/scene/places/cities/<city>.ts` (one lazy module per city), `registry.generated.ts` and `atlas.generated.ts`,
+  and puts the shared atlas in `public/assets/places/` as `trim-<sha256>.webp` (2048) and `trim-1024-<sha256>.webp` (1024, made with `cwebp`).
+  `npm run places:check` (part of `prebuild`) fails when any of them is stale.
+- **Serving**: `/assets/places/<sha256>.glb` is read by the Worker from R2 (`deploy/places-route.ts`; immutable, edge-cached, 404 for a bad hash) and by
+  the Node host from `PLACES_DIR` or `out/store` (`server/places-files.ts`). The client re-hashes every file against its address
+  (`src/scene/places/glb.ts`) and refuses anything that is not a texture-less meshopt GLB with the one material `trim`.
+- **In the scene**: a recipe venue with a model shows it behind its back wall instead of the city hero (`src/scene/places/backdrop.ts`,
+  `src/scene/recipe/runtime-host.ts`): LOD0 only on a device known to be strong (`device.ts`), LOD1 otherwise, nothing at all (the hero stays) if the
+  model cannot be had. Its triangles are measured under `PLACE_MODEL_TRIANGLES` in `src/budgets.ts`, not as scenery. On the map the LOD2 file
+  replaces the procedural building of that venue (`src/map3d/city-build.ts` `setPlaceIcons`), drawn from vertex colour alone.
+- **On the phone**: `public/sw.js` keeps `/assets/places/*` cache-first in `allworld-places-v1`, and the game asks the browser for persistent storage
+  after the first model. Idle warm-up fetches LOD1 of the current city's first six places (never in Light mode, Save-Data or 2G).
+- **Release order**: run `manifest.ts`, commit the manifests and generated files, **upload first** (`upload.ts`; S3 API with `R2_ACCESS_KEY_ID`,
+  `R2_SECRET_ACCESS_KEY`, `ALLWORLD_CF_ACCOUNT_ID`, else wrangler's login), then deploy. Keys are content hashes: uploading is idempotent and old
+  keys can stay. `.cache/uploaded.json` is the ledger of what has gone up (delete it or use `--force` to resend).

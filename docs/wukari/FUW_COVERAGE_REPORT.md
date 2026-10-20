@@ -1,0 +1,141 @@
+# FUW geographic coverage report
+
+Generated from exact dataset SHA-256: `31ffe879bb3403f30522d0db04ac74ff93fe8de3e36ff2e1b0f7590134310542`. Counts describe imported source records, not independently surveyed coverage.
+
+| Measure | Result |
+| --- | --- |
+| Imported roads / footpaths | 0 |
+| Imported building footprints | 0 |
+| Source-backed named landmark records (whole extract) | 0 |
+| Campus landmark assignment | Unknown: no campus extent or corroborated campus feature selection |
+| Independently field-verified features | 0 |
+| Campus boundary | unknown |
+| Road graph nodes / components | 0 / unknown (no imported roads) |
+| Estimated campus geographic coverage | Unknown; no supported denominator |
+| Incomplete ways / unassembled relations | 0 / 0 |
+| Elevation / playable campus | Unavailable / no |
+
+Connectivity uses original shared OSM node references, not visual intersections or proximity. It does not establish public access, pedestrian connectivity or a safe spawn. Named records may describe the same landmark; counts are not unique real-world venues. Imported non-campus features must not be advertised as FUW.
+
+## Sources, licenses and hashes
+
+Original provenance is preserved below. OSM records are source-backed, not field-verified. The administrative boundary is Wukari LGA, not a campus extent.
+
+```json
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "schemaVersion": 1,
+      "id": "nga-adm2",
+      "url": "https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/9469f09/releaseData/gbOpen/NGA/ADM2/geoBoundaries-NGA-ADM2.geojson",
+      "license": "CC-BY-4.0",
+      "attribution": "geoBoundaries gbOpen / William & Mary geoLab; original source GRID3, Nigeria ADM2, year 2022, release 9469f09. Selected Wukari feature; no source-coordinate rounding.",
+      "status": "acquired",
+      "retrievedAt": "2026-10-20T12:09:26.033Z",
+      "bytes": 9422551,
+      "sha256": "bef7f2cfa45e012f4772eaa61c7b99e5188aeba4d5c6badae7e9f9aae8c02fcd",
+      "query": null,
+      "querySha256": null,
+      "verification": "source-backed-not-field-verified",
+      "fieldVerified": false,
+      "attempts": [
+        {
+          "number": 1,
+          "at": "2026-10-20T12:09:26.032Z",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "id": "nga-adm2-metadata",
+      "url": "https://www.geoboundaries.org/api/current/gbOpen/NGA/ADM2/",
+      "license": "CC-BY-4.0",
+      "attribution": "geoBoundaries gbOpen / William & Mary geoLab; original source GRID3, Nigeria ADM2, year 2022, release 9469f09. Selected Wukari feature; no source-coordinate rounding.",
+      "status": "acquired",
+      "retrievedAt": "2026-10-20T12:12:42.038Z",
+      "bytes": 1871,
+      "sha256": "eaa2342efbad55a3ca9967611670f7001e80e000ef8c180d2c3d5f2eb03e14da",
+      "query": null,
+      "querySha256": null,
+      "verification": "source-backed-not-field-verified",
+      "fieldVerified": false,
+      "attempts": [
+        {
+          "number": 1,
+          "at": "2026-10-20T12:12:42.038Z",
+          "status": 200
+        }
+      ]
+    }
+  ],
+  "derived": {
+    "file": "wukari-adm2.geojson",
+    "sha256": "fdf3cf2421d730ca7bb0f0297b8a0b8a32058f5d95b4c1a4ced6e8c959c7a1fc",
+    "bytes": 7764,
+    "sourceSha256": "bef7f2cfa45e012f4772eaa61c7b99e5188aeba4d5c6badae7e9f9aae8c02fcd",
+    "sourceId": "59680162B18982121994254",
+    "operation": "Exact Wukari/NGA/ADM2 feature selection; original properties and WGS84 numeric values retained"
+  },
+  "discovery": {
+    "schemaVersion": 1,
+    "id": "fuw-discovery",
+    "url": "https://overpass-api.de/api/interpreter",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors, https://www.openstreetmap.org/copyright (ODbL 1.0)",
+    "status": "failed",
+    "retrievedAt": null,
+    "bytes": null,
+    "sha256": null,
+    "query": "[out:json][timeout:15];\n(nwr[\"amenity\"=\"university\"](7.614686011949914,9.115716934189209,8.296087265315066,10.331658908831628);>;);\nout meta geom;\n",
+    "querySha256": "be67bb4fbb714772a782f0d6c907f2864869e297d64cf6efe3be8dfb4f800d31",
+    "verification": "not-acquired",
+    "fieldVerified": false,
+    "attempts": [
+      {
+        "number": 1,
+        "at": "2026-10-20T12:09:51.149Z",
+        "status": 0,
+        "failure": {
+          "category": "timeout",
+          "message": "curl: (28) Operation timed out after 25001 milliseconds with 0 bytes received",
+          "retryable": true
+        },
+        "nextDelayMs": 1000
+      },
+      {
+        "number": 2,
+        "at": "2026-10-20T12:10:17.179Z",
+        "status": 0,
+        "failure": {
+          "category": "timeout",
+          "message": "curl: (28) Operation timed out after 25002 milliseconds with 0 bytes received",
+          "retryable": true
+        },
+        "nextDelayMs": 2000
+      },
+      {
+        "number": 3,
+        "at": "2026-10-20T12:10:44.204Z",
+        "status": 0,
+        "failure": {
+          "category": "timeout",
+          "message": "curl: (28) Operation timed out after 25002 milliseconds with 0 bytes received",
+          "retryable": true
+        }
+      }
+    ]
+  },
+  "verification": {
+    "sourceBacked": true,
+    "fieldVerified": false,
+    "legalCampusBoundary": false,
+    "status": "Wukari administrative context only; no FUW geography acquired"
+  }
+}
+```
+
+## Missing input and next action
+
+A licensed FUW-area extract with complete original nodes/ways, actual source URL/query, retrieval time, original bytes and hashes is required. Campus boundary may remain unknown; independently corroborated campus-area roads/buildings can be reviewed separately. No road/building geometry or coordinates may be guessed. Public access, safe ground/spawn, terrain, building heights, campus scope and independent verification remain unestablished. Use DATA_TRANSFER.md to prepare, transfer and import the source, then regenerate this report and review coverage before enabling gameplay.

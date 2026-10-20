@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "primaryDiscovery": {
+    "schemaVersion": 1,
+    "id": "fuw-discovery",
+    "url": "https://overpass-api.de/api/interpreter",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors, https://www.openstreetmap.org/copyright (ODbL 1.0)",
+    "status": "failed",
+    "retrievedAt": null,
+    "bytes": null,
+    "sha256": null,
+    "query": "[out:json][timeout:15];\n(nwr[\"amenity\"=\"university\"](7.614686011949914,9.115716934189209,8.296087265315066,10.331658908831628);>;);\nout meta geom;\n",
+    "querySha256": "be67bb4fbb714772a782f0d6c907f2864869e297d64cf6efe3be8dfb4f800d31",
+    "verification": "not-acquired",
+    "fieldVerified": false,
+    "attempts": [
+      {
+        "number": 1,
+        "at": "2026-10-20T13:12:24.138Z",
+        "status": 0,
+        "failure": {
+          "category": "timeout",
+          "message": "curl: (28) Operation timed out after 25002 milliseconds with 0 bytes received",
+          "retryable": true
+        },
+        "nextDelayMs": 1000
+      },
+      {
+        "number": 2,
+        "at": "2026-10-20T13:12:50.159Z",
+        "status": 0,
+        "failure": {
+          "category": "timeout",
+          "message": "curl: (28) Operation timed out after 25002 milliseconds with 0 bytes received",
+          "retryable": true
+        },
+        "nextDelayMs": 2000
+      },
+      {
+        "number": 3,
+        "at": "2026-10-20T13:12:53.078Z",
+        "status": 502,
+        "failure": {
+          "category": "provider-unavailable",
+          "message": "HTTP 502; bounded retry only.",
+          "retryable": true
+        }
+      }
+    ]
+  },
+  "additionalAccess": [
+    {
+      "schemaVersion": 1,
+      "id": "phase4-alternative-discovery",
+      "url": "https://overpass.private.coffee/api/interpreter",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors",
+      "status": "failed",
+      "retrievedAt": null,
+      "bytes": null,
+      "sha256": null,
+      "query": "[out:json][timeout:15];\n(nwr[\"amenity\"=\"university\"](7.614686011949914,9.115716934189209,8.296087265315066,10.331658908831628);>;);\nout meta geom;\n",
+      "querySha256": "be67bb4fbb714772a782f0d6c907f2864869e297d64cf6efe3be8dfb4f800d31",
+      "verification": "not-acquired",
+      "fieldVerified": false,
+      "attempts": [
+        {
+          "number": 1,
+          "at": "2026-10-20T13:14:35.827Z",
+          "status": 0,
+          "failure": {
+            "category": "timeout",
+            "message": "curl: (28) Operation timed out after 15002 milliseconds with 0 bytes received",
+            "retryable": true
+          }
+        }
+      ]
+    },
+    {
+      "url": "https://download.geofabrik.de/africa/nigeria.html",
+      "at": "2026-10-20T13:14:35.828Z",
+      "status": 0,
+      "transportCode": 56,
+      "transportError": "curl: (56) CONNECT tunnel failed, response 403",
+      "meaning": "Access diagnostic only; not map data or proof of license"
+    },
+    {
+      "url": "https://extract.bbbike.org/",
+      "at": "2026-10-20T13:14:35.848Z",
+      "status": 0,
+      "transportCode": 56,
+      "transportError": "curl: (56) CONNECT tunnel failed, response 403",
+      "meaning": "Access diagnostic only; not map data or proof of license"
+    },
+    {
+      "url": "https://www.openstreetmap.org/",
+      "at": "2026-10-20T13:14:35.867Z",
+      "status": 0,
+      "transportCode": 56,
+      "transportError": "curl: (56) CONNECT tunnel failed, response 403",
+      "meaning": "Access diagnostic only; not map data or proof of license"
+    }
+  ],
+  "campusPlayable": false
+}

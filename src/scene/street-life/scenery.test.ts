@@ -160,3 +160,28 @@ test('the home street with ?streetlife=on: its shops and furniture, the crowd an
     kit.dispose();
   } finally { browser.location = had; }
 });
+
+test('the home street at night: one pool mesh for the lamps (none on the phone tier), lamps dark in a power cut, windows lit by the hour', async () => {
+  const browser = globalThis as unknown as Record<string, unknown>, had = browser.location;
+  const at = Date.UTC(2026, 0, 5, 20, 0);   // 21:00 in Lagos
+  const build = async (search: string) => {
+    browser.location = { search };
+    await loadCityContent('lagos');
+    const kit = createKit(), street = buildNeighbourhoodScene(kit);
+    street.update?.(createLife({ location: 'home' }, { cityId: 'lagos', now: at }));
+    return { kit, street };
+  };
+  try {
+    const high = await build('?quality=high'), pools = high.street.group.children.filter((child) => child.name === 'street-light-pools');
+    assert.equal(pools.length, 1, 'one draw call for every lamp\'s pool'); assert.ok((pools[0] as THREE.InstancedMesh).count >= 3 && pools[0]!.visible);
+    const lamps = (g: THREE.Object3D) => { const found: THREE.PointLight[] = []; g.traverse((o) => { if ((o as THREE.PointLight).isPointLight) found.push(o as THREE.PointLight); }); return found; };
+    assert.ok(lamps(high.street.group).length > 0 && lamps(high.street.group).every((l) => l.intensity > 0), 'the lamps are on');
+    high.street.dispose?.(); high.kit.dispose();
+    const cut = await build('?quality=high&outage=1');
+    assert.ok(lamps(cut.street.group).every((l) => l.intensity === 0), 'a power cut puts the lamps out');
+    cut.street.dispose?.(); cut.kit.dispose();
+    const phone = await build('?quality=phone');
+    assert.equal(phone.street.group.children.filter((child) => child.name === 'street-light-pools').length, 0, 'the phone tier draws no extra mesh: its pools stay discs in the glow batch');
+    phone.street.dispose?.(); phone.kit.dispose();
+  } finally { browser.location = had; }
+});

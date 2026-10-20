@@ -7,7 +7,7 @@
 - **Model / effort:** Sonnet 5.5 / default
 - **Thread:** local
 - **UTC updated:** 2026-10-20T00:00:00Z
-- **Status:** active
+- **Status:** ready-for-review
 - **Work state:** implementation
 
 ## Goal and boundaries
@@ -34,15 +34,18 @@
 
 ### Done and exact evidence
 
-- Read the plan, the reference ideas, the gist, notice, danfo, crowd and ambient code.
+- `src/news/` (banks, observer, ticker, live, radio, acquaintance, memory-lines) and their tests: `node --experimental-strip-types --test src/news/*.test.ts` (all pass); plus the layer test for the wave and bark in `src/scene/ambient/layer.test.ts` (3 older tests in that file fail the same way on main 53a738808: park@10 characters 306000 triangles, a busy market, the full tier's far crowd; not caused by this work).
+- `Ticker.vue` mounted in `PlacePanel.vue` (Square) and, as a small root of its own, in the notice slot by `src/app/features/gist/mountTicker.ts`, started from `src/app/chatter/start.ts`; danfo radio hook in `DanfoRun.vue`; memory write in `NpcCard.vue`; wave and bark in `layer.ts`.
+- Typecheck clean: `scripts/agent-slot.ts heavy -- env NODE_OPTIONS=--max-old-space-size=7168 npm run typecheck`.
+- CI run 39345985436 (branch `claude/os-p4-ticker`), all fast jobs success; STARTUP_RAW 614012 (same as main), STARTUP_GZIP 221009, STARTUP_BROTLI 194671, SCENE_HOST_RAW 83315, LOADING_RAW 90561, FX_RAW 106008: every line ok, no budget raised.
 
 ### In progress / blockers
 
-- Building.
+- No screenshot: both server slots were held by other sessions for the whole run.
 
 ### Immediate resume steps
 
-1. `git log --oneline` on the branch, then continue from the list in the checkpoint table.
+1. Review the branch; the integrator merges. Pinned host files are untouched.
 
 ## Release state
 

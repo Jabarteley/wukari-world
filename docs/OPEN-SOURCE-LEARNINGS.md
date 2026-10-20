@@ -273,9 +273,7 @@ this page. The GitHub columns (licence as GitHub reports it, last push) were re-
 | Fable Cities | An agent-built city builder with a critic prompt | `rawprogress/fable-cities` | custom text (read it) | 2 Sep 2026 | The critic and blind-pair method (EVIDENCE.md) |
 | Neon Zenith | A street-level open world; its rain, governor and per-view frame table | `billpwchan/neon-zenith` | custom text (read it) | 6 Oct 2026 | Ideas 1 and 17; its README's frame table |
 | Cinevva open-world series | Thirty posts on a browser open world (voice, crowds, skeletons) | `app.cinevva.com` (blog) | not checked | Feb to Jun 2026 | Ideas 21, 23 and 26 |
-| Lagos Life | The Lagos browser life game that went viral; now an ad business | press only (TechCabal, 12 Oct 2026) | not checked | n/a | Cost per player, ad formats, retention. Its numbers are press, unverified |
-| Lagos Run | The danfo-driving game that drew about 140,000 players in a week | press only | not checked | n/a | What a one-week spike looks like (the viral-week model in [CAPACITY.md](CAPACITY.md)) |
 
 Read a licence cell as GitHub's word, not a legal reading. "None stated" means GitHub found no licence file, so nothing may be
 copied from that repository at all. "Custom text" means a licence file GitHub cannot name: read it before borrowing anything but
-an idea. If a peer is archived or silent for three months, drop it from the table and say so in this paragraph.
+an idea. Hosted games reported in the press (idea 34 above) are read from the press and are not listed here. If a peer is archived or silent for three months, drop it from the table and say so in this paragraph.

@@ -258,8 +258,7 @@ files (an assumption: the file count of a first visit has not been measured here
 Rows written are more than half of it: a busy hour writes 530 rows and a rest hour 6, so the whole bill moves with how many players are busy
 (every 100 rows a player-day is $300 a month at this size; all players busy for their half hour is about $1,060 in total, all at
 rest about $200). The formula for any size: Worker requests × $0.30 + DO requests × $0.15 + rows × $1.00, each per million after
-the included amounts, plus $5. For scale, Lagos Life is reported (press, not verified; [OPEN-SOURCE-LEARNINGS.md](OPEN-SOURCE-LEARNINGS.md))
-at about $6,000 a month across two providers for 1 to 3 million players in a week: the same order of cost per player.
+the included amounts, plus $5. For scale: a Lagos browser game that went viral is reported in the press (not verified; idea 34 in [OPEN-SOURCE-LEARNINGS.md](OPEN-SOURCE-LEARNINGS.md)) at about $6,000 a month across two providers for 1 to 3 million players in a week, the same order of cost per player.
 
 **The bill is not what stops a viral week; the one object is.** At 100,000 a day the average number connected is about 2,100
 (100,000 × half an hour ÷ 24 hours) and an evening peak is several times that (an assumption of 3 to 5 times: 6,000 to 10,000).

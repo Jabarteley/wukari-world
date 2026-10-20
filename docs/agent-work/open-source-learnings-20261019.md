@@ -6,7 +6,7 @@
 - **Owner:** Claude (T3 Code thread, owner's Mac)
 - **Model / effort:** claude-fable-5-1 (started on claude-opus-5-5) / default
 - **Thread:** local
-- **UTC updated:** `2026-10-20T00:05:00Z`
+- **UTC updated:** `2026-10-20T00:50:00Z`
 - **Status:** `active` (integration of waves 0 and 1)
 - **Work state:** `implementation`
 
@@ -52,7 +52,7 @@
 ## Release state
 
 - **Local implementation:** `verified-local` (docs only)
-- **Deployment:** `verified` (waves 0 and 1 live as 53a738808 since 2026-10-20T00:01Z; release run 39343306083; `release-continuity.mjs after` passed)
+- **Deployment:** `verified` (4edde99aa live since 2026-10-20T00:43Z, release run 39348119429, continuity check passed: waves 0 and 1, the post stack on by default, phase 4; earlier 53a738808 at 00:01Z)
 - **Release gate:** none for docs; commit when the owner is happy with the page.
 - **References:** `docs/OPEN-SOURCE-LEARNINGS.md`, `docs/WOW-PLAN.md`, `docs/agent-plans/viral/RESEARCH.md`
 
@@ -67,3 +67,4 @@
 | 2026-10-20T01:20:00Z | active | Wave 1 merged: phase 1 rain and smoke (no shader errors on the Mac GPU, no measurable cost), phase 3 feel (shake patch applied, Reduce-shake switch added), phase 2 post stack (about 3 ms at 1080p, AO on by default); venue hosts re-pinned, talk banks rebuilt; budget measurement made hash-stable | main 37c4c5e3c, 137 targeted tests, typecheck clean | CI + critic, then release |
 | 2026-10-19T23:50:00Z | active | Critic scorecard merged (`docs/evidence/critic-wave1-20261020.md`): rain earned its place, post stack not as shipped (now behind `?post=1`), feel unproven but cheap; rain no longer drawn over the cutaway home; talk-factory manifest committed; CI 39342130339 all budgets ok | main 53a738808 | release |
 | 2026-10-20T00:01:00Z | active | Released: live build 53a738808, continuity check passed, page 200. Next wave started: phases 4, 7, 2b in their worktrees | `/api/health` | review the three phases, critic, release |
+| 2026-10-20T00:43:00Z | active | Owner: "deploy with everything on". Post stack on by default (`?post=0` off), phase 4 ticker/radio/memory merged (105 tests), CI 39346982579 all budgets ok, released and live as 4edde99aa, continuity passed | `/api/health` | phases 7 and 2b, critic, release |

@@ -1,20 +1,61 @@
 /*
- * OWNER: growth
- * Allworld's service worker. It does exactly two things: show a notification when a push arrives,
- * and open the game when that notification is tapped. It caches nothing, intercepts no request
- * (there is no fetch handler), and so cannot serve a stale game or change how anything loads.
+ * OWNER: growth (push), scenes (place models)
+ * Allworld's service worker. It does three things: show a notification when a push arrives, open the
+ * game when that notification is tapped, and keep the unique place models (see PLACE MODELS below).
+ * It caches nothing else and intercepts no other request: the one fetch handler answers only
+ * /assets/places/<hash>.glb and the two shared atlas files next to them, so it cannot serve a stale
+ * game or change how anything else loads.
  *
- * SCOPE AND UPDATES. Registered at "/" by the Stay in touch app, and only when a player switches
- * notifications on — a visitor who never does has no service worker at all. The browser re-checks
- * this file on its own (at most every 24 hours, and on navigation); a changed file takes over at
- * once (skipWaiting + clients.claim), which is safe because it holds no cache and no state.
- * Switching notifications off unsubscribes; the worker then simply never receives anything.
+ * SCOPE AND UPDATES. Registered at "/" by the Stay in touch app when a player switches notifications
+ * on, and by the game itself after the first place model has been shown (src/scene/places/persist.ts),
+ * so a return visit can find the models on the device. The browser re-checks this file on its own (at
+ * most every 24 hours, and on navigation); a changed file takes over at once (skipWaiting +
+ * clients.claim), which is safe because the only state it holds is the place cache, whose entries are
+ * content-addressed and never change. Switching notifications off unsubscribes; the worker then simply
+ * never receives anything.
  *
  * A push payload is JSON { title, body, url, tag } made by server/growth/outreach.ts. The words
  * are the server's own; nothing in a payload is run or inserted as markup.
  */
 self.addEventListener('install', () => { self.skipWaiting(); });
-self.addEventListener('activate', (event) => { event.waitUntil(self.clients.claim()); });
+self.addEventListener('activate', (event) => { event.waitUntil(Promise.all([self.clients.claim(), dropOldPlaceCaches()])); });
+
+/*
+ * PLACE MODELS. Every venue has its own model at /assets/places/<sha256>.glb and the models share one atlas at
+ * /assets/places/trim-<sha256>.webp (2048) and trim-1024-<sha256>.webp. Each address names the SHA-256 of the file's own bytes, so
+ * a cached answer can never be stale: it is cache-first, in Cache Storage under 'allworld-places-v1', which (with
+ * navigator.storage.persist(), asked once by the game) the browser keeps longer than its HTTP cache. Only a plain 200 from this
+ * origin is stored: an error, a redirect or a partial answer is never kept. A request with a Range header, any other method, any
+ * other origin and any other path is left to the browser. If Cache Storage fails, the network answer is used as it is.
+ */
+const PLACES_CACHE = 'allworld-places-v1';
+const PLACE_FILE = /^\/assets\/places\/(?:[0-9a-f]{64}\.glb|trim(?:-1024)?-[0-9a-f]{64}\.webp)$/;
+function dropOldPlaceCaches() {
+  return self.caches.keys().then((keys) => Promise.all(keys.filter((key) => /^allworld-places-v\d+$/.test(key) && key !== PLACES_CACHE).map((key) => self.caches.delete(key)))).catch(() => undefined);
+}
+function fromNetwork(event, request, key, cache) {
+  return fetch(request).then((response) => {
+    if (response.status === 200 && response.ok && response.type === 'basic' && !response.redirected) {
+      const copy = response.clone();
+      event.waitUntil(cache.put(key, copy).catch(() => undefined));
+    }
+    return response;
+  });
+}
+function placeResponse(event, request, key) {
+  return self.caches.open(PLACES_CACHE).then(
+    (cache) => cache.match(key).then((hit) => hit || fromNetwork(event, request, key, cache)),
+    () => fetch(request),
+  );
+}
+self.addEventListener('fetch', (event) => {
+  const request = event.request;
+  if (request.method !== 'GET' || request.headers.has('range')) return;
+  let url;
+  try { url = new URL(request.url); } catch (error) { return; }
+  if (url.origin !== self.location.origin || !PLACE_FILE.test(url.pathname)) return;
+  event.respondWith(placeResponse(event, request, url.origin + url.pathname));
+});
 
 /*
  * A message from a friend (kind 'chat') is shown only when no visible window of the game is open: someone who is looking at the game

@@ -1,0 +1,32 @@
+{
+ "schema": "allworld-place-models",
+ "version": 1,
+ "city": "abuja",
+ "atlas": {
+  "url": "/assets/places/trim-4a41ce7589ebc41ab05b29b82e400a7dbf59da39318dba1644d8de0a8db6d316.webp",
+  "sha256": "4a41ce7589ebc41ab05b29b82e400a7dbf59da39318dba1644d8de0a8db6d316"
+ },
+ "venues": {
+  "airport": {
+   "archetype": "airport-terminal",
+   "lod0": {
+    "sha256": "ffe31ebaac67aae81494fd267a94e97a59e88ffc42c2a66e1378fdb625d7c96f",
+    "bytes": 182460,
+    "brotliBytes": 63740,
+    "triangles": 14406
+   },
+   "lod1": {
+    "sha256": "710395c9116d1fdb0507018619c24440f5cbb9d594d00cc9cd86c46e48cd0432",
+    "bytes": 37840,
+    "brotliBytes": 17976,
+    "triangles": 2657
+   },
+   "lod2": {
+    "sha256": "474b79ba2c42bb835f188d212e0aad4f481054b6ea5e8efd1471895699676fff",
+    "bytes": 4068,
+    "brotliBytes": 1819,
+    "triangles": 170
+   }
+  }
+ }
+}

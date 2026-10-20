@@ -1,0 +1,8 @@
+{
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "properties": {"shapeName":"SYNTHETIC TEST AREA","shapeGroup":"SYNTHETIC","shapeType":"ADM2","shapeID":"synthetic-boundary"},
+    "geometry": {"type":"Polygon","coordinates":[[[-0.002,-0.002],[0.002,-0.002],[0.002,0.002],[-0.002,0.002],[-0.002,-0.002]]]}
+  }]
+}

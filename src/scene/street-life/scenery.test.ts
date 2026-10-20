@@ -12,7 +12,8 @@ import { BAY_MIN, SHOP_ASSETS, SHOP_NAMES, frontagesOf, planShopfronts, shopPart
 import type { Frontage } from './shopfronts.ts';
 import { ALLWORLD_FLAG, FLAGS, SLOT_CLEAR, flagFor, planFurniture, furnitureParts } from './furniture.ts';
 import type { CrossingSpec, FurnitureInput } from './furniture.ts';
-import { GLASS_GLOW, createStreetScenery, planScenery } from './scenery.ts';
+import { DAY_LIGHT, createStreetScenery, planScenery } from './scenery.ts';
+import { emittersFor } from '../street/night-lights.ts';
 import { loadCityContent } from '../../game/cities/registry.ts';
 import { createLife } from '../../life.ts';
 import { buildNeighbourhoodScene } from '../neighbourhood-scene.ts';
@@ -102,7 +103,7 @@ test('drawn: four instanced meshes (one draw call each), the triangles the plan 
   const kit = createKit(), parent = new THREE.Group();
   const frontages = frontagesOf(street.pieces, boxOf);
   const plan = planScenery(frontages, furniture, 'd');
-  const scenery = createStreetScenery(kit, { parent, frontages, furniture, seed: 'd', country: 'ng', time: 'day' });
+  const scenery = createStreetScenery(kit, { parent, frontages, furniture, seed: 'd', country: 'ng', light: DAY_LIGHT });
   const meshes = scenery.group.children as THREE.InstancedMesh[];
   assert.equal(meshes.length, 4);
   assert.ok(meshes.every((m) => m.isInstancedMesh && !m.castShadow));
@@ -114,9 +115,21 @@ test('drawn: four instanced meshes (one draw call each), the triangles the plan 
   assert.ok(scenery.bays > 0 && scenery.items > 0);
   const glass = meshes.find((m) => m.name === 'street-scenery-glow')!, shader = { uniforms: {} as Record<string, { value: number }>, vertexShader: '#include <common>', fragmentShader: '#include <common>\n#include <emissivemap_fragment>' };
   (glass.material as THREE.Material).onBeforeCompile(shader as never, null as never);
-  assert.equal(shader.uniforms.uGlow!.value, GLASS_GLOW.day);
-  scenery.setTime('night');
-  assert.equal(shader.uniforms.uGlow!.value, GLASS_GLOW.night);
+  assert.equal(shader.uniforms.uGlow!.value, DAY_LIGHT.glass);
+  const night = emittersFor({ band: 'night', minuteOfDay: 1260, outage: false, high: false }), cut = emittersFor({ band: 'night', minuteOfDay: 1260, outage: true, high: false });
+  scenery.setLight(night);
+  assert.equal(shader.uniforms.uGlow!.value, night.glass);
+  assert.equal(shader.uniforms.uShare!.value, night.share);
+  assert.equal(shader.uniforms.uPower!.value, 1);
+  scenery.setLight(cut);
+  assert.equal(shader.uniforms.uPower!.value, 0, 'a power cut reaches the glass');
+  // Every glass instance has a shop draw and a generator flag; the lamp heads are marked with a draw below zero (always lit with power).
+  const shop = glass.geometry.getAttribute('aShop') as THREE.InstancedBufferAttribute;
+  assert.equal(shop.count, plan.parts.glows.length);
+  plan.parts.glows.forEach((b, i) => assert.equal(shop.getX(i) < 0, b.bay === undefined, 'a lamp head has no bay'));
+  // The ground pools: one under each lamp and one before each shop, none of them a mesh of the scenery's own (the street makes one mesh for all).
+  assert.equal(scenery.pools.length, plan.items.filter((item) => item.kind === 'lamp').length + plan.bays.length);
+  assert.equal(scenery.group.children.length, 4);
   scenery.dispose();
   assert.equal(parent.children.length, 0);
   assert.equal(scenery.triangles, 0);

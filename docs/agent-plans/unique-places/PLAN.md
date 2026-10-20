@@ -8,6 +8,13 @@ Every public place in every city gets its own model, true to that place and that
 or London's. A lighter version of the same model replaces the generic per-kind building on the city map. Phones download a place's
 model only when it is needed and keep it, so a return visit downloads nothing.
 
+## Owner correction (20 October 2026)
+
+Template generators filled from text briefs looked mass-produced. The owner wants every location unique and backed by picture
+evidence when available. Final models are per-place compositions (PlaceModelV2, see [PLACE-MODEL.md](PLACE-MODEL.md)) written by an
+agent that viewed the photos and the real OSM footprint, then checked against a photo-matched render. Archetype modules become parts
+libraries and a fallback only.
+
 ## Owner decisions (19 October 2026)
 
 - Realism: higher detail, bigger budget. LOD0 is up to about 15,000–20,000 triangles per place, with lower tiers for weak phones,

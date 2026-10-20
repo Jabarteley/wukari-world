@@ -2,9 +2,9 @@
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { dirname, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { buildDataset, contains, parseOsm, wayPositions, parseArea, rings, type Area, type Position } from '../../src/wukari/geography.ts';
+import { buildDataset, contains, parseOsm, wayPositions, indexNodes, parseArea, rings, type Area, type Position } from '../../src/wukari/geography.ts';
 import { checkedBytes, SOURCE_CONFIG } from './sources.ts';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export const sha256 = (b: Uint8Array): string => createHash('sha256').update(b).digest('hex');
@@ -72,23 +72,24 @@ export function importOffline(input: string, receiptPath: string, format: string
   if(receipt.mode!=='source-data') throw new Error('Synthetic inputs cannot enter the real-source import path; use --synthetic foundation import');
   let raw: unknown;
   if(format==='osm-json') raw=JSON.parse(bytes.toString());
-  else if(format==='osm-xml') raw=JSON.parse(execFileSync('python3',[resolve(root,'scripts/wukari/osm-xml.py')],{input:bytes,maxBuffer:128*1024*1024}).toString());
+  else if(format==='osm-xml') raw=JSON.parse(execFileSync(process.platform === 'win32' ? 'python' : 'python3',[resolve(root,'scripts/wukari/osm-xml.py')],{input:bytes,maxBuffer:128*1024*1024}).toString());
   else throw new Error('Supported formats: osm-json, osm-xml. Convert PBF with osmium first; arbitrary GeoJSON is not OSM reference-complete.');
   const dedup=deduplicate(raw);
   const boundaryBytes=readFileSync(resolve(root,'data/wukari/verified/wukari-adm2.geojson')); checkedBytes(boundaryBytes,SOURCE_CONFIG.wukariAdm2);
   const dataset=buildDataset(JSON.parse(boundaryBytes.toString()),dedup.raw,{campusWay});
   let roads=0,buildings=0,incomplete=0;
+  const nodes = indexNodes(dataset.osm.elements);
   for(const e of dataset.osm.elements) {
     if(e.type==='node' && !contains(dataset.extents.lga.feature.geometry,[e.lon!,e.lat!])) throw new Error(`Outside Wukari LGA: node/${e.id}; supply a cropped extract`);
     if(e.type!=='way') continue;
-    const points=wayPositions(e,dataset.osm.elements);
+    const points=wayPositions(e,dataset.osm.elements,nodes);
     if(!points) { incomplete++; continue; }
     if(!withinBoundary(dataset.extents.lga.feature.geometry,points)) throw new Error(`Outside Wukari LGA: way/${e.id}`);
     const building=!!e.tags?.building && e.tags.building!=='no'; validateWay(points,building);
     if(building) buildings++; if(e.tags?.highway) roads++;
   }
   const out=resolve(output), cache=resolve(root,'.cache/wukari');
-  if(!out.startsWith(cache+'/') || [resolve(input),resolve(receiptPath)].some(p=>p.startsWith(out+'/'))) throw new Error('Use a new output directory under .cache/wukari, separate from inputs');
+  if(!out.startsWith(cache+sep) || [resolve(input),resolve(receiptPath)].some(p=>p.startsWith(out+sep))) throw new Error('Use a new output directory under .cache/wukari, separate from inputs');
   mkdirSync(out,{recursive:false});
   const provenance={...receipt,importedAt:new Date().toISOString(),format,fieldVerified:false,verification:'source-backed-not-field-verified',boundarySha256:sha256(boundaryBytes)};
   const coverage={status:'source-review-required',campus:dataset.extents.campus.status,imported:dataset.coverage,roads,buildings,duplicatesRemoved:dedup.duplicates,incompleteWays:incomplete,unassembledRelations:dataset.coverage.relations,fieldVerified:0,elevation:'unavailable',navigation:'not-generated',note:'Counts describe this extract, not geographic completeness. Campus candidate requires independent corroboration. No automatic player spawn.'};

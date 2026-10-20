@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { contains, fromWorld, rings, toWorld, wayPositions } from '../geography.ts';
+import { contains, fromWorld, rings, toWorld, wayPositions, indexNodes } from '../geography.ts';
 import type { Dataset, Position } from '../geography.ts';
 
 /** Flat linework only: no guessed road width, building height, elevation, gates or player spawn. */
@@ -28,9 +28,10 @@ export function createPreview(host: HTMLElement, data: Dataset, report?: (value:
     all.add(new THREE.Line(geometry, new THREE.LineBasicMaterial({ color })));
   };
   for (const ring of rings(data.extents.lga.feature.geometry)) draw(ring, 0x5fba88, 0);
+  const nodes = indexNodes(data.osm.elements);
   for (const way of data.osm.elements) {
     if (way.type !== 'way' || (!way.tags?.highway && !way.tags?.building)) continue;
-    const points = wayPositions(way, data.osm.elements);
+    const points = wayPositions(way, data.osm.elements, nodes);
     if (points && points.length >= 2) draw(points, way.tags?.highway ? 0x77c7ff : 0xc5cbd1, 0.01);
   }
   if (data.extents.campus.geometry) for (const ring of rings(data.extents.campus.geometry)) draw(ring, 0xffc56e, 0.02);

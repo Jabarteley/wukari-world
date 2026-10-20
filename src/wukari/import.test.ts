@@ -1,10 +1,11 @@
 import assert from 'node:assert/strict';
 import { readFileSync, rmSync } from 'node:fs';
 import { test } from 'node:test';
+import { fileURLToPath } from 'node:url';
 import { run } from '../../scripts/wukari/import.ts';
 
 test('CLI produces repeatable synthetic content, retains raw inputs, rejects unsafe outputs and missing evidence', () => {
-  const out = new URL('../../.cache/wukari/import-test/', import.meta.url).pathname;
+  const out = fileURLToPath(new URL('../../.cache/wukari/import-test/', import.meta.url));
   try {
     run(['--synthetic', '--out', out]);
     const first = JSON.parse(readFileSync(`${out}/dataset.json`, 'utf8'));

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "sourceFile": "nigeria-261019.osm.pbf",
+  "sourceUrl": "https://download.geofabrik.de/africa/nigeria-261019.osm.pbf",
+  "urlEvidence": "Original Windows Zone.Identifier HostUrl",
+  "bytes": 711541464,
+  "sha256": "d3e80afbf39da31e660d5f13fbb092bd246cdf8830c149f9d1bee4902e0c92bb",
+  "md5": "9c106726b749dac15c9a2fbdaaf005f5",
+  "providerChecksumUrl": "https://download.geofabrik.de/africa/nigeria-261019.osm.pbf.md5",
+  "providerChecksumMatch": true,
+  "format": "OSM PBF: first BlobHeader type OSMHeader",
+  "generator": "osmium/1.16.0",
+  "replicationTimestamp": "2026-10-19T20:21:11Z",
+  "replicationSequence": "4937",
+  "downloadCompletionEstimate": "2026-10-20T13:45:24Z",
+  "downloadTimeBasis": "Original file LastWriteTimeUtc, not an authenticated HTTP retrieval receipt",
+  "license": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors, https://www.openstreetmap.org/copyright",
+  "fieldVerified": false,
+  "nationalNameSearch": {
+    "method": "PyOsmium 4.3.2 FileProcessor with native TagFilter amenity=university / KeyFilter name; case-insensitive substring wukari",
+    "wukariNamedUniversities": 0,
+    "allWukariNamedObjects": ["node/501490428", "way/39551766", "way/236834776", "way/388159408", "relation/3720864"],
+    "campusAssignment": "None; national road name matches may be outside Wukari LGA"
+  }
+}

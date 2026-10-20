@@ -1,5 +1,7 @@
 # Geography and reproducible workflow
 
+**Local PBF milestone:** the real Nigeria download has now been validated and Wukari LGA extracted/imported. See [local workflow and limitations](LOCAL_PBF.md) and [updated coverage](LOCAL_PBF_COVERAGE_REPORT.md). FUW identity/extent remains unsupported; the historical acquisition status below describes the earlier cloud milestones.
+
 ## Distinct extents
 
 | Extent | Current state | Acceptance |

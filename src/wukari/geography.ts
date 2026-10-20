@@ -128,10 +128,12 @@ export function parseOsm(raw: unknown): Dataset['osm'] {
   const meta = raw.osm3s;
   return { elements: structuredClone(raw.elements) as OsmElement[], osmTimestamp: record(meta) && typeof meta.timestamp_osm_base === 'string' ? meta.timestamp_osm_base : null };
 }
-export function wayPositions(way: OsmElement, elements: OsmElement[]): Position[] | null {
+export function indexNodes(elements: OsmElement[]): Map<number, OsmElement> {
+  return new Map(elements.filter(e => e.type === 'node').map(e => [e.id, e]));
+}
+export function wayPositions(way: OsmElement, elements: OsmElement[], nodes = indexNodes(elements)): Position[] | null {
   if (way.type !== 'way') return null;
   if (way.geometry) return way.geometry.map(p => [p.lon, p.lat] as const);
-  const nodes = new Map(elements.filter(e => e.type === 'node').map(e => [e.id, e]));
   const points: Position[] = [];
   for (const id of way.nodes ?? []) {
     const n = nodes.get(id); if (!n || n.lon === undefined || n.lat === undefined) return null;
@@ -153,8 +155,8 @@ export function buildDataset(boundaryRaw: unknown, osmRaw: unknown, options: { s
   }
   // Origin is a recorded vertex, never an invented campus location or spawn point.
   const origin = (campus.geometry ? rings(campus.geometry) : rings(boundary.geometry))[0]![0]!;
-  const ways = osm.elements.filter(e => e.type === 'way');
-  const renderableWays = ways.filter(e => (wayPositions(e, osm.elements)?.length ?? 0) >= 2).length;
+  const ways = osm.elements.filter(e => e.type === 'way'), nodes = indexNodes(osm.elements);
+  const renderableWays = ways.filter(e => (wayPositions(e, osm.elements, nodes)?.length ?? 0) >= 2).length;
   return {
     schemaVersion: 1, mode: synthetic ? 'synthetic' : 'source-data',
     disclaimer: synthetic ? 'SYNTHETIC TEST FIXTURE — NOT WUKARI. No real campus, roads or buildings.' : `DEVELOPMENT ONLY — source-derived GIS preview, not a completed or surveyed Wukari map. Campus extent ${campus.geometry ? 'is an unverified OSM candidate' : 'is unknown'}. Unofficial; no university endorsement.`,

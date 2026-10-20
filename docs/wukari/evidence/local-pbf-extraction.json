@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "sourceFile": "nigeria-261019.osm.pbf",
+  "sourceBytes": 711541464,
+  "sourceSha256": "d3e80afbf39da31e660d5f13fbb092bd246cdf8830c149f9d1bee4902e0c92bb",
+  "validatedAt": "2026-10-20T22:58:36.384458+00:00",
+  "header": {
+    "generator": "osmium/1.16.0",
+    "osmosis_replication_timestamp": "2026-10-19T20:21:11Z",
+    "osmosis_replication_sequence_number": "4937",
+    "osmosis_replication_base_url": "https://download.geofabrik.de/africa/nigeria-updates"
+  },
+  "nationalRecords": {
+    "nodes": 134849010,
+    "ways": 21689506,
+    "relations": 54213
+  },
+  "boundarySha256": "fdf3cf2421d730ca7bb0f0297b8a0b8a32058f5d95b4c1a4ced6e8c959c7a1fc",
+  "tool": "PyOsmium 4.3.2",
+  "command": [
+    "python",
+    "scripts/wukari/local-pbf.py",
+    "--input",
+    "Downloads/nigeria-261019.osm.pbf",
+    "--out",
+    ".cache/wukari/local-pbf-20261020"
+  ],
+  "selectedPolygonNodes": 423290,
+  "completeWays": 44017,
+  "extractedRecords": 478822,
+  "relations": "touching selected nodes/ways; not recursively completed or assembled",
+  "operation": "Polygon node selection, complete original ways, complete referenced nodes; no clipping or coordinate changes",
+  "outputs": {
+    "wukari-complete.json": {
+      "bytes": 72587585,
+      "sha256": "f33d8596d3506cf720ff21b69061c6f8c00a7b4caca19bbb19a122122d0c1cf1"
+    },
+    "wukari-complete.osm.pbf": {
+      "bytes": 1306103,
+      "sha256": "1286ba72cc4ed9b902821afdf69340ec3603af23723e7b93b2d053ea197e0d47"
+    }
+  }
+}

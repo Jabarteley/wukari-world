@@ -7,11 +7,11 @@ import { deduplicate, importOffline, sha256, validateReceipt, validateWay, withi
 const xml = '<osm version="0.6"><node id="1" lon="0.000000123456789" lat="0"><tag k="name" v="SYNTHETIC &amp; TEST"/></node><way id="2"><nd ref="1"/><nd ref="3"/></way></osm>';
 const receipt = (b: Buffer): Receipt => ({sourceUrl:'https://www.openstreetmap.org/api/0.6/map',retrievedAt:'2026-10-20T12:00:00Z',license:'ODbL-1.0',attribution:'© OpenStreetMap contributors',sha256:sha256(b),mode:'source-data',scope:'UNIT TEST EMPTY EXTRACT — no campus geography'});
 test('XML adapter retains precision, tags, IDs and missing references without inventing nodes', () => {
- const r=JSON.parse(execFileSync('python3',['scripts/wukari/osm-xml.py'],{input:xml}).toString());
+ const r=JSON.parse(execFileSync(process.platform === 'win32' ? 'python' : 'python3',['scripts/wukari/osm-xml.py'],{input:xml}).toString());
  assert.equal(r.elements[0].lon,0.000000123456789); assert.equal(r.elements[0].tags.name,'SYNTHETIC & TEST');assert.deepEqual(r.elements[1].nodes,[1,3]);
 });
 test('XML adapter rejects entities, history/delete and malformed XML',()=>{
- for(const input of ['<!DOCTYPE osm [<!ENTITY x SYSTEM "file:///etc/passwd">]><osm version="0.6"/>','<osm version="0.6"><node id="1" visible="false"/></osm>','<osm version="0.6">']) assert.throws(()=>execFileSync('python3',['scripts/wukari/osm-xml.py'],{input,stdio:['pipe','pipe','pipe']}));
+ for(const input of ['<!DOCTYPE osm [<!ENTITY x SYSTEM "file:///etc/passwd">]><osm version="0.6"/>','<osm version="0.6"><node id="1" visible="false"/></osm>','<osm version="0.6">']) assert.throws(()=>execFileSync(process.platform === 'win32' ? 'python' : 'python3',['scripts/wukari/osm-xml.py'],{input,stdio:['pipe','pipe','pipe']}));
 });
 test('identical repeated IDs deduplicate; conflicts and malformed source fail',()=>{
  const node={type:'node',id:1,lon:0,lat:0,tags:{name:'SYNTHETIC'}};

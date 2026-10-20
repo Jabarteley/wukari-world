@@ -101,9 +101,9 @@ export function proveClock(day: number, night: number): { ok: boolean; differenc
   return { ok: difference >= PROOF_MIN_DIFFERENCE, difference };
 }
 
-export interface ShootOptions { base: string; views: ViewName[]; out: string; scale: number; width: number; height: number; dwellMs: number; gpu: 'swiftshader' | 'metal'; uncapped: boolean; day: string; clock: { hour: number; minute: number } | null; proveClock: boolean; query: string }
+export interface ShootOptions { base: string; views: ViewName[]; out: string; scale: number; width: number; height: number; dwellMs: number; gpu: 'swiftshader' | 'metal'; uncapped: boolean; day: string; clock: { hour: number; minute: number } | null; proveClock: boolean; query: string; sid: string | null }
 
-/** `--uncapped` and `--prove-clock` are switches; `--clock HH:MM` replaces each view's own clock.  `--base URL --view name[,name|all] --out DIR --scale N --size WxH --dwell SECONDS --gpu swiftshader|metal --day YYYY-MM-DD --query "quality=high&wet=1"` (extra page query). */
+/** `--uncapped` and `--prove-clock` are switches; `--clock HH:MM` replaces each view's own clock; `--sid SID` shoots the life of an earlier run (its `sid` is in the run's JSON) instead of a new one, so two runs show the very same street (a before and an after, `?post=0` and `?post=1`); a life already at the view's place is not moved.  `--base URL --view name[,name|all] --out DIR --scale N --size WxH --dwell SECONDS --gpu swiftshader|metal --day YYYY-MM-DD --query "quality=high&wet=1"` (extra page query). */
 export function parseShootArgs(argv: readonly string[], today = new Date().toISOString().slice(0, 10)): ShootOptions {
   const value = (name: string): string | undefined => {
     const at = argv.indexOf(`--${name}`);
@@ -122,7 +122,7 @@ export function parseShootArgs(argv: readonly string[], today = new Date().toISO
   if (gpu !== 'swiftshader' && gpu !== 'metal') throw new Error('--gpu is swiftshader or metal.');
   const day = value('day') ?? today;
   lagosInstant(day, { hour: 12, minute: 0 });
-  return { base, views, out: value('out') ?? 'docs/evidence/out', scale, width: Number(size[1]), height: Number(size[2]), dwellMs: dwell * 1000, gpu, uncapped: argv.includes('--uncapped'), day, clock: value('clock') === undefined ? null : parseClock(value('clock')!), proveClock: argv.includes('--prove-clock'), query: (value('query') ?? '').replace(/^[?&]+/, '') };
+  return { base, views, out: value('out') ?? 'docs/evidence/out', scale, width: Number(size[1]), height: Number(size[2]), dwellMs: dwell * 1000, gpu, uncapped: argv.includes('--uncapped'), day, clock: value('clock') === undefined ? null : parseClock(value('clock')!), proveClock: argv.includes('--prove-clock'), query: (value('query') ?? '').replace(/^[?&]+/, ''), sid: value('sid') ?? null };
 }
 
 /**

@@ -2,13 +2,13 @@
 // The one shared atlas bound to every place model's material "trim": 2048 for capable devices, 1024 for Light mode and weak phones.
 export const PLACE_ATLAS = {
   "full": {
-    "url": "/assets/places/trim-4a41ce7589ebc41ab05b29b82e400a7dbf59da39318dba1644d8de0a8db6d316.webp",
-    "sha256": "4a41ce7589ebc41ab05b29b82e400a7dbf59da39318dba1644d8de0a8db6d316",
+    "url": "/assets/places/trim-e7a4676b261e7dfcdc74397467ea89aa344f6b714d3aa3210fb16cf80465aaff.webp",
+    "sha256": "e7a4676b261e7dfcdc74397467ea89aa344f6b714d3aa3210fb16cf80465aaff",
     "size": 2048
   },
   "small": {
-    "url": "/assets/places/trim-1024-9054d8b3e306caa4e7a7203e02246568c5f47f9bf268dba5ae02e61f435280ec.webp",
-    "sha256": "9054d8b3e306caa4e7a7203e02246568c5f47f9bf268dba5ae02e61f435280ec",
+    "url": "/assets/places/trim-1024-709273ac7c77d56fc5dc92e94269513e465c5ce00e7f9252de6606267296c019.webp",
+    "sha256": "709273ac7c77d56fc5dc92e94269513e465c5ce00e7f9252de6606267296c019",
     "size": 1024
   }
 } as const

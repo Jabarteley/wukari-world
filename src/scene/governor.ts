@@ -13,7 +13,8 @@
  *     before the next probe doubles (up to 16 times the first wait); a probe that holds halves it again.
  *   - A lone gap over 150 ms (a shader link, a texture upload, a scene being built) is ignored. Two in a row are a real slow
  *     spell and count. A gap over a second is the page being hidden or idle, not a frame: it is dropped.
- *   - `reset()` when a scene is rebuilt: the old gaps and the "scale does not help" finding are forgotten (the scale stays).
+ *   - `reset()` when a scene is rebuilt: the old gaps and the "scale does not help" finding are forgotten (the scale stays), and the
+ *     scene's first two seconds, which are busy with its own start, are not judged.
  *   - `?scale=0.8` in the address (scaleFromSearch) fixes the scale and the governor never moves it: for measuring.
  *
  * It never touches a renderer. The host applies the scale it reports with renderer.setPixelRatio(base * scale) and resizes the
@@ -28,8 +29,10 @@ export const SCALE_STEP = 0.1, SCALE_MIN = 0.6;
 export const LONE_MS = 150;
 /** A gap over this is not a frame: the page was hidden, or the loop had stopped and started again. */
 export const PAUSE_MS = 1000;
-/** The first gaps after a reset or a scale change carry the work of starting (resizing buffers, a new scene): not counted. */
+/** The first gaps after a scale change carry the work of resizing the buffers: not counted. */
 export const GOVERNOR_SKIP = 3;
+/** A scene that was just rebuilt is busy for a while (textures uploaded in slices, people streamed in, the shaders linked): its first seconds are not judged. */
+export const SETTLE_SECONDS = 2;
 /** A step down that lowers the p90 by less than this share bought nothing. */
 export const MIN_GAIN = 0.05;
 /** The clean frames needed before a probe up: the first wait, and the most it grows to. */
@@ -68,6 +71,8 @@ export interface GovernorOptions {
   /** Fix the scale (0.25 to 1) and never move it. */
   locked?: number | null
   min?: number
+  /** Seconds of a new scene's frames not judged (SETTLE_SECONDS); tests use 0. */
+  settleSeconds?: number
 }
 
 /** `?scale=0.8` → 0.8 (clamped to 0.25..1); anything else → null. */
@@ -82,11 +87,11 @@ export const pageScale = (): number | null => scaleFromSearch((globalThis.locati
 
 const roundScale = (level: number): number => Math.round((1 - level * SCALE_STEP) * 100) / 100;
 
-export function createGovernor({ locked = null, min = SCALE_MIN }: GovernorOptions = {}): Governor {
+export function createGovernor({ locked = null, min = SCALE_MIN, settleSeconds = SETTLE_SECONDS }: GovernorOptions = {}): Governor {
   const fixed = locked !== null && Number.isFinite(locked) ? Math.min(1, Math.max(0.25, locked)) : null;
   const deepest = Math.max(0, Math.round((1 - Math.max(0.25, Math.min(1, min))) / SCALE_STEP));
   const ring = new Float64Array(GOVERNOR_RING), sorted = new Float64Array(GOVERNOR_RING);
-  let write = 0, held = 0, skip = GOVERNOR_SKIP, lastLong = false, clean = 0;
+  let write = 0, held = 0, skip = GOVERNOR_SKIP, settle = settleSeconds, lastLong = false, clean = 0;
   // level 0 is full scale; each level is SCALE_STEP lower.
   let level = 0, last: 'none' | 'down' | 'up' = 'none', before = 0;
   let futile = false, probeWait = PROBE_FRAMES, slow = false, pressed = false, seq = 0, clock = 0, fullFor = 0, p90: number | null = null;
@@ -104,7 +109,7 @@ export function createGovernor({ locked = null, min = SCALE_MIN }: GovernorOptio
     get locked() { return fixed !== null; },
     get p90() { return p90; },
     get verdict() { return { scale: governor.scale, slow, pressed, fullSeconds: level === 0 && fixed === null ? fullFor : 0, seq, clock, p90 }; },
-    reset() { forget(); futile = false; last = 'none'; slow = false; pressed = false; },
+    reset() { forget(); futile = false; last = 'none'; slow = false; pressed = false; settle = settleSeconds; },
     frame(gapMs) {
       if (fixed !== null) return null;
       if (!(gapMs > 0) || !Number.isFinite(gapMs) || gapMs > PAUSE_MS) { lastLong = false; clean = 0; return null; }
@@ -113,6 +118,7 @@ export function createGovernor({ locked = null, min = SCALE_MIN }: GovernorOptio
         if (!lastLong) { lastLong = true; return null; }
       } else lastLong = false;
       if (skip > 0) { skip -= 1; return null; }
+      if (settle > 0) { settle -= gapMs / 1000; return null; }
       clock += gapMs / 1000; fullFor += level === 0 ? gapMs / 1000 : 0;
       ring[write] = gapMs; write = (write + 1) % GOVERNOR_RING; held = Math.min(held + 1, GOVERNOR_RING);
       clean = gapMs > SLOW_MS ? 0 : clean + 1;

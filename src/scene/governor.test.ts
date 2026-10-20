@@ -3,7 +3,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  GOVERNOR_LOOK, GOVERNOR_SKIP, LONE_MS, PAUSE_MS, PROBE_FRAMES, PROBE_FRAMES_MAX, SCALE_MIN, SLOW_MS,
+  GOVERNOR_LOOK, GOVERNOR_SKIP, LONE_MS, SETTLE_SECONDS, PAUSE_MS, PROBE_FRAMES, PROBE_FRAMES_MAX, SCALE_MIN, SLOW_MS,
   activeVerdict, createGovernor, scaleFromSearch, setActiveGovernor,
 } from './governor.ts';
 
@@ -16,7 +16,7 @@ function feed(g: ReturnType<typeof createGovernor>, ms: number, n: number): numb
 }
 
 test('steady 60 fps never moves the scale', () => {
-  const g = createGovernor();
+  const g = createGovernor({ settleSeconds: 0 });
   assert.deepEqual(feed(g, 16.7, 2000), []);
   assert.equal(g.scale, 1);
   assert.equal(g.verdict.slow, false);
@@ -25,14 +25,14 @@ test('steady 60 fps never moves the scale', () => {
 });
 
 test('nothing is judged before 45 frames (and the first frames after a start are skipped)', () => {
-  const g = createGovernor();
+  const g = createGovernor({ settleSeconds: 0 });
   assert.deepEqual(feed(g, 40, FIRST - 1), []);
   assert.equal(g.p90, null);
   assert.deepEqual(feed(g, 40, 1), [0.9], 'the 45th counted frame is the first look');
 });
 
 test('a p90 over 21 ms steps down by 0.1 and the old frames are forgotten; the floor is 0.6', () => {
-  const g = createGovernor();
+  const g = createGovernor({ settleSeconds: 0 });
   // 30 ms frames that get faster with every step (a device limited by pixels): each step is judged on its own frames.
   const changes: number[] = [];
   for (const gap of [30, 26, 23]) {
@@ -42,7 +42,7 @@ test('a p90 over 21 ms steps down by 0.1 and the old frames are forgotten; the f
   assert.deepEqual(feed(g, 20.5, 40), [], '20.5 ms is under the line, and 40 frames are too few for a probe');
   assert.equal(g.scale, 0.7);
   // The floor: never under SCALE_MIN, even with pixels that keep helping.
-  const deep = createGovernor();
+  const deep = createGovernor({ settleSeconds: 0 });
   let gap = 60;
   const seen: number[] = [];
   for (let step = 0; step < 4; step += 1) { for (let i = 0; i < 200; i += 1) { const next = deep.frame(gap); if (next !== null) { seen.push(next); break; } } gap *= 0.85; }
@@ -52,26 +52,26 @@ test('a p90 over 21 ms steps down by 0.1 and the old frames are forgotten; the f
 });
 
 test('a lone gap over 150 ms is ignored; two in a row are a slow spell; over a second is not a frame', () => {
-  const g = createGovernor();
+  const g = createGovernor({ settleSeconds: 0 });
   const lone = (): void => { for (let i = 0; i < 400; i += 1) g.frame(i % 40 === 20 ? LONE_MS + 80 : 16.7); };
   lone();
   assert.equal(g.scale, 1);
   assert.ok(g.p90! < SLOW_MS);
-  const two = createGovernor();
+  const two = createGovernor({ settleSeconds: 0 });
   for (let i = 0; i < 400; i += 1) two.frame(i % 10 < 3 ? 300 : 16.7);
   // Three long frames in ten are the device (the first of each run is ignored, the other two count). Pixels do not help against a
   // stall, so the step down is undone and the street is told to draw less.
   assert.equal(two.verdict.slow, true);
   assert.equal(two.verdict.pressed, true);
   assert.equal(two.scale, 1);
-  const idle = createGovernor();
+  const idle = createGovernor({ settleSeconds: 0 });
   for (let i = 0; i < 300; i += 1) idle.frame(i % 5 === 0 ? PAUSE_MS + 1 : 16.7);
   assert.equal(idle.scale, 1);
   assert.equal(idle.frame(NaN), null); assert.equal(idle.frame(-3), null); assert.equal(idle.frame(0), null);
 });
 
 test('after clean frames it probes back up; a probe that misses is undone and the next wait doubles', () => {
-  const g = createGovernor();
+  const g = createGovernor({ settleSeconds: 0 });
   assert.deepEqual(feed(g, 30, FIRST), [0.9]);
   // A device that is fine at 0.9 and slow at 1.0.
   assert.deepEqual(feed(g, 16, PROBE_FRAMES + GOVERNOR_SKIP - 1), [], 'not before the run is long enough');
@@ -88,7 +88,7 @@ test('after clean frames it probes back up; a probe that misses is undone and th
 });
 
 test('the wait never passes its ceiling, and a probe that holds shortens it again', () => {
-  const g = createGovernor();
+  const g = createGovernor({ settleSeconds: 0 });
   feed(g, 30, FIRST);
   let wait = PROBE_FRAMES;
   for (let miss = 0; miss < 8; miss += 1) {
@@ -110,7 +110,7 @@ test('the wait never passes its ceiling, and a probe that holds shortens it agai
 });
 
 test('a step down that buys nothing is undone, the verdict says pressed, and it is not tried again until a reset', () => {
-  const g = createGovernor();
+  const g = createGovernor({ settleSeconds: 0 });
   // 30 ms whatever the scale: limited by script.
   assert.deepEqual(feed(g, 30, FIRST), [0.9]);
   assert.equal(g.verdict.pressed, false);
@@ -127,7 +127,7 @@ test('a step down that buys nothing is undone, the verdict says pressed, and it 
 });
 
 test('at the floor and still slow the verdict is pressed, with a fresh run of frames between looks', () => {
-  const g = createGovernor();
+  const g = createGovernor({ settleSeconds: 0 });
   let gap = 80;
   for (let step = 0; step < 4; step += 1) { while (g.frame(gap) === null) { /* feed until it moves */ } gap *= 0.8; }
   assert.equal(g.scale, SCALE_MIN);
@@ -142,7 +142,7 @@ test('at the floor and still slow the verdict is pressed, with a fresh run of fr
 });
 
 test('reset forgets the frames but keeps the scale', () => {
-  const g = createGovernor();
+  const g = createGovernor({ settleSeconds: 0 });
   feed(g, 30, FIRST);
   assert.equal(g.scale, 0.9);
   g.reset();
@@ -163,12 +163,12 @@ test('?scale= fixes the scale and the governor never moves it', () => {
   assert.deepEqual(feed(g, 60, 1000), []);
   assert.equal(g.scale, 0.75);
   assert.equal(g.verdict.fullSeconds, 0);
-  assert.equal(createGovernor().locked, false);
+  assert.equal(createGovernor({ settleSeconds: 0 }).locked, false);
 });
 
 test('the active governor is what the street reads', () => {
   assert.equal(activeVerdict(), null);
-  const g = createGovernor();
+  const g = createGovernor({ settleSeconds: 0 });
   setActiveGovernor(g);
   try {
     assert.equal(activeVerdict()!.scale, 1);
@@ -176,4 +176,20 @@ test('the active governor is what the street reads', () => {
     assert.equal(activeVerdict()!.scale, 0.9);
   } finally { setActiveGovernor(null); }
   assert.equal(activeVerdict(), null);
+});
+
+test('a new scene\'s first two seconds are not judged, at the start and after a reset', () => {
+  const g = createGovernor();
+  // 30 ms frames: 2 s is about 67 of them, then the usual 3 + 45.
+  const settled = Math.ceil(SETTLE_SECONDS / 0.03) + 1;
+  assert.deepEqual(feed(g, 30, GOVERNOR_SKIP + settled + GOVERNOR_LOOK - 2), [], 'busy while the scene starts');
+  assert.deepEqual(feed(g, 30, 2), [0.9]);
+  g.reset();
+  assert.deepEqual(feed(g, 16, 100), [], 'not even a probe while the scene settles');
+  assert.deepEqual(feed(g, 16, 100), [1]);
+  const s = createGovernor();
+  feed(s, 16, 300);
+  s.reset();
+  assert.deepEqual(feed(s, 30, GOVERNOR_SKIP + settled + GOVERNOR_LOOK - 2), []);
+  assert.deepEqual(feed(s, 30, 2), [0.9]);
 });

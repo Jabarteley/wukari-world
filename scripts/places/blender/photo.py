@@ -17,7 +17,7 @@ import lib
 from lib import render as _r
 
 
-def render(path, objs, camera, ground_hex='#9aa08c', warnings=None, size=768):
+def render(path, objs, camera, ground_hex='#9aa08c', warnings=None, size=1024):
     cam_spec = camera if isinstance(camera, dict) else {}
 
     def num(key, default, lo, hi):
@@ -47,34 +47,7 @@ def render(path, objs, camera, ground_hex='#9aa08c', warnings=None, size=768):
     sc.render.image_settings.file_format = 'PNG'
     sc.render.image_settings.color_mode = 'RGB'
     sc.render.film_transparent = False
-    sc.view_settings.view_transform = 'Standard'
-    sc.view_settings.look = 'None'
-    for attr, val in (('taa_render_samples', 24), ('use_raytracing', True), ('use_shadows', True), ('shadow_ray_count', 2),
-                      ('shadow_step_count', 6), ('use_gtao', True), ('gtao_distance', max(2.0, span * 0.04)), ('gtao_factor', 1.0)):
-        try:
-            setattr(sc.eevee, attr, val)
-        except Exception:  # noqa: BLE001
-            pass
-    world = bpy.data.worlds.new('photo-world')
-    world.use_nodes = True
-    bg = world.node_tree.nodes['Background']
-    bg.inputs['Color'].default_value = (*lib.lin((0.70, 0.80, 0.92)), 1.0)
-    bg.inputs['Strength'].default_value = 0.85
-    sc.world = world
-    gm = bpy.data.materials.new('photo-ground')
-    gm.use_nodes = True
-    gm.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value = (*lib.lin(lib.rgb(ground_hex)), 1.0)
-    gm.node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value = 1.0
-    bpy.ops.mesh.primitive_plane_add(size=1, location=(centre.x, centre.y, blo[2] - 0.04))
-    plane = bpy.context.active_object
-    plane.scale = (span * 60, span * 60, 1)
-    plane.data.materials.append(gm)
-    sun_d = bpy.data.lights.new('psun', 'SUN')
-    sun_d.energy = 3.2
-    sun_d.angle = math.radians(6)
-    sun = bpy.data.objects.new('psun', sun_d)
-    sc.collection.objects.link(sun)
-    sun.rotation_euler = (-Vector((-0.55, -0.65, 0.95))).to_track_quat('-Z', 'Y').to_euler()
+    extra = _r.look(sc, centre, blo, span, ground_hex, 'ph', 24)
     cam_d = bpy.data.cameras.new('pcam')
     cam_d.sensor_fit = 'HORIZONTAL'
     cam_d.sensor_width = 36.0
@@ -89,5 +62,5 @@ def render(path, objs, camera, ground_hex='#9aa08c', warnings=None, size=768):
     cam_d.shift_y += num('shiftY', 0.0, -1, 1)
     sc.render.filepath = str(path)
     bpy.ops.render.render(write_still=True)
-    for o in (plane, sun, cam):
+    for o in extra + [cam]:
         bpy.data.objects.remove(o, do_unlink=True)

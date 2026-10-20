@@ -11,7 +11,8 @@
    "licence": "CC BY-SA 4.0",
    "author": "Beendy234",
    "view": "front",
-   "used": "four slim round minarets with wide arched-opening collar galleries and small gold caps with crescents, low tan hall with patterned frieze, two arched doorways, shallow gold dome behind, market crowd around"
+   "used": "four slim round minarets with wide arched-opening collar galleries and small gold caps with crescents, low tan hall with patterned frieze, two arched doorways, shallow gold dome behind, market crowd around",
+   "file": "/tmp/places-evidence/lagos/lgm1.jpg"
   },
   {
    "kind": "photo",
@@ -19,7 +20,8 @@
    "licence": "CC BY-SA 4.0",
    "author": "Juga",
    "view": "aerial",
-   "used": "minaret arrangement (tall inner pair, shorter outer), gold ribbed dome with scalloped parapet, tan/gold colours, dense surroundings"
+   "used": "minaret arrangement (tall inner pair, shorter outer), gold ribbed dome with scalloped parapet, tan/gold colours, dense surroundings",
+   "file": "/tmp/places-evidence/lagos/lgm2.jpg"
   }
  ],
  "camera": {
@@ -48,9 +50,32 @@
     "material": "painted-render",
     "colour": "#cdb48e",
     "windows": "none",
-    "windowRatio": 0,
     "plinth": 0.8,
-    "cornice": 0.6
+    "cornice": true,
+    "pattern": [
+     {
+      "type": "arcade",
+      "shape": "arch",
+      "bay": 13,
+      "opening": 0.52,
+      "height": 0.8,
+      "depth": 0.9,
+      "pierColour": "#cdb48e",
+      "faces": [
+       "front"
+      ]
+     },
+     {
+      "type": "bands",
+      "colours": [
+       "#b89a6a"
+      ],
+      "height": 1.1,
+      "at": 0.88,
+      "proud": 0.12,
+      "floors": "all"
+     }
+    ]
    },
    "roof": {
     "form": "flat",
@@ -59,7 +84,7 @@
    }
   },
   {
-   "type": "mosque-domed/dome",
+   "type": "array",
    "at": [
     0,
     4,
@@ -67,181 +92,473 @@
    ],
    "on": "hall",
    "params": {
-    "radius": 8,
-    "height": 4.5,
-    "drum": 0,
-    "colour": "#cfae58",
-    "drum_colour": "#d9c49a",
-    "finial": false,
-    "finial_height": 6,
-    "ring": false,
-    "windows": 0
+    "mode": "line",
+    "count": 1,
+    "of": [
+     {
+      "type": "revolve",
+      "lod": [
+       0,
+       1
+      ],
+      "params": {
+       "segments": 36,
+       "colour": "#cfae58",
+       "profile": [
+        [
+         8.6,
+         0,
+         "#d9caa6"
+        ],
+        [
+         8.6,
+         2.0
+        ],
+        [
+         9.0,
+         2.1
+        ],
+        [
+         9.0,
+         2.7
+        ],
+        [
+         8.2,
+         2.8,
+         "#d4ae48"
+        ],
+        [
+         7.6,
+         4.0
+        ],
+        [
+         6.2,
+         5.2
+        ],
+        [
+         4.2,
+         6.2
+        ],
+        [
+         2.0,
+         6.9
+        ],
+        [
+         0.5,
+         7.2
+        ],
+        [
+         0.5,
+         8.3
+        ],
+        [
+         0.15,
+         9.6
+        ]
+       ]
+      }
+     },
+     {
+      "type": "revolve",
+      "lod": [
+       2
+      ],
+      "params": {
+       "segments": 8,
+       "colour": "#cfae58",
+       "profile": [
+        [
+         8.6,
+         0,
+         "#d9caa6"
+        ],
+        [
+         8.6,
+         2.0
+        ],
+        [
+         8.2,
+         2.8,
+         "#d4ae48"
+        ],
+        [
+         5,
+         5.5
+        ],
+        [
+         0.2,
+         7.2
+        ]
+       ]
+      }
+     }
+    ]
    }
   },
   {
-   "type": "mosque-domed/arcade",
+   "type": "array",
    "at": [
-    -12,
-    -17.5,
+    0,
+    0,
     0
    ],
    "params": {
-    "length": 12,
-    "height": 7,
-    "thickness": 1.2,
-    "bays": 2,
-    "shape": "pointed",
-    "colour": "#cdb48e",
-    "trim": "#a8865e",
-    "cap_colour": "#cdb48e"
+    "mode": "line",
+    "start": [
+     -12,
+     -4,
+     0
+    ],
+    "end": [
+     12,
+     -4,
+     0
+    ],
+    "count": 2,
+    "of": [
+     {
+      "type": "revolve",
+      "lod": [
+       0,
+       1
+      ],
+      "params": {
+       "segments": 24,
+       "colour": "#c4ab85",
+       "profile": [
+        [
+         1.5,
+         0
+        ],
+        [
+         1.5,
+         32.4,
+         "#c4ab85"
+        ],
+        [
+         3.4,
+         34.0,
+         "#d9caa6"
+        ],
+        [
+         3.4,
+         39.4
+        ],
+        [
+         3.6,
+         39.5
+        ],
+        [
+         3.6,
+         40.0
+        ],
+        [
+         1.6,
+         40.0
+        ],
+        [
+         1.55,
+         40.599999999999994,
+         "#6e5f50"
+        ],
+        [
+         1.55,
+         44.8
+        ],
+        [
+         1.75,
+         44.9,
+         "#d4ae48"
+        ],
+        [
+         1.75,
+         45.5
+        ],
+        [
+         1.45,
+         46.5
+        ],
+        [
+         0.8,
+         47.199999999999996
+        ],
+        [
+         0.12,
+         47.8
+        ]
+       ],
+       "arcade": {
+        "from": 34.0,
+        "to": 39.4,
+        "count": 12,
+        "width": 1.0,
+        "height": 3.6,
+        "sill": 1.2,
+        "shape": "pointed",
+        "depth": 0.4,
+        "innerColour": "#4a3426"
+       }
+      }
+     },
+     {
+      "type": "revolve",
+      "lod": [
+       2
+      ],
+      "params": {
+       "segments": 6,
+       "colour": "#c4ab85",
+       "profile": [
+        [
+         1.5,
+         0
+        ],
+        [
+         1.5,
+         32.4
+        ],
+        [
+         3.4,
+         34.0,
+         "#d9caa6"
+        ],
+        [
+         3.4,
+         40.0
+        ],
+        [
+         1.55,
+         40.0,
+         "#6e5f50"
+        ],
+        [
+         1.55,
+         44.4
+        ],
+        [
+         1.75,
+         44.4,
+         "#d4ae48"
+        ],
+        [
+         0.1,
+         47.9
+        ]
+       ]
+      }
+     },
+     {
+      "type": "sweep-path",
+      "at": [
+       0,
+       0,
+       48.4
+      ],
+      "lod": [
+       0
+      ],
+      "params": {
+       "radius": 0.07,
+       "n": 4,
+       "arc": {
+        "steps": 8,
+        "centre": [
+         0,
+         0,
+         0
+        ],
+        "radius": 0.55,
+        "startDeg": -50,
+        "endDeg": 230,
+        "plane": "xz"
+       },
+       "colour": "#d4ae48"
+      }
+     }
+    ]
    }
   },
   {
-   "type": "core/tower",
+   "type": "array",
    "at": [
-    -22,
-    -4,
+    0,
+    0,
     0
    ],
    "params": {
-    "width": 4.4,
-    "height": 37.4,
-    "round": true,
-    "cap": "dome",
-    "colour": "#c9b28c",
-    "windows": "none",
-    "windowRatio": 0,
-    "sides": 6,
-    "capColour": "#d4ae48"
-   }
-  },
-  {
-   "type": "core/tower",
-   "at": [
-    -22,
-    -4,
-    24
-   ],
-   "params": {
-    "width": 8,
-    "height": 6.5,
-    "round": true,
-    "cap": "flat",
-    "colour": "#cdb89a",
-    "windows": "none",
-    "windowRatio": 0,
-    "sides": 5
-   }
-  },
-  {
-   "type": "core/tower",
-   "at": [
-    -12,
-    -4,
-    0
-   ],
-   "params": {
-    "width": 4.4,
-    "height": 47.4,
-    "round": true,
-    "cap": "dome",
-    "colour": "#c9b28c",
-    "windows": "none",
-    "windowRatio": 0,
-    "sides": 6,
-    "capColour": "#d4ae48"
-   }
-  },
-  {
-   "type": "core/tower",
-   "at": [
-    -12,
-    -4,
-    34
-   ],
-   "params": {
-    "width": 8,
-    "height": 6.5,
-    "round": true,
-    "cap": "flat",
-    "colour": "#cdb89a",
-    "windows": "none",
-    "windowRatio": 0,
-    "sides": 5
-   }
-  },
-  {
-   "type": "core/tower",
-   "at": [
-    12,
-    -4,
-    0
-   ],
-   "params": {
-    "width": 4.4,
-    "height": 47.4,
-    "round": true,
-    "cap": "dome",
-    "colour": "#c9b28c",
-    "windows": "none",
-    "windowRatio": 0,
-    "sides": 6,
-    "capColour": "#d4ae48"
-   }
-  },
-  {
-   "type": "core/tower",
-   "at": [
-    12,
-    -4,
-    34
-   ],
-   "params": {
-    "width": 8,
-    "height": 6.5,
-    "round": true,
-    "cap": "flat",
-    "colour": "#cdb89a",
-    "windows": "none",
-    "windowRatio": 0,
-    "sides": 5
-   }
-  },
-  {
-   "type": "core/tower",
-   "at": [
-    22,
-    -4,
-    0
-   ],
-   "params": {
-    "width": 4.4,
-    "height": 37.4,
-    "round": true,
-    "cap": "dome",
-    "colour": "#c9b28c",
-    "windows": "none",
-    "windowRatio": 0,
-    "sides": 6,
-    "capColour": "#d4ae48"
-   }
-  },
-  {
-   "type": "core/tower",
-   "at": [
-    22,
-    -4,
-    24
-   ],
-   "params": {
-    "width": 8,
-    "height": 6.5,
-    "round": true,
-    "cap": "flat",
-    "colour": "#cdb89a",
-    "windows": "none",
-    "windowRatio": 0,
-    "sides": 5
+    "mode": "line",
+    "start": [
+     -22,
+     -4,
+     0
+    ],
+    "end": [
+     22,
+     -4,
+     0
+    ],
+    "count": 2,
+    "of": [
+     {
+      "type": "revolve",
+      "lod": [
+       0,
+       1
+      ],
+      "params": {
+       "segments": 24,
+       "colour": "#c4ab85",
+       "profile": [
+        [
+         1.5,
+         0
+        ],
+        [
+         1.5,
+         22.4,
+         "#c4ab85"
+        ],
+        [
+         3.4,
+         24.0,
+         "#d9caa6"
+        ],
+        [
+         3.4,
+         29.4
+        ],
+        [
+         3.6,
+         29.5
+        ],
+        [
+         3.6,
+         30.0
+        ],
+        [
+         1.6,
+         30.0
+        ],
+        [
+         1.55,
+         30.599999999999998,
+         "#6e5f50"
+        ],
+        [
+         1.55,
+         34.8
+        ],
+        [
+         1.75,
+         34.9,
+         "#d4ae48"
+        ],
+        [
+         1.75,
+         35.5
+        ],
+        [
+         1.45,
+         36.5
+        ],
+        [
+         0.8,
+         37.199999999999996
+        ],
+        [
+         0.12,
+         37.8
+        ]
+       ],
+       "arcade": {
+        "from": 24.0,
+        "to": 29.4,
+        "count": 12,
+        "width": 1.0,
+        "height": 3.6,
+        "sill": 1.2,
+        "shape": "pointed",
+        "depth": 0.4,
+        "innerColour": "#4a3426"
+       }
+      }
+     },
+     {
+      "type": "revolve",
+      "lod": [
+       2
+      ],
+      "params": {
+       "segments": 6,
+       "colour": "#c4ab85",
+       "profile": [
+        [
+         1.5,
+         0
+        ],
+        [
+         1.5,
+         22.4
+        ],
+        [
+         3.4,
+         24.0,
+         "#d9caa6"
+        ],
+        [
+         3.4,
+         30.0
+        ],
+        [
+         1.55,
+         30.0,
+         "#6e5f50"
+        ],
+        [
+         1.55,
+         34.4
+        ],
+        [
+         1.75,
+         34.4,
+         "#d4ae48"
+        ],
+        [
+         0.1,
+         37.9
+        ]
+       ]
+      }
+     },
+     {
+      "type": "sweep-path",
+      "at": [
+       0,
+       0,
+       38.4
+      ],
+      "lod": [
+       0
+      ],
+      "params": {
+       "radius": 0.07,
+       "n": 4,
+       "arc": {
+        "steps": 8,
+        "centre": [
+         0,
+         0,
+         0
+        ],
+        "radius": 0.55,
+        "startDeg": -50,
+        "endDeg": 230,
+        "plane": "xz"
+       },
+       "colour": "#d4ae48"
+      }
+     }
+    ]
    }
   }
  ],
@@ -255,8 +572,8 @@
   ]
  },
  "review": {
-  "rounds": 3,
-  "match": "fair",
-  "gaps": "Minarets are 6-sided prisms instead of round, the collar galleries are plain blocks with no arched openings or flared undersides, gold caps lack crescents; hall frieze pattern, brown doors and the scalloped dome parapet are missing; the real dome is flatter and sits lower; market clutter around the mosque omitted to fit the LOD2 budget."
+  "rounds": 1,
+  "match": "close",
+  "gaps": "Round arcaded balcony drums, dark upper shafts, gold caps, crescents and dome match; hall front shows large arched windows not the two tall arched doors and patterned frieze; dome ribs and market clutter missing."
  }
 }

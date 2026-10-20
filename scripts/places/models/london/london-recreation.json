@@ -11,7 +11,7 @@
    "licence": "Public domain",
    "author": "Adrian Robson",
    "view": "front",
-   "file": "/tmp/places-evidence/london/lon-w2.jpg",
+   "file": "/tmp/places-evidence/london/rec1.jpg",
    "used": "the common's landmark windmill: octagonal buff-brown brick base with a white railed gallery, black tapering smock tower, white cap with four white lattice sails; dark clipped hedge and tall pines around it, open grass in front"
   },
   {
@@ -20,7 +20,7 @@
    "licence": "CC BY-SA 2.0",
    "author": "Peter Trimming",
    "view": "street",
-   "file": "/tmp/places-evidence/london/lon-w1.jpg",
+   "file": "/tmp/places-evidence/london/rec2.jpg",
    "used": "straight wide bridleway with open heath on the left and broadleaf oak and thorn trees along the right, a low waymarker post"
   },
   {
@@ -40,159 +40,555 @@
  },
  "parts": [
   {
-   "type": "mass",
-   "id": "mill-base",
-   "footprint": {
-    "kind": "round",
-    "size": [
-     10,
-     10
-    ]
-   },
+   "type": "prism",
    "at": [
+    0,
     0,
     0
-   ],
-   "height": 6.5,
-   "storeys": 2,
-   "wall": {
-    "material": "brick",
-    "colour": "#a98a62",
-    "windows": "punched",
-    "windowRatio": 0.05,
-    "bay": 5,
-    "plinth": 0.4,
-    "parapet": 1.0
-   },
-   "roof": {
-    "form": "flat",
-    "colour": "#d8d4c8",
-    "parapet": 1.0
-   }
-  },
-  {
-   "type": "core/spire",
-   "at": [
-    0,
-    0,
-    6.5
    ],
    "params": {
-    "baseWidth": 7,
-    "height": 8,
-    "sides": 8,
-    "colour": "#1e1e20",
-    "finial": false
+    "points": [
+     [
+      5.82,
+      2.411
+     ],
+     [
+      2.411,
+      5.82
+     ],
+     [
+      -2.411,
+      5.82
+     ],
+     [
+      -5.82,
+      2.411
+     ],
+     [
+      -5.82,
+      -2.411
+     ],
+     [
+      -2.411,
+      -5.82
+     ],
+     [
+      2.411,
+      -5.82
+     ],
+     [
+      5.82,
+      -2.411
+     ]
+    ],
+    "height": 7.4,
+    "colour": "#9c7a52",
+    "material": "brick",
+    "windows": "punched",
+    "windowRatio": 0.06,
+    "bay": 6,
+    "storeys": 1,
+    "plinth": 0.3,
+    "trimColour": "#e8e4d8"
    }
   },
   {
-   "type": "mass",
-   "id": "cap",
-   "footprint": {
-    "rect": [
-     3.2,
-     3.2
-    ]
-   },
+   "type": "prism",
    "at": [
+    0,
+    0,
+    7.4
+   ],
+   "params": {
+    "points": [
+     [
+      5.451,
+      2.258
+     ],
+     [
+      2.258,
+      5.451
+     ],
+     [
+      -2.258,
+      5.451
+     ],
+     [
+      -5.451,
+      2.258
+     ],
+     [
+      -5.451,
+      -2.258
+     ],
+     [
+      -2.258,
+      -5.451
+     ],
+     [
+      2.258,
+      -5.451
+     ],
+     [
+      5.451,
+      -2.258
+     ]
+    ],
+    "height": 0.35,
+    "colour": "#f2efe6"
+   }
+  },
+  {
+   "type": "sweep-path",
+   "at": [
+    0,
+    0,
+    8.4
+   ],
+   "params": {
+    "section": {
+     "rect": [
+      0.12,
+      0.12
+     ]
+    },
+    "points": [
+     [
+      5.27,
+      2.18,
+      0
+     ],
+     [
+      2.18,
+      5.27,
+      0
+     ],
+     [
+      -2.18,
+      5.27,
+      0
+     ],
+     [
+      -5.27,
+      2.18,
+      0
+     ],
+     [
+      -5.27,
+      -2.18,
+      0
+     ],
+     [
+      -2.18,
+      -5.27,
+      0
+     ],
+     [
+      2.18,
+      -5.27,
+      0
+     ],
+     [
+      5.27,
+      -2.18,
+      0
+     ],
+     [
+      5.27,
+      2.18,
+      0
+     ]
+    ],
+    "colour": "#f4f2ea"
+   }
+  },
+  {
+   "type": "loft",
+   "at": [
+    0,
+    0,
+    7.75
+   ],
+   "params": {
+    "sections": [
+     {
+      "z": 0,
+      "poly": [
+       [
+        3.603,
+        1.4923626
+       ],
+       [
+        1.4923626,
+        3.603
+       ],
+       [
+        -1.4923626,
+        3.603
+       ],
+       [
+        -3.603,
+        1.4923626
+       ],
+       [
+        -3.603,
+        -1.4923626
+       ],
+       [
+        -1.4923626,
+        -3.603
+       ],
+       [
+        1.4923626,
+        -3.603
+       ],
+       [
+        3.603,
+        -1.4923626
+       ]
+      ]
+     },
+     {
+      "z": 3.5,
+      "poly": [
+       [
+        2.7945,
+        1.1574819
+       ],
+       [
+        1.1574819,
+        2.7945
+       ],
+       [
+        -1.1574819,
+        2.7945
+       ],
+       [
+        -2.7945,
+        1.1574819
+       ],
+       [
+        -2.7945,
+        -1.1574819
+       ],
+       [
+        -1.1574819,
+        -2.7945
+       ],
+       [
+        1.1574819,
+        -2.7945
+       ],
+       [
+        2.7945,
+        -1.1574819
+       ]
+      ]
+     }
+    ],
+    "colour": "#1f2022"
+   }
+  },
+  {
+   "type": "loft",
+   "at": [
+    0,
+    0,
+    11.25
+   ],
+   "params": {
+    "sections": [
+     {
+      "z": 0,
+      "poly": [
+       [
+        2.7945,
+        1.1574819
+       ],
+       [
+        1.1574819,
+        2.7945
+       ],
+       [
+        -1.1574819,
+        2.7945
+       ],
+       [
+        -2.7945,
+        1.1574819
+       ],
+       [
+        -2.7945,
+        -1.1574819
+       ],
+       [
+        -1.1574819,
+        -2.7945
+       ],
+       [
+        1.1574819,
+        -2.7945
+       ],
+       [
+        2.7945,
+        -1.1574819
+       ]
+      ]
+     },
+     {
+      "z": 4.5,
+      "poly": [
+       [
+        1.755,
+        0.7269209999999999
+       ],
+       [
+        0.7269209999999999,
+        1.755
+       ],
+       [
+        -0.7269209999999999,
+        1.755
+       ],
+       [
+        -1.755,
+        0.7269209999999999
+       ],
+       [
+        -1.755,
+        -0.7269209999999999
+       ],
+       [
+        -0.7269209999999999,
+        -1.755
+       ],
+       [
+        0.7269209999999999,
+        -1.755
+       ],
+       [
+        1.755,
+        -0.7269209999999999
+       ]
+      ]
+     },
+     {
+      "z": 6.1,
+      "poly": [
+       [
+        1.478,
+        0.6121876
+       ],
+       [
+        0.6121876,
+        1.478
+       ],
+       [
+        -0.6121876,
+        1.478
+       ],
+       [
+        -1.478,
+        0.6121876
+       ],
+       [
+        -1.478,
+        -0.6121876
+       ],
+       [
+        -0.6121876,
+        -1.478
+       ],
+       [
+        0.6121876,
+        -1.478
+       ],
+       [
+        1.478,
+        -0.6121876
+       ]
+      ]
+     }
+    ],
+    "colour": "#f2f0e8"
+   }
+  },
+  {
+   "type": "loft",
+   "at": [
+    0,
+    0,
+    17.35
+   ],
+   "params": {
+    "sections": [
+     {
+      "z": 0,
+      "rect": [
+       3.6,
+       4.2
+      ]
+     },
+     {
+      "z": 2.2,
+      "rect": [
+       3.2,
+       3.8
+      ]
+     },
+     {
+      "z": 3.0,
+      "rect": [
+       1.0,
+       2.8
+      ]
+     }
+    ],
+    "colour": "#f2f0e8"
+   }
+  },
+  {
+   "type": "sweep-path",
+   "at": [
+    0,
     0,
     0
    ],
-   "z0": 14,
-   "height": 2.6,
-   "storeys": 1,
-   "wall": {
-    "material": "timber",
-    "colour": "#f0efea",
-    "windows": "none",
-    "windowRatio": 0
-   },
-   "roof": {
-    "form": "hip",
-    "colour": "#f0efea",
-    "rise": 1.4
+   "params": {
+    "section": {
+     "rect": [
+      0.3,
+      2.0
+     ]
+    },
+    "points": [
+     [
+      0.7071067811865476,
+      -2.5,
+      20.257106781186543
+     ],
+     [
+      7.4246212024587495,
+      -2.5,
+      26.974621202458746
+     ]
+    ],
+    "colour": "#f4f2ea"
+   }
+  },
+  {
+   "type": "sweep-path",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "section": {
+     "rect": [
+      0.3,
+      2.0
+     ]
+    },
+    "points": [
+     [
+      -0.7071067811865475,
+      -2.5,
+      20.257106781186543
+     ],
+     [
+      -7.424621202458749,
+      -2.5,
+      26.974621202458746
+     ]
+    ],
+    "colour": "#f4f2ea"
+   }
+  },
+  {
+   "type": "sweep-path",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "section": {
+     "rect": [
+      0.3,
+      2.0
+     ]
+    },
+    "points": [
+     [
+      -0.7071067811865477,
+      -2.5,
+      18.84289321881345
+     ],
+     [
+      -7.42462120245875,
+      -2.5,
+      12.12537879754125
+     ]
+    ],
+    "colour": "#f4f2ea"
+   }
+  },
+  {
+   "type": "sweep-path",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "section": {
+     "rect": [
+      0.3,
+      2.0
+     ]
+    },
+    "points": [
+     [
+      0.7071067811865474,
+      -2.5,
+      18.84289321881345
+     ],
+     [
+      7.424621202458747,
+      -2.5,
+      12.125378797541249
+     ]
+    ],
+    "colour": "#f4f2ea"
    }
   },
   {
    "type": "mass",
-   "id": "sail-v",
+   "id": "door",
    "footprint": {
     "rect": [
      1.6,
-     0.5
+     0.6
     ]
    },
    "at": [
     0,
-    -2.1
+    -6.9
    ],
-   "z0": 6.8,
-   "height": 17,
+   "height": 2.2,
    "storeys": 1,
    "wall": {
     "material": "timber",
-    "colour": "#f4f3ee",
+    "colour": "#d8d4c8",
     "windows": "none",
     "windowRatio": 0
    },
    "roof": {
-    "form": "flat",
-    "colour": "#f4f3ee"
-   }
-  },
-  {
-   "type": "mass",
-   "id": "sail-h",
-   "footprint": {
-    "rect": [
-     17,
-     0.5
-    ]
-   },
-   "at": [
-    0,
-    -2.1
-   ],
-   "z0": 14.5,
-   "height": 1.6,
-   "storeys": 1,
-   "wall": {
-    "material": "timber",
-    "colour": "#f4f3ee",
-    "windows": "none",
-    "windowRatio": 0
-   },
-   "roof": {
-    "form": "flat",
-    "colour": "#f4f3ee"
-   }
-  },
-  {
-   "type": "hedge",
-   "at": [
-    -3,
-    -8,
-    0
-   ],
-   "params": {
-    "length": 22,
-    "height": 2.4,
-    "depth": 2,
-    "colour": "#27402c"
-   }
-  },
-  {
-   "type": "hedge",
-   "at": [
-    14,
-    -8,
-    0
-   ],
-   "params": {
-    "length": 14,
-    "height": 2.4,
-    "depth": 2,
-    "colour": "#27402c"
+    "form": "gable",
+    "colour": "#5a3a2a",
+    "pitch": 40,
+    "axis": "y"
    }
   },
   {
@@ -203,9 +599,10 @@
     0
    ],
    "params": {
-    "kind": "conifer",
+    "kind": "broadleaf",
     "height": 17,
-    "count": 1
+    "count": 1,
+    "colour": "#1d3322"
    }
   },
   {
@@ -216,10 +613,11 @@
     0
    ],
    "params": {
-    "kind": "conifer",
+    "kind": "broadleaf",
     "height": 15,
     "count": 2,
-    "spread": 7
+    "spread": 7,
+    "colour": "#1d3322"
    }
   },
   {
@@ -230,10 +628,11 @@
     0
    ],
    "params": {
-    "kind": "conifer",
+    "kind": "broadleaf",
     "height": 12,
     "count": 2,
-    "spread": 6
+    "spread": 6,
+    "colour": "#1d3322"
    }
   },
   {
@@ -313,33 +712,122 @@
    }
   },
   {
-   "type": "water-surface",
+   "type": "prism",
    "at": [
-    -12,
-    62,
+    2,
+    -10.5,
     0
    ],
    "params": {
-    "width": 60,
-    "depth": 32,
-    "shape": "oval",
-    "colour": "#6f8a85",
-    "bank": true
+    "rect": [
+     30,
+     1.6
+    ],
+    "height": 2.2,
+    "colour": "#22382a",
+    "windows": "none"
    }
   },
   {
-   "type": "water-surface",
+   "type": "prism",
    "at": [
-    45,
-    68,
-    0
+    -4.6,
+    -4.6,
+    7.4
    ],
    "params": {
-    "width": 40,
-    "depth": 26,
-    "shape": "oval",
-    "colour": "#6f8a85",
-    "bank": true
+    "rect": [
+     0.7,
+     0.7
+    ],
+    "height": 1.8,
+    "colour": "#8a4a38",
+    "windows": "none"
+   }
+  },
+  {
+   "type": "prism",
+   "at": [
+    -4.6,
+    4.6,
+    7.4
+   ],
+   "params": {
+    "rect": [
+     0.7,
+     0.7
+    ],
+    "height": 1.8,
+    "colour": "#8a4a38",
+    "windows": "none"
+   }
+  },
+  {
+   "type": "prism",
+   "at": [
+    4.6,
+    -4.6,
+    7.4
+   ],
+   "params": {
+    "rect": [
+     0.7,
+     0.7
+    ],
+    "height": 1.8,
+    "colour": "#8a4a38",
+    "windows": "none"
+   }
+  },
+  {
+   "type": "prism",
+   "at": [
+    4.6,
+    4.6,
+    7.4
+   ],
+   "params": {
+    "rect": [
+     0.7,
+     0.7
+    ],
+    "height": 1.8,
+    "colour": "#8a4a38",
+    "windows": "none"
+   }
+  },
+  {
+   "type": "array",
+   "at": [
+    0,
+    0,
+    7.75
+   ],
+   "params": {
+    "mode": "line",
+    "count": 8,
+    "start": [
+     -5.0,
+     -2.3
+    ],
+    "end": [
+     5.0,
+     -2.3
+    ],
+    "of": [
+     {
+      "type": "prism",
+      "params": {
+       "rect": [
+        0.1,
+        0.1
+       ],
+       "height": 0.9,
+       "colour": "#f4f2ea",
+       "windows": "none"
+      }
+     }
+    ]
    }
   }
  ],
@@ -354,6 +842,6 @@
  "review": {
   "rounds": 3,
   "match": "fair",
-  "gaps": "Common is shown as a 150 m vignette (windmill, bridleway, ponds, groves), not the 350 ha outline; mill base is a round drum instead of an octagon with brown brick, gallery railing, door porch and chimneys; sails are plain cross bars without lattice and are not angled; trees are generic low-poly broadleaf and conifer; the winter snow of the photos is not shown; ponds are plain ovals."
+  "gaps": "Tower now black lower and white boarded upper smock with broader white sails and corner chimneys, fewer base windows, dark clipped hedge, ponds removed; sails lack true lattice slats, gallery X-lattice only hinted, pines are generic broadleaf crowns not umbrella Scots pines, common is a stylised vignette."
  }
 }

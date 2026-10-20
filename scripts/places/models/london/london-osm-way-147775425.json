@@ -19,7 +19,7 @@
  "camera": {
   "yawDeg": 0,
   "pitchDeg": 2,
-  "fovDeg": 58,
+  "fovDeg": 62,
   "aspect": 1.333,
   "fit": "building",
   "shiftY": -0.05
@@ -30,35 +30,31 @@
    "id": "base",
    "footprint": {
     "rect": [
-     62,
-     20
+     44,
+     17
     ]
    },
    "at": [
-    0,
-    0
+    -8,
+    0.8
    ],
    "rotDeg": 0,
    "z0": 0,
-   "height": 3.4,
+   "height": 3.2,
    "storeys": 1,
    "wall": {
     "material": "brick",
-    "colour": "#b05a42",
+    "colour": "#a8523c",
     "windows": "none",
     "windowRatio": 0,
-    "bay": 3.4,
     "faces": {
-     "front": "curtain",
-     "back": "plain"
+     "front": "plain"
     },
-    "bands": "#c4b48a",
     "plinth": 0.2
    },
    "roof": {
     "form": "flat",
-    "colour": "#6b6460",
-    "parapet": 0.5
+    "colour": "#6b6460"
    }
   },
   {
@@ -66,30 +62,42 @@
    "id": "upper",
    "footprint": {
     "rect": [
-     62,
-     20
+     44,
+     19
     ]
    },
    "at": [
-    0,
+    -8,
     0
    ],
    "rotDeg": 0,
-   "z0": 3.4,
-   "height": 11.6,
-   "storeys": 3,
+   "z0": 3.2,
+   "height": 10.6,
+   "storeys": 2,
    "wall": {
     "material": "metal-cladding",
-    "colour": "#c6b68c",
+    "colour": "#b8a67e",
     "windows": "curtain",
-    "windowRatio": 0.5,
-    "bay": 3.6,
+    "windowRatio": 0.45,
+    "bay": 4.5,
     "faces": {
-     "front": "curtain",
-     "back": "plain"
+     "back": "none",
+     "left": "none",
+     "right": "none"
     },
     "bands": "#a89a72",
-    "plinth": 0.2
+    "pattern": [
+     {
+      "type": "fins",
+      "spacing": 1.5,
+      "depth": 0.3,
+      "width": 0.16,
+      "colour": "#8b6f3f",
+      "faces": [
+       "front"
+      ]
+     }
+    ]
    },
    "roof": {
     "form": "flat",
@@ -103,17 +111,17 @@
    "footprint": {
     "rect": [
      26,
-     16
+     14
     ]
    },
    "at": [
-    -4,
-    5
+    -10,
+    15
    ],
    "rotDeg": 0,
    "z0": 0,
-   "height": 22,
-   "storeys": 5,
+   "height": 20,
+   "storeys": 4,
    "wall": {
     "material": "brick",
     "colour": "#b4563f",
@@ -131,25 +139,37 @@
    "id": "fly-tower",
    "footprint": {
     "rect": [
-     24,
-     16
+     20,
+     14
     ]
    },
    "at": [
-    19,
-    6
+    16,
+    11
    ],
    "rotDeg": 0,
    "z0": 0,
-   "height": 36,
+   "height": 34,
    "storeys": 7,
    "wall": {
     "material": "metal-cladding",
-    "colour": "#b2a27a",
+    "colour": "#b7a57b",
     "windows": "none",
     "windowRatio": 0,
-    "bands": "#a89868",
-    "bay": 1.4
+    "bay": 1.4,
+    "pattern": [
+     {
+      "type": "fins",
+      "spacing": 0.9,
+      "depth": 0.4,
+      "width": 0.3,
+      "colour": "#a38d5a",
+      "faces": [
+       "front",
+       "left"
+      ]
+     }
+    ]
    },
    "roof": {
     "form": "flat",
@@ -160,39 +180,83 @@
   {
    "type": "core/sign-board",
    "at": [
-    0,
-    -11.5,
+    -8,
+    -8.3,
     0
    ],
    "params": {
     "width": 5,
-    "height": 1.2,
-    "bottom": 1.0,
+    "height": 0.9,
+    "bottom": 1.2,
     "colour": "#2f3338",
     "posts": false
    }
+  },
+  {
+   "type": "prism",
+   "at": [
+    -8,
+    -8.4,
+    0.6
+   ],
+   "params": {
+    "rect": [
+     7,
+     0.4
+    ],
+    "height": 2.6,
+    "colour": "#2a3238"
+   }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    0,
+    -12,
+    0
+   ],
+   "params": {
+    "points": [
+     [
+      -33,
+      0
+     ],
+     [
+      27,
+      0
+     ]
+    ],
+    "height": 1.2,
+    "thickness": 0.2,
+    "kind": "railing",
+    "colour": "#1c1f22"
+   }
+  },
+  {
+   "type": "prism",
+   "at": [
+    10,
+    -8.4,
+    0
+   ],
+   "params": {
+    "rect": [
+     2.4,
+     0.4
+    ],
+    "height": 3.4,
+    "colour": "#4b3d36"
+   },
+   "lod": [
+    0
+   ]
   }
  ],
  "site": {
   "ground": "paving",
   "forecourt": "road",
   "forecourtDepth": 10,
-  "trees": [
-   {
-    "kind": "broadleaf",
-    "at": [
-     -14,
-     -17
-    ]
-   },
-   {
-    "kind": "broadleaf",
-    "at": [
-     30,
-     -17
-    ]
-   }
-  ],
+  "trees": [],
   "extent": [
    110,
    70
@@ -203,8 +267,8 @@
  "city": "london",
  "venueId": "london-osm-way-147775425",
  "review": {
-  "rounds": 3,
+  "rounds": 2,
   "match": "fair",
-  "gaps": "Upper floors are an all-glass curtain instead of buff cladding with vertical fins and solid panels, no vertical ribbing on the fly tower, no street railings or tree; brick base reads correctly."
+  "gaps": "Upper facade glazing is uniform and too regular versus buff panels with irregular glazed bays; tower is boxier and a touch too tall; no bare tree; base undercut approximate."
  }
 }

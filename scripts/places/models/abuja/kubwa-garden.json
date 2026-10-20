@@ -15,59 +15,123 @@
   {
    "type": "raised-plots",
    "at": [
-    -8,
-    8,
+    0,
+    6,
     0
    ],
    "params": {
-    "rows": 3,
-    "cols": 4,
-    "plot_width": 6,
-    "plot_depth": 4,
+    "rows": 4,
+    "cols": 6,
+    "plot_width": 5,
+    "plot_depth": 3.2,
     "crop_colours": [
      "#7aa05a",
-     "#5f8a3f",
-     "#a3b552"
+     "#4f8a3a",
+     "#a3b552",
+     "#c9a23a",
+     "#3f7a4a",
+     "#8a5a36"
     ]
    }
   },
   {
-   "type": "mass",
-   "id": "pavilion",
-   "footprint": {
-    "rect": [
-     7,
-     5
-    ]
-   },
+   "type": "core/fence-wall",
    "at": [
-    22,
-    -10
+    -30,
+    -22,
+    0
    ],
-   "rotDeg": 0,
-   "z0": 0,
-   "height": 3.2,
-   "storeys": 1,
-   "wall": {
-    "material": "painted-render",
-    "colour": "#e3d3b0",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0.3
-   },
-   "roof": {
+   "params": {
+    "length": 60,
+    "height": 1.5,
+    "thickness": 0.2,
+    "kind": "fence",
+    "colour": "#8a5a36",
+    "points": [
+     [
+      0,
+      0
+     ],
+     [
+      17,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "type": "core/fence-wall",
+   "at": [
+    -30,
+    -22,
+    0
+   ],
+   "params": {
+    "length": 60,
+    "height": 1.5,
+    "thickness": 0.2,
+    "kind": "fence",
+    "colour": "#8a5a36",
+    "points": [
+     [
+      23,
+      0
+     ],
+     [
+      60,
+      0
+     ],
+     [
+      60,
+      48
+     ],
+     [
+      0,
+      48
+     ],
+     [
+      0,
+      0
+     ]
+    ]
+   }
+  },
+  {
+   "type": "core/gate",
+   "at": [
+    -7,
+    -22,
+    0
+   ],
+   "params": {
+    "width": 6,
+    "height": 2.2,
+    "pillar": 0.4,
+    "colour": "#8a5a36"
+   }
+  },
+  {
+   "type": "open-shelter",
+   "at": [
+    -2,
+    -14,
+    0
+   ],
+   "params": {
+    "length": 7,
+    "depth": 4.5,
+    "height": 3,
     "form": "shed",
-    "colour": "#5b6670",
-    "material": "metal-sheet",
-    "pitch": 10,
-    "overhang": 0.8
+    "support": "timber",
+    "colour": "#7a8a70",
+    "accent": "#8a5a36"
    }
   },
   {
    "type": "core/water-tank",
    "at": [
-    28,
-    6,
+    26,
+    18,
     0
    ],
    "params": {
@@ -79,66 +143,67 @@
    }
   },
   {
-   "type": "tree-grove",
+   "type": "core/water-tank",
    "at": [
-    -26,
-    -14,
+    -24,
+    -10,
     0
    ],
    "params": {
-    "width": 14,
-    "depth": 16,
-    "count": 5,
+    "kind": "elevated",
+    "radius": 0.25,
+    "tankHeight": 0.8,
+    "legHeight": 1.2,
+    "colour": "#5b6670"
+   }
+  },
+  {
+   "type": "kiosk",
+   "at": [
+    22,
+    -12,
+    0
+   ],
+   "params": {
+    "kind": "container",
+    "width": 2.0,
+    "depth": 1.5,
+    "height": 1.0,
+    "colour": "#3f5a3a"
+   }
+  },
+  {
+   "type": "tree-grove",
+   "at": [
+    -24,
+    16,
+    0
+   ],
+   "params": {
+    "width": 8,
+    "depth": 14,
+    "count": 4,
     "min_height": 7,
-    "max_height": 10
+    "max_height": 9
    }
   },
   {
    "type": "core/tree",
    "at": [
-    14,
+    26,
     -12,
     0
    ],
    "params": {
     "kind": "broadleaf",
-    "height": 9,
-    "count": 2,
-    "spread": 4
-   }
-  },
-  {
-   "type": "core/fence-wall",
-   "at": [
-    -35,
-    -25,
-    0
-   ],
-   "params": {
-    "length": 70,
-    "height": 1.5,
-    "thickness": 0.2,
-    "kind": "fence",
-    "colour": "#8a5a36"
-   }
-  },
-  {
-   "type": "core/gate",
-   "at": [
-    0,
-    -25,
-    0
-   ],
-   "params": {
-    "width": 4,
-    "height": 2,
-    "pillar": 0.4,
-    "colour": "#8a5a36"
+    "height": 8,
+    "count": 1,
+    "spread": 3
    }
   }
  ],
  "site": {
-  "ground": "laterite",
+  "ground": "grass",
   "forecourt": "none",
   "extent": [
    80,
@@ -148,6 +213,6 @@
  "review": {
   "rounds": 1,
   "match": "rough",
-  "gaps": "No photo or outline: a modest plausible community garden from the brief only (plot beds, pavilion, shade trees, tank, gate); layout and sizes are typical, not observed."
+  "gaps": "No photo or outline: a community garden from the brief only; layout, crop colours and the open shelter are typical, not observed. Watering cans/compost bin approximated by a low box."
  }
 }

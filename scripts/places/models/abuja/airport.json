@@ -49,19 +49,19 @@
    "id": "glass-wing",
    "footprint": {
     "rect": [
-     56,
+     62,
      30
     ]
    },
    "at": [
-    38,
+    41,
     0
    ],
-   "height": 9.5,
+   "height": 8.5,
    "storeys": 2,
    "wall": {
     "material": "glass-curtain",
-    "colour": "#60676d",
+    "colour": "#9fb2b6",
     "windows": "curtain",
     "windowRatio": 0.8,
     "faces": {
@@ -73,9 +73,9 @@
    },
    "roof": {
     "form": "flat",
-    "colour": "#6c7176",
+    "colour": "#a4aaae",
     "material": "metal-sheet",
-    "overhang": 2.2,
+    "overhang": 1.0,
     "parapet": 0.5
    }
   },
@@ -89,21 +89,25 @@
     ]
    },
    "at": [
-    64,
+    51,
     0
    ],
-   "height": 11,
+   "height": 9.5,
    "storeys": 1,
    "wall": {
     "material": "concrete",
-    "colour": "#979ca1",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0
+    "colour": "#9a9da0",
+    "windows": "punched",
+    "windowRatio": 0.1,
+    "plinth": 0,
+    "faces": {
+     "left": "none",
+     "right": "none"
+    }
    },
    "roof": {
     "form": "flat",
-    "colour": "#80858a",
+    "colour": "#a4aaae",
     "overhang": 0.6
    }
   },
@@ -117,21 +121,25 @@
     ]
    },
    "at": [
-    44,
+    31,
     0
    ],
-   "height": 11,
+   "height": 9.5,
    "storeys": 1,
    "wall": {
     "material": "concrete",
-    "colour": "#979ca1",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0
+    "colour": "#9a9da0",
+    "windows": "punched",
+    "windowRatio": 0.1,
+    "plinth": 0,
+    "faces": {
+     "left": "none",
+     "right": "none"
+    }
    },
    "roof": {
     "form": "flat",
-    "colour": "#80858a",
+    "colour": "#a4aaae",
     "overhang": 0.6
    }
   },
@@ -145,21 +153,25 @@
     ]
    },
    "at": [
-    24,
+    11,
     0
    ],
-   "height": 11,
+   "height": 9.5,
    "storeys": 1,
    "wall": {
     "material": "concrete",
-    "colour": "#979ca1",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0
+    "colour": "#9a9da0",
+    "windows": "punched",
+    "windowRatio": 0.1,
+    "plinth": 0,
+    "faces": {
+     "left": "none",
+     "right": "none"
+    }
    },
    "roof": {
     "form": "flat",
-    "colour": "#80858a",
+    "colour": "#a4aaae",
     "overhang": 0.6
    }
   },
@@ -180,7 +192,7 @@
    "storeys": 3,
    "wall": {
     "material": "metal-cladding",
-    "colour": "#8b9096",
+    "colour": "#9a9ea3",
     "windows": "punched",
     "windowRatio": 0.12,
     "faces": {
@@ -196,7 +208,7 @@
     "high": "back",
     "rise": 4.5,
     "overhang": 7,
-    "colour": "#686e75",
+    "colour": "#a0a6ab",
     "material": "metal-sheet"
    }
   },
@@ -279,30 +291,6 @@
   {
    "type": "jet-bridge",
    "at": [
-    -10,
-    18,
-    4.6
-   ],
-   "params": {
-    "length": 17,
-    "colour": "#b5bbc0"
-   }
-  },
-  {
-   "type": "jet-bridge",
-   "at": [
-    4,
-    18,
-    4.6
-   ],
-   "params": {
-    "length": 17,
-    "colour": "#b5bbc0"
-   }
-  },
-  {
-   "type": "jet-bridge",
-   "at": [
     -44,
     10.0,
     4.2
@@ -338,11 +326,89 @@
     "count": 6,
     "spacing": 17
    }
+  },
+  {
+   "type": "mass",
+   "id": "pier-far",
+   "footprint": {
+    "rect": [
+     6,
+     31
+    ]
+   },
+   "at": [
+    71,
+    0
+   ],
+   "height": 9.5,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#9a9da0",
+    "windows": "punched",
+    "windowRatio": 0.1,
+    "plinth": 0,
+    "faces": {
+     "left": "none",
+     "right": "none"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#a4aaae",
+    "overhang": 0.6
+   }
+  },
+  {
+   "type": "prism",
+   "id": "wing-roof",
+   "at": [
+    -4,
+    1
+   ],
+   "params": {
+    "rect": [
+     44,
+     52
+    ],
+    "z0": 14.0,
+    "height": 2.2,
+    "topScale": 0.62,
+    "topOffset": [
+     0,
+     3
+    ],
+    "colour": "#b3b8bc",
+    "topColour": "#c2c6c9"
+   }
+  },
+  {
+   "type": "prism",
+   "id": "wing-roof2",
+   "at": [
+    -27,
+    0
+   ],
+   "params": {
+    "rect": [
+     26,
+     40
+    ],
+    "z0": 11.0,
+    "height": 1.6,
+    "topScale": 0.6,
+    "topOffset": [
+     0,
+     3
+    ],
+    "colour": "#b3b8bc",
+    "topColour": "#c2c6c9"
+   }
   }
  ],
  "site": {
   "ground": "paving",
-  "forecourt": "road",
+  "forecourt": "none",
   "forecourtDepth": 14,
   "trees": [
    {
@@ -375,6 +441,6 @@
  "review": {
   "rounds": 3,
   "match": "fair",
-  "gaps": "Only a 118 m portion of a ~400 m terminal is modelled (scene clamp); the photo frames the whole length from far away. Hall wing roof is a simple raked slab, not the folded winged roof; no control tower, covered walkway or landside diagonal-braced glass gable; glazing is generic dark curtain wall, no reflections."
+  "gaps": "Only ~126 m of the ~400 m terminal is modelled; wing roofs are tapered slabs not folded plates; render sky-lighting still tints the grey cladding blue; no control tower."
  }
 }

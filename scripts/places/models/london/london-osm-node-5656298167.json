@@ -48,10 +48,10 @@
    "storeys": 2,
    "wall": {
     "material": "stucco",
-    "colour": "#e7dcb2",
+    "colour": "#eadfb4",
     "windows": "punched",
-    "windowRatio": 0.32,
-    "bay": 3.4,
+    "windowRatio": 0.3,
+    "bay": 4.3,
     "plinth": 0.5,
     "cornice": true,
     "faces": {
@@ -63,8 +63,8 @@
     "form": "hip",
     "colour": "#7d5442",
     "material": "clay-tile",
-    "pitch": 38,
-    "overhang": 0.5
+    "pitch": 28,
+    "overhang": 0.1
    }
   },
   {
@@ -85,16 +85,16 @@
    "height": 7.2,
    "storeys": 2,
    "wall": {
-    "material": "brick",
-    "colour": "#a8573f",
+    "material": "stucco",
+    "colour": "#e3d6ae",
     "windows": "punched",
-    "windowRatio": 0.2
+    "windowRatio": 0.24
    },
    "roof": {
     "form": "gable",
     "colour": "#6e4a3c",
     "material": "clay-tile",
-    "pitch": 34
+    "pitch": 26
    }
   },
   {
@@ -124,7 +124,7 @@
     "form": "hip",
     "colour": "#7d5442",
     "material": "clay-tile",
-    "pitch": 30
+    "pitch": 26
    }
   },
   {
@@ -182,125 +182,140 @@
    }
   },
   {
-   "type": "mass",
-   "id": "fwall-left",
-   "footprint": {
-    "rect": [
-     9,
-     0.5
-    ]
-   },
+   "type": "prism",
    "at": [
-    -11,
-    -6
-   ],
-   "rotDeg": 0,
-   "z0": 0,
-   "height": 0.9,
-   "storeys": 1,
-   "wall": {
-    "material": "brick",
-    "colour": "#b0604a",
-    "windows": "none",
-    "windowRatio": 0
-   },
-   "roof": {
-    "form": "flat",
-    "colour": "#8c8c88"
-   }
-  },
-  {
-   "type": "mass",
-   "id": "fwall-mid",
-   "footprint": {
-    "rect": [
-     7,
-     0.5
-    ]
-   },
-   "at": [
-    0.5,
-    -6
-   ],
-   "rotDeg": 0,
-   "z0": 0,
-   "height": 0.9,
-   "storeys": 1,
-   "wall": {
-    "material": "brick",
-    "colour": "#b0604a",
-    "windows": "none",
-    "windowRatio": 0
-   },
-   "roof": {
-    "form": "flat",
-    "colour": "#8c8c88"
-   }
-  },
-  {
-   "type": "mass",
-   "id": "fwall-right",
-   "footprint": {
-    "rect": [
-     6,
-     0.5
-    ]
-   },
-   "at": [
-    10,
-    -6
-   ],
-   "rotDeg": 0,
-   "z0": 0,
-   "height": 0.9,
-   "storeys": 1,
-   "wall": {
-    "material": "brick",
-    "colour": "#b0604a",
-    "windows": "none",
-    "windowRatio": 0
-   },
-   "roof": {
-    "form": "flat",
-    "colour": "#8c8c88"
-   }
-  },
-  {
-   "type": "railing",
-   "at": [
-    -11,
-    -6,
-    0.9
+    9.2,
+    -4.55,
+    0
    ],
    "params": {
-    "length": 9,
-    "height": 1.1,
-    "colour": "#1c1c1e"
+    "rect": [
+     1.7,
+     0.3
+    ],
+    "height": 2.6,
+    "colour": "#7a4a28",
+    "z0": 0.5
    }
   },
   {
-   "type": "railing",
+   "type": "prism",
    "at": [
-    0.5,
-    -6,
-    0.9
+    9.2,
+    -4.62,
+    0
    ],
    "params": {
-    "length": 7,
-    "height": 1.1,
-    "colour": "#1c1c1e"
+    "rect": [
+     2.4,
+     0.3
+    ],
+    "height": 0.4,
+    "colour": "#efe8d6",
+    "z0": 3.1
    }
   },
   {
-   "type": "railing",
+   "type": "fence-wall",
    "at": [
-    10,
-    -6,
-    0.9
+    0,
+    0,
+    0
    ],
    "params": {
-    "length": 6,
-    "height": 1.1,
+    "points": [
+     [
+      -21,
+      -6.6
+     ],
+     [
+      -12,
+      -6.6
+     ],
+     [
+      -8,
+      -6.3
+     ],
+     [
+      -6,
+      -5.6
+     ],
+     [
+      -3,
+      -5.4
+     ],
+     [
+      -1,
+      -5.6
+     ],
+     [
+      0.5,
+      -6.3
+     ],
+     [
+      3,
+      -6.6
+     ],
+     [
+      6.5,
+      -6.6
+     ]
+    ],
+    "height": 0.6,
+    "thickness": 0.5,
+    "kind": "wall",
+    "colour": "#b0604a"
+   }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    0,
+    0,
+    0.6
+   ],
+   "params": {
+    "points": [
+     [
+      -21,
+      -6.6
+     ],
+     [
+      -12,
+      -6.6
+     ],
+     [
+      -8,
+      -6.3
+     ],
+     [
+      -6,
+      -5.6
+     ],
+     [
+      -3,
+      -5.4
+     ],
+     [
+      -1,
+      -5.6
+     ],
+     [
+      0.5,
+      -6.3
+     ],
+     [
+      3,
+      -6.6
+     ],
+     [
+      6.5,
+      -6.6
+     ]
+    ],
+    "height": 1.8,
+    "thickness": 0.25,
+    "kind": "railing",
     "colour": "#1c1c1e"
    }
   },
@@ -308,50 +323,66 @@
    "type": "core/sign-board",
    "at": [
     -4,
-    -4.6,
+    -4.55,
     0
    ],
    "params": {
-    "width": 6,
-    "height": 0.9,
-    "bottom": 3.2,
-    "colour": "#2b2b2b",
+    "width": 7,
+    "height": 1.5,
+    "bottom": 3.6,
+    "colour": "#efe6c8",
+    "frameColour": "#2b2b2b",
     "posts": false
    }
   },
   {
    "type": "lamp-post",
    "at": [
+    -12,
+    -5,
+    2.2
+   ],
+   "params": {
+    "height": 1.0
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    -22,
     -8,
-    -7,
     0
    ],
    "params": {
-    "height": 4
+    "kind": "broadleaf",
+    "height": 13
    }
   },
   {
    "type": "tree",
    "at": [
-    -20,
-    -9,
+    -18,
+    -8.5,
     0
    ],
    "params": {
     "kind": "broadleaf",
-    "height": 11
+    "height": 8
    }
   },
   {
-   "type": "tree",
+   "type": "open-shelter",
    "at": [
-    24,
-    -9,
+    15.5,
+    -7.5,
     0
    ],
    "params": {
-    "kind": "broadleaf",
-    "height": 10
+    "length": 5,
+    "depth": 1.8,
+    "height": 2.6,
+    "form": "flat",
+    "colour": "#2b2b2e"
    }
   }
  ],
@@ -366,6 +397,6 @@
  "review": {
   "rounds": 2,
   "match": "fair",
-  "gaps": "Museum is cream-painted stucco (brief said red brick, overridden by photo); window proportions and roof pitch approximate, no bus shelter, street furniture or lettering, hidden left wing and rear are guessed."
+  "gaps": "Curved forecourt wall and railings approximate; no bus stop pole/bin, lettering is a blank board; trees are low-poly; left wing and rear guessed."
  }
 }

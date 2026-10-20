@@ -35,7 +35,7 @@
    "storeys": 1,
    "wall": {
     "material": "painted-render",
-    "colour": "#8db6cf",
+    "colour": "#d9467a",
     "windows": "punched",
     "windowRatio": 0.3,
     "faces": {
@@ -43,14 +43,14 @@
      "left": "plain"
     },
     "plinth": 0.3,
-    "bands": "#e8d38a"
+    "bands": "#f2c230"
    },
    "roof": {
     "form": "shed",
-    "colour": "#8d5a3b",
+    "colour": "#8a5a40",
     "material": "metal-sheet",
-    "pitch": 8,
-    "overhang": 0.6
+    "pitch": 12,
+    "overhang": 1.0
    }
   },
   {
@@ -72,7 +72,7 @@
    "storeys": 1,
    "wall": {
     "material": "painted-render",
-    "colour": "#e8d38a",
+    "colour": "#2f8f6a",
     "windows": "none",
     "plinth": 0.2
    },
@@ -154,6 +154,266 @@
     "kind": "palm",
     "height": 8
    }
+  },
+  {
+   "type": "mass",
+   "id": "shutter",
+   "footprint": {
+    "rect": [
+     3.2,
+     0.5
+    ]
+   },
+   "at": [
+    3,
+    -4.1
+   ],
+   "z0": 0.3,
+   "height": 2.5,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#8f949a",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8f949a"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "fascia",
+   "footprint": {
+    "rect": [
+     9,
+     0.6
+    ]
+   },
+   "at": [
+    0,
+    -4.3
+   ],
+   "z0": 3.0,
+   "height": 0.9,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#f2c230",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#f2c230"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "rust-streak",
+   "footprint": {
+    "rect": [
+     0.8,
+     0.5
+    ]
+   },
+   "at": [
+    -4,
+    -4.15
+   ],
+   "z0": 0.4,
+   "height": 3.0,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#8a4a2b",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8a4a2b"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "gutter",
+   "footprint": {
+    "rect": [
+     10,
+     0.8
+    ]
+   },
+   "at": [
+    0,
+    -4.8
+   ],
+   "z0": 0.0,
+   "height": 0.5,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#7a7d80",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#7a7d80"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "generator",
+   "footprint": {
+    "rect": [
+     1.6,
+     1.0
+    ]
+   },
+   "at": [
+    -6.5,
+    -6
+   ],
+   "z0": 0,
+   "height": 1.0,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#c0392b",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#c0392b"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "jerrycans",
+   "footprint": {
+    "rect": [
+     1.0,
+     0.6
+    ]
+   },
+   "at": [
+    6.5,
+    -5.8
+   ],
+   "z0": 0,
+   "height": 0.7,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#e8c030",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#e8c030"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "parasol-pole",
+   "footprint": {
+    "rect": [
+     0.5,
+     0.5
+    ]
+   },
+   "at": [
+    2,
+    -7
+   ],
+   "z0": 0,
+   "height": 2.2,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#8f949a",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8f949a"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "parasol",
+   "footprint": {
+    "rect": [
+     3.0,
+     3.0
+    ]
+   },
+   "at": [
+    2,
+    -7
+   ],
+   "z0": 2.2,
+   "height": 0.5,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#2e6fb0",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#2e6fb0"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "chair-1",
+   "footprint": {
+    "rect": [
+     0.6,
+     0.6
+    ]
+   },
+   "at": [
+    -1.5,
+    -6.5
+   ],
+   "z0": 0,
+   "height": 0.8,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#f0f0f0",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#f0f0f0"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "chair-2",
+   "footprint": {
+    "rect": [
+     0.6,
+     0.6
+    ]
+   },
+   "at": [
+    -0.2,
+    -6.8
+   ],
+   "z0": 0,
+   "height": 0.8,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#f0f0f0",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#f0f0f0"
+   }
   }
  ],
  "site": {
@@ -184,8 +444,8 @@
   ]
  },
  "review": {
-  "rounds": 0,
+  "rounds": 1,
   "match": "rough",
-  "gaps": "No photo exists (fictional venue); typical shop-front only. Poster and mural art are not modelled."
+  "gaps": "Fictional venue, no photo: generic Lagos shop-front with a bold colour scheme, shutter, fascia, awning, container kiosk, generator, parasol and chairs. Poster and mural art not modelled."
  }
 }

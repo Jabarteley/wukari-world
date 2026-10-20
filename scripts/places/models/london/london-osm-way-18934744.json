@@ -27,58 +27,73 @@
  ],
  "camera": {
   "yawDeg": 0,
-  "pitchDeg": 6,
-  "fovDeg": 44,
+  "pitchDeg": 1,
+  "fovDeg": 85,
   "aspect": 1.333,
   "fit": "all",
-  "margin": 0.0
+  "margin": -0.2,
+  "lookAtZ": 6
  },
  "parts": [
   {
-   "type": "water-surface",
+   "type": "path-strip",
    "at": [
-    -48,
+    0,
     0,
     0
    ],
    "params": {
-    "width": 34,
-    "depth": 116,
+    "points": [
+     [
+      0,
+      -55
+     ],
+     [
+      0,
+      55
+     ]
+    ],
+    "width": 26,
+    "colour": "#b07a2a"
+   }
+  },
+  {
+   "type": "path-strip",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "points": [
+     [
+      0,
+      -55
+     ],
+     [
+      0,
+      55
+     ]
+    ],
+    "width": 14,
+    "colour": "#a8742a"
+   }
+  },
+  {
+   "type": "water-surface",
+   "at": [
+    -40,
+    25,
+    0
+   ],
+   "params": {
+    "width": 26,
+    "depth": 50,
     "colour": "#7a8a70",
     "bank": true
    }
   },
   {
-   "type": "tree-grove",
-   "at": [
-    -12,
-    0,
-    0
-   ],
-   "params": {
-    "width": 7,
-    "depth": 110,
-    "count": 14,
-    "min_height": 17,
-    "max_height": 22
-   }
-  },
-  {
-   "type": "tree-grove",
-   "at": [
-    12,
-    0,
-    0
-   ],
-   "params": {
-    "width": 7,
-    "depth": 110,
-    "count": 14,
-    "min_height": 17,
-    "max_height": 22
-   }
-  },
-  {
    "type": "path-strip",
    "at": [
     0,
@@ -88,34 +103,12 @@
    "params": {
     "points": [
      [
-      0,
-      -58
+      -23,
+      -30
      ],
      [
-      0,
-      58
-     ]
-    ],
-    "width": 6,
-    "colour": "#8a7a52"
-   }
-  },
-  {
-   "type": "path-strip",
-   "at": [
-    0,
-    0,
-    0
-   ],
-   "params": {
-    "points": [
-     [
-      -30,
-      -56
-     ],
-     [
-      -30,
-      56
+      -23,
+      55
      ]
     ],
     "width": 3,
@@ -123,132 +116,135 @@
    }
   },
   {
-   "type": "gate-piers",
+   "type": "array",
    "at": [
     0,
-    -58,
+    0,
     0
    ],
    "params": {
-    "width": 10,
-    "height": 4.2,
-    "kind": "piers"
+    "mode": "line",
+    "count": 12,
+    "start": [
+     -7,
+     -45,
+     0
+    ],
+    "end": [
+     -7,
+     45,
+     0
+    ],
+    "of": {
+     "type": "big-tree",
+     "params": {
+      "height": 22,
+      "crown_radius": 4.5,
+      "trunk_radius": 0.55,
+      "colour": "#b4ad3c"
+     }
+    },
+    "lod1Step": 3,
+    "lod2Step": 12
    }
   },
   {
-   "type": "statue-plinth",
+   "type": "array",
    "at": [
     0,
-    52,
+    0,
     0
    ],
    "params": {
-    "height": 6,
-    "steps": 3,
-    "shape": "tier",
-    "figure": "stand",
-    "figure_colour": "#6a583b"
+    "mode": "line",
+    "count": 12,
+    "start": [
+     7,
+     -45,
+     0
+    ],
+    "end": [
+     7,
+     45,
+     0
+    ],
+    "of": {
+     "type": "big-tree",
+     "params": {
+      "height": 22,
+      "crown_radius": 4.5,
+      "trunk_radius": 0.55,
+      "colour": "#c9a63a"
+     }
+    },
+    "lod1Step": 3,
+    "lod2Step": 12
    }
   },
   {
-   "type": "pier-boardwalk",
+   "type": "array",
    "at": [
-    -34,
-    20,
+    0,
+    0,
     0
    ],
    "params": {
-    "length": 10,
-    "width": 2.4,
-    "height": 0.7
+    "mode": "line",
+    "count": 12,
+    "start": [
+     -13,
+     -45,
+     0
+    ],
+    "end": [
+     -13,
+     45,
+     0
+    ],
+    "of": {
+     "type": "big-tree",
+     "params": {
+      "height": 22,
+      "crown_radius": 4.5,
+      "trunk_radius": 0.55,
+      "colour": "#a9a23a"
+     }
+    },
+    "lod1Step": 3,
+    "lod2Step": 12
    }
   },
   {
-   "type": "pavilion",
+   "type": "array",
    "at": [
-    34,
-    -20,
+    0,
+    0,
     0
    ],
    "params": {
-    "width": 10,
-    "depth": 7,
-    "height": 4,
-    "roof": "hip",
-    "rise": 2,
-    "colour": "#9b4a35",
-    "cap_colour": "#4a4f57"
-   }
-  },
-  {
-   "type": "kiosk",
-   "at": [
-    24,
-    10,
-    0
-   ],
-   "params": {
-    "kind": "container",
-    "width": 4,
-    "depth": 3,
-    "height": 2.8
-   }
-  },
-  {
-   "type": "flowerbeds",
-   "at": [
-    34,
-    30,
-    0
-   ],
-   "params": {
-    "rows": 2,
-    "cols": 3,
-    "width": 6,
-    "depth": 5
-   }
-  },
-  {
-   "type": "core/lamp",
-   "at": [
-    -26,
-    -50,
-    0
-   ],
-   "params": {
-    "height": 5,
-    "count": 8,
-    "spacing": 14
-   }
-  },
-  {
-   "type": "tree-grove",
-   "at": [
-    40,
-    -44,
-    0
-   ],
-   "params": {
-    "width": 24,
-    "depth": 20,
-    "count": 6,
-    "min_height": 9,
-    "max_height": 13
-   }
-  },
-  {
-   "type": "tree-grove",
-   "at": [
-    40,
-    44,
-    0
-   ],
-   "params": {
-    "width": 24,
-    "depth": 20,
-    "count": 6,
-    "min_height": 9,
-    "max_height": 13
+    "mode": "line",
+    "count": 12,
+    "start": [
+     13,
+     -45,
+     0
+    ],
+    "end": [
+     13,
+     45,
+     0
+    ],
+    "of": {
+     "type": "big-tree",
+     "params": {
+      "height": 22,
+      "crown_radius": 4.5,
+      "trunk_radius": 0.55,
+      "colour": "#b8a83a"
+     }
+    },
+    "lod1Step": 3,
+    "lod2Step": 12
    }
   }
  ],
@@ -257,8 +253,8 @@
   "forecourt": "none",
   "trees": 0,
   "extent": [
-   130,
-   120
+   70,
+   110
   ]
  },
  "schema": "allworld-place-model",
@@ -266,8 +262,8 @@
  "city": "london",
  "venueId": "london-osm-way-18934744",
  "review": {
-  "rounds": 3,
+  "rounds": 2,
   "match": "rough",
-  "gaps": "Photo is a ground-level tree avenue; render is a stylised 130 m cut of the park with low-poly trees, flat lake and no autumn leaf cover; bowling greens, splash park and light railway are not modelled."
+  "gaps": "Camera cannot be placed at eye height inside the avenue (fit pulls it back), so the avenue is small in frame; trees are smooth low-poly crowns not bare-branched plane/lime; leaf-covered floor is a flat ochre strip; lake is a pale patch."
  }
 }

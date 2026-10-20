@@ -37,10 +37,12 @@
   }
  ],
  "camera": {
-  "yawDeg": 14,
+  "yawDeg": 4,
   "pitchDeg": 8,
-  "fovDeg": 60,
-  "aspect": 1.78
+  "fovDeg": 66,
+  "aspect": 1.78,
+  "margin": 0.0,
+  "fit": "all"
  },
  "parts": [
   {
@@ -48,116 +50,153 @@
    "id": "frontage",
    "footprint": {
     "rect": [
-     100,
-     28
+     96,
+     26
     ]
    },
    "at": [
     0,
     0
    ],
-   "height": 17,
+   "height": 18,
    "storeys": 4,
    "wall": {
-    "material": "metal-cladding",
-    "colour": "#a9b0b5",
-    "windows": "ribbon",
-    "windowRatio": 0.55,
+    "material": "glass-curtain",
+    "colour": "#8a9da4",
+    "windows": "curtain",
+    "windowRatio": 0.62,
     "groundKind": "curtain",
-    "groundHeight": 5,
-    "bands": "#8c959b",
-    "plinth": 0.3,
+    "groundHeight": 5.5,
+    "bands": "#4b565c",
+    "bay": 3.6,
+    "glassColour": "#6f8791",
+    "plinth": 0.2,
     "faces": {
      "left": "plain",
-     "right": "plain"
-    },
-    "bay": 4.4
+     "right": "plain",
+     "back": "plain"
+    }
    },
    "roof": {
     "form": "curved",
     "curve": "arch",
-    "rise": 2.6,
-    "overhang": 0.8,
-    "colour": "#6c9482",
+    "rise": 2.2,
+    "overhang": 1.0,
+    "colour": "#5f8f86",
     "material": "copper",
     "infill": "wall"
    }
   },
   {
    "type": "mass",
-   "id": "tower-base",
+   "id": "entrance-dark",
    "footprint": {
     "rect": [
-     22,
-     22
+     34,
+     3
     ]
    },
    "at": [
-    32,
-    52
+    -30,
+    -14.5
    ],
-   "height": 13,
-   "storeys": 2,
+   "height": 5.5,
+   "storeys": 1,
    "wall": {
     "material": "metal-cladding",
-    "colour": "#6f9380",
-    "windows": "none",
-    "plinth": 0
+    "colour": "#2d3237",
+    "windows": "curtain",
+    "windowRatio": 0.5
    },
    "roof": {
     "form": "flat",
-    "colour": "#5b7d6b",
-    "parapet": 0.4
+    "colour": "#2d3237"
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    -8,
+    -13.2,
+    6.4
+   ],
+   "params": {
+    "width": 40,
+    "height": 4.5,
+    "bottom": 0,
+    "colour": "#1c1e20",
+    "frameColour": "#d9a82b",
+    "posts": false
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    26,
+    -13.2,
+    8.4
+   ],
+   "params": {
+    "width": 16,
+    "height": 3,
+    "bottom": 0,
+    "colour": "#8e8a84",
+    "frameColour": "#8e8a84",
+    "posts": false
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    -44,
+    -15,
+    0.5
+   ],
+   "params": {
+    "width": 3,
+    "height": 4,
+    "bottom": 1.5,
+    "colour": "#e8b82a",
+    "frameColour": "#555555",
+    "posts": true
    }
   },
   {
    "type": "core/canopy",
    "at": [
     0,
-    -29.5,
+    -30,
     0
    ],
    "params": {
     "form": "flat",
     "width": 104,
-    "depth": 31,
-    "height": 7.9,
-    "thickness": 0.6,
-    "colour": "#eef4f7",
-    "edgeColour": "#586067"
+    "depth": 34,
+    "height": 14,
+    "thickness": 1.4,
+    "colour": "#eef4f6",
+    "edgeColour": "#5d666d"
    }
   },
   {
    "type": "core/colonnade",
    "at": [
     0,
-    -17,
+    -18,
     0
    ],
    "params": {
-    "length": 92,
-    "count": 7,
-    "height": 7.4,
-    "radius": 0.33,
+    "length": 90,
+    "count": 4,
+    "height": 15,
+    "radius": 1.0,
     "beamHeight": 0.2,
-    "colour": "#6a7176"
-   }
-  },
-  {
-   "type": "core/colonnade",
-   "at": [
+    "colour": "#7a8187"
+   },
+   "lod": [
     0,
-    -29.5,
-    0
-   ],
-   "params": {
-    "length": 92,
-    "count": 7,
-    "height": 7.4,
-    "radius": 0.33,
-    "beamHeight": 0.2,
-    "colour": "#6a7176"
-   }
+    1
+   ]
   },
   {
    "type": "core/colonnade",
@@ -167,108 +206,210 @@
     0
    ],
    "params": {
-    "length": 92,
-    "count": 7,
-    "height": 7.4,
-    "radius": 0.33,
+    "length": 90,
+    "count": 4,
+    "height": 15,
+    "radius": 1.0,
     "beamHeight": 0.2,
-    "colour": "#6a7176"
-   }
+    "colour": "#7a8187"
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
-   "type": "core/control-tower",
+   "type": "array",
    "at": [
-    32,
-    52,
-    13
+    0,
+    0,
+    15.2
    ],
    "params": {
-    "height": 62,
-    "style": "round",
-    "colour": "#9aa0a5",
-    "shaftRadius": 1.7,
-    "cabRadius": 3.6,
-    "cabColour": "#3f8f78",
-    "bandColour": "#b5483c"
+    "mode": "line",
+    "count": 4,
+    "start": [
+     -50,
+     0,
+     0
+    ],
+    "end": [
+     50,
+     0,
+     0
+    ],
+    "of": {
+     "type": "sweep-path",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "params": {
+      "section": {
+       "rect": [
+        0.9,
+        1.0
+       ]
+      },
+      "points": [
+       [
+        0,
+        -46,
+        0
+       ],
+       [
+        0,
+        -14,
+        0
+       ]
+      ],
+      "colour": "#5d666d"
+     }
+    }
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "array",
+   "at": [
+    0,
+    0,
+    15.2
+   ],
+   "params": {
+    "mode": "line",
+    "count": 3,
+    "start": [
+     0,
+     -44,
+     0
+    ],
+    "end": [
+     0,
+     -16,
+     0
+    ],
+    "of": {
+     "type": "sweep-path",
+     "at": [
+      0,
+      0,
+      0
+     ],
+     "params": {
+      "section": {
+       "rect": [
+        0.9,
+        1.0
+       ]
+      },
+      "points": [
+       [
+        -50,
+        0,
+        0
+       ],
+       [
+        50,
+        0,
+        0
+       ]
+      ],
+      "colour": "#5d666d"
+     }
+    }
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "core/tree",
+   "at": [
+    -25,
+    -12,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 6
    }
   },
   {
    "type": "core/tree",
    "at": [
-    0,
-    -34,
+    35,
+    -12,
     0
    ],
    "params": {
     "kind": "broadleaf",
-    "height": 7.5,
-    "count": 6,
-    "line": 80
+    "height": 6
    }
   },
   {
-   "type": "core/flag",
-   "at": [
-    -12,
-    10,
-    17
-   ],
-   "params": {
-    "height": 6,
-    "count": 4,
-    "spacing": 5,
-    "colours": [
-     "#c8102e",
-     "#f2f2f2",
-     "#1f3d7a",
-     "#f2f2f2"
-    ]
-   }
-  },
-  {
-   "type": "core/fence-wall",
+   "type": "array",
    "at": [
     0,
-    -46,
+    -10,
     0
    ],
    "params": {
-    "length": 96,
-    "height": 0.7,
-    "thickness": 0.4,
-    "kind": "wall",
-    "colour": "#4f7a3c"
-   }
+    "mode": "line",
+    "count": 9,
+    "start": [
+     -44,
+     0,
+     0
+    ],
+    "end": [
+     44,
+     0,
+     0
+    ],
+    "of": {
+     "type": "mass",
+     "footprint": {
+      "rect": [
+       0.5,
+       0.5
+      ]
+     },
+     "height": 1,
+     "wall": {
+      "material": "metal-cladding",
+      "colour": "#6a6f74",
+      "windows": "none"
+     },
+     "roof": {
+      "form": "flat",
+      "colour": "#6a6f74"
+     }
+    }
+   },
+   "lod": [
+    0
+   ]
   }
  ],
  "site": {
   "ground": "paving",
   "forecourt": "plaza",
-  "forecourtDepth": 18,
-  "trees": [
-   {
-    "kind": "broadleaf",
-    "at": [
-     -48,
-     -55
-    ]
-   },
-   {
-    "kind": "broadleaf",
-    "at": [
-     48,
-     -55
-    ]
-   }
-  ],
+  "forecourtDepth": 22,
+  "trees": [],
   "extent": [
-   130,
-   130
+   116,
+   110
   ]
  },
  "review": {
   "rounds": 2,
-  "match": "fair",
-  "gaps": "Viewed from outside: the photo is taken standing under the canopy, so the render shows the whole frontage from above instead. Canopy is a plain flat slab on columns (no steel grid beams, no translucent panels), frontage has no entrance frame, signage panels or British Airways colour blocks (no logos by rule), no cart rows, bollards or footbridge arch. Tower is a simple cylinder without stay cables."
+  "match": "rough",
+  "gaps": "Canopy now a high pale translucent slab on thick grey columns with a few steel beams, dark glazed frontage with black sign band, control tower and arch removed; still lacks diagonal beams, curved green glass roof detail, people, trolleys and real signage; photo was taken from under the canopy so the framing differs."
  }
 }

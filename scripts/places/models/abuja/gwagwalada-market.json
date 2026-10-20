@@ -39,7 +39,7 @@
    },
    "roof": {
     "form": "shed",
-    "colour": "#a8a29a",
+    "colour": "#8a5a3c",
     "material": "corrugated",
     "rise": 0.8,
     "overhang": 0.8
@@ -49,176 +49,640 @@
    "type": "market-shed",
    "at": [
     -24,
-    16,
-    0
-   ],
-   "params": {
-    "length": 30,
-    "depth": 9,
-    "height": 3.8,
-    "roof": "gable",
-    "cladding": "corrugated",
-    "goods": "sacks"
-   }
-  },
-  {
-   "type": "market-shed",
-   "at": [
-    16,
-    22,
+    18,
     0
    ],
    "rotDeg": 0,
    "params": {
-    "length": 24,
-    "depth": 8,
+    "length": 32,
+    "depth": 9,
     "height": 3.6,
-    "roof": "shed",
-    "goods": "sacks"
+    "roof": "gable",
+    "cladding": "corrugated",
+    "roof_colour": "#8a5a3c",
+    "roof_material": "corrugated",
+    "goods": "sacks",
+    "wall_colour": "#9a8a74"
    }
   },
   {
    "type": "market-shed",
    "at": [
-    34,
+    16,
+    24,
+    0
+   ],
+   "rotDeg": 0,
+   "params": {
+    "length": 26,
+    "depth": 8,
+    "height": 3.6,
+    "roof": "shed",
+    "cladding": "corrugated",
+    "roof_colour": "#8a5a3c",
+    "roof_material": "corrugated",
+    "goods": "sacks",
+    "wall_colour": "#9a8a74"
+   }
+  },
+  {
+   "type": "market-shed",
+   "at": [
+    36,
     -4,
     0
    ],
    "rotDeg": 90,
    "params": {
+    "length": 22,
+    "depth": 7,
+    "height": 3.6,
+    "roof": "gable",
+    "cladding": "corrugated",
+    "roof_colour": "#8a5a3c",
+    "roof_material": "corrugated",
+    "goods": "sacks",
+    "wall_colour": "#9a8a74"
+   }
+  },
+  {
+   "type": "market-shed",
+   "at": [
+    -30,
+    -30,
+    0
+   ],
+   "rotDeg": 0,
+   "params": {
     "length": 20,
     "depth": 7,
-    "height": 3.4,
-    "roof": "gable",
-    "goods": "sacks"
+    "height": 3.6,
+    "roof": "shed",
+    "cladding": "corrugated",
+    "roof_colour": "#8a5a3c",
+    "roof_material": "corrugated",
+    "goods": "sacks",
+    "wall_colour": "#9a8a74"
    }
   },
   {
    "type": "stall-row",
    "at": [
-    -36,
-    -6,
+    -40,
+    -30,
     0
    ],
    "params": {
-    "count": 8,
-    "pitch": 3.2,
+    "count": 9,
+    "pitch": 3.4,
     "kind": "umbrella",
     "colours": [
-     "#d94f4f",
-     "#e8b53a",
-     "#3a7bc8",
-     "#4fa86a",
-     "#f1ead8"
-    ]
-   }
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "stall-row",
    "at": [
-    -36,
-    2,
+    -40,
+    -23,
     0
    ],
    "params": {
-    "count": 8,
-    "pitch": 3.2,
-    "kind": "umbrella",
-    "colours": [
-     "#d94f4f",
-     "#e8b53a",
-     "#3a7bc8",
-     "#4fa86a",
-     "#f1ead8"
-    ]
-   }
-  },
-  {
-   "type": "stall-row",
-   "at": [
-    -4,
-    -8,
-    0
-   ],
-   "params": {
-    "count": 6,
-    "pitch": 3.2,
+    "count": 9,
+    "pitch": 3.4,
     "kind": "stall",
     "colours": [
-     "#d94f4f",
-     "#e8b53a",
-     "#3a7bc8",
-     "#4fa86a",
-     "#f1ead8"
-    ]
-   }
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "stall-row",
    "at": [
-    -4,
-    0,
+    -40,
+    -16,
     0
    ],
    "params": {
-    "count": 6,
-    "pitch": 3.2,
+    "count": 9,
+    "pitch": 3.4,
     "kind": "umbrella",
     "colours": [
-     "#d94f4f",
-     "#e8b53a",
-     "#3a7bc8",
-     "#4fa86a",
-     "#f1ead8"
-    ]
-   }
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    -40,
+    -9,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "stall",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    -40,
+    -2,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "umbrella",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    -40,
+    5,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "stall",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    -8,
+    -30,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "umbrella",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    -8,
+    -23,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "stall",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    -8,
+    -16,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "umbrella",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    -8,
+    -9,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "stall",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    -8,
+    -2,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "umbrella",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    -8,
+    5,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "stall",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    24,
+    -30,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "umbrella",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    24,
+    -23,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "stall",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    24,
+    -16,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "umbrella",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    24,
+    -9,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "stall",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    24,
+    -2,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "umbrella",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "stall-row",
+   "at": [
+    24,
+    5,
+    0
+   ],
+   "params": {
+    "count": 9,
+    "pitch": 3.4,
+    "kind": "stall",
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ],
+    "jitter": 0.5
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "umbrella-cluster",
    "at": [
     -20,
-    -24,
+    -36,
     0
    ],
    "params": {
-    "count": 9,
+    "count": 10,
     "spread": 8,
     "radius": 1.6,
     "tables": true,
     "colours": [
-     "#d94f4f",
-     "#e8b53a",
-     "#3a7bc8",
-     "#4fa86a"
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
     ]
-   }
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "umbrella-cluster",
    "at": [
     14,
-    -22,
+    -36,
     0
    ],
    "params": {
-    "count": 6,
-    "spread": 6,
+    "count": 8,
+    "spread": 7,
     "radius": 1.5,
-    "tables": false
-   }
+    "tables": false,
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ]
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "umbrella-cluster",
+   "at": [
+    -6,
+    12,
+    0
+   ],
+   "params": {
+    "count": 8,
+    "spread": 7,
+    "radius": 1.5,
+    "tables": true,
+    "colours": [
+     "#c0605a",
+     "#d4a94a",
+     "#6d8fb0",
+     "#7aa07a",
+     "#e6dcc4",
+     "#b8845a"
+    ]
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "gate",
    "at": [
     0,
-    -38,
+    -40,
     0
    ],
    "params": {
-    "width": 8,
-    "height": 3.6,
+    "width": 14,
+    "height": 3.8,
     "colour": "#b0aaa0",
-    "board_colour": "#c9a77c"
+    "board_colour": "#d8c9a0"
    }
   },
   {
@@ -259,21 +723,39 @@
     "height": 8,
     "colour": "#6f8a3c"
    }
+  },
+  {
+   "type": "core/prism",
+   "lod": [
+    2
+   ],
+   "at": [
+    -4,
+    -8,
+    0
+   ],
+   "params": {
+    "rect": [
+     80,
+     50
+    ],
+    "height": 2.4,
+    "colour": "#c9a56a"
+   }
   }
  ],
  "site": {
   "ground": "laterite",
-  "forecourt": "road",
-  "forecourtDepth": 8,
+  "forecourt": "none",
   "extent": [
    110,
    90
   ]
  },
  "review": {
-  "rounds": 0,
+  "rounds": 1,
   "match": "rough",
-  "gaps": "No photo of this market found; composed from the brief (open stalls, umbrellas, 3 sheds, gate) and Abuja market vernacular. Stall layout is typical, not surveyed."
+  "gaps": "No photo of this market exists; layout is typical open-air market vernacular (dense faded tarp/umbrella rows, rusty zinc sheds), not surveyed. OSM containing way is a 17x4 m building, not used. Verified stays text."
  },
  "schema": "allworld-place-model",
  "version": 2,

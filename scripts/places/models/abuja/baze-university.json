@@ -57,11 +57,10 @@
    "storeys": 2,
    "wall": {
     "material": "painted-render",
-    "colour": "#8a9399",
+    "colour": "#eceeed",
     "windows": "ribbon",
     "windowRatio": 0.3,
     "plinth": 0.4,
-    "bands": "#e8eaec",
     "glassColour": "#4a5a66",
     "bay": 6,
     "faces": {
@@ -69,11 +68,18 @@
      "back": "plain",
      "left": "ribbon",
      "right": "ribbon"
+    },
+    "pattern": {
+     "type": "floors",
+     "colours": [
+      "#5d6468",
+      "#eceeed"
+     ]
     }
    },
    "roof": {
     "form": "hip",
-    "colour": "#cfd2d3",
+    "colour": "#d3d6d6",
     "material": "metal-sheet",
     "pitch": 9,
     "overhang": 1.2
@@ -98,11 +104,10 @@
    "storeys": 2,
    "wall": {
     "material": "painted-render",
-    "colour": "#8a9399",
+    "colour": "#eceeed",
     "windows": "ribbon",
     "windowRatio": 0.3,
     "plinth": 0.4,
-    "bands": "#e8eaec",
     "glassColour": "#4a5a66",
     "bay": 6,
     "faces": {
@@ -110,11 +115,18 @@
      "back": "plain",
      "left": "plain",
      "right": "plain"
+    },
+    "pattern": {
+     "type": "floors",
+     "colours": [
+      "#5d6468",
+      "#eceeed"
+     ]
     }
    },
    "roof": {
     "form": "hip",
-    "colour": "#cfd2d3",
+    "colour": "#d3d6d6",
     "material": "metal-sheet",
     "pitch": 9,
     "overhang": 1.2
@@ -139,11 +151,10 @@
    "storeys": 2,
    "wall": {
     "material": "painted-render",
-    "colour": "#8a9399",
+    "colour": "#eceeed",
     "windows": "ribbon",
     "windowRatio": 0.3,
     "plinth": 0.4,
-    "bands": "#e8eaec",
     "glassColour": "#4a5a66",
     "bay": 6,
     "faces": {
@@ -151,11 +162,18 @@
      "back": "plain",
      "left": "plain",
      "right": "plain"
+    },
+    "pattern": {
+     "type": "floors",
+     "colours": [
+      "#5d6468",
+      "#eceeed"
+     ]
     }
    },
    "roof": {
     "form": "hip",
-    "colour": "#cfd2d3",
+    "colour": "#d3d6d6",
     "material": "metal-sheet",
     "pitch": 9,
     "overhang": 1.2
@@ -179,11 +197,10 @@
    "storeys": 3,
    "wall": {
     "material": "painted-render",
-    "colour": "#8a9399",
+    "colour": "#eceeed",
     "windows": "ribbon",
     "windowRatio": 0.3,
     "plinth": 0.4,
-    "bands": "#e8eaec",
     "glassColour": "#4a5a66",
     "bay": 6,
     "faces": {
@@ -191,11 +208,18 @@
      "back": "plain",
      "left": "plain",
      "right": "plain"
+    },
+    "pattern": {
+     "type": "floors",
+     "colours": [
+      "#5d6468",
+      "#eceeed"
+     ]
     }
    },
    "roof": {
     "form": "flat",
-    "colour": "#cfd2d3",
+    "colour": "#d3d6d6",
     "parapet": 0.6,
     "overhang": 1.2
    }
@@ -265,25 +289,44 @@
    "params": {
     "kind": "broadleaf",
     "height": 9,
-    "count": 3,
+    "count": 1,
     "line": 30
    }
   }
  ],
  "site": {
-  "ground": "paving",
+  "ground": "laterite",
   "forecourt": "none",
   "forecourtDepth": 14,
-  "trees": 6,
+  "trees": 4,
   "treeKind": "broadleaf",
   "extent": [
    120,
    120
+  ],
+  "groundColour": "#aa9f8a",
+  "cars": [
+   {
+    "at": [
+     -50,
+     -34.0
+    ],
+    "yawDeg": 90,
+    "colour": "#d9d9d9"
+   },
+   {
+    "at": [
+     50,
+     -34.0
+    ],
+    "yawDeg": 90,
+    "colour": "#a62b2b"
+   }
   ]
  },
  "review": {
-  "rounds": 3,
+  "rounds": 2,
   "match": "fair",
-  "gaps": "Roofs read as flat ring slabs without the visible hip ridges and standing-seam lines; courtyards are plain (no cross-path garden, no entrance canopy); no parked cars or tree-lined forecourt (budget); ground is generic paving rather than tan gravel; only one representative block group of the 790 m campus is modelled, so OSM outline unused."
+  "gaps": "Hip roofs lack standing-seam lines and ridge detail; courtyards plain with no cross-path garden; only 2 cars and few trees (LOD1 budget); one representative block group of the 790 m campus."
  }
 }

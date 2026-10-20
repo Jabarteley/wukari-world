@@ -21,7 +21,7 @@
    "id": "main",
    "footprint": {
     "rect": [
-     18,
+     12,
      14
     ]
    },
@@ -30,70 +30,50 @@
     0
    ],
    "z0": 0,
-   "height": 8,
-   "storeys": 2,
+   "height": 11,
+   "storeys": 3,
    "wall": {
-    "material": "glass-curtain",
-    "colour": "#9fb8c4",
-    "windows": "curtain",
-    "windowRatio": 0.5,
+    "material": "painted-render",
+    "colour": "#e9e5db",
+    "windows": "punched",
+    "windowRatio": 0.3,
     "faces": {
      "left": "plain",
      "right": "plain",
      "back": "plain"
     },
     "plinth": 0.3,
-    "cornice": true
+    "cornice": true,
+    "pattern": [
+     {
+      "type": "floors",
+      "colours": [
+       "#e9e5db",
+       "#dcd7ca"
+      ]
+     }
+    ]
    },
    "roof": {
     "form": "flat",
     "colour": "#9aa3a8",
     "material": "membrane",
-    "parapet": 0.6
-   }
-  },
-  {
-   "type": "mass",
-   "id": "render-band",
-   "footprint": {
-    "rect": [
-     18.4,
-     14.4
-    ]
-   },
-   "at": [
-    0,
-    0
-   ],
-   "z0": 4.2,
-   "height": 1.4,
-   "storeys": 1,
-   "wall": {
-    "material": "painted-render",
-    "colour": "#f4f1ea",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0
-   },
-   "roof": {
-    "form": "flat",
-    "colour": "#3a4a58",
-    "overhang": 0.3
+    "parapet": 0.8
    }
   },
   {
    "type": "sign-board",
    "at": [
-    -3,
-    -7.4,
-    5.4
+    0,
+    -7.1,
+    11.6
    ],
    "params": {
     "width": 10,
-    "height": 1.6,
+    "height": 2.4,
     "bottom": 0,
     "colour": "#3a4a58",
-    "posts": false
+    "posts": true
    }
   },
   {
@@ -104,28 +84,14 @@
     0
    ],
    "params": {
-    "width": 9,
-    "depth": 1.6,
+    "width": 6,
+    "depth": 2.6,
     "drop": 0.5,
-    "height": 3.0,
+    "height": 3.4,
     "colours": [
      "#3a4a58",
      "#f4f1ea"
     ]
-   }
-  },
-  {
-   "type": "neon-strip",
-   "at": [
-    -7,
-    -7.2,
-    3.2
-   ],
-   "params": {
-    "length": 5,
-    "height": 0.4,
-    "colour": "#5fd0ff",
-    "thickness": 0.07
    }
   },
   {
@@ -138,6 +104,73 @@
    "params": {
     "kind": "palm",
     "height": 8
+   }
+  },
+  {
+   "type": "mass",
+   "id": "shopfront",
+   "footprint": {
+    "rect": [
+     11.6,
+     1.2
+    ]
+   },
+   "at": [
+    0,
+    -7.4
+   ],
+   "z0": 0,
+   "height": 3.2,
+   "storeys": 1,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#7a8288",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#3a4a58"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "generator",
+   "footprint": {
+    "rect": [
+     3,
+     3
+    ]
+   },
+   "at": [
+    9,
+    2
+   ],
+   "z0": 0,
+   "height": 2.2,
+   "storeys": 1,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#4a5a68",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#3a4a58"
+   }
+  },
+  {
+   "type": "water-tank",
+   "at": [
+    3,
+    3,
+    11
+   ],
+   "params": {
+    "radius": 1.1,
+    "height": 1.8,
+    "legs": 1.4
    }
   }
  ],
@@ -155,13 +188,13 @@
    }
   ],
   "extent": [
-   50,
-   45
+   40,
+   40
   ]
  },
  "review": {
-  "rounds": 0,
+  "rounds": 2,
   "match": "rough",
-  "gaps": "Typed building; no photo or outline. Sizes from brief (18x14, 8 m); neon strip and awning placement approximate."
+  "gaps": "No photo; narrow 12x14 m three-storey strip with shopfront shutter, punched window grid, roof signboard, tank and generator; real building unknown."
  }
 }

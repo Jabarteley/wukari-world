@@ -1,288 +1,616 @@
 {
-  "schema": "allworld-place-model",
-  "version": 2,
-  "city": "london",
-  "venueId": "london-osm-way-7989344",
-  "verified": "photo",
-  "evidence": [
-    {
-      "kind": "photo",
-      "url": "https://commons.wikimedia.org/wiki/File:Watford_Stadium_on_Vicarage_Road_-_geograph.org.uk_-_6852224.jpg",
-      "licence": "see Commons page (geograph)",
-      "author": "geograph contributor",
-      "view": "street",
-      "file": "/tmp/places-evidence/london/7989344_5.jpg",
-      "used": "exterior: dark grey clad stand wall with a row of tall arched yellow-edged bays, pale grey upper cladding of the corner stand, steel lighting mast, brick terraces opposite"
-    },
-    {
-      "kind": "photo",
-      "url": "https://commons.wikimedia.org/wiki/File:Vicarage_Road_2015.jpg",
-      "licence": "CC BY-SA 4.0",
-      "author": "Jbb503",
-      "view": "aerial",
-      "file": "/tmp/places-evidence/london/7989344_0.jpg",
-      "used": "interior: four enclosed stands, red and yellow seating, two-tier west stand with deep roof, lower open-feeling east stand, pitch shape"
-    },
-    {
-      "kind": "photo",
-      "url": "https://commons.wikimedia.org/wiki/File:Rookery,_Vicarage_Road.jpg",
-      "licence": "CC BY-SA 3.0",
-      "author": "DWC LR",
-      "view": "interior",
-      "file": "/tmp/places-evidence/london/7989344_1.jpg",
-      "used": "red and yellow seat pattern, cantilever roof with lighting rigs"
-    },
-    {
-      "kind": "osm",
-      "ref": "way/7989344",
-      "used": "overall extent and orientation (185 x 138 m, scaled to the scene clamp)"
-    }
-  ],
-  "camera": {
-    "yawDeg": -30,
-    "pitchDeg": 8,
-    "fovDeg": 50,
-    "aspect": 1.5,
-    "margin": 0.08
+ "schema": "allworld-place-model",
+ "version": 2,
+ "city": "london",
+ "venueId": "london-osm-way-7989344",
+ "verified": "photo",
+ "evidence": [
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Watford_Stadium_on_Vicarage_Road_-_geograph.org.uk_-_6852224.jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "David Howard",
+   "view": "street",
+   "file": "/tmp/places-evidence/london/vic3.jpg",
+   "used": "long dark charcoal-clad stand wall with tall arched bays edged yellow, pale grey tall corner block, brick terraces opposite, light mast"
   },
-  "parts": [
-    {
-      "type": "football-pitch",
-      "at": [
-        0,
-        0,
-        0
-      ],
-      "params": {
-        "length": 90,
-        "width": 58,
-        "stripes": 10
-      }
-    },
-    {
-      "type": "stadium-stand",
-      "at": [
-        0,
-        31,
-        0
-      ],
-      "rotDeg": 180,
-      "params": {
-        "length": 92,
-        "depth": 16,
-        "height": 26,
-        "roof": "cantilever",
-        "rear": "punched",
-        "storeys": 2,
-        "seat_colour": "#c0392b",
-        "seat_colour2": "#f2c400",
-        "wall_colour": "#454a50",
-        "roof_colour": "#6b7480",
-        "accent_colour": "#f2c400"
-      }
-    },
-    {
-      "type": "stadium-stand",
-      "at": [
-        0,
-        -31,
-        0
-      ],
-      "rotDeg": 0,
-      "params": {
-        "length": 92,
-        "depth": 13,
-        "height": 19,
-        "roof": "cantilever",
-        "rear": "punched",
-        "storeys": 2,
-        "seat_colour": "#c0392b",
-        "seat_colour2": "#f2c400",
-        "wall_colour": "#454a50",
-        "roof_colour": "#6b7480",
-        "accent_colour": "#f2c400"
-      }
-    },
-    {
-      "type": "stadium-stand",
-      "at": [
-        -49,
-        0,
-        0
-      ],
-      "rotDeg": 270,
-      "params": {
-        "length": 62,
-        "depth": 13,
-        "height": 21,
-        "roof": "cantilever",
-        "rear": "punched",
-        "storeys": 2,
-        "seat_colour": "#c0392b",
-        "seat_colour2": "#f2c400",
-        "wall_colour": "#454a50",
-        "roof_colour": "#6b7480",
-        "accent_colour": "#f2c400"
-      }
-    },
-    {
-      "type": "stadium-stand",
-      "at": [
-        49,
-        0,
-        0
-      ],
-      "rotDeg": 90,
-      "params": {
-        "length": 62,
-        "depth": 12,
-        "height": 18,
-        "roof": "cantilever",
-        "rear": "punched",
-        "storeys": 2,
-        "seat_colour": "#c0392b",
-        "seat_colour2": "#f2c400",
-        "wall_colour": "#454a50",
-        "roof_colour": "#6b7480",
-        "accent_colour": "#f2c400"
-      }
-    },
-    {
-      "type": "mass",
-      "id": "brick-terraces",
-      "footprint": {
-        "rect": [
-          30,
-          8
-        ]
-      },
-      "at": [
-        -45,
-        48
-      ],
-      "height": 7,
-      "storeys": 2,
-      "wall": {
-        "material": "brick",
-        "colour": "#8a4a38",
-        "windows": "punched",
-        "windowRatio": 0.05,
-        "plinth": 0
-      },
-      "roof": {
-        "form": "gable",
-        "colour": "#7a4a3a",
-        "material": "clay-tile",
-        "pitch": 30,
-        "overhang": 0.3,
-        "axis": "x"
-      }
-    },
-    {
-      "type": "core/sign-board",
-      "at": [
-        -30,
-        -52,
-        0
-      ],
-      "params": {
-        "width": 8,
-        "height": 6,
-        "bottom": 1.5,
-        "colour": "#f2c400"
-      }
-    },
-    {
-      "type": "flag",
-      "at": [
-        -38,
-        -52,
-        0
-      ],
-      "params": {
-        "height": 9,
-        "count": 2,
-        "spacing": 3,
-        "colours": [
-          "#f2c400",
-          "#c0392b"
-        ]
-      }
-    },
-    {
-      "type": "lamp",
-      "at": [
-        -45,
-        -52,
-        0
-      ],
-      "params": {
-        "height": 8,
-        "count": 4,
-        "spacing": 16
-      }
-    },
-    {
-      "type": "car-park",
-      "at": [
-        30,
-        -56,
-        0
-      ],
-      "params": {
-        "width": 36,
-        "depth": 12,
-        "density": 0.3
-      }
-    },
-    {
-      "type": "tree",
-      "at": [
-        60,
-        -48,
-        0
-      ],
-      "params": {
-        "kind": "broadleaf",
-        "height": 12
-      }
-    },
-    {
-      "type": "floodlight-mast",
-      "at": [
-        -58,
-        38,
-        0
-      ],
-      "params": {
-        "height": 30,
-        "head_width": 5
-      }
-    },
-    {
-      "type": "floodlight-mast",
-      "at": [
-        58,
-        38,
-        0
-      ],
-      "params": {
-        "height": 30,
-        "head_width": 5
-      }
-    }
-  ],
-  "site": {
-    "ground": "asphalt",
-    "forecourt": "road",
-    "extent": [
-      120,
-      110
-    ]
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Vicarage_Road_Watford.JPG",
+   "licence": "Public domain",
+   "author": "Brakspear at English Wikipedia",
+   "view": "interior",
+   "file": "/tmp/places-evidence/london/vic2.jpg",
+   "used": "red/yellow striped seating, deep cantilever roofs, mown pitch stripes"
   },
-  "review": {
-    "rounds": 3,
-    "match": "rough",
-    "gaps": "Four enclosed stands with dark grey punched rear walls and red/yellow seating are placed round a pitch scaled to fit the 120 m clamp; the real arched yellow-edged bays, wavy west-stand roof, badge murals and pale corner cladding are not modelled, and some stand rear panels show gaps in the render."
+  {
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:Vicarage_Road_2015.jpg",
+   "licence": "CC BY-SA 4.0",
+   "author": "Jbb503",
+   "view": "interior",
+   "file": "/tmp/places-evidence/london/vic1.jpg",
+   "used": "four enclosed stands, two-tier side stand, seat colours"
+  },
+  {
+   "kind": "osm",
+   "ref": "way/7989344",
+   "used": "overall size and orientation (about 185 x 138 m)"
   }
+ ],
+ "camera": {
+  "yawDeg": -50,
+  "pitchDeg": 4,
+  "fovDeg": 60,
+  "aspect": 1.54,
+  "fit": "building",
+  "margin": 0.02
+ },
+ "parts": [
+  {
+   "type": "football-pitch",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "length": 105,
+    "width": 68,
+    "stripes": 10
+   }
+  },
+  {
+   "type": "stand",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "start": [
+     -58,
+     -39
+    ],
+    "end": [
+     58,
+     -39
+    ],
+    "rows": 9,
+    "rise": 0.6,
+    "run": 0.85,
+    "firstHeight": 1.0,
+    "under": "solid",
+    "backWall": 3,
+    "bay": 6,
+    "seatColours": [
+     "#c0392b",
+     "#f2c400",
+     "#c0392b"
+    ],
+    "blocks": 3,
+    "concreteColour": "#8c9096",
+    "underColour": "#3a3d42",
+    "facetDeg": 12,
+    "canopy": {
+     "height": 14,
+     "depth": 12,
+     "thickness": 1.2,
+     "slopeDeg": 3,
+     "colour": "#555b62",
+     "edgeColour": "#f2c400",
+     "overhangBack": 1
+    }
+   },
+   "lod": [
+    0
+   ]
+  },
+  {
+   "type": "prism",
+   "at": [
+    0,
+    -53,
+    0
+   ],
+   "params": {
+    "rect": [
+     124,
+     1.2
+    ],
+    "height": 17,
+    "colour": "#3a3d42",
+    "windows": "none",
+    "faces": [
+     "front"
+    ],
+    "pattern": [
+     {
+      "type": "arcade",
+      "faces": [
+       "front"
+      ],
+      "shape": "arch",
+      "bay": 10,
+      "opening": 0.6,
+      "height": 0.86,
+      "depth": 0.5,
+      "colour": "#16181b",
+      "pierColour": "#454a50"
+     }
+    ],
+    "storeys": 1,
+    "bay": 30
+   }
+  },
+  {
+   "type": "mass",
+   "id": "eave",
+   "footprint": {
+    "rect": [
+     126,
+     1.8
+    ]
+   },
+   "at": [
+    0,
+    -53.6
+   ],
+   "z0": 15.6,
+   "height": 2.4,
+   "storeys": 1,
+   "wall": {
+    "material": "render",
+    "colour": "#c4604f",
+    "windows": "none",
+    "windowRatio": 0,
+    "bay": 40
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#c4604f"
+   }
+  },
+  {
+   "type": "stand",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "start": [
+     58,
+     39
+    ],
+    "end": [
+     -58,
+     39
+    ],
+    "rise": 0.6,
+    "run": 0.85,
+    "firstHeight": 1.0,
+    "under": "solid",
+    "backWall": 2,
+    "bay": 6,
+    "seatColours": [
+     "#c0392b",
+     "#f2c400",
+     "#c0392b"
+    ],
+    "blocks": 3,
+    "concreteColour": "#8c9096",
+    "underColour": "#3a3d42",
+    "facetDeg": 12,
+    "tiers": [
+     {
+      "rows": 9,
+      "rise": 0.6,
+      "run": 0.85
+     },
+     {
+      "rows": 10,
+      "rise": 0.65,
+      "run": 0.85,
+      "gap": 2,
+      "lift": 2
+     }
+    ],
+    "canopy": {
+     "height": 17.5,
+     "depth": 17,
+     "thickness": 2.6,
+     "slopeDeg": 0,
+     "colour": "#5d646c",
+     "edgeColour": "#8a919a"
+    }
+   },
+   "lod": [
+    0
+   ]
+  },
+  {
+   "type": "mass",
+   "id": "north-wall",
+   "footprint": {
+    "rect": [
+     124,
+     1.2
+    ]
+   },
+   "at": [
+    0,
+    59
+   ],
+   "z0": 0,
+   "height": 23,
+   "storeys": 1,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#4a4f56",
+    "windows": "none",
+    "windowRatio": 0,
+    "bay": 40
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#4a4f56"
+   }
+  },
+  {
+   "type": "stand",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "start": [
+     -58,
+     35
+    ],
+    "end": [
+     -58,
+     -35
+    ],
+    "rows": 9,
+    "rise": 0.65,
+    "run": 0.85,
+    "firstHeight": 1.0,
+    "under": "solid",
+    "backWall": 4,
+    "bay": 6,
+    "seatColours": [
+     "#c0392b",
+     "#f2c400",
+     "#c0392b"
+    ],
+    "blocks": 3,
+    "concreteColour": "#8c9096",
+    "underColour": "#3a3d42",
+    "facetDeg": 12,
+    "canopy": {
+     "height": 17,
+     "depth": 12,
+     "thickness": 1.0,
+     "slopeDeg": 3,
+     "colour": "#7a828a",
+     "edgeColour": "#f2c400"
+    }
+   },
+   "lod": [
+    0
+   ]
+  },
+  {
+   "type": "mass",
+   "id": "west-wall",
+   "footprint": {
+    "rect": [
+     1.2,
+     106
+    ]
+   },
+   "at": [
+    -71,
+    0
+   ],
+   "z0": 0,
+   "height": 20,
+   "storeys": 1,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#a9adb2",
+    "windows": "none",
+    "windowRatio": 0,
+    "bay": 40
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#b9bdc1"
+   }
+  },
+  {
+   "type": "stand",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "start": [
+     58,
+     -35
+    ],
+    "end": [
+     58,
+     35
+    ],
+    "rows": 9,
+    "rise": 0.6,
+    "run": 0.85,
+    "firstHeight": 1.0,
+    "under": "solid",
+    "backWall": 3,
+    "bay": 6,
+    "seatColours": [
+     "#c0392b",
+     "#f2c400",
+     "#c0392b"
+    ],
+    "blocks": 3,
+    "concreteColour": "#8c9096",
+    "underColour": "#3a3d42",
+    "facetDeg": 12,
+    "canopy": {
+     "height": 13,
+     "depth": 11,
+     "thickness": 1.0,
+     "slopeDeg": 3,
+     "colour": "#5c636b",
+     "edgeColour": "#f2c400"
+    }
+   },
+   "lod": [
+    0
+   ]
+  },
+  {
+   "type": "mass",
+   "id": "east-wall",
+   "footprint": {
+    "rect": [
+     1.2,
+     106
+    ]
+   },
+   "at": [
+    69.5,
+    0
+   ],
+   "z0": 0,
+   "height": 18,
+   "storeys": 1,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#454a50",
+    "windows": "none",
+    "windowRatio": 0,
+    "bay": 40
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#454a50"
+   }
+  },
+  {
+   "type": "floodlight-mast",
+   "at": [
+    -74,
+    -56,
+    0
+   ],
+   "params": {
+    "height": 34
+   }
+  },
+  {
+   "type": "floodlight-mast",
+   "at": [
+    72,
+    58,
+    0
+   ],
+   "params": {
+    "height": 30
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    -45,
+    -55,
+    0
+   ],
+   "params": {
+    "width": 8,
+    "height": 6,
+    "bottom": 2,
+    "colour": "#f2c400"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "terrace",
+   "footprint": {
+    "rect": [
+     70,
+     7
+    ]
+   },
+   "at": [
+    20,
+    -76
+   ],
+   "height": 6,
+   "storeys": 2,
+   "wall": {
+    "material": "brick",
+    "colour": "#8a4a38",
+    "windows": "none",
+    "windowRatio": 0,
+    "faces": {}
+   },
+   "roof": {
+    "form": "gable",
+    "colour": "#6e3b30",
+    "material": "clay-tile",
+    "pitch": 32,
+    "axis": "x",
+    "overhang": 0.3
+   }
+  },
+  {
+   "type": "car-park",
+   "at": [
+    -40,
+    -68,
+    0
+   ],
+   "params": {
+    "width": 30,
+    "depth": 6,
+    "density": 0.4
+   }
+  },
+  {
+   "type": "tree",
+   "at": [
+    62,
+    -66,
+    0
+   ],
+   "params": {
+    "kind": "broadleaf",
+    "height": 12
+   }
+  },
+  {
+   "type": "mass",
+   "id": "podium",
+   "footprint": {
+    "rect": [
+     22,
+     16
+    ]
+   },
+   "at": [
+    -62,
+    -50
+   ],
+   "z0": 0,
+   "height": 8,
+   "storeys": 2,
+   "wall": {
+    "material": "glass-curtain",
+    "colour": "#2b3036",
+    "windows": "curtain",
+    "windowRatio": 0.7,
+    "bay": 4
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#9aa0a6"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "podium-band",
+   "footprint": {
+    "rect": [
+     22.6,
+     16.6
+    ]
+   },
+   "at": [
+    -62,
+    -50
+   ],
+   "z0": 8,
+   "height": 1.2,
+   "storeys": 1,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#b9bdc1",
+    "windows": "none",
+    "windowRatio": 0,
+    "bay": 10
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#b9bdc1"
+   }
+  },
+  {
+   "type": "core/sign-board",
+   "at": [
+    -62,
+    -58.4,
+    0
+   ],
+   "params": {
+    "width": 7,
+    "height": 6,
+    "bottom": 1.2,
+    "colour": "#f2c400"
+   }
+  },
+  {
+   "type": "array",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "mode": "line",
+    "count": 12,
+    "start": [
+     -55,
+     -53.9
+    ],
+    "end": [
+     55,
+     -53.9
+    ],
+    "of": [
+     {
+      "type": "prism",
+      "params": {
+       "rect": [
+        0.8,
+        0.5
+       ],
+       "height": 15.5,
+       "colour": "#d6d3cb",
+       "windows": "none"
+      }
+     }
+    ]
+   }
+  }
+ ],
+ "site": {
+  "ground": "asphalt",
+  "forecourt": "road",
+  "extent": [
+   160,
+   150
+  ]
+ },
+ "review": {
+  "rounds": 3,
+  "match": "fair",
+  "gaps": "Dark clad street stand with arched bays, pale ribs, red/pink parapet band, stepped glazed corner podium, lowered north canopy and masts match the photo's massing; yellow arch edging only approximated (piers dark), no WATFORD lettering or badge mural, corner block still a plain slab, street furniture and parked cars missing."
+ }
 }

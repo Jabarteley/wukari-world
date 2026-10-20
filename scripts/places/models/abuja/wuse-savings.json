@@ -6,14 +6,8 @@
  "verified": "text",
  "evidence": [
   {
-   "kind": "osm",
-   "ref": "way/893779919",
-   "used": "nearest building only (58.7 m away, untagged, 49 x 9 m): not confirmed as this venue, so the size is from the brief (40 x 18 m, four storeys)"
-  },
-  {
    "kind": "text",
-   "ref": "scripts/places/briefs/abuja.json#wuse-savings",
-   "used": "four-storey cooperative bank office block, cream painted render, blue-grey glazed ribbon, flat grey roof, brise-soleil, flag and blank signboard, car park, broadleaf trees"
+   "used": "brief only: a four-storey cooperative bank office block with a flag and signboard in Wuse; authored game venue, no real building identified. The OSM building 59 m away (49 x 9 m, no name) is nearest-quality and was not trusted"
   }
  ],
  "camera": {
@@ -21,30 +15,48 @@
   "pitchDeg": 10,
   "fovDeg": 50
  },
+ "review": {
+  "rounds": 2,
+  "match": "rough",
+  "gaps": "no photo: banded cream/ochre 4-storey bank block with green accents, rooftop signboard, flag, stair core, walled forecourt are typical of 1990s Abuja cooperative banks, not surveyed"
+ },
  "parts": [
   {
    "type": "mass",
    "id": "block",
    "footprint": {
     "rect": [
-     40,
-     18
+     42,
+     16
     ]
    },
    "at": [
     0,
     0
    ],
-   "height": 15,
+   "height": 15.5,
    "storeys": 4,
    "wall": {
     "material": "painted-render",
-    "colour": "#f1ead8",
+    "colour": "#e3c98f",
     "windows": "ribbon",
-    "windowRatio": 0.35,
-    "glassColour": "#4a6a7a",
-    "bands": "#b0aaa0",
+    "windowRatio": 0.45,
     "plinth": 0.6,
+    "bands": "#2f7a55",
+    "cornice": true,
+    "pattern": [
+     {
+      "type": "floors",
+      "colours": [
+       "#e3c98f",
+       "#d2b176"
+      ]
+     },
+     {
+      "type": "bands",
+      "colour": "#2f7a55"
+     }
+    ],
     "faces": {
      "back": "plain",
      "left": "plain",
@@ -53,9 +65,9 @@
    },
    "roof": {
     "form": "flat",
-    "colour": "#9aa0a4",
-    "parapet": 0.7,
-    "overhang": 0.5
+    "colour": "#8f969a",
+    "overhang": 0.6,
+    "parapet": 0.6
    }
   },
   {
@@ -63,88 +75,117 @@
    "id": "entrance-core",
    "footprint": {
     "rect": [
-     9,
+     10,
      4
     ]
    },
    "at": [
-    -8,
-    -11
+    -10,
+    -10
    ],
-   "height": 15,
+   "height": 15.5,
    "storeys": 4,
    "wall": {
     "material": "glass-curtain",
-    "colour": "#4a6a7a",
+    "colour": "#3f7f6a",
     "windows": "curtain",
     "windowRatio": 0.8,
-    "faces": {
-     "left": "plain",
-     "right": "plain"
-    },
-    "plinth": 0.4
+    "plinth": 0,
+    "bands": "#b0aaa0"
    },
    "roof": {
     "form": "flat",
-    "colour": "#b0aaa0",
-    "parapet": 0.4,
-    "overhang": 0.6
+    "colour": "#8f969a",
+    "overhang": 0.5,
+    "parapet": 0.4
+   }
+  },
+  {
+   "type": "mass",
+   "id": "plant-room",
+   "footprint": {
+    "rect": [
+     10,
+     6
+    ]
+   },
+   "at": [
+    10,
+    0
+   ],
+   "z0": 15.5,
+   "height": 3.2,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#d8d0bd",
+    "windows": "none",
+    "plinth": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8f969a",
+    "overhang": 0.3
    }
   },
   {
    "type": "brise-soleil",
    "at": [
-    10,
-    -9.4,
-    2.6
+    8,
+    -8.3,
+    2.8
    ],
    "params": {
-    "length": 22,
-    "height": 11,
+    "length": 24,
+    "height": 10.5,
     "pitch": 2.4,
     "depth": 0.7,
-    "colour": "#b0aaa0"
+    "colour": "#a89f8c"
    }
   },
   {
    "type": "core/canopy",
    "at": [
-    -8,
-    -14,
+    -10,
+    -13,
     0
    ],
    "params": {
-    "width": 11,
-    "depth": 4,
-    "height": 3.6,
+    "width": 12,
+    "depth": 5,
+    "height": 3.8,
     "form": "flat",
-    "colour": "#b0aaa0"
+    "colour": "#2f7a55"
    }
   },
   {
    "type": "core/sign-board",
    "at": [
-    18,
-    -17,
-    0
+    0,
+    -6,
+    15.7
    ],
    "params": {
-    "width": 5,
-    "height": 2,
-    "bottom": 1.8,
-    "colour": "#4a6a7a",
-    "posts": true
-   }
+    "width": 16,
+    "height": 1.6,
+    "bottom": 0,
+    "colour": "#2f7a55",
+    "posts": false
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "core/flag",
    "at": [
-    -20,
-    -16,
-    0
+    18,
+    -4,
+    15.5
    ],
    "params": {
-    "height": 12,
+    "height": 16,
     "colour": "#1b7a43"
    }
   },
@@ -152,7 +193,7 @@
    "type": "car-park",
    "at": [
     8,
-    -24,
+    -25,
     0
    ],
    "params": {
@@ -164,7 +205,7 @@
   {
    "type": "core/tree",
    "at": [
-    -26,
+    -28,
     -20,
     0
    ],
@@ -173,12 +214,16 @@
     "height": 9,
     "count": 3,
     "spread": 6
-   }
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "core/tree",
    "at": [
-    28,
+    30,
     14,
     0
    ],
@@ -187,7 +232,114 @@
     "height": 10,
     "count": 3,
     "spread": 8
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "mass",
+   "id": "stair-core",
+   "footprint": {
+    "rect": [
+     6,
+     6
+    ]
+   },
+   "at": [
+    16,
+    4
+   ],
+   "z0": 15.5,
+   "height": 3.6,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#d2b176",
+    "windows": "none",
+    "plinth": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8f969a",
+    "overhang": 0.3
    }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    -40,
+    -32,
+    0
+   ],
+   "params": {
+    "length": 80,
+    "height": 2.0,
+    "colour": "#d9c9a0",
+    "pillarEvery": 5
+   }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    -40,
+    28,
+    0
+   ],
+   "params": {
+    "length": 80,
+    "height": 2.0,
+    "colour": "#d9c9a0"
+   }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    -40,
+    -32,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "length": 60,
+    "height": 2.0,
+    "colour": "#d9c9a0"
+   }
+  },
+  {
+   "type": "fence-wall",
+   "at": [
+    40,
+    -32,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "length": 60,
+    "height": 2.0,
+    "colour": "#d9c9a0"
+   }
+  },
+  {
+   "type": "core/gate",
+   "at": [
+    -24,
+    -32,
+    0
+   ],
+   "params": {
+    "width": 8,
+    "height": 3,
+    "pillar": 1.2,
+    "leaf": "bars",
+    "colour": "#d9c9a0",
+    "leafColour": "#2f7a55"
+   },
+   "lod": [
+    0,
+    1
+   ]
   }
  ],
  "site": {
@@ -199,10 +351,5 @@
    90,
    70
   ]
- },
- "review": {
-  "rounds": 1,
-  "match": "rough",
-  "gaps": "No photo or real building identified: massing, colours and program come from the brief only; the OSM nearest building (49 x 9 m) was not trusted."
  }
 }

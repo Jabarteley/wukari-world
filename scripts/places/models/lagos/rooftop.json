@@ -29,20 +29,39 @@
    "height": 15,
    "storeys": 4,
    "wall": {
-    "material": "painted-render",
-    "colour": "#f4f1ea",
-    "windows": "punched",
-    "windowRatio": 0.3,
-    "bands": "#b9a77a",
+    "material": "concrete",
+    "colour": "#c9c6bd",
+    "windows": "ribbon",
+    "windowRatio": 0.35,
+    "bands": "#4a4f55",
     "plinth": 0.5,
-    "cornice": true,
+    "cornice": false,
     "groundKind": "curtain",
-    "groundHeight": 3.8
+    "groundHeight": 3.8,
+    "pattern": [
+     {
+      "type": "balconies",
+      "faces": [
+       "front"
+      ],
+      "floors": "upper",
+      "depth": 2.2,
+      "every": 18,
+      "railKind": "glass",
+      "colour": "#c9c6bd"
+     },
+     {
+      "type": "bands",
+      "colour": "#4a4f55",
+      "height": 0.9,
+      "floors": "upper"
+     }
+    ]
    },
    "roof": {
     "form": "flat",
     "colour": "#9aa3a8",
-    "parapet": 1.0
+    "parapet": 1.1
    }
   },
   {
@@ -50,16 +69,16 @@
    "id": "stair-core",
    "footprint": {
     "rect": [
-     5,
-     5
+     3.5,
+     3.5
     ]
    },
    "at": [
-    6.5,
-    3
+    7,
+    4
    ],
    "z0": 0,
-   "height": 18,
+   "height": 17.5,
    "storeys": 5,
    "wall": {
     "material": "painted-render",
@@ -75,15 +94,15 @@
   {
    "type": "roof-terrace",
    "at": [
-    -2,
+    0,
     0,
     0
    ],
    "on": "block",
    "params": {
-    "width": 10,
-    "depth": 9,
-    "tables": 4,
+    "width": 15,
+    "depth": 11,
+    "tables": 6,
     "pergola": true,
     "glass": true,
     "bar": true
@@ -98,7 +117,7 @@
    ],
    "on": "block",
    "params": {
-    "count": 6,
+    "count": 2,
     "spread": 4,
     "colours": [
      "#f4f1ea",
@@ -109,46 +128,44 @@
   {
    "type": "string-lights",
    "at": [
-    -4,
-    -6.8,
-    15.8
+    -5,
+    -3,
+    0.3
    ],
    "params": {
     "length": 10,
     "height": 2.4,
-    "count": 12
+    "count": 18
+   },
+   "on": "block"
+  },
+  {
+   "type": "flat-canopy",
+   "at": [
+    0,
+    -8.2,
+    0
+   ],
+   "params": {
+    "width": 9,
+    "depth": 2.6,
+    "height": 3.8,
+    "colour": "#4a4f55"
    }
   },
   {
-   "type": "awning",
+   "type": "core/sign-board",
    "at": [
-    -5,
+    0,
     -7.2,
-    3.5
+    11.2
    ],
    "params": {
-    "width": 6,
-    "depth": 1.8,
-    "colours": [
-     "#5b6670",
-     "#f4f1ea"
-    ]
-   }
-  },
-  {
-   "type": "awning",
-   "at": [
-    4,
-    -7.2,
-    3.5
-   ],
-   "params": {
-    "width": 6,
-    "depth": 1.8,
-    "colours": [
-     "#5b6670",
-     "#f4f1ea"
-    ]
+    "width": 8,
+    "height": 1.6,
+    "bottom": 0,
+    "colour": "#2e3338",
+    "frameColour": "#ffd27a"
    }
   },
   {
@@ -156,12 +173,45 @@
    "at": [
     0,
     -7.3,
-    10
+    3.9
    ],
    "params": {
-    "length": 8,
-    "height": 1,
+    "length": 9,
+    "height": 0.4,
     "colour": "#ffd27a"
+   }
+  },
+  {
+   "type": "prism",
+   "at": [
+    3.5,
+    -9.5,
+    0
+   ],
+   "params": {
+    "rect": [
+     0.8,
+     0.5
+    ],
+    "height": 1.1,
+    "colour": "#4a4f55"
+   }
+  },
+  {
+   "type": "prism",
+   "at": [
+    0,
+    -6.0,
+    0.3
+   ],
+   "on": "block",
+   "params": {
+    "rect": [
+     15,
+     0.15
+    ],
+    "height": 1.1,
+    "colour": "#bfe3ee"
    }
   }
  ],
@@ -194,8 +244,8 @@
  "city": "lagos",
  "venueId": "rooftop",
  "review": {
-  "rounds": 1,
+  "rounds": 2,
   "match": "rough",
-  "gaps": "No photo exists (authored venue); typed block with roof terrace, awnings, string lights. Proportions and colours are plausible, not evidenced."
+  "gaps": "No photo exists (authored venue); Lagos-style concrete facade with deep glass balconies, full terrace with pergola and bar, signed canopy; all from brief text only."
  }
 }

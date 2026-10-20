@@ -34,372 +34,554 @@
   "pitchDeg": 10,
   "fovDeg": 40,
   "aspect": 0.75,
-  "margin": 0.15,
+  "margin": 0.0,
   "fit": "building"
  },
  "parts": [
   {
-   "type": "mass",
-   "id": "hut0",
-   "footprint": {
-    "polygon": [
-     [
-      4.0,
-      0.0
-     ],
-     [
-      2.0,
-      3.46
-     ],
-     [
-      -2.0,
-      3.46
-     ],
-     [
-      -4.0,
-      0.0
-     ],
-     [
-      -2.0,
-      -3.46
-     ],
-     [
-      2.0,
-      -3.46
-     ]
-    ]
-   },
+   "type": "revolve",
+   "lod": [
+    0,
+    1
+   ],
    "at": [
     -33.50839322044119,
-    -7.032852042957082
+    -7.032852042957082,
+    0
    ],
-   "height": 2.7,
-   "storeys": 1,
-   "wall": {
-    "material": "brick",
-    "colour": "#b8694a",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0.2
-   },
-   "roof": {
-    "form": "pyramidal",
-    "colour": "#a8523c",
-    "material": "metal-sheet",
-    "rise": 2.4,
-    "overhang": 0.7
+   "params": {
+    "segments": 16,
+    "colour": "#bd6c4c",
+    "profile": [
+     [
+      4.0,
+      0,
+      "#bd6c4c"
+     ],
+     [
+      4.0,
+      2.7
+     ],
+     [
+      5.0,
+      2.7,
+      "#a5523d"
+     ],
+     [
+      0.1,
+      5.6
+     ]
+    ],
+    "arcade": {
+     "count": 3,
+     "width": 0.6,
+     "height": 1.8,
+     "sill": 0.7,
+     "shape": "pointed",
+     "depth": 0.25
+    }
    }
   },
   {
-   "type": "mass",
-   "id": "hut1",
-   "footprint": {
-    "polygon": [
+   "type": "revolve",
+   "lod": [
+    2
+   ],
+   "at": [
+    -33.50839322044119,
+    -7.032852042957082,
+    0
+   ],
+   "params": {
+    "segments": 4,
+    "colour": "#bd6c4c",
+    "profile": [
      [
       4.0,
-      0.0
+      0
      ],
      [
-      2.0,
-      3.46
+      4.0,
+      2.7
      ],
      [
-      -2.0,
-      3.46
+      4.8,
+      2.7,
+      "#a5523d"
      ],
      [
-      -4.0,
-      0.0
-     ],
-     [
-      -2.0,
-      -3.46
-     ],
-     [
-      2.0,
-      -3.46
+      0.1,
+      5.3999999999999995
      ]
     ]
-   },
+   }
+  },
+  {
+   "type": "revolve",
+   "lod": [
+    0,
+    1
+   ],
    "at": [
     -16.230198864891797,
-    -13.040405701040278
+    -13.040405701040278,
+    0
    ],
-   "height": 2.7,
-   "storeys": 1,
-   "wall": {
-    "material": "brick",
-    "colour": "#b8694a",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0.2
-   },
-   "roof": {
-    "form": "pyramidal",
-    "colour": "#a8523c",
-    "material": "metal-sheet",
-    "rise": 2.4,
-    "overhang": 0.7
-   }
-  },
-  {
-   "type": "mass",
-   "id": "hut2",
-   "footprint": {
-    "polygon": [
-     [
-      3.2,
-      0.0
-     ],
-     [
-      1.6,
-      2.77
-     ],
-     [
-      -1.6,
-      2.77
-     ],
-     [
-      -3.2,
-      0.0
-     ],
-     [
-      -1.6,
-      -2.77
-     ],
-     [
-      1.6,
-      -2.77
-     ]
-    ]
-   },
-   "at": [
-    -3.883979086865541,
-    -8.137509382487579
-   ],
-   "height": 2.7,
-   "storeys": 1,
-   "wall": {
-    "material": "brick",
-    "colour": "#b8694a",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0.2
-   },
-   "roof": {
-    "form": "pyramidal",
-    "colour": "#a8523c",
-    "material": "metal-sheet",
-    "rise": 2.4,
-    "overhang": 0.7
-   }
-  },
-  {
-   "type": "mass",
-   "id": "hut3",
-   "footprint": {
-    "polygon": [
-     [
-      3.2,
-      0.0
-     ],
-     [
-      1.6,
-      2.77
-     ],
-     [
-      -1.6,
-      2.77
-     ],
-     [
-      -3.2,
-      0.0
-     ],
-     [
-      -1.6,
-      -2.77
-     ],
-     [
-      1.6,
-      -2.77
-     ]
-    ]
-   },
-   "at": [
-    14.595898212547697,
-    -12.39639803299751
-   ],
-   "height": 2.7,
-   "storeys": 1,
-   "wall": {
-    "material": "brick",
-    "colour": "#b8694a",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0.2
-   },
-   "roof": {
-    "form": "pyramidal",
-    "colour": "#a8523c",
-    "material": "metal-sheet",
-    "rise": 2.4,
-    "overhang": 0.7
-   }
-  },
-  {
-   "type": "mass",
-   "id": "hut4",
-   "footprint": {
-    "polygon": [
-     [
-      3.6,
-      0.0
-     ],
-     [
-      1.8,
-      3.12
-     ],
-     [
-      -1.8,
-      3.12
-     ],
-     [
-      -3.6,
-      0.0
-     ],
-     [
-      -1.8,
-      -3.12
-     ],
-     [
-      1.8,
-      -3.12
-     ]
-    ]
-   },
-   "at": [
-    29.487173422249228,
-    -6.526218168539619
-   ],
-   "height": 2.7,
-   "storeys": 1,
-   "wall": {
-    "material": "brick",
-    "colour": "#b8694a",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0.2
-   },
-   "roof": {
-    "form": "pyramidal",
-    "colour": "#a8523c",
-    "material": "metal-sheet",
-    "rise": 2.4,
-    "overhang": 0.7
-   }
-  },
-  {
-   "type": "mass",
-   "id": "hut6",
-   "footprint": {
-    "polygon": [
-     [
-      3.2,
-      0.0
-     ],
-     [
-      1.6,
-      2.77
-     ],
-     [
-      -1.6,
-      2.77
-     ],
-     [
-      -3.2,
-      0.0
-     ],
-     [
-      -1.6,
-      -2.77
-     ],
-     [
-      1.6,
-      -2.77
-     ]
-    ]
-   },
-   "at": [
-    -11.075265132882304,
-    3.632604219898056
-   ],
-   "height": 2.7,
-   "storeys": 1,
-   "wall": {
-    "material": "brick",
-    "colour": "#b8694a",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0.2
-   },
-   "roof": {
-    "form": "pyramidal",
-    "colour": "#a8523c",
-    "material": "metal-sheet",
-    "rise": 2.4,
-    "overhang": 0.7
-   }
-  },
-  {
-   "type": "mass",
-   "id": "hut8",
-   "footprint": {
-    "polygon": [
+   "params": {
+    "segments": 16,
+    "colour": "#bd6c4c",
+    "profile": [
      [
       4.0,
-      0.0
+      0,
+      "#bd6c4c"
      ],
      [
-      2.0,
-      3.46
+      4.0,
+      2.7
      ],
      [
-      -2.0,
-      3.46
+      5.0,
+      2.7,
+      "#a5523d"
      ],
      [
-      -4.0,
-      0.0
+      0.1,
+      5.6
+     ]
+    ],
+    "arcade": {
+     "count": 3,
+     "width": 0.6,
+     "height": 1.8,
+     "sill": 0.7,
+     "shape": "pointed",
+     "depth": 0.25
+    }
+   }
+  },
+  {
+   "type": "revolve",
+   "lod": [
+    2
+   ],
+   "at": [
+    -16.230198864891797,
+    -13.040405701040278,
+    0
+   ],
+   "params": {
+    "segments": 4,
+    "colour": "#bd6c4c",
+    "profile": [
+     [
+      4.0,
+      0
      ],
      [
-      -2.0,
-      -3.46
+      4.0,
+      2.7
      ],
      [
-      2.0,
-      -3.46
+      4.8,
+      2.7,
+      "#a5523d"
+     ],
+     [
+      0.1,
+      5.3999999999999995
      ]
     ]
-   },
+   }
+  },
+  {
+   "type": "revolve",
+   "lod": [
+    0,
+    1
+   ],
+   "at": [
+    -3.883979086865541,
+    -8.137509382487579,
+    0
+   ],
+   "params": {
+    "segments": 16,
+    "colour": "#bd6c4c",
+    "profile": [
+     [
+      3.2,
+      0,
+      "#bd6c4c"
+     ],
+     [
+      3.2,
+      2.7
+     ],
+     [
+      4.2,
+      2.7,
+      "#a5523d"
+     ],
+     [
+      0.1,
+      5.6
+     ]
+    ],
+    "arcade": {
+     "count": 3,
+     "width": 0.6,
+     "height": 1.8,
+     "sill": 0.7,
+     "shape": "pointed",
+     "depth": 0.25
+    }
+   }
+  },
+  {
+   "type": "revolve",
+   "lod": [
+    2
+   ],
+   "at": [
+    -3.883979086865541,
+    -8.137509382487579,
+    0
+   ],
+   "params": {
+    "segments": 4,
+    "colour": "#bd6c4c",
+    "profile": [
+     [
+      3.2,
+      0
+     ],
+     [
+      3.2,
+      2.7
+     ],
+     [
+      4.0,
+      2.7,
+      "#a5523d"
+     ],
+     [
+      0.1,
+      5.3999999999999995
+     ]
+    ]
+   }
+  },
+  {
+   "type": "revolve",
+   "lod": [
+    0,
+    1
+   ],
+   "at": [
+    14.595898212547697,
+    -12.39639803299751,
+    0
+   ],
+   "params": {
+    "segments": 16,
+    "colour": "#bd6c4c",
+    "profile": [
+     [
+      3.2,
+      0,
+      "#bd6c4c"
+     ],
+     [
+      3.2,
+      2.7
+     ],
+     [
+      4.2,
+      2.7,
+      "#a5523d"
+     ],
+     [
+      0.1,
+      5.6
+     ]
+    ],
+    "arcade": {
+     "count": 3,
+     "width": 0.6,
+     "height": 1.8,
+     "sill": 0.7,
+     "shape": "pointed",
+     "depth": 0.25
+    }
+   }
+  },
+  {
+   "type": "revolve",
+   "lod": [
+    2
+   ],
+   "at": [
+    14.595898212547697,
+    -12.39639803299751,
+    0
+   ],
+   "params": {
+    "segments": 4,
+    "colour": "#bd6c4c",
+    "profile": [
+     [
+      3.2,
+      0
+     ],
+     [
+      3.2,
+      2.7
+     ],
+     [
+      4.0,
+      2.7,
+      "#a5523d"
+     ],
+     [
+      0.1,
+      5.3999999999999995
+     ]
+    ]
+   }
+  },
+  {
+   "type": "revolve",
+   "lod": [
+    0,
+    1
+   ],
+   "at": [
+    29.487173422249228,
+    -6.526218168539619,
+    0
+   ],
+   "params": {
+    "segments": 16,
+    "colour": "#bd6c4c",
+    "profile": [
+     [
+      3.6,
+      0,
+      "#bd6c4c"
+     ],
+     [
+      3.6,
+      2.7
+     ],
+     [
+      4.6,
+      2.7,
+      "#a5523d"
+     ],
+     [
+      0.1,
+      5.6
+     ]
+    ],
+    "arcade": {
+     "count": 3,
+     "width": 0.6,
+     "height": 1.8,
+     "sill": 0.7,
+     "shape": "pointed",
+     "depth": 0.25
+    }
+   }
+  },
+  {
+   "type": "revolve",
+   "lod": [
+    2
+   ],
+   "at": [
+    29.487173422249228,
+    -6.526218168539619,
+    0
+   ],
+   "params": {
+    "segments": 4,
+    "colour": "#bd6c4c",
+    "profile": [
+     [
+      3.6,
+      0
+     ],
+     [
+      3.6,
+      2.7
+     ],
+     [
+      4.4,
+      2.7,
+      "#a5523d"
+     ],
+     [
+      0.1,
+      5.3999999999999995
+     ]
+    ]
+   }
+  },
+  {
+   "type": "revolve",
+   "lod": [
+    0,
+    1
+   ],
+   "at": [
+    -11.075265132882304,
+    3.632604219898056,
+    0
+   ],
+   "params": {
+    "segments": 16,
+    "colour": "#bd6c4c",
+    "profile": [
+     [
+      3.2,
+      0,
+      "#bd6c4c"
+     ],
+     [
+      3.2,
+      2.7
+     ],
+     [
+      4.2,
+      2.7,
+      "#a5523d"
+     ],
+     [
+      0.1,
+      5.6
+     ]
+    ],
+    "arcade": {
+     "count": 3,
+     "width": 0.6,
+     "height": 1.8,
+     "sill": 0.7,
+     "shape": "pointed",
+     "depth": 0.25
+    }
+   }
+  },
+  {
+   "type": "revolve",
+   "lod": [
+    2
+   ],
+   "at": [
+    -11.075265132882304,
+    3.632604219898056,
+    0
+   ],
+   "params": {
+    "segments": 4,
+    "colour": "#bd6c4c",
+    "profile": [
+     [
+      3.2,
+      0
+     ],
+     [
+      3.2,
+      2.7
+     ],
+     [
+      4.0,
+      2.7,
+      "#a5523d"
+     ],
+     [
+      0.1,
+      5.3999999999999995
+     ]
+    ]
+   }
+  },
+  {
+   "type": "revolve",
+   "lod": [
+    0,
+    1
+   ],
    "at": [
     25.047701710377545,
-    4.287726942860109
+    4.287726942860109,
+    0
    ],
-   "height": 2.7,
-   "storeys": 1,
-   "wall": {
-    "material": "brick",
-    "colour": "#b8694a",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0.2
-   },
-   "roof": {
-    "form": "pyramidal",
-    "colour": "#a8523c",
-    "material": "metal-sheet",
-    "rise": 2.4,
-    "overhang": 0.7
+   "params": {
+    "segments": 16,
+    "colour": "#bd6c4c",
+    "profile": [
+     [
+      4.0,
+      0,
+      "#bd6c4c"
+     ],
+     [
+      4.0,
+      2.7
+     ],
+     [
+      5.0,
+      2.7,
+      "#a5523d"
+     ],
+     [
+      0.1,
+      5.6
+     ]
+    ],
+    "arcade": {
+     "count": 3,
+     "width": 0.6,
+     "height": 1.8,
+     "sill": 0.7,
+     "shape": "pointed",
+     "depth": 0.25
+    }
+   }
+  },
+  {
+   "type": "revolve",
+   "lod": [
+    2
+   ],
+   "at": [
+    25.047701710377545,
+    4.287726942860109,
+    0
+   ],
+   "params": {
+    "segments": 4,
+    "colour": "#bd6c4c",
+    "profile": [
+     [
+      4.0,
+      0
+     ],
+     [
+      4.0,
+      2.7
+     ],
+     [
+      4.8,
+      2.7,
+      "#a5523d"
+     ],
+     [
+      0.1,
+      5.3999999999999995
+     ]
+    ]
    }
   },
   {
@@ -452,7 +634,11 @@
     "shape": "block",
     "figure": "stand",
     "figure_colour": "#4a3a30"
-   }
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "statue-plinth",
@@ -468,7 +654,11 @@
     "shape": "block",
     "figure": "stand",
     "figure_colour": "#4a3a30"
-   }
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "statue-plinth",
@@ -484,7 +674,11 @@
     "shape": "block",
     "figure": "stand",
     "figure_colour": "#4a3a30"
-   }
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "statue-plinth",
@@ -500,52 +694,40 @@
     "shape": "block",
     "figure": "stand",
     "figure_colour": "#4a3a30"
-   }
-  },
-  {
-   "type": "core/gate",
-   "at": [
+   },
+   "lod": [
     0,
-    -44,
-    0
-   ],
-   "params": {
-    "width": 10,
-    "height": 3.5,
-    "pillar": 1.6,
-    "leaf": "bars",
-    "arch": false,
-    "colour": "#c9a77c"
-   }
+    1
+   ]
   },
   {
-   "type": "core/fence-wall",
+   "type": "mass",
+   "id": "office",
+   "footprint": {
+    "rect": [
+     9,
+     5
+    ]
+   },
    "at": [
-    -30,
-    -44,
-    0
+    24,
+    38
    ],
-   "params": {
-    "length": 50,
-    "height": 2.2,
-    "thickness": 0.4,
-    "kind": "wall",
-    "colour": "#d9b890"
-   }
-  },
-  {
-   "type": "core/fence-wall",
-   "at": [
-    30,
-    -44,
-    0
-   ],
-   "params": {
-    "length": 50,
-    "height": 2.2,
-    "thickness": 0.4,
-    "kind": "wall",
-    "colour": "#d9b890"
+   "height": 3.2,
+   "storeys": 1,
+   "wall": {
+    "material": "brick",
+    "colour": "#b8694a",
+    "windows": "punched",
+    "windowRatio": 0.12,
+    "plinth": 0.2
+   },
+   "roof": {
+    "form": "shed",
+    "rise": 0.9,
+    "colour": "#7a4a36",
+    "material": "metal-sheet",
+    "overhang": 0.6
    }
   }
  ],
@@ -559,7 +741,7 @@
      -46,
      -6
     ],
-    "height": 16
+    "height": 22
    },
    {
     "kind": "broadleaf",
@@ -567,7 +749,7 @@
      -44,
      20
     ],
-    "height": 18
+    "height": 24
    },
    {
     "kind": "broadleaf",
@@ -575,7 +757,7 @@
      0,
      -30
     ],
-    "height": 14
+    "height": 20
    },
    {
     "kind": "broadleaf",
@@ -583,7 +765,7 @@
      46,
      -10
     ],
-    "height": 15
+    "height": 21
    },
    {
     "kind": "broadleaf",
@@ -591,17 +773,41 @@
      48,
      18
     ],
-    "height": 17
+    "height": 23
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     -20,
+     8
+    ],
+    "height": 20
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     8,
+     10
+    ],
+    "height": 20
+   },
+   {
+    "kind": "broadleaf",
+    "at": [
+     34,
+     -18
+    ],
+    "height": 19
    }
   ],
   "extent": [
-   110,
-   100
+   130,
+   120
   ]
  },
  "review": {
   "rounds": 3,
   "match": "fair",
-  "gaps": "Huts are hexagonal prisms with plain brick (no mortar-joint texture, arched windows or doors, roof sheet ribs) because round footprints with windows exceeded the triangle budget; hut count reduced to 7 and statues are generic figures on plain plinths without the painted ochre pattern; layout is inferred from close-up photos, not a plan."
+  "gaps": "Huts lack mortar-joint brick texture and roof ribs; plinth cannot be painted ochre with diamond patterns (no colour param); mango canopies are low-poly; lock-up shops are small in the preview."
  }
 }

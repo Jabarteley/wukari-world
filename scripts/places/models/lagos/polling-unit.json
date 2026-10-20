@@ -29,41 +29,110 @@
  },
  "parts": [
   {
-   "type": "pavilion",
+   "type": "loft",
    "at": [
-    8,
-    0,
-    0
-   ],
-   "params": {
-    "width": 8,
-    "depth": 6,
-    "height": 3.2,
-    "roof": "hip",
-    "rise": 1.1,
-    "posts": 4,
-    "colour": "#9aa3a8",
-    "cap_colour": "#e6e4da",
-    "floor_colour": "#b9805a"
-   }
-  },
-  {
-   "type": "pavilion",
-   "at": [
-    -4,
+    9,
     3,
     0
    ],
    "params": {
-    "width": 6,
-    "depth": 5,
-    "height": 2.9,
-    "roof": "hip",
-    "rise": 0.8,
-    "posts": 4,
-    "colour": "#9aa3a8",
-    "cap_colour": "#4a76b8",
-    "floor_colour": "#b9805a"
+    "capBottom": false,
+    "smooth": true,
+    "curve": true,
+    "steps": 4,
+    "colour": "#eef0ee",
+    "topColour": "#e4e6e2",
+    "sections": [
+     {
+      "z": 1.8,
+      "rect": [
+       13,
+       9
+      ],
+      "colour": "#2f64b5"
+     },
+     {
+      "z": 2.7,
+      "rect": [
+       13,
+       9
+      ],
+      "colour": "#eef0ee"
+     },
+     {
+      "z": 3.6,
+      "rect": [
+       11.5,
+       7.5
+      ]
+     },
+     {
+      "z": 4.4,
+      "rect": [
+       7,
+       5
+      ]
+     },
+     {
+      "z": 4.9,
+      "rect": [
+       3,
+       2.5
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "type": "mass",
+   "id": "table",
+   "footprint": {
+    "rect": [
+     5,
+     1
+    ]
+   },
+   "at": [
+    9,
+    0.5
+   ],
+   "z0": 0,
+   "height": 0.8,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#7a5a40",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#7a5a40"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "screen",
+   "footprint": {
+    "rect": [
+     1.0,
+     0.5
+    ]
+   },
+   "at": [
+    2,
+    -3
+   ],
+   "z0": 0,
+   "height": 1.9,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#f4f4f2",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#f4f4f2"
    }
   },
   {
@@ -71,20 +140,20 @@
    "id": "boundary-wall",
    "footprint": {
     "rect": [
-     34,
+     44,
      0.6
     ]
    },
    "at": [
-    -2,
-    12
+    0,
+    13
    ],
    "z0": 0,
    "height": 2.2,
    "storeys": 1,
    "wall": {
     "material": "painted-render",
-    "colour": "#b9a58a",
+    "colour": "#b59878",
     "windows": "none",
     "windowRatio": 0
    },
@@ -103,7 +172,7 @@
     ]
    },
    "at": [
-    -12,
+    -10,
     20
    ],
    "z0": 0,
@@ -111,12 +180,13 @@
    "storeys": 2,
    "wall": {
     "material": "painted-render",
-    "colour": "#e8d08a",
+    "colour": "#ecd68a",
     "windows": "punched",
     "windowRatio": 0.12,
     "plinth": 0.4,
     "bay": 3.4,
-    "bands": "#c9a85a"
+    "bands": "#c9a85a",
+    "windowShape": "arched"
    },
    "roof": {
     "form": "hip",
@@ -136,19 +206,20 @@
     ]
    },
    "at": [
-    14,
-    22
+    8,
+    21
    ],
    "z0": 0,
    "height": 6.4,
    "storeys": 2,
    "wall": {
     "material": "painted-render",
-    "colour": "#e6e0cf",
+    "colour": "#efe3a8",
     "windows": "punched",
     "windowRatio": 0.12,
     "plinth": 0.4,
-    "bay": 3.4
+    "bay": 3.4,
+    "windowShape": "arched"
    },
    "roof": {
     "form": "hip",
@@ -156,59 +227,6 @@
     "material": "corrugated",
     "pitch": 12,
     "overhang": 0.6
-   }
-  },
-  {
-   "type": "table-set",
-   "at": [
-    6,
-    0,
-    0
-   ],
-   "params": {
-    "chairs": 4,
-    "table_colour": "#d8d8d4",
-    "chair_colour": "#f2f2ee"
-   }
-  },
-  {
-   "type": "table-set",
-   "at": [
-    11,
-    0.5,
-    0
-   ],
-   "params": {
-    "chairs": 2,
-    "table_colour": "#d8d8d4",
-    "chair_colour": "#f2f2ee"
-   }
-  },
-  {
-   "type": "table-set",
-   "at": [
-    -4,
-    3,
-    0
-   ],
-   "params": {
-    "chairs": 3,
-    "table_colour": "#d8d8d4",
-    "chair_colour": "#f2f2ee"
-   }
-  },
-  {
-   "type": "queue-posts",
-   "at": [
-    -4,
-    -6,
-    0
-   ],
-   "params": {
-    "count": 6,
-    "spacing": 1.5,
-    "rope_colour": "#e8e8e0",
-    "post_colour": "#8a6a45"
    }
   },
   {
@@ -222,76 +240,783 @@
     "height": 6,
     "colour": "#1b7a43",
     "count": 1
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "mass",
+   "id": "ballot-grey",
+   "footprint": {
+    "rect": [
+     0.8,
+     0.8
+    ]
+   },
+   "at": [
+    7.4,
+    0.3
+   ],
+   "z0": 0.8,
+   "height": 0.7,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#8a8d90",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#8a8d90"
    }
   },
   {
-   "type": "core/sign-board",
+   "type": "mass",
+   "id": "ballot-red",
+   "footprint": {
+    "rect": [
+     0.8,
+     0.8
+    ]
+   },
    "at": [
-    1,
-    -4,
+    9,
+    0.3
+   ],
+   "z0": 0.8,
+   "height": 0.7,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#c0392b",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#c0392b"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "ballot-green",
+   "footprint": {
+    "rect": [
+     0.8,
+     0.8
+    ]
+   },
+   "at": [
+    10.6,
+    0.3
+   ],
+   "z0": 0.8,
+   "height": 0.7,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#2e8b4a",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#2e8b4a"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "screen2",
+   "footprint": {
+    "rect": [
+     1.0,
+     0.5
+    ]
+   },
+   "at": [
+    0.5,
+    -2.5
+   ],
+   "z0": 0,
+   "height": 1.9,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#f4f4f2",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#f4f4f2"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "screen3",
+   "footprint": {
+    "rect": [
+     1.0,
+     0.5
+    ]
+   },
+   "at": [
+    -1.5,
+    -1.5
+   ],
+   "z0": 0,
+   "height": 1.9,
+   "storeys": 1,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#f4f4f2",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#f4f4f2"
+   }
+  },
+  {
+   "type": "table-set",
+   "at": [
+    4,
+    -1,
     0
    ],
    "params": {
-    "width": 2.4,
-    "height": 1.2,
-    "bottom": 1.0,
-    "colour": "#3f7a52",
-    "frameColour": "#b0aaa0",
-    "posts": true
-   }
+    "chairs": 3,
+    "table_colour": "#d8d8d4",
+    "chair_colour": "#f2f2ee"
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
-   "type": "core/tree",
+   "type": "table-set",
    "at": [
-    -2,
-    8,
+    14,
+    -1.5,
     0
    ],
    "params": {
-    "kind": "acacia",
-    "height": 10,
-    "count": 1
-   }
+    "chairs": 2,
+    "table_colour": "#d8d8d4",
+    "chair_colour": "#f2f2ee"
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
-   "type": "core/tree",
+   "type": "statue-figure",
    "at": [
-    18,
+    -11.7,
+    3.6,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#2f64b5"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    0.5,
+    2.6,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#222222"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    -14.8,
+    -3.8,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#d8c8a0"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    -7.6,
+    3.7,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#c0392b"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    1.9,
+    2.6,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#d8c8a0"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    -6.1,
+    1.6,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#d8c8a0"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    -13.3,
+    4.9,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#d8c8a0"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    0.7,
+    1.5,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#e8e8e0"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    -3.9,
+    -3.1,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#d8c8a0"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    1.2,
+    -3.4,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#d8c8a0"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    -15.4,
+    8.1,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#f0a030"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    -5.3,
+    8.9,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#f0a030"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    -3.1,
+    8.9,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#f0a030"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    -2.9,
+    4.1,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#c0392b"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    -0.2,
+    -2.6,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#c0392b"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "statue-figure",
+   "at": [
+    -7.1,
+    -0.4,
+    0
+   ],
+   "params": {
+    "height": 1.7,
+    "pose": "stand",
+    "colour": "#2e8b4a"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "loft",
+   "at": [
+    -8,
     9,
     0
    ],
    "params": {
-    "kind": "palm",
-    "height": 8,
-    "count": 2,
-    "spread": 2
-   }
+    "colour": "#6b5a48",
+    "sections": [
+     {
+      "z": 0,
+      "circle": 0.35
+     },
+     {
+      "z": 9,
+      "circle": 0.15
+     }
+    ]
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
-   "type": "core/tree",
+   "type": "loft",
    "at": [
-    -20,
+    -8,
+    9,
+    5.3999999999999995
+   ],
+   "params": {
+    "colour": "#6b5a48",
+    "sections": [
+     {
+      "z": 0,
+      "circle": 0.15
+     },
+     {
+      "z": 4.5,
+      "circle": 0.05,
+      "cx": 2.2,
+      "cy": 0
+     }
+    ]
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "loft",
+   "at": [
+    -8,
+    9,
+    5.3999999999999995
+   ],
+   "params": {
+    "colour": "#6b5a48",
+    "sections": [
+     {
+      "z": 0,
+      "circle": 0.15
+     },
+     {
+      "z": 4.5,
+      "circle": 0.05,
+      "cx": -2.2,
+      "cy": 0.6
+     }
+    ]
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "loft",
+   "at": [
+    -8,
+    9,
+    5.3999999999999995
+   ],
+   "params": {
+    "colour": "#6b5a48",
+    "sections": [
+     {
+      "z": 0,
+      "circle": 0.15
+     },
+     {
+      "z": 4.5,
+      "circle": 0.05,
+      "cx": 0.5,
+      "cy": -2
+     }
+    ]
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "loft",
+   "at": [
+    -2,
+    10,
+    0
+   ],
+   "params": {
+    "colour": "#6b5a48",
+    "sections": [
+     {
+      "z": 0,
+      "circle": 0.35
+     },
+     {
+      "z": 10,
+      "circle": 0.15
+     }
+    ]
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "loft",
+   "at": [
+    -2,
+    10,
+    6.0
+   ],
+   "params": {
+    "colour": "#6b5a48",
+    "sections": [
+     {
+      "z": 0,
+      "circle": 0.15
+     },
+     {
+      "z": 5.0,
+      "circle": 0.05,
+      "cx": 2.2,
+      "cy": 0
+     }
+    ]
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "loft",
+   "at": [
+    -2,
+    10,
+    6.0
+   ],
+   "params": {
+    "colour": "#6b5a48",
+    "sections": [
+     {
+      "z": 0,
+      "circle": 0.15
+     },
+     {
+      "z": 5.0,
+      "circle": 0.05,
+      "cx": -2.2,
+      "cy": 0.6
+     }
+    ]
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "loft",
+   "at": [
+    -2,
+    10,
+    6.0
+   ],
+   "params": {
+    "colour": "#6b5a48",
+    "sections": [
+     {
+      "z": 0,
+      "circle": 0.15
+     },
+     {
+      "z": 5.0,
+      "circle": 0.05,
+      "cx": 0.5,
+      "cy": -2
+     }
+    ]
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "loft",
+   "at": [
+    18,
     8,
     0
    ],
    "params": {
-    "kind": "broadleaf",
-    "height": 8,
-    "count": 1
-   }
+    "colour": "#6b5a48",
+    "sections": [
+     {
+      "z": 0,
+      "circle": 0.35
+     },
+     {
+      "z": 8,
+      "circle": 0.15
+     }
+    ]
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "loft",
+   "at": [
+    18,
+    8,
+    4.8
+   ],
+   "params": {
+    "colour": "#6b5a48",
+    "sections": [
+     {
+      "z": 0,
+      "circle": 0.15
+     },
+     {
+      "z": 4.0,
+      "circle": 0.05,
+      "cx": 2.2,
+      "cy": 0
+     }
+    ]
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "loft",
+   "at": [
+    18,
+    8,
+    4.8
+   ],
+   "params": {
+    "colour": "#6b5a48",
+    "sections": [
+     {
+      "z": 0,
+      "circle": 0.15
+     },
+     {
+      "z": 4.0,
+      "circle": 0.05,
+      "cx": -2.2,
+      "cy": 0.6
+     }
+    ]
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "loft",
+   "at": [
+    18,
+    8,
+    4.8
+   ],
+   "params": {
+    "colour": "#6b5a48",
+    "sections": [
+     {
+      "z": 0,
+      "circle": 0.15
+     },
+     {
+      "z": 4.0,
+      "circle": 0.05,
+      "cx": 0.5,
+      "cy": -2
+     }
+    ]
+   },
+   "lod": [
+    0,
+    1
+   ]
   }
  ],
  "site": {
-  "ground": "laterite",
+  "ground": "sand",
   "forecourt": "none",
   "extent": [
-   60,
-   40
+   50,
+   36
   ]
  },
  "review": {
   "rounds": 2,
   "match": "fair",
-  "gaps": "Tarpaulin dome is modelled as hip-roofed pavilions (no curved white/blue tent, no printed text); crowd, cardboard voting screens, ballot boxes and bare trees are simplified or missing; reference is a typical unit, houses and yard layout are estimated."
+  "gaps": "Single domed white tarpaulin with blue skirt over table with grey/red/green ballot boxes, voting screens, plastic chairs, standing crowd, bare trees, block wall and arched-window houses on sand; tent text, wires, individual faces omitted; reference is a typical unit."
  }
 }

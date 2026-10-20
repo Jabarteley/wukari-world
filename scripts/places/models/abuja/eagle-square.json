@@ -41,12 +41,60 @@
  },
  "parts": [
   {
+   "type": "core/prism",
+   "at": [
+    0,
+    4,
+    0
+   ],
+   "params": {
+    "rect": [
+     118,
+     84
+    ],
+    "height": 0.03,
+    "colour": "#5d5f5e"
+   }
+  },
+  {
+   "type": "core/prism",
+   "at": [
+    0,
+    4,
+    0.05
+   ],
+   "params": {
+    "rect": [
+     112,
+     72
+    ],
+    "height": 0.25,
+    "colour": "#a39e92"
+   }
+  },
+  {
+   "type": "core/prism",
+   "at": [
+    0,
+    4,
+    0.05
+   ],
+   "params": {
+    "rect": [
+     116,
+     76
+    ],
+    "height": 0.1,
+    "colour": "#7d7a73"
+   }
+  },
+  {
    "type": "mass",
    "id": "near-terrace",
    "footprint": {
     "rect": [
      84,
-     7
+     6
     ]
    },
    "at": [
@@ -55,11 +103,11 @@
    ],
    "rotDeg": 0,
    "z0": 0,
-   "height": 2.2,
+   "height": 0.5,
    "storeys": 1,
    "wall": {
     "material": "concrete",
-    "colour": "#a9a597",
+    "colour": "#8f9a90",
     "windows": "none",
     "windowRatio": 0,
     "plinth": 0
@@ -75,114 +123,18 @@
    "at": [
     -8,
     -32,
-    2.2
+    3.0
    ],
    "params": {
     "form": "flat",
     "width": 86,
     "depth": 8,
-    "height": 3.4,
-    "thickness": 0.4,
-    "columns": 14,
-    "colour": "#d7d9d6",
-    "edgeColour": "#4f9a86",
+    "height": 0.0,
+    "thickness": 0.5,
+    "columns": 0,
+    "colour": "#f1f3f0",
+    "edgeColour": "#2f8f7a",
     "axis": "x"
-   }
-  },
-  {
-   "type": "mass",
-   "id": "far-stand-0",
-   "footprint": {
-    "rect": [
-     34,
-     11
-    ]
-   },
-   "at": [
-    -38,
-    46
-   ],
-   "rotDeg": 0,
-   "z0": 0,
-   "height": 5.5,
-   "storeys": 1,
-   "wall": {
-    "material": "concrete",
-    "colour": "#7f8c8a",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0,
-    "bands": "#2f4a58"
-   },
-   "roof": {
-    "form": "flat",
-    "colour": "#c9cbc8",
-    "overhang": 2.5,
-    "parapet": 0.2
-   }
-  },
-  {
-   "type": "mass",
-   "id": "far-stand-1",
-   "footprint": {
-    "rect": [
-     34,
-     11
-    ]
-   },
-   "at": [
-    0,
-    46
-   ],
-   "rotDeg": 0,
-   "z0": 0,
-   "height": 5.5,
-   "storeys": 1,
-   "wall": {
-    "material": "concrete",
-    "colour": "#7f8c8a",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0,
-    "bands": "#2f4a58"
-   },
-   "roof": {
-    "form": "flat",
-    "colour": "#c9cbc8",
-    "overhang": 2.5,
-    "parapet": 0.2
-   }
-  },
-  {
-   "type": "mass",
-   "id": "far-stand-2",
-   "footprint": {
-    "rect": [
-     34,
-     11
-    ]
-   },
-   "at": [
-    38,
-    46
-   ],
-   "rotDeg": 0,
-   "z0": 0,
-   "height": 5.5,
-   "storeys": 1,
-   "wall": {
-    "material": "concrete",
-    "colour": "#7f8c8a",
-    "windows": "none",
-    "windowRatio": 0,
-    "plinth": 0,
-    "bands": "#2f4a58"
-   },
-   "roof": {
-    "form": "flat",
-    "colour": "#c9cbc8",
-    "overhang": 2.5,
-    "parapet": 0.2
    }
   },
   {
@@ -228,8 +180,8 @@
     ]
    },
    "at": [
-    24,
-    -40
+    14,
+    -38.5
    ],
    "rotDeg": 0,
    "z0": 0,
@@ -261,8 +213,8 @@
     ]
    },
    "at": [
-    33,
-    -40
+    23,
+    -38.5
    ],
    "rotDeg": 0,
    "z0": 0,
@@ -294,8 +246,8 @@
     ]
    },
    "at": [
-    42,
-    -40
+    32,
+    -38.5
    ],
    "rotDeg": 0,
    "z0": 0,
@@ -318,32 +270,6 @@
    }
   },
   {
-   "type": "floodlight-mast",
-   "at": [
-    44,
-    -4,
-    0
-   ],
-   "params": {
-    "height": 34,
-    "head_width": 5,
-    "colour": "#b7bcc0"
-   }
-  },
-  {
-   "type": "floodlight-mast",
-   "at": [
-    -50,
-    36,
-    0
-   ],
-   "params": {
-    "height": 30,
-    "head_width": 4,
-    "colour": "#b7bcc0"
-   }
-  },
-  {
    "type": "lamp",
    "at": [
     -45,
@@ -354,7 +280,10 @@
     "height": 9,
     "count": 6,
     "spacing": 16
-   }
+   },
+   "lod": [
+    0
+   ]
   },
   {
    "type": "flag",
@@ -365,14 +294,17 @@
    ],
    "rotDeg": 90,
    "params": {
-    "height": 12,
-    "count": 10,
-    "spacing": 7,
+    "height": 11,
+    "count": 16,
+    "spacing": 4.5,
     "colours": [
      "#1b7a43",
      "#ffffff"
     ]
-   }
+   },
+   "lod": [
+    0
+   ]
   },
   {
    "type": "flag",
@@ -383,13 +315,228 @@
    ],
    "rotDeg": 90,
    "params": {
-    "height": 12,
-    "count": 10,
-    "spacing": 7,
+    "height": 11,
+    "count": 16,
+    "spacing": 4.5,
     "colours": [
      "#ffffff",
      "#1b7a43"
     ]
+   },
+   "lod": [
+    0
+   ]
+  },
+  {
+   "type": "core/array",
+   "at": [
+    -8,
+    -32,
+    0
+   ],
+   "params": {
+    "of": {
+     "type": "prism",
+     "at": [
+      0,
+      0
+     ],
+     "params": {
+      "rect": [
+       0.5,
+       0.5
+      ],
+      "height": 3.0,
+      "colour": "#3f8a6c"
+     }
+    },
+    "start": [
+     -42,
+     0
+    ],
+    "end": [
+     42,
+     0
+    ],
+    "count": 15,
+    "lod1Step": 3,
+    "lod2Step": 15
+   }
+  },
+  {
+   "type": "core/prism",
+   "at": [
+    -8,
+    -28.4,
+    0
+   ],
+   "params": {
+    "rect": [
+     84,
+     0.5
+    ],
+    "z0": 2.6,
+    "height": 0.45,
+    "colour": "#2f8f7a"
+   }
+  },
+  {
+   "type": "core/stand",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "start": [
+     -24,
+     40
+    ],
+    "end": [
+     -62,
+     40
+    ],
+    "rows": 5,
+    "rise": 0.5,
+    "run": 0.9,
+    "firstHeight": 0.8,
+    "seatColours": [
+     "#3c4a52",
+     "#2f6b5f"
+    ],
+    "blocks": 3,
+    "concreteColour": "#8fa097",
+    "backWall": 1.0,
+    "under": "open",
+    "canopy": {
+     "height": 6,
+     "depth": 7,
+     "colour": "#7f938a",
+     "slopeDeg": 0,
+     "supports": 5
+    }
+   }
+  },
+  {
+   "type": "core/stand",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "start": [
+     19,
+     40
+    ],
+    "end": [
+     -19,
+     40
+    ],
+    "rows": 5,
+    "rise": 0.5,
+    "run": 0.9,
+    "firstHeight": 0.8,
+    "seatColours": [
+     "#3c4a52",
+     "#2f6b5f"
+    ],
+    "blocks": 3,
+    "concreteColour": "#8fa097",
+    "backWall": 1.0,
+    "under": "open",
+    "canopy": {
+     "height": 6,
+     "depth": 7,
+     "colour": "#7f938a",
+     "slopeDeg": 0,
+     "supports": 5
+    }
+   }
+  },
+  {
+   "type": "core/stand",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {
+    "start": [
+     62,
+     40
+    ],
+    "end": [
+     24,
+     40
+    ],
+    "rows": 5,
+    "rise": 0.5,
+    "run": 0.9,
+    "firstHeight": 0.8,
+    "seatColours": [
+     "#3c4a52",
+     "#2f6b5f"
+    ],
+    "blocks": 3,
+    "concreteColour": "#8fa097",
+    "backWall": 1.0,
+    "under": "open",
+    "canopy": {
+     "height": 6,
+     "depth": 7,
+     "colour": "#7f938a",
+     "slopeDeg": 0,
+     "supports": 5
+    }
+   }
+  },
+  {
+   "type": "lattice-mast",
+   "at": [
+    36,
+    -27,
+    0
+   ],
+   "params": {
+    "height": 34,
+    "baseWidth": 2.0,
+    "topWidth": 0.8,
+    "panels": 8,
+    "colour": "#b7bcc0",
+    "colour2": "#b7bcc0"
+   }
+  },
+  {
+   "type": "lattice-mast",
+   "at": [
+    -30,
+    44,
+    0
+   ],
+   "params": {
+    "height": 30,
+    "baseWidth": 2.0,
+    "topWidth": 0.8,
+    "panels": 8,
+    "colour": "#b7bcc0",
+    "colour2": "#b7bcc0"
+   }
+  },
+  {
+   "type": "lattice-mast",
+   "at": [
+    30,
+    44,
+    0
+   ],
+   "params": {
+    "height": 30,
+    "baseWidth": 2.0,
+    "topWidth": 0.8,
+    "panels": 8,
+    "colour": "#b7bcc0",
+    "colour2": "#b7bcc0"
    }
   }
  ],
@@ -397,8 +544,8 @@
   "ground": "laterite",
   "forecourt": "none",
   "extent": [
-   140,
-   120
+   118,
+   100
   ],
   "trees": [
    {
@@ -444,8 +591,8 @@
   ]
  },
  "review": {
-  "rounds": 2,
+  "rounds": 3,
   "match": "fair",
-  "gaps": "Only a ~110 m portion of the 300 m arena is modelled; stands are simple boxes (no seating tiers, green lattice structure under the near walkway), no VIP pavilion, flags are sparse, ground tone matches the backdrop."
+  "gaps": "Plaza, kerb/road, raised walkway with teal fascia, three far stands and lattice masts added; only ~110 m of the 300 m arena, no VIP pavilion, walkway undercroft is plain posts, cabins sit at the right end."
  }
 }

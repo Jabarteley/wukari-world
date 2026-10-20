@@ -30,21 +30,21 @@
     6
    ],
    "z0": 0,
-   "height": 12,
+   "height": 10,
    "storeys": 1,
    "wall": {
     "material": "painted-render",
-    "colour": "#f4f1ea",
+    "colour": "#f1ede4",
     "windows": "punched",
     "windowRatio": 0.2,
     "plinth": 0.5
    },
    "roof": {
     "form": "gable",
-    "colour": "#3f7a52",
+    "colour": "#cfc9bd",
     "material": "metal-sheet",
-    "pitch": 22,
-    "overhang": 1.2,
+    "pitch": 15,
+    "overhang": 0.8,
     "axis": "y"
    }
   },
@@ -53,103 +53,85 @@
    "id": "front-block",
    "footprint": {
     "rect": [
-     55,
-     10
+     22,
+     6
     ]
    },
    "at": [
     0,
-    -17
+    -19
    ],
    "z0": 0,
-   "height": 10,
-   "storeys": 2,
+   "height": 16,
+   "storeys": 3,
    "wall": {
     "material": "painted-render",
-    "colour": "#f4f1ea",
+    "colour": "#3b6f9e",
     "windows": "curtain",
-    "windowRatio": 0.45,
+    "windowRatio": 0.5,
     "faces": {
      "left": "plain",
      "right": "plain",
      "back": "plain"
     },
     "plinth": 0.4,
-    "bands": "#3b6f9e"
+    "pattern": {
+     "type": "fins",
+     "colour": "#f1ede4",
+     "spacing": 2.8,
+     "faces": [
+      "front"
+     ],
+     "skipGround": true
+    }
    },
    "roof": {
     "form": "flat",
-    "colour": "#b0aaa0",
+    "colour": "#cfc9bd",
     "parapet": 0.6
    }
   },
   {
    "type": "mass",
-   "id": "front-gable",
+   "id": "tower-w",
    "footprint": {
     "rect": [
-     22,
-     10
+     5,
+     5
     ]
    },
    "at": [
-    0,
-    -17
+    -15,
+    -19
    ],
    "z0": 0,
-   "height": 16,
-   "storeys": 2,
+   "height": 19,
+   "storeys": 4,
    "wall": {
-    "material": "glass-curtain",
-    "colour": "#3b6f9e",
-    "windows": "curtain",
-    "windowRatio": 0.7,
-    "faces": {
-     "left": "plain",
-     "right": "plain",
-     "back": "plain"
-    }
+    "material": "painted-render",
+    "colour": "#f1ede4",
+    "windows": "none",
+    "windowRatio": 0
    },
    "roof": {
-    "form": "gable",
-    "colour": "#3f7a52",
-    "material": "metal-sheet",
-    "pitch": 30,
-    "overhang": 1,
-    "axis": "y"
+    "form": "flat",
+    "colour": "#b0aaa0",
+    "parapet": 0.3
    }
-  },
-  {
-   "type": "bell-tower",
-   "at": [
-    -24,
-    -22,
-    0
-   ],
-   "params": {}
-  },
-  {
-   "type": "portico",
-   "at": [
-    0,
-    -22,
-    0
-   ],
-   "params": {}
   },
   {
    "type": "sign-board",
    "at": [
-    17,
-    -30,
-    0
+    0,
+    -22.5,
+    10
    ],
    "params": {
-    "width": 8,
-    "height": 2.4,
-    "bottom": 1.2,
-    "colour": "#3b6f9e",
-    "posts": true
+    "width": 5,
+    "height": 5,
+    "bottom": 0,
+    "colour": "#f1ede4",
+    "posts": false
    }
   },
   {
@@ -204,12 +186,67 @@
     "kind": "palm",
     "height": 9
    }
+  },
+  {
+   "type": "mass",
+   "id": "tower-e",
+   "footprint": {
+    "rect": [
+     5,
+     5
+    ]
+   },
+   "at": [
+    15,
+    -19
+   ],
+   "z0": 0,
+   "height": 19,
+   "storeys": 4,
+   "wall": {
+    "material": "painted-render",
+    "colour": "#f1ede4",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#b0aaa0",
+    "parapet": 0.3
+   }
+  },
+  {
+   "type": "mass",
+   "id": "steps",
+   "footprint": {
+    "rect": [
+     24,
+     4
+    ]
+   },
+   "at": [
+    0,
+    -24
+   ],
+   "z0": 0,
+   "height": 1.0,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#b0aaa0",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#b0aaa0"
+   }
   }
  ],
  "site": {
   "ground": "asphalt",
   "forecourt": "parking",
-  "forecourtDepth": 18,
+  "forecourtDepth": 24,
   "trees": [
    {
     "kind": "palm",
@@ -232,8 +269,8 @@
   ]
  },
  "review": {
-  "rounds": 0,
+  "rounds": 2,
   "match": "rough",
-  "gaps": "Not a real identified church; generic Pentecostal auditorium from brief (55x36, 16 m gable). Bell tower, portico and fence use default part params."
+  "gaps": "Not an identified church, no photo; low shallow-gable hall with tall coloured entrance facade between two flat towers. Typical Pentecostal type only."
  }
 }

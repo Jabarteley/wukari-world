@@ -41,29 +41,45 @@
    "id": "west-block",
    "footprint": {
     "rect": [
-     38,
-     50
+     16,
+     36
     ]
    },
    "at": [
-    -39,
-    4
+    -20,
+    -1
    ],
    "z0": 0,
-   "height": 11,
-   "storeys": 3,
+   "height": 10,
+   "storeys": 2,
    "wall": {
     "material": "painted-render",
-    "colour": "#e6cdb4",
-    "windows": "ribbon",
+    "colour": "#eccfb5",
+    "windows": "none",
     "windowRatio": 0.12,
     "plinth": 0.5,
-    "bay": 9,
-    "bands": "#d9bea2",
+    "bay": 3,
     "faces": {
      "back": "plain",
      "left": "plain",
-     "right": "plain"
+     "right": "plain",
+     "front": "plain"
+    },
+    "pattern": {
+     "type": "panels",
+     "size": [
+      3,
+      2.5
+     ],
+     "colours": [
+      "#ecd0b8",
+      "#e3c3a8"
+     ],
+     "mode": "checker",
+     "gap": 0.06,
+     "faces": [
+      "front"
+     ]
     }
    },
    "roof": {
@@ -77,29 +93,45 @@
    "id": "east-block",
    "footprint": {
     "rect": [
-     38,
-     50
+     16,
+     36
     ]
    },
    "at": [
-    39,
-    4
+    20,
+    -1
    ],
    "z0": 0,
-   "height": 11,
-   "storeys": 3,
+   "height": 10,
+   "storeys": 2,
    "wall": {
     "material": "painted-render",
-    "colour": "#e6cdb4",
-    "windows": "ribbon",
+    "colour": "#eccfb5",
+    "windows": "none",
     "windowRatio": 0.12,
     "plinth": 0.5,
-    "bay": 9,
-    "bands": "#d9bea2",
+    "bay": 3,
     "faces": {
      "back": "plain",
      "left": "plain",
-     "right": "plain"
+     "right": "plain",
+     "front": "plain"
+    },
+    "pattern": {
+     "type": "panels",
+     "size": [
+      3,
+      2.5
+     ],
+     "colours": [
+      "#ecd0b8",
+      "#e3c3a8"
+     ],
+     "mode": "checker",
+     "gap": 0.06,
+     "faces": [
+      "front"
+     ]
     }
    },
    "roof": {
@@ -113,22 +145,22 @@
    "id": "entrance",
    "footprint": {
     "rect": [
-     38,
-     36
+     24,
+     34
     ]
    },
    "at": [
     0,
-    0
+    -1
    ],
    "z0": 0,
    "height": 15,
-   "storeys": 3,
+   "storeys": 2,
    "wall": {
     "material": "painted-render",
     "colour": "#e6cdb4",
-    "windows": "curtain",
-    "windowRatio": 0.55,
+    "windows": "none",
+    "windowRatio": 0,
     "plinth": 0.5,
     "bay": 4,
     "faces": {
@@ -140,11 +172,11 @@
    },
    "roof": {
     "form": "shed",
-    "colour": "#b9bfc3",
+    "colour": "#6d737a",
     "material": "metal-sheet",
-    "pitch": 9,
-    "overhang": 1.5,
-    "high": "back"
+    "pitch": 14,
+    "overhang": 2.0,
+    "high": "right"
    }
   },
   {
@@ -152,21 +184,21 @@
    "id": "stone-panel",
    "footprint": {
     "rect": [
-     20,
+     16,
      1.2
     ]
    },
    "at": [
     0,
-    -18.6
+    -18.2
    ],
    "z0": 0,
-   "height": 10.5,
+   "height": 11,
    "storeys": 2,
    "wall": {
     "material": "tile-cladding",
-    "colour": "#6f6d62",
-    "windows": "curtain",
+    "colour": "#5a5a52",
+    "windows": "none",
     "windowRatio": 0.35,
     "plinth": 0,
     "faces": {
@@ -177,7 +209,7 @@
    },
    "roof": {
     "form": "flat",
-    "colour": "#6f6d62"
+    "colour": "#5a5a52"
    }
   },
   {
@@ -185,20 +217,20 @@
    "id": "clerestory",
    "footprint": {
     "rect": [
-     22,
+     20,
      1
     ]
    },
    "at": [
     0,
-    -18.2
+    -17.9
    ],
-   "z0": 10.5,
-   "height": 4.4,
+   "z0": 11,
+   "height": 4,
    "storeys": 1,
    "wall": {
     "material": "glass-curtain",
-    "colour": "#c9b48f",
+    "colour": "#b9a47f",
     "windows": "curtain",
     "windowRatio": 0.85,
     "faces": {
@@ -213,29 +245,11 @@
    }
   },
   {
-   "type": "canopy",
-   "at": [
-    0,
-    -20.5,
-    5.2
-   ],
-   "params": {
-    "form": "flat",
-    "width": 20,
-    "depth": 5,
-    "height": 0,
-    "thickness": 0.5,
-    "colour": "#3f4448",
-    "edgeColour": "#cfd3d6",
-    "columns": 0
-   }
-  },
-  {
    "type": "core/sign-board",
    "at": [
     0,
-    -19.4,
-    6.8
+    -19.9,
+    8.3
    ],
    "params": {
     "width": 3,
@@ -247,36 +261,10 @@
    }
   },
   {
-   "type": "core/flag",
-   "at": [
-    -14,
-    -23,
-    0
-   ],
-   "params": {
-    "height": 6,
-    "colour": "#a8283a",
-    "count": 1
-   }
-  },
-  {
-   "type": "core/flag",
-   "at": [
-    14,
-    -23,
-    0
-   ],
-   "params": {
-    "height": 6,
-    "colour": "#a8283a",
-    "count": 1
-   }
-  },
-  {
    "type": "reflecting-pool",
    "at": [
-    -52,
     -34,
+    -30,
     0
    ],
    "params": {
@@ -289,8 +277,8 @@
   {
    "type": "fountain-basin",
    "at": [
-    -52,
     -34,
+    -30,
     0
    ],
    "params": {
@@ -299,41 +287,15 @@
    }
   },
   {
-   "type": "car-park",
-   "at": [
-    -18,
-    -34,
-    0
-   ],
-   "params": {
-    "width": 34,
-    "depth": 14,
-    "density": 0.4
-   }
-  },
-  {
-   "type": "car-park",
-   "at": [
-    20,
-    -34,
-    0
-   ],
-   "params": {
-    "width": 34,
-    "depth": 14,
-    "density": 0.4
-   }
-  },
-  {
    "type": "core/tree",
    "at": [
-    -20,
-    -22,
+    -10.0,
+    -23,
     0
    ],
    "params": {
     "kind": "palm",
-    "height": 9,
+    "height": 10,
     "count": 3,
     "spread": 3
    }
@@ -341,13 +303,13 @@
   {
    "type": "core/tree",
    "at": [
-    20,
-    -22,
+    10.0,
+    -23,
     0
    ],
    "params": {
     "kind": "palm",
-    "height": 9,
+    "height": 10,
     "count": 3,
     "spread": 3
    }
@@ -355,15 +317,117 @@
   {
    "type": "core/tree",
    "at": [
-    -60,
-    -40,
+    -16,
+    -23,
     0
    ],
    "params": {
     "kind": "palm",
-    "height": 11,
+    "height": 10,
     "count": 3,
     "line": 30
+   }
+  },
+  {
+   "type": "mass",
+   "id": "doorway",
+   "footprint": {
+    "rect": [
+     7,
+     0.6
+    ]
+   },
+   "at": [
+    0,
+    -19.4
+   ],
+   "z0": 0,
+   "height": 6.5,
+   "storeys": 1,
+   "wall": {
+    "material": "glass-curtain",
+    "colour": "#2c3a40",
+    "windows": "curtain",
+    "windowRatio": 0.8,
+    "faces": {
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    }
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#2c3a40"
+   }
+  },
+  {
+   "type": "canopy",
+   "at": [
+    0,
+    -21.5,
+    6.8
+   ],
+   "params": {
+    "form": "flat",
+    "width": 14,
+    "depth": 3,
+    "height": 0,
+    "thickness": 0.35,
+    "colour": "#15171a",
+    "edgeColour": "#15171a",
+    "columns": 0
+   }
+  },
+  {
+   "type": "core/flag",
+   "at": [
+    -9,
+    -22,
+    0
+   ],
+   "params": {
+    "height": 6,
+    "colour": "#b02a3a",
+    "count": 1
+   }
+  },
+  {
+   "type": "core/flag",
+   "at": [
+    9,
+    -22,
+    0
+   ],
+   "params": {
+    "height": 6,
+    "colour": "#b02a3a",
+    "count": 1
+   }
+  },
+  {
+   "type": "car-park",
+   "at": [
+    -6,
+    -30,
+    0
+   ],
+   "params": {
+    "width": 22,
+    "depth": 10,
+    "density": 0.5
+   }
+  },
+  {
+   "type": "car-park",
+   "at": [
+    16,
+    -30,
+    0
+   ],
+   "params": {
+    "width": 22,
+    "depth": 10,
+    "density": 0.5
    }
   }
  ],
@@ -371,13 +435,13 @@
   "ground": "asphalt",
   "forecourt": "parking",
   "extent": [
-   150,
-   110
+   70,
+   60
   ]
  },
  "review": {
   "rounds": 2,
   "match": "fair",
-  "gaps": "Photo is a close-up of one entrance, render shows the whole 116 m mall so detail is small; entrance tower, stone-tiled panel, steel canopy, glazed clerestory and palms match, but the shed roof slopes the wrong way/shape (photo has a rising monopitch with deep steel fascia), no panel joints, banner flags and trolleys; wings, fountain court and car park are from the brief (no OSM)."
+  "gaps": "Entrance now 1.5x taller than panelled flanks with steel-grey monopitch over clerestory, dark stone panel, recessed glazed door, black canopy, red flags; panel joints on stone, trolleys, cars and signage artwork omitted; wings, fountain and car park from the brief."
  }
 }

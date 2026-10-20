@@ -8,17 +8,21 @@
    "author": "Mx. Granger",
    "view": "front",
    "file": "/tmp/places-evidence/london/bexley1.jpg",
-   "used": "stepped pagoda massing of buff-yellow brick tiers each with an overhanging terracotta hip roof, blue-grey framed glazing with balconies, solar panels, pine tree"
+   "used": "stepped hipped terracotta roofs with deep dark eaves over staggered buff-brick blocks, brick piers, blue-framed glazing, solar panels"
   },
   {
-   "kind": "osm",
-   "ref": "way/332400834",
-   "used": "overall size check (106 x 62 m)"
+   "kind": "photo",
+   "url": "https://commons.wikimedia.org/wiki/File:End_of_The_Broadway,_Bexleyheath_(geograph_1955254).jpg",
+   "licence": "CC BY-SA 2.0",
+   "author": "E Gammie",
+   "view": "street",
+   "file": "/tmp/places-evidence/london/bexley2.jpg",
+   "used": "overall hipped-roof massing and brick colour from the Broadway"
   }
  ],
  "camera": {
-  "yawDeg": -5,
-  "pitchDeg": 4,
+  "yawDeg": 18,
+  "pitchDeg": 6,
   "fovDeg": 55,
   "aspect": 1.93,
   "margin": 0.1
@@ -26,47 +30,10 @@
  "parts": [
   {
    "type": "mass",
-   "id": "tier1",
+   "id": "tier0",
    "footprint": {
     "rect": [
-     70,
-     42
-    ]
-   },
-   "at": [
-    0,
-    0
-   ],
-   "rotDeg": 0,
-   "z0": 0,
-   "height": 7,
-   "storeys": 2,
-   "wall": {
-    "material": "brick",
-    "colour": "#c9a566",
-    "windows": "ribbon",
-    "windowRatio": 0.4,
-    "plinth": 0.2,
-    "faces": {
-     "left": "plain",
-     "right": "plain",
-     "back": "plain"
-    }
-   },
-   "roof": {
-    "form": "hip",
-    "colour": "#a8482a",
-    "material": "metal-sheet",
-    "pitch": 24,
-    "overhang": 1.8
-   }
-  },
-  {
-   "type": "mass",
-   "id": "tier2",
-   "footprint": {
-    "rect": [
-     58,
+     84,
      34
     ]
    },
@@ -75,15 +42,18 @@
     0
    ],
    "rotDeg": 0,
-   "z0": 7,
+   "z0": 0,
    "height": 6.5,
    "storeys": 2,
    "wall": {
     "material": "brick",
-    "colour": "#c9a566",
-    "windows": "ribbon",
-    "windowRatio": 0.4,
-    "plinth": 0.2,
+    "colour": "#c8a860",
+    "windows": "punched",
+    "windowRatio": 0.55,
+    "bay": 11,
+    "glassColour": "#1f3048",
+    "trimColour": "#23324a",
+    "bands": "#e0d6b8",
     "faces": {
      "left": "plain",
      "right": "plain",
@@ -92,18 +62,58 @@
    },
    "roof": {
     "form": "hip",
-    "colour": "#a8482a",
+    "colour": "#96402a",
     "material": "metal-sheet",
-    "pitch": 24,
-    "overhang": 1.8
+    "pitch": 20,
+    "overhang": 2.6
    }
   },
   {
    "type": "mass",
-   "id": "tier3",
+   "id": "tier1",
    "footprint": {
     "rect": [
-     44,
+     68,
+     30
+    ]
+   },
+   "at": [
+    0,
+    0
+   ],
+   "rotDeg": 0,
+   "z0": 6.5,
+   "height": 6.5,
+   "storeys": 2,
+   "wall": {
+    "material": "brick",
+    "colour": "#c8a860",
+    "windows": "punched",
+    "windowRatio": 0.55,
+    "bay": 11,
+    "glassColour": "#1f3048",
+    "trimColour": "#23324a",
+    "bands": "#e0d6b8",
+    "faces": {
+     "left": "plain",
+     "right": "plain",
+     "back": "plain"
+    }
+   },
+   "roof": {
+    "form": "hip",
+    "colour": "#96402a",
+    "material": "metal-sheet",
+    "pitch": 20,
+    "overhang": 2.6
+   }
+  },
+  {
+   "type": "mass",
+   "id": "tier2",
+   "footprint": {
+    "rect": [
+     52,
      26
     ]
    },
@@ -112,15 +122,18 @@
     0
    ],
    "rotDeg": 0,
-   "z0": 13.5,
-   "height": 6,
-   "storeys": 1,
+   "z0": 13,
+   "height": 6.5,
+   "storeys": 2,
    "wall": {
     "material": "brick",
-    "colour": "#c9a566",
-    "windows": "ribbon",
-    "windowRatio": 0.4,
-    "plinth": 0.2,
+    "colour": "#c8a860",
+    "windows": "punched",
+    "windowRatio": 0.55,
+    "bay": 11,
+    "glassColour": "#1f3048",
+    "trimColour": "#23324a",
+    "bands": "#e0d6b8",
     "faces": {
      "left": "plain",
      "right": "plain",
@@ -129,19 +142,19 @@
    },
    "roof": {
     "form": "hip",
-    "colour": "#a8482a",
+    "colour": "#96402a",
     "material": "metal-sheet",
-    "pitch": 24,
-    "overhang": 1.8
+    "pitch": 20,
+    "overhang": 2.6
    }
   },
   {
    "type": "mass",
-   "id": "tier4",
+   "id": "tier3",
    "footprint": {
     "rect": [
-     28,
-     18
+     36,
+     20
     ]
    },
    "at": [
@@ -150,14 +163,17 @@
    ],
    "rotDeg": 0,
    "z0": 19.5,
-   "height": 5,
-   "storeys": 1,
+   "height": 6.5,
+   "storeys": 2,
    "wall": {
     "material": "brick",
-    "colour": "#c9a566",
-    "windows": "ribbon",
-    "windowRatio": 0.4,
-    "plinth": 0.2,
+    "colour": "#c8a860",
+    "windows": "punched",
+    "windowRatio": 0.55,
+    "bay": 11,
+    "glassColour": "#1f3048",
+    "trimColour": "#23324a",
+    "bands": "#e0d6b8",
     "faces": {
      "left": "plain",
      "right": "plain",
@@ -166,47 +182,100 @@
    },
    "roof": {
     "form": "hip",
-    "colour": "#a8482a",
+    "colour": "#96402a",
     "material": "metal-sheet",
-    "pitch": 24,
-    "overhang": 1.8
+    "pitch": 20,
+    "overhang": 2.6
    }
+  },
+  {
+   "type": "mass",
+   "id": "pier2",
+   "footprint": {
+    "rect": [
+     1.4,
+     1.4
+    ]
+   },
+   "at": [
+    -6.5,
+    -17.6
+   ],
+   "z0": 0,
+   "height": 6.5,
+   "storeys": 1,
+   "wall": {
+    "material": "brick",
+    "colour": "#b89850",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#a8482e"
+   }
+  },
+  {
+   "type": "solar-panels",
+   "at": [
+    22,
+    -6,
+    19
+   ],
+   "params": {},
+   "lod": [
+    0
+   ]
+  },
+  {
+   "type": "solar-panels",
+   "at": [
+    22,
+    -6,
+    19
+   ],
+   "params": {},
+   "lod": [
+    0
+   ]
   },
   {
    "type": "sign-board",
    "at": [
     -30,
-    -34,
+    -26,
     0
    ],
    "params": {}
   },
   {
-   "type": "solar-panels",
+   "type": "finial-mast",
    "at": [
     0,
-    -4,
-    24
+    0,
+    26
    ],
-   "params": {}
+   "params": {
+    "height": 14,
+    "colour": "#9aa0a5"
+   }
   }
  ],
  "site": {
   "ground": "paving",
-  "forecourt": "parking",
+  "forecourt": "road",
   "trees": [
    {
     "kind": "conifer",
     "at": [
      -22,
-     -32
+     -24
     ]
    },
    {
     "kind": "broadleaf",
     "at": [
-     -4,
-     -30
+     22,
+     -26
     ]
    }
   ],
@@ -220,8 +289,8 @@
  "city": "london",
  "venueId": "london-community-voting-game",
  "review": {
-  "rounds": 3,
+  "rounds": 2,
   "match": "fair",
-  "gaps": "Real building steps back asymmetrically with deep balconies, grey screens and blue-steel window frames; model is four symmetric concentric tiers with flat metal-sheet roof texture (tile texture exceeded the LOD1 budget); buff brick bands and solar panels only approximate."
+  "gaps": "Rebuilt as a 5-tier stepped pyramid with deep terracotta hipped eaves, yellow stock brick, front piers, solar panels and a mast; real building has more tiers with navy soffits, balconies and grey screens, larger glazed bays and lattice mast."
  }
 }

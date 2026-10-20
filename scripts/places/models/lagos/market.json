@@ -27,7 +27,7 @@
     ]
    },
    "at": [
-    -62,
+    -50,
     10
    ],
    "height": 9,
@@ -37,7 +37,7 @@
     "colour": "#e8d38a",
     "windows": "punched",
     "windowRatio": 0.2,
-    "bay": 4,
+    "bay": 6,
     "plinth": 0.3,
     "parapet": 0.4,
     "faces": {
@@ -63,7 +63,7 @@
     ]
    },
    "at": [
-    62,
+    50,
     15
    ],
    "height": 8,
@@ -73,7 +73,7 @@
     "colour": "#8db6cf",
     "windows": "punched",
     "windowRatio": 0.2,
-    "bay": 4,
+    "bay": 6,
     "plinth": 0.3,
     "parapet": 0.4,
     "faces": {
@@ -109,7 +109,7 @@
     "colour": "#b4654a",
     "windows": "punched",
     "windowRatio": 0.2,
-    "bay": 4,
+    "bay": 6,
     "plinth": 0.3,
     "parapet": 0.4,
     "faces": {
@@ -145,43 +145,7 @@
     "colour": "#e8d38a",
     "windows": "punched",
     "windowRatio": 0.2,
-    "bay": 4,
-    "plinth": 0.3,
-    "parapet": 0.4,
-    "faces": {
-     "front": "punched",
-     "back": "plain",
-     "left": "plain",
-     "right": "plain"
-    }
-   },
-   "roof": {
-    "form": "flat",
-    "colour": "#8d5a3b",
-    "parapet": 0.4
-   }
-  },
-  {
-   "type": "mass",
-   "id": "shops-s",
-   "footprint": {
-    "rect": [
-     36,
-     10
-    ]
-   },
-   "at": [
-    40,
-    -48
-   ],
-   "height": 7,
-   "storeys": 2,
-   "wall": {
-    "material": "painted-render",
-    "colour": "#8db6cf",
-    "windows": "punched",
-    "windowRatio": 0.2,
-    "bay": 4,
+    "bay": 6,
     "plinth": 0.3,
     "parapet": 0.4,
     "faces": {
@@ -210,7 +174,11 @@
     "height": 3.6,
     "colour": "#7a7a72",
     "roofColour": "#8d5a3b"
-   }
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "hospital/shed-shelter",
@@ -225,7 +193,11 @@
     "height": 3.6,
     "colour": "#7a7a72",
     "roofColour": "#8d5a3b"
-   }
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "hospital/shed-shelter",
@@ -240,46 +212,11 @@
     "height": 3.6,
     "colour": "#7a7a72",
     "roofColour": "#8d5a3b"
-   }
-  },
-  {
-   "type": "market-open/stall-row",
-   "at": [
-    -40,
-    -30,
-    0
-   ],
-   "params": {
-    "count": 9,
-    "pitch": 8.5,
-    "kind": "umbrella"
-   }
-  },
-  {
-   "type": "market-open/stall-row",
-   "at": [
-    -40,
-    -4,
-    0
-   ],
-   "params": {
-    "count": 9,
-    "pitch": 8.5,
-    "kind": "umbrella"
-   }
-  },
-  {
-   "type": "market-open/stall-row",
-   "at": [
-    -40,
-    34,
-    0
-   ],
-   "params": {
-    "count": 9,
-    "pitch": 8.5,
-    "kind": "umbrella"
-   }
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "market-open/roof-sign",
@@ -292,7 +229,11 @@
     "width": 8,
     "height": 2.5,
     "colour": "#8db6cf"
-   }
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "market-open/roof-sign",
@@ -305,7 +246,11 @@
     "width": 8,
     "height": 2.5,
     "colour": "#b4654a"
-   }
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "market-open/roof-sign",
@@ -318,7 +263,11 @@
     "width": 6,
     "height": 2.2,
     "colour": "#e8d38a"
-   }
+   },
+   "lod": [
+    0,
+    1
+   ]
   },
   {
    "type": "market-open/water-tank",
@@ -327,7 +276,388 @@
     30,
     9
    ],
-   "params": {}
+   "params": {},
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/stall-row",
+   "at": [
+    -30,
+    -44,
+    0
+   ],
+   "rotDeg": 0,
+   "params": {
+    "count": 12,
+    "pitch": 3.2,
+    "kind": "umbrella",
+    "size": 1.0,
+    "colours": [
+     "#d9453a",
+     "#f0b429",
+     "#3a86c8",
+     "#2f9e6b",
+     "#e07fb0",
+     "#7a4fb5"
+    ],
+    "jitter": 0.6
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/stall-row",
+   "at": [
+    -25,
+    -30,
+    0
+   ],
+   "rotDeg": 4,
+   "params": {
+    "count": 10,
+    "pitch": 3.5,
+    "kind": "umbrella",
+    "size": 1.1,
+    "colours": [
+     "#f0b429",
+     "#3a86c8",
+     "#2f9e6b",
+     "#e07fb0",
+     "#7a4fb5",
+     "#d9453a"
+    ],
+    "jitter": 0.6
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/stall-row",
+   "at": [
+    -34,
+    -14,
+    0
+   ],
+   "rotDeg": -3,
+   "params": {
+    "count": 8,
+    "pitch": 3.8000000000000003,
+    "kind": "umbrella",
+    "size": 1.2,
+    "colours": [
+     "#3a86c8",
+     "#2f9e6b",
+     "#e07fb0",
+     "#7a4fb5",
+     "#d9453a",
+     "#f0b429"
+    ],
+    "jitter": 0.6
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/stall-row",
+   "at": [
+    14,
+    -34,
+    0
+   ],
+   "rotDeg": 6,
+   "params": {
+    "count": 11,
+    "pitch": 3.2,
+    "kind": "umbrella",
+    "size": 1.0,
+    "colours": [
+     "#2f9e6b",
+     "#e07fb0",
+     "#7a4fb5",
+     "#d9453a",
+     "#f0b429",
+     "#3a86c8"
+    ],
+    "jitter": 0.6
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/stall-row",
+   "at": [
+    18,
+    -20,
+    0
+   ],
+   "rotDeg": -5,
+   "params": {
+    "count": 9,
+    "pitch": 3.5,
+    "kind": "umbrella",
+    "size": 1.1,
+    "colours": [
+     "#e07fb0",
+     "#7a4fb5",
+     "#d9453a",
+     "#f0b429",
+     "#3a86c8",
+     "#2f9e6b"
+    ],
+    "jitter": 0.6
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/stall-row",
+   "at": [
+    30,
+    2,
+    0
+   ],
+   "rotDeg": 2,
+   "params": {
+    "count": 6,
+    "pitch": 3.8000000000000003,
+    "kind": "umbrella",
+    "size": 1.2,
+    "colours": [
+     "#7a4fb5",
+     "#d9453a",
+     "#f0b429",
+     "#3a86c8",
+     "#2f9e6b",
+     "#e07fb0"
+    ],
+    "jitter": 0.6
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/market-shed",
+   "at": [
+    -10,
+    30,
+    0
+   ],
+   "rotDeg": 8,
+   "params": {
+    "length": 22,
+    "depth": 7,
+    "height": 3.2,
+    "roof": "shed",
+    "goods": "sacks"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/market-shed",
+   "at": [
+    36,
+    36,
+    0
+   ],
+   "rotDeg": -6,
+   "params": {
+    "length": 18,
+    "depth": 7,
+    "height": 4.0,
+    "roof": "shed",
+    "goods": "sacks"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/market-shed",
+   "at": [
+    -34,
+    -2,
+    0
+   ],
+   "rotDeg": 12,
+   "params": {
+    "length": 16,
+    "depth": 6,
+    "height": 4.800000000000001,
+    "roof": "shed",
+    "goods": "sacks"
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/lock-up-row",
+   "at": [
+    -12,
+    -52,
+    0
+   ],
+   "params": {
+    "length": 44,
+    "depth": 3.3,
+    "height": 3.2
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/shop-block",
+   "at": [
+    12,
+    -54,
+    0
+   ],
+   "params": {
+    "width": 26,
+    "depth": 10,
+    "storeys": 2
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "office-tower/minibus",
+   "at": [
+    58,
+    -30,
+    0
+   ],
+   "params": {
+    "colour": "#e6b422",
+    "count": 3,
+    "spacing": 3.2
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/truck",
+   "at": [
+    58,
+    -10,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {},
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/motorbike",
+   "at": [
+    -5,
+    -6,
+    0
+   ],
+   "params": {},
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/bunting",
+   "at": [
+    0,
+    -10,
+    0
+   ],
+   "params": {
+    "length": 24,
+    "height": 3.2
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/string-lights",
+   "at": [
+    0,
+    10,
+    0
+   ],
+   "params": {
+    "length": 24,
+    "height": 3.4
+   },
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/water-tank",
+   "at": [
+    -60,
+    48,
+    9
+   ],
+   "params": {},
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/water-tank",
+   "at": [
+    44,
+    55,
+    10
+   ],
+   "params": {},
+   "lod": [
+    0,
+    1
+   ]
+  },
+  {
+   "type": "market-open/lamp-post",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "params": {},
+   "lod": [
+    0,
+    1
+   ]
   }
  ],
  "site": {
@@ -335,13 +665,13 @@
   "forecourt": "road",
   "trees": 0,
   "extent": [
-   160,
-   120
+   115,
+   110
   ]
  },
  "review": {
-  "rounds": 1,
+  "rounds": 2,
   "match": "rough",
-  "gaps": "Venue is just 'Market' (Balogun, Idumota, Oshodi or Mile 12 all possible) and no photo exists; layout and colours are typed from the brief and Lagos style, not any specific market."
+  "gaps": "Text-only, no specific market; irregular stalls/sheds, shop fronts, buses and clutter from brief."
  }
 }

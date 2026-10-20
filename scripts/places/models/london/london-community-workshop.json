@@ -43,16 +43,33 @@
    "storeys": 2,
    "wall": {
     "material": "metal-cladding",
-    "colour": "#a3a8ad",
+    "colour": "#9a9fa5",
     "windows": "none",
-    "plinth": 0
+    "plinth": 0,
+    "pattern": [
+     {
+      "type": "panels",
+      "faces": [
+       "front",
+       "back",
+       "left",
+       "right"
+      ],
+      "size": [
+       40,
+       0.35
+      ],
+      "colours": [
+       "#a9aeb3",
+       "#7f858b"
+      ]
+     }
+    ]
    },
    "roof": {
-    "form": "shed",
+    "form": "flat",
     "colour": "#8b9096",
-    "material": "metal-sheet",
-    "rise": 1.5,
-    "overhang": 0.4
+    "parapet": 0.8
    }
   },
   {
@@ -89,28 +106,78 @@
    "id": "glazed-entry",
    "footprint": {
     "rect": [
-     8,
-     8
+     5,
+     6
     ]
    },
    "at": [
     -19,
-    -10
+    -9
    ],
    "rotDeg": 0,
    "z0": 0,
-   "height": 7,
-   "storeys": 2,
+   "height": 9.5,
+   "storeys": 3,
    "wall": {
     "material": "glass-curtain",
-    "colour": "#4d5b66",
+    "colour": "#cfd6da",
     "windows": "curtain",
-    "windowRatio": 0.85
+    "windowRatio": 0.8,
+    "pattern": [
+     {
+      "type": "bands",
+      "colours": [
+       "#f2f2f0"
+      ],
+      "height": 0.25,
+      "proud": 0.15,
+      "floors": "all"
+     },
+     {
+      "type": "fins",
+      "faces": [
+       "front",
+       "left",
+       "right"
+      ],
+      "spacing": 1.25,
+      "colour": "#f2f2f0",
+      "depth": 0.12
+     }
+    ]
    },
    "roof": {
     "form": "flat",
-    "colour": "#5c6268",
-    "overhang": 0.6
+    "colour": "#e8e8e6",
+    "parapet": 0.2
+   }
+  },
+  {
+   "type": "mass",
+   "id": "brick-return",
+   "footprint": {
+    "rect": [
+     3,
+     6
+    ]
+   },
+   "at": [
+    -15,
+    -9
+   ],
+   "rotDeg": 0,
+   "z0": 0,
+   "height": 9.5,
+   "storeys": 3,
+   "wall": {
+    "material": "brick",
+    "colour": "#b5584a",
+    "windows": "none"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#6b6460",
+    "parapet": 0.3
    }
   },
   {
@@ -123,7 +190,7 @@
     ]
    },
    "at": [
-    34,
+    30,
     -2
    ],
    "rotDeg": 0,
@@ -131,10 +198,21 @@
    "height": 10,
    "storeys": 3,
    "wall": {
-    "material": "metal-cladding",
-    "colour": "#4a6fa0",
+    "material": "brick",
+    "colour": "#a8794f",
     "windows": "ribbon",
-    "windowRatio": 0.3
+    "windowRatio": 0.2,
+    "pattern": [
+     {
+      "type": "bands",
+      "colours": [
+       "#4a6fa0"
+      ],
+      "height": 1.4,
+      "proud": 0.1,
+      "floors": "all"
+     }
+    ]
    },
    "roof": {
     "form": "flat",
@@ -152,23 +230,22 @@
     ]
    },
    "at": [
-    18,
+    14,
     -12
    ],
    "rotDeg": 0,
    "z0": 0,
-   "height": 3,
+   "height": 2.8,
    "storeys": 1,
    "wall": {
     "material": "render",
-    "colour": "#e9e4d8",
+    "colour": "#5f7f68",
     "windows": "none"
    },
    "roof": {
-    "form": "shed",
+    "form": "flat",
     "colour": "#5f7f68",
-    "rise": 1,
-    "overhang": 0.5
+    "overhang": 0.6
    }
   },
   {
@@ -210,8 +287,8 @@
  "city": "london",
  "venueId": "london-community-workshop",
  "review": {
-  "rounds": 1,
+  "rounds": 2,
   "match": "fair",
-  "gaps": "Only one side view of the college exists; the U-shaped campus layout and courtyard are not visible, so blocks are placed from that photo only; hall cladding lacks ribbing, glazed entry is a plain curtain box, foreground greenery omitted."
+  "gaps": "Single side photo: hall is ribbed grey with parapeted flat top, gridded glazed corner box beside a brick return, brown-brick block with blue ribbon bands, green low canopy; ribbing is a coarse panel pattern, courtyard and foreground planting not visible so omitted."
  }
 }

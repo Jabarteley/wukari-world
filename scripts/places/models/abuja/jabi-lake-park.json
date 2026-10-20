@@ -34,11 +34,11 @@
   }
  ],
  "camera": {
-  "yawDeg": 14,
+  "yawDeg": -12,
   "pitchDeg": 10,
-  "fovDeg": 40,
+  "fovDeg": 60,
   "aspect": 1.333,
-  "fit": "all",
+  "fit": "building",
   "margin": 0.0
  },
  "parts": [
@@ -47,26 +47,25 @@
    "id": "promenade",
    "footprint": {
     "rect": [
-     22,
+     30,
      110
     ]
    },
    "at": [
-    0,
+    -2,
     10
    ],
    "z0": 0,
    "height": 0.5,
    "storeys": 1,
    "wall": {
-    "material": "concrete",
-    "colour": "#c9c1b2",
-    "windows": "none",
-    "windowRatio": 0
+    "material": "painted-render",
+    "colour": "#cfc3a8",
+    "windows": "none"
    },
    "roof": {
     "form": "flat",
-    "colour": "#c9c1b2"
+    "colour": "#cfc3a8"
    }
   },
   {
@@ -106,7 +105,7 @@
    "params": {
     "width": 70,
     "depth": 150,
-    "colour": "#7f9aa6",
+    "colour": "#7c968c",
     "bank": true
    }
   },
@@ -155,51 +154,9 @@
    }
   },
   {
-   "type": "kiosk",
-   "at": [
-    -12,
-    22,
-    0
-   ],
-   "params": {
-    "kind": "container",
-    "width": 4,
-    "depth": 3,
-    "height": 2.6
-   }
-  },
-  {
-   "type": "kiosk",
-   "at": [
-    -12,
-    48,
-    0
-   ],
-   "params": {
-    "kind": "container",
-    "width": 4,
-    "depth": 3,
-    "height": 2.6
-   }
-  },
-  {
-   "type": "kiosk",
-   "at": [
-    -12,
-    -30,
-    0
-   ],
-   "params": {
-    "kind": "container",
-    "width": 4,
-    "depth": 3,
-    "height": 2.6
-   }
-  },
-  {
    "type": "core/lamp",
    "at": [
-    8,
+    10,
     -25,
     0
    ],
@@ -227,13 +184,13 @@
   {
    "type": "garden-bed",
    "at": [
-    11,
+    12.5,
     0,
     0
    ],
    "params": {
-    "width": 1.5,
-    "depth": 60,
+    "width": 1.4,
+    "depth": 100,
     "hedge": true,
     "colour": "#6b8f3f"
    }
@@ -269,7 +226,7 @@
   {
    "type": "core/tree",
    "at": [
-    7,
+    3,
     -28,
     0
    ],
@@ -282,7 +239,7 @@
   {
    "type": "core/tree",
    "at": [
-    7,
+    3,
     -6,
     0
    ],
@@ -295,7 +252,7 @@
   {
    "type": "core/tree",
    "at": [
-    7,
+    3,
     16,
     0
    ],
@@ -308,7 +265,7 @@
   {
    "type": "core/tree",
    "at": [
-    7,
+    3,
     38,
     0
    ],
@@ -316,6 +273,236 @@
     "kind": "broadleaf",
     "height": 11,
     "count": 1
+   }
+  },
+  {
+   "type": "array",
+   "params": {
+    "count": 5,
+    "start": [
+     8,
+     -30,
+     0
+    ],
+    "end": [
+     8,
+     30,
+     0
+    ],
+    "of": {
+     "type": "sweep-path",
+     "params": {
+      "radius": 0.12,
+      "points": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        0,
+        6
+       ],
+       [
+        0.4,
+        0,
+        7.2
+       ],
+       [
+        1.4,
+        0,
+        7.4
+       ],
+       [
+        2.1,
+        0,
+        6.8
+       ]
+      ],
+      "curve": true,
+      "colour": "#f2f2f2"
+     }
+    }
+   }
+  },
+  {
+   "type": "core/prism",
+   "at": [
+    4,
+    -17,
+    0
+   ],
+   "params": {
+    "radius": 1.5,
+    "n": 14,
+    "height": 0.45,
+    "colour": "#bdb6a6"
+   }
+  },
+  {
+   "type": "core/prism",
+   "at": [
+    4,
+    -17,
+    0.3
+   ],
+   "params": {
+    "radius": 1.1,
+    "n": 14,
+    "height": 0.2,
+    "colour": "#8d8a82"
+   }
+  },
+  {
+   "type": "core/prism",
+   "at": [
+    4,
+    -3,
+    0
+   ],
+   "params": {
+    "radius": 1.5,
+    "n": 14,
+    "height": 0.45,
+    "colour": "#bdb6a6"
+   }
+  },
+  {
+   "type": "core/prism",
+   "at": [
+    4,
+    -3,
+    0.3
+   ],
+   "params": {
+    "radius": 1.1,
+    "n": 14,
+    "height": 0.2,
+    "colour": "#8d8a82"
+   }
+  },
+  {
+   "type": "core/prism",
+   "at": [
+    4,
+    13,
+    0
+   ],
+   "params": {
+    "radius": 1.5,
+    "n": 14,
+    "height": 0.45,
+    "colour": "#bdb6a6"
+   }
+  },
+  {
+   "type": "core/prism",
+   "at": [
+    4,
+    13,
+    0.3
+   ],
+   "params": {
+    "radius": 1.1,
+    "n": 14,
+    "height": 0.2,
+    "colour": "#8d8a82"
+   }
+  },
+  {
+   "type": "core/prism",
+   "at": [
+    4,
+    29,
+    0
+   ],
+   "params": {
+    "radius": 1.5,
+    "n": 14,
+    "height": 0.45,
+    "colour": "#bdb6a6"
+   }
+  },
+  {
+   "type": "core/prism",
+   "at": [
+    4,
+    29,
+    0.3
+   ],
+   "params": {
+    "radius": 1.1,
+    "n": 14,
+    "height": 0.2,
+    "colour": "#8d8a82"
+   }
+  },
+  {
+   "type": "core/prism",
+   "at": [
+    4,
+    45,
+    0
+   ],
+   "params": {
+    "radius": 1.5,
+    "n": 14,
+    "height": 0.45,
+    "colour": "#bdb6a6"
+   }
+  },
+  {
+   "type": "core/prism",
+   "at": [
+    4,
+    45,
+    0.3
+   ],
+   "params": {
+    "radius": 1.1,
+    "n": 14,
+    "height": 0.2,
+    "colour": "#8d8a82"
+   }
+  },
+  {
+   "type": "park-bench",
+   "at": [
+    9.5,
+    0,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "count": 3,
+    "spacing": 2.2
+   }
+  },
+  {
+   "type": "park-bench",
+   "at": [
+    9.5,
+    8,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "count": 3,
+    "spacing": 2.2
+   }
+  },
+  {
+   "type": "park-bench",
+   "at": [
+    9.5,
+    28,
+    0
+   ],
+   "rotDeg": 90,
+   "params": {
+    "count": 3,
+    "spacing": 2.2
    }
   }
  ],
@@ -328,8 +515,8 @@
   ]
  },
  "review": {
-  "rounds": 2,
-  "match": "rough",
-  "gaps": "Park has no building so the render is a wide site view, not the first-person promenade of the photo; promenade, lakeshore, shelter roofs, lamps, trees, boardwalk jetty and kiosks are placed from the photos but the twin-arm lamps, kerbed tree pits, hedge and black benches are simplified; shore outline is a straight rectangle, not the real curved headland; no OSM outline exists."
+  "rounds": 3,
+  "match": "fair",
+  "gaps": "Park has no building so the render is an overview, not the photo's first-person view; promenade now cream and widened to the water with a hedge strip, tree pits, benches at the edge; shore is still a straight line (not the curved headland), lamps/shelter/deck simplified. Promenade still renders grey-textured rather than warm cream."
  }
 }

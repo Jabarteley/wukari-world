@@ -30,12 +30,12 @@
   }
  ],
  "camera": {
-  "yawDeg": 38,
-  "pitchDeg": 6,
+  "yawDeg": 42,
+  "pitchDeg": 5,
   "fovDeg": 40,
   "aspect": 1.333,
   "fit": "building",
-  "margin": 0.1
+  "margin": 0.02
  },
  "parts": [
   {
@@ -55,26 +55,27 @@
    "storeys": 2,
    "wall": {
     "material": "red-brick",
-    "colour": "#b4905a",
+    "colour": "#b8935a",
     "windows": "punched",
-    "windowRatio": 0.1,
-    "bay": 3.6,
-    "bands": "#a8503a",
+    "windowRatio": 0.12,
+    "bay": 4.2,
+    "bands": "#a5503a",
     "plinth": 0.8,
     "cornice": true,
     "faces": {
      "front": "punched",
-     "back": "plain",
+     "back": "punched",
      "left": "plain",
      "right": "plain"
-    }
+    },
+    "windowShape": "arched"
    },
    "roof": {
-    "form": "hip",
+    "form": "gable",
     "colour": "#4a4d52",
     "material": "slate",
-    "pitch": 14,
-    "overhang": 0.5
+    "pitch": 10,
+    "overhang": 0.3
    }
   },
   {
@@ -108,32 +109,32 @@
   {
    "type": "core/canopy",
    "at": [
-    8,
-    -7.5,
+    4,
+    -7,
     0
    ],
    "params": {
     "form": "flat",
-    "width": 14,
-    "depth": 3.5,
-    "height": 3.2,
-    "thickness": 0.3,
+    "width": 16,
+    "depth": 3,
+    "height": 3.4,
+    "thickness": 0.25,
     "columns": 0,
-    "colour": "#3b3f44"
+    "colour": "#2b2e33"
    }
   },
   {
    "type": "core/sign-board",
    "at": [
-    10,
-    -5.1,
+    20,
+    -4.9,
     0
    ],
    "params": {
     "width": 14,
-    "height": 0.9,
-    "bottom": 3.4,
-    "colour": "#d8d6d0",
+    "height": 1.1,
+    "bottom": 3.6,
+    "colour": "#e4e2dc",
     "frameColour": "#444a50",
     "posts": false
    }
@@ -235,36 +236,23 @@
    }
   },
   {
-   "type": "bus-park-row",
-   "at": [
-    14,
-    -14,
-    0
-   ],
-   "params": {
-    "length": 14,
-    "kind": "taxi",
-    "density": 0.4
-   }
-  },
-  {
    "type": "core/lamp",
    "at": [
-    -18,
-    -12,
+    -8,
+    -13,
     0
    ],
    "params": {
-    "height": 8,
-    "count": 4,
-    "spacing": 12
+    "height": 10,
+    "count": 3,
+    "spacing": 16
    }
   },
   {
    "type": "core/tree",
    "at": [
-    -32,
-    24,
+    -34,
+    26,
     0
    ],
    "params": {
@@ -272,6 +260,161 @@
     "height": 10,
     "count": 3,
     "spread": 5
+   }
+  },
+  {
+   "type": "mass",
+   "id": "arched-bays",
+   "footprint": {
+    "rect": [
+     11,
+     0.8
+    ]
+   },
+   "at": [
+    21,
+    -4.8
+   ],
+   "height": 3.6,
+   "storeys": 1,
+   "wall": {
+    "material": "red-brick",
+    "colour": "#b8935a",
+    "windows": "punched",
+    "windowRatio": 0.45,
+    "windowShape": "arched",
+    "bay": 3.0,
+    "plinth": 0.3,
+    "faces": {
+     "front": "punched",
+     "back": "plain",
+     "left": "plain",
+     "right": "plain"
+    },
+    "bands": "#a5503a"
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#a5503a"
+   }
+  },
+  {
+   "type": "core/lamp",
+   "at": [
+    -24,
+    -6.5,
+    0
+   ],
+   "params": {
+    "height": 1.1,
+    "count": 14,
+    "spacing": 1.0
+   }
+  },
+  {
+   "type": "mass",
+   "id": "retaining-wall",
+   "footprint": {
+    "rect": [
+     14,
+     1.2
+    ]
+   },
+   "at": [
+    -27,
+    -6.5
+   ],
+   "height": 4,
+   "storeys": 1,
+   "wall": {
+    "material": "brick",
+    "colour": "#b39a62",
+    "windows": "none",
+    "windowRatio": 0,
+    "plinth": 0.2
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#a5503a"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "ramp",
+   "footprint": {
+    "rect": [
+     14,
+     3
+    ]
+   },
+   "at": [
+    -27,
+    -8.6
+   ],
+   "height": 1.5,
+   "storeys": 1,
+   "wall": {
+    "material": "concrete",
+    "colour": "#9d978c",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "shed",
+    "colour": "#8f8a80",
+    "pitch": 6
+   }
+  },
+  {
+   "type": "mass",
+   "id": "footbridge",
+   "footprint": {
+    "rect": [
+     2.6,
+     46
+    ]
+   },
+   "at": [
+    -22,
+    30
+   ],
+   "height": 0.9,
+   "storeys": 1,
+   "wall": {
+    "material": "metal-cladding",
+    "colour": "#6e7479",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#4a4d52"
+   }
+  },
+  {
+   "type": "mass",
+   "id": "vent",
+   "footprint": {
+    "rect": [
+     26,
+     0.8
+    ]
+   },
+   "at": [
+    0,
+    2
+   ],
+   "height": 7.0,
+   "storeys": 1,
+   "wall": {
+    "material": "brick",
+    "colour": "#a5503a",
+    "windows": "none",
+    "windowRatio": 0
+   },
+   "roof": {
+    "form": "flat",
+    "colour": "#4a4d52"
    }
   }
  ],
@@ -286,6 +429,6 @@
  "review": {
   "rounds": 2,
   "match": "fair",
-  "gaps": "Station building is a plain brick box with a hipped roof: no arched ground-floor shopfront openings, red brick arch dressings or distinct end gables; no cycle racks, footbridge or the real forecourt road layout; platforms, island and tracks are straight generic strips with only one canopy; the exact building outline is estimated because the OSM match is only a platform roof."
+  "gaps": "Two-storey yellow-stock block with red bands, dark canopy, right fascia board, retaining wall and ramp, cycle racks, kerb lamps and footbridge added; ground-floor arched bays with red voussoirs and the upper small paired arched windows are only approximate, brick tone reads lighter than the photo, parked cars dropped; OSM match is only a platform roof so the outline is estimated."
  }
 }

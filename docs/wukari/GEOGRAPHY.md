@@ -1,6 +1,8 @@
 # Geography and reproducible workflow
 
-**Local PBF milestone:** the real Nigeria download has now been validated and Wukari LGA extracted/imported. See [local workflow and limitations](LOCAL_PBF.md) and [updated coverage](LOCAL_PBF_COVERAGE_REPORT.md). FUW identity/extent remains unsupported; the historical acquisition status below describes the earlier cloud milestones.
+**Phase 7:** the [geographic gameplay prototype and FUW location review](PHASE7.md) now provide a playable town study and a separately labelled, non-spawning FUW vicinity from published research coordinates. No surveyed campus boundary or public-access claim is established. The earlier milestone workflow/status below is preserved as historical context.
+
+**Local PBF milestone (Phase 6):** the real Nigeria download was validated and Wukari LGA extracted/imported. See [local workflow and limitations](LOCAL_PBF.md) and [coverage](LOCAL_PBF_COVERAGE_REPORT.md). FUW identity/extent was unsupported at that milestone; the acquisition status below describes the earlier cloud milestones.
 
 ## Distinct extents
 

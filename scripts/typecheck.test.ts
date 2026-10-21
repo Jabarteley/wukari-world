@@ -14,6 +14,7 @@ function fixture(t: TestContext, compiler: string, baseline: Record<string, Reco
   mkdirSync(join(root, 'scripts'));
   mkdirSync(join(root, 'tsconfig'));
   mkdirSync(join(root, 'node_modules/vue-tsc/bin'), { recursive: true });
+  writeFileSync(join(root, 'package.json'), JSON.stringify({ type: 'module' }));
   const source = new URL('./typecheck.ts', import.meta.url);
   const target = join(root, 'scripts/typecheck.ts');
   copyFileSync(source, target);
@@ -38,7 +39,8 @@ test('typecheck wrapper cannot declare a compiler terminated by signal clean', t
   const run = fixture(t, "process.kill(process.pid, 'SIGTERM');");
   const result = run();
   assert.equal(result.status, 1);
-  assert.match(result.stderr, /compiler did not complete \(SIGTERM\)/);
+  // Windows TerminateProcess reports exit 1 instead of retaining POSIX signal metadata.
+  assert.match(result.stderr, process.platform === 'win32' ? /compiler exited 1 without readable TypeScript diagnostics/ : /compiler did not complete \(SIGTERM\)/);
   assert.doesNotMatch(result.stdout, /Typecheck clean/);
 });
 
@@ -75,6 +77,19 @@ test('typecheck wrapper still rejects new owned TypeScript errors', t => {
   assert.equal(result.status, 1);
   assert.match(result.stderr, /new.test.ts:1:1 TS2532/);
   assert.doesNotMatch(result.stdout, /Typecheck clean/);
+});
+
+test('typecheck wrapper reports Windows CRLF diagnostics without treating them as unreadable', t => {
+  const run = fixture(t, `
+    if (process.argv.at(-1).endsWith('test.json')) {
+      process.stdout.write('src/wukari/diagnostic.test.ts(2,3): error TS2304: Missing symbol.\\r\\n');
+      process.exit(2);
+    }
+  `);
+  const result = run();
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /diagnostic.test.ts:2:3 TS2304/);
+  assert.doesNotMatch(result.stderr, /without readable TypeScript diagnostics/);
 });
 
 test('typecheck wrapper accepts all five terminal clean compiler runs', t => {

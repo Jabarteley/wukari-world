@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "focusedGeographicVueTypecheck": "passed: all src/wukari TS/Vue and scripts/wukari TS under strict project options",
+  "fullProjectTypecheck": "incomplete; not a clean result",
+  "attempts": [
+    {"heapMiB":6144,"result":"interrupted when the active tool session ended; no terminal compiler result"},
+    {"heapMiB":3584,"result":"owned wrapper/compiler stopped after sustained resource pressure; terminal wrapper exit -1. No full-project pass claimed."}
+  ],
+  "diagnosticInvestigation": [
+    {"source":"scripts/typecheck.ts: diagnostic parser", "finding":"The anchored regex did not consume trailing CR from Windows CRLF output. Diagnostics could be misclassified as unreadable. Fixed by removing only terminal CR per line; regression test preserves nonzero failures."},
+    {"source":"src/festivals/client.ts:22 and src/world-events/client.ts:13", "finding":"Reproduced with the engine's ES2023-only, types-empty compiler context: TS2304 fetch, with TS7006 on untyped response. Browser-owned modules have DOM fetch types in the client project; these are compiler-context/import-ownership findings, not established runtime fetch failures."},
+    {"source":"server/accounts/token.ts:87", "finding":"Exact TextDecoder constructor expression reproduced independently with lib ES2023 and installed Cloudflare Worker types: TS2345 because that library's TextDecoderConstructorOptions requires ignoreBOM as well as fatal. DOM/Node option types differ. Full isolated token-file compilation traverses a large server/game type graph and exhausted its default roughly 4 GiB heap; not treated as a successful check."},
+    {"source":"scripts/guard-joinallworld-package.test.mjs:13", "finding":"Exact fixture signature style reproduced with strict checkJs: TS7006 parameter t implicitly any. Server config includes scripts/**/* and excludes .test.js/.test.ts but not .test.mjs; wrapper ownership classifies .test.mjs as tests. This is a separate test inclusion/ownership issue for follow-up, not changed or hidden in this feature."}
+  ],
+  "policy":"No baseline increases, assertion disabling, global skip, type-ignore or unrelated runtime source changes. Tiny diagnostic reproductions explain installed type contracts and do not certify the complete modules or project. Full checker remains an open validation gate.",
+  "focusedTests": {"total":52,"pass":52,"fail":0,"note":"An intermediate concurrent run had two 20-second wrapper fixture timeouts under full-compiler contention. Repeated without contention passes with identical timeouts/assertions."}
+}

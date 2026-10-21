@@ -3,11 +3,12 @@ import { mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { test } from 'node:test';
+import { fileURLToPath } from 'node:url';
 import { verifyBoundary } from '../../scripts/wukari/verify-boundary.ts';
 import { boundaryContext, boundsOf, discoveryQuery } from '../../scripts/wukari/acquire.ts';
 import { fromWorld, rings, selectBoundary, toWorld } from './geography.ts';
 
-const directory = new URL('../../data/wukari/verified/', import.meta.url).pathname;
+const directory = fileURLToPath(new URL('../../data/wukari/verified/', import.meta.url));
 test('committed real boundary verifies offline with source attribution and honest missing-campus state', async () => {
   await verifyBoundary(directory);
   const boundary = selectBoundary(JSON.parse(await readFile(join(directory, 'wukari-adm2.geojson'), 'utf8')));

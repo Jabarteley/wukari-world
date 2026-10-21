@@ -2,13 +2,13 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { resolve } from 'node:path';
+import { resolve, sep } from 'node:path';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const mode = process.env.WUKARI_PREVIEW_MODE ?? 'boundary-context';
 if (!['boundary-context', 'foundation', 'offline'].includes(mode)) throw new Error('WUKARI_PREVIEW_MODE must be boundary-context, foundation or offline');
 const offline = resolve(process.env.WUKARI_OFFLINE_DIR ?? `${root}.cache/wukari/offline`);
-if (mode === 'offline' && !offline.startsWith(resolve(root, '.cache/wukari') + '/')) throw new Error('Offline directory must be under .cache/wukari');
+if (mode === 'offline' && !offline.startsWith(resolve(root, '.cache/wukari') + sep)) throw new Error('Offline directory must be under .cache/wukari');
 export default defineConfig({
   root: `${root}src/wukari/preview`,
   plugins: [vue(), {

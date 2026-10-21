@@ -1,0 +1,922 @@
+[
+  {
+    "id": "way/40705418",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/40705519",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/40705531",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/40705534",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/40705554",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/80346623",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/155779124",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/181916667",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/181921071",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/194607669",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/200133620",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/200133621",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/200134843",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/200187487",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/200187510",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/200187514",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/203329815",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/203331550",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/203331557",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/206496234",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/221697720",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/236229875",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/236545237",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/279417557",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/279417566",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/279417584",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/279417623",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/279724646",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/279776171",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/279776200",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/279776235",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/279776275",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/289099117",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/294712245",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/375561474",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/376258662",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/376260452",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/376260453",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/376262668",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/380584408",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/380590167",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/380592049",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/380729155",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/380729995",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/476133201",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/476428322",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/476580937",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/477320960",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/477640170",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/477640175",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/477640189",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/477656249",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/477656250",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/477656251",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/477656253",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/477656259",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/477656268",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/477656278",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/477656287",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/477656299",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/477697167",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/478067176",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/478067188",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/478067207",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/478279307",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/478279308",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/478279320",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/478279325",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/478279335",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/478279336",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/478279353",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/478988682",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/479044296",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/479283686",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/480065906",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/480065923",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/483202696",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/486807666",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/487638900",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/578355444",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/578355445",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/579883007",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/579883008",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/579883010",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/579883014",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/579883016",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/579883542",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/579884188",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/579884190",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/579884191",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/584865467",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/587124358",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/692905405",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/738587135",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/740582475",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/819188038",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/852468376",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/852469533",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/852476030",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/852479557",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/852480633",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/852480902",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1006320127",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1006320128",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1006320130",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1006322508",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1006322510",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1010992816",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1010992820",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1011002392",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1011140063",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1011141830",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1011141833",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1011141836",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1011141843",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1011141847",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1011141894",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1011144945",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1011145017",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1011214577",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1011677838",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1011869588",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1011869647",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1012140213",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1012140836",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1012140837",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1012140838",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1012343272",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1012343273",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1013524230",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1013524694",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1014241670",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1014241679",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1015813971",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1016236241",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1017893605",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1017893948",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020439832",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020439833",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020440491",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020440492",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020440572",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020441186",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020444485",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020444903",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020447272",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020452120",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020452121",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020452607",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020452608",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020455152",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020455155",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020456200",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020456201",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020456202",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020456478",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020457423",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020457424",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020458100",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020619305",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020621989",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020621991",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020635769",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020636769",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020640679",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020641864",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020644150",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020738258",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020738261",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020738262",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020738263",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1020738390",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021133716",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021133717",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021133718",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021133727",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021133728",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021133831",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021133834",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021133867",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021133878",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021137341",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021137426",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021137442",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021137470",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021137497",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021961033",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021961067",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021961070",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021966036",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021966051",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021966092",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021966134",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021966202",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021966203",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021966206",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021966229",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1021967753",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1022141575",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1026716026",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1026795898",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1026795903",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1027354455",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1027354461",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1028935988",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1029482071",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1029482072",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1029565289",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1029577268",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1029577271",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1029577272",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1030280387",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1031863615",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1031865100",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1031865101",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1031865102",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1036588731",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1036588732",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1037967273",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1037967274",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1037967275",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1040343935",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1040655472",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1040655479",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1040655483",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1047399065",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1047409690",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1364541693",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1364845411",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  },
+  {
+    "id": "way/1463121990",
+    "reason": "Error: Crosses or lies outside pinned LGA; preserved in complete extract"
+  }
+]

@@ -1,6 +1,6 @@
 /** Single-file, hash-checked transfer into the existing offline importer. No network or archive extraction. */
 import { readFileSync, writeFileSync, mkdirSync, statSync } from 'node:fs';
-import { resolve, dirname } from 'node:path';
+import { resolve, dirname, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { importOffline, sha256, validateReceipt, type Receipt } from './offline.ts';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
@@ -65,7 +65,7 @@ export function receive(input: string, expectedHash: string, output: string, cam
     if (receipt.mode !== 'source-data')
         throw new Error('Synthetic source refused');
     const out = resolve(output), cache = resolve(root, '.cache/wukari');
-    if (!out.startsWith(cache + '/'))
+    if (!out.startsWith(cache + sep))
         throw new Error('Receive output must be a new directory under .cache/wukari');
     mkdirSync(out, { recursive: false });
     writeFileSync(resolve(out, 'transfer.json'), bytes, { flag: 'wx' });

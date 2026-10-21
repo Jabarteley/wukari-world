@@ -1,0 +1,5 @@
+# These source snapshots are verified by exact byte count and SHA-256.
+data/wukari/verified/** -text
+scripts/geo/sources/** -text
+docs/wukari/FUW_COVERAGE_REPORT.md text eol=lf
+docs/wukari/LOCAL_PBF_COVERAGE_REPORT.md text eol=lf

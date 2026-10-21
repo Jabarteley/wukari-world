@@ -2,11 +2,12 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { parseOsm, wayPositions, type Dataset } from '../../src/wukari/geography.ts';
+import { parseOsm, wayPositions, indexNodes, type Dataset } from '../../src/wukari/geography.ts';
 import { sha256 } from './offline.ts';
 export function coverage(dataset: Dataset) {
     const { elements } = parseOsm({ version: 0.6, elements: dataset.osm.elements });
-    const ways = elements.filter(e => e.type === 'way'), complete = ways.filter(w => wayPositions(w, elements) !== null), roads = complete.filter(w => w.tags?.highway), buildings = complete.filter(w => w.tags?.building && w.tags.building !== 'no');
+    const nodes = indexNodes(elements);
+    const ways = elements.filter(e => e.type === 'way'), complete = ways.filter(w => wayPositions(w, elements, nodes) !== null), roads = complete.filter(w => w.tags?.highway), buildings = complete.filter(w => w.tags?.building && w.tags.building !== 'no');
     const graph = new Map<number, Set<number>>();
     for (const road of roads)
         for (let i = 1; i < (road.nodes?.length ?? 0); i++) {

@@ -2,7 +2,7 @@
 /** Offline, checksum-gated import. Never changes the city registry or source inputs. */
 import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { dirname, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { buildDataset, contains, rings } from '../../src/wukari/geography.ts';
 import { checkedBytes, SOURCE_CONFIG } from './sources.ts';
@@ -58,7 +58,7 @@ export function run(args: string[]): void {
   };
   const output = resolve(option('--out') ?? resolve(root, '.cache/wukari'));
   // Dedicated output folder; never overwrite source inputs or arbitrary existing directories.
-  if (output !== resolve(root, '.cache/wukari') && !output.startsWith(resolve(root, '.cache/wukari') + '/')) throw new Error('--out must stay under .cache/wukari');
+  if (output !== resolve(root, '.cache/wukari') && !output.startsWith(resolve(root, '.cache/wukari') + sep)) throw new Error('--out must stay under .cache/wukari');
   mkdirSync(output, { recursive: true });
   for (const [name, bytes] of [['boundary.source.json', boundaryBytes], ['osm.source.json', osmBytes], ['dataset.json', Buffer.from(JSON.stringify({ ...dataset, provenance }, null, 2) + '\n')]] as const) {
     const path = resolve(output, name); writeFileSync(`${path}.tmp`, bytes); renameSync(`${path}.tmp`, path);

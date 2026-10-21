@@ -1,17 +1,19 @@
+import { createAvatar } from './avatar.ts';
+import { defaultAppearance, defaultSettings, type Appearance, type Settings } from './appearance.ts';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { advance, bearingOf, type Study, type Motion, type Point } from './model.ts';
 
 export interface Status { mode: string; position: Point; bearing: number; speed: number; distance: number; blocked: boolean; draws: number; triangles: number; fps: number }
-export interface PlayScene { dispose(): void; enter(): boolean; explore(): void; reset(): void; key(key: string, pressed: boolean): void; overview(): void; pause(value: boolean): void; status(): Status }
+export interface PlayScene { dispose(): void; enter(): boolean; explore(): void; reset(): void; key(key: string, pressed: boolean): void; overview(): void; pause(value: boolean): void; status(): Status; appearance(value: Appearance): void; settings(value: Settings): void }
 
 /** Lightweight stylised extrusion of exact recorded footprints; dimensions/terrain illustrative. */
 export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasElement, report: (s: Status) => void): PlayScene {
   const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'low-power' });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5)); renderer.setClearColor('#cee0dc');
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  host.append(renderer.domElement); renderer.domElement.tabIndex = 0; renderer.domElement.setAttribute('aria-label', 'Wukari geographic 3D view. Drag to rotate; use movement controls after entering the demo.');
+  host.append(renderer.domElement); renderer.domElement.tabIndex = 0; renderer.domElement.setAttribute('aria-label', 'Wukari geographic 3D view. Drag to rotate; use movement controls after pressing Play.');
   const scene = new THREE.Scene(); scene.fog = new THREE.Fog('#cee0dc', 180, 800);
   const camera = new THREE.PerspectiveCamera(48, 1, .1, 2400);
   const controls = new OrbitControls(camera, renderer.domElement); controls.enableDamping = true;
@@ -64,20 +66,11 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
     const marker = new THREE.Mesh(new THREE.CylinderGeometry(1.1, 1.1, 14, 12), new THREE.MeshBasicMaterial({ color: '#dc773e' }));
     marker.position.set(candidate.point.x, 7, candidate.point.z); world.add(marker);
   }
-  const avatar = new THREE.Group(); avatar.visible = false; scene.add(avatar);
-  const part = (geometry: THREE.BufferGeometry, color: string, x: number, y: number, z: number) => {
-    const mesh = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({ color })); mesh.position.set(x, y, z); avatar.add(mesh); return mesh;
-  };
-  part(new THREE.CapsuleGeometry(.24, .48, 4, 10), '#126c67', 0, 1.03, 0);
-  part(new THREE.SphereGeometry(.21, 12, 8), '#895e42', 0, 1.67, 0);
-  part(new THREE.SphereGeometry(.225, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2), '#edb752', 0, 1.76, 0);
-  const leftLeg = part(new THREE.CapsuleGeometry(.10, .45, 3, 8), '#263f4d', -.13, .40, 0);
-  const rightLeg = part(new THREE.CapsuleGeometry(.10, .45, 3, 8), '#263f4d', .13, .40, 0);
-  const leftArm = part(new THREE.CapsuleGeometry(.075, .4, 3, 8), '#126c67', -.32, 1.05, 0);
-  const rightArm = part(new THREE.CapsuleGeometry(.075, .4, 3, 8), '#126c67', .32, 1.05, 0);
-  part(new THREE.CircleGeometry(.38, 16), '#59695b', 0, .035, 0).rotation.x = -Math.PI / 2;
+  let person = createAvatar(defaultAppearance);
+  const avatar = new THREE.Group(); avatar.visible=false; avatar.add(person.root); scene.add(avatar);
+  let preferences = {...defaultSettings};
   let state: Motion = { ...(study.spawn?.point ?? { x: 0, z: 0 }), yaw: 0, moving: false, sprinting: false, blocked: false, distance: 0 };
-  let walking = false, paused = false, followYaw = 0, followPitch = .12, cameraDistance = 10, down: { x: number; y: number; id: number } | null = null;
+  let walking = false, paused = false, followYaw = 0, followPitch = .12, cameraDistance = 5, down: { x: number; y: number; id: number } | null = null;
   const keys = new Set<string>();
   let lastTime = 0, frames = 0, fps = 0, measureAt = 0, publishedAt = 0;
   const status = (): Status => ({ mode: walking ? (state.sprinting ? 'Sprinting' : state.moving ? 'Walking' : 'Standing') : 'Exploration · no character', position: { x: state.x, z: state.z }, bearing: bearingOf(camera.getWorldDirection(new THREE.Vector3())),
@@ -89,7 +82,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
     const road = study.roads.find(r => r.id === study.spawn?.roadId), index = road?.nodes.indexOf(study.spawn?.nodeId ?? -1) ?? -1;
     const next = index >= 0 ? road?.points[index + 1] ?? road?.points[index - 1] : undefined;
     followYaw = next ? Math.atan2(state.x - next.x, state.z - next.z) : 0;
-    followPitch = .12; cameraDistance = 10; if (walking) camera.position.set(state.x + Math.sin(followYaw)*10, 4.3, state.z + Math.cos(followYaw)*10);
+    followPitch = .12; cameraDistance = 5; if (walking) camera.position.set(state.x + Math.sin(followYaw)*5, 3.2, state.z + Math.cos(followYaw)*5);
     renderer.domElement.focus();
   };
   const enter = () => { if (!study.spawn?.eligible) return false; walking = true; reset(); controls.enabled = false; avatar.visible = true; renderer.domElement.focus(); return true; };
@@ -99,9 +92,9 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   const keyUp = (e: KeyboardEvent) => key(e.key, false);
   const clear = () => { keys.clear(); down = null; };
   const pointerDown = (e: PointerEvent) => { if (!walking) return; renderer.domElement.setPointerCapture(e.pointerId); down = { x: e.clientX, y: e.clientY, id: e.pointerId }; };
-  const pointerMove = (e: PointerEvent) => { if (!walking || !down || down.id !== e.pointerId) return; followYaw -= (e.clientX - down.x) * .006; followPitch = THREE.MathUtils.clamp(followPitch + (e.clientY - down.y) * .004, .12, .85); down = { x: e.clientX, y: e.clientY, id: e.pointerId }; };
+  const pointerMove = (e: PointerEvent) => { if (!walking || !down || down.id !== e.pointerId) return; followYaw -= (e.clientX - down.x) * .006 * preferences.sensitivity; followPitch = THREE.MathUtils.clamp(followPitch + (e.clientY - down.y) * .004 * preferences.sensitivity, .12, .85); down = { x: e.clientX, y: e.clientY, id: e.pointerId }; };
   const pointerUp = () => { down = null; };
-  const wheel = (e: WheelEvent) => { if (walking) { e.preventDefault(); cameraDistance = THREE.MathUtils.clamp(cameraDistance + e.deltaY * .01, 5, 19); } };
+  const wheel = (e: WheelEvent) => { if (walking) { e.preventDefault(); cameraDistance = THREE.MathUtils.clamp(cameraDistance + e.deltaY * .01, 3, 19); } };
   const contextMenu = (e: Event) => e.preventDefault();
   window.addEventListener('keydown', keyDown); window.addEventListener('keyup', keyUp); window.addEventListener('blur', clear); document.addEventListener('visibilitychange', clear);
   const canvas = renderer.domElement;
@@ -121,14 +114,15 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   renderer.setAnimationLoop(time => {
     const dt = lastTime ? Math.min((time - lastTime) / 1000, .05) : 0; lastTime = time;
     if (walking) {
-      followYaw += ((keys.has('q') ? 1 : 0) - (keys.has('e') ? 1 : 0)) * dt * 1.6;
+      followYaw += ((keys.has('q') ? 1 : 0) - (keys.has('e') ? 1 : 0)) * dt * 1.6 * preferences.sensitivity;
       const input = { x: (keys.has('d') || keys.has('arrowright') ? 1 : 0) - (keys.has('a') || keys.has('arrowleft') ? 1 : 0), z: (keys.has('s') || keys.has('arrowdown') ? 1 : 0) - (keys.has('w') || keys.has('arrowup') ? 1 : 0) };
       state = advance(state, paused ? { x: 0, z: 0 } : input, followYaw, keys.has('shift'), dt, study);
-      avatar.position.set(state.x, 0, state.z); avatar.rotation.y = state.yaw;
-      const swing = state.moving ? Math.sin(state.distance * 5) * .48 : 0;
-      leftLeg.rotation.x = swing; rightLeg.rotation.x = -swing; leftArm.rotation.x = -swing; rightArm.rotation.x = swing;
+      avatar.position.set(state.x, 0, state.z);
+      const turn = Math.atan2(Math.sin(state.yaw-avatar.rotation.y),Math.cos(state.yaw-avatar.rotation.y));
+      avatar.rotation.y += turn*(1-Math.exp(-dt*14));
+      person.animate(time/1000,state.distance,state.moving,state.sprinting,dt);
       target.set(state.x, 1.1, state.z);
-      offset.set(Math.sin(followYaw) * cameraDistance, 2 + followPitch * cameraDistance, Math.cos(followYaw) * cameraDistance);
+      offset.set(Math.sin(followYaw) * cameraDistance, 1 + followPitch * cameraDistance, Math.cos(followYaw) * cameraDistance);
       // Camera-to-target ray shortens the follow arm before an extruded footprint.
       ray.set(target, offset.clone().normalize()); ray.far = offset.length();
       const hit = buildings ? ray.intersectObject(buildings, false)[0] : undefined;
@@ -142,10 +136,13 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
       report(status());
     }
   });
-  return { enter, explore, reset, overview, key, status, pause(value) { paused = value; clear(); }, dispose() {
-    renderer.setAnimationLoop(null); observer.disconnect(); controls.dispose();
+  return { enter, explore, reset, overview, key, status,
+    appearance(value) { person.dispose(); person=createAvatar(value);avatar.add(person.root); },
+    settings(value) { preferences={...value}; renderer.setPixelRatio(Math.min(devicePixelRatio,value.quality==='low'?1:value.quality==='high'?2:1.5)); resize(); },
+    pause(value) { paused = value; clear(); }, dispose() {
+    renderer.setAnimationLoop(null); person.dispose(); observer.disconnect(); controls.dispose();
     window.removeEventListener('keydown', keyDown); window.removeEventListener('keyup', keyUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear);
     canvas.removeEventListener('pointerdown', pointerDown); canvas.removeEventListener('pointermove', pointerMove); canvas.removeEventListener('pointerup', pointerUp); canvas.removeEventListener('pointercancel', pointerUp); canvas.removeEventListener('lostpointercapture', pointerUp); canvas.removeEventListener('wheel', wheel); canvas.removeEventListener('contextmenu', contextMenu);
-    scene.traverse(o => { if (o instanceof THREE.Mesh || o instanceof THREE.LineSegments) { o.geometry.dispose(); const materials = Array.isArray(o.material) ? o.material : [o.material]; materials.forEach(m => m.dispose()); } }); renderer.dispose(); canvas.remove();
+    scene.traverse(o => { if (o instanceof THREE.Mesh || o instanceof THREE.LineSegments) { o.geometry.dispose(); const materials = Array.isArray(o.material) ? o.material : [o.material]; materials.forEach(m => m.dispose()); } }); renderer.dispose(); renderer.forceContextLoss(); canvas.remove();
   } };
 }

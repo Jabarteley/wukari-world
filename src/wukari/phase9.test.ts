@@ -20,3 +20,11 @@ test('traffic follows original shared-node graph, turns, yields, and keeps every
  assert(turns>1);assert(distance>50);assert(vehicleKinds.every(k=>kinds.has(k)),JSON.stringify([...kinds]));assert(sim.vehicles.filter(v=>v.kind==='motorcycle').length>sim.vehicles.filter(v=>v.kind==='trailer').length);
  for(let i=0;i<100;i++)sim.step(.05,{x:0,z:0},0);assert.equal(sim.vehicles.length,0);
 });
+
+import {sceneryPositions} from './play/infrastructure.ts';
+import {buildingCollision,lineDistance} from './play/model.ts';
+test('illustrative furniture stays outside road navigation and original footprints; cables retain overhead clearance',()=>{
+ const {props,wires}=sceneryPositions(town);for(const kind of ['pole','tree','shelter','sign'])assert(props.some(p=>p.kind===kind),kind);
+ for(const p of props){assert(p.illustrative);assert(!buildingCollision(p,town.buildings,p.radius));assert(town.roads.every(r=>lineDistance(p,r.points)>p.radius+2.5));}
+ for(const wire of wires)for(const b of town.buildings)assert(footprintClearance(wire.a,wire.b,b.points)>1);
+});

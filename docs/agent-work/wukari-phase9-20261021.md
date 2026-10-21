@@ -18,3 +18,8 @@
 
 - Source-node traffic graph, safe interval eligibility, original instanced five-type fleet with animated wheels/riders. Explicit density control, source-centerline positions and one-way filtering. Pose checks plus substeps prevent building penetration; vehicle spacing/player obstruction implemented.
 - Three-minute deterministic simulation3/3phase9 tests passed before introductory source-road spawn adjustment; final full checks will rerun. Browser records motorcycles and increasing vehicle distance; short captured-frame playback stored. First screenshot placed traffic out of view; initial motorcycle now uses a valid road ahead of the start camera. Next9C disclosed furniture and safe offsets.
+
+## 9C checkpoint
+
+- Original instanced poles/combined lights/trees/shelters/signs and static sagging wires, all explicitly illustrative. Placement test asserts clearance from every source road/footprint, no mapped towers relocated. FUW receives no generated furniture. Phase9 tests4/4 and strict types pass. Reviewed screenshot shows motorcycle, poles/wires and pitched roofs.
+- 9D schema/source changes in progress but excluded from9C commit; preserve stage boundaries. Next geometry wardrobes and fitted shoe lasts, then full loaded performance/browser acceptance.

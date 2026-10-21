@@ -1,3 +1,4 @@
+import {infrastructure} from './infrastructure.ts';
 import {trafficSimulation} from './traffic.ts';
 import {vehiclesView} from './vehicles.ts';
 import {roadLabels} from './labels.ts';
@@ -32,7 +33,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   const world = new THREE.Group(); scene.add(world);scene.add(fleet.group);
   const ground = new THREE.Mesh(new THREE.PlaneGeometry(study.halfSize * 2, study.halfSize * 2), new THREE.MeshLambertMaterial({ color: '#d8c7a3' }));
   ground.rotation.x = -Math.PI / 2; ground.position.y = -.08; world.add(ground);
-  const buildings=architecture(study);scene.add(buildings.group);const labels=roadLabels(study);scene.add(labels.group);
+  const buildings=architecture(study);scene.add(buildings.group);const labels=roadLabels(study);scene.add(labels.group);const scenery=infrastructure(study);scene.add(scenery.group);
   const roadVertices: number[] = [], edges: number[] = [],roadColors:number[]=[];
   const roadTags=new Map(study.roads.map(r=>[r.id,r.tags]));
   const surfaces=study.roadSurface??roadSurfaces(study).pieces,caps=new Map<string,{x:number;z:number;radius:number;color:THREE.Color}>();
@@ -125,6 +126,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
       desired.copy(target).add(offset); camera.position.lerp(desired, 1 - Math.exp(-dt * 12)); camera.lookAt(target);
     } else controls.update();
     if(walking){trafficClock+=dt;while(trafficClock>=.05){traffic.step(.05,state,study.id==='town'?({off:0,light:8,normal:16,busy:24}[preferences.traffic]):0);trafficClock-=.05;}}fleet.update(traffic.vehicles);
+    scenery.update(walking?state:{x:camera.position.x,z:camera.position.z},preferences.quality==='low'?130:preferences.quality==='high'?350:240);
     buildings.update(walking?state:{x:camera.position.x,z:camera.position.z},preferences.quality==='low'?100:preferences.quality==='high'?260:170);
     const renderStart=performance.now();renderer.render(scene,camera);
     if(sample){sample.push(frameMs,renderStart-updateStart,performance.now()-renderStart);if(time-sampleStart>=20000){const gl=renderer.getContext(),ext=gl.getExtension('WEBGL_debug_renderer_info'),size=new THREE.Vector2();renderer.getDrawingBufferSize(size);let bytes=0;const seen=new Set<ArrayBufferLike>();scene.traverse(o=>{if(o instanceof THREE.Mesh||o instanceof THREE.LineSegments){for(const a of (Object.values(o.geometry.attributes) as THREE.BufferAttribute[])){const buffer=a.array.buffer;if(!seen.has(buffer)){seen.add(buffer);bytes+=buffer.byteLength;}}const index=o.geometry.index;if(index&&!seen.has(index.array.buffer)){seen.add(index.array.buffer);bytes+=index.array.buffer.byteLength;}}});const result={...sample.result(),quality:preferences.quality,renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),viewport:[host.clientWidth,host.clientHeight],buffer:[size.x,size.y],dpr:devicePixelRatio,draws:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometryBufferBytes:bytes,estimatedTextureBytes:textureBytes(scene),resources:{...renderer.info.memory,programs:renderer.info.programs?.length??0},gpuTimeMs:null,note:'20-second foreground browser sample; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates.'};sample=undefined;sampleResolve?.(result);sampleResolve=undefined;}}
@@ -140,7 +142,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
     appearance(value) { person.dispose(); person=createAvatar(value);avatar.add(person.root); },
     settings(value) { preferences={...value};const preset=graphics[value.quality];renderer.setPixelRatio(Math.min(devicePixelRatio,preset.pixelCap)*preset.scale);camera.far=walking?preset.far:2400;camera.updateProjectionMatrix();playFog.far=preset.far;playFog.near=preset.far*.5;centerLines.visible=preset.lines;resize(); },
     pause(value) { paused=value;clear();lastTime=0;if(value)renderer.render(scene,camera);report(status()); }, dispose() {
-    sampleResolve?.({...sample!.result(),cancelled:true});sampleResolve=undefined;sample=undefined;renderer.setAnimationLoop(null); labels.dispose();person.dispose(); observer.disconnect(); controls.dispose();
+    sampleResolve?.({...sample!.result(),cancelled:true});sampleResolve=undefined;sample=undefined;renderer.setAnimationLoop(null); labels.dispose();scenery.dispose();person.dispose(); observer.disconnect(); controls.dispose();
     window.removeEventListener('keydown', keyDown); window.removeEventListener('keyup', keyUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear);
     canvas.removeEventListener('pointerdown', pointerDown); canvas.removeEventListener('pointermove', pointerMove); canvas.removeEventListener('pointerup', pointerUp); canvas.removeEventListener('pointercancel', pointerUp); canvas.removeEventListener('lostpointercapture', pointerUp); canvas.removeEventListener('wheel', wheel); canvas.removeEventListener('contextmenu', contextMenu);
     scene.traverse(o => { if (o instanceof THREE.Mesh || o instanceof THREE.LineSegments) { o.geometry.dispose(); const materials = Array.isArray(o.material) ? o.material : [o.material]; materials.forEach(m => m.dispose()); } }); renderer.dispose(); renderer.forceContextLoss(); canvas.remove();

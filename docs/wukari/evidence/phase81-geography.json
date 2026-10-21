@@ -1,0 +1,567 @@
+{
+  "sourceSha256": "9dece439bd87b8f4883d7e42f3704275bf1102f98310d6e0cb09b181e3398750",
+  "origin": [
+    9.7763613,
+    7.8695157
+  ],
+  "halfSize": 500,
+  "coverage": {
+    "roads": 54,
+    "buildings": 243,
+    "components": 6,
+    "sourceSha256": "9dece439bd87b8f4883d7e42f3704275bf1102f98310d6e0cb09b181e3398750",
+    "policy": "Complete original ways inside a 1 km square around original junction node 1965491008. Source records unchanged; crossing ways still omitted and inventoried. Display window, not a legal boundary."
+  },
+  "spawn": {
+    "point": {
+      "x": 0,
+      "z": 0
+    },
+    "nodeId": 1965491008,
+    "roadId": 185860473,
+    "eligible": true,
+    "review": "Owner-authorized simulation-only spawn reviewed at an original shared-reference junction; no mapped restrictive tags, bridge/tunnel/ford; building clearance and surface clearance checked. Physical/legal/public access, traffic and safety unverified."
+  },
+  "junctions": [
+    {
+      "nodeId": 1965491008,
+      "position": [
+        9.7763613,
+        7.8695157
+      ],
+      "degree": 4,
+      "roads": [
+        185860473,
+        558732998,
+        558732999,
+        558733010
+      ]
+    },
+    {
+      "nodeId": 1965490936,
+      "position": [
+        9.7786486,
+        7.8673264
+      ],
+      "degree": 4,
+      "roads": [
+        185860477,
+        558690090
+      ]
+    },
+    {
+      "nodeId": 1965490889,
+      "position": [
+        9.7770263,
+        7.8663111
+      ],
+      "degree": 3,
+      "roads": [
+        185860480,
+        558733014
+      ]
+    },
+    {
+      "nodeId": 1965490901,
+      "position": [
+        9.7788483,
+        7.8664774
+      ],
+      "degree": 4,
+      "roads": [
+        185860480,
+        558690090
+      ]
+    },
+    {
+      "nodeId": 4695865132,
+      "position": [
+        9.7742418,
+        7.8694109
+      ],
+      "degree": 4,
+      "roads": [
+        185860484,
+        475906387
+      ]
+    },
+    {
+      "nodeId": 4695865127,
+      "position": [
+        9.7746866,
+        7.8694329
+      ],
+      "degree": 4,
+      "roads": [
+        185860484,
+        475906386,
+        558732999
+      ]
+    },
+    {
+      "nodeId": 1965491146,
+      "position": [
+        9.7757467,
+        7.8729036
+      ],
+      "degree": 4,
+      "roads": [
+        185860487,
+        558733005,
+        558733011
+      ]
+    },
+    {
+      "nodeId": 4699694151,
+      "position": [
+        9.7802447,
+        7.8729771
+      ],
+      "degree": 3,
+      "roads": [
+        185860487,
+        476371724
+      ]
+    },
+    {
+      "nodeId": 1965491124,
+      "position": [
+        9.7760067,
+        7.871525
+      ],
+      "degree": 4,
+      "roads": [
+        185860489,
+        558733011
+      ]
+    },
+    {
+      "nodeId": 4695865121,
+      "position": [
+        9.7744405,
+        7.8720825
+      ],
+      "degree": 3,
+      "roads": [
+        185860489,
+        475906384
+      ]
+    },
+    {
+      "nodeId": 4703105116,
+      "position": [
+        9.7732829,
+        7.8710672
+      ],
+      "degree": 4,
+      "roads": [
+        475906381,
+        559324424
+      ]
+    },
+    {
+      "nodeId": 4703105123,
+      "position": [
+        9.7728186,
+        7.8709819
+      ],
+      "degree": 3,
+      "roads": [
+        475906381,
+        476880270,
+        559324422
+      ]
+    },
+    {
+      "nodeId": 4709366589,
+      "position": [
+        9.7742934,
+        7.8712834
+      ],
+      "degree": 4,
+      "roads": [
+        475906384,
+        477623167,
+        559324416
+      ]
+    },
+    {
+      "nodeId": 4709371087,
+      "position": [
+        9.774672,
+        7.868334
+      ],
+      "degree": 3,
+      "roads": [
+        475906386,
+        477624196
+      ]
+    },
+    {
+      "nodeId": 4703100376,
+      "position": [
+        9.7733899,
+        7.8685914
+      ],
+      "degree": 4,
+      "roads": [
+        476880257,
+        476880263,
+        476880267,
+        559324427
+      ]
+    },
+    {
+      "nodeId": 4709366512,
+      "position": [
+        9.7742912,
+        7.866758
+      ],
+      "degree": 3,
+      "roads": [
+        476880258,
+        477623157
+      ]
+    },
+    {
+      "nodeId": 4709366522,
+      "position": [
+        9.7746559,
+        7.8661763
+      ],
+      "degree": 3,
+      "roads": [
+        476880258,
+        476880260
+      ]
+    },
+    {
+      "nodeId": 4703100387,
+      "position": [
+        9.7732483,
+        7.8662354
+      ],
+      "degree": 3,
+      "roads": [
+        476880259,
+        477624187
+      ]
+    },
+    {
+      "nodeId": 4709366515,
+      "position": [
+        9.7746356,
+        7.8668815
+      ],
+      "degree": 4,
+      "roads": [
+        476880260,
+        477623157
+      ]
+    },
+    {
+      "nodeId": 4709366521,
+      "position": [
+        9.7746519,
+        7.8662327
+      ],
+      "degree": 3,
+      "roads": [
+        476880260,
+        477623158
+      ]
+    },
+    {
+      "nodeId": 4703100375,
+      "position": [
+        9.7731068,
+        7.8685388
+      ],
+      "degree": 4,
+      "roads": [
+        476880266,
+        559324426,
+        559324427,
+        559324428
+      ]
+    },
+    {
+      "nodeId": 4703105113,
+      "position": [
+        9.7733562,
+        7.8693563
+      ],
+      "degree": 4,
+      "roads": [
+        476880267,
+        558733000
+      ]
+    },
+    {
+      "nodeId": 4709366605,
+      "position": [
+        9.7727296,
+        7.8717944
+      ],
+      "degree": 3,
+      "roads": [
+        476880270,
+        559324418
+      ]
+    },
+    {
+      "nodeId": 4709371077,
+      "position": [
+        9.7758028,
+        7.8688374
+      ],
+      "degree": 3,
+      "roads": [
+        477624196,
+        477624214,
+        558733016
+      ]
+    },
+    {
+      "nodeId": 4709375801,
+      "position": [
+        9.7759061,
+        7.868761
+      ],
+      "degree": 3,
+      "roads": [
+        477624213,
+        477624214
+      ]
+    },
+    {
+      "nodeId": 4709375809,
+      "position": [
+        9.7765007,
+        7.8688668
+      ],
+      "degree": 3,
+      "roads": [
+        477624214,
+        558733010
+      ]
+    },
+    {
+      "nodeId": 4703100374,
+      "position": [
+        9.772452,
+        7.8684301
+      ],
+      "degree": 3,
+      "roads": [
+        558697689,
+        558697690,
+        559324428
+      ]
+    },
+    {
+      "nodeId": 4709375820,
+      "position": [
+        9.7756106,
+        7.8694786
+      ],
+      "degree": 4,
+      "roads": [
+        558732999,
+        558733015,
+        558733016
+      ]
+    },
+    {
+      "nodeId": 4703105109,
+      "position": [
+        9.7729865,
+        7.8693303
+      ],
+      "degree": 4,
+      "roads": [
+        558733000,
+        559324423,
+        559324426
+      ]
+    },
+    {
+      "nodeId": 4703105117,
+      "position": [
+        9.77325,
+        7.8718426
+      ],
+      "degree": 3,
+      "roads": [
+        559324418,
+        559324424
+      ]
+    }
+  ],
+  "omittedCrossingRoadIds": [
+    181916653,
+    181916655,
+    181916657,
+    181916660,
+    185860469,
+    185860471,
+    185860474,
+    185860476,
+    185860478,
+    185860479,
+    185860481,
+    185860483,
+    185860488,
+    185860490,
+    380727225,
+    475906385,
+    476347716,
+    476347718,
+    476880251,
+    476880261,
+    476880265,
+    476880268,
+    476880273,
+    477623165,
+    477623170,
+    477624198,
+    477624211,
+    477624212,
+    558690091,
+    558697686,
+    558697692,
+    558697693,
+    558733001,
+    558733007,
+    559324417,
+    559324419,
+    559324420,
+    559324429,
+    559390857
+  ],
+  "oldCoverage": {
+    "roads": 20,
+    "buildings": 209,
+    "components": 5,
+    "sourceSha256": "9dece439bd87b8f4883d7e42f3704275bf1102f98310d6e0cb09b181e3398750",
+    "policy": "Complete original ways wholly inside a source-centred display square. Crossing ways omitted without clipping. Square is a demonstration/study window, never a campus or town boundary."
+  },
+  "oldSpawn": {
+    "point": {
+      "x": -198.30197777280318,
+      "z": -265.0890712767705
+    },
+    "nodeId": 1965491146,
+    "roadId": 558733005,
+    "eligible": true,
+    "review": "Virtual-only review: original road node, connected by shared references, no restrictive mapped tags/bridge/tunnel/ford, building clearance, bounded corridor, away from mapped major-road centre lines. Physical safety, legal/public access, traffic and ground conditions NOT verified."
+  },
+  "oldConflicts": [
+    {
+      "roadId": 185860473,
+      "buildingId": 1415422307,
+      "segment": 0,
+      "clearanceM": 1.1589445051700544,
+      "kind": "illustrative-width",
+      "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+    },
+    {
+      "roadId": 475906384,
+      "buildingId": 1415424316,
+      "segment": 1,
+      "clearanceM": 2.34945077198868,
+      "kind": "illustrative-width",
+      "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+    },
+    {
+      "roadId": 558733005,
+      "buildingId": 1523015718,
+      "segment": 0,
+      "clearanceM": 0,
+      "kind": "source-centerline",
+      "decision": "Suppress conflicting surface intervals; original record retained for review."
+    },
+    {
+      "roadId": 558733005,
+      "buildingId": 1523024637,
+      "segment": 0,
+      "clearanceM": 2.2341779178725716,
+      "kind": "illustrative-width",
+      "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+    },
+    {
+      "roadId": 558733011,
+      "buildingId": 1415424318,
+      "segment": 0,
+      "clearanceM": 2.261803175584795,
+      "kind": "illustrative-width",
+      "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+    },
+    {
+      "roadId": 559324416,
+      "buildingId": 1415422313,
+      "segment": 0,
+      "clearanceM": 0.9287494146802987,
+      "kind": "illustrative-width",
+      "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+    }
+  ],
+  "newConflicts": [
+    {
+      "roadId": 185860473,
+      "buildingId": 1415422307,
+      "segment": 0,
+      "clearanceM": 1.1589445051700544,
+      "kind": "illustrative-width",
+      "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+    },
+    {
+      "roadId": 475906384,
+      "buildingId": 1415424316,
+      "segment": 1,
+      "clearanceM": 2.34945077198868,
+      "kind": "illustrative-width",
+      "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+    },
+    {
+      "roadId": 558733005,
+      "buildingId": 1523015718,
+      "segment": 0,
+      "clearanceM": 0,
+      "kind": "source-centerline",
+      "decision": "Suppress conflicting surface intervals; original record retained for review."
+    },
+    {
+      "roadId": 558733005,
+      "buildingId": 1523024637,
+      "segment": 0,
+      "clearanceM": 2.2341779178725716,
+      "kind": "illustrative-width",
+      "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+    },
+    {
+      "roadId": 558733011,
+      "buildingId": 1415424318,
+      "segment": 0,
+      "clearanceM": 2.261803175584795,
+      "kind": "illustrative-width",
+      "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+    },
+    {
+      "roadId": 559324416,
+      "buildingId": 1415422313,
+      "segment": 0,
+      "clearanceM": 0.9287494146802987,
+      "kind": "illustrative-width",
+      "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+    }
+  ],
+  "diagnosis": "Old 760 m whole-way selection omitted connecting crossing ways at the spawn (including way185860487). Old data already had bends/junctions elsewhere, but a low follow camera at a short straight segment hid them. New 1 km selection centers a genuine four-neighbor junction. No polyline vertices were discarded by the renderer.",
+  "policy": "Exact edge/segment clearance detects centerline and illustrative-width conflicts. Four-metre linear surface intervals retain the original centerline, narrow within building clearance and suppress intersecting intervals. Original buildings and road records stay available in Map Information; surface-based movement uses the same clear intervals.",
+  "buildingDiagnostics": {
+    "duplicateFootprints": [],
+    "openRings": [],
+    "properSelfCrossings": [],
+    "axisCheck": "All source vertices round-trip through the same east/south metre projection; Three.js x,-z shape followed by -pi/2 X rotation returns original world x,z. No footprint displacement or rotation applied."
+  }
+}

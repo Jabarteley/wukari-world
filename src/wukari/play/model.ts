@@ -10,6 +10,8 @@ export interface Feature {
   association: 'nearby-only; FUW ownership unverified';
 }
 export interface Study {
+  roadSurface?: import('./roads.ts').RoadPiece[];
+  roadConflicts?: import('./roads.ts').RoadConflict[];
   schemaVersion: 1; id: string; title: string; origin: Position; halfSize: number;
   roads: Feature[]; buildings: Feature[]; sources: { title: string; url: string; note: string }[];
   candidates: { label: string; position: Position; point: Point; confidence: string }[];
@@ -46,6 +48,10 @@ export function permittedForSimulation(tags: Record<string, string>): boolean {
 export function canStand(p: Point, study: Study): boolean {
   if (Math.abs(p.x) > study.halfSize - 2 || Math.abs(p.z) > study.halfSize - 2 || buildingCollision(p, study.buildings)) return false;
   // A narrow virtual corridor is a play rule, not a measured road width or access declaration.
+  if(study.roadSurface){
+    const eligible=new Set(study.roads.filter(r=>permittedForSimulation(r.tags)).map(r=>r.id));
+    return study.roadSurface.some(s=>eligible.has(s.roadId)&&segmentDistance(p,s.a,s.b)<=Math.min(2,s.halfWidth-.4));
+  }
   return study.roads.some(r => permittedForSimulation(r.tags) && lineDistance(p, r.points) <= 2);
 }
 export interface Motion extends Point { yaw: number; moving: boolean; sprinting: boolean; blocked: boolean; distance: number }

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { createPlay, type PlayScene, type Status } from './scene.ts';
+import { preloadCharacters } from './avatar.ts';
+import NetworkOverview from './NetworkOverview.vue';
+import RoadReview from './RoadReview.vue';
 import GameMenu from './GameMenu.vue';
 import { appearance, settings, readLocal, saveLocal, appearanceKey, settingsKey } from './appearance.ts';
 import type { Feature, Study } from './model.ts';
@@ -13,7 +16,7 @@ let scene: PlayScene | undefined, disposed = false;
 watch([review,panel],()=>{clearSprint();scene?.pause(review.value||!!panel.value);if(!review.value&&!panel.value)void nextTick(()=>host.value?.querySelector('canvas')?.focus());});
 watch(look,value=>scene?.appearance(value),{deep:true});
 watch(prefs,value=>{scene?.settings(value);if(!saveLocal(settingsKey,value))message.value='Browser storage unavailable; settings apply this session.';},{deep:true});
-function openPanel(value:string){if(panel.value==='customize'&&value!=='customize')look.value={...savedLook.value};if(value==='customize')savedLook.value={...look.value};panel.value=value;review.value=false;message.value='';}
+function openPanel(value:string){if(panel.value===value)return;if(panel.value==='customize'&&value!=='customize')look.value={...savedLook.value};if(value==='customize')savedLook.value={...look.value};panel.value=value;review.value=false;message.value='';}
 function closePanel(){if(panel.value==='customize')look.value={...savedLook.value};panel.value='';message.value='';}
 function save(){const ok=saveLocal(appearanceKey,look.value);savedLook.value={...look.value};message.value=ok?'Character saved on this device.':'Storage unavailable; look applied for this session.';}
 function escape(e:KeyboardEvent){if(e.key==='Escape'){if(review.value)review.value=false;else if(panel.value)closePanel();else openPanel('home');}}
@@ -25,6 +28,7 @@ const control = (key: string, on: boolean) => scene?.key(key, on);
 const clearSprint = () => { sprint.value = false; control('shift',false); };
 const press = (e: PointerEvent, key: string) => { (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId); control(key, true); };
 function enter() { closePanel();panel.value='';review.value=false;if(study.value?.id!=='town'){void load('town');return;} if (scene?.enter()) { sprint.value = false; scene.key('shift', false); } }
+function showNetwork(){closePanel();review.value=false;panel.value='network';if(study.value?.id!=='town'){void load('town');return;}scene?.explore();}
 function explore() { closePanel();panel.value='';review.value=false;scene?.explore(); sprint.value = false; }
 function toggleSprint() { sprint.value = !sprint.value; control('shift', sprint.value); }
 async function load(id: 'town' | 'fuw') {
@@ -36,12 +40,12 @@ async function load(id: 'town' | 'fuw') {
     if (!response.ok) throw new Error(`Study unavailable (${response.status})`);
     const data = await response.json() as Study;
     if (disposed || generation !== request.value) return;
-    study.value = data; await nextTick();
+    study.value = data; await preloadCharacters(); await nextTick();
     if (!host.value || !minimap.value || disposed || generation !== request.value) return;
     scene = createPlay(host.value, data, minimap.value, value => { status.value = value; });
     scene.appearance(look.value);scene.settings(prefs.value);
     // Town spawn was explicitly approved as simulation-only by the project owner.
-    if (id === 'town') scene.enter();
+    if (id === 'town'&&!panel.value) scene.enter();
     review.value = id === 'fuw';scene.pause(review.value||!!panel.value);
   } catch (e) { if (!disposed && generation === request.value) error.value = e instanceof Error ? e.message : String(e); }
   finally { if (!disposed && generation === request.value) loading.value = false; }
@@ -54,7 +58,7 @@ onBeforeUnmount(() => { window.removeEventListener('keydown',escape); disposed =
   <main>
     <header class="topbar">
       <button class="brand" @click="openPanel('home')" aria-label="Wukari Life menu"><span class="brand-icon">W<span>&middot;</span></span><span>WUKARI <b>LIFE</b><small>A LITTLE CLOSER TO HOME</small></span></button>
-      <nav aria-label="Game menu"><button @click="enter">Play</button><button @click="openPanel('customize')">Customize Character</button><button @click="openPanel('settings')">Settings</button><button @click="explore">Explore Map</button></nav>
+      <nav aria-label="Game menu"><button @click="enter">Play</button><button @click="openPanel('customize')">Customize Character</button><button @click="openPanel('settings')">Settings</button><button @click="showNetwork">Explore Map</button></nav>
     </header>
     <section class="workspace">
       <section class="viewport" aria-label="Wukari Life world" :data-study="study?.id" :data-mode="status?.mode" :data-x="status?.position.x" :data-z="status?.position.z" :data-distance="status?.distance" :data-bearing="status?.bearing" :data-blocked="status?.blocked" :data-draws="status?.draws" :data-triangles="status?.triangles" :data-fps="status?.fps">
@@ -66,13 +70,14 @@ onBeforeUnmount(() => { window.removeEventListener('keydown',escape); disposed =
         <div v-if="error" class="screen-message" role="alert">{{ error }}<button @click="load('town')">Retry</button></div>
         <div class="hud" v-if="status&&!review&&!panel"><div><i :class="{moving:status.speed>0}"></i><b>{{ walking?status.mode:'Explore map' }}</b><small>{{ walking?'Make yourself at home':'Drag to orbit / scroll to zoom' }}</small></div><span>{{ status.blocked?'Edge of the playable route':walking?'WASD / arrows · Shift sprint · drag or Q/E to look':'Drag to orbit · scroll to zoom' }}</span></div>
         <div class="touch-controls" v-if="walking&&!review&&!panel" aria-label="Touch movement controls"><div class="dpad"><button class="up" aria-label="Move forward" @pointerdown.prevent="press($event,'w')" @pointerup="control('w',false)" @pointercancel="control('w',false)" @lostpointercapture="control('w',false)">↑</button><button class="left" aria-label="Move left" @pointerdown.prevent="press($event,'a')" @pointerup="control('a',false)" @pointercancel="control('a',false)" @lostpointercapture="control('a',false)">←</button><button class="down" aria-label="Move backward" @pointerdown.prevent="press($event,'s')" @pointerup="control('s',false)" @pointercancel="control('s',false)" @lostpointercapture="control('s',false)">↓</button><button class="right" aria-label="Move right" @pointerdown.prevent="press($event,'d')" @pointerup="control('d',false)" @pointercancel="control('d',false)" @lostpointercapture="control('d',false)">→</button></div><button class="sprint" :aria-pressed="sprint" @click="toggleSprint">{{ sprint?'Sprint ON':'Sprint' }}</button></div>
-        <GameMenu v-if="panel" :panel="panel" :look="look" :prefs="prefs" :message="message" @close="closePanel" @play="enter" @explore="explore" @map="panel='';review=true" @panel="openPanel" @look="look=appearance($event)" @prefs="prefs=settings($event)" @save="save" />
+        <NetworkOverview v-if="panel==='network'&&study?.id==='town'" :study="study" @close="closePanel" @play="enter" />
+        <GameMenu v-if="panel&&panel!=='network'" :panel="panel" :look="look" :prefs="prefs" :message="message" @close="closePanel" @play="enter" @explore="showNetwork" @map="panel='';review=true" @panel="openPanel" @look="look=appearance($event)" @prefs="prefs=settings($event)" @save="save" />
         <section class="review-panel" v-if="review&&study" aria-label="Reviewable geographic map">
           <div class="review-title"><div><span class="eyebrow">SOURCE REVIEW · NORTH UP</span><h2>{{ study.id==='fuw'?'FUW candidate location':'Town geographic study' }}</h2><p v-if="study.id==='fuw'">Research points support an approximate location. No campus boundary or building ownership is established.</p><p v-else>Source-centred display window. Public access remains unknown.</p></div><button @click="review=false" aria-label="Close geographic map">×</button></div>
           <div class="review-body"><svg :viewBox="mapBox" class="source-map" role="img" aria-label="OSM geometry and research candidate points"><rect :x="-study.halfSize" :y="-study.halfSize" :width="study.halfSize*2" :height="study.halfSize*2" fill="#ede7d7"/><polygon v-for="b in study.buildings" :key="`b${b.id}`" :points="pointString(b)" fill="#b49a7b" stroke="#8e785e" stroke-width=".5" class="map-feature" @click="selected=b"><title>OSM way/{{ b.id }} · nearby, ownership unverified</title></polygon><polyline v-for="r in study.roads" :key="`r${r.id}`" :points="pointString(r)" fill="none" stroke="#557c77" stroke-width="5" class="map-feature" @click="selected=r"><title>OSM way/{{ r.id }} · {{ r.tags.highway }}</title></polyline><g v-for="(p,i) in study.candidates" :key="p.label"><circle :cx="p.point.x" :cy="p.point.z" :r="i===0?10:7" fill="#e4863f" stroke="#fff" stroke-width="2"/><text :x="p.point.x+12" :y="p.point.z-12" font-size="18" fill="#233c39">{{ i===0?'Reported location':String.fromCharCode(64+i) }}</text></g><text :x="-study.halfSize+20" :y="-study.halfSize+32" font-size="22" fill="#23423e">N ↑</text><line :x1="-study.halfSize+25" :x2="-study.halfSize+125" :y1="study.halfSize-25" :y2="study.halfSize-25" stroke="#23423e" stroke-width="3"/><text :x="-study.halfSize+25" :y="study.halfSize-40" font-size="17">100 m display scale</text></svg>
-            <div class="map-info"><h3>Map Information</h3>        <div class="notice"><strong>Simulation, not real-world guidance</strong><p>Access, traffic and physical safety are unverified. Mapping does not grant permission to enter. This is not a completed FUW campus.</p></div>
+            <div class="map-info"><RoadReview :study="study"/><h3>Map Information</h3>        <div class="notice"><strong>Simulation, not real-world guidance</strong><p>Access, traffic and physical safety are unverified. Mapping does not grant permission to enter. This is not a completed FUW campus.</p></div>
         <p class="fine">Recorded positions are real OSM geometry. Flat ground, road widths and unmeasured building heights are illustrative. Movement stays in a narrow virtual road corridor.</p>
-        <details class="credits"><summary>Sources & licences</summary><p>© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors · ODbL 1.0</a>. Snapshot 19 Oct 2026. <a href="/README.md">Data offer & provenance</a>.</p><p>Code AGPL-3.0-or-later · <a href="https://github.com/Jabarteley/wukari-world">modified source</a> · based on Allworld.</p><p v-for="source in study?.sources" :key="source.url"><a :href="source.url" target="_blank" rel="noreferrer">{{ source.title }}</a></p></details>
+        <details class="credits"><summary>Sources & licences</summary><p>Character base: <a href="https://quaternius.com/packs/universalbasecharacters.html" target="_blank" rel="noreferrer">Quaternius / Universal Base Characters</a>, <a href="/models/LICENSE.txt">CC0 licence</a>. Original fitted hair, clothes and rig animation adaptations.</p><p>© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors · ODbL 1.0</a>. Snapshot 19 Oct 2026. <a href="/README.md">Data offer & provenance</a>.</p><p>Code AGPL-3.0-or-later · <a href="https://github.com/Jabarteley/wukari-world">modified source</a> · based on Allworld.</p><p v-for="source in study?.sources" :key="source.url"><a :href="source.url" target="_blank" rel="noreferrer">{{ source.title }}</a></p></details>
 <p>{{ study.coverage.roads }} road ways ? {{ study.coverage.buildings }} footprints.</p><div class="area-picker"><button @click="load('town')">Wukari town</button><button @click="load('fuw')">FUW location review</button></div><p class="legend">● Orange: reported research positions<br>Green: original OSM road lines<br>Brown: original OSM footprints</p><div v-if="selected"><h3>OSM way/{{ selected.id }}</h3><p>{{ selected.distanceM.toFixed(1) }} m from study point (display projection)</p><pre>{{ JSON.stringify(selected.tags,null,2) }}</pre><p>Association: nearby only, FUW ownership unverified.</p><a :href="`https://www.openstreetmap.org/way/${selected.id}`" target="_blank" rel="noreferrer">View original OSM record ↗</a></div><div v-else><h3>Inspect a mapped feature</h3><p>Select a line or footprint to see its original ID, tags and distance.</p></div><h3>Nearby road records</h3><button v-for="r in nearest" :key="r.id" class="record" @click="selected=r"><span>way/{{ r.id }} <small>{{ r.tags.highway }}</small></span><b>{{ Math.round(r.distanceM) }} m</b></button><template v-if="study.id==='fuw'"><h3>Confidence & unknowns</h3><p>Moderate location confidence; 2018 sampling positions published in 2023, corroborated approximately in 2025. Datum and current accuracy unknown.</p><p>Wikidata’s unreferenced 7.8773°N, 9.779°E pin is about 3.8 km north. It is disputed, not used for the campus study.</p><p>Square frame is only a study window. No campus hull is inferred. Nearby geometry remains unassigned. Character spawning is disabled here.</p></template><p v-for="source in study.sources" :key="source.url" class="source"><a :href="source.url" target="_blank" rel="noreferrer">{{ source.title }}</a><small>{{ source.note }}</small></p></div></div>
         </section>
         <footer class="scene-footer"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">&copy; OpenStreetMap contributors &middot; ODbL 1.0</a><button @click="panel='';review=true">Map Information</button></footer>

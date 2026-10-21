@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "candidateLocation": [9.775, 7.8436111111111115],
+  "boundary": null,
+  "confidence": "Moderate for approximate institutional study location; insufficient for surveyed boundary or feature ownership",
+  "sources": [
+    {"title":"FUW-affiliated GPS field study (2023), pp. 40–41, Table 1", "url":"https://fjs.fudutsinma.edu.ng/index.php/fjs/article/download/1169/1835/", "note":"Reports four campus sampling positions from June 2018; whole-second DMS, datum/accuracy unspecified. Retain as historical study points, not precise building/gate positions."},
+    {"title":"FUW journal study (2025), p. 214", "url":"https://ftstjournal.com/uploads/docs/101Article%2033%20pp%20214-217.pdf", "note":"Institution-affiliated authors give 7°50′37″N, 9°46′30″E. Corroborates the approximate location but may repeat earlier reporting; not an independent survey or licensed boundary."},
+    {"title":"Federal Ministry of Education visitation report, p. 1", "url":"https://education.gov.ng/wp-content/uploads/2023/09/FEDERAL-UNIVERSITY-WUKARI-Report-2011-2015.pdf", "note":"Katsina-Ala Road address context; no coordinates used from address alone."},
+    {"title":"OSM contributors / Geofabrik Nigeria, 19 October 2026", "url":"https://www.openstreetmap.org/copyright", "note":"ODbL 1.0. Existing validated local extract only. Roads/buildings nearby are not assigned to FUW."},
+    {"title":"Wikidata Q100872718 (disputed pin)", "url":"https://www.wikidata.org/wiki/Q100872718", "note":"Unreferenced coordinate 9.779, 7.8773 conflicts with field-study cluster. Rejected as a campus extent/spawn; retained visibly for review. Wikidata factual data CC0."}
+  ],
+  "samples": [
+    {"label":"Historical sample A", "position":[9.775555555555556,7.843055555555555],"confidence":"Moderate historical sample; no current building assignment"},
+    {"label":"Historical sample B", "position":[9.775,7.843333333333334],"confidence":"Moderate historical sample; no current building assignment"},
+    {"label":"Historical sample C", "position":[9.776666666666667,7.843333333333334],"confidence":"Moderate historical sample; no current building assignment"},
+    {"label":"Historical sample D", "position":[9.776111111111112,7.846666666666667],"confidence":"Moderate historical sample; no current building assignment"}
+  ],
+  "unknowns":["Legal/surveyed campus boundary","Current gate positions and pedestrian access","Sample datum and instrument error","Building identity/ownership","Terrain/elevation and real building dimensions"],
+  "method":"DMS to decimal degrees by d + m/60 + s/3600; interpreted as WGS84 for display only, datum unconfirmed. No commercial map traced, polygon inferred, or sample hull used as a boundary."
+}

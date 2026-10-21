@@ -1,0 +1,15 @@
+# Wukari Life Phase 9 review
+
+## 9A: geographic identity and architecture
+
+The starting junction remains original OSM node1965491008 at9.7763613E,7.8695157N, near the OSM Wukari city point node501490428 (GNS-derived, not field verification). No ward or local street name is established there. The old1km square had no named features. The expanded1.7km window includes196 complete original road ways/1206 building footprints, including the OSM-tagged Takum - Bukuru Federal Road/F242 and roundabout geometry. Crossing ways remain omitted; the frame is a rendering selection, not a municipal or university boundary. Exact original coordinates and source IDs are preserved. New files are additive; Phase7/8 geographic records are unchanged.
+
+Locations search distinguishes OSM source-backed names from verified field positions. Selecting a town feature explores its recorded position; it does not teleport a player to an unreviewed spawn. The overview marks the player position and the north-up minimap now shows local roads. Named road labels use actual tags; unnamed streets have no invented names.
+
+The [Ministry visitation report](https://education.gov.ng/wp-content/uploads/2023/09/FEDERAL-UNIVERSITY-WUKARI-Report-2011-2015.pdf), chapter1, supports FUW on Katsina-Ala Road. The university [contact page](https://fuwukari.edu.ng/contact-us/) search listing also reports that address (direct page retrieval returned421). Existing historical study coordinates remain moderate-confidence approximate evidence: [2023 study](https://fjs.fudutsinma.edu.ng/index.php/fjs/article/download/1169/1835/) and [2025 FUW journal](https://ftstjournal.com/uploads/docs/101Article%2033%20pp%20214-217.pdf). No new licensed gate, access or campus boundary evidence was obtained. The university stays a separate non-spawning review, approximately2.9km south of the playable origin; nearby anonymous buildings are not assigned to FUW. Commercial search pins and protected map geometry are not copied.
+
+Building walls retain exact footprint rings. Roof form, height when untagged, colors, doors, windows and anonymous shopfront functions are illustrative. Convex footprints can receive pitched metal-colored roofs inside their original rings; concave footprints retain flat roof geometry. Repeated facade panels are GPU-instanced and distance-limited; walls/roofs are batched. Unknown surfaces have a neutral dusty material, with asphalt/unpaved styles selected only where OSM surface tags support them. Widths remain illustrative with the exact previous overlap-clearance algorithm, including newly detected source conflicts.
+
+9A review: [town](evidence/phase9-9a-town.png), [overview](evidence/phase9-9a-overview.png), [places](evidence/phase9-9a-places.png). Before: [Phase8.2 town](evidence/phase82-desktop.png). Geographic/name and clearance tests2/2 passed; focused strict TypeScript passed. Architecture is a regional visual interpretation, not a reconstruction of named Wukari buildings. Owner recognizability review remains required.
+
+Launch with `npm run wukari:play`, open http://127.0.0.1:5196/. No deployment, database, economy or multiplayer changes.

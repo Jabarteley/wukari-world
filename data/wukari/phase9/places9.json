@@ -1,0 +1,149 @@
+{
+  "origin": [
+    9.7763613,
+    7.8695157
+  ],
+  "places": [
+    {
+      "id": "node/501490428",
+      "name": "Wukari",
+      "position": [
+        9.7775523,
+        7.8705196
+      ],
+      "point": {
+        "x": 130.8028663753703,
+        "z": -111.62874104641105
+      },
+      "confidence": "OSM source-backed; not field verified",
+      "url": "https://www.openstreetmap.org/node/501490428"
+    },
+    {
+      "id": "way/181916655",
+      "name": "Takum - Bukuru Federal Road",
+      "position": [
+        9.7819385,
+        7.8673918
+      ],
+      "point": {
+        "x": 612.5220372364993,
+        "z": 236.16723090799496
+      },
+      "confidence": "OSM road name; not field verified",
+      "url": "https://www.openstreetmap.org/way/181916655"
+    },
+    {
+      "id": "way/555639805",
+      "name": "Takum - Bukuru Federal Road",
+      "position": [
+        9.7824823,
+        7.8667309
+      ],
+      "point": {
+        "x": 672.2454618668962,
+        "z": 309.65605943431456
+      },
+      "confidence": "OSM road name; not field verified",
+      "url": "https://www.openstreetmap.org/way/555639805"
+    },
+    {
+      "id": "way/555639806",
+      "name": "Takum - Bukuru Federal Road",
+      "position": [
+        9.7821674,
+        7.8668961
+      ],
+      "point": {
+        "x": 637.6612279277651,
+        "z": 291.28663217977646
+      },
+      "confidence": "OSM road name; not field verified",
+      "url": "https://www.openstreetmap.org/way/555639806"
+    },
+    {
+      "id": "way/555639809",
+      "name": "Takum - Bukuru Federal Road",
+      "position": [
+        9.7819385,
+        7.8673918
+      ],
+      "point": {
+        "x": 612.5220372364993,
+        "z": 236.16723090799496
+      },
+      "confidence": "OSM road name; not field verified",
+      "url": "https://www.openstreetmap.org/way/555639809"
+    },
+    {
+      "id": "way/555639810",
+      "name": "Takum - Bukuru Federal Road",
+      "position": [
+        9.7821382,
+        7.8671289
+      ],
+      "point": {
+        "x": 634.4543062668208,
+        "z": 265.4004175014052
+      },
+      "confidence": "OSM road name; not field verified",
+      "url": "https://www.openstreetmap.org/way/555639810"
+    },
+    {
+      "id": "way/556607975",
+      "name": "Takum - Bukuru Federal Road",
+      "position": [
+        9.7779885,
+        7.8767649
+      ],
+      "point": {
+        "x": 178.70900433745192,
+        "z": -806.0753756289841
+      },
+      "confidence": "OSM road name; not field verified",
+      "url": "https://www.openstreetmap.org/way/556607975"
+    },
+    {
+      "id": "fuw-review",
+      "name": "Federal University Wukari",
+      "position": [
+        9.775,
+        7.8436111111111115
+      ],
+      "point": {
+        "x": -149.50624852783676,
+        "z": 2880.4628399166404
+      },
+      "confidence": "Approximate historical research location; gate, boundary and access unknown",
+      "url": "https://fjs.fudutsinma.edu.ng/index.php/fjs/article/download/1169/1835/",
+      "review": true
+    }
+  ],
+  "sources": [
+    {
+      "title": "FUW-affiliated GPS field study (2023), pp. 40–41, Table 1",
+      "url": "https://fjs.fudutsinma.edu.ng/index.php/fjs/article/download/1169/1835/",
+      "note": "Reports four campus sampling positions from June 2018; whole-second DMS, datum/accuracy unspecified. Retain as historical study points, not precise building/gate positions."
+    },
+    {
+      "title": "FUW journal study (2025), p. 214",
+      "url": "https://ftstjournal.com/uploads/docs/101Article%2033%20pp%20214-217.pdf",
+      "note": "Institution-affiliated authors give 7°50′37″N, 9°46′30″E. Corroborates the approximate location but may repeat earlier reporting; not an independent survey or licensed boundary."
+    },
+    {
+      "title": "Federal Ministry of Education visitation report, p. 1",
+      "url": "https://education.gov.ng/wp-content/uploads/2023/09/FEDERAL-UNIVERSITY-WUKARI-Report-2011-2015.pdf",
+      "note": "Katsina-Ala Road address context; no coordinates used from address alone."
+    },
+    {
+      "title": "OSM contributors / Geofabrik Nigeria, 19 October 2026",
+      "url": "https://www.openstreetmap.org/copyright",
+      "note": "ODbL 1.0. Existing validated local extract only. Roads/buildings nearby are not assigned to FUW."
+    },
+    {
+      "title": "Wikidata Q100872718 (disputed pin)",
+      "url": "https://www.wikidata.org/wiki/Q100872718",
+      "note": "Unreferenced coordinate 9.779, 7.8773 conflicts with field-study cluster. Rejected as a campus extent/spawn; retained visibly for review. Wikidata factual data CC0."
+    }
+  ],
+  "disclosure": "OSM footprints/centerlines are source-backed; architectural finishes, building dimensions, anonymous shop facades, traffic and unmapped street furniture are illustrative. No invented real-world business names. F242 names are OSM tags; FUW is not a surveyed campus."
+}

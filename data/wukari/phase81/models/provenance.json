@@ -1,0 +1,23 @@
+{
+  "creator": "Quaternius",
+  "pack": "Universal Base Characters Standard",
+  "source": "https://quaternius.itch.io/universal-base-characters",
+  "rights": "https://quaternius.com/packs/universalbasecharacters.html",
+  "license": "CC0-1.0",
+  "archiveSha256": "fdbf1804c90dfc1ea03e992bff7da2dfd1a79318e13270a660180f9308455f40",
+  "files": [
+    {
+      "path": "male.glb",
+      "bytes": 1728700,
+      "sha256": "2eb6549b94fd51d23f050c9a9f3b79e67a754259f52e384588e5eb95fe2002fe",
+      "sourceGltfSha256": "e7fcea214ecf8855afbf910b50de6f9c7d1decfb71ca28bad8a4481452dafeb4"
+    },
+    {
+      "path": "female.glb",
+      "bytes": 1835444,
+      "sha256": "f2165b5e32a1bb269f5f462d48e5489347f7bb9226d49dddc0ea030c4fd45572",
+      "sourceGltfSha256": "adedf28000a0716f689b009a70314506fc62f827498f77ba852acb5610f3f3f4"
+    }
+  ],
+  "modifications": "GLB repack; redundant attribute references and skin palette textures removed. Native topology, rig, weights and eye texture retained. Normal-vector maps downsampled to 1024 and renormalized. Clothing palettes and fitted hair are original runtime adaptations."
+}

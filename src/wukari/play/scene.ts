@@ -1,3 +1,4 @@
+import { roadSurfaces } from './roads.ts';
 import { createAvatar } from './avatar.ts';
 import { defaultAppearance, defaultSettings, type Appearance, type Settings } from './appearance.ts';
 import * as THREE from 'three';
@@ -14,7 +15,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5)); renderer.setClearColor('#cee0dc');
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   host.append(renderer.domElement); renderer.domElement.tabIndex = 0; renderer.domElement.setAttribute('aria-label', 'Wukari geographic 3D view. Drag to rotate; use movement controls after pressing Play.');
-  const scene = new THREE.Scene(); scene.fog = new THREE.Fog('#cee0dc', 180, 800);
+  const scene = new THREE.Scene(),playFog=new THREE.Fog('#cee0dc',180,800);scene.fog=playFog;
   const camera = new THREE.PerspectiveCamera(48, 1, .1, 2400);
   const controls = new OrbitControls(camera, renderer.domElement); controls.enableDamping = true;
   controls.maxPolarAngle = Math.PI / 2 - .08; controls.minDistance = 4; controls.maxDistance = study.halfSize * 3;
@@ -42,21 +43,17 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   };
   const buildings = merged(buildingGeometries, '#e5dac3'); merged(roofGeometries, '#a66b4f');
   const roadVertices: number[] = [], edges: number[] = [];
-  for (const road of study.roads) {
-    const width = ['path', 'footway'].includes(road.tags.highway ?? '') ? 2 : 5;
-    // Round visual joins at the original nodes; no extra geographic segments.
-    for (const p of road.points) for (let j = 0; j < 12; j++) {
-      const a = j * Math.PI / 6, b = (j + 1) * Math.PI / 6;
-      roadVertices.push(p.x,.015,p.z, p.x+Math.cos(a)*width/2,.015,p.z+Math.sin(a)*width/2, p.x+Math.cos(b)*width/2,.015,p.z+Math.sin(b)*width/2);
+  const surfaces=study.roadSurface??roadSurfaces(study).pieces;
+  for(const {a,b,halfWidth:radius} of surfaces){
+    const dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz);if(!length)continue;
+    const nx=-dz/length*radius,nz=dx/length*radius;
+    roadVertices.push(a.x+nx,.015,a.z+nz,a.x-nx,.015,a.z-nz,b.x+nx,.015,b.z+nz,a.x-nx,.015,a.z-nz,b.x-nx,.015,b.z-nz,b.x+nx,.015,b.z+nz);
+    // Each exact-clearance capsule is independently safe, including curved joins.
+    for(const p of [a,b])for(let j=0;j<10;j++){
+      const u=j*Math.PI/5,v=(j+1)*Math.PI/5;
+      roadVertices.push(p.x,.015,p.z,p.x+Math.cos(u)*radius,.015,p.z+Math.sin(u)*radius,p.x+Math.cos(v)*radius,.015,p.z+Math.sin(v)*radius);
     }
-    for (let i = 1; i < road.points.length; i++) {
-      const a = road.points[i - 1]!, b = road.points[i]!, dx = b.x - a.x, dz = b.z - a.z, length = Math.hypot(dx, dz);
-      if (!length) continue;
-      const nx = -dz / length * width / 2, nz = dx / length * width / 2;
-      roadVertices.push(a.x + nx,.015,a.z + nz, a.x - nx,.015,a.z - nz, b.x + nx,.015,b.z + nz,
-        a.x - nx,.015,a.z - nz, b.x - nx,.015,b.z - nz, b.x + nx,.015,b.z + nz);
-      edges.push(a.x,.04,a.z,b.x,.04,b.z);
-    }
+    edges.push(a.x,.04,a.z,b.x,.04,b.z);
   }
   const roadGeometry = new THREE.BufferGeometry(); roadGeometry.setAttribute('position', new THREE.Float32BufferAttribute(roadVertices, 3)); roadGeometry.computeVertexNormals();
   world.add(new THREE.Mesh(roadGeometry, new THREE.MeshLambertMaterial({ color: '#667471', side: THREE.DoubleSide })));
@@ -75,7 +72,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   let lastTime = 0, frames = 0, fps = 0, measureAt = 0, publishedAt = 0;
   const status = (): Status => ({ mode: walking ? (state.sprinting ? 'Sprinting' : state.moving ? 'Walking' : 'Standing') : 'Exploration · no character', position: { x: state.x, z: state.z }, bearing: bearingOf(camera.getWorldDirection(new THREE.Vector3())),
     speed: walking && state.moving ? state.sprinting ? 6 : 2.4 : 0, distance: state.distance, blocked: state.blocked, draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, fps });
-  const overview = () => { controls.target.set(0, 0, 0); camera.position.set(0, study.halfSize * 1.05, study.halfSize * .9); camera.far = 2400; controls.update(); };
+  const overview = () => { scene.fog=null;controls.target.set(0, 0, 0); camera.position.set(0, study.halfSize * 1.05, study.halfSize * .9); camera.far = 2400; controls.update(); };
   overview();
   const reset = () => {
     keys.clear(); state = { ...(study.spawn?.point ?? { x: 0, z: 0 }), yaw: 0, moving: false, sprinting: false, blocked: false, distance: 0 };
@@ -85,7 +82,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
     followPitch = .12; cameraDistance = 5; if (walking) camera.position.set(state.x + Math.sin(followYaw)*5, 3.2, state.z + Math.cos(followYaw)*5);
     renderer.domElement.focus();
   };
-  const enter = () => { if (!study.spawn?.eligible) return false; walking = true; reset(); controls.enabled = false; avatar.visible = true; renderer.domElement.focus(); return true; };
+  const enter = () => { if (!study.spawn?.eligible) return false; walking = true;scene.fog=playFog; reset(); controls.enabled = false; avatar.visible = true; renderer.domElement.focus(); return true; };
   const explore = () => { walking = false; keys.clear(); avatar.visible = false; controls.enabled = true; overview(); };
   const key = (name: string, pressed: boolean) => { if (pressed) keys.add(name.toLowerCase()); else keys.delete(name.toLowerCase()); };
   const keyDown = (e: KeyboardEvent) => { if (!walking || paused || (e.target instanceof HTMLElement && ['INPUT', 'TEXTAREA', 'BUTTON', 'A', 'SUMMARY'].includes(e.target.tagName))) return; if (['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright','shift','q','e'].includes(e.key.toLowerCase())) { e.preventDefault(); key(e.key, true); } };

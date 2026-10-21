@@ -13,3 +13,11 @@ Building walls retain exact footprint rings. Roof form, height when untagged, co
 9A review: [town](evidence/phase9-9a-town.png), [overview](evidence/phase9-9a-overview.png), [places](evidence/phase9-9a-places.png). Before: [Phase8.2 town](evidence/phase82-desktop.png). Geographic/name and clearance tests2/2 passed; focused strict TypeScript passed. Architecture is a regional visual interpretation, not a reconstruction of named Wukari buildings. Owner recognizability review remains required.
 
 Launch with `npm run wukari:play`, open http://127.0.0.1:5196/. No deployment, database, economy or multiplayer changes.
+
+## 9B: simulated traffic
+
+Original low-poly motorcycles with riders, cars, SUVs, delivery trucks and truck/trailers use real original-node adjacency. Motorcycles dominate normal density. Traffic is single-file on source centerlines, not a reconstruction of lane widths, actual flow or live traffic. Settings controls Off/Light/Normal/Busy density. All wheels rotate from traveled distance. Route choice respects mapped one-way/roundabout direction and restrictive motor-access tags; incomplete, conflicting or too-narrow source intervals are excluded. Actual access remains unknown.
+
+Vehicles accelerate, slow at junctions, turn smoothly, stop for the player/vehicles, and test every small translation against rotated vehicle/building geometry. Player movement also rejects vehicle footprints. Long trucks accept only gentler turns; congested traffic may queue rather than invent passing lanes. Hidden-distance spawning is at least35m away, with scale fades. Stuck vehicles retire away from the player. No driving, passengers or multiplayer synchronization.
+
+Deterministic three-minute simulated-time tests cover all five types, original-edge positions, turns, no building penetration, vehicle separation and density-off removal. [Traffic image](evidence/phase9-9b-traffic.png), [captured-frame traffic playback](evidence/phase9-traffic-capture.html) (download/open locally; timing illustrative), and [browser state](evidence/phase9-traffic-browser.json) document actual movement, not live Wukari traffic.

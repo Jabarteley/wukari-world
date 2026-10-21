@@ -37,6 +37,11 @@ try {
   await call('Page.navigate',{url:'http://127.0.0.1:5196/'});
   const gpu=await call('SystemInfo.getInfo',{},'');writeFileSync(resolve(output,'phase9-gpu.json'),JSON.stringify(gpu.gpu,null,2));
   const initial=await poll(state,s=>s?.study==='town'&&!!s.mode,'town ready');
-  await click('Play');await poll(state,s=>s?.mode==='Standing','play');await delay(700);await shot('9a-town');await click('Explore Map');await delay(300);await shot('9a-overview');await evaluate(`document.querySelector('[aria-label="Close network overview"]').click()`);await click('Places');await delay(300);await shot('9a-places');
-  assert.equal(errors.length,0,JSON.stringify(errors));console.log('Phase9A visual capture passed');
+  await click('Play');await poll(state,s=>s?.mode==='Standing','play');await delay(700);
+  if(process.env.WUKARI_STAGE==='9b'){
+    await delay(9000);await shot('9b-traffic');const before=await state();assert(Number(before.motorcycles)>0);const frames=[];for(let i=0;i<12;i++){await delay(180);frames.push((await call('Page.captureScreenshot',{format:'png',captureBeyondViewport:false})).data);}const after=await state();assert(Number(after.vehicleDistance)>Number(before.vehicleDistance));writeFileSync(resolve(output,'phase9-traffic-capture.html'),`<!doctype html><meta charset="utf-8"><title>Wukari simulated traffic capture</title><style>body{margin:0;background:#1b332b}img{width:100%;max-height:95vh;object-fit:contain}</style><img id="f"><script>const frames=${JSON.stringify(frames)};let n=0;setInterval(()=>document.getElementById('f').src='data:image/png;base64,'+frames[n++%frames.length],180)</script>`);writeFileSync(resolve(output,'phase9-traffic-browser.json'),JSON.stringify({before,after,errors},null,2));
+  }else{
+    await shot('9a-town');await click('Explore Map');await delay(300);await shot('9a-overview');await evaluate(`document.querySelector('[aria-label="Close network overview"]').click()`);await click('Places');await delay(300);await shot('9a-places');
+  }
+  assert.equal(errors.length,0,JSON.stringify(errors));console.log('Phase9 visual capture passed');
 } finally {try{if(socket?.readyState===1){socket.send(JSON.stringify({id:++sequence,method:'Browser.close'}));await delay(300);}}catch{}socket?.close();if(child.exitCode===null)child.kill();for(const p of pending.values())clearTimeout(p.timer);}

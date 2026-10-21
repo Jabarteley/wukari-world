@@ -1,3 +1,5 @@
+import {trafficSimulation} from './traffic.ts';
+import {vehiclesView} from './vehicles.ts';
 import {roadLabels} from './labels.ts';
 import {architecture} from './architecture.ts';
 import { navigation } from './navigation.ts';
@@ -10,7 +12,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { advance, bearingOf, type Study, type Motion, type Point } from './model.ts';
 
-export interface Status { mode: string; position: Point; bearing: number; speed: number; distance: number; blocked: boolean; draws: number; triangles: number; fps: number }
+export interface Status { mode: string; position: Point; bearing: number; speed: number; distance: number; blocked: boolean; draws: number; triangles: number; fps: number; vehicles:number; motorcycles:number; vehicleDistance:number }
 export interface PerformanceReport {frames:number;fps:number;p50Ms:number;p95Ms:number;over33ms:number;updateCpuMs:number;renderSubmitCpuMs:number;[key:string]:unknown}
 export interface PlayScene { measure():Promise<PerformanceReport>; focus(point:Point):void; dispose(): void; enter(): boolean; explore(): void; reset(): void; key(key: string, pressed: boolean): void; overview(): void; pause(value: boolean): void; status(): Status; appearance(value: Appearance): void; settings(value: Settings): void }
 
@@ -20,14 +22,14 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5)); renderer.setClearColor('#cee0dc');
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   host.append(renderer.domElement); renderer.domElement.tabIndex = 0; renderer.domElement.setAttribute('aria-label', 'Wukari geographic 3D view. Drag to rotate; use movement controls after pressing Play.');
-  const nav=navigation(study);
+  const nav=navigation(study),traffic=trafficSimulation(study),fleet=vehiclesView();let trafficClock=0;
   const scene = new THREE.Scene(),playFog=new THREE.Fog('#cee0dc',180,800);scene.fog=playFog;
   const camera = new THREE.PerspectiveCamera(48, 1, .1, 2400);
   const controls = new OrbitControls(camera, renderer.domElement); controls.enableDamping = true;
   controls.maxPolarAngle = Math.PI / 2 - .08; controls.minDistance = 4; controls.maxDistance = study.halfSize * 3;
   scene.add(new THREE.HemisphereLight('#f4fbff', '#b89b6f', 2.4));
   const sunlight = new THREE.DirectionalLight('#fff1d0', 2.5); sunlight.position.set(-120, 180, 80); scene.add(sunlight);
-  const world = new THREE.Group(); scene.add(world);
+  const world = new THREE.Group(); scene.add(world);scene.add(fleet.group);
   const ground = new THREE.Mesh(new THREE.PlaneGeometry(study.halfSize * 2, study.halfSize * 2), new THREE.MeshLambertMaterial({ color: '#d8c7a3' }));
   ground.rotation.x = -Math.PI / 2; ground.position.y = -.08; world.add(ground);
   const buildings=architecture(study);scene.add(buildings.group);const labels=roadLabels(study);scene.add(labels.group);
@@ -64,7 +66,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   let lastTime = 0, frames = 0, fps = 0, measureAt = 0, publishedAt = 0;
   const viewDirection=new THREE.Vector3();
   const status = (): Status => ({ mode: walking ? (state.sprinting ? 'Sprinting' : state.moving ? 'Walking' : 'Standing') : 'Exploration · no character', position: { x: state.x, z: state.z }, bearing: bearingOf(camera.getWorldDirection(viewDirection)),
-    speed: walking && state.moving ? state.sprinting ? 6 : 2.4 : 0, distance: state.distance, blocked: state.blocked, draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, fps });
+    speed: walking && state.moving ? state.sprinting ? 6 : 2.4 : 0, distance: state.distance, blocked: state.blocked, draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, fps,vehicles:traffic.vehicles.length,motorcycles:traffic.vehicles.filter(v=>v.kind==='motorcycle').length,vehicleDistance:traffic.vehicles.reduce((s,v)=>s+v.distance,0) });
   const overview = () => { scene.fog=null;controls.target.set(0, 0, 0); camera.position.set(0, study.halfSize * 1.05, study.halfSize * .9); camera.far = 2400; controls.update(); };
   overview();
   const reset = () => {
@@ -110,7 +112,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
     if (walking) {
       followYaw += ((keys.has('q') ? 1 : 0) - (keys.has('e') ? 1 : 0)) * dt * 1.6 * preferences.sensitivity;
       input.x=(keys.has('d')||keys.has('arrowright')?1:0)-(keys.has('a')||keys.has('arrowleft')?1:0);input.z=(keys.has('s')||keys.has('arrowdown')?1:0)-(keys.has('w')||keys.has('arrowup')?1:0);
-      state = advance(state,input,followYaw,keys.has('shift'),dt,study,nav.canStand);
+      state = advance(state,input,followYaw,keys.has('shift'),dt,study,p=>nav.canStand(p)&&!traffic.blocks(p));
       avatar.position.set(state.x, 0, state.z);
       const turn = Math.atan2(Math.sin(state.yaw-avatar.rotation.y),Math.cos(state.yaw-avatar.rotation.y));
       avatar.rotation.y += turn*(1-Math.exp(-dt*14));
@@ -122,6 +124,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
       if(distance<offset.length())offset.setLength(Math.max(.8,distance-.4));
       desired.copy(target).add(offset); camera.position.lerp(desired, 1 - Math.exp(-dt * 12)); camera.lookAt(target);
     } else controls.update();
+    if(walking){trafficClock+=dt;while(trafficClock>=.05){traffic.step(.05,state,study.id==='town'?({off:0,light:8,normal:16,busy:24}[preferences.traffic]):0);trafficClock-=.05;}}fleet.update(traffic.vehicles);
     buildings.update(walking?state:{x:camera.position.x,z:camera.position.z},preferences.quality==='low'?100:preferences.quality==='high'?260:170);
     const renderStart=performance.now();renderer.render(scene,camera);
     if(sample){sample.push(frameMs,renderStart-updateStart,performance.now()-renderStart);if(time-sampleStart>=20000){const gl=renderer.getContext(),ext=gl.getExtension('WEBGL_debug_renderer_info'),size=new THREE.Vector2();renderer.getDrawingBufferSize(size);let bytes=0;const seen=new Set<ArrayBufferLike>();scene.traverse(o=>{if(o instanceof THREE.Mesh||o instanceof THREE.LineSegments){for(const a of (Object.values(o.geometry.attributes) as THREE.BufferAttribute[])){const buffer=a.array.buffer;if(!seen.has(buffer)){seen.add(buffer);bytes+=buffer.byteLength;}}const index=o.geometry.index;if(index&&!seen.has(index.array.buffer)){seen.add(index.array.buffer);bytes+=index.array.buffer.byteLength;}}});const result={...sample.result(),quality:preferences.quality,renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),viewport:[host.clientWidth,host.clientHeight],buffer:[size.x,size.y],dpr:devicePixelRatio,draws:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometryBufferBytes:bytes,estimatedTextureBytes:textureBytes(scene),resources:{...renderer.info.memory,programs:renderer.info.programs?.length??0},gpuTimeMs:null,note:'20-second foreground browser sample; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates.'};sample=undefined;sampleResolve?.(result);sampleResolve=undefined;}}

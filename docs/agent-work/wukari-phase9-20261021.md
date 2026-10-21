@@ -13,3 +13,8 @@
 - Additive phase9 town selection196ways/1206footprints; oldsource files unchanged. F242 names from OSM, no named features at oldspawn. FUW still approximate/nonspawning, no verified gate/access evidence. Primary sources linked PHASE9.
 - Batch architecture/roof variation and instanced distance-limited facades; typed surfaces and local minimap, source-name labels and Locations search. Existingserver5196 running; attempted start declined occupied port, no other process stopped.
 - Source/clearance tests2/2, focused strict TS pass. Captures phase9-9a-*. Road cap material mismatch caught visually and corrected. Next9B simulation on eligible safe source segments, no building penetration.
+
+## 9B checkpoint
+
+- Source-node traffic graph, safe interval eligibility, original instanced five-type fleet with animated wheels/riders. Explicit density control, source-centerline positions and one-way filtering. Pose checks plus substeps prevent building penetration; vehicle spacing/player obstruction implemented.
+- Three-minute deterministic simulation3/3phase9 tests passed before introductory source-road spawn adjustment; final full checks will rerun. Browser records motorcycles and increasing vehicle distance; short captured-frame playback stored. First screenshot placed traffic out of view; initial motorcycle now uses a valid road ahead of the start camera. Next9C disclosed furniture and safe offsets.

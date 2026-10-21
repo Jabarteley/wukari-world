@@ -1,0 +1,95 @@
+[
+  {
+    "frames": 1152,
+    "fps": 57.581861713560244,
+    "p50Ms": 16.69999999999709,
+    "p95Ms": 16.80000000000291,
+    "over33ms": 15,
+    "updateCpuMs": 0.16137152889536488,
+    "renderSubmitCpuMs": 1.353645832122614,
+    "quality": "low",
+    "renderer": "ANGLE (Intel, Intel(R) HD Graphics 620 (0x00005916) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "viewport": [
+      1440,
+      884
+    ],
+    "buffer": [
+      1080,
+      663
+    ],
+    "dpr": 1,
+    "draws": 15,
+    "triangles": 56752,
+    "geometryBufferBytes": 4318736,
+    "estimatedTextureBytes": 5961131,
+    "resources": {
+      "geometries": 16,
+      "textures": 5,
+      "programs": 10
+    },
+    "gpuTimeMs": null,
+    "note": "20-second foreground browser sample; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates."
+  },
+  {
+    "frames": 1197,
+    "fps": 59.881737320780005,
+    "p50Ms": 16.69999999999709,
+    "p95Ms": 16.80000000000291,
+    "over33ms": 1,
+    "updateCpuMs": 0.26131996758898396,
+    "renderSubmitCpuMs": 2.5071846280579977,
+    "quality": "balanced",
+    "renderer": "ANGLE (Intel, Intel(R) HD Graphics 620 (0x00005916) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "viewport": [
+      1440,
+      884
+    ],
+    "buffer": [
+      1440,
+      884
+    ],
+    "dpr": 1,
+    "draws": 16,
+    "triangles": 56752,
+    "geometryBufferBytes": 4318736,
+    "estimatedTextureBytes": 5961131,
+    "resources": {
+      "geometries": 16,
+      "textures": 5,
+      "programs": 10
+    },
+    "gpuTimeMs": null,
+    "note": "20-second foreground browser sample; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates."
+  },
+  {
+    "frames": 1155,
+    "fps": 57.780334675704744,
+    "p50Ms": 16.69999999999709,
+    "p95Ms": 17,
+    "over33ms": 18,
+    "updateCpuMs": 0.18225108204465923,
+    "renderSubmitCpuMs": 1.7900432895788383,
+    "quality": "high",
+    "renderer": "ANGLE (Intel, Intel(R) HD Graphics 620 (0x00005916) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "viewport": [
+      1440,
+      884
+    ],
+    "buffer": [
+      1440,
+      884
+    ],
+    "dpr": 1,
+    "draws": 16,
+    "triangles": 56752,
+    "geometryBufferBytes": 4318736,
+    "estimatedTextureBytes": 5961131,
+    "resources": {
+      "geometries": 16,
+      "textures": 5,
+      "programs": 10
+    },
+    "gpuTimeMs": null,
+    "note": "20-second foreground browser sample; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates."
+  }
+]

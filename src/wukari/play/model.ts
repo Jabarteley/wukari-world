@@ -55,7 +55,7 @@ export function canStand(p: Point, study: Study): boolean {
   return study.roads.some(r => permittedForSimulation(r.tags) && lineDistance(p, r.points) <= 2);
 }
 export interface Motion extends Point { yaw: number; moving: boolean; sprinting: boolean; blocked: boolean; distance: number }
-export function advance(state: Motion, input: Point, yaw: number, sprint: boolean, seconds: number, study: Study): Motion {
+export function advance(state: Motion, input: Point, yaw: number, sprint: boolean, seconds: number, study: Study, allowed: (p:Point)=>boolean = p=>canStand(p,study)): Motion {
   if (![input.x, input.z, yaw, seconds].every(Number.isFinite) || seconds < 0) return state;
   const size = Math.hypot(input.x, input.z);
   if (!size) return { ...state, moving: false, sprinting: false, blocked: false };
@@ -67,11 +67,11 @@ export function advance(state: Motion, input: Point, yaw: number, sprint: boolea
   let x = state.x, z = state.z, blocked = false;
   for (let i = 0; i < steps; i++) {
     const next = { x: x + dx / steps, z: z + dz / steps };
-    if (canStand(next, study)) { x = next.x; z = next.z; }
+    if (allowed(next)) { x = next.x; z = next.z; }
     else {
       blocked = true;
-      if (canStand({ x: next.x, z }, study)) x = next.x;
-      if (canStand({ x, z: next.z }, study)) z = next.z;
+      if (allowed({ x: next.x, z })) x = next.x;
+      if (allowed({ x, z: next.z })) z = next.z;
     }
   }
   const moved = Math.hypot(x - state.x, z - state.z);

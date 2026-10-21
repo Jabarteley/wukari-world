@@ -6,6 +6,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { clone } from 'three/addons/utils/SkeletonUtils.js';
 import { appearance,settings,defaultAppearance,defaultSettings,hairstyles } from './play/appearance.ts';
 import { createAvatar } from './play/avatar.ts';
+import { clothingCut } from './play/clothing.ts';
 // Decode the exact committed geometry/rig in Node; image decoding is browser QA.
 async function template(sex:string){
   const b=readFileSync(`data/wukari/phase81/models/${sex}.glb`),length=b.readUInt32LE(12),g=JSON.parse(b.subarray(20,20+length).toString());
@@ -58,4 +59,20 @@ test('actor texture handles are disposed without disposing the template or anoth
   const first=createAvatar(defaultAppearance,template),second=createAvatar(defaultAppearance,template);
   first.root.traverse(o=>{if(o instanceof THREE.Mesh&&!Array.isArray(o.material)&&o.material instanceof THREE.MeshStandardMaterial&&o.material.normalMap){assert.notEqual(o.material.normalMap,texture);assert.equal(o.material.normalMap.source,texture.source);o.material.normalMap.addEventListener('dispose',()=>ownedDisposed++);}});
   first.dispose();assert.equal(ownedDisposed,1);assert.equal(templateDisposed,false);second.animate(1,2,true,false,.02);second.dispose();assert.equal(templateDisposed,false);texture.dispose();
+});
+
+test('continuous garments retain finite normalized rig weights, smooth cloth normals and animated cuffs',()=>{
+  for(const preset of ['male','female'] as const)for(const outfit of ['tee','polo','jacket'] as const){
+    const actor=createAvatar({...defaultAppearance,preset,outfit},models[preset]),shirt=actor.root.getObjectByName('casual-shirt') as THREE.SkinnedMesh;
+    assert(shirt instanceof THREE.SkinnedMesh);const p=shirt.geometry.getAttribute('position'),n=shirt.geometry.getAttribute('normal'),w=shirt.geometry.getAttribute('skinWeight'),bones=shirt.geometry.getAttribute('skinIndex');
+    const joints=new Set<number>();let smooth=0;
+    for(let i=0;i<p.count;i++){assert(clothingCut(p.getX(i),p.getY(i),preset)>-.016);let sum=0;for(let k=0;k<4;k++){const weight=w.getComponent(i,k);assert(Number.isFinite(weight)&&weight>=0);sum+=weight;if(weight>0)joints.add(bones.getComponent(i,k));}assert(Math.abs(sum-1)<1e-6);if(Math.abs(p.getX(i))<.15&&p.getY(i)<1.36&&Math.abs(n.getY(i))<.01)smooth++;}
+    assert(joints.size>=6);assert(smooth>100);
+    for(const [time,distance,moving,sprint] of [[0,0,false,false],[1,2,true,false],[2,7,true,true]] as const){actor.animate(time,distance,moving,sprint,.05);actor.root.updateMatrixWorld(true);shirt.skeleton.update();for(let i=0;i<p.count;i+=31){const v=shirt.getVertexPosition(i,new THREE.Vector3());assert(v.toArray().every(Number.isFinite));assert(v.length()<3);}}
+    actor.dispose();
+  }
+});
+
+test('all hairstyles remain rigidly attached to the native head during head turns',()=>{
+  for(const preset of ['male','female'] as const)for(const hair of hairstyles){const actor=createAvatar({...defaultAppearance,preset,hair},models[preset]);assert.equal(actor.hair.parent,actor.head);const local=actor.hair.matrix.clone();actor.head.rotateY(.5);actor.root.updateMatrixWorld(true);assert(actor.hair.matrix.equals(local));assert(actor.hair.matrixWorld.elements.every(Number.isFinite));actor.dispose();}
 });

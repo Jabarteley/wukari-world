@@ -105,7 +105,9 @@
     "assets:budget": "node --experimental-strip-types scripts/assets/budget.ts",
     "assets:credits": "node --experimental-strip-types scripts/assets/credits.ts",
     "scenes:build": "node --max-old-space-size=512 --experimental-strip-types scripts/scene-factory/scenes.ts build",
-    "scenes:check": "node --max-old-space-size=512 --experimental-strip-types scripts/scene-factory/scenes.ts check"
+    "scenes:check": "node --max-old-space-size=512 --experimental-strip-types scripts/scene-factory/scenes.ts check",
+    "wukari:play": "vite --config scripts/wukari/play.config.ts",
+    "wukari:build": "vite build --config scripts/wukari/play.config.ts"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "0.21.0",

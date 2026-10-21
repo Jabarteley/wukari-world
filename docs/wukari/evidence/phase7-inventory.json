@@ -1,0 +1,7039 @@
+{
+  "town": {
+    "origin": [
+      9.7775523,
+      7.8705196
+    ],
+    "halfSizeMetres": 380,
+    "sourceSha256": "9dece439bd87b8f4883d7e42f3704275bf1102f98310d6e0cb09b181e3398750",
+    "bytes": 154506,
+    "sha256": "f02ec8d86cb5aa26cb4b24e8d8d520b239d852d35b675b629524c73424ad70d3",
+    "coverage": {
+      "roads": 20,
+      "buildings": 209,
+      "components": 5,
+      "sourceSha256": "9dece439bd87b8f4883d7e42f3704275bf1102f98310d6e0cb09b181e3398750",
+      "policy": "Complete original ways wholly inside a source-centred display square. Crossing ways omitted without clipping. Square is a demonstration/study window, never a campus or town boundary."
+    },
+    "spawn": {
+      "point": {
+        "x": -198.30197777280318,
+        "z": -265.0890712767705
+      },
+      "nodeId": 1965491146,
+      "roadId": 558733005,
+      "eligible": true,
+      "review": "Virtual-only review: original road node, connected by shared references, no restrictive mapped tags/bridge/tunnel/ford, building clearance, bounded corridor, away from mapped major-road centre lines. Physical safety, legal/public access, traffic and ground conditions NOT verified."
+    },
+    "roads": [
+      {
+        "id": "way/185860473",
+        "tags": {
+          "highway": "residential",
+          "surface": "unpaved"
+        },
+        "distanceM": 150.48350616697329,
+        "component": 1,
+        "nodes": [
+          1965491101,
+          1965491036,
+          1965491008
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/185860475",
+        "tags": {
+          "highway": "residential",
+          "surface": "unpaved"
+        },
+        "distanceM": 265.29452877081036,
+        "component": 2,
+        "nodes": [
+          1965491021,
+          1965491029
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/475906384",
+        "tags": {
+          "highway": "residential"
+        },
+        "distanceM": 357.925747950114,
+        "component": 3,
+        "nodes": [
+          4695865119,
+          4709366589,
+          5394910252,
+          4695865120,
+          4695865121
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/475906386",
+        "tags": {
+          "highway": "residential"
+        },
+        "distanceM": 312.0782136128094,
+        "component": 1,
+        "nodes": [
+          4695865122,
+          4695865126,
+          4695865127,
+          4709371087,
+          4695865128,
+          4695865129,
+          4695865130
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/475906387",
+        "tags": {
+          "highway": "residential"
+        },
+        "distanceM": 357.925747950114,
+        "component": 3,
+        "nodes": [
+          4695865131,
+          4695865132,
+          4695865133,
+          4695865119
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/476347724",
+        "tags": {
+          "highway": "residential"
+        },
+        "distanceM": 290.4286475174819,
+        "component": 4,
+        "nodes": [
+          4699508472,
+          4699508470,
+          4699508469,
+          4699508468,
+          4699508467,
+          4699508466,
+          4699508465
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/476371724",
+        "tags": {
+          "highway": "residential"
+        },
+        "distanceM": 394.04753482890294,
+        "component": 5,
+        "nodes": [
+          4699694157,
+          4699694156,
+          4699694155,
+          4699694154,
+          4699694152,
+          4699694151
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/477624196",
+        "tags": {
+          "highway": "residential"
+        },
+        "distanceM": 268.1541510014172,
+        "component": 1,
+        "nodes": [
+          4709371087,
+          4709371086,
+          4709371085,
+          4709371084,
+          4709371083,
+          4709371082,
+          4709371081,
+          4709371080,
+          4709371079,
+          4709371078,
+          4709371077
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/477624213",
+        "tags": {
+          "highway": "residential"
+        },
+        "distanceM": 266.3193113823349,
+        "component": 1,
+        "nodes": [
+          4709375808,
+          4709375807,
+          4709375806,
+          4709375805,
+          4709375804,
+          4709375803,
+          4709375802,
+          4709375801
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/477624214",
+        "tags": {
+          "highway": "residential"
+        },
+        "distanceM": 217.0597466786219,
+        "component": 1,
+        "nodes": [
+          4709375809,
+          4709375810,
+          4709375801,
+          4709375811,
+          4709375812,
+          4709371077
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/558732995",
+        "tags": {
+          "highway": "residential",
+          "surface": "unpaved"
+        },
+        "distanceM": 163.89700628558896,
+        "component": 1,
+        "nodes": [
+          1965491024,
+          1965491027
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/558732997",
+        "tags": {
+          "highway": "residential",
+          "surface": "unpaved"
+        },
+        "distanceM": 100.73306011812898,
+        "component": 1,
+        "nodes": [
+          1965491017,
+          1965491024
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/558732998",
+        "tags": {
+          "highway": "residential",
+          "surface": "unpaved"
+        },
+        "distanceM": 101.26379778968023,
+        "component": 1,
+        "nodes": [
+          1965491008,
+          1965491017
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/558732999",
+        "tags": {
+          "highway": "residential",
+          "surface": "unpaved"
+        },
+        "distanceM": 171.9603607800928,
+        "component": 1,
+        "nodes": [
+          4695865127,
+          4709375820,
+          1965491008
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/558733005",
+        "tags": {
+          "highway": "residential",
+          "surface": "unpaved"
+        },
+        "distanceM": 331.0526998817349,
+        "component": 1,
+        "nodes": [
+          1965491188,
+          1965491146
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/558733010",
+        "tags": {
+          "highway": "residential",
+          "surface": "unpaved"
+        },
+        "distanceM": 171.9603607800928,
+        "component": 1,
+        "nodes": [
+          1965491008,
+          4709375809,
+          1965490953
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/558733011",
+        "tags": {
+          "highway": "residential",
+          "surface": "unpaved"
+        },
+        "distanceM": 169.92720927208055,
+        "component": 1,
+        "nodes": [
+          1965491146,
+          1965491124,
+          1965491101
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/558733015",
+        "tags": {
+          "highway": "residential"
+        },
+        "distanceM": 236.8433190917688,
+        "component": 1,
+        "nodes": [
+          4709375820,
+          4709375819,
+          4709375818,
+          4709375817,
+          4709375816
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/558733016",
+        "tags": {
+          "highway": "residential"
+        },
+        "distanceM": 242.6402151132872,
+        "component": 1,
+        "nodes": [
+          4709371077,
+          4709375813,
+          4709375814,
+          4709375815,
+          4709375820
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/559324416",
+        "tags": {
+          "highway": "residential"
+        },
+        "distanceM": 320.2157149316667,
+        "component": 3,
+        "nodes": [
+          4709366589,
+          4709366587
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      }
+    ],
+    "buildings": [
+      {
+        "id": "way/476300183",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 114.92969553052558,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422293",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 218.00604431075686,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422294",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 210.07690732510025,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422295",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 216.1714422803646,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422296",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 210.31139580672638,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422297",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 219.73653283432304,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422298",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 224.79619726646956,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422299",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 241.58438987032017,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422300",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 252.01216565994204,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422301",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 269.42144878172047,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422302",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 300.04894958930953,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422303",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 294.9019847976993,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422304",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 294.80667856999406,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422305",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 179.74945820152107,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422306",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 171.12642165208985,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422307",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 164.66755698102716,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422308",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 229.95411397051822,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422309",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 177.20450001745579,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422310",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 316.04150045089403,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422311",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 317.6958546458974,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422312",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 319.3293834326885,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422313",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 340.16114800381064,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422314",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 324.3117464717479,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422315",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 320.83278156595486,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422316",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 343.47843535939523,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422317",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 328.0507029780092,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422318",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 338.9284431066973,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422319",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 333.9464224118373,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422320",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 295.5058609536215,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422321",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 201.11026639994097,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422322",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 186.49822314713953,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422323",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 185.640025781459,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422324",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 200.79026029978058,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422325",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 122.9157865040384,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422326",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 114.2888502240185,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422327",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 98.7893988032609,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422328",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 97.54491362103367,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422329",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 66.42801474095987,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422330",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 58.84593561300167,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422331",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 41.58752630337043,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415422332",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 50.41567757629967,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415424309",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 41.67110633083257,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415424310",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 76.65716067976823,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415424311",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 87.45803659795386,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415424312",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 134.6804663598952,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415424313",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 119.7166189617518,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415424314",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 140.085312838254,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415424315",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 106.32067203621648,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415424316",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 371.71443316730125,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415424318",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 248.13353327241043,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1415424319",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 293.57200169598235,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013861",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 359.51655493922794,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013884",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 373.1877677060039,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014049",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 489.230200369856,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014050",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 343.27100302418967,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014080",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 415.15999117478043,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014094",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 306.8031356473014,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014237",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 364.2295596271363,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014286",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 337.6783440353716,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014380",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 365.89147016745636,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014396",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 352.624594540571,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014398",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 433.58682674236877,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014461",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 292.97053563090464,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014545",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 337.17319982032535,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014656",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 352.0383383215022,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014760",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 422.37574002595113,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014880",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 429.6263207682996,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014882",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 307.3780381831578,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014900",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 299.26830977491414,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014929",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 475.86254182123326,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014984",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 342.9660552711391,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015102",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 446.98816492015675,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015203",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 306.02277107507666,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015271",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 357.9482329007939,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015446",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 405.2360344604785,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015482",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 321.29773841499554,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015659",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 330.0072064218732,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015717",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 484.51122704097634,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015718",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 388.66460161354075,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015732",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 469.8624203676772,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015734",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 307.53469799790554,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015779",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 299.70443443589386,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015888",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 324.6902286708256,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016215",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 351.6877483863984,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016236",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 429.18191776097905,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016452",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 339.10785425523085,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016483",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 327.8045047640189,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016508",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 380.42942720831314,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016510",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 284.4234620178477,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016685",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 424.8093486316444,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016765",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 409.47693159017825,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016812",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 432.25956437055925,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016957",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 344.2511606471609,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017113",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 299.78285184528306,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017130",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 338.02990933513047,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017165",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 351.59521760127734,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017294",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 443.5227082225801,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017386",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 279.6688153406453,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017431",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 447.0124245542998,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017451",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 299.85788460400244,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017532",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 442.13212213523974,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017688",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 365.7521734026759,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017689",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 341.48030482932796,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017963",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 400.96074391896366,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017998",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 412.2941097410816,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018038",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 316.44983329037854,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018072",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 395.6652149811543,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018123",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 314.74909555154926,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018227",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 426.22918400770584,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018231",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 332.34230508361355,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018233",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 388.4161973238194,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018264",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 359.8439980888129,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018314",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 435.47851536539173,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018316",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 358.49015712332283,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018388",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 357.6252938061322,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018682",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 334.7816638806739,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018747",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 357.17819788828206,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018748",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 357.6595285854445,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018811",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 434.3499491849662,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018825",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 446.7408603954144,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018891",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 395.7196654551863,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019034",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 318.14330881239533,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019055",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 340.64297080225316,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019139",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 333.53842907184185,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019456",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 421.68628310877125,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019509",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 319.42092314574097,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019592",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 291.25373071610414,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019608",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 332.8592357699212,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019726",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 499.4978195785795,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020067",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 300.1911861599742,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020117",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 291.58361585407437,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020290",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 339.49116555545174,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020306",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 388.45174064526674,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020338",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 410.1461749732128,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020390",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 392.237666230406,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020443",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 344.97847234321347,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020621",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 334.75340913143356,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020697",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 365.5846356756681,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020710",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 411.92165670959145,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020788",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 423.7204685961807,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020849",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 301.81498424039074,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020918",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 301.333901629788,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020931",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 332.2222172508233,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020935",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 289.89373666284683,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021077",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 379.3506077829667,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021177",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 375.539327706033,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021276",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 438.0319124702159,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021394",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 388.85440918862554,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021407",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 406.13355665434864,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021883",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 365.65452463164985,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021963",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 345.3208390326761,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022022",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 313.96083297061404,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022039",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 416.2721429240577,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022040",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 308.07526018786825,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022058",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 326.233304162886,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022221",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 350.2622660334326,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022310",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 416.1702740136715,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022313",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 319.4326906961734,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022361",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 362.17481759662024,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022365",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 364.2966550496459,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022410",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 364.1489749938297,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022539",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 324.3968409797029,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022745",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 433.6178923372551,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022762",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 428.7296708769152,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022950",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 336.011866364748,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023274",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 291.43171126112094,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023295",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 429.7174197651039,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023399",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 434.4937162735783,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023533",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 357.37832677770444,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023534",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 353.59262460165667,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023595",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 338.0836819799887,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023792",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 383.30504324982286,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023916",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 315.48312501509247,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024147",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 383.8524679372362,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024218",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 298.0034285664475,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024256",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 346.9056699547887,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024308",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 310.870279620511,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024413",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 342.86344057549474,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024491",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 471.83413821156563,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024493",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 370.65615268789173,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024511",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 336.25744957018446,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024636",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 332.8594871299224,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024637",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 361.62387187676995,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024646",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 448.40646538934425,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024810",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 484.29364543315313,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024826",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 401.33286591980664,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024953",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 423.90956025725916,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025074",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 343.34659119452044,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025159",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 386.26300799682605,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025173",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 329.131132396403,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025206",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 357.09915719140866,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025251",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 407.90419336248516,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025370",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 340.48919151590496,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025433",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 381.4129129596832,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025490",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 459.16363595980573,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025604",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 363.27396253048056,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025617",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 345.5127497852543,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025635",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 329.6111971441289,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025653",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 329.34495023961165,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025699",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 392.4070272537872,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025797",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 340.11372906713433,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025833",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 365.39012760889125,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025906",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 449.78311238035644,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025998",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 428.69211768834265,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026193",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 295.93476151153675,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026256",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 362.8120523733684,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026287",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 310.8931777836537,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026478",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 375.1384619722013,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026706",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 354.61534023548637,
+        "association": "nearby-only; FUW ownership unverified"
+      }
+    ]
+  },
+  "fuw": {
+    "origin": [
+      9.775,
+      7.8436111111111115
+    ],
+    "halfSizeMetres": 650,
+    "sourceSha256": "9dece439bd87b8f4883d7e42f3704275bf1102f98310d6e0cb09b181e3398750",
+    "bytes": 410997,
+    "sha256": "b8ed78291cf2f557d241555898dafe0b25bd8e3d3fe08fbfdbc6c188a5b044d7",
+    "coverage": {
+      "roads": 24,
+      "buildings": 571,
+      "components": 7,
+      "sourceSha256": "9dece439bd87b8f4883d7e42f3704275bf1102f98310d6e0cb09b181e3398750",
+      "policy": "Complete original ways wholly inside a source-centred display square. Crossing ways omitted without clipping. Square is a demonstration/study window, never a campus or town boundary."
+    },
+    "spawn": null,
+    "roads": [
+      {
+        "id": "way/181916663",
+        "tags": {
+          "highway": "trunk_link"
+        },
+        "distanceM": 341.7151707998176,
+        "component": 1,
+        "nodes": [
+          1922550725,
+          1922550723
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/476935923",
+        "tags": {
+          "highway": "unclassified",
+          "surface": "unpaved"
+        },
+        "distanceM": 456.6478712661891,
+        "component": 2,
+        "nodes": [
+          4703566619,
+          4703566618,
+          4703566617,
+          4703566616,
+          4703566615,
+          4719478983,
+          4703566614,
+          4703566613,
+          4703566611,
+          4703566612
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/478734017",
+        "tags": {
+          "highway": "unclassified",
+          "surface": "unpaved"
+        },
+        "distanceM": 375.66079631749466,
+        "component": 2,
+        "nodes": [
+          4719478988,
+          4719478987,
+          4719478986,
+          4719478985,
+          4719478984,
+          4719478983
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/478734029",
+        "tags": {
+          "highway": "service",
+          "surface": "unpaved"
+        },
+        "distanceM": 518.5448837590144,
+        "component": 3,
+        "nodes": [
+          4719479097,
+          4719479096,
+          4719479095
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/478734030",
+        "tags": {
+          "highway": "service",
+          "surface": "unpaved"
+        },
+        "distanceM": 502.7720262730407,
+        "component": 3,
+        "nodes": [
+          4719479100,
+          4719479099,
+          4719479097,
+          12925765375,
+          4719479098
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/673416531",
+        "tags": {
+          "highway": "unclassified",
+          "oneway": "yes"
+        },
+        "distanceM": 365.95306689713334,
+        "component": 4,
+        "nodes": [
+          6306383320,
+          6306383321,
+          6306383322,
+          6306383323,
+          6306383324,
+          6306383325,
+          12925765400,
+          6306383326,
+          6306383327,
+          6306383328,
+          6306383329
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/673416532",
+        "tags": {
+          "highway": "unclassified",
+          "oneway": "yes"
+        },
+        "distanceM": 392.74820834529464,
+        "component": 4,
+        "nodes": [
+          6306383330,
+          6306383331,
+          6306383332,
+          6306383333,
+          12925776602,
+          6306383334,
+          6306383335,
+          6306383336,
+          6306383337,
+          6306383338
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/673416533",
+        "tags": {
+          "highway": "unclassified",
+          "junction": "roundabout"
+        },
+        "distanceM": 363.7250794724573,
+        "component": 4,
+        "nodes": [
+          6306383353,
+          6306383354,
+          6306383330,
+          6306383355,
+          6306383339,
+          6306383340,
+          6306383341,
+          6306383329,
+          6306383342,
+          6306383343,
+          6306383350,
+          6306383351,
+          6306383352,
+          6306383344,
+          6306383345,
+          6306383346,
+          6306383347,
+          6306383348,
+          6306383349,
+          6306383353
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/673416535",
+        "tags": {
+          "highway": "unclassified",
+          "oneway": "yes"
+        },
+        "distanceM": 400.5971543491443,
+        "component": 4,
+        "nodes": [
+          6306383373,
+          6306383349
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/673416536",
+        "tags": {
+          "highway": "unclassified",
+          "oneway": "yes"
+        },
+        "distanceM": 392.40911771496496,
+        "component": 4,
+        "nodes": [
+          6306383346,
+          6306383373
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/673416537",
+        "tags": {
+          "highway": "unclassified",
+          "oneway": "yes"
+        },
+        "distanceM": 236.80568449809056,
+        "component": 4,
+        "nodes": [
+          6306383343,
+          6306383374,
+          6306383375,
+          6306383686,
+          6306383380
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/673416538",
+        "tags": {
+          "highway": "unclassified",
+          "oneway": "yes"
+        },
+        "distanceM": 246.6178999597434,
+        "component": 4,
+        "nodes": [
+          6306383380,
+          6306383377,
+          6306383685,
+          6306383378,
+          6306383379,
+          6306383352
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/673416540",
+        "tags": {
+          "highway": "unclassified"
+        },
+        "distanceM": 103.90511694889467,
+        "component": 4,
+        "nodes": [
+          6306383685,
+          6306383686,
+          6306383687,
+          6306383688,
+          6306383689,
+          6306383690,
+          6306383691,
+          6306383692,
+          6306383693,
+          6306383705,
+          6306383704,
+          6306383694,
+          6306383695
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/673416541",
+        "tags": {
+          "highway": "unclassified"
+        },
+        "distanceM": 209.8104984182111,
+        "component": 4,
+        "nodes": [
+          6306383696,
+          6306383698,
+          6306383703,
+          6306383697
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/673416542",
+        "tags": {
+          "highway": "unclassified"
+        },
+        "distanceM": 218.2802124077896,
+        "component": 4,
+        "nodes": [
+          6306383698,
+          6306383695,
+          6306383699,
+          6306383700,
+          6306383701
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/673416543",
+        "tags": {
+          "highway": "unclassified"
+        },
+        "distanceM": 188.23271702900763,
+        "component": 4,
+        "nodes": [
+          6306383692,
+          6306383702,
+          6306383703
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/673416544",
+        "tags": {
+          "highway": "unclassified"
+        },
+        "distanceM": 194.76743366087373,
+        "component": 4,
+        "nodes": [
+          6306383697,
+          6306383704
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/673416545",
+        "tags": {
+          "highway": "unclassified"
+        },
+        "distanceM": 190.0143736371499,
+        "component": 4,
+        "nodes": [
+          6306383705,
+          6306383697
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/673416546",
+        "tags": {
+          "highway": "unclassified"
+        },
+        "distanceM": 169.98192500414294,
+        "component": 5,
+        "nodes": [
+          6306383706,
+          6306383707,
+          6306383708
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1396579084",
+        "tags": {
+          "highway": "service"
+        },
+        "distanceM": 444.99120652648674,
+        "component": 6,
+        "nodes": [
+          12925765339,
+          12925765377
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1396579085",
+        "tags": {
+          "highway": "path"
+        },
+        "distanceM": 493.1182687249925,
+        "component": 3,
+        "nodes": [
+          12925765341,
+          12925765340,
+          4719479100
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1396579091",
+        "tags": {
+          "highway": "service"
+        },
+        "distanceM": 434.5031131944239,
+        "component": 4,
+        "nodes": [
+          12925776611,
+          12925776604,
+          12925776603,
+          12925776602,
+          12925776601,
+          12925765400
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1432594451",
+        "tags": {
+          "highway": "service"
+        },
+        "distanceM": 181.77193676926515,
+        "component": 4,
+        "nodes": [
+          6306383691,
+          13167953300,
+          13167953299,
+          13167953298,
+          13167953297,
+          13167953296,
+          13167953295,
+          13167953294,
+          13167953293,
+          13167953292,
+          13167953291,
+          13167953290,
+          13167953289,
+          13167953288,
+          13167953287,
+          13167953286,
+          13167953285,
+          13167953284,
+          13167953283,
+          13167953282,
+          13167953281
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1432594453",
+        "tags": {
+          "highway": "service"
+        },
+        "distanceM": 595.1936413701005,
+        "component": 7,
+        "nodes": [
+          13167960608,
+          13167960607,
+          13167960606,
+          13167960605,
+          13167960604,
+          12925765372
+        ],
+        "association": "nearby-only; FUW ownership unverified"
+      }
+    ],
+    "buildings": [
+      {
+        "id": "way/1523013499",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 137.99114475067344,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013513",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 604.7361113864512,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013544",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 318.72720633305204,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013546",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 471.423233270881,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013593",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 857.5834793812351,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013607",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 419.36138533761317,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013610",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 354.46936958924647,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013623",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 529.5759622821456,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013644",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 520.2218561050022,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013663",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 463.6167654581327,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013676",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 604.9035858426114,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013712",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 558.4181124797302,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013724",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 695.1034286865253,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013727",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 14.115994700641151,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013764",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 674.0684678743814,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013796",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 422.91057161709415,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013799",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 644.7363153812456,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013829",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 511.5679344938992,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013830",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 627.9834522201754,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013887",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 305.01629352040806,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013912",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 370.88060664966616,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013915",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 460.3943806537001,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013964",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 703.8299306239006,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013974",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 596.4413472895848,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523013988",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 726.2351956418399,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014005",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 510.6059824820427,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014019",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 431.56066385138604,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014034",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 534.5355530797772,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014053",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 450.769825892206,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014096",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 55.3331511572913,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014116",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 381.94354468426167,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014142",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 365.29718644308565,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014175",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 736.1038371162015,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014188",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 751.723794086825,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014224",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 662.7932689728759,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014241",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 414.51233222311197,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014317",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 508.17641810200746,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014351",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 520.0878002020665,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014381",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 631.6729219711948,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014401",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 400.3269935165073,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014418",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 503.1932761076324,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014431",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 547.9552204677251,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014466",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 506.3297308762752,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014478",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 268.80500530980765,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014480",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 692.8907808405053,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014498",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 173.14034071040268,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014534",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 449.39744446904433,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014551",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 390.36922151260296,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014570",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 611.4603292642348,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014587",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 636.701158467992,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014601",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 610.1069887921789,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014615",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 707.9577164729725,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014645",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 380.89624749347513,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014657",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 540.066406709419,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014696",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 606.9455924701012,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014727",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 445.71357967333097,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014763",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 537.8997959766522,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014777",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 529.3268186634258,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014780",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 460.49471143287366,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014798",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 443.3101990739055,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014832",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 450.2675051257884,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014847",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 477.2853845197787,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014865",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 775.7487649254701,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014886",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 485.8473467300146,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014887",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 471.37802422617403,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014903",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 429.86045591876984,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014952",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 116.58901157547356,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523014969",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 686.2304140228321,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015004",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 285.3794153872743,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015042",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 524.3091659397013,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015074",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 408.02455890007,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015103",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 773.3098892596978,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015126",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 539.5538341641826,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015141",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 529.29881606199,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015156",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 593.8969050575298,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015171",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 358.17785382592183,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015192",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 552.693445277762,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015193",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 585.7628710405796,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015258",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 349.0010592354752,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015273",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 571.7044248966766,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015275",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 193.18290415535856,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015312",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 441.89487156557857,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015327",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 359.89950024873565,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015344",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 580.7023544054925,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015359",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 391.5441890505845,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015376",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 218.65131605076195,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015377",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 363.94314157089286,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015392",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 569.3054919712109,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015434",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 71.66605803024964,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015449",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 629.4418028770017,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015465",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 887.310774434156,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015484",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 361.62692941106354,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015488",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 544.7383998632002,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015508",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 688.4909678277525,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015521",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 414.15743632230783,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015552",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 394.82728486509393,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015562",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 396.08318840382526,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015563",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 468.32932497955477,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015612",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 422.51825560858197,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015630",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 396.60427751467137,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015679",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 343.2479565581175,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015689",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 489.03191352183813,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015722",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 440.96650250586976,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015735",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 642.9888829476423,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015751",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 715.014105422821,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015766",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 500.5545941820016,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015783",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 557.2727227111761,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015801",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 37.09743370367236,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015819",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 669.6257553153769,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015835",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 703.1313649468269,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015836",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 145.74371541498496,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015859",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 427.77084211816316,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015895",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 151.51534246043423,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015907",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 565.8332759768958,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015921",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 554.7571289236382,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015956",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 537.6188275451295,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015974",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 622.334669377833,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523015987",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 142.73279646247664,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016039",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 656.0337635355486,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016056",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 103.64937190098773,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016101",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 694.3306512077756,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016138",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 296.3710491259118,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016167",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 392.4923131130775,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016204",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 359.54781113899264,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016223",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 664.7428584284324,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016258",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 544.8992545106807,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016288",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 615.6773421295057,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016301",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 478.350825413772,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016320",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 149.1357550224193,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016332",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 504.39976214105656,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016352",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 396.69542501774856,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016403",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 416.4870533007304,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016438",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 477.49841443910714,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016439",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 359.2374326164531,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016500",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 631.0263356550676,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016515",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 31.538328925982132,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016532",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 460.98593340341097,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016549",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 875.0493189347239,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016552",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 541.0297050744789,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016583",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 552.8258728796374,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016597",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 567.3351553735231,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016643",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 736.0939050163189,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016663",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 624.4597556383738,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016675",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 578.7622445073083,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016686",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 376.0294226596334,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016741",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 674.6536172621153,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016752",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 730.3353425141394,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016771",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 596.0855259204167,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016786",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 424.41477640958465,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016797",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 465.77408913357306,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016800",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 619.2218402484365,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016816",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 612.9797171767335,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016834",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 157.04481810360068,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016864",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 327.09868386978627,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016867",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 566.4540070184021,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016899",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 469.7955765768061,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016912",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 67.78750032601546,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016925",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 489.05853719085707,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016960",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 215.78980788816506,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523016969",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 698.0938560345398,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017004",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 491.08760155850183,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017018",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 273.8109631204096,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017035",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 86.26815010747865,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017037",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 579.2362505492459,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017054",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 672.371281480272,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017071",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 422.5940187221602,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017072",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 414.3994013872888,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017084",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 396.0788735852737,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017087",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 524.4032241605411,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017149",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 538.3490822614845,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017168",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 686.9061510308566,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017204",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 508.0439270724027,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017217",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 692.5956713368768,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017251",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 732.414924519665,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017282",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 616.757443594057,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017299",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 722.5033781473419,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017332",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 406.7691595600163,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017334",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 601.6269894804162,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017346",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 740.7690459453992,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017434",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 618.2102350082748,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017436",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 610.3587575504619,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017472",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 689.2369826030093,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017516",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 580.9181321987048,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017536",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 461.2970148065119,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017565",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 393.0402848179745,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017599",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 450.9849713500036,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017616",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 516.1288744417926,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017628",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 638.1610421444296,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017646",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 225.90166787923977,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017659",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 637.647447476371,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017708",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 273.36666823542845,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017719",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 526.2418814206367,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017758",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 432.1760194211417,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017779",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 723.7167497146394,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017794",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 367.2631407539563,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017809",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 559.6815979029932,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017826",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 506.476196191641,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017880",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 679.8994094701359,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017899",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 365.7120142564322,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017913",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 370.4146533437951,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017929",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 677.0930723549926,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017946",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 621.0071885953478,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017968",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 532.7385309525359,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017969",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 113.00973616065052,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017985",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 38.010191372494944,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523017999",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 498.43260377515816,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018029",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 81.56687486058287,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018041",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 480.8707203677296,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018078",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 361.8462918231412,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018110",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 541.780175063326,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018125",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 383.4426993840174,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018145",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 586.3908761654923,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018146",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 651.9906870852695,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018161",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 687.5468436980924,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018219",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 448.06538756696335,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018221",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 684.2581230778939,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018249",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 575.8502500632283,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018301",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 540.213324315147,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018319",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 95.24206270920205,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018329",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 716.5951666133607,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018347",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 112.00825795657869,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018364",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 758.7821316245626,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018391",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 637.7283582657393,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018406",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 592.8649166248102,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018429",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 67.81932103197303,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018443",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 303.97069801467524,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018488",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 443.8344221789908,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018539",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 593.0210148582622,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018542",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 440.494068896712,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018557",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 407.1155855078073,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018569",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 503.26368000217786,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018585",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 611.0516627773922,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018601",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 547.1796566549491,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018647",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 674.296316221522,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018657",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 254.9665776259736,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018670",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 584.4795676834532,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018673",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 3.149126773691489,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018705",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 354.1520823522791,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018723",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 611.5710576374777,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018766",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 493.2631545050109,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018778",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 513.1352039499271,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018814",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 603.2868854479085,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018830",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 774.5336782550951,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018848",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 550.1089982808534,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018895",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 303.26711593771864,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018896",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 712.0638577841004,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018911",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 665.2424181261862,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018958",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 544.4216970004443,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018974",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 456.1148834542342,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523018990",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 626.4662518907259,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019010",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 882.7567973272835,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019027",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 127.88448554442539,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019041",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 382.230164725504,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019088",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 575.9855017163537,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019090",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 581.8271233847323,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019158",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 505.562455269338,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019160",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 402.7961614880167,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019254",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 386.5834875474433,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019266",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 620.1378456180227,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019268",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 420.9993538324171,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019300",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 24.199724813452427,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019319",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 400.53265494248024,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019338",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 494.3416756144141,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019371",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 500.59704215606706,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019386",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 436.1917453586445,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019420",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 168.27986901942276,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019432",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 440.14230349738875,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019445",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 762.6060272742608,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019466",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 98.21254242694496,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019503",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 451.7253528338264,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019514",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 610.3428596435066,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019530",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 664.8843402351634,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019562",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 695.3962548902457,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019564",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 663.9591846170758,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019597",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 428.37408255195146,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019655",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 522.3046847470973,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019656",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 403.5571028748954,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019672",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 379.4356322438798,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019685",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 347.4467669557924,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019730",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 694.1466223344748,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019749",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 588.845624935614,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019768",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 468.6001952086869,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019804",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 245.54101644133092,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019833",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 378.65192430285396,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019834",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 221.00075030912348,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019847",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 442.02932274250406,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019850",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 444.6396660228262,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019866",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 553.1382017361178,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019944",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 401.88697386494874,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019973",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 69.04237317294586,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523019987",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 607.0909069417567,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020006",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 538.6334715983252,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020023",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 450.0785398250476,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020071",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 597.5418282365114,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020102",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 422.52042736919765,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020121",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 648.311510804269,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020153",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 455.783312572629,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020168",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 505.1575698759987,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020184",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 663.3638450869233,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020199",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 740.7549221779258,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020259",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 476.0743962079774,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020261",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 548.453669958969,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020295",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 431.0716397827218,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020313",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 474.63492028656947,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020325",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 771.5146450471335,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020341",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 381.4779576818693,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020360",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 643.28134883832,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020375",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 490.0902581673271,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020377",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 470.95309204143757,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020412",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 352.31184650220473,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020445",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 713.8837340984826,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020481",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 540.9317229216682,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020505",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 469.2361253332533,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020540",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 369.9001248997174,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020552",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 167.86066254459698,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020554",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 512.620106844688,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020572",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 92.79267440214221,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020589",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 201.4343885950856,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020609",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 440.9733661520459,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020625",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 635.1116638479556,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020651",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 634.9004383049579,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020652",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 398.2829335144785,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020666",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 575.8451715197866,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020701",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 234.3826485986371,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020715",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 398.9996481461658,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020727",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 440.2320873155909,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020730",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 745.6402628498558,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020789",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 436.6419360523077,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020821",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 362.6517147359521,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020833",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 583.7344915474212,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020888",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 672.8125885984979,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020920",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 566.3669410179645,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020939",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 410.60682302746136,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523020940",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 215.25232784604992,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021035",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 50.46905102217407,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021081",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 190.99244606584998,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021092",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 407.8015143131737,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021096",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 578.8693325724054,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021130",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 360.9670081090731,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021150",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 589.5201430000494,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021211",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 426.8539367328919,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021248",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 711.1577175834014,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021261",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 567.4429410311632,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021280",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 560.6909342532186,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021316",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 283.18438752382565,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021317",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 352.1524165029593,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021346",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 456.50153528192993,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021383",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 560.6708189768151,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021398",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 631.713053007361,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021416",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 473.9838594646726,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021471",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 398.42300900392274,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021486",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 639.784277654105,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021503",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 549.0345371260001,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021504",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 414.1982906300437,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021519",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 710.0882140982931,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021536",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 533.3758883342184,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021558",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 427.34043757827845,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021569",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 620.1517112554652,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021583",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 532.0409933782208,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021622",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 270.8846022544402,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021651",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 275.0089086903716,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021667",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 493.2749949955161,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021684",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 491.13035943682445,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021696",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 160.82955844742526,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021697",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 421.06442484555737,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021716",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 46.54389483692324,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021733",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 389.04221754137967,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021793",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 425.56969309987585,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021808",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 354.8330548008954,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021820",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 385.11191234273593,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021866",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 570.9930502506342,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021869",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 590.6849454529666,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021905",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 571.9331710974681,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021952",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 671.5103295136563,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021967",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 594.6531946337635,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021968",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 221.49767673148978,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021980",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 459.3912753731426,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523021982",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 453.09373922933344,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022017",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 368.2388181418344,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022041",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 369.3979174131958,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022081",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 582.305879620982,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022107",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 492.42638917316077,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022144",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 491.663998633484,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022154",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 485.064386537094,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022157",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 173.23435818492413,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022193",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 629.8238905549454,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022224",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 598.9373707106408,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022253",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 470.59897700967446,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022268",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 471.1435732485897,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022316",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 528.8669091797052,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022348",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 671.4948029391155,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022429",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 691.3403007560953,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022443",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 667.4243344172396,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022445",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 456.0197733181218,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022511",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 280.2618486393375,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022525",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 546.5623114369031,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022543",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 374.0388179336162,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022559",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 610.6378278581748,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022609",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 32.14028068801983,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022623",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 516.2572870323348,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022645",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 306.8561261226797,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022687",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 618.3131074638239,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022705",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 510.5948792741222,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022718",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 381.1637293289346,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022749",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 524.1582297142227,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022751",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 290.940328831134,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022804",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 553.9594435673605,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022818",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 196.29750963919096,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022820",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 187.4271576804328,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022855",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 552.2674091657145,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022856",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 294.6808512713434,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022873",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 432.8640395525588,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022886",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 779.4835387266211,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523022932",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 200.87125063585722,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023015",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 512.0327735838889,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023111",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 711.8461403009103,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023150",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 336.279211919076,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023164",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 398.6003243622122,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023243",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 515.9159670098111,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023262",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 683.611384859686,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023276",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 468.81613058494264,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023279",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 390.8086239206905,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023296",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 472.33931498947254,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023344",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 644.3506285530855,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023391",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 745.2310871399969,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023402",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 355.09960622086226,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023449",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 553.3374349499148,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023466",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 376.67444965177543,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023482",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 150.6552034240103,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023521",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 619.7646324122569,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023553",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 528.676717266636,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023600",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 210.11234978415624,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023614",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 605.3100443963565,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023631",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 640.8546007990778,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023633",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 419.00843255028246,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023689",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 523.0891336903446,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023700",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 567.1781989185381,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023734",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 167.35934412431547,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023747",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 539.0887458412504,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023784",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 606.5865948078433,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023812",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 380.6468810378879,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023861",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 196.97641412862714,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023921",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 729.5725244534192,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023924",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 393.7198626775179,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023937",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 707.2676888522328,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023957",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 267.47166812748367,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023971",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 348.0919163140555,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523023999",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 457.8182971687369,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024029",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 603.1571872504812,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024080",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 517.2744779834632,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024097",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 555.4123606643943,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024132",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 96.3428655243949,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024150",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 603.4892878995505,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024163",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 751.299897319391,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024224",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 495.48852004903057,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024241",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 182.42564841528736,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024279",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 614.2299172399925,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024281",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 479.7334383895904,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024299",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 435.9804143432272,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024314",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 590.5878141795853,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024315",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 368.95549431320467,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024326",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 421.50621200545004,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024339",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 514.5540838541995,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024358",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 272.9332251338952,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024384",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 424.47277121129093,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024401",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 622.4890749537055,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024420",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 631.8787970721646,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024448",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 163.05153220598066,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024462",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 444.48667584959907,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024495",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 594.04446357052,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024497",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 554.3777076784061,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024513",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 653.951192064399,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024546",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 106.44445268647483,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024561",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 673.6829505337437,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024575",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 375.80473627510344,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024594",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 441.61746369561826,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024608",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 593.6584528378986,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024621",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 522.7348092468183,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024668",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 673.8761366046627,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024670",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 454.72642151020085,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024705",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 453.1009080168032,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024723",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 493.3190285194653,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024750",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 248.68321355689696,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024767",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 469.15067706093157,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024781",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 593.2786928086294,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024783",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 580.9788767922115,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024799",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 553.4847111193322,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024818",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 471.0621019346211,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024834",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 624.7252314159022,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024850",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 146.30205170554177,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024883",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 499.42118702394464,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024900",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 575.6225475384612,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024912",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 625.2467574547813,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024945",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 501.2435161320118,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024960",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 687.4427788968181,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024976",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 355.5116852333347,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024990",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 605.4368211609764,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523024993",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 595.6248959821623,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025009",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 264.4669785251698,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025028",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 392.14241139405027,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025042",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 717.4751653543211,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025060",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 584.0166214883525,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025129",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 771.0085456061798,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025142",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 72.55163491007616,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025160",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 378.92694858463983,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025197",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 770.7443974841891,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025207",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 666.1774523778993,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025252",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 417.76301663216026,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025307",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 591.2635727606433,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025323",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 538.1565334245282,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025341",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 431.4014331450979,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025358",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 596.6603321784437,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025373",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 263.8936779395892,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025384",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 650.0156941119748,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025421",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 483.4046404379475,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025437",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 590.5887934522106,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025456",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 608.5208365178801,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025495",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 759.887567750946,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025544",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 735.3535792024029,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025545",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 450.21787183089816,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025557",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 207.41195486259215,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025575",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 357.84252328292257,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025623",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 233.80801824749847,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025657",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 506.2918394524333,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025658",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 759.8108442851784,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025686",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 105.86286473356272,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025722",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 626.5221541735935,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025735",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 153.33603023893113,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025737",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 120.43936911981312,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025770",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 331.63292149394226,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025786",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 600.5455628021825,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025819",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 507.5520952566105,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025865",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 618.1382955885173,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025907",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 570.3800993875313,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025927",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 771.4826870668003,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025951",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 470.1515283507041,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025967",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 576.6091274262775,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523025999",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 461.68432881867443,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026016",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 421.10900011736396,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026030",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 580.4715321038244,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026046",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 572.9536409891004,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026080",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 696.988647647924,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026101",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 793.3823282967406,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026135",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 585.326811617048,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026136",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 245.2731145596511,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026148",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 611.904959522608,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026161",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 599.7951816772857,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026210",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 623.8632052159198,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026213",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 664.8353167428061,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026260",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 683.2459575761851,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026276",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 475.06804609989945,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026292",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 501.4174795513532,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026308",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 733.7412980358658,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026322",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 547.8629328667645,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026361",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 550.9880806461313,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026374",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 669.3717586256834,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026391",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 753.0449864874614,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026424",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 271.16039529157297,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026438",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 584.4344204987904,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026498",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 674.6783164708312,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026514",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 549.196697171093,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026531",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 456.4542346927875,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026545",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 534.2394621637013,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026559",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 37.70849126026486,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026570",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 182.31309459940388,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026588",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 637.7922074632353,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026615",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 462.4374660903304,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026647",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 403.9288172253457,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026658",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 502.71050195544547,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026676",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 168.53020139012435,
+        "association": "nearby-only; FUW ownership unverified"
+      },
+      {
+        "id": "way/1523026691",
+        "tags": {
+          "building": "yes"
+        },
+        "distanceM": 683.1330829504029,
+        "association": "nearby-only; FUW ownership unverified"
+      }
+    ]
+  }
+}

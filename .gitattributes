@@ -3,3 +3,4 @@ data/wukari/verified/** -text
 scripts/geo/sources/** -text
 docs/wukari/FUW_COVERAGE_REPORT.md text eol=lf
 docs/wukari/LOCAL_PBF_COVERAGE_REPORT.md text eol=lf
+data/wukari/phase7/** -text

@@ -64,7 +64,8 @@ function run(project: string): Promise<RunResult> {
 function parse(project: string, out: string): { errors: TypeError[]; stray: string[] } {
   const errors: TypeError[] = []
   const stray: string[] = []
-  for (const line of out.split('\n')) {
+  for (const rawLine of out.split('\n')) {
+    const line = rawLine.replace(/\r$/, '')
     const match = /^(.+?)\((\d+),(\d+)\): error (TS\d+): (.*)$/.exec(line)
     if (match) {
       const file = relative(root, resolve(root, match[1] as string)).split('\\').join('/')

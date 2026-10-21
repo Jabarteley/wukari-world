@@ -23,3 +23,9 @@
 
 - Original instanced poles/combined lights/trees/shelters/signs and static sagging wires, all explicitly illustrative. Placement test asserts clearance from every source road/footprint, no mapped towers relocated. FUW receives no generated furniture. Phase9 tests4/4 and strict types pass. Reviewed screenshot shows motorcycle, poles/wires and pitched roofs.
 - 9D schema/source changes in progress but excluded from9C commit; preserve stage boundaries. Next geometry wardrobes and fitted shoe lasts, then full loaded performance/browser acceptance.
+
+## 9D checkpoint
+
+- Expanded version1 look schema with five tops/five bottoms/four footwear choices; legacy appearance migrates to jeans. Distinct skinned sleeves/hood/collars/pockets/shorts and custom foot-outline shoes; combined garment/foot draws preserve rig efficiency. Foot preview added.
+- Avatar tests8/8 passed before final shoe shell refinement; targeted wardrobe test passes actual vertex ground clearance after ankle counter-rotation. Initial bounding-box clearance test was misleading (overstated penetration), corrected to actual world vertices. Full final suite pending. Reviewed close-ups rejected pinched caps and confirmed rounded replacements; all8footwear/preset captures available.
+- Loaded full browser acceptance19groups passed before last shoe-shell iteration:16vehicles/9?10motorcycles/166props, real IntelHD620. Final loaded measurements and source-named default approach follow; do not reuse earlierFPS without explicit scope.

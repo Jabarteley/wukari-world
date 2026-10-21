@@ -7,10 +7,11 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { clone } from 'three/addons/utils/SkeletonUtils.js';
 import { shirt,clothingCut,maskClothing } from './clothing.ts';
 import { fittedHair } from './hair.ts';
-import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
+import {finishWardrobe,shoeGeometries} from './wardrobe.ts';
 import type { Appearance } from './appearance.ts';
 const templates=new Map<string,THREE.Group>();
-const bodyMasks=new WeakMap<THREE.BufferGeometry,THREE.BufferGeometry>();
+const bodyMasks=new WeakMap<THREE.BufferGeometry,Map<string,THREE.BufferGeometry>>();
 let loading:Promise<void>|undefined;
 export function preloadCharacters():Promise<void>{
   return loading??=Promise.all(['male','female'].map(async preset=>{
@@ -36,14 +37,14 @@ export function createAvatar(a:Appearance,template:THREE.Group|undefined=templat
       if(o instanceof THREE.SkinnedMesh){skeletons.add(o.skeleton);o.frustumCulled=false;}
       if(material.name==='Brows'){material.color.set(a.hairColor);return;}
       if(material.name==='MI_Eyes')return;bodyMesh=o;
-      sourceBodyGeometry=sourceGeometry.clone();let fitted=bodyMasks.get(sourceGeometry);if(!fitted){fitted=sourceGeometry.clone();maskClothing(fitted,a.preset);fitted.computeVertexNormals();bodyMasks.set(sourceGeometry,fitted);}
-      o.geometry.dispose();geometries.pop();o.geometry=fitted.clone();geometries.push(o.geometry);
-      const p=o.geometry.getAttribute('position'),colors=new Float32Array(p.count*3),garment=new Float32Array(p.count);
+      sourceBodyGeometry=sourceGeometry.clone();const key=['hoodie','jacket','shirt'].includes(a.outfit)?'long':'short',cuts=bodyMasks.get(sourceGeometry)??new Map<string,THREE.BufferGeometry>();let fitted=cuts.get(key);if(!fitted){fitted=sourceGeometry.clone();maskClothing(fitted,a.preset,a.outfit);fitted.computeVertexNormals();cuts.set(key,fitted);bodyMasks.set(sourceGeometry,cuts);}
+      o.geometry.dispose();geometries.pop();o.geometry=fitted.clone();geometries.push(o.geometry);if(a.footwear!=='sandals'&&o.geometry.index){const ix=o.geometry.index,p=o.geometry.getAttribute('position'),visible:number[]=[];for(let i=0;i<ix.count;i+=3){if([0,1,2].every(k=>p.getY(ix.getX(i+k))<.105))continue;visible.push(ix.getX(i),ix.getX(i+1),ix.getX(i+2));}o.geometry.setIndex(visible);}
+      const p=o.geometry.getAttribute('position');if(a.footwear==='sandals')for(let i=0;i<p.count;i++)if(p.getY(i)<.038)p.setY(i,.038);const colors=new Float32Array(p.count*3),garment=new Float32Array(p.count);
       const skin=new THREE.Color(a.skin),bottom=new THREE.Color(a.trousers),shoe=new THREE.Color(a.shoes),lip=skin.clone().lerp(new THREE.Color('#a75c57'),.25);
       for(let i=0;i<p.count;i++){
         const x=p.getX(i),y=p.getY(i),z=p.getZ(i),ax=Math.abs(x);
-        const shirt=clothingCut(x,y,a.preset)>.001,trousers=y<=.96&&y>.10&&ax<.30,foot=y<.105&&ax<.28;
-        let c=y<1&&y>.10&&ax<.30?bottom:trousers?bottom:foot?shoe:skin;
+        const shirt=clothingCut(x,y,a.preset,a.outfit)>.001,trousers=y<=1&&y>(a.bottom==='shorts'?.60:.10)&&ax<.30,foot=y<.105&&ax<.28;
+        let c=trousers?bottom:foot?(a.footwear==='sandals'?skin:shoe):skin;
         const lipY=a.preset==='female'?1.615:1.641;
         if(ax<.028&&Math.abs(y-lipY)<.009&&z>.075)c=lip;
         c.toArray(colors,i*3);
@@ -59,15 +60,13 @@ export function createAvatar(a:Appearance,template:THREE.Group|undefined=templat
     }
   });
   const visibleGeometry=bodyMesh!.geometry;bodyMesh!.geometry=sourceBodyGeometry!;
-  const garmentMesh=shirt(bodyMesh as THREE.SkinnedMesh,a);geometries.push(garmentMesh.geometry);materials.push(garmentMesh.material);bodyMesh!.geometry=visibleGeometry;sourceBodyGeometry!.dispose();
+  const garmentMesh=shirt(bodyMesh as THREE.SkinnedMesh,a);finishWardrobe(bodyMesh as THREE.SkinnedMesh,a,garmentMesh);geometries.push(garmentMesh.geometry);materials.push(garmentMesh.material);bodyMesh!.geometry=visibleGeometry;sourceBodyGeometry!.dispose();
   // Fitted footwear follows each native foot bone; source fingers/toes stay intact.
   for(const side of ['l','r']){
     const foot=bones.get('foot_'+side)!.bone,world=foot.getWorldPosition(new THREE.Vector3()),inverse=foot.matrixWorld.clone().invert();
-    for(const sole of [false,true]){
-      const height=sole?.025:a.footwear==='boots'?.19:.085;
-      const g=new RoundedBoxGeometry(.13,height,.28,2,.025);g.translate(world.x,sole?.018:height/2,0);g.applyMatrix4(inverse);
-      const m=new THREE.MeshStandardMaterial({color:sole?'#343a3b':a.shoes,roughness:.85});foot.add(new THREE.Mesh(g,m));geometries.push(g);materials.push(m);
-    }
+    const parts=shoeGeometries(a.footwear),colored:THREE.BufferGeometry[]=[];
+    for(const {geometry,part} of parts){const g=geometry.index?geometry.toNonIndexed():geometry.clone();g.deleteAttribute('uv');const p=g.getAttribute('position'),colors=new Float32Array(p.count*3),color=new THREE.Color(part==='sole'?(a.footwear==='sandals'?'#514634':'#d7d5c7'):part==='trim'?'#8e958d':a.shoes);for(let i=0;i<p.count;i++)color.toArray(colors,i*3);g.setAttribute('color',new THREE.BufferAttribute(colors,3));g.translate(world.x,0,0);g.applyMatrix4(inverse);colored.push(g);geometry.dispose();}
+    const geometry=mergeGeometries(colored)!;colored.forEach(g=>g.dispose());const material=new THREE.MeshStandardMaterial({vertexColors:true,roughness:a.footwear==='casual'?.65:.88,side:THREE.DoubleSide});const shoe=new THREE.Mesh(geometry,material);shoe.name='fitted-shoe-'+side;foot.add(shoe);geometries.push(geometry);materials.push(material);
   }
   const head=bones.get('Head')!.bone,hairFit=fittedHair(head,bodyMesh!,a),hair=hairFit.group;geometries.push(...hairFit.geometries);materials.push(...hairFit.materials);
   model.scale.x=a.body==='broad'?1.08:a.body==='slender'?.94:1;
@@ -82,7 +81,7 @@ export function createAvatar(a:Appearance,template:THREE.Group|undefined=templat
     const wave=Math.sin(phase),amp=(.46+run*.23)*blend;
     rotate('spine_03',run*.11*blend,0,wave*.025*blend+Math.sin(time*.8)*.008*(1-blend));rotate('Head',0,Math.sin(time*.55)*.025*(1-blend));
     for(const [side,sign]of [['l',1],['r',-1]] as const){const w=wave*sign;
-      rotate('thigh_'+side,-w*amp);rotate('calf_'+side,Math.max(0,-w)*(.7+run*.5)*blend);
+      rotate('thigh_'+side,-w*amp);rotate('calf_'+side,Math.max(0,-w)*(.7+run*.5)*blend);rotate('foot_'+side,w*amp-Math.max(0,-w)*(.7+run*.5)*blend);
       rotate('upperarm_'+side,w*amp*.8,0,-sign*1.40);rotate('lowerarm_'+side,0,-sign*(.16+run*.85*blend));
     }
     bones.get('spine_02')!.bone.scale.y=1+Math.sin(time*2)*.004*(1-blend);

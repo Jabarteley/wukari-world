@@ -1,6 +1,6 @@
 # Phase 8.2 performance and character polish
 
-- Owner: local Codex, active implementation. Base feat/wukari-avatar-roads-quality at ec547e0e1; clean on entry. Branch feat/wukari-performance-polish.
+- Owner: local Codex, active implementation. Base feat/wukari-avatar-roads-quality at ec547e0e11eaccca323beb8c8fe5a21351776dac; clean on entry. Branch feat/wukari-performance-polish.
 - Read AGENTS.md, coordination current-work index, relevant Phase 8.1 handoff, AGENT.md and template. User's explicit feature base governs this PR; no main integration/deploy.
 - Goal: profile actual browser costs, optimize measured hot paths and editor lifecycle, improve fitted clothing and retain face/hair/geographic fidelity.
 - Owned paths: src/wukari/play, src/wukari/*test.ts for focused regressions, scripts/wukari profiling/browser tools, docs/wukari/PHASE82.md, docs/wukari/evidence/phase82-*, this record. No shared Allworld runtime ownership.
@@ -26,3 +26,9 @@
 - Final preview cycles788?878ms; collectedheap+246316B/4cycles; zero leftover canvases. Verified root/absolute paths, removed only six owned phase82 temporary Chrome profiles after closure. Original PBF/imports, other caches and source assets untouched.
 - Task-owned Vite server on5196 remains available for owner testing (session70317). No persistent task Chrome process intended. Existing historical work records remain untouched.
 - Next: stage owned source/docs/evidence, commit and push feature branch; create draft PR targeting feat/wukari-avatar-roads-quality. Owner appearance review and physical/long-session device testing remain gates.
+
+## Delivery handoff
+
+- Status: ready for owner review; local implementation verified within documented scope. Implementation commit09cfecff4a5ee0c04b65fccd5071ca610fdde2bc pushed to feat/wukari-performance-polish. Draft PR https://github.com/Jabarteley/wukari-world/pull/10 targets feat/wukari-avatar-roads-quality. No merge/deploy.
+- Owner next step: open local port5196, inspect Male/Female clothes and hairstyles, then Settings ? Measure performance on the normal browser. Review PHASE82 screenshots/metrics and long-session behavior before accepting quality/performance.
+- 30FPS average/p95 supported in three short local hardware-GPU samples; occasional frame outliers, simple garment edges, physical phones and sustained thermal behavior remain explicitly open. Full-project TypeScript remains uncertified.

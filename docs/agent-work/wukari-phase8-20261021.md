@@ -31,3 +31,10 @@
 - Final Chromium/CDP: 15/15 acceptance groups, errors0, including reload persistence, map pause, FUW refusal, collision and touch. Fresh-document synchronization uses performance.timeOrigin to avoid a stale old-DOM match or missed navigation event. phase8-browser.json and all phase8 screenshots recaptured on final source.
 - No database/economy/geographic data edits, no dependencies added, no deployment/merge. Existing full-project typecheck limitations are explicitly reported rather than certified.
 - Remaining delivery: commit scoped files, push and open draft PR targeting feat/wukari-playable-study; owner visual review is the next product acceptance step.
+
+## Delivery
+
+- Implementation commit: `6e9e79962c81de9362dbaeff07decb50c79754de`, pushed to `origin/feat/wukari-character-customization`.
+- Draft PR: https://github.com/Jabarteley/wukari-world/pull/8, targeting `feat/wukari-playable-study` at the recorded base SHA. No merge or deployment.
+- Final capture rerun after gait correction passes all 15 groups with zero captured browser errors. Final focused suite 55/55, strict focused types and production build pass. Full-project typecheck remains uncertified as documented.
+- Status: delivered for owner visual review. No task-owned server remains; pre-existing port5196 server left running and isolated QA browser closed. Next: launch the app, review character/editor on desktop/mobile, and review the draft PR.

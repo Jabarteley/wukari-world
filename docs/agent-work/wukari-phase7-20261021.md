@@ -36,3 +36,11 @@
 - Final build passes and contains the source databases plus licence offer. Final scoped Vue/TS check clean. New datasets match generated inventory SHA-256 values. Latest actual-building collision assertion passes. Working tree changes are only owned Phase 7 source/data/docs and narrow typecheck portability fixes.
 - Remote base remains exactly `f22c14d27538e67987e9e8bc1704b520231c1b95`. Branch targets `feat/fuw-local-pbf`, preserving PR #6 and all other branches. No import pipeline, national input, database, merge or deployment operation.
 - Full-project checker deliberately remains an **open validation gate**; earlier interrupted/resource-limited attempts cannot certify it. Investigated findings and reproduction limits are preserved rather than suppressed.
+
+## Published handoff
+
+- Implemented source `7d87e09babdbf42a129521d93cb22a800a1cc2cb` pushed to `feat/wukari-playable-study`.
+- **Draft/open PR #7**: https://github.com/Jabarteley/wukari-world/pull/7 . Connector confirms base `feat/fuw-local-pbf` at `f22c14d27538e67987e9e8bc1704b520231c1b95`, correct source head, draft=true and unmerged.
+- Final browser acceptance includes mobile sprint toggle and passes 11 groups with zero runtime/network errors. Source/data hashes, screenshots and validation details are committed. Status: verified-local / ready-for-review; full-project typecheck remains open as explicitly documented.
+- Launch `npm run wukari:play` on loopback 5196; owned dev server was left available for local review. All owned QA browser/compiler processes ended. No deployment, merge, branch deletion, database or PostgreSQL operation.
+- Next work: review the draft and playtest on physical devices; independently verify access and campus extent/feature identities before enabling campus spawning or asserting ownership. Keep the demonstrated town movement separate from surveyed/public-access claims.

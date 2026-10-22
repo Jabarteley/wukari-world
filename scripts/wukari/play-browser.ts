@@ -1,2 +1,2 @@
-/** Current Wukari browser acceptance entry point. Historical evidence remains in docs. */
-import './fuw-browser.ts';
+/** Current FUW playable-entrance browser acceptance. Historical 10B remains separate. */
+import './fuw10c-browser.ts';

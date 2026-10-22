@@ -23,6 +23,6 @@ export function pedestrianView(study:Study){
   for(const v of [p.a,p.b])for(let j=0;j<10;j++){const a=j*Math.PI/5,b=(j+1)*Math.PI/5;out.push(v.x,y,v.z,v.x+Math.cos(a)*p.halfWidth,y,v.z+Math.sin(a)*p.halfWidth,v.x+Math.cos(b)*p.halfWidth,y,v.z+Math.sin(b)*p.halfWidth);}
  }
  for(const crossing of zebraCrossings(study))for(const bar of crossing.bars)for(const i of [0,1,2,0,2,3]){const p=bar[i]!;cross.push(p.x,.028,p.z);}
- for(const [positions,color]of [[walk,'#d6d1bd'],[cross,'#ffffff']] as const){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(positions,3));g.computeVertexNormals();const mesh=new T.Mesh(g,new T.MeshLambertMaterial({color,side:T.DoubleSide}));if(positions===cross)mesh.name='illustrative-zebra-crossing-paint';group.add(mesh);}
+ for(const [positions,color]of [[walk,study.id==='fuw'?'#b86c52':'#d6d1bd'],[cross,'#ffffff']] as const){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(positions,3));g.computeVertexNormals();const mesh=new T.Mesh(g,new T.MeshLambertMaterial({color,side:T.DoubleSide}));if(positions===cross)mesh.name='illustrative-zebra-crossing-paint';group.add(mesh);}
  return group;
 }

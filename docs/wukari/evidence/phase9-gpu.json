@@ -40,7 +40,7 @@
     "glWsVendor": "Google Inc. (Intel)",
     "glWsVersion": "1.5 (ANGLE 2.1.28854 git hash: cccf60cde32c)",
     "inProcessGpu": false,
-    "initializationTime": 0.462886,
+    "initializationTime": 0.434691,
     "isAsan": false,
     "isClangCoverage": false,
     "jpegDecodeAcceleratorSupported": false,

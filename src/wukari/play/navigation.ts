@@ -1,7 +1,7 @@
 import { buildingCollision, inside, permittedForSimulation, segmentDistance, type Point, type Study } from './model.ts';
 
 /** Read-only broad phase; exact predicates and source coordinates stay authoritative. */
-export function navigation(study: Study) {
+export function navigation(study: Study,roofExtra=0) {
   const size=16;
   function grid<T>(items:T[],bounds:(item:T)=>{minX:number;maxX:number;minZ:number;maxZ:number}){
     const cells=new Map<string,T[]>();
@@ -23,7 +23,7 @@ export function navigation(study: Study) {
     visited.clear();let fraction=1;
     for(let x=Math.floor(Math.min(origin.x,origin.x+offset.x)/size);x<=Math.floor(Math.max(origin.x,origin.x+offset.x)/size);x++)for(let z=Math.floor(Math.min(origin.z,origin.z+offset.z)/size);z<=Math.floor(Math.max(origin.z,origin.z+offset.z)/size);z++){
       for(const b of buildings.get(x+','+z)??[]){if(visited.has(b))continue;visited.add(b);
-        const raw=Number(b.tags.height?.replace(/\s*m$/,'')),height=Number.isFinite(raw)&&raw>=2&&raw<=60?raw:3.6;
+        const raw=Number(b.tags.height?.replace(/\s*m$/,'')),height=Number.isFinite(raw)&&raw>=2&&raw<=60?raw+roofExtra:3.6+roofExtra;
         const roofT=(height-origin.y)/offset.y;if(roofT>=0&&roofT<fraction&&inside({x:origin.x+offset.x*roofT,z:origin.z+offset.z*roofT},b.points))fraction=roofT;
         for(let i=1;i<b.points.length;i++){const a=b.points[i-1]!,v=b.points[i]!,dx=v.x-a.x,dz=v.z-a.z,den=offset.x*dz-offset.z*dx;if(Math.abs(den)<1e-10)continue;
           const ax=a.x-origin.x,az=a.z-origin.z,t=(ax*dz-az*dx)/den,u=(ax*offset.z-az*offset.x)/den;

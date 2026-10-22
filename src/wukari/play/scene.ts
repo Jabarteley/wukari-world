@@ -23,7 +23,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5)); renderer.setClearColor('#cee0dc');
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   host.append(renderer.domElement); renderer.domElement.tabIndex = 0; renderer.domElement.setAttribute('aria-label', 'Wukari geographic 3D view. Drag to rotate; use movement controls after pressing Play.');
-  const nav=navigation(study),traffic=trafficSimulation(study),fleet=vehiclesView();let trafficClock=0;
+  const nav=navigation(study,2.25),traffic=trafficSimulation(study),fleet=vehiclesView();let trafficClock=0;
   const scene = new THREE.Scene(),playFog=new THREE.Fog('#cee0dc',180,800);scene.fog=playFog;
   const camera = new THREE.PerspectiveCamera(48, 1, .1, 2400);
   const controls = new OrbitControls(camera, renderer.domElement); controls.enableDamping = true;
@@ -33,23 +33,28 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   const world = new THREE.Group(); scene.add(world);scene.add(fleet.group);
   const ground = new THREE.Mesh(new THREE.PlaneGeometry(study.halfSize * 2, study.halfSize * 2), new THREE.MeshLambertMaterial({ color: '#d8c7a3' }));
   ground.rotation.x = -Math.PI / 2; ground.position.y = -.08; world.add(ground);
-  const buildings=architecture(study);scene.add(buildings.group);const labels=roadLabels(study);scene.add(labels.group);const scenery=infrastructure(study);scene.add(scenery.group);
-  const roadVertices: number[] = [], edges: number[] = [],roadColors:number[]=[];
+  const buildings=architecture(study);scene.add(buildings.group);buildings.group.position.y=-.08;const labels=roadLabels(study);scene.add(labels.group);const scenery=infrastructure(study);scene.add(scenery.group);scenery.group.position.y=-.08;
+  const roadVertices: number[] = [], edges: number[] = [],roadColors:number[]=[],shoulderVertices:number[]=[];
   const roadTags=new Map(study.roads.map(r=>[r.id,r.tags]));
-  const surfaces=study.roadSurface??roadSurfaces(study).pieces,caps=new Map<string,{x:number;z:number;radius:number;color:THREE.Color}>();
+  const degree=new Map<number,Set<number>>(),nodePoints=new Map<number,Point>();for(const r of study.roads)for(let i=1;i<r.nodes.length;i++){const a=r.nodes[i-1]!,b=r.nodes[i]!;for(const [from,to,p]of [[a,b,r.points[i-1]!],[b,a,r.points[i]!]] as const){const edges=degree.get(from)??new Set<number>();edges.add(to);degree.set(from,edges);nodePoints.set(from,p);}}const junctions=[...degree].filter(([,e])=>e.size>2).map(([n])=>nodePoints.get(n)!);
+  const surfaces=study.roadSurface??roadSurfaces(study).pieces,caps=new Map<string,{x:number;z:number;radius:number;color:THREE.Color;level:number}>();
   for(const {a,b,halfWidth:radius,roadId} of surfaces){
     const start=roadVertices.length,tags=roadTags.get(roadId)??{},color=new THREE.Color(tags.surface==='asphalt'?'#505956':['unpaved','dirt','ground','gravel'].includes(tags.surface??'')?'#b28c61':'#958b76');
     const dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz);if(!length)continue;
+    const level=tags.surface==='asphalt'?.020:['unpaved','dirt','ground','gravel'].includes(tags.surface??'')?.014:.016;
     const nx=-dz/length*radius,nz=dx/length*radius;
-    roadVertices.push(a.x+nx,.015,a.z+nz,a.x-nx,.015,a.z-nz,b.x+nx,.015,b.z+nz,a.x-nx,.015,a.z-nz,b.x-nx,.015,b.z-nz,b.x+nx,.015,b.z+nz);
+    const inner=Math.max(0,radius-.12);if(junctions.every(p=>Math.hypot(p.x-(a.x+b.x)/2,p.z-(a.z+b.z)/2)>10))for(const sign of [-1,1]){const ox=-dz/length*radius*sign,oz=dx/length*radius*sign,ix=-dz/length*inner*sign,iz=dx/length*inner*sign;shoulderVertices.push(a.x+ox,.025,a.z+oz,a.x+ix,.025,a.z+iz,b.x+ox,.025,b.z+oz,a.x+ix,.025,a.z+iz,b.x+ix,.025,b.z+iz,b.x+ox,.025,b.z+oz);}
+
+    roadVertices.push(a.x+nx,level,a.z+nz,a.x-nx,level,a.z-nz,b.x+nx,level,b.z+nz,a.x-nx,level,a.z-nz,b.x-nx,level,b.z-nz,b.x+nx,level,b.z+nz);
     // Each exact-clearance capsule is independently safe, including curved joins.
-    for(const p of [a,b]){const key=p.x+','+p.z,previous=caps.get(key);if(!previous||previous.radius<radius)caps.set(key,{...p,radius,color});}
+    for(const p of [a,b]){const key=p.x+','+p.z,previous=caps.get(key);if(!previous||previous.radius<radius||(previous.radius===radius&&previous.level<level))caps.set(key,{...p,radius,color,level});}
     for(let i=start;i<roadVertices.length;i+=3)color.toArray(roadColors,roadColors.length);
     edges.push(a.x,.04,a.z,b.x,.04,b.z);
   }
-  for(const {x,z,radius,color} of caps.values())for(let j=0;j<10;j++){const u=j*Math.PI/5,v=(j+1)*Math.PI/5;roadVertices.push(x,.015,z,x+Math.cos(u)*radius,.015,z+Math.sin(u)*radius,x+Math.cos(v)*radius,.015,z+Math.sin(v)*radius);for(let k=0;k<3;k++)color.toArray(roadColors,roadColors.length);}
+  for(const {x,z,radius,color,level} of caps.values())for(let j=0;j<10;j++){const u=j*Math.PI/5,v=(j+1)*Math.PI/5;roadVertices.push(x,level,z,x+Math.cos(u)*radius,level,z+Math.sin(u)*radius,x+Math.cos(v)*radius,level,z+Math.sin(v)*radius);for(let k=0;k<3;k++)color.toArray(roadColors,roadColors.length);}
   while(roadColors.length<roadVertices.length)new THREE.Color('#958b76').toArray(roadColors,roadColors.length);
   const roadGeometry = new THREE.BufferGeometry();roadGeometry.setAttribute('color',new THREE.Float32BufferAttribute(roadColors,3)); roadGeometry.setAttribute('position', new THREE.Float32BufferAttribute(roadVertices, 3)); roadGeometry.computeVertexNormals();
+  const shoulderGeometry=new THREE.BufferGeometry();shoulderGeometry.setAttribute('position',new THREE.Float32BufferAttribute(shoulderVertices,3));shoulderGeometry.computeVertexNormals();const shoulders=new THREE.Mesh(shoulderGeometry,new THREE.MeshLambertMaterial({color:'#a98a63',side:THREE.DoubleSide}));world.add(shoulders);
   world.add(new THREE.Mesh(roadGeometry, new THREE.MeshLambertMaterial({ vertexColors:true, side: THREE.DoubleSide })));
   const centerGeometry = new THREE.BufferGeometry(); centerGeometry.setAttribute('position', new THREE.Float32BufferAttribute(edges, 3));
   const centerLines=new THREE.LineSegments(centerGeometry,new THREE.LineBasicMaterial({color:'#91a19b',transparent:true,opacity:.5}));world.add(centerLines);
@@ -60,7 +65,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   }
   let person = createAvatar(defaultAppearance);
   const avatar = new THREE.Group(); avatar.visible=false; avatar.add(person.root); scene.add(avatar);
-  let preferences = {...defaultSettings};
+  let preferences = {...defaultSettings},activeAppearance={...defaultAppearance};
   let state: Motion = { ...(study.spawn?.point ?? { x: 0, z: 0 }), yaw: 0, moving: false, sprinting: false, blocked: false, distance: 0 };
   let walking = false, paused = false, followYaw = 0, followPitch = .12, cameraDistance = 5, down: { x: number; y: number; id: number } | null = null;
   const keys = new Set<string>();
@@ -71,7 +76,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   const overview = () => { scene.fog=null;controls.target.set(0, 0, 0); camera.position.set(0, study.halfSize * 1.05, study.halfSize * .9); camera.far = 2400; controls.update(); };
   overview();
   const reset = () => {
-    keys.clear(); state = { ...(study.spawn?.point ?? { x: 0, z: 0 }), yaw: 0, moving: false, sprinting: false, blocked: false, distance: 0 };
+    traffic.reset();trafficClock=0;fleet.update(traffic.vehicles);keys.clear(); state = { ...(study.spawn?.point ?? { x: 0, z: 0 }), yaw: 0, moving: false, sprinting: false, blocked: false, distance: 0 };
     const road = study.roads.find(r => r.id === study.spawn?.roadId), index = road?.nodes.indexOf(study.spawn?.nodeId ?? -1) ?? -1;
     const next = index >= 0 ? road?.points[index + 1] ?? road?.points[index - 1] : undefined;
     followYaw = next ? Math.atan2(state.x - next.x, state.z - next.z) : 0;
@@ -114,7 +119,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
       followYaw += ((keys.has('q') ? 1 : 0) - (keys.has('e') ? 1 : 0)) * dt * 1.6 * preferences.sensitivity;
       input.x=(keys.has('d')||keys.has('arrowright')?1:0)-(keys.has('a')||keys.has('arrowleft')?1:0);input.z=(keys.has('s')||keys.has('arrowdown')?1:0)-(keys.has('w')||keys.has('arrowup')?1:0);
       state = advance(state,input,followYaw,keys.has('shift'),dt,study,p=>nav.canStand(p)&&!traffic.blocks(p));
-      avatar.position.set(state.x, 0, state.z);
+      avatar.position.set(state.x, .012, state.z);
       const turn = Math.atan2(Math.sin(state.yaw-avatar.rotation.y),Math.cos(state.yaw-avatar.rotation.y));
       avatar.rotation.y += turn*(1-Math.exp(-dt*14));
       person.animate(time/1000,state.distance,state.moving,state.sprinting,dt);
@@ -129,20 +134,20 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
     scenery.update(walking?state:{x:camera.position.x,z:camera.position.z},preferences.quality==='low'?130:preferences.quality==='high'?350:240);
     buildings.update(walking?state:{x:camera.position.x,z:camera.position.z},preferences.quality==='low'?100:preferences.quality==='high'?260:170);
     const renderStart=performance.now();renderer.render(scene,camera);
-    if(sample){sample.push(frameMs,renderStart-updateStart,performance.now()-renderStart);if(time-sampleStart>=20000){const gl=renderer.getContext(),ext=gl.getExtension('WEBGL_debug_renderer_info'),size=new THREE.Vector2();renderer.getDrawingBufferSize(size);let bytes=0;const seen=new Set<ArrayBufferLike>();scene.traverse(o=>{if(o instanceof THREE.Mesh||o instanceof THREE.LineSegments){for(const a of (Object.values(o.geometry.attributes) as THREE.BufferAttribute[])){const buffer=a.array.buffer;if(!seen.has(buffer)){seen.add(buffer);bytes+=buffer.byteLength;}}const index=o.geometry.index;if(index&&!seen.has(index.array.buffer)){seen.add(index.array.buffer);bytes+=index.array.buffer.byteLength;}}});const result={...sample.result(),quality:preferences.quality,renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),viewport:[host.clientWidth,host.clientHeight],buffer:[size.x,size.y],dpr:devicePixelRatio,draws:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometryBufferBytes:bytes,estimatedTextureBytes:textureBytes(scene),resources:{...renderer.info.memory,programs:renderer.info.programs?.length??0},gpuTimeMs:null,note:'20-second foreground browser sample; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates.'};sample=undefined;sampleResolve?.(result);sampleResolve=undefined;}}
+    if(sample){if(time>=sampleStart)sample.push(frameMs,renderStart-updateStart,performance.now()-renderStart);if(time-sampleStart>=20000){const gl=renderer.getContext(),ext=gl.getExtension('WEBGL_debug_renderer_info'),size=new THREE.Vector2();renderer.getDrawingBufferSize(size);let bytes=0;const seen=new Set<ArrayBufferLike>();scene.traverse(o=>{if(o instanceof THREE.Mesh||o instanceof THREE.LineSegments){if(o instanceof THREE.InstancedMesh)for(const a of [o.instanceMatrix,o.instanceColor])if(a&&!seen.has(a.array.buffer)){seen.add(a.array.buffer);bytes+=a.array.buffer.byteLength;}for(const a of (Object.values(o.geometry.attributes) as THREE.BufferAttribute[])){const buffer=a.array.buffer;if(!seen.has(buffer)){seen.add(buffer);bytes+=buffer.byteLength;}}const index=o.geometry.index;if(index&&!seen.has(index.array.buffer)){seen.add(index.array.buffer);bytes+=index.array.buffer.byteLength;}}});const result={...sample.result(),quality:preferences.quality,renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),viewport:[host.clientWidth,host.clientHeight],buffer:[size.x,size.y],dpr:devicePixelRatio,draws:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometryBufferBytes:bytes,estimatedTextureBytes:textureBytes(scene),resources:{...renderer.info.memory,programs:renderer.info.programs?.length??0},appearance:{preset:activeAppearance.preset,outfit:activeAppearance.outfit,bottom:activeAppearance.bottom,footwear:activeAppearance.footwear,hair:activeAppearance.hair},trafficVehicles:traffic.vehicles.length,motorcycles:traffic.vehicles.filter(v=>v.kind==='motorcycle').length,movingVehicles:traffic.vehicles.filter(v=>v.speed>.1).length,trafficDensity:preferences.traffic,buildings:study.buildings.length,sceneryProps:scenery.positions.props.length,gpuTimeMs:null,warmupSeconds:6,sampleSeconds:20,note:'20-second foreground browser sample after 6-second warm-up; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates.'};sample=undefined;sampleResolve?.(result);sampleResolve=undefined;}}
 
     frames++; if (time - measureAt >= 1000) { fps = frames * 1000 / (time - measureAt); frames = 0; measureAt = time; }
     if (time - publishedAt > 100) {
-      publishedAt = time; if(walking){const p=mapPoint(state),r=160/study.halfSize*94;map.drawImage(base,(p.x-r)*4,(p.y-r)*4,r*8,r*8,0,0,200,200);}else map.drawImage(base,0,0,200,200); if (walking) { const p={x:100,y:100}; map.save(); map.translate(p.x,p.y); map.rotate(status().bearing*Math.PI/180); map.fillStyle = '#086c60'; map.beginPath(); map.moveTo(0,-6); map.lineTo(4,5); map.lineTo(-4,5); map.closePath(); map.fill(); map.restore(); }
+      publishedAt = time;map.fillStyle='#e0d8bf';map.fillRect(0,0,mapSize,mapSize); if(walking){const p=mapPoint(state),r=160/study.halfSize*94;map.drawImage(base,(p.x-r)*4,(p.y-r)*4,r*8,r*8,0,0,200,200);}else map.drawImage(base,0,0,200,200); if (walking) { const p={x:100,y:100}; map.save(); map.translate(p.x,p.y); map.rotate(status().bearing*Math.PI/180); map.fillStyle = '#086c60'; map.beginPath(); map.moveTo(0,-6); map.lineTo(4,5); map.lineTo(-4,5); map.closePath(); map.fill(); map.restore(); }
       report(status());
     }
   });
   return { enter, explore, reset, overview, key, status,focus(p){explore();controls.target.set(p.x,0,p.z);camera.position.set(p.x,55,p.z+60);controls.update();},
-    measure(){if(sample)throw Error('A measurement is already running');sample=new FrameSamples();sampleStart=performance.now();return new Promise(resolve=>{sampleResolve=resolve;});},
-    appearance(value) { person.dispose(); person=createAvatar(value);avatar.add(person.root); },
-    settings(value) { preferences={...value};const preset=graphics[value.quality];renderer.setPixelRatio(Math.min(devicePixelRatio,preset.pixelCap)*preset.scale);camera.far=walking?preset.far:2400;camera.updateProjectionMatrix();playFog.far=preset.far;playFog.near=preset.far*.5;centerLines.visible=preset.lines;resize(); },
+    measure(){if(sample)throw Error('A measurement is already running');sample=new FrameSamples();sampleStart=performance.now()+6000;return new Promise(resolve=>{sampleResolve=resolve;});},
+    appearance(value) { activeAppearance={...value};person.dispose(); person=createAvatar(value);avatar.add(person.root); },
+    settings(value) { preferences={...value};const preset=graphics[value.quality];renderer.setPixelRatio(Math.min(devicePixelRatio,preset.pixelCap)*preset.scale);camera.far=walking?preset.far:2400;camera.updateProjectionMatrix();playFog.far=preset.far;playFog.near=preset.far*.5;centerLines.visible=false;shoulders.visible=preset.lines;resize(); },
     pause(value) { paused=value;clear();lastTime=0;if(value)renderer.render(scene,camera);report(status()); }, dispose() {
-    sampleResolve?.({...sample!.result(),cancelled:true});sampleResolve=undefined;sample=undefined;renderer.setAnimationLoop(null); labels.dispose();scenery.dispose();person.dispose(); observer.disconnect(); controls.dispose();
+    sampleResolve?.({...sample!.result(),cancelled:true});sampleResolve=undefined;sample=undefined;renderer.setAnimationLoop(null); labels.dispose();scenery.dispose();buildings.dispose();person.dispose(); observer.disconnect(); controls.dispose();
     window.removeEventListener('keydown', keyDown); window.removeEventListener('keyup', keyUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear);
     canvas.removeEventListener('pointerdown', pointerDown); canvas.removeEventListener('pointermove', pointerMove); canvas.removeEventListener('pointerup', pointerUp); canvas.removeEventListener('pointercancel', pointerUp); canvas.removeEventListener('lostpointercapture', pointerUp); canvas.removeEventListener('wheel', wheel); canvas.removeEventListener('contextmenu', contextMenu);
     scene.traverse(o => { if (o instanceof THREE.Mesh || o instanceof THREE.LineSegments) { o.geometry.dispose(); const materials = Array.isArray(o.material) ? o.material : [o.material]; materials.forEach(m => m.dispose()); } }); renderer.dispose(); renderer.forceContextLoss(); canvas.remove();

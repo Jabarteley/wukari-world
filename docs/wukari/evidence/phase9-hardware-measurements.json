@@ -1,0 +1,140 @@
+[
+  {
+    "frames": 1147,
+    "fps": 57.28412325825301,
+    "p50Ms": 16.69999999999709,
+    "p95Ms": 16.80000000000291,
+    "over33ms": 14,
+    "updateCpuMs": 0.6272013953902353,
+    "renderSubmitCpuMs": 1.5388840453564445,
+    "quality": "low",
+    "renderer": "ANGLE (Intel, Intel(R) HD Graphics 620 (0x00005916) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "viewport": [
+      1440,
+      884
+    ],
+    "buffer": [
+      1080,
+      663
+    ],
+    "dpr": 1,
+    "draws": 29,
+    "triangles": 206334,
+    "geometryBufferBytes": 22314976,
+    "estimatedTextureBytes": 8058283,
+    "resources": {
+      "geometries": 38,
+      "textures": 12,
+      "programs": 28
+    },
+    "appearance": {
+      "preset": "male",
+      "outfit": "polo",
+      "bottom": "jeans",
+      "footwear": "sneakers",
+      "hair": "short-afro"
+    },
+    "trafficVehicles": 16,
+    "motorcycles": 9,
+    "movingVehicles": 9,
+    "trafficDensity": "normal",
+    "buildings": 1206,
+    "sceneryProps": 166,
+    "gpuTimeMs": null,
+    "warmupSeconds": 6,
+    "sampleSeconds": 20,
+    "note": "20-second foreground browser sample after 6-second warm-up; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates."
+  },
+  {
+    "frames": 1135,
+    "fps": 56.68368009428968,
+    "p50Ms": 16.69999999999709,
+    "p95Ms": 17.400000000001455,
+    "over33ms": 25,
+    "updateCpuMs": 0.9418502200017417,
+    "renderSubmitCpuMs": 2.5981497802398277,
+    "quality": "balanced",
+    "renderer": "ANGLE (Intel, Intel(R) HD Graphics 620 (0x00005916) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "viewport": [
+      1440,
+      884
+    ],
+    "buffer": [
+      1440,
+      884
+    ],
+    "dpr": 1,
+    "draws": 30,
+    "triangles": 254266,
+    "geometryBufferBytes": 22314976,
+    "estimatedTextureBytes": 8058283,
+    "resources": {
+      "geometries": 38,
+      "textures": 12,
+      "programs": 29
+    },
+    "appearance": {
+      "preset": "male",
+      "outfit": "polo",
+      "bottom": "jeans",
+      "footwear": "sneakers",
+      "hair": "short-afro"
+    },
+    "trafficVehicles": 16,
+    "motorcycles": 9,
+    "movingVehicles": 8,
+    "trafficDensity": "normal",
+    "buildings": 1206,
+    "sceneryProps": 166,
+    "gpuTimeMs": null,
+    "warmupSeconds": 6,
+    "sampleSeconds": 20,
+    "note": "20-second foreground browser sample after 6-second warm-up; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates."
+  },
+  {
+    "frames": 1136,
+    "fps": 56.735038381053705,
+    "p50Ms": 16.69999999999709,
+    "p95Ms": 17.30000000000291,
+    "over33ms": 18,
+    "updateCpuMs": 0.8769366192880651,
+    "renderSubmitCpuMs": 2.6803697180265273,
+    "quality": "high",
+    "renderer": "ANGLE (Intel, Intel(R) HD Graphics 620 (0x00005916) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "viewport": [
+      1440,
+      884
+    ],
+    "buffer": [
+      1440,
+      884
+    ],
+    "dpr": 1,
+    "draws": 35,
+    "triangles": 293312,
+    "geometryBufferBytes": 22314976,
+    "estimatedTextureBytes": 8058283,
+    "resources": {
+      "geometries": 38,
+      "textures": 12,
+      "programs": 29
+    },
+    "appearance": {
+      "preset": "male",
+      "outfit": "polo",
+      "bottom": "jeans",
+      "footwear": "sneakers",
+      "hair": "short-afro"
+    },
+    "trafficVehicles": 16,
+    "motorcycles": 9,
+    "movingVehicles": 8,
+    "trafficDensity": "normal",
+    "buildings": 1206,
+    "sceneryProps": 166,
+    "gpuTimeMs": null,
+    "warmupSeconds": 6,
+    "sampleSeconds": 20,
+    "note": "20-second foreground browser sample after 6-second warm-up; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates."
+  }
+]

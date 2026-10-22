@@ -1,0 +1,75 @@
+{
+  "status": "passed",
+  "checks": {
+    "pedestrianMovement": {
+      "start": {
+        "study": "town",
+        "mode": "Standing",
+        "x": "407.0498394354927",
+        "z": "-486.73239638739625",
+        "distance": "0",
+        "bearing": "323.0757166686251",
+        "blocked": "false",
+        "draws": "25",
+        "triangles": "296856",
+        "fps": "0.4056301464324827",
+        "vehicles": "2",
+        "motorcycles": "2",
+        "vehicleDistance": "0.168",
+        "overflow": false
+      },
+      "moved": {
+        "study": "town",
+        "mode": "Standing",
+        "x": "404.3373400214035",
+        "z": "-490.3419192842583",
+        "distance": "4.515120000000625",
+        "bearing": "323.0757166686248",
+        "blocked": "false",
+        "draws": "33",
+        "triangles": "303852",
+        "fps": "60.033461273496684",
+        "vehicles": "14",
+        "motorcycles": "9",
+        "vehicleDistance": "79.2869999999999",
+        "overflow": false
+      }
+    },
+    "zebraCrossing": {
+      "roadId": 476347716,
+      "start": {
+        "x": 407.0498394354927,
+        "z": -486.73239638739625
+      },
+      "goal": {
+        "x": 412.0095136869677,
+        "z": -478.8169548336332
+      },
+      "end": {
+        "study": "town",
+        "mode": "Walking",
+        "x": "411.76223984875026",
+        "z": "-479.2115947422837",
+        "distance": "8.87519999999987",
+        "bearing": "147.92947434321735",
+        "blocked": "false",
+        "draws": "33",
+        "triangles": "304924",
+        "fps": "49.21259842519685",
+        "vehicles": "16",
+        "motorcycles": "9",
+        "vehicleDistance": "830.6869179232168",
+        "overflow": false
+      },
+      "whiteBars": 6
+    },
+    "geometryOverlay": "Road edges, source footprints, centerlines and pedestrian connections",
+    "updatedPlaces": true,
+    "sourceInspection": true,
+    "mockGpsLocalOnly": true,
+    "mobileLayout": true,
+    "fuwNonSpawning": true,
+    "escapeClosesReview": true
+  },
+  "errors": []
+}

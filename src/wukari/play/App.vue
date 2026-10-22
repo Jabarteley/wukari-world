@@ -6,6 +6,7 @@ import NetworkOverview from './NetworkOverview.vue';
 import Locations,{type Place} from './Locations.vue';
 import RoadReview from './RoadReview.vue';
 import GeometryReview from './GeometryReview.vue';
+import CampusOverview from './CampusOverview.vue';
 import GameMenu from './GameMenu.vue';
 import { appearance, settings, readLocal, saveLocal, appearanceKey, settingsKey } from './appearance.ts';
 import {lineDistance,type Feature,type Study} from './model.ts';
@@ -14,14 +15,14 @@ const host = ref<HTMLDivElement>(), minimap = ref<HTMLCanvasElement>();
 const study = ref<Study>(), status = ref<Status>(), error = ref(''), loading = ref(true), review = ref(false), sprint = ref(false);
 const locations=ref(false),viewedPlace=ref('');
 const geometryReview=ref(false);
-watch(geometryReview,v=>scene?.pause(v||review.value||!!panel.value));
+const campusReview=ref(false);
 const street=computed(()=>{const p=status.value?.position;if(!p)return 'Wukari town';if(status.value?.mode.startsWith('Exploration')&&viewedPlace.value)return viewedPlace.value;const roads=(study.value?.roads??[]).filter(r=>r.tags.name).map(r=>({r,d:lineDistance(p,r.points)})).sort((a,b)=>a.d-b.d);return roads[0]&&roads[0].d<70?roads[0].r.tags.name:'Wukari residential streets';});
 async function visitPlace(p:Place){locations.value=false;viewedPlace.value=p.name;if(p.review){await load('fuw');}else{if(study.value?.id!=='town')await load('town');panel.value='';review.value=false;scene?.focus(p.point);}}
 const selected = ref<Feature>(), request = ref(0);
 const measuring=ref(false),measurement=ref<import('./scene.ts').PerformanceReport>();
 const panel=ref('home'),look=ref(readLocal(appearanceKey,appearance)),savedLook=ref({...look.value}),prefs=ref(readLocal(settingsKey,settings)),message=ref('');
 let scene: PlayScene | undefined, disposed = false;
-watch([review,panel,locations],()=>{clearSprint();scene?.pause(review.value||!!panel.value||locations.value);if(!review.value&&!panel.value)void nextTick(()=>host.value?.querySelector('canvas')?.focus());});
+watch([review,panel,locations,geometryReview,campusReview],()=>{clearSprint();const paused=review.value||!!panel.value||locations.value||geometryReview.value||campusReview.value;scene?.pause(paused);if(!paused)void nextTick(()=>host.value?.querySelector('canvas')?.focus());});
 watch(look,value=>{if(panel.value!=='customize')scene?.appearance(value);},{deep:true});
 watch(prefs,value=>{scene?.settings(value);if(!saveLocal(settingsKey,value))message.value='Browser storage unavailable; settings apply this session.';},{deep:true});
 function openPanel(value:string){if(panel.value===value)return;if(panel.value==='customize'&&value!=='customize')look.value={...savedLook.value};if(value==='customize')savedLook.value={...look.value};panel.value=value;review.value=false;message.value='';}
@@ -29,7 +30,7 @@ function closePanel(){if(panel.value==='customize')look.value={...savedLook.valu
 function save(){scene?.appearance(look.value);const ok=saveLocal(appearanceKey,look.value);savedLook.value={...look.value};message.value=ok?'Character saved on this device.':'Storage unavailable; look applied for this session.';}
 async function measurePerformance(){enter();measurement.value=undefined;measuring.value=true;try{measurement.value=await scene?.measure();}finally{measuring.value=false;}}
 function downloadMeasurement(){if(!measurement.value)return;const url=URL.createObjectURL(new Blob([JSON.stringify(measurement.value,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='wukari-performance.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-function escape(e:KeyboardEvent){if(e.key==='Escape'){if(review.value)review.value=false;else if(panel.value)closePanel();else openPanel('home');}}
+function escape(e:KeyboardEvent){if(e.key==='Escape'){if(campusReview.value)campusReview.value=false;else if(geometryReview.value)geometryReview.value=false;else if(review.value)review.value=false;else if(panel.value)closePanel();else openPanel('home');}}
 const pointString = (f: Feature) => f.points.map(p => `${p.x},${p.z}`).join(' ');
 const mapBox = computed(() => study.value ? `${-study.value.halfSize} ${-study.value.halfSize} ${study.value.halfSize * 2} ${study.value.halfSize * 2}` : '0 0 1 1');
 const walking = computed(() => !!status.value && !status.value.mode.startsWith('Exploration'));
@@ -46,7 +47,7 @@ async function load(id: 'town' | 'fuw') {
   loading.value = true; error.value = ''; selected.value = undefined; sprint.value = false; status.value = undefined;
   scene?.dispose(); scene = undefined;
   try {
-    const response = await fetch(id==='town'?'/town10.json':'/fuw.json');
+    const response = await fetch(id==='town'?'/town10.json':'/fuw-osm.json');
     if (!response.ok) throw new Error(`Study unavailable (${response.status})`);
     const data = await response.json() as Study;
     if (disposed || generation !== request.value) return;
@@ -57,6 +58,7 @@ async function load(id: 'town' | 'fuw') {
     // Town spawn was explicitly approved as simulation-only by the project owner.
     if (id === 'town'&&!panel.value) scene.enter();
     review.value = id === 'fuw';scene.pause(review.value||!!panel.value);
+    campusReview.value=id==='fuw';
   } catch (e) { if (!disposed && generation === request.value) error.value = e instanceof Error ? e.message : String(e); }
   finally { if (!disposed && generation === request.value) loading.value = false; }
 }
@@ -74,6 +76,7 @@ onBeforeUnmount(() => { window.removeEventListener('keydown',escape); disposed =
       <section class="viewport" aria-label="Wukari Life world" :data-study="study?.id" :data-mode="status?.mode" :data-x="status?.position.x" :data-z="status?.position.z" :data-distance="status?.distance" :data-bearing="status?.bearing" :data-blocked="status?.blocked" :data-draws="status?.draws" :data-triangles="status?.triangles" :data-fps="status?.fps" :data-vehicles="status?.vehicles" :data-motorcycles="status?.motorcycles" :data-vehicle-distance="status?.vehicleDistance">
         <div ref="host" class="scene"></div>
         <GeometryReview v-if="geometryReview&&study" :study="study" :position="status?.position" @close="geometryReview=false"/>
+        <CampusOverview v-if="campusReview" @close="campusReview=false"/>
         <div class="scene-heading" v-if="!panel"><span class="pill">TARABA &middot; NIGERIA</span><h2>{{ study?.id==='fuw'?'FUW / location review':street }}</h2><small>{{ study?.id==='fuw'?'Approximate location / no spawning':'Virtual play / real-world access unverified' }}</small></div>
         <div class="view-tools" v-if="!panel"><button @click="locations=!locations">Places</button><button @click="review=!review" :aria-pressed="review">{{ review?'3D':'Map Information' }}</button><button @click="scene?.reset()" :disabled="!walking">Reset</button><button @click="walking?explore():enter()" :disabled="!walking&&study?.id==='fuw'">{{ walking?'Explore':'Play' }}</button></div>
         <aside class="minimap" v-show="!panel"><canvas ref="minimap" aria-label="North-up minimap of mapped roads and buildings"></canvas><span>N ↑ <b>{{ Math.round(status?.bearing??0) }}°</b></span></aside>
@@ -89,7 +92,7 @@ onBeforeUnmount(() => { window.removeEventListener('keydown',escape); disposed =
           <div class="review-title"><div><span class="eyebrow">SOURCE REVIEW · NORTH UP</span><h2>{{ study.id==='fuw'?'FUW candidate location':'Town geographic study' }}</h2><p v-if="study.id==='fuw'">Research points support an approximate location. No campus boundary or building ownership is established.</p><p v-else>Source-centred display window. Public access remains unknown.</p><button v-if="study.id==='town'" @click="geometryReview=true">Geometry overlay</button></div><button @click="review=false" aria-label="Close geographic map">×</button></div>
           <div class="review-body"><svg :viewBox="mapBox" class="source-map" role="img" aria-label="OSM geometry and research candidate points"><rect :x="-study.halfSize" :y="-study.halfSize" :width="study.halfSize*2" :height="study.halfSize*2" fill="#ede7d7"/><polygon v-for="b in study.buildings" :key="`b${b.id}`" :points="pointString(b)" fill="#b49a7b" stroke="#8e785e" stroke-width=".5" class="map-feature" @click="selected=b"><title>OSM way/{{ b.id }} · nearby, ownership unverified</title></polygon><polyline v-for="r in study.roads" :key="`r${r.id}`" :points="pointString(r)" fill="none" stroke="#557c77" stroke-width="5" class="map-feature" @click="selected=r"><title>OSM way/{{ r.id }} · {{ r.tags.highway }}</title></polyline><g v-for="(p,i) in study.candidates" :key="p.label"><circle :cx="p.point.x" :cy="p.point.z" :r="i===0?10:7" fill="#e4863f" stroke="#fff" stroke-width="2"/><text :x="p.point.x+12" :y="p.point.z-12" font-size="18" fill="#233c39">{{ i===0?'Reported location':String.fromCharCode(64+i) }}</text></g><text :x="-study.halfSize+20" :y="-study.halfSize+32" font-size="22" fill="#23423e">N ↑</text><line :x1="-study.halfSize+25" :x2="-study.halfSize+125" :y1="study.halfSize-25" :y2="study.halfSize-25" stroke="#23423e" stroke-width="3"/><text :x="-study.halfSize+25" :y="study.halfSize-40" font-size="17">100 m display scale</text></svg>
             <div class="map-info"><RoadReview :study="study"/><h3>Map Information</h3><p>OSM names and footprints are source-backed, not field verified. Building finishes, roof shapes, unknown functions, street props and traffic are illustrative. Unknown road surfaces use a neutral visual material. No invented business names or surveyed road widths.</p>        <div class="notice"><strong>Simulation, not real-world guidance</strong><p>Access, traffic and physical safety are unverified. Mapping does not grant permission to enter. This is not a completed FUW campus.</p></div>
-        <p class="fine">Recorded positions are real OSM geometry. Flat terrain, green/soil styling, road widths and unmeasured building heights are illustrative. Walking uses a separate clearance-checked pedestrian network; gold connectors are simulated crossings that yield to vehicles. No mapped sidewalks, barriers or ground-cover polygons were found in this town selection. Unmapped walls and actual access remain unknown.</p>
+        <p class="fine">Recorded positions are real OSM geometry. Flat terrain, green/soil styling, road widths and unmeasured building heights are illustrative. Walking uses a separate clearance-checked pedestrian network. White zebra markings identify reviewed virtual crossing routes; they are gameplay scenery, not evidence of actual Wukari crossings. Wait for moving traffic before entering. No mapped sidewalks, barriers or ground-cover polygons were found in this town selection. Unmapped walls and actual access remain unknown.</p>
         <details class="credits"><summary>Sources & licences</summary><p>Character base: <a href="https://quaternius.com/packs/universalbasecharacters.html" target="_blank" rel="noreferrer">Quaternius / Universal Base Characters</a>, <a href="/models/LICENSE.txt">CC0 licence</a>. Original fitted hair, clothes and rig animation adaptations.</p><p>© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors · ODbL 1.0</a>. Snapshot 19 Oct 2026. <a href="/phase9-data.md">Town data offer & scenery disclosure</a> / <a href="/README.md">earlier provenance</a>.</p><p>Code AGPL-3.0-or-later · <a href="https://github.com/Jabarteley/wukari-world">modified source</a> · based on Allworld.</p><p v-for="source in study?.sources" :key="source.url"><a :href="source.url" target="_blank" rel="noreferrer">{{ source.title }}</a></p></details>
 <p>{{ study.coverage.roads }} road ways ? {{ study.coverage.buildings }} footprints.</p><div class="area-picker"><button @click="load('town')">Wukari town</button><button @click="load('fuw')">FUW location review</button></div><p class="legend">● Orange: reported research positions<br>Green: original OSM road lines<br>Brown: original OSM footprints</p><div v-if="selected"><h3>OSM way/{{ selected.id }}</h3><p>{{ selected.distanceM.toFixed(1) }} m from study point (display projection)</p><pre>{{ JSON.stringify(selected.tags,null,2) }}</pre><p>Association: nearby only, FUW ownership unverified.</p><a :href="`https://www.openstreetmap.org/way/${selected.id}`" target="_blank" rel="noreferrer">View original OSM record ↗</a></div><div v-else><h3>Inspect a mapped feature</h3><p>Select a line or footprint to see its original ID, tags and distance.</p></div><h3>Nearby road records</h3><button v-for="r in nearest" :key="r.id" class="record" @click="selected=r"><span>way/{{ r.id }} <small>{{ r.tags.highway }}</small></span><b>{{ Math.round(r.distanceM) }} m</b></button><template v-if="study.id==='fuw'"><h3>Confidence & unknowns</h3><p>Moderate location confidence; 2018 sampling positions published in 2023, corroborated approximately in 2025. Datum and current accuracy unknown.</p><p>Wikidata’s unreferenced 7.8773°N, 9.779°E pin is about 3.8 km north. It is disputed, not used for the campus study.</p><p>Square frame is only a study window. No campus hull is inferred. Nearby geometry remains unassigned. Character spawning is disabled here.</p></template><p v-for="source in study.sources" :key="source.url" class="source"><a :href="source.url" target="_blank" rel="noreferrer">{{ source.title }}</a><small>{{ source.note }}</small></p></div></div>
         </section>

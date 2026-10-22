@@ -61,6 +61,7 @@ export function pedestrianNetwork(study:Study):PedestrianNetwork {
     const d=distance(n.p,m.p),id=[key(n.p),key(m.p)].sort().join('/');if(d<.05||d>11||paired.has(id))continue;paired.add(id);
     if(!clear(n.p,m.p,radius,false))continue;
     const across=!clear(n.p,m.p,radius,true);
+    if(across&&![...nearSurfaces(n.p,m.p)].some(s=>segmentClearance(n.p,m.p,s.a,s.b)<.001))continue;
     const junction=junctions.findIndex(j=>distance(j,n.p)<14&&distance(j,m.p)<14);
     if(across&&junction<0)continue;
     const crossKey=junction+':'+[pieces[n.edges[0]!]!.roadId,pieces[m.edges[0]!]!.roadId].sort().join(':');

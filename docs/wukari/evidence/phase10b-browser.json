@@ -1,0 +1,121 @@
+{
+  "status": "passed",
+  "checks": {
+    "pedestrianMovement": {
+      "start": {
+        "study": "town",
+        "mode": "Standing",
+        "x": "407.0498394354927",
+        "z": "-486.73239638739625",
+        "distance": "0",
+        "bearing": "323.0757166686251",
+        "blocked": "false",
+        "draws": "25",
+        "triangles": "296264",
+        "fps": "0.6822213125938054",
+        "vehicles": "1",
+        "motorcycles": "1",
+        "vehicleDistance": "0.034999999999999996",
+        "overflow": false
+      },
+      "moved": {
+        "study": "town",
+        "mode": "Standing",
+        "x": "404.5752406238191",
+        "z": "-490.0253449590663",
+        "distance": "4.119119999999981",
+        "bearing": "323.0757166686256",
+        "blocked": "false",
+        "draws": "29",
+        "triangles": "299112",
+        "fps": "60.05119117936601",
+        "vehicles": "6",
+        "motorcycles": "4",
+        "vehicleDistance": "7.484500000000001",
+        "overflow": false
+      }
+    },
+    "zebraCrossing": {
+      "roadId": 476347716,
+      "start": {
+        "x": 407.0498394354927,
+        "z": -486.73239638739625
+      },
+      "goal": {
+        "x": 412.0095136869677,
+        "z": -478.8169548336332
+      },
+      "end": {
+        "study": "town",
+        "mode": "Walking",
+        "x": "411.8260828072963",
+        "z": "-479.10970394660484",
+        "distance": "8.995439999999796",
+        "bearing": "147.92947434321798",
+        "blocked": "false",
+        "draws": "33",
+        "triangles": "304980",
+        "fps": "60.03346127349679",
+        "vehicles": "16",
+        "motorcycles": "10",
+        "vehicleDistance": "129.3629999999999",
+        "overflow": false
+      },
+      "whiteBars": 6
+    },
+    "performance": {
+      "frames": 1193,
+      "fps": 59.58207643286654,
+      "p50Ms": 16.69999999999709,
+      "p95Ms": 17,
+      "over33ms": 4,
+      "updateCpuMs": 0.7799664704817638,
+      "renderSubmitCpuMs": 2.646437552628753,
+      "quality": "balanced",
+      "renderer": "ANGLE (Intel, Intel(R) HD Graphics 620 (0x00005916) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": [
+        1440,
+        884
+      ],
+      "buffer": [
+        1440,
+        884
+      ],
+      "dpr": 1,
+      "draws": 33,
+      "triangles": 304924,
+      "geometryBufferBytes": 25335248,
+      "estimatedTextureBytes": 14349739,
+      "resources": {
+        "geometries": 40,
+        "textures": 12,
+        "programs": 29
+      },
+      "appearance": {
+        "preset": "male",
+        "outfit": "polo",
+        "bottom": "jeans",
+        "footwear": "sneakers",
+        "hair": "short-afro"
+      },
+      "trafficVehicles": 16,
+      "motorcycles": 9,
+      "movingVehicles": 7,
+      "trafficDensity": "normal",
+      "buildings": 1206,
+      "sceneryProps": 166,
+      "gpuTimeMs": null,
+      "warmupSeconds": 6,
+      "sampleSeconds": 20,
+      "note": "20-second foreground browser sample after 6-second warm-up; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates."
+    },
+    "geometryOverlay": "Road edges, source footprints, centerlines and pedestrian connections",
+    "updatedPlaces": true,
+    "sourceInspection": true,
+    "mockGpsLocalOnly": true,
+    "mobileLayout": true,
+    "fuwNonSpawning": true,
+    "escapeClosesReview": true
+  },
+  "errors": []
+}

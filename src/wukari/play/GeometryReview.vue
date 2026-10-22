@@ -5,7 +5,7 @@ const props=defineProps<{study:Study;position?:Point}>();defineEmits<{close:[]}>
 const span=ref(160),shift=ref({x:0,z:0}),selection=ref('Select a building or centerline for its original OSM ID.');
 const center=computed(()=>({x:(props.position?.x??0)+shift.value.x,z:(props.position?.z??0)+shift.value.z}));
 const box=computed(()=>`${center.value.x-span.value/2} ${center.value.z-span.value/2} ${span.value} ${span.value}`);
-const near=(points:Point[])=>points.some(p=>Math.abs(p.x-center.value.x)<span.value*.7&&Math.abs(p.z-center.value.z)<span.value*.7);
+const near=(points:Point[])=>{if(!points.length)return false;const b=points.reduce((b,p)=>[Math.min(b[0]!,p.x),Math.max(b[1]!,p.x),Math.min(b[2]!,p.z),Math.max(b[3]!,p.z)],[Infinity,-Infinity,Infinity,-Infinity]);return b[0]!<=center.value.x+span.value/2&&b[1]!>=center.value.x-span.value/2&&b[2]!<=center.value.z+span.value/2&&b[3]!>=center.value.z-span.value/2;};
 const buildings=computed(()=>props.study.buildings.filter(b=>near(b.points))),roads=computed(()=>props.study.roads.filter(r=>near(r.points)));
 const surfaces=computed(()=>props.study.roadSurface?.filter(s=>near([s.a,s.b]))??[]),walk=computed(()=>props.study.pedestrians?.pieces.filter(s=>near([s.a,s.b]))??[]);
 const points=(p:Point[])=>p.map(v=>`${v.x},${v.z}`).join(' ');

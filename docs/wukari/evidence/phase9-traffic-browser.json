@@ -1,0 +1,37 @@
+{
+  "before": {
+    "study": "town",
+    "mode": "Standing",
+    "x": "405.37905967937604",
+    "z": "-481.48581691918935",
+    "distance": "0",
+    "bearing": "324.99466663279446",
+    "blocked": "false",
+    "draws": "30",
+    "triangles": "254680",
+    "fps": "57.05853418593202",
+    "vehicles": "16",
+    "motorcycles": "10",
+    "vehicleDistance": "380.17950000000144",
+    "overflow": false,
+    "text": "W\n·\nWUKARI LIFE\nA LITTLE CLOSER TO HOME\nPlay\nCustomize Character\nSettings\nExplore Map\nTARABA · NIGERIA\nTakum - Bukuru Federal Road\nVirtual play / real-world access unverified\nPlaces\nMap Information\nReset\nExplore\nN ↑\n325°\nStanding\nMake yourself at home\nWASD / arrows · Shift sprint · drag or Q/E to look\n© OpenStreetMap contributors · ODbL 1.0\nMap Information"
+  },
+  "after": {
+    "study": "town",
+    "mode": "Standing",
+    "x": "405.37905967937604",
+    "z": "-481.48581691918935",
+    "distance": "0",
+    "bearing": "324.99466663279446",
+    "blocked": "false",
+    "draws": "30",
+    "triangles": "254680",
+    "fps": "51.181102362204726",
+    "vehicles": "16",
+    "motorcycles": "10",
+    "vehicleDistance": "812.5096878636829",
+    "overflow": false,
+    "text": "W\n·\nWUKARI LIFE\nA LITTLE CLOSER TO HOME\nPlay\nCustomize Character\nSettings\nExplore Map\nTARABA · NIGERIA\nTakum - Bukuru Federal Road\nVirtual play / real-world access unverified\nPlaces\nMap Information\nReset\nExplore\nN ↑\n325°\nStanding\nMake yourself at home\nWASD / arrows · Shift sprint · drag or Q/E to look\n© OpenStreetMap contributors · ODbL 1.0\nMap Information"
+  },
+  "errors": []
+}

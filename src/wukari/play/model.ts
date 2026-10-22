@@ -41,7 +41,7 @@ export function buildingCollision(p: Point, buildings: Pick<Feature, 'points'>[]
   return buildings.some(b => inside(p, b.points) || lineDistance(p, b.points) < radius);
 }
 export function permittedForSimulation(tags: Record<string, string>): boolean {
-  return ['residential', 'service', 'footway', 'path', 'pedestrian', 'living_street'].includes(tags.highway ?? '') &&
+  return ['residential', 'service', 'footway', 'path', 'pedestrian', 'living_street','primary','secondary','tertiary','unclassified'].includes(tags.highway ?? '') &&
     !['no', 'private', 'customers', 'permit', 'military'].includes(tags.access ?? '') &&
     !['no', 'private', 'use_sidepath'].includes(tags.foot ?? '') && !tags.bridge && !tags.tunnel && !tags.ford && !tags.construction;
 }

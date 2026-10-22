@@ -1,11 +1,12 @@
 import {infrastructure} from './infrastructure.ts';
+import {terrain,pedestrianView} from './terrain.ts';
 import {trafficSimulation} from './traffic.ts';
 import {vehiclesView} from './vehicles.ts';
 import {roadLabels} from './labels.ts';
 import {architecture} from './architecture.ts';
 import { navigation } from './navigation.ts';
 import { graphics,FrameSamples,textureBytes } from './performance.ts';
-import { roadSurfaces } from './roads.ts';
+import { roadSurfaces,roadJoinWidths } from './roads.ts';
 import { createAvatar } from './avatar.ts';
 import { defaultAppearance, defaultSettings, type Appearance, type Settings } from './appearance.ts';
 import * as THREE from 'three';
@@ -31,23 +32,24 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   scene.add(new THREE.HemisphereLight('#f4fbff', '#b89b6f', 2.4));
   const sunlight = new THREE.DirectionalLight('#fff1d0', 2.5); sunlight.position.set(-120, 180, 80); scene.add(sunlight);
   const world = new THREE.Group(); scene.add(world);scene.add(fleet.group);
-  const ground = new THREE.Mesh(new THREE.PlaneGeometry(study.halfSize * 2, study.halfSize * 2), new THREE.MeshLambertMaterial({ color: '#d8c7a3' }));
-  ground.rotation.x = -Math.PI / 2; ground.position.y = -.08; world.add(ground);
+  world.add(terrain(study),pedestrianView(study));
   const buildings=architecture(study);scene.add(buildings.group);buildings.group.position.y=-.08;const labels=roadLabels(study);scene.add(labels.group);const scenery=infrastructure(study);scene.add(scenery.group);scenery.group.position.y=-.08;
   const roadVertices: number[] = [], edges: number[] = [],roadColors:number[]=[],shoulderVertices:number[]=[];
   const roadTags=new Map(study.roads.map(r=>[r.id,r.tags]));
   const degree=new Map<number,Set<number>>(),nodePoints=new Map<number,Point>();for(const r of study.roads)for(let i=1;i<r.nodes.length;i++){const a=r.nodes[i-1]!,b=r.nodes[i]!;for(const [from,to,p]of [[a,b,r.points[i-1]!],[b,a,r.points[i]!]] as const){const edges=degree.get(from)??new Set<number>();edges.add(to);degree.set(from,edges);nodePoints.set(from,p);}}const junctions=[...degree].filter(([,e])=>e.size>2).map(([n])=>nodePoints.get(n)!);
   const surfaces=study.roadSurface??roadSurfaces(study).pieces,caps=new Map<string,{x:number;z:number;radius:number;color:THREE.Color;level:number}>();
-  for(const {a,b,halfWidth:radius,roadId} of surfaces){
+  const joinedWidths=roadJoinWidths(surfaces);
+  for(const piece of surfaces){const {a,b,halfWidth:radius,roadId}=piece,join=joinedWidths(piece);
     const start=roadVertices.length,tags=roadTags.get(roadId)??{},color=new THREE.Color(tags.surface==='asphalt'?'#505956':['unpaved','dirt','ground','gravel'].includes(tags.surface??'')?'#b28c61':'#958b76');
     const dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz);if(!length)continue;
     const level=tags.surface==='asphalt'?.020:['unpaved','dirt','ground','gravel'].includes(tags.surface??'')?.014:.016;
     const nx=-dz/length*radius,nz=dx/length*radius;
     const inner=Math.max(0,radius-.12);if(junctions.every(p=>Math.hypot(p.x-(a.x+b.x)/2,p.z-(a.z+b.z)/2)>10))for(const sign of [-1,1]){const ox=-dz/length*radius*sign,oz=dx/length*radius*sign,ix=-dz/length*inner*sign,iz=dx/length*inner*sign;shoulderVertices.push(a.x+ox,.025,a.z+oz,a.x+ix,.025,a.z+iz,b.x+ox,.025,b.z+oz,a.x+ix,.025,a.z+iz,b.x+ix,.025,b.z+iz,b.x+ox,.025,b.z+oz);}
 
-    roadVertices.push(a.x+nx,level,a.z+nz,a.x-nx,level,a.z-nz,b.x+nx,level,b.z+nz,a.x-nx,level,a.z-nz,b.x-nx,level,b.z-nz,b.x+nx,level,b.z+nz);
+    const ax=nx*join.a/radius,az=nz*join.a/radius,bx=nx*join.b/radius,bz=nz*join.b/radius;
+    roadVertices.push(a.x+ax,level,a.z+az,a.x-ax,level,a.z-az,b.x+bx,level,b.z+bz,a.x-ax,level,a.z-az,b.x-bx,level,b.z-bz,b.x+bx,level,b.z+bz);
     // Each exact-clearance capsule is independently safe, including curved joins.
-    for(const p of [a,b]){const key=p.x+','+p.z,previous=caps.get(key);if(!previous||previous.radius<radius||(previous.radius===radius&&previous.level<level))caps.set(key,{...p,radius,color,level});}
+    for(const [p,r] of [[a,join.a],[b,join.b]] as const){const key=p.x+','+p.z,previous=caps.get(key);if(!previous||previous.radius<r||(previous.radius===r&&previous.level<level))caps.set(key,{...p,radius:r,color,level});}
     for(let i=start;i<roadVertices.length;i+=3)color.toArray(roadColors,roadColors.length);
     edges.push(a.x,.04,a.z,b.x,.04,b.z);
   }
@@ -118,7 +120,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
     if (walking) {
       followYaw += ((keys.has('q') ? 1 : 0) - (keys.has('e') ? 1 : 0)) * dt * 1.6 * preferences.sensitivity;
       input.x=(keys.has('d')||keys.has('arrowright')?1:0)-(keys.has('a')||keys.has('arrowleft')?1:0);input.z=(keys.has('s')||keys.has('arrowdown')?1:0)-(keys.has('w')||keys.has('arrowup')?1:0);
-      state = advance(state,input,followYaw,keys.has('shift'),dt,study,p=>nav.canStand(p)&&!traffic.blocks(p));
+      state = advance(state,input,followYaw,keys.has('shift'),dt,study,p=>nav.canStand(p)&&!traffic.blocks(p)&&(!nav.crossing(p)||nav.crossing(state)||!traffic.vehicles.some(v=>Math.hypot(v.x-p.x,v.z-p.z)<12)));
       avatar.position.set(state.x, .012, state.z);
       const turn = Math.atan2(Math.sin(state.yaw-avatar.rotation.y),Math.cos(state.yaw-avatar.rotation.y));
       avatar.rotation.y += turn*(1-Math.exp(-dt*14));
@@ -133,7 +135,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
     if(walking){trafficClock+=dt;while(trafficClock>=.05){traffic.step(.05,state,study.id==='town'?({off:0,light:8,normal:16,busy:24}[preferences.traffic]):0);trafficClock-=.05;}}fleet.update(traffic.vehicles);
     scenery.update(walking?state:{x:camera.position.x,z:camera.position.z},preferences.quality==='low'?130:preferences.quality==='high'?350:240);
     buildings.update(walking?state:{x:camera.position.x,z:camera.position.z},preferences.quality==='low'?100:preferences.quality==='high'?260:170);
-    const renderStart=performance.now();renderer.render(scene,camera);
+    labels.update(camera);const renderStart=performance.now();renderer.render(scene,camera);
     if(sample){if(time>=sampleStart)sample.push(frameMs,renderStart-updateStart,performance.now()-renderStart);if(time-sampleStart>=20000){const gl=renderer.getContext(),ext=gl.getExtension('WEBGL_debug_renderer_info'),size=new THREE.Vector2();renderer.getDrawingBufferSize(size);let bytes=0;const seen=new Set<ArrayBufferLike>();scene.traverse(o=>{if(o instanceof THREE.Mesh||o instanceof THREE.LineSegments){if(o instanceof THREE.InstancedMesh)for(const a of [o.instanceMatrix,o.instanceColor])if(a&&!seen.has(a.array.buffer)){seen.add(a.array.buffer);bytes+=a.array.buffer.byteLength;}for(const a of (Object.values(o.geometry.attributes) as THREE.BufferAttribute[])){const buffer=a.array.buffer;if(!seen.has(buffer)){seen.add(buffer);bytes+=buffer.byteLength;}}const index=o.geometry.index;if(index&&!seen.has(index.array.buffer)){seen.add(index.array.buffer);bytes+=index.array.buffer.byteLength;}}});const result={...sample.result(),quality:preferences.quality,renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),viewport:[host.clientWidth,host.clientHeight],buffer:[size.x,size.y],dpr:devicePixelRatio,draws:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometryBufferBytes:bytes,estimatedTextureBytes:textureBytes(scene),resources:{...renderer.info.memory,programs:renderer.info.programs?.length??0},appearance:{preset:activeAppearance.preset,outfit:activeAppearance.outfit,bottom:activeAppearance.bottom,footwear:activeAppearance.footwear,hair:activeAppearance.hair},trafficVehicles:traffic.vehicles.length,motorcycles:traffic.vehicles.filter(v=>v.kind==='motorcycle').length,movingVehicles:traffic.vehicles.filter(v=>v.speed>.1).length,trafficDensity:preferences.traffic,buildings:study.buildings.length,sceneryProps:scenery.positions.props.length,gpuTimeMs:null,warmupSeconds:6,sampleSeconds:20,note:'20-second foreground browser sample after 6-second warm-up; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates.'};sample=undefined;sampleResolve?.(result);sampleResolve=undefined;}}
 
     frames++; if (time - measureAt >= 1000) { fps = frames * 1000 / (time - measureAt); frames = 0; measureAt = time; }

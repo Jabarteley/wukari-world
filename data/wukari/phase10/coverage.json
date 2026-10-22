@@ -1,0 +1,628 @@
+{
+  "sourceSha256": "9dece439bd87b8f4883d7e42f3704275bf1102f98310d6e0cb09b181e3398750",
+  "originalRoads": 196,
+  "unchangedFootprints": 1206,
+  "conflicts": {
+    "source": [
+      {
+        "roadId": 476371720,
+        "buildingId": 1523019416,
+        "segment": 0,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 476371720,
+        "buildingId": 1523022662,
+        "segment": 0,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 476371723,
+        "buildingId": 1523023838,
+        "segment": 0,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 476371774,
+        "buildingId": 1523015686,
+        "segment": 1,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 476371774,
+        "buildingId": 1523021373,
+        "segment": 2,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 476880268,
+        "buildingId": 1523022361,
+        "segment": 0,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 476880268,
+        "buildingId": 1523025604,
+        "segment": 0,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 476880268,
+        "buildingId": 1523017998,
+        "segment": 5,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 476880275,
+        "buildingId": 1523016581,
+        "segment": 0,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 476880276,
+        "buildingId": 1523026273,
+        "segment": 0,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 477623164,
+        "buildingId": 1523017560,
+        "segment": 6,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 477623165,
+        "buildingId": 1523022556,
+        "segment": 0,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 477623166,
+        "buildingId": 1523013929,
+        "segment": 1,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 477623170,
+        "buildingId": 1523016482,
+        "segment": 2,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 477623182,
+        "buildingId": 1523014655,
+        "segment": 0,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      },
+      {
+        "roadId": 558733005,
+        "buildingId": 1523015718,
+        "segment": 0,
+        "clearanceM": 0,
+        "kind": "source-centerline",
+        "decision": "Suppress conflicting surface intervals; original record retained for review."
+      }
+    ],
+    "illustrative": [
+      {
+        "roadId": 181916655,
+        "buildingId": 1523025702,
+        "segment": 16,
+        "clearanceM": 1.902034673583285,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 181916657,
+        "buildingId": 1523017514,
+        "segment": 39,
+        "clearanceM": 2.234876685350347,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 185860473,
+        "buildingId": 1415422307,
+        "segment": 0,
+        "clearanceM": 1.1589445051700544,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 185860474,
+        "buildingId": 1523020868,
+        "segment": 0,
+        "clearanceM": 1.3914121688093086,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 185860474,
+        "buildingId": 1523019034,
+        "segment": 4,
+        "clearanceM": 1.2848733594322421,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 185860486,
+        "buildingId": 1523020549,
+        "segment": 2,
+        "clearanceM": 1.90791731344052,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 185860488,
+        "buildingId": 1523018584,
+        "segment": 0,
+        "clearanceM": 1.6746474823869344,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 185860488,
+        "buildingId": 1523018584,
+        "segment": 1,
+        "clearanceM": 1.491928476711394,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 475906384,
+        "buildingId": 1415424316,
+        "segment": 1,
+        "clearanceM": 2.34945077198868,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476347713,
+        "buildingId": 1523018790,
+        "segment": 0,
+        "clearanceM": 2.3697473007517784,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476347713,
+        "buildingId": 1523023458,
+        "segment": 0,
+        "clearanceM": 1.2072995357565337,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476347713,
+        "buildingId": 1523014442,
+        "segment": 1,
+        "clearanceM": 2.146237854587956,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476347713,
+        "buildingId": 1523021122,
+        "segment": 1,
+        "clearanceM": 1.0824600740324408,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476347713,
+        "buildingId": 1523022991,
+        "segment": 1,
+        "clearanceM": 1.7439656887065933,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476347713,
+        "buildingId": 1523025153,
+        "segment": 1,
+        "clearanceM": 1.9805899924049888,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476347713,
+        "buildingId": 1523025411,
+        "segment": 1,
+        "clearanceM": 0.7605229960119712,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476347728,
+        "buildingId": 1523015099,
+        "segment": 0,
+        "clearanceM": 2.35117252863034,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476347728,
+        "buildingId": 1523021463,
+        "segment": 0,
+        "clearanceM": 0.6155908231302235,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476371722,
+        "buildingId": 1523023742,
+        "segment": 0,
+        "clearanceM": 1.0708573379205364,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476371722,
+        "buildingId": 1523015670,
+        "segment": 1,
+        "clearanceM": 2.066066129820235,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476371722,
+        "buildingId": 1523019277,
+        "segment": 1,
+        "clearanceM": 2.14880299245654,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476371722,
+        "buildingId": 1523022168,
+        "segment": 1,
+        "clearanceM": 0.9047951665864117,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476371774,
+        "buildingId": 1523018370,
+        "segment": 1,
+        "clearanceM": 0.708861747291678,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476371774,
+        "buildingId": 1523020880,
+        "segment": 1,
+        "clearanceM": 2.281874043554657,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880268,
+        "buildingId": 1523014380,
+        "segment": 0,
+        "clearanceM": 0.10309142715704606,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880268,
+        "buildingId": 1523016215,
+        "segment": 0,
+        "clearanceM": 2.1096513271188444,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880268,
+        "buildingId": 1523018231,
+        "segment": 1,
+        "clearanceM": 1.7717856913178838,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880268,
+        "buildingId": 1523014984,
+        "segment": 2,
+        "clearanceM": 0.7868218446107067,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880268,
+        "buildingId": 1523024413,
+        "segment": 2,
+        "clearanceM": 2.1372418621732443,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880268,
+        "buildingId": 1523025797,
+        "segment": 2,
+        "clearanceM": 1.8149150329766246,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880268,
+        "buildingId": 1523025833,
+        "segment": 3,
+        "clearanceM": 2.0151328659735426,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880268,
+        "buildingId": 1523021276,
+        "segment": 5,
+        "clearanceM": 0.8821583847460577,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880271,
+        "buildingId": 1523015447,
+        "segment": 0,
+        "clearanceM": 1.6815420959676741,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880271,
+        "buildingId": 1523015934,
+        "segment": 0,
+        "clearanceM": 1.8523087950755586,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880271,
+        "buildingId": 1523016671,
+        "segment": 0,
+        "clearanceM": 2.023752546992765,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880271,
+        "buildingId": 1523021849,
+        "segment": 0,
+        "clearanceM": 2.335705746292069,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880271,
+        "buildingId": 1523022816,
+        "segment": 0,
+        "clearanceM": 1.3494267341432808,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880273,
+        "buildingId": 1523017738,
+        "segment": 0,
+        "clearanceM": 0.9122261569699679,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880273,
+        "buildingId": 1523017980,
+        "segment": 0,
+        "clearanceM": 1.8210709922082213,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880275,
+        "buildingId": 1523018810,
+        "segment": 0,
+        "clearanceM": 2.46244616240867,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 476880276,
+        "buildingId": 1523021979,
+        "segment": 0,
+        "clearanceM": 0.05929837855034485,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 477623165,
+        "buildingId": 1523021998,
+        "segment": 0,
+        "clearanceM": 2.1584921620638364,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 477623166,
+        "buildingId": 1523017329,
+        "segment": 1,
+        "clearanceM": 0.7239967563610489,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 477623166,
+        "buildingId": 1523024620,
+        "segment": 1,
+        "clearanceM": 1.1521628915869038,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 477623170,
+        "buildingId": 1523025817,
+        "segment": 0,
+        "clearanceM": 1.0399409235734898,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 477623170,
+        "buildingId": 1523021484,
+        "segment": 1,
+        "clearanceM": 2.4254086076547923,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 477623170,
+        "buildingId": 1523023889,
+        "segment": 6,
+        "clearanceM": 2.429264485075287,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 558733005,
+        "buildingId": 1523024637,
+        "segment": 0,
+        "clearanceM": 2.2341779178725716,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 558733011,
+        "buildingId": 1415424318,
+        "segment": 0,
+        "clearanceM": 2.261803175584795,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 559324416,
+        "buildingId": 1415422313,
+        "segment": 0,
+        "clearanceM": 0.9287494146802987,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 559390853,
+        "buildingId": 1523018584,
+        "segment": 1,
+        "clearanceM": 0.469669763707618,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 559390857,
+        "buildingId": 1523016497,
+        "segment": 0,
+        "clearanceM": 0.7389193845886045,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 559640987,
+        "buildingId": 1132436739,
+        "segment": 4,
+        "clearanceM": 2.0670034458370536,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      },
+      {
+        "roadId": 1223350385,
+        "buildingId": 1523015235,
+        "segment": 0,
+        "clearanceM": 2.32265399703051,
+        "kind": "illustrative-width",
+        "decision": "Narrow illustrative surface within exact building clearance; centerline unchanged."
+      }
+    ]
+  },
+  "mappedPaths": [],
+  "barriers": [],
+  "groundCover": [],
+  "pedestrians": {
+    "pieces": 2847,
+    "crossings": 614,
+    "activePieces": 2092,
+    "component": 1,
+    "connectedLengthM": 58300.76982368301,
+    "rejectedIntervals": 4334,
+    "spawn": {
+      "x": 407.0498394354927,
+      "z": -486.73239638739625
+    }
+  },
+  "fuwNameSearch": {
+    "query": "name/name:en/operator/official_name contains wukari|fuw|university",
+    "matches": [
+      {
+        "type": "node",
+        "id": 501490428,
+        "tags": {
+          "GNS:dsg_code": "PPL",
+          "GNS:dsg_string": "populated place",
+          "GNS:id": "-2030907",
+          "is_in:country": "Nigeria",
+          "name": "Wukari",
+          "name:ar": "ووكاري",
+          "place": "city",
+          "population": "241546",
+          "source": "GNS",
+          "wikidata": "Q3509190",
+          "wikipedia": "en:Wukari"
+        },
+        "position": [
+          9.7775523,
+          7.8705196
+        ]
+      },
+      {
+        "type": "relation",
+        "id": 3720864,
+        "tags": {
+          "admin_level": "6",
+          "boundary": "administrative",
+          "name": "Wukari",
+          "source": "ehealthafrica.org",
+          "source:date": "2013",
+          "type": "boundary",
+          "wikidata": "Q3509190",
+          "wikipedia": "en:Wukari"
+        },
+        "position": null
+      }
+    ],
+    "warning": "Names are evidence candidates, not university ownership or gate verification."
+  }
+}

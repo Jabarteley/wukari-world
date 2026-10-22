@@ -1,0 +1,7 @@
+/** Bounded read-only evidence queries. Does not import geometry or enable a campus. */
+import {mkdirSync,writeFileSync} from 'node:fs';
+const dir='.cache/wukari/phase10-research';mkdirSync(dir,{recursive:true});
+const query='[out:json][timeout:25];(nwr["amenity"="university"](7.80,9.73,7.90,9.83);nwr["name"~"Wukari|FUW",i](7.80,9.73,7.90,9.83);node["barrier"="gate"](7.82,9.75,7.87,9.80););out center tags;';
+const urls={osm:'https://overpass-api.de/api/interpreter?data='+encodeURIComponent(query),oam:'https://api.openaerialmap.org/meta?bbox=9.74,7.81,9.81,7.89&limit=100',commons:'https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&titles=File:Entrance_of_Federal_University_Wukari.jpg&iiurlwidth=744&iiprop=url%7Cextmetadata'};
+const results=await Promise.all(Object.entries(urls).map(async([name,url])=>{const checkedAt=new Date().toISOString();try{const r=await fetch(url,{signal:AbortSignal.timeout(40000),headers:{'User-Agent':'WukariLife-GeographicReview/1.0 (read-only research)'}});const text=await r.text();writeFileSync(dir+'/'+name+'.txt',text);let value:any;try{value=JSON.parse(text);}catch{}return{name,url,checkedAt,status:r.status,meta:value?.meta,elements:value?.elements??undefined,commons:value?.query??undefined,bodyFile:name+'.txt'};}catch(e){return{name,url,checkedAt,error:String(e)};}}));
+writeFileSync(dir+'/results.json',JSON.stringify({query,results},null,2)+'\n');console.log(JSON.stringify(results,null,2));

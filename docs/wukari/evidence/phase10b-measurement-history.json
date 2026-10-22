@@ -1,0 +1,15 @@
+{
+  "provenance": "Abbreviated actual completed CDP tool outputs, in run order. These are observations, not newly reconstructed raw frame traces.",
+  "renderer": "Intel HD Graphics 620 / ANGLE Direct3D11 hardware",
+  "quality": "balanced (Medium)",
+  "viewport": [1440,884],
+  "warmupSeconds": 6,
+  "sampleSeconds": 20,
+  "runs": [
+    {"run":1,"context":"Concurrent geographic processing; early two-provider UI", "fps":43.065161631585774,"p95Ms":34.30000000000291,"frames":863},
+    {"run":2,"context":"Completed six-provider source dataset; preceding UI acceptance", "fps":58.6828081846286,"p95Ms":17.19999999999709,"frames":1175},
+    {"run":3,"context":"Full acceptance with nested-panel pause/Escape handling, before white-marking follow-up", "fps":49.95259244473276,"p95Ms":30.399999999997817,"frames":1001},
+    {"run":4,"context":"Latest full acceptance: actual white zebra markings, updated Place finder and close-label LOD", "fps":59.58207643286654,"p95Ms":17,"frames":1193}
+  ],
+  "limitations": "Short stationary town view with moving traffic. Not a physical-phone, moving-camera, thermal or like-for-like Phase9 benchmark. OS load and temperature were not instrumented. Latest full raw report is phase10b-browser.json."
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "theme": "buildings",
+    "type": "building",
+    "count": 2065,
+    "seconds": 64.30884146690369,
+    "sha256": "1f44ca18ccb172d180f75909a434601c6d0942de317c0030104257eaed09ee09"
+  },
+  {
+    "theme": "transportation",
+    "type": "segment",
+    "count": 222,
+    "seconds": 172.544020652771,
+    "sha256": "61e981d9a61a398ff7239c5a35ff292d070641b8994c61fb3592451fea225a12"
+  },
+  {
+    "theme": "transportation",
+    "type": "connector",
+    "count": 174,
+    "seconds": 105.85400533676147,
+    "sha256": "62e634a77b57bdf5f41f422a13434c6380f55baad9eb2e04e82c03d9542c20d7"
+  },
+  {
+    "theme": "places",
+    "type": "place",
+    "count": 11,
+    "seconds": 155.0394937992096,
+    "sha256": "783abb02b8a2b68fdc236f32c6bf24375aa990ebd1138ad91019116c6fc9d152"
+  },
+  {
+    "theme": "base",
+    "type": "infrastructure",
+    "count": 6,
+    "seconds": 131.36754894256592,
+    "sha256": "4c36120860a02fc65f3495c5cfd87f7dfe2ce4c4aef2d40dfbbff5db212399ca"
+  },
+  {
+    "theme": "base",
+    "type": "land_use",
+    "count": 8,
+    "seconds": 93.28243398666382,
+    "sha256": "53236526fe796e3a01fcf08302a934ede02a4b58a0361329259703e69e0c2878"
+  },
+  {
+    "theme": "base",
+    "type": "land_cover",
+    "count": 75,
+    "seconds": 360.414030790329,
+    "sha256": "8b009f612dfbaadf9af26d9b80b4b7f27df6beaad1ade0c92ebe0ea90cb756fe"
+  }
+]

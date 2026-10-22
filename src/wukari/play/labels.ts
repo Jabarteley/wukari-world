@@ -15,5 +15,5 @@ export function roadLabels(study:Study){
   const points=[...r.points].sort((a,b)=>{const p=study.spawn?.point??{x:0,z:0};return Math.hypot(a.x-p.x,a.z-p.z)-Math.hypot(b.x-p.x,b.z-p.z);});
   for(const p of points){if(count>=14||placed.some(v=>Math.hypot(v.x-p.x,v.z-p.z)<110))continue;const material=new T.SpriteMaterial({map:texture,depthTest:true}),sprite=new T.Sprite(material);sprite.position.set(p.x,4.7,p.z);sprite.scale.set(14,3.5,1);group.add(sprite);placed.push(sprite.position);materials.push(material);count++;}
  }
- return {group,update(camera:T.Camera){for(const o of group.children)o.visible=o.position.distanceTo(camera.position)<170;},dispose(){textures.forEach(t=>t.dispose());materials.forEach(m=>m.dispose());group.removeFromParent();}};
+ return {group,update(camera:T.Camera){for(const o of group.children){const distance=o.position.distanceTo(camera.position);o.visible=distance>20&&distance<170;}},dispose(){textures.forEach(t=>t.dispose());materials.forEach(m=>m.dispose());group.removeFromParent();}};
 }

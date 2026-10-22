@@ -572,11 +572,11 @@
   "barriers": [],
   "groundCover": [],
   "pedestrians": {
-    "pieces": 2847,
-    "crossings": 614,
-    "activePieces": 2092,
+    "pieces": 2846,
+    "crossings": 613,
+    "activePieces": 2091,
     "component": 1,
-    "connectedLengthM": 58300.76982368301,
+    "connectedLengthM": 58291.930641619256,
     "rejectedIntervals": 4334,
     "spawn": {
       "x": 407.0498394354927,

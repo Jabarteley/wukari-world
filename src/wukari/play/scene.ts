@@ -120,7 +120,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
     if (walking) {
       followYaw += ((keys.has('q') ? 1 : 0) - (keys.has('e') ? 1 : 0)) * dt * 1.6 * preferences.sensitivity;
       input.x=(keys.has('d')||keys.has('arrowright')?1:0)-(keys.has('a')||keys.has('arrowleft')?1:0);input.z=(keys.has('s')||keys.has('arrowdown')?1:0)-(keys.has('w')||keys.has('arrowup')?1:0);
-      state = advance(state,input,followYaw,keys.has('shift'),dt,study,p=>nav.canStand(p)&&!traffic.blocks(p)&&(!nav.crossing(p)||nav.crossing(state)||!traffic.vehicles.some(v=>Math.hypot(v.x-p.x,v.z-p.z)<12)));
+      state = advance(state,input,followYaw,keys.has('shift'),dt,study,p=>nav.canStand(p)&&!traffic.blocks(p)&&(!nav.crossing(p)||nav.onVehicleRoad(state)||traffic.vehicles.every(v=>Math.hypot(v.x-p.x,v.z-p.z)>=12||v.speed<.2)));
       avatar.position.set(state.x, .012, state.z);
       const turn = Math.atan2(Math.sin(state.yaw-avatar.rotation.y),Math.cos(state.yaw-avatar.rotation.y));
       avatar.rotation.y += turn*(1-Math.exp(-dt*14));

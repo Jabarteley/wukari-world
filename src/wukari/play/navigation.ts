@@ -36,5 +36,6 @@ export function navigation(study: Study,roofExtra=0) {
     return fraction*Math.hypot(offset.x,offset.y,offset.z);
   }
   const crossing=(p:Point)=>(walk.get(key(p))??[]).some(s=>s.kind==='crossing'&&segmentDistance(p,s.a,s.b)<=s.halfWidth-.35);
-  return {canStand,cameraDistance,crossing};
+  const onVehicleRoad=(p:Point)=>(surfaces.get(key(p))??[]).some(s=>segmentDistance(p,s.a,s.b)<=s.halfWidth+.4);
+  return {canStand,cameraDistance,crossing,onVehicleRoad};
 }

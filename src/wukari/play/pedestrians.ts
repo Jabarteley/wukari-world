@@ -1,3 +1,4 @@
+import {gameplayRoads} from './model.ts';
 /** Conservative virtual walking space. Offsets are illustrative, never surveyed sidewalks. */
 import {buildingCollision, segmentDistance, type Point, type Study} from './model.ts';
 import {footprintClearance, segmentClearance} from './roads.ts';
@@ -5,7 +6,7 @@ export interface WalkPiece {a:Point;b:Point;roadId:number;kind:'mapped-path'|'il
 export interface PedestrianNetwork {pieces:WalkPiece[];spawn:Point|null;component:number;rejected:number;lengthM:number;policy:string}
 const distance=(a:Point,b:Point)=>Math.hypot(a.x-b.x,a.z-b.z);
 const key=(p:Point)=>p.x.toFixed(4)+','+p.z.toFixed(4);
-export function pedestrianNetwork(study:Study):PedestrianNetwork {
+export function pedestrianNetwork(study:Study, offset=3.9, frequentCrossings=false):PedestrianNetwork {
   const pieces:WalkPiece[]=[], radius=.85;let rejected=0;
   const obstacles=study.obstacles??[];
   const surfaces=study.roadSurface??[];
@@ -23,7 +24,7 @@ export function pedestrianNetwork(study:Study):PedestrianNetwork {
     if(study.streetObstacles?.some(o=>segmentDistance(o,a,b)<width+o.radius+.15))return false;
     return !roadClear||[...nearSurfaces(a,b)].every(s=>segmentClearance(a,b,s.a,s.b)>=s.halfWidth+width+.20);
   }
-  for(const road of study.roads){
+  for(const road of gameplayRoads(study)){
     if(['no','private','customers','permit','military'].includes(road.tags.access??'')||['no','private','use_sidepath'].includes(road.tags.foot??'')||road.tags.bridge||road.tags.tunnel||road.tags.ford||road.tags.construction)continue;
     const mapped=['footway','path','pedestrian'].includes(road.tags.highway??'');
     if(!mapped&&!['primary','secondary','tertiary','residential','service','living_street','unclassified'].includes(road.tags.highway??''))continue;
@@ -34,7 +35,7 @@ export function pedestrianNetwork(study:Study):PedestrianNetwork {
         const normals=[{x:p.x-prev.x,z:p.z-prev.z},{x:next.x-p.x,z:next.z-p.z}].filter(v=>Math.hypot(v.x,v.z)>.001).map(v=>{const n=Math.hypot(v.x,v.z);return{x:-v.z/n,z:v.x/n};});
         const n=normals.reduce((s,v)=>({x:s.x+v.x,z:s.z+v.z}),{x:0,z:0}),len=Math.hypot(n.x,n.z)||1,unit={x:n.x/len,z:n.z/len};
         const projection=Math.max(.7,unit.x*(normals[0]?.x??0)+unit.z*(normals[0]?.z??0));
-        return {x:p.x+unit.x*side*3.9/projection,z:p.z+unit.z*side*3.9/projection};
+        return {x:p.x+unit.x*side*offset/projection,z:p.z+unit.z*side*offset/projection};
       });
       for(let i=1;i<points.length;i++){
         const a=points[i-1]!,b=points[i]!,length=distance(a,b),steps=Math.max(1,Math.ceil(length/2));
@@ -48,11 +49,26 @@ export function pedestrianNetwork(study:Study):PedestrianNetwork {
       }
     }
   }
+  // Explicit cross-road links connect BOTH sides, regardless of compass orientation.
+  // Split the side pieces at each landing so graph connectivity agrees with visible paving.
+  if(frequentCrossings){
+    const byRoad=new Map<number,WalkPiece[]>();for(const p of pieces){const list=byRoad.get(p.roadId)??[];list.push(p);byRoad.set(p.roadId,list);}
+    const attached=(roadId:number,q:Point)=>{const list=byRoad.get(roadId)??[];const p=list.find(p=>segmentDistance(q,p.a,p.b)<.04);if(!p)return null;
+      const dx=p.b.x-p.a.x,dz=p.b.z-p.a.z,t=Math.max(0,Math.min(1,((q.x-p.a.x)*dx+(q.z-p.a.z)*dz)/(dx*dx+dz*dz))),v={x:p.a.x+dx*t,z:p.a.z+dz*t};return {p,v};};
+    const split=(p:WalkPiece,v:Point)=>{if(distance(v,p.a)<.05)return p.a;if(distance(v,p.b)<.05)return p.b;const tail={...p,a:v};p.b=v;pieces.push(tail);byRoad.get(p.roadId)!.push(tail);return v;};
+    for(const road of gameplayRoads(study))for(let i=1;i<road.points.length;i++){
+      const a=road.points[i-1]!,b=road.points[i]!,dx=b.x-a.x,dz=b.z-a.z,len=distance(a,b);if(len<18)continue;
+      const samples=new Set([Math.min(12,len/2),Math.max(len-12,len/2)]);for(let d=35;d<len-12;d+=65)samples.add(d);
+      for(const d of samples){const c={x:a.x+dx*d/len,z:a.z+dz*d/len},left=attached(road.id,{x:c.x-dz/len*offset,z:c.z+dx/len*offset}),right=attached(road.id,{x:c.x+dz/len*offset,z:c.z-dx/len*offset});if(!left||!right||left.p===right.p||!clear(left.v,right.v,radius,false))continue;
+        const u=split(left.p,left.v),v=split(right.p,right.v);pieces.push({a:u,b:v,roadId:road.id,halfWidth:radius,kind:'crossing'});
+      }
+    }
+  }
   const nodes=new Map<string,{p:Point;edges:number[]}>();
   function add(p:WalkPiece,index:number){for(const v of [p.a,p.b]){const k=key(v),n=nodes.get(k)??{p:v,edges:[]};n.edges.push(index);nodes.set(k,n);}}
   pieces.forEach(add);
   const degree=new Map<number,Set<number>>(),source=new Map<number,Point>();
-  for(const r of study.roads)for(let i=1;i<r.nodes.length;i++)for(const [a,b,p]of [[r.nodes[i-1]!,r.nodes[i]!,r.points[i-1]!],[r.nodes[i]!,r.nodes[i-1]!,r.points[i]!]] as const){const set=degree.get(a)??new Set();set.add(b);degree.set(a,set);source.set(a,p);}
+  for(const r of gameplayRoads(study))for(let i=1;i<r.nodes.length;i++)for(const [a,b,p]of [[r.nodes[i-1]!,r.nodes[i]!,r.points[i-1]!],[r.nodes[i]!,r.nodes[i-1]!,r.points[i]!]] as const){const set=degree.get(a)??new Set();set.add(b);degree.set(a,set);source.set(a,p);}
   const junctions=[...degree].filter(([,s])=>s.size>2).map(([id])=>source.get(id)!);
   const ends=[...nodes.values()].filter(n=>n.edges.length===1),grid=new Map<string,typeof ends>();
   for(const n of ends){const k=Math.floor(n.p.x/12)+','+Math.floor(n.p.z/12),list=grid.get(k)??[];list.push(n);grid.set(k,list);}

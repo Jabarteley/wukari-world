@@ -10,6 +10,9 @@ export interface Feature {
   association: 'nearby-only; FUW ownership unverified';
 }
 export interface Study {
+  virtualRoads?: Feature[];
+  trafficLanes?: boolean;
+  entrance?: {point:Point;yaw:number;halfSpan:number;supports:Point[];proposed:true;candidateOffsetM:number};
   obstacles?: Feature[];
   groundCover?: Feature[];
   streetObstacles?: (Point&{radius:number})[];
@@ -19,9 +22,11 @@ export interface Study {
   schemaVersion: 1; id: string; title: string; origin: Position; halfSize: number;
   roads: Feature[]; buildings: Feature[]; sources: { title: string; url: string; note: string }[];
   candidates: { label: string; position: Position; point: Point; confidence: string }[];
-  spawn: { point: Point; nodeId: number; roadId: number; review: string; eligible: boolean } | null;
+  spawn: { point: Point; nodeId: number; roadId: number; review: string; eligible: boolean; facing?:Point } | null;
   coverage: { roads: number; buildings: number; components: number; sourceSha256: string; policy: string };
 }
+/** Explicit owner-authorized gameplay alternatives, never replacements for GIS source records. */
+export function gameplayRoads(study:Pick<Study,'roads'|'virtualRoads'>){const replacements=new Map(study.virtualRoads?.map(r=>[r.id,r]));return study.roads.map(r=>replacements.get(r.id)??r);}
 
 export function segmentDistance(p: Point, a: Point, b: Point): number {
   const dx = b.x - a.x, dz = b.z - a.z, length = dx * dx + dz * dz;

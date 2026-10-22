@@ -22,11 +22,11 @@ export function footprintClearance(a:Point,b:Point,ring:Point[]):number {
   for(let i=1;i<ring.length;i++)distance=Math.min(distance,segmentClearance(a,b,ring[i-1]!,ring[i]!));
   return distance;
 }
-export function roadSurfaces(study:Pick<Study,'roads'|'buildings'>):{pieces:RoadPiece[];conflicts:RoadConflict[]} {
+export function roadSurfaces(study:Pick<Study,'roads'|'buildings'>, vehicleHalfWidth=2.5):{pieces:RoadPiece[];conflicts:RoadConflict[]} {
   const boxes=study.buildings.map(b=>({b,minX:Math.min(...b.points.map(p=>p.x)),maxX:Math.max(...b.points.map(p=>p.x)),minZ:Math.min(...b.points.map(p=>p.z)),maxZ:Math.max(...b.points.map(p=>p.z))}));
   const pieces:RoadPiece[]=[],conflicts:RoadConflict[]=[];
   for(const road of study.roads)for(let i=1;i<road.points.length;i++){
-    const a=road.points[i-1]!,b=road.points[i]!,nominal=['path','footway'].includes(road.tags.highway??'')?1:2.5;
+    const a=road.points[i-1]!,b=road.points[i]!,nominal=['path','footway'].includes(road.tags.highway??'')?1:vehicleHalfWidth;
     const near=boxes.filter(q=>q.maxX>=Math.min(a.x,b.x)-nominal&&q.minX<=Math.max(a.x,b.x)+nominal&&q.maxZ>=Math.min(a.z,b.z)-nominal&&q.minZ<=Math.max(a.z,b.z)+nominal);
     for(const {b:building} of near){const distance=footprintClearance(a,b,building.points);if(distance<nominal+.05)conflicts.push({roadId:road.id,buildingId:building.id,segment:i-1,clearanceM:distance,kind:distance<1e-6?'source-centerline':'illustrative-width',decision:distance<1e-6?'Suppress conflicting surface intervals; original record retained for review.':'Narrow illustrative surface within exact building clearance; centerline unchanged.'});}
     const steps=Math.max(1,Math.ceil(Math.hypot(b.x-a.x,b.z-a.z)/4));

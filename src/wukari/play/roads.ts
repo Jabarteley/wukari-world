@@ -5,6 +5,12 @@
 import { inside, segmentDistance, type Point, type Study } from './model.ts';
 export interface RoadPiece { roadId:number; segment:number; a:Point; b:Point; halfWidth:number }
 export interface RoadConflict { roadId:number; buildingId:number; segment:number; clearanceM:number; kind:'source-centerline'|'illustrative-width'; decision:string }
+/** Shared endpoint widths taper only inward, retaining the exact capsule clearance bound. */
+export function roadJoinWidths(pieces:RoadPiece[]){
+ const widths=new Map<string,number>(),key=(id:number,p:Point)=>id+':'+p.x+','+p.z;
+ for(const s of pieces)for(const p of [s.a,s.b]){const k=key(s.roadId,p);widths.set(k,Math.min(widths.get(k)??Infinity,s.halfWidth));}
+ return (s:RoadPiece)=>({a:widths.get(key(s.roadId,s.a))??s.halfWidth,b:widths.get(key(s.roadId,s.b))??s.halfWidth});
+}
 const cross=(a:Point,b:Point,c:Point)=>(b.x-a.x)*(c.z-a.z)-(b.z-a.z)*(c.x-a.x);
 export function segmentClearance(a:Point,b:Point,c:Point,d:Point):number {
   if(cross(a,b,c)*cross(a,b,d)<0&&cross(c,d,a)*cross(c,d,b)<0)return 0;

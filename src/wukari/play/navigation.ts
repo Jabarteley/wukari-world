@@ -12,8 +12,10 @@ export function navigation(study: Study,roofExtra=0) {
   const eligible=new Set(study.roads.filter(r=>permittedForSimulation(r.tags)).map(r=>r.id));
   const surfaces=grid((study.roadSurface??[]).filter(s=>eligible.has(s.roadId)),s=>({minX:Math.min(s.a.x,s.b.x)-s.halfWidth,maxX:Math.max(s.a.x,s.b.x)+s.halfWidth,minZ:Math.min(s.a.z,s.b.z)-s.halfWidth,maxZ:Math.max(s.a.z,s.b.z)+s.halfWidth}));
   const key=(p:Point)=>Math.floor(p.x/size)+','+Math.floor(p.z/size);
+  const walk=grid((study.pedestrians?.pieces??[]).filter(s=>s.component===study.pedestrians?.component),s=>({minX:Math.min(s.a.x,s.b.x)-s.halfWidth,maxX:Math.max(s.a.x,s.b.x)+s.halfWidth,minZ:Math.min(s.a.z,s.b.z)-s.halfWidth,maxZ:Math.max(s.a.z,s.b.z)+s.halfWidth}));
   function canStand(p:Point){
     if(Math.abs(p.x)>study.halfSize-2||Math.abs(p.z)>study.halfSize-2||buildingCollision(p,buildings.get(key(p))??[]))return false;
+    if(study.pedestrians)return (walk.get(key(p))??[]).some(s=>segmentDistance(p,s.a,s.b)<=s.halfWidth-.35);
     if(study.roadSurface)return (surfaces.get(key(p))??[]).some(s=>segmentDistance(p,s.a,s.b)<=Math.min(2,s.halfWidth-.4));
     return study.roads.some(r=>eligible.has(r.id)&&r.points.some((b,i)=>i>0&&segmentDistance(p,r.points[i-1]!,b)<=2));
   }
@@ -33,5 +35,6 @@ export function navigation(study: Study,roofExtra=0) {
     }
     return fraction*Math.hypot(offset.x,offset.y,offset.z);
   }
-  return {canStand,cameraDistance};
+  const crossing=(p:Point)=>(walk.get(key(p))??[]).some(s=>s.kind==='crossing'&&segmentDistance(p,s.a,s.b)<=s.halfWidth-.35);
+  return {canStand,cameraDistance,crossing};
 }

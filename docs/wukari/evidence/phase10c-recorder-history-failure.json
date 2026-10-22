@@ -1,0 +1,58 @@
+{
+  "error": "Error: Timed out walk-inward {\"study\":\"fuw\",\"mode\":\"Standing\",\"x\":\"-12.9738808885308\",\"z\":\"-1.3924516240986218\",\"distance\":\"8.117708326873286\",\"bearing\":\"113.18265685040791\",\"heading\":\"113.18265685040797\",\"blocked\":\"false\",\"draws\":\"43\",\"triangles\":\"405553\",\"fps\":\"46.23253983867768\",\"vehicles\":\"16\",\"motorcycles\":\"9\",\"vehicleDistance\":\"2499.2790000000573\",\"overflow\":false}",
+  "checks": {
+    "defaultFuw": {
+      "study": "fuw",
+      "mode": "Standing",
+      "x": "-12.457924866469543",
+      "z": "-1.3012267370362014",
+      "distance": "0",
+      "bearing": "284.8207939489589",
+      "heading": "284.8207939489589",
+      "blocked": "false",
+      "draws": "33",
+      "triangles": "396485",
+      "fps": "0.5827845445538785",
+      "vehicles": "0",
+      "motorcycles": "0",
+      "vehicleDistance": "0",
+      "overflow": false
+    },
+    "route": [
+      {
+        "x": -14.712589124312215,
+        "z": -1.8978102045348648
+      },
+      {
+        "x": -16.682421666046242,
+        "z": -3.8616133470630016
+      },
+      {
+        "x": -19.321251932551263,
+        "z": -11.473588762039595
+      },
+      {
+        "x": -26.854776784216945,
+        "z": -33.20481061699601
+      }
+    ],
+    "failedState": {
+      "study": "fuw",
+      "mode": "Standing",
+      "x": "-12.9738808885308",
+      "z": "-1.3924516240986218",
+      "distance": "8.117708326873286",
+      "bearing": "113.18265685040797",
+      "heading": "113.18265685040797",
+      "blocked": "false",
+      "draws": "43",
+      "triangles": "405553",
+      "fps": "46.23253983867768",
+      "vehicles": "16",
+      "motorcycles": "9",
+      "vehicleDistance": "2504.146500000056",
+      "overflow": false
+    }
+  },
+  "errors": []
+}

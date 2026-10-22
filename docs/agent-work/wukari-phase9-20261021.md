@@ -1,6 +1,6 @@
 # Wukari Phase 9 town identity, traffic and wardrobe
 
-- Owner: local Codex. Status final review/publishing. Base feat/wukari-performance-polish at ddb57242b; clean on entry. Branch feat/wukari-town-identity-traffic.
+- Owner: local Codex. Status delivered as draft, owner visual review pending. Base feat/wukari-performance-polish at ddb57242b; clean on entry. Branch feat/wukari-town-identity-traffic.
 - Read AGENTS.md, coordination current index, AGENT.md and relevant Phase 8.2 record. User authorizes this feature base, separate review commits, push/draft PR; no main integration or deployment.
 - Owned paths: src/wukari/play, src/wukari/phase9*.test.ts, scripts/wukari Phase9 tools/browser integration, data/wukari/phase9 additive evidence, docs/wukari/PHASE9.md and evidence/phase9-*, this record.
 - Goal/order: 9A exact geographic audit, corroborated place identity and source-footprint architecture/road materials; 9B constrained simulated traffic; 9C disclosed illustrative or mapped infrastructure; 9D distinct saved wardrobe choices. Reviewable commits for each stage.
@@ -39,3 +39,9 @@
 - Fresh IntelHD620 hardware sample,6s warm-up +20s each: Low57.28FPS/p95 16.8ms, Medium56.68/17.4ms, High56.74/17.3ms. Normal16vehicles/9motorcycles/8-9moving,166props,1206loaded buildings. Raw reports and final screenshots in docs/wukari/evidence/phase9-*. No physical-phone or long thermal performance claim.
 - Visual review: denser F242 approach, named road, roofs/facades, motorcycle/poles/wires; desktop/mobile readable. Both rigged presets/eight hairstyles/wardrobe remain. Sandal native toe surface is still faceted at extreme close-up; stylized architecture/seams and recognizability require owner acceptance. FUW stays non-spawning and unverified.
 - Existing Vite5196 service preserved; only own isolated browser processes closed. No other process stopped, merge/deploy/database/economy/geographic re-download performed. Next executable step: stage final owned files, commit/push and open draft targeting feat/wukari-performance-polish; record URL and source SHA.
+
+## Published handoff
+
+- Implementation/evidence SHA ac8a3d0d70687647c94cf485d3e3e928a1faf65f pushed to origin/feat/wukari-town-identity-traffic.
+- Draft [PR11](https://github.com/Jabarteley/wukari-world/pull/11) targets feat/wukari-performance-polish at ddb57242b8a92e83916428935c15a13500066ac9. Five reviewable source/evidence commits, no merge or deployment. This documentation follow-up only records delivery.
+- Owner next: launch/review the actual town, traffic and wardrobe using PHASE9.md and screenshots; decide visual acceptance and any follow-up on sandal toes/repetitive architecture. FUW remains research-only/non-spawning. Do not infer that the aesthetic milestone or physical-phone performance has been accepted.

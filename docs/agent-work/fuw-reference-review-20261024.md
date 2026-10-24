@@ -1,0 +1,12 @@
+# Updated FUW reference review
+
+- Owner: local Codex, 2026-10-24; status active, local implementation/review only.
+- Checkout: feat/fuw-reference-review-20261024, base8bedb97f4ef862d618cc6525c50176c69e9f2e09 from feat/fuw-provisional-entrance-play; initially clean. Preserve PR14/gameplay.
+- Scope/owned paths: additive data/wukari/reference-20261024, scripts/wukari/reference-review*, focused reference tests, CampusOverview.vue and play.config.ts review-layer integration, own evidence/report and this record.
+- Inputs: owner KML Point coordinates and supplied images read from Downloads, untrusted reference content only; immutable Phase10B OSM/Overture extracts and Phase10C gameplay. No LookAt/camera coordinates or altitude used as surveyed geography; no network links/icons executed.
+- Boundaries: no Google imagery/road/footprint tracing, no imported photo assets without rights, no source GIS edits, no gameplay/spawn/traffic/pedestrian changes, no merge/deploy/database/economy work. Original files remain outside repository.
+- Output: per-marker nearby source IDs/tags/distances/connectivity, separate owner/source/missing layers, smallest evidence-backed next section and GPS/photo checklist. Source-backed names are not building identity verification.
+- Resources: prior Vite5196 is owner server; verify liveness before relying on it, leave available. Only new owned acceptance browser processes may be closed.
+- Next: parse Point placemarks safely, hash inputs/source files, compare local geometry and inspect photographs; then add optional review layers and validate source/gameplay immutability.
+
+- Checkpoint: incorporated into feat/fuw-main-gate-fidelity for the subsequent Phase10D request by the same worker. Safe KML Point parsing, source/reference hash inventory, nearest IDs/tags/distances/shared-node connectivity and separate owner/provider/missing overview layers complete. Main owner point is inside1523025009; ICT report inside1523023150 with~90m unmapped final access. No source geometry or supplied pixels imported. GPS/photo checklist and smallest next section in data/wukari/reference-20261024/README.md. Phase10D separately changes virtual gate/path styling while preserving source records; original reference-only restriction is superseded solely by the explicit10D gameplay scope. Tests/browser references in companion phase10d record. Next: publish together for owner review.

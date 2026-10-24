@@ -1,3 +1,4 @@
+import {gateWorld} from './entrance-layout.ts';
 import {entranceView} from './entrance.ts';
 import {infrastructure} from './infrastructure.ts';
 import {terrain,pedestrianView} from './terrain.ts';
@@ -17,20 +18,20 @@ import { advance, bearingOf, gameplayRoads, type Study, type Motion, type Point 
 
 export interface Status { mode: string; position: Point; bearing: number; heading:number; speed: number; distance: number; blocked: boolean; draws: number; triangles: number; fps: number; vehicles:number; motorcycles:number; vehicleDistance:number }
 export interface PerformanceReport {frames:number;fps:number;p50Ms:number;p95Ms:number;over33ms:number;updateCpuMs:number;renderSubmitCpuMs:number;[key:string]:unknown}
-export interface PlayScene { measure():Promise<PerformanceReport>; focus(point:Point):void; dispose(): void; enter(): boolean; explore(): void; reset(): void; key(key: string, pressed: boolean): void; overview(): void; pause(value: boolean): void; status(): Status; appearance(value: Appearance): void; settings(value: Settings): void }
+export interface PlayScene { gateView(view:'front'|'side'|'inward'|'canopy'):void;lighting(value:'day'|'evening'):void;measure():Promise<PerformanceReport>; focus(point:Point):void; dispose(): void; enter(): boolean; explore(): void; reset(): void; key(key: string, pressed: boolean): void; overview(): void; pause(value: boolean): void; status(): Status; appearance(value: Appearance): void; settings(value: Settings): void }
 
 /** Lightweight stylised extrusion of exact recorded footprints; dimensions/terrain illustrative. */
 export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasElement, report: (s: Status) => void): PlayScene {
   const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5)); renderer.setClearColor('#cee0dc');
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.outputColorSpace = THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;
   host.append(renderer.domElement); renderer.domElement.tabIndex = 0; renderer.domElement.setAttribute('aria-label', 'Wukari geographic 3D view. Drag to rotate; use movement controls after pressing Play.');
   const nav=navigation(study,2.25),traffic=trafficSimulation(study),fleet=vehiclesView();let trafficClock=0;
   const scene = new THREE.Scene(),playFog=new THREE.Fog('#cee0dc',180,800);scene.fog=playFog;
   const camera = new THREE.PerspectiveCamera(study.entrance?58:48, 1, .1, 2400);
   const controls = new OrbitControls(camera, renderer.domElement); controls.enableDamping = true;
   controls.maxPolarAngle = Math.PI / 2 - .08; controls.minDistance = 4; controls.maxDistance = study.halfSize * 3;
-  scene.add(new THREE.HemisphereLight('#f4fbff', '#b89b6f', 2.4));
+  const hemisphere=new THREE.HemisphereLight('#f4fbff', '#b89b6f', 2.4);scene.add(hemisphere);
   const sunlight = new THREE.DirectionalLight('#fff1d0', 2.5); sunlight.position.set(-120, 180, 80); scene.add(sunlight);
   const world = new THREE.Group(); scene.add(world);scene.add(fleet.group);
   const entrance=entranceView(study);scene.add(entrance.group);world.add(terrain(study),pedestrianView(study));
@@ -71,12 +72,13 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   }
   let person = createAvatar(defaultAppearance);
   const avatar = new THREE.Group(); avatar.visible=false; avatar.add(person.root); scene.add(avatar);
+  let timeOfDay:'day'|'evening'='day';
   let preferences = {...defaultSettings},activeAppearance={...defaultAppearance};
   let state: Motion = { ...(study.spawn?.point ?? { x: 0, z: 0 }), yaw: 0, moving: false, sprinting: false, blocked: false, distance: 0 };
   let walking = false, paused = false, followYaw = 0, followPitch = .12, cameraDistance = 5, down: { x: number; y: number; id: number } | null = null;
   const keys = new Set<string>();
   let lastTime = 0, frames = 0, fps = 0, measureAt = 0, publishedAt = 0;
-  const viewDirection=new THREE.Vector3();
+  const viewDirection=new THREE.Vector3(),lookTarget=new THREE.Vector3();
   const status = (): Status => ({ mode: walking ? (state.sprinting ? 'Sprinting' : state.moving ? 'Walking' : 'Standing') : 'Exploration · no character', position: { x: state.x, z: state.z }, bearing: bearingOf(camera.getWorldDirection(viewDirection)),heading:bearingOf({x:-Math.sin(followYaw),z:-Math.cos(followYaw)}),
     speed: walking && state.moving ? state.sprinting ? 6 : 2.4 : 0, distance: state.distance, blocked: state.blocked, draws: renderer.info.render.calls, triangles: renderer.info.render.triangles, fps,vehicles:traffic.vehicles.length,motorcycles:traffic.vehicles.filter(v=>v.kind==='motorcycle').length,vehicleDistance:traffic.vehicles.reduce((s,v)=>s+v.distance,0) });
   const overview = () => { scene.fog=null;controls.target.set(0, 0, 0); camera.position.set(0, study.halfSize * 1.05, study.halfSize * .9); camera.far = 2400; controls.update(); };
@@ -86,11 +88,11 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
     const road = study.roads.find(r => r.id === study.spawn?.roadId), index = road?.nodes.indexOf(study.spawn?.nodeId ?? -1) ?? -1;
     const next = study.spawn?.facing ?? (index >= 0 ? road?.points[index + 1] ?? road?.points[index - 1] : undefined);
     followYaw = next ? Math.atan2(state.x - next.x, state.z - next.z) : 0;
-    state.yaw=followYaw+Math.PI;avatar.rotation.y=state.yaw;followPitch = .12; cameraDistance = study.entrance?11:5; if (walking) camera.position.set(state.x + Math.sin(followYaw)*5, 3.2, state.z + Math.cos(followYaw)*5);
+    state.yaw=followYaw+Math.PI;avatar.rotation.y=state.yaw;followPitch = study.entrance&&host.clientWidth<host.clientHeight?.3:.12; cameraDistance = study.entrance?(host.clientWidth<host.clientHeight?18:14):5; if (walking) camera.position.set(state.x + Math.sin(followYaw)*cameraDistance, 3.2, state.z + Math.cos(followYaw)*cameraDistance);
     renderer.domElement.focus();
   };
   const enter = () => { if (!study.spawn?.eligible) return false; walking = true;camera.far=graphics[preferences.quality].far;camera.updateProjectionMatrix();scene.fog=playFog; reset(); controls.enabled = false; avatar.visible = true; renderer.domElement.focus(); return true; };
-  const explore = () => { walking = false; keys.clear(); avatar.visible = false; controls.enabled = true; overview(); };
+  const explore = () => { walking = false; keys.clear(); avatar.visible = false; controls.enabled = true; controls.maxPolarAngle=Math.PI/2-.08;overview(); };
   const key = (name: string, pressed: boolean) => { if (pressed) keys.add(name.toLowerCase()); else keys.delete(name.toLowerCase()); };
   const keyDown = (e: KeyboardEvent) => { if (!walking || paused || (e.target instanceof HTMLElement && ['INPUT', 'TEXTAREA', 'BUTTON', 'A', 'SUMMARY'].includes(e.target.tagName))) return; if (['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright','shift','q','e'].includes(e.key.toLowerCase())) { e.preventDefault(); key(e.key, true); } };
   const keyUp = (e: KeyboardEvent) => key(e.key, false);
@@ -103,7 +105,7 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
   window.addEventListener('keydown', keyDown); window.addEventListener('keyup', keyUp); window.addEventListener('blur', clear); document.addEventListener('visibilitychange', clear);
   const canvas = renderer.domElement;
   canvas.addEventListener('pointerdown', pointerDown); canvas.addEventListener('pointermove', pointerMove); canvas.addEventListener('pointerup', pointerUp); canvas.addEventListener('pointercancel', pointerUp); canvas.addEventListener('lostpointercapture', pointerUp); canvas.addEventListener('wheel', wheel, { passive: false }); canvas.addEventListener('contextmenu', contextMenu);
-  const resize = () => { const r = host.getBoundingClientRect(); camera.aspect = r.width / Math.max(1, r.height);camera.fov=THREE.MathUtils.radToDeg(2*Math.atan(Math.tan(THREE.MathUtils.degToRad(study.entrance?58:48)/2)/Math.min(1,camera.aspect))); camera.updateProjectionMatrix(); renderer.setSize(r.width, r.height, false); };
+  const resize = () => { const r = host.getBoundingClientRect(); camera.aspect = r.width / Math.max(1, r.height);if(study.entrance&&walking&&state.distance<1){cameraDistance=camera.aspect<1?18:14;followPitch=camera.aspect<1?.3:.12;}camera.fov=THREE.MathUtils.radToDeg(2*Math.atan(Math.tan(THREE.MathUtils.degToRad(study.entrance?58:48)/2)/Math.min(1,camera.aspect))); camera.updateProjectionMatrix(); renderer.setSize(r.width, r.height, false); };
   const observer = new ResizeObserver(resize); observer.observe(host); resize();
   const map = minimap.getContext('2d')!, mapSize = 200;
   minimap.width = minimap.height = mapSize;
@@ -132,15 +134,15 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
       target.set(state.x, study.entrance&&state.distance<8?2.1:1.1, state.z);
       offset.set(Math.sin(followYaw) * cameraDistance, 1 + followPitch * cameraDistance, Math.cos(followYaw) * cameraDistance);
       // Camera-to-target ray shortens the follow arm before an extruded footprint.
-      const distance=nav.cameraDistance({x:target.x,y:target.y,z:target.z},{x:offset.x,y:offset.y,z:offset.z});
+      const distance=Math.min(nav.cameraDistance({x:target.x,y:target.y,z:target.z},{x:offset.x,y:offset.y,z:offset.z}),entrance.cameraDistance(target,offset));
       if(distance<offset.length())offset.setLength(Math.max(.8,distance-.4));
-      desired.copy(target).add(offset); camera.position.lerp(desired, 1 - Math.exp(-dt * 12)); camera.lookAt(target);
+      desired.copy(target).add(offset); camera.position.lerp(desired, 1 - Math.exp(-dt * 12)); lookTarget.copy(target);if(study.entrance&&state.distance<8){const e=study.entrance,dx=state.x-e.point.x,dz=state.z-e.point.z,lateral=dx*Math.cos(e.yaw)-dz*Math.sin(e.yaw),blend=(1-state.distance/8)*.7;lookTarget.x-=lateral*Math.cos(e.yaw)*blend;lookTarget.z+=lateral*Math.sin(e.yaw)*blend;}camera.lookAt(lookTarget);
     } else controls.update();
     if(walking){trafficClock+=dt;while(trafficClock>=.05){traffic.step(.05,state,study.spawn?.eligible?({off:0,light:8,normal:16,busy:24}[preferences.traffic]):0);trafficClock-=.05;}}fleet.update(traffic.vehicles);
     scenery.update(walking?state:{x:camera.position.x,z:camera.position.z},preferences.quality==='low'?130:preferences.quality==='high'?350:240);
     buildings.update(walking?state:{x:camera.position.x,z:camera.position.z},preferences.quality==='low'?100:preferences.quality==='high'?260:170);
     labels.update(camera);const renderStart=performance.now();renderer.render(scene,camera);
-    if(sample){if(time>=sampleStart)sample.push(frameMs,renderStart-updateStart,performance.now()-renderStart);if(time-sampleStart>=20000){const gl=renderer.getContext(),ext=gl.getExtension('WEBGL_debug_renderer_info'),size=new THREE.Vector2();renderer.getDrawingBufferSize(size);let bytes=0;const seen=new Set<ArrayBufferLike>();scene.traverse(o=>{if(o instanceof THREE.Mesh||o instanceof THREE.LineSegments){if(o instanceof THREE.InstancedMesh)for(const a of [o.instanceMatrix,o.instanceColor])if(a&&!seen.has(a.array.buffer)){seen.add(a.array.buffer);bytes+=a.array.buffer.byteLength;}for(const a of (Object.values(o.geometry.attributes) as THREE.BufferAttribute[])){const buffer=a.array.buffer;if(!seen.has(buffer)){seen.add(buffer);bytes+=buffer.byteLength;}}const index=o.geometry.index;if(index&&!seen.has(index.array.buffer)){seen.add(index.array.buffer);bytes+=index.array.buffer.byteLength;}}});const result={...sample.result(),quality:preferences.quality,renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),viewport:[host.clientWidth,host.clientHeight],buffer:[size.x,size.y],dpr:devicePixelRatio,draws:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometryBufferBytes:bytes,estimatedTextureBytes:textureBytes(scene),resources:{...renderer.info.memory,programs:renderer.info.programs?.length??0},appearance:{preset:activeAppearance.preset,outfit:activeAppearance.outfit,bottom:activeAppearance.bottom,footwear:activeAppearance.footwear,hair:activeAppearance.hair},trafficVehicles:traffic.vehicles.length,motorcycles:traffic.vehicles.filter(v=>v.kind==='motorcycle').length,movingVehicles:traffic.vehicles.filter(v=>v.speed>.1).length,trafficDensity:preferences.traffic,buildings:study.buildings.length,sceneryProps:scenery.positions.props.length,gpuTimeMs:null,warmupSeconds:6,sampleSeconds:20,note:'20-second foreground browser sample after 6-second warm-up; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates.'};sample=undefined;sampleResolve?.(result);sampleResolve=undefined;}}
+    if(sample){if(time>=sampleStart)sample.push(frameMs,renderStart-updateStart,performance.now()-renderStart);if(time-sampleStart>=20000){const gl=renderer.getContext(),ext=gl.getExtension('WEBGL_debug_renderer_info'),size=new THREE.Vector2();renderer.getDrawingBufferSize(size);let bytes=0;const seen=new Set<ArrayBufferLike>();scene.traverse(o=>{if(o instanceof THREE.Mesh||o instanceof THREE.LineSegments){if(o instanceof THREE.InstancedMesh)for(const a of [o.instanceMatrix,o.instanceColor])if(a&&!seen.has(a.array.buffer)){seen.add(a.array.buffer);bytes+=a.array.buffer.byteLength;}for(const a of (Object.values(o.geometry.attributes) as THREE.BufferAttribute[])){const buffer=a.array.buffer;if(!seen.has(buffer)){seen.add(buffer);bytes+=buffer.byteLength;}}const index=o.geometry.index;if(index&&!seen.has(index.array.buffer)){seen.add(index.array.buffer);bytes+=index.array.buffer.byteLength;}}});const result={...sample.result(),quality:preferences.quality,timeOfDay,renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),viewport:[host.clientWidth,host.clientHeight],buffer:[size.x,size.y],dpr:devicePixelRatio,draws:renderer.info.render.calls,triangles:renderer.info.render.triangles,geometryBufferBytes:bytes,estimatedTextureBytes:textureBytes(scene),resources:{...renderer.info.memory,programs:renderer.info.programs?.length??0},appearance:{preset:activeAppearance.preset,outfit:activeAppearance.outfit,bottom:activeAppearance.bottom,footwear:activeAppearance.footwear,hair:activeAppearance.hair},trafficVehicles:traffic.vehicles.length,motorcycles:traffic.vehicles.filter(v=>v.kind==='motorcycle').length,movingVehicles:traffic.vehicles.filter(v=>v.speed>.1).length,trafficDensity:preferences.traffic,buildings:study.buildings.length,sceneryProps:scenery.positions.props.length,gpuTimeMs:null,warmupSeconds:6,sampleSeconds:20,note:'20-second foreground browser sample after 6-second warm-up; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates.'};sample=undefined;sampleResolve?.(result);sampleResolve=undefined;}}
 
     frames++; if (time - measureAt >= 1000) { fps = frames * 1000 / (time - measureAt); frames = 0; measureAt = time; }
     if (time - publishedAt > 100) {
@@ -148,10 +150,10 @@ export function createPlay(host: HTMLElement, study: Study, minimap: HTMLCanvasE
       report(status());
     }
   });
-  return { enter, explore, reset, overview, key, status,focus(p){explore();controls.target.set(p.x,0,p.z);camera.position.set(p.x,55,p.z+60);controls.update();},
+  return { enter, explore, reset, overview, key, status,gateView(view){if(!study.entrance)return;explore();scene.fog=playFog;controls.maxPolarAngle=view==='canopy'?Math.PI-.1:Math.PI/2-.08;const position=gateWorld(study,view==='canopy'?{x:0,z:-.25}:view==='front'?{x:0,z:-11}:view==='side'?{x:19,z:-16}:{x:-2,z:7}),aim=gateWorld(study,view==='canopy'?{x:0,z:.9}:view==='inward'?{x:0,z:45}:{x:0,z:0});camera.position.set(position.x,view==='canopy'?2.1:view==='inward'?3.5:view==='front'?3.5:4.5,position.z);controls.target.set(aim.x,view==='canopy'?5.05:view==='inward'?2:3,aim.z);controls.update();},lighting(value){timeOfDay=value;const evening=value==='evening';hemisphere.intensity=evening?1.15:2.4;sunlight.intensity=evening?.65:2.5;sunlight.color.set(evening?'#eab18a':'#fff1d0');const sky=evening?'#626c88':'#cee0dc';renderer.setClearColor(sky);playFog.color.set(sky);entrance.lighting(evening,preferences.quality);},focus(p){explore();controls.target.set(p.x,0,p.z);camera.position.set(p.x,55,p.z+60);controls.update();},
     measure(){if(sample)throw Error('A measurement is already running');sample=new FrameSamples();sampleStart=performance.now()+6000;return new Promise(resolve=>{sampleResolve=resolve;});},
     appearance(value) { activeAppearance={...value};person.dispose(); person=createAvatar(value);avatar.add(person.root); },
-    settings(value) { preferences={...value};const preset=graphics[value.quality];renderer.setPixelRatio(Math.min(devicePixelRatio,preset.pixelCap)*preset.scale);camera.far=walking?preset.far:2400;camera.updateProjectionMatrix();playFog.far=preset.far;playFog.near=preset.far*.5;centerLines.visible=false;shoulders.visible=preset.lines;resize(); },
+    settings(value) { preferences={...value};entrance.lighting(timeOfDay==='evening',value.quality);const preset=graphics[value.quality];renderer.setPixelRatio(Math.min(devicePixelRatio,preset.pixelCap)*preset.scale);camera.far=walking?preset.far:2400;camera.updateProjectionMatrix();playFog.far=preset.far;playFog.near=preset.far*.5;centerLines.visible=false;shoulders.visible=preset.lines;resize(); },
     pause(value) { paused=value;clear();lastTime=0;if(value)renderer.render(scene,camera);report(status()); }, dispose() {
     sampleResolve?.({...sample!.result(),cancelled:true});sampleResolve=undefined;sample=undefined;renderer.setAnimationLoop(null); entrance.dispose();labels.dispose();scenery.dispose();buildings.dispose();person.dispose(); observer.disconnect(); controls.dispose();
     window.removeEventListener('keydown', keyDown); window.removeEventListener('keyup', keyUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear);

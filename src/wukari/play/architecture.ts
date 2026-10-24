@@ -21,11 +21,12 @@ export function architecture(study: Study) {
     function color(g: T.BufferGeometry, c: string) { const p = g.getAttribute('position'), v = new Float32Array(p.count * 3), base = new T.Color(c); for (let i = 0; i < p.count; i++)
         base.clone().multiplyScalar(.94 + Math.sin(p.getX(i) * 13 + p.getZ(i) * 9) * .04).toArray(v, i * 3); g.setAttribute('color', new T.BufferAttribute(v, 3)); g.deleteAttribute('uv'); g.clearGroups(); return g; }
     for (const b of study.buildings) {
-        const knownShop = !!b.tags.shop || ['retail', 'commercial', 'kiosk'].includes(b.tags.building ?? ''), illustrativeShop = (b.tags.building === 'yes' || !b.tags.building) && b.id % 7 === 0, isShop = knownShop || illustrativeShop;
-        const points = b.points, shape = new T.Shape(points.map(p => new T.Vector2(p.x, -p.z))), raw = Number(b.tags.height?.replace(/\s*m$/, '')), height = Number.isFinite(raw) && raw >= 2 && raw <= 60 ? raw : 3.6;
+        const context=study.entrance?.contextBuilding?.id===b.id;
+        const knownShop = !!b.tags.shop || ['retail', 'commercial', 'kiosk'].includes(b.tags.building ?? ''), illustrativeShop = !context && (b.tags.building === 'yes' || !b.tags.building) && b.id % 7 === 0, isShop = knownShop || illustrativeShop;
+        const points = b.points, shape = new T.Shape(points.map(p => new T.Vector2(p.x, -p.z))), raw = Number(b.tags.height?.replace(/\s*m$/, '')), height = Number.isFinite(raw) && raw >= 2 && raw <= 60 ? raw : context?study.entrance!.contextBuilding!.height:3.6;
         const g = new T.ExtrudeGeometry(shape, { depth: height, steps: 1, bevelEnabled: false });
         g.rotateX(-Math.PI / 2);
-        walls.push(color(g, paint[b.id % paint.length]!));
+        walls.push(color(g, context?'#d4c9a7':paint[b.id % paint.length]!));
         const center = { x: points.reduce((s, p) => s + p.x, 0) / points.length, z: points.reduce((s, p) => s + p.z, 0) / points.length };
         let positive = false, negative = false;
         for (let i = 1; i < points.length - 1; i++) {
@@ -35,7 +36,7 @@ export function architecture(study: Study) {
             if (cross < -.001)
                 negative = true;
         }
-        if (!(positive && negative) && inside(center, points) && b.id % 3 !== 0) {
+        if (!(positive && negative) && inside(center, points) && (context || b.id % 3 !== 0)) {
             const vertices: number[] = [];
             for (let i = 1; i < points.length; i++) {
                 const a = points[i - 1]!, c = points[i]!;
@@ -44,13 +45,13 @@ export function architecture(study: Study) {
             const r = new T.BufferGeometry();
             r.setAttribute('position', new T.Float32BufferAttribute(vertices, 3));
             r.computeVertexNormals();
-            roofs.push(color(r, b.tags['roof:colour'] && /^#[a-f\d]{6}$/i.test(b.tags['roof:colour']) ? b.tags['roof:colour'] : metal[b.id % metal.length]!));
+            roofs.push(color(r, b.tags['roof:colour'] && /^#[a-f\d]{6}$/i.test(b.tags['roof:colour']) ? b.tags['roof:colour'] : context?'#915646':metal[b.id % metal.length]!));
         }
         else {
             const r = new T.ShapeGeometry(shape);
             r.rotateX(-Math.PI / 2);
             r.translate(0, height + .04, 0);
-            roofs.push(color(r.toNonIndexed(), metal[b.id % metal.length]!));
+            roofs.push(color(r.toNonIndexed(), context?'#915646':metal[b.id % metal.length]!));
             r.dispose();
         }
         if (isShop && points.length > 2) {
@@ -68,7 +69,8 @@ export function architecture(study: Study) {
             const dx = (c.x - a.x) / length, dz = (c.z - a.z) / length, sign = area > 0 ? 1 : -1;
             for (let j = 0; j < Math.min(6, Math.floor(length / 3)); j++) {
                 const t = (j + 1) / (Math.min(6, Math.floor(length / 3)) + 1);
-                details.push({ x: a.x + (c.x - a.x) * t + dz * sign * .01, z: a.z + (c.z - a.z) * t - dx * sign * .01, y: j === 0 ? 1.15 : 1.9, yaw: Math.atan2(dx, dz), door: j === 0, shop: isShop });
+                details.push({ x: a.x + (c.x - a.x) * t + dz * sign * .01, z: a.z + (c.z - a.z) * t - dx * sign * .01, y: j === 0 ? 1.15 : 1.9, yaw: context?Math.atan2(-dz,dx):Math.atan2(dx, dz), door: j === 0, shop: isShop });
+                if(context)details.push({x:a.x+(c.x-a.x)*t+dz*sign*.01,z:a.z+(c.z-a.z)*t-dx*sign*.01,y:4.5,yaw:Math.atan2(-dz,dx),door:false,shop:false});
             }
         }
     }

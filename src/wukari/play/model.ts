@@ -12,7 +12,7 @@ export interface Feature {
 export interface Study {
   virtualRoads?: Feature[];
   trafficLanes?: boolean;
-  entrance?: {point:Point;yaw:number;halfSpan:number;supports:Point[];proposed:true;candidateOffsetM:number};
+  entrance?: {point:Point;yaw:number;halfSpan:number;supports:Point[];proposed:true;candidateOffsetM:number;design?:'photo-guided';contextBuilding?:{id:number;height:number}};
   obstacles?: Feature[];
   groundCover?: Feature[];
   streetObstacles?: (Point&{radius:number})[];

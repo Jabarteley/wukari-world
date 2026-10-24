@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "sourceSha256": "9df6d682861336da402ff092d4209187933c56828930247e2fcc2cfa25550d3d",
+  "sourceFileName": "Wukari Life \u2014 FUW Campus Reference. (1).kml",
+  "markers": [
+    {
+      "id": "earlier-marker",
+      "name": "Earlier unnamed marker",
+      "coordinates": [
+        9.771962,
+        7.8428172
+      ],
+      "status": "Owner Google Earth reference; not independently surveyed",
+      "source": "Owner supplied KML Point (LookAt ignored)",
+      "geographicAccuracyM": null,
+      "gameplayUse": false,
+      "independentlyVerified": false
+    },
+    {
+      "id": "main-gate",
+      "name": "main gate",
+      "coordinates": [
+        9.777423952290516,
+        7.843343595248542
+      ],
+      "status": "Owner Google Earth reference; not independently surveyed",
+      "source": "Owner supplied KML Point (LookAt ignored)",
+      "geographicAccuracyM": null,
+      "gameplayUse": false,
+      "independentlyVerified": false
+    },
+    {
+      "id": "second-gate",
+      "name": "second gate",
+      "coordinates": [
+        9.773531596768601,
+        7.840040166545116
+      ],
+      "status": "Owner Google Earth reference; not independently surveyed",
+      "source": "Owner supplied KML Point (LookAt ignored)",
+      "geographicAccuracyM": null,
+      "gameplayUse": false,
+      "independentlyVerified": false
+    },
+    {
+      "id": "ict-building",
+      "name": "ict building",
+      "coordinates": [
+        9.771938702550473,
+        7.842796064049926
+      ],
+      "status": "Owner Google Earth reference; not independently surveyed",
+      "source": "Owner supplied KML Point (LookAt ignored)",
+      "geographicAccuracyM": null,
+      "gameplayUse": false,
+      "independentlyVerified": false
+    }
+  ],
+  "visualReferences": [
+    {
+      "name": "second gate.jfif",
+      "bytes": 25157,
+      "sha256": "b1b381700c32bdabeecc8513776fdc7fe465d87a69de01ce30da7faa99d467a8",
+      "redistributed": false
+    },
+    {
+      "name": "gateu.jfif",
+      "bytes": 18467,
+      "sha256": "66f7bc1bde95661f32f65be2bef2d3ac995b61f5deb33f2a87953ac160d81508",
+      "redistributed": false
+    },
+    {
+      "name": "gate.jfif",
+      "bytes": 29630,
+      "sha256": "8d3d78dcc9b8469b3db0d454eec2ded4fe1851662515e74bd7959810e6c91954",
+      "redistributed": false
+    },
+    {
+      "name": "1111.png",
+      "bytes": 2210714,
+      "sha256": "44f2463d8dc134afa7c30d93c70b3a2897e5218ae9ac3764ab820c4af4975d71",
+      "redistributed": false
+    },
+    {
+      "name": "111.png",
+      "bytes": 977072,
+      "sha256": "b78c0df582dfb33db40728f7b92d7acfacc847866fe9936a7607599dd2865698",
+      "redistributed": false
+    }
+  ],
+  "rules": "Only user-supplied Point placemarks used for reference comparison. No imagery, road lines, outlines, camera positions, altitude or icons imported. No independent survey or copyright redistribution permission inferred."
+}

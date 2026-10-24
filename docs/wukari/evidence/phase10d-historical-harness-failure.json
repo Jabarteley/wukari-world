@@ -1,0 +1,65 @@
+{
+  "error": "Error: {\"exceptionId\":1,\"text\":\"Uncaught\",\"lineNumber\":0,\"columnNumber\":143,\"scriptId\":\"67\",\"stackTrace\":{\"callFrames\":[{\"functionName\":\"\",\"scriptId\":\"67\",\"url\":\"\",\"lineNumber\":0,\"columnNumber\":149},{\"functionName\":\"\",\"scriptId\":\"67\",\"url\":\"\",\"lineNumber\":0,\"columnNumber\":231}]},\"exception\":{\"type\":\"object\",\"subtype\":\"error\",\"className\":\"Error\",\"description\":\"Error: Missing Close settings\\n    at <anonymous>:1:150\\n    at <anonymous>:1:232\",\"objectId\":\"-97632142585006964.2.2\"}}",
+  "checks": {
+    "defaultGate": {
+      "study": "fuw",
+      "mode": "Standing",
+      "x": "-12.189562133606465",
+      "z": "-2.3137457561700274",
+      "distance": "0",
+      "bearing": "270.00238950932476",
+      "heading": "284.84461656723585",
+      "blocked": "false",
+      "draws": "34",
+      "triangles": "400005",
+      "fps": "0.09419655052231987",
+      "vehicles": "0",
+      "motorcycles": "0",
+      "vehicleDistance": "0",
+      "overflow": false
+    },
+    "pedestrianEntry": {
+      "study": "fuw",
+      "mode": "Standing",
+      "x": "-13.851073101284852",
+      "z": "-2.7541203225160418",
+      "distance": "1.7188800000000029",
+      "bearing": "273.09723600211765",
+      "heading": "284.84461656723585",
+      "blocked": "false",
+      "draws": "38",
+      "triangles": "402317",
+      "fps": "60.033461273496684",
+      "vehicles": "4",
+      "motorcycles": "3",
+      "vehicleDistance": "2.9539999999999993",
+      "overflow": false
+    },
+    "inspectionViews": true,
+    "failedState": {
+      "study": "fuw",
+      "mode": "Exploration · no character",
+      "x": "-12.189562133606465",
+      "z": "-2.3137457561700274",
+      "distance": "0",
+      "bearing": "281.8318290630525",
+      "heading": "284.84461656723585",
+      "blocked": "false",
+      "draws": "15",
+      "triangles": "354939",
+      "fps": "60.02164715143171",
+      "vehicles": "0",
+      "motorcycles": "0",
+      "vehicleDistance": "0",
+      "overflow": false
+    }
+  },
+  "errors": [
+    [
+      {
+        "type": "string",
+        "value": "THREE.BufferGeometryUtils: .mergeGeometries() failed with geometry at index 2. All geometries must have compatible attributes; make sure index attribute exists among all geometries, or in none of them."
+      }
+    ]
+  ]
+}

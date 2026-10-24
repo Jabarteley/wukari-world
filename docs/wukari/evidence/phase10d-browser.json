@@ -1,0 +1,92 @@
+{
+  "status": "passed",
+  "checks": {
+    "defaultGate": {
+      "study": "fuw",
+      "mode": "Standing",
+      "x": "-12.189562133606465",
+      "z": "-2.3137457561700274",
+      "distance": "0",
+      "bearing": "270.00238950932476",
+      "heading": "284.84461656723585",
+      "blocked": "false",
+      "draws": "35",
+      "triangles": "403167",
+      "fps": "0.5828524800373026",
+      "vehicles": "0",
+      "motorcycles": "0",
+      "vehicleDistance": "0",
+      "overflow": false
+    },
+    "pedestrianEntry": {
+      "study": "fuw",
+      "mode": "Standing",
+      "x": "-13.657825595549566",
+      "z": "-2.702901108083445",
+      "distance": "1.5189599999999985",
+      "bearing": "272.73418848966804",
+      "heading": "284.84461656723585",
+      "blocked": "false",
+      "draws": "39",
+      "triangles": "405479",
+      "fps": "59.03768572271966",
+      "vehicles": "4",
+      "motorcycles": "3",
+      "vehicleDistance": "2.002",
+      "overflow": false
+    },
+    "inspectionViews": true,
+    "eveningLighting": true,
+    "separateReferenceLayers": true,
+    "mobileControls": true,
+    "performance": {
+      "frames": 1200,
+      "fps": 59.9322765275239,
+      "p50Ms": 16.60000000000582,
+      "p95Ms": 17.5,
+      "over33ms": 1,
+      "updateCpuMs": 2.145083333266278,
+      "renderSubmitCpuMs": 3.3410833333681027,
+      "quality": "balanced",
+      "timeOfDay": "day",
+      "renderer": "ANGLE (Intel, Intel(R) HD Graphics 620 (0x00005916) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "viewport": [
+        1440,
+        884
+      ],
+      "buffer": [
+        1440,
+        884
+      ],
+      "dpr": 1,
+      "draws": 43,
+      "triangles": 412499,
+      "geometryBufferBytes": 35797224,
+      "estimatedTextureBytes": 19942144,
+      "resources": {
+        "geometries": 50,
+        "textures": 12,
+        "programs": 40
+      },
+      "appearance": {
+        "preset": "male",
+        "outfit": "polo",
+        "bottom": "jeans",
+        "footwear": "sneakers",
+        "hair": "short-afro"
+      },
+      "trafficVehicles": 16,
+      "motorcycles": 10,
+      "movingVehicles": 16,
+      "trafficDensity": "normal",
+      "buildings": 944,
+      "sceneryProps": 0,
+      "gpuTimeMs": null,
+      "warmupSeconds": 6,
+      "sampleSeconds": 20,
+      "note": "20-second foreground browser sample after 6-second warm-up; CPU submission is not GPU duration. Counts exclude driver overhead and cached templates."
+    },
+    "destinationRoundTrip": true
+  },
+  "errors": []
+}

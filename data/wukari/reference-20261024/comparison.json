@@ -1,0 +1,4952 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-24",
+  "origin": [
+    9.77737,
+    7.843357
+  ],
+  "sourceHashes": [
+    {
+      "path": "data/wukari/phase10b/fuw-osm.json",
+      "sha256": "736ed18c073c1bdd7494236ae08f394fb2b99f5bcf899de49605705cb47d8f72"
+    },
+    {
+      "path": "data/wukari/phase10b/fuw-open.json",
+      "sha256": "b8fab36aa0a39ef5da77d4686ca221d1c9fcfc8d52572505ca26fe4983edea8f"
+    },
+    {
+      "path": "data/wukari/phase10c/fuw-play.json",
+      "sha256": "f82b17644c9fe0920683e5b43b9b0de628ad8163fd0eb6beb4373079c52b9524"
+    }
+  ],
+  "ownerSource": "9df6d682861336da402ff092d4209187933c56828930247e2fcc2cfa25550d3d",
+  "namedSourceRecords": [],
+  "namedPlaces": [
+    {
+      "id": "a581c64d-e806-4175-acf8-2fc70475d595",
+      "name": "Jaggy",
+      "sources": [
+        {
+          "property": "",
+          "dataset": "meta",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": "106657559194246",
+          "update_time": "2026-10-12T00:00:00.000Z",
+          "confidence": 0.08575651794672012,
+          "between": null,
+          "provider": "meta",
+          "resource": "meta",
+          "version": "2026-10-12"
+        },
+        {
+          "property": "/properties/confidence",
+          "dataset": "Overture",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": null,
+          "update_time": "2026-10-15T18:00:21Z",
+          "confidence": null,
+          "between": null,
+          "provider": "overture",
+          "resource": "confidence_calculation",
+          "version": "2026-10-15"
+        }
+      ],
+      "identity": "Provider POI only; not independently assigned to a campus building"
+    },
+    {
+      "id": "8467f607-0f40-4a74-925c-73b387911534",
+      "name": "Chuks Gourmet",
+      "sources": [
+        {
+          "property": "",
+          "dataset": "meta",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": "103335542470916",
+          "update_time": "2026-10-12T00:00:00.000Z",
+          "confidence": 0.08270001411437988,
+          "between": null,
+          "provider": "meta",
+          "resource": "meta",
+          "version": "2026-10-12"
+        },
+        {
+          "property": "/properties/confidence",
+          "dataset": "Overture",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": null,
+          "update_time": "2026-10-15T18:00:21Z",
+          "confidence": null,
+          "between": null,
+          "provider": "overture",
+          "resource": "confidence_calculation",
+          "version": "2026-10-15"
+        }
+      ],
+      "identity": "Provider POI only; not independently assigned to a campus building"
+    },
+    {
+      "id": "75c38da1-ae09-4195-8d40-fa23c7834702",
+      "name": "Living Faith Church",
+      "sources": [
+        {
+          "property": "",
+          "dataset": "meta",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": "379474792809930",
+          "update_time": "2026-10-12T00:00:00.000Z",
+          "confidence": 0.7860365509986877,
+          "between": null,
+          "provider": "meta",
+          "resource": "meta",
+          "version": "2026-10-12"
+        },
+        {
+          "property": "/properties/confidence",
+          "dataset": "Overture",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": null,
+          "update_time": "2026-10-15T18:00:21Z",
+          "confidence": null,
+          "between": null,
+          "provider": "overture",
+          "resource": "confidence_calculation",
+          "version": "2026-10-15"
+        }
+      ],
+      "identity": "Provider POI only; not independently assigned to a campus building"
+    },
+    {
+      "id": "ca47db43-6079-4f2e-a281-d31bae116317",
+      "name": "Federal University Wukari Taraba State",
+      "sources": [
+        {
+          "property": "",
+          "dataset": "meta",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": "1921910961466944",
+          "update_time": "2026-10-12T00:00:00.000Z",
+          "confidence": 0.8035709261894226,
+          "between": null,
+          "provider": "meta",
+          "resource": "meta",
+          "version": "2026-10-12"
+        },
+        {
+          "property": "/properties/confidence",
+          "dataset": "Overture",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": null,
+          "update_time": "2026-10-15T18:00:21Z",
+          "confidence": null,
+          "between": null,
+          "provider": "overture",
+          "resource": "confidence_calculation",
+          "version": "2026-10-15"
+        }
+      ],
+      "identity": "Provider POI only; not independently assigned to a campus building"
+    },
+    {
+      "id": "ea1b6a2d-3673-4d2a-9718-b5d678078c03",
+      "name": "Federal University, Wukari",
+      "sources": [
+        {
+          "property": "",
+          "dataset": "meta",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": "217820701692238",
+          "update_time": "2026-09-14T00:00:00.000Z",
+          "confidence": 0.7116852402687073,
+          "between": null,
+          "provider": "meta",
+          "resource": "meta",
+          "version": "2026-09-14"
+        },
+        {
+          "property": "/properties/confidence",
+          "dataset": "Overture",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": null,
+          "update_time": "2026-10-15T18:00:21Z",
+          "confidence": null,
+          "between": null,
+          "provider": "overture",
+          "resource": "confidence_calculation",
+          "version": "2026-10-15"
+        }
+      ],
+      "identity": "Provider POI only; not independently assigned to a campus building"
+    },
+    {
+      "id": "37833c6a-4a9b-4c84-8a4a-fbeb6fbea467",
+      "name": "CRC-N Kinkinso Wukari",
+      "sources": [
+        {
+          "property": "",
+          "dataset": "meta",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": "104975301442856",
+          "update_time": "2026-10-12T00:00:00.000Z",
+          "confidence": 0.7050908803939819,
+          "between": null,
+          "provider": "meta",
+          "resource": "meta",
+          "version": "2026-10-12"
+        },
+        {
+          "property": "/properties/confidence",
+          "dataset": "Overture",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": null,
+          "update_time": "2026-10-15T18:00:21Z",
+          "confidence": null,
+          "between": null,
+          "provider": "overture",
+          "resource": "confidence_calculation",
+          "version": "2026-10-15"
+        }
+      ],
+      "identity": "Provider POI only; not independently assigned to a campus building"
+    },
+    {
+      "id": "77a9f9d1-b4f8-4585-82ac-11e336221179",
+      "name": "Wukari City Builders Network",
+      "sources": [
+        {
+          "property": "",
+          "dataset": "meta",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": "248015329133421",
+          "update_time": "2026-10-12T00:00:00.000Z",
+          "confidence": 0.6453115344047546,
+          "between": null,
+          "provider": "meta",
+          "resource": "meta",
+          "version": "2026-10-12"
+        },
+        {
+          "property": "/properties/confidence",
+          "dataset": "Overture",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": null,
+          "update_time": "2026-10-15T18:00:21Z",
+          "confidence": null,
+          "between": null,
+          "provider": "overture",
+          "resource": "confidence_calculation",
+          "version": "2026-10-15"
+        }
+      ],
+      "identity": "Provider POI only; not independently assigned to a campus building"
+    },
+    {
+      "id": "dbb22d0b-7071-4966-affe-aee19cce3caa",
+      "name": "Oragas Enterprise",
+      "sources": [
+        {
+          "property": "",
+          "dataset": "meta",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": "360438624369993",
+          "update_time": "2026-10-12T00:00:00.000Z",
+          "confidence": 0.6027326583862305,
+          "between": null,
+          "provider": "meta",
+          "resource": "meta",
+          "version": "2026-10-12"
+        },
+        {
+          "property": "/properties/confidence",
+          "dataset": "Overture",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": null,
+          "update_time": "2026-10-15T18:00:21Z",
+          "confidence": null,
+          "between": null,
+          "provider": "overture",
+          "resource": "confidence_calculation",
+          "version": "2026-10-15"
+        }
+      ],
+      "identity": "Provider POI only; not independently assigned to a campus building"
+    },
+    {
+      "id": "783d4244-7143-4f46-9a34-0ae1bada97d5",
+      "name": "Living Faith Church",
+      "sources": [
+        {
+          "property": "",
+          "dataset": "meta",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": "379474792809930",
+          "update_time": "2026-09-14T00:00:00.000Z",
+          "confidence": 0.7816551923751831,
+          "between": null,
+          "provider": "meta",
+          "resource": "meta",
+          "version": "2026-09-14"
+        },
+        {
+          "property": "/properties/confidence",
+          "dataset": "Overture",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": null,
+          "update_time": "2026-10-15T18:00:21Z",
+          "confidence": null,
+          "between": null,
+          "provider": "overture",
+          "resource": "confidence_calculation",
+          "version": "2026-10-15"
+        }
+      ],
+      "identity": "Provider POI only; not independently assigned to a campus building"
+    },
+    {
+      "id": "7b627a47-4ba1-4278-9394-d14e40a140ab",
+      "name": "The LIGHT Assembly -TLA",
+      "sources": [
+        {
+          "property": "",
+          "dataset": "meta",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": "102895342603211",
+          "update_time": "2026-10-12T00:00:00.000Z",
+          "confidence": 0.9073745608329773,
+          "between": null,
+          "provider": "meta",
+          "resource": "meta",
+          "version": "2026-10-12"
+        },
+        {
+          "property": "/properties/confidence",
+          "dataset": "Overture",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": null,
+          "update_time": "2026-10-15T18:00:21Z",
+          "confidence": null,
+          "between": null,
+          "provider": "overture",
+          "resource": "confidence_calculation",
+          "version": "2026-10-15"
+        }
+      ],
+      "identity": "Provider POI only; not independently assigned to a campus building"
+    },
+    {
+      "id": "d3668458-f6a2-4545-b043-9c3c70f849b0",
+      "name": "Taraba STATE TV",
+      "sources": [
+        {
+          "property": "",
+          "dataset": "meta",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": "337648626106184",
+          "update_time": "2026-10-12T00:00:00.000Z",
+          "confidence": 0.5249267816543579,
+          "between": null,
+          "provider": "meta",
+          "resource": "meta",
+          "version": "2026-10-12"
+        },
+        {
+          "property": "/properties/confidence",
+          "dataset": "Overture",
+          "license": "CDLA-Permissive-2.0",
+          "record_id": null,
+          "update_time": "2026-10-15T18:00:21Z",
+          "confidence": null,
+          "between": null,
+          "provider": "overture",
+          "resource": "confidence_calculation",
+          "version": "2026-10-15"
+        }
+      ],
+      "identity": "Provider POI only; not independently assigned to a campus building"
+    }
+  ],
+  "markers": [
+    {
+      "id": "earlier-marker",
+      "name": "Earlier unnamed marker",
+      "coordinates": [
+        9.771962,
+        7.8428172
+      ],
+      "status": "Owner Google Earth reference; not independently surveyed",
+      "source": "Owner supplied KML Point (LookAt ignored)",
+      "geographicAccuracyM": null,
+      "gameplayUse": false,
+      "independentlyVerified": false,
+      "point": {
+        "x": -593.939463776428,
+        "z": 60.023104310107556
+      },
+      "nearestRoads": [
+        {
+          "id": 673416538,
+          "url": "https://www.openstreetmap.org/way/673416538",
+          "tags": {
+            "highway": "unclassified",
+            "oneway": "yes"
+          },
+          "distanceM": 87.56328891434002,
+          "component": 1,
+          "nodes": [
+            6306383380,
+            6306383377,
+            6306383685,
+            6306383378,
+            6306383379,
+            6306383352
+          ],
+          "coordinates": [
+            [
+              9.7728373,
+              7.8442679
+            ],
+            [
+              9.7727511,
+              7.8441529
+            ],
+            [
+              9.772759,
+              7.8428666
+            ],
+            [
+              9.7727686,
+              7.8413133
+            ],
+            [
+              9.7727561,
+              7.8412141
+            ],
+            [
+              9.7727368,
+              7.841087
+            ]
+          ],
+          "connectedRoadIds": [
+            673416533,
+            673416537,
+            673416539,
+            673416540
+          ]
+        },
+        {
+          "id": 673416540,
+          "url": "https://www.openstreetmap.org/way/673416540",
+          "tags": {
+            "highway": "unclassified"
+          },
+          "distanceM": 87.70357772105366,
+          "component": 1,
+          "nodes": [
+            6306383685,
+            6306383686,
+            6306383687,
+            6306383688,
+            6306383689,
+            6306383690,
+            6306383691,
+            6306383692,
+            6306383693,
+            6306383705,
+            6306383704,
+            6306383694,
+            6306383695
+          ],
+          "coordinates": [
+            [
+              9.772759,
+              7.8428666
+            ],
+            [
+              9.7728511,
+              7.8428543
+            ],
+            [
+              9.7739723,
+              7.8427601
+            ],
+            [
+              9.7758267,
+              7.8426034
+            ],
+            [
+              9.7760789,
+              7.8426127
+            ],
+            [
+              9.7762423,
+              7.8426404
+            ],
+            [
+              9.7763777,
+              7.8427052
+            ],
+            [
+              9.7765132,
+              7.8428162
+            ],
+            [
+              9.7765785,
+              7.8428995
+            ],
+            [
+              9.7767146,
+              7.8433826
+            ],
+            [
+              9.7767733,
+              7.843591
+            ],
+            [
+              9.7768821,
+              7.8439774
+            ],
+            [
+              9.7769521,
+              7.8440329
+            ]
+          ],
+          "connectedRoadIds": [
+            673416537,
+            673416538,
+            673416542,
+            673416543,
+            673416544,
+            673416545,
+            1432594451
+          ]
+        },
+        {
+          "id": 673416537,
+          "url": "https://www.openstreetmap.org/way/673416537",
+          "tags": {
+            "highway": "unclassified",
+            "oneway": "yes"
+          },
+          "distanceM": 97.68155921640556,
+          "component": 1,
+          "nodes": [
+            6306383343,
+            6306383374,
+            6306383375,
+            6306383686,
+            6306383380
+          ],
+          "coordinates": [
+            [
+              9.7728982,
+              7.8410832
+            ],
+            [
+              9.772874,
+              7.8411776
+            ],
+            [
+              9.7728665,
+              7.8412743
+            ],
+            [
+              9.7728511,
+              7.8428543
+            ],
+            [
+              9.7728373,
+              7.8442679
+            ]
+          ],
+          "connectedRoadIds": [
+            673416533,
+            673416538,
+            673416539,
+            673416540
+          ]
+        },
+        {
+          "id": 673416539,
+          "url": "https://www.openstreetmap.org/way/673416539",
+          "tags": {
+            "highway": "unclassified"
+          },
+          "distanceM": 187.78250214233762,
+          "component": 1,
+          "nodes": [
+            6306383380,
+            6306383376,
+            6306383706,
+            6306383381,
+            6306383382,
+            6306383383,
+            6306383384
+          ],
+          "coordinates": [
+            [
+              9.7728373,
+              7.8442679
+            ],
+            [
+              9.7728345,
+              7.8445512
+            ],
+            [
+              9.7728335,
+              7.8446135
+            ],
+            [
+              9.7728181,
+              7.8455943
+            ],
+            [
+              9.7727766,
+              7.8478692
+            ],
+            [
+              9.7728115,
+              7.848698
+            ],
+            [
+              9.7728463,
+              7.8494663
+            ]
+          ],
+          "connectedRoadIds": [
+            673416537,
+            673416538,
+            673416546
+          ]
+        },
+        {
+          "id": 673416533,
+          "url": "https://www.openstreetmap.org/way/673416533",
+          "tags": {
+            "highway": "unclassified",
+            "junction": "roundabout"
+          },
+          "distanceM": 210.36793620475322,
+          "component": 1,
+          "nodes": [
+            6306383353,
+            6306383354,
+            6306383330,
+            6306383355,
+            6306383339,
+            6306383340,
+            6306383341,
+            6306383329,
+            6306383342,
+            6306383343,
+            6306383350,
+            6306383351,
+            6306383352,
+            6306383344,
+            6306383345,
+            6306383346,
+            6306383347,
+            6306383348,
+            6306383349,
+            6306383353
+          ],
+          "coordinates": [
+            [
+              9.7727546,
+              7.8407821
+            ],
+            [
+              9.7728088,
+              7.8407714
+            ],
+            [
+              9.7728635,
+              7.8407787
+            ],
+            [
+              9.772913,
+              7.8408031
+            ],
+            [
+              9.7729518,
+              7.8408421
+            ],
+            [
+              9.772976,
+              7.8408919
+            ],
+            [
+              9.7729825,
+              7.8409469
+            ],
+            [
+              9.7729705,
+              7.8410009
+            ],
+            [
+              9.7729413,
+              7.8410481
+            ],
+            [
+              9.7728982,
+              7.8410832
+            ],
+            [
+              9.7728459,
+              7.8411025
+            ],
+            [
+              9.77279,
+              7.8411038
+            ],
+            [
+              9.7727368,
+              7.841087
+            ],
+            [
+              9.7726921,
+              7.8410539
+            ],
+            [
+              9.772661,
+              7.8410087
+            ],
+            [
+              9.7726463,
+              7.840956
+            ],
+            [
+              9.7726496,
+              7.8409013
+            ],
+            [
+              9.7726705,
+              7.8408507
+            ],
+            [
+              9.7727068,
+              7.8408095
+            ],
+            [
+              9.7727546,
+              7.8407821
+            ]
+          ],
+          "connectedRoadIds": [
+            673416531,
+            673416532,
+            673416535,
+            673416536,
+            673416537,
+            673416538
+          ]
+        }
+      ],
+      "nearestMappedPaths": [
+        {
+          "id": 1396579085,
+          "url": "https://www.openstreetmap.org/way/1396579085",
+          "tags": {
+            "highway": "path"
+          },
+          "distanceM": 550.5475104979855,
+          "component": 1,
+          "nodes": [
+            12925765341,
+            12925765340,
+            4719479100
+          ],
+          "coordinates": [
+            [
+              9.7753763,
+              7.839192
+            ],
+            [
+              9.7757184,
+              7.8391999
+            ],
+            [
+              9.7759169,
+              7.8391812
+            ]
+          ],
+          "connectedRoadIds": [
+            478734030,
+            1396579090
+          ]
+        }
+      ],
+      "nearestBuildings": [
+        {
+          "id": 1523023150,
+          "url": "https://www.openstreetmap.org/way/1523023150",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 0,
+          "pointInside": true,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523014142,
+          "url": "https://www.openstreetmap.org/way/1523014142",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 20.165554249253784,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523015004,
+          "url": "https://www.openstreetmap.org/way/1523015004",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 23.81830720374361,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523022017,
+          "url": "https://www.openstreetmap.org/way/1523022017",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 28.147227613871742,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523021733,
+          "url": "https://www.openstreetmap.org/way/1523021733",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 44.17302719701357,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        }
+      ],
+      "junctions": [
+        {
+          "nodeId": 6306383685,
+          "coordinates": [
+            9.772759,
+            7.8428666
+          ],
+          "distanceM": 87.70357772105366,
+          "degree": 3,
+          "roadIds": [
+            673416538,
+            673416540
+          ]
+        },
+        {
+          "nodeId": 6306383686,
+          "coordinates": [
+            9.7728511,
+            7.8428543
+          ],
+          "distanceM": 97.7334757522651,
+          "degree": 4,
+          "roadIds": [
+            673416537,
+            673416540
+          ]
+        },
+        {
+          "nodeId": 6306383380,
+          "coordinates": [
+            9.7728373,
+            7.8442679
+          ],
+          "distanceM": 187.78250214233762,
+          "degree": 3,
+          "roadIds": [
+            673416537,
+            673416538,
+            673416539
+          ]
+        },
+        {
+          "nodeId": 6306383352,
+          "coordinates": [
+            9.7727368,
+            7.841087
+          ],
+          "distanceM": 210.36793620475322,
+          "degree": 3,
+          "roadIds": [
+            673416533,
+            673416538
+          ]
+        }
+      ],
+      "entrances": [
+        {
+          "id": "node/4719478985",
+          "tags": {
+            "barrier": "entrance"
+          },
+          "coordinates": [
+            9.7783715,
+            7.8407479
+          ],
+          "distanceM": 740.5822094848919,
+          "identity": "Unnamed source entrance; main/second gate association unverified"
+        },
+        {
+          "id": "node/4719478984",
+          "tags": {
+            "barrier": "entrance"
+          },
+          "coordinates": [
+            9.7789542,
+            7.840644
+          ],
+          "distanceM": 805.0494209657492,
+          "identity": "Unnamed source entrance; main/second gate association unverified"
+        }
+      ],
+      "overture": [
+        {
+          "id": "overture-buildings",
+          "license": "ODbL-1.0",
+          "nearest": [
+            {
+              "id": "a31c13e4-dffc-4be9-90ff-1ae4a6ad14ae",
+              "distanceM": 0,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1523023150@1",
+                  "update_time": "2026-05-26T18:49:30.000Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-09-06T00:00:00.000Z"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "probable-duplicate",
+                "matches": [
+                  {
+                    "osmId": "way/1523023150",
+                    "iou": 1,
+                    "smallerAreaOverlap": 1,
+                    "centroidDistanceM": 0,
+                    "status": "probable-duplicate"
+                  }
+                ],
+                "areaM2": 583.5830940173178,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "2939e490-688b-4164-ad16-ad601fb9da7c",
+              "distanceM": 20.165554249253784,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1523014142@1",
+                  "update_time": "2026-05-26T18:48:39.000Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-09-06T00:00:00.000Z"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "probable-duplicate",
+                "matches": [
+                  {
+                    "osmId": "way/1523014142",
+                    "iou": 1,
+                    "smallerAreaOverlap": 1,
+                    "centroidDistanceM": 0,
+                    "status": "probable-duplicate"
+                  }
+                ],
+                "areaM2": 364.1028998907077,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "9637023f-e923-4a4c-b957-9bfad4ae8268",
+              "distanceM": 23.81830720374361,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1523015004@1",
+                  "update_time": "2026-05-26T18:48:44.000Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-09-06T00:00:00.000Z"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "probable-duplicate",
+                "matches": [
+                  {
+                    "osmId": "way/1523015004",
+                    "iou": 1,
+                    "smallerAreaOverlap": 1,
+                    "centroidDistanceM": 1.1457157353758233e-13,
+                    "status": "probable-duplicate"
+                  }
+                ],
+                "areaM2": 1114.235561583837,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "f390e0b2-b485-4581-a7c0-403836e5671d",
+              "distanceM": 28.147227613871742,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1523022017@1",
+                  "update_time": "2026-05-26T18:49:21.000Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-09-06T00:00:00.000Z"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "probable-duplicate",
+                "matches": [
+                  {
+                    "osmId": "way/1523022017",
+                    "iou": 1,
+                    "smallerAreaOverlap": 1,
+                    "centroidDistanceM": 1.1368683772161603e-13,
+                    "status": "probable-duplicate"
+                  }
+                ],
+                "areaM2": 17.328021669653197,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            }
+          ]
+        },
+        {
+          "id": "overture-places",
+          "license": "CDLA-Permissive-2.0 (Meta/Overture per-feature terms)",
+          "nearest": [
+            {
+              "id": "a581c64d-e806-4175-acf8-2fc70475d595",
+              "distanceM": 97.68240158337916,
+              "name": "Jaggy",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "106657559194246",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.08575651794672012,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "8467f607-0f40-4a74-925c-73b387911534",
+              "distanceM": 246.79726504752085,
+              "name": "Chuks Gourmet",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "103335542470916",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.08270001411437988,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "ca47db43-6079-4f2e-a281-d31bae116317",
+              "distanceM": 431.98359723078033,
+              "name": "Federal University Wukari Taraba State",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "1921910961466944",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.8035709261894226,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "37833c6a-4a9b-4c84-8a4a-fbeb6fbea467",
+              "distanceM": 584.8167226334951,
+              "name": "CRC-N Kinkinso Wukari",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "104975301442856",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.7050908803939819,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            }
+          ]
+        },
+        {
+          "id": "overture-transportation",
+          "license": "ODbL-1.0",
+          "nearest": [
+            {
+              "id": "435aa624-86b2-4159-b170-19f948807d37",
+              "distanceM": 87.56328891434002,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w673416538@1",
+                  "update_time": "2019-02-27T17:26:13Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "7b263288-72c6-4937-80db-faf4f46b48d7",
+                  "at": 0
+                },
+                {
+                  "connector_id": "33f913a5-8691-4fe1-acd0-2f72165c16dd",
+                  "at": 1
+                }
+              ]
+            },
+            {
+              "id": "5a77e046-0f64-49c9-834f-768564d082c9",
+              "distanceM": 87.70357772105366,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w673416540@1",
+                  "update_time": "2019-02-27T17:26:13Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "7b263288-72c6-4937-80db-faf4f46b48d7",
+                  "at": 0
+                },
+                {
+                  "connector_id": "97ce1df3-4fab-408d-a268-82a95c213087",
+                  "at": 1
+                }
+              ]
+            },
+            {
+              "id": "a60778cc-76de-433a-83aa-741323c331eb",
+              "distanceM": 87.70357772105366,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w673416538@1",
+                  "update_time": "2019-02-27T17:26:13Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "f278850c-bbd9-4ec5-a261-e0ffa5b054ff",
+                  "at": 0
+                },
+                {
+                  "connector_id": "7b263288-72c6-4937-80db-faf4f46b48d7",
+                  "at": 1
+                }
+              ]
+            },
+            {
+              "id": "7e91e885-b003-490f-8ff9-0944fefe976b",
+              "distanceM": 97.68155921640556,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w673416537@1",
+                  "update_time": "2019-02-27T17:26:13Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "6893910a-b790-45b1-89e6-cb9de9eed379",
+                  "at": 0
+                },
+                {
+                  "connector_id": "97ce1df3-4fab-408d-a268-82a95c213087",
+                  "at": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "main-gate",
+      "name": "main gate",
+      "coordinates": [
+        9.777423952290516,
+        7.843343595248542
+      ],
+      "status": "Owner Google Earth reference; not independently surveyed",
+      "source": "Owner supplied KML Point (LookAt ignored)",
+      "geographicAccuracyM": null,
+      "gameplayUse": false,
+      "independentlyVerified": false,
+      "point": {
+        "x": 5.9253688052194775,
+        "z": 1.4905424138987655
+      },
+      "nearestRoads": [
+        {
+          "id": 673416541,
+          "url": "https://www.openstreetmap.org/way/673416541",
+          "tags": {
+            "highway": "unclassified"
+          },
+          "distanceM": 6.263702141973254,
+          "component": 1,
+          "nodes": [
+            6306383696,
+            6306383698,
+            6306383703,
+            6306383697
+          ],
+          "coordinates": [
+            [
+              9.7779466,
+              7.8431485
+            ],
+            [
+              9.7771933,
+              7.8433457
+            ],
+            [
+              9.777145,
+              7.8433583
+            ],
+            [
+              9.7769008,
+              7.8434223
+            ]
+          ],
+          "connectedRoadIds": [
+            181916664,
+            673416542,
+            673416543,
+            673416544,
+            673416545
+          ]
+        },
+        {
+          "id": 673416542,
+          "url": "https://www.openstreetmap.org/way/673416542",
+          "tags": {
+            "highway": "unclassified"
+          },
+          "distanceM": 25.33271900796382,
+          "component": 1,
+          "nodes": [
+            6306383698,
+            6306383695,
+            6306383699,
+            6306383700,
+            6306383701
+          ],
+          "coordinates": [
+            [
+              9.7771933,
+              7.8433457
+            ],
+            [
+              9.7769521,
+              7.8440329
+            ],
+            [
+              9.7763871,
+              7.8457215
+            ],
+            [
+              9.7760789,
+              7.8466838
+            ],
+            [
+              9.7757246,
+              7.8479681
+            ]
+          ],
+          "connectedRoadIds": [
+            673416540,
+            673416541
+          ]
+        },
+        {
+          "id": 673416543,
+          "url": "https://www.openstreetmap.org/way/673416543",
+          "tags": {
+            "highway": "unclassified"
+          },
+          "distanceM": 30.67984034419381,
+          "component": 1,
+          "nodes": [
+            6306383692,
+            6306383702,
+            6306383703
+          ],
+          "coordinates": [
+            [
+              9.7765132,
+              7.8428162
+            ],
+            [
+              9.7767136,
+              7.8429675
+            ],
+            [
+              9.777145,
+              7.8433583
+            ]
+          ],
+          "connectedRoadIds": [
+            673416540,
+            673416541
+          ]
+        },
+        {
+          "id": 673416544,
+          "url": "https://www.openstreetmap.org/way/673416544",
+          "tags": {
+            "highway": "unclassified"
+          },
+          "distanceM": 58.118460038661134,
+          "component": 1,
+          "nodes": [
+            6306383697,
+            6306383704
+          ],
+          "coordinates": [
+            [
+              9.7769008,
+              7.8434223
+            ],
+            [
+              9.7767733,
+              7.843591
+            ]
+          ],
+          "connectedRoadIds": [
+            673416540,
+            673416541,
+            673416545
+          ]
+        },
+        {
+          "id": 673416545,
+          "url": "https://www.openstreetmap.org/way/673416545",
+          "tags": {
+            "highway": "unclassified"
+          },
+          "distanceM": 58.118460038661134,
+          "component": 1,
+          "nodes": [
+            6306383705,
+            6306383697
+          ],
+          "coordinates": [
+            [
+              9.7767146,
+              7.8433826
+            ],
+            [
+              9.7769008,
+              7.8434223
+            ]
+          ],
+          "connectedRoadIds": [
+            673416540,
+            673416541,
+            673416544
+          ]
+        }
+      ],
+      "nearestMappedPaths": [
+        {
+          "id": 1396579085,
+          "url": "https://www.openstreetmap.org/way/1396579085",
+          "tags": {
+            "highway": "path"
+          },
+          "distanceM": 491.5421306635968,
+          "component": 1,
+          "nodes": [
+            12925765341,
+            12925765340,
+            4719479100
+          ],
+          "coordinates": [
+            [
+              9.7753763,
+              7.839192
+            ],
+            [
+              9.7757184,
+              7.8391999
+            ],
+            [
+              9.7759169,
+              7.8391812
+            ]
+          ],
+          "connectedRoadIds": [
+            478734030,
+            1396579090
+          ]
+        }
+      ],
+      "nearestBuildings": [
+        {
+          "id": 1523025009,
+          "url": "https://www.openstreetmap.org/way/1523025009",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 0,
+          "pointInside": true,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523025373,
+          "url": "https://www.openstreetmap.org/way/1523025373",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 2.434577787881669,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523019420,
+          "url": "https://www.openstreetmap.org/way/1523019420",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 84.14283497325442,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523020412,
+          "url": "https://www.openstreetmap.org/way/1523020412",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 84.91178550296561,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523023971,
+          "url": "https://www.openstreetmap.org/way/1523023971",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 85.16523638354819,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        }
+      ],
+      "junctions": [
+        {
+          "nodeId": 6306383698,
+          "coordinates": [
+            9.7771933,
+            7.8433457
+          ],
+          "distanceM": 25.33271900796382,
+          "degree": 3,
+          "roadIds": [
+            673416541,
+            673416542
+          ]
+        },
+        {
+          "nodeId": 6306383703,
+          "coordinates": [
+            9.777145,
+            7.8433583
+          ],
+          "distanceM": 30.67984034419381,
+          "degree": 3,
+          "roadIds": [
+            673416541,
+            673416543
+          ]
+        },
+        {
+          "nodeId": 6306383697,
+          "coordinates": [
+            9.7769008,
+            7.8434223
+          ],
+          "distanceM": 58.118460038661134,
+          "degree": 3,
+          "roadIds": [
+            673416541,
+            673416544,
+            673416545
+          ]
+        },
+        {
+          "nodeId": 6306383696,
+          "coordinates": [
+            9.7779466,
+            7.8431485
+          ],
+          "distanceM": 61.362969297231544,
+          "degree": 3,
+          "roadIds": [
+            181916664,
+            673416541
+          ]
+        }
+      ],
+      "entrances": [
+        {
+          "id": "node/4719478985",
+          "tags": {
+            "barrier": "entrance"
+          },
+          "coordinates": [
+            9.7783715,
+            7.8407479
+          ],
+          "distanceM": 306.8159933334818,
+          "identity": "Unnamed source entrance; main/second gate association unverified"
+        },
+        {
+          "id": "node/4719478984",
+          "tags": {
+            "barrier": "entrance"
+          },
+          "coordinates": [
+            9.7789542,
+            7.840644
+          ],
+          "distanceM": 344.02557634938483,
+          "identity": "Unnamed source entrance; main/second gate association unverified"
+        }
+      ],
+      "overture": [
+        {
+          "id": "overture-buildings",
+          "license": "ODbL-1.0",
+          "nearest": [
+            {
+              "id": "ae3a8296-ab47-43a7-8ca1-e1b561ed3c31",
+              "distanceM": 0,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1523025009@1",
+                  "update_time": "2026-05-26T18:49:32.000Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-09-06T00:00:00.000Z"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "probable-duplicate",
+                "matches": [
+                  {
+                    "osmId": "way/1523025009",
+                    "iou": 1,
+                    "smallerAreaOverlap": 1,
+                    "centroidDistanceM": 1.6653345369377348e-16,
+                    "status": "probable-duplicate"
+                  }
+                ],
+                "areaM2": 45.417852190482634,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "c70e29af-d7a1-41ba-bb19-2262e573c0e5",
+              "distanceM": 2.434577787881669,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1523025373@1",
+                  "update_time": "2026-05-26T18:49:36.000Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-09-06T00:00:00.000Z"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "probable-duplicate",
+                "matches": [
+                  {
+                    "osmId": "way/1523025373",
+                    "iou": 1,
+                    "smallerAreaOverlap": 1,
+                    "centroidDistanceM": 2.5121479338940403e-15,
+                    "status": "probable-duplicate"
+                  }
+                ],
+                "areaM2": 66.36884357438467,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "c26ba8ea-22bc-47a5-a1d2-f96897acb98e",
+              "distanceM": 10.993903068427771,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "Google Open Buildings",
+                  "license": null,
+                  "record_id": "6FVFRQVH+92CR",
+                  "update_time": "2023-05-01T00:00:00.000Z",
+                  "confidence": 0.7353,
+                  "between": null,
+                  "provider": "google",
+                  "resource": "open_buildings",
+                  "version": "2024-04-16"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "Google Open Buildings",
+                    "license": "CC-BY-4.0 (Overture upstream attribution documentation)"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "additional-machine-candidate",
+                "matches": [],
+                "areaM2": 25.170217871541887,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "5cdaac5e-2847-4009-bf2d-7ac6784d9983",
+              "distanceM": 50.238999330716894,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "Google Open Buildings",
+                  "license": null,
+                  "record_id": "6FVFRQVH+F3VV",
+                  "update_time": "2023-05-01T00:00:00.000Z",
+                  "confidence": 0.7165,
+                  "between": null,
+                  "provider": "google",
+                  "resource": "open_buildings",
+                  "version": "2024-04-16"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "Google Open Buildings",
+                    "license": "CC-BY-4.0 (Overture upstream attribution documentation)"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "additional-machine-candidate",
+                "matches": [],
+                "areaM2": 10.294389948980115,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            }
+          ]
+        },
+        {
+          "id": "overture-places",
+          "license": "CDLA-Permissive-2.0 (Meta/Overture per-feature terms)",
+          "nearest": [
+            {
+              "id": "d3668458-f6a2-4545-b043-9c3c70f849b0",
+              "distanceM": 63.12142825594263,
+              "name": "Taraba STATE TV",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "337648626106184",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.5249267816543579,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "7b627a47-4ba1-4278-9394-d14e40a140ab",
+              "distanceM": 63.12835291019881,
+              "name": "The LIGHT Assembly -TLA",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "102895342603211",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.9073745608329773,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "ca47db43-6079-4f2e-a281-d31bae116317",
+              "distanceM": 183.45116649296466,
+              "name": "Federal University Wukari Taraba State",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "1921910961466944",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.8035709261894226,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "ea1b6a2d-3673-4d2a-9718-b5d678078c03",
+              "distanceM": 316.53156347040283,
+              "name": "Federal University, Wukari",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "217820701692238",
+                  "update_time": "2026-09-14T00:00:00.000Z",
+                  "confidence": 0.7116852402687073,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-09-14"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            }
+          ]
+        },
+        {
+          "id": "overture-transportation",
+          "license": "ODbL-1.0",
+          "nearest": [
+            {
+              "id": "8a218d61-9e4b-47b7-a10a-9a495d89fdf9",
+              "distanceM": 6.263702141973254,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w673416541@1",
+                  "update_time": "2019-02-27T17:26:13Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "1eff19d7-ee72-4526-8b8f-76c468559abc",
+                  "at": 0
+                },
+                {
+                  "connector_id": "2b1618ec-3da5-491a-a4a8-53b3fde0518b",
+                  "at": 1
+                }
+              ]
+            },
+            {
+              "id": "8c8990b4-34bc-48c3-b0df-ffeb2fbc8381",
+              "distanceM": 25.33271900796382,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w673416542@1",
+                  "update_time": "2019-02-27T17:26:13Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "2b1618ec-3da5-491a-a4a8-53b3fde0518b",
+                  "at": 0
+                },
+                {
+                  "connector_id": "53c9c4da-6f8c-4dfb-b224-38cb57aa4d8c",
+                  "at": 1
+                }
+              ]
+            },
+            {
+              "id": "4a552f0c-51c0-4035-9703-f25b72e07307",
+              "distanceM": 25.33271900796382,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w673416541@1",
+                  "update_time": "2019-02-27T17:26:13Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "2b1618ec-3da5-491a-a4a8-53b3fde0518b",
+                  "at": 0
+                },
+                {
+                  "connector_id": "40a60b22-677e-4cd8-8c33-5c71a90fd42c",
+                  "at": 1
+                }
+              ]
+            },
+            {
+              "id": "d6091991-13b6-4cd1-b981-94b9e2605fa8",
+              "distanceM": 30.67984034419381,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w673416541@1",
+                  "update_time": "2019-02-27T17:26:13Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "40a60b22-677e-4cd8-8c33-5c71a90fd42c",
+                  "at": 0
+                },
+                {
+                  "connector_id": "3b082369-a6b1-424d-97f2-bc13360bc7a6",
+                  "at": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "second-gate",
+      "name": "second gate",
+      "coordinates": [
+        9.773531596768601,
+        7.840040166545116
+      ],
+      "status": "Owner Google Earth reference; not independently surveyed",
+      "source": "Owner supplied KML Point (LookAt ignored)",
+      "geographicAccuracyM": null,
+      "gameplayUse": false,
+      "independentlyVerified": false,
+      "point": {
+        "x": -421.55679678528486,
+        "z": 368.81556213716067
+      },
+      "nearestRoads": [
+        {
+          "id": 673416532,
+          "url": "https://www.openstreetmap.org/way/673416532",
+          "tags": {
+            "highway": "unclassified",
+            "oneway": "yes"
+          },
+          "distanceM": 12.373555692012351,
+          "component": 1,
+          "nodes": [
+            6306383330,
+            6306383331,
+            6306383332,
+            6306383333,
+            12925776602,
+            6306383334,
+            6306383335,
+            6306383336,
+            6306383337,
+            6306383338
+          ],
+          "coordinates": [
+            [
+              9.7728635,
+              7.8407787
+            ],
+            [
+              9.7734933,
+              7.8399011
+            ],
+            [
+              9.773596,
+              7.8398086
+            ],
+            [
+              9.7737128,
+              7.8397438
+            ],
+            [
+              9.7737575,
+              7.8397327
+            ],
+            [
+              9.7738809,
+              7.8397022
+            ],
+            [
+              9.774063,
+              7.8396837
+            ],
+            [
+              9.7742218,
+              7.8396929
+            ],
+            [
+              9.7743946,
+              7.8397299
+            ],
+            [
+              9.7776804,
+              7.8405758
+            ]
+          ],
+          "connectedRoadIds": [
+            673416533,
+            1396579091
+          ]
+        },
+        {
+          "id": 673416531,
+          "url": "https://www.openstreetmap.org/way/673416531",
+          "tags": {
+            "highway": "unclassified",
+            "oneway": "yes"
+          },
+          "distanceM": 14.099260042445785,
+          "component": 1,
+          "nodes": [
+            6306383320,
+            6306383321,
+            6306383322,
+            6306383323,
+            6306383324,
+            6306383325,
+            12925765400,
+            6306383326,
+            6306383327,
+            6306383328,
+            6306383329
+          ],
+          "coordinates": [
+            [
+              9.7776898,
+              7.8406646
+            ],
+            [
+              9.7750624,
+              7.8400029
+            ],
+            [
+              9.7742592,
+              7.8398039
+            ],
+            [
+              9.7741284,
+              7.8397854
+            ],
+            [
+              9.7740163,
+              7.8398039
+            ],
+            [
+              9.7738902,
+              7.839841
+            ],
+            [
+              9.7738419,
+              7.8398747
+            ],
+            [
+              9.7737641,
+              7.8399289
+            ],
+            [
+              9.7736427,
+              7.8401047
+            ],
+            [
+              9.7731804,
+              7.8407431
+            ],
+            [
+              9.7729705,
+              7.8410009
+            ]
+          ],
+          "connectedRoadIds": [
+            673416533,
+            1396579091
+          ]
+        },
+        {
+          "id": 1396579091,
+          "url": "https://www.openstreetmap.org/way/1396579091",
+          "tags": {
+            "highway": "service"
+          },
+          "distanceM": 38.69193977233731,
+          "component": 1,
+          "nodes": [
+            12925776611,
+            12925776604,
+            12925776603,
+            12925776602,
+            12925776601,
+            12925765400
+          ],
+          "coordinates": [
+            [
+              9.7738463,
+              7.8395134
+            ],
+            [
+              9.7738034,
+              7.8395931
+            ],
+            [
+              9.7737685,
+              7.8396595
+            ],
+            [
+              9.7737575,
+              7.8397327
+            ],
+            [
+              9.7737953,
+              7.8397977
+            ],
+            [
+              9.7738419,
+              7.8398747
+            ]
+          ],
+          "connectedRoadIds": [
+            673416531,
+            673416532,
+            1396579092
+          ]
+        },
+        {
+          "id": 1396579092,
+          "url": "https://www.openstreetmap.org/way/1396579092",
+          "tags": {
+            "highway": "service"
+          },
+          "distanceM": 68.01081274131883,
+          "component": 1,
+          "nodes": [
+            12925776620,
+            12925776619,
+            12925776618,
+            12925776617,
+            12925776616,
+            12925776615,
+            12925765399,
+            12925776614,
+            12925765339,
+            12925776613,
+            12925765376,
+            12925776612,
+            12925776611,
+            12925776610,
+            12925776609,
+            12925776608,
+            12925776607,
+            12925776606,
+            12925765374,
+            12925776605,
+            12925765367,
+            12925765366,
+            12925765365,
+            13167960608,
+            12925765364,
+            12925765363,
+            12925765362,
+            12925765361,
+            12925765360,
+            12925765359,
+            12925765358,
+            12925765357,
+            12925765356,
+            12925765355,
+            12925765354,
+            12925765353,
+            12925765352,
+            12925765351,
+            12925765350,
+            12925765349,
+            12925765348,
+            12925765347,
+            12925765346,
+            12925765345,
+            12925765344,
+            12925765343,
+            12925765342,
+            4703566662
+          ],
+          "coordinates": [
+            [
+              9.7776647,
+              7.8404276
+            ],
+            [
+              9.777419,
+              7.8403823
+            ],
+            [
+              9.7771186,
+              7.8403159
+            ],
+            [
+              9.7766867,
+              7.8402043
+            ],
+            [
+              9.7762281,
+              7.8400847
+            ],
+            [
+              9.7757775,
+              7.8399545
+            ],
+            [
+              9.7753934,
+              7.8398661
+            ],
+            [
+              9.7752115,
+              7.8398243
+            ],
+            [
+              9.7745399,
+              7.8396351
+            ],
+            [
+              9.7744095,
+              7.8395984
+            ],
+            [
+              9.7743607,
+              7.8395914
+            ],
+            [
+              9.7739106,
+              7.8395267
+            ],
+            [
+              9.7738463,
+              7.8395134
+            ],
+            [
+              9.7737873,
+              7.8394682
+            ],
+            [
+              9.7737926,
+              7.8393327
+            ],
+            [
+              9.7738114,
+              7.8391361
+            ],
+            [
+              9.7737712,
+              7.8390909
+            ],
+            [
+              9.7736397,
+              7.8390617
+            ],
+            [
+              9.7735992,
+              7.8390493
+            ],
+            [
+              9.7725052,
+              7.8387163
+            ],
+            [
+              9.7724569,
+              7.8386578
+            ],
+            [
+              9.7724354,
+              7.838602
+            ],
+            [
+              9.7723791,
+              7.8385489
+            ],
+            [
+              9.7720751,
+              7.8384461
+            ],
+            [
+              9.7720492,
+              7.8384373
+            ],
+            [
+              9.7719178,
+              7.8383868
+            ],
+            [
+              9.7718051,
+              7.8383443
+            ],
+            [
+              9.7716495,
+              7.8383071
+            ],
+            [
+              9.7715503,
+              7.8382858
+            ],
+            [
+              9.7715154,
+              7.8382353
+            ],
+            [
+              9.771494,
+              7.8381317
+            ],
+            [
+              9.771443,
+              7.8379696
+            ],
+            [
+              9.7714618,
+              7.8378102
+            ],
+            [
+              9.7715691,
+              7.8375019
+            ],
+            [
+              9.7717166,
+              7.8371698
+            ],
+            [
+              9.7718346,
+              7.8368509
+            ],
+            [
+              9.7719473,
+              7.8366463
+            ],
+            [
+              9.7719875,
+              7.8365454
+            ],
+            [
+              9.772009,
+              7.8363886
+            ],
+            [
+              9.7720733,
+              7.8362212
+            ],
+            [
+              9.7721243,
+              7.8360697
+            ],
+            [
+              9.7721779,
+              7.8359528
+            ],
+            [
+              9.7722155,
+              7.8359289
+            ],
+            [
+              9.7723281,
+              7.8359475
+            ],
+            [
+              9.77265,
+              7.8360192
+            ],
+            [
+              9.772768,
+              7.836091
+            ],
+            [
+              9.7729075,
+              7.8361069
+            ],
+            [
+              9.7730095,
+              7.8361157
+            ]
+          ],
+          "connectedRoadIds": [
+            476935927,
+            1396579084,
+            1396579087,
+            1396579088,
+            1396579090,
+            1396579091,
+            1432594453
+          ]
+        },
+        {
+          "id": 1396579088,
+          "url": "https://www.openstreetmap.org/way/1396579088",
+          "tags": {
+            "highway": "service"
+          },
+          "distanceM": 103.83390443036427,
+          "component": 1,
+          "nodes": [
+            12925765390,
+            12925765389,
+            12925765388,
+            12925765387,
+            12925765386,
+            12925765385,
+            12925765384,
+            12925765383,
+            12925765382,
+            12925765381,
+            12925765380,
+            12925765379,
+            12925765378,
+            12925765377,
+            12925765376
+          ],
+          "coordinates": [
+            [
+              9.7745112,
+              7.8365458
+            ],
+            [
+              9.7744739,
+              7.8367181
+            ],
+            [
+              9.7744471,
+              7.8369147
+            ],
+            [
+              9.7744793,
+              7.8370369
+            ],
+            [
+              9.7745061,
+              7.8371592
+            ],
+            [
+              9.7744819,
+              7.8373266
+            ],
+            [
+              9.7744819,
+              7.8375152
+            ],
+            [
+              9.77449,
+              7.8376986
+            ],
+            [
+              9.7745141,
+              7.8379935
+            ],
+            [
+              9.7745705,
+              7.8384612
+            ],
+            [
+              9.7745597,
+              7.8387827
+            ],
+            [
+              9.7745463,
+              7.8391201
+            ],
+            [
+              9.7745249,
+              7.8393115
+            ],
+            [
+              9.7744712,
+              7.8394815
+            ],
+            [
+              9.7743607,
+              7.8395914
+            ]
+          ],
+          "connectedRoadIds": [
+            476935927,
+            1396579084,
+            1396579092
+          ]
+        }
+      ],
+      "nearestMappedPaths": [
+        {
+          "id": 1396579085,
+          "url": "https://www.openstreetmap.org/way/1396579085",
+          "tags": {
+            "highway": "path"
+          },
+          "distanceM": 223.47281346711537,
+          "component": 1,
+          "nodes": [
+            12925765341,
+            12925765340,
+            4719479100
+          ],
+          "coordinates": [
+            [
+              9.7753763,
+              7.839192
+            ],
+            [
+              9.7757184,
+              7.8391999
+            ],
+            [
+              9.7759169,
+              7.8391812
+            ]
+          ],
+          "connectedRoadIds": [
+            478734030,
+            1396579090
+          ]
+        }
+      ],
+      "nearestBuildings": [
+        {
+          "id": 1523015612,
+          "url": "https://www.openstreetmap.org/way/1523015612",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 1.05294673170108,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523024299,
+          "url": "https://www.openstreetmap.org/way/1523024299",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 8.52517510041863,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523015521,
+          "url": "https://www.openstreetmap.org/way/1523015521",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 9.257123914158266,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523017616,
+          "url": "https://www.openstreetmap.org/way/1523017616",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 89.45108062322532,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523024767,
+          "url": "https://www.openstreetmap.org/way/1523024767",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 89.94319538232308,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        }
+      ],
+      "junctions": [
+        {
+          "nodeId": 12925765400,
+          "coordinates": [
+            9.7738419,
+            7.8398747
+          ],
+          "distanceM": 38.728934464955415,
+          "degree": 3,
+          "roadIds": [
+            673416531,
+            1396579091
+          ]
+        },
+        {
+          "nodeId": 12925776602,
+          "coordinates": [
+            9.7737575,
+            7.8397327
+          ],
+          "distanceM": 42.24229208267876,
+          "degree": 4,
+          "roadIds": [
+            673416532,
+            1396579091
+          ]
+        },
+        {
+          "nodeId": 12925776611,
+          "coordinates": [
+            9.7738463,
+            7.8395134
+          ],
+          "distanceM": 68.01081274131883,
+          "degree": 3,
+          "roadIds": [
+            1396579091,
+            1396579092
+          ]
+        },
+        {
+          "nodeId": 12925765376,
+          "coordinates": [
+            9.7743607,
+            7.8395914
+          ],
+          "distanceM": 103.83390443036427,
+          "degree": 3,
+          "roadIds": [
+            1396579088,
+            1396579092
+          ]
+        }
+      ],
+      "entrances": [
+        {
+          "id": "node/4719478985",
+          "tags": {
+            "barrier": "entrance"
+          },
+          "coordinates": [
+            9.7783715,
+            7.8407479
+          ],
+          "distanceM": 537.341612223043,
+          "identity": "Unnamed source entrance; main/second gate association unverified"
+        },
+        {
+          "id": "node/4719478984",
+          "tags": {
+            "barrier": "entrance"
+          },
+          "coordinates": [
+            9.7789542,
+            7.840644
+          ],
+          "distanceM": 599.3162952581276,
+          "identity": "Unnamed source entrance; main/second gate association unverified"
+        }
+      ],
+      "overture": [
+        {
+          "id": "overture-buildings",
+          "license": "ODbL-1.0",
+          "nearest": [
+            {
+              "id": "d2f58bed-6ab1-43b4-b6c8-a44112c2a6fa",
+              "distanceM": 1.05294673170108,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1523015612@1",
+                  "update_time": "2026-05-26T18:48:44.000Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-09-06T00:00:00.000Z"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "probable-duplicate",
+                "matches": [
+                  {
+                    "osmId": "way/1523015612",
+                    "iou": 1,
+                    "smallerAreaOverlap": 1,
+                    "centroidDistanceM": 5.684341886080802e-14,
+                    "status": "probable-duplicate"
+                  }
+                ],
+                "areaM2": 114.95342066859568,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "c252e6bf-138b-4360-b1cb-e7bf723f8608",
+              "distanceM": 8.52517510041863,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1523024299@1",
+                  "update_time": "2026-05-26T18:49:32.000Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-09-06T00:00:00.000Z"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "probable-duplicate",
+                "matches": [
+                  {
+                    "osmId": "way/1523024299",
+                    "iou": 1,
+                    "smallerAreaOverlap": 1.0000000000000002,
+                    "centroidDistanceM": 8.038873388460929e-14,
+                    "status": "probable-duplicate"
+                  }
+                ],
+                "areaM2": 55.821357434474685,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "df28f10a-6f53-4621-8e6e-650192140c01",
+              "distanceM": 9.257123914158266,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1523015521@1",
+                  "update_time": "2026-05-26T18:48:44.000Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-09-06T00:00:00.000Z"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "probable-duplicate",
+                "matches": [
+                  {
+                    "osmId": "way/1523015521",
+                    "iou": 1,
+                    "smallerAreaOverlap": 1.0000000000000002,
+                    "centroidDistanceM": 2.0495186137532011e-13,
+                    "status": "probable-duplicate"
+                  }
+                ],
+                "areaM2": 60.1251528543345,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "23e31be8-c0eb-4460-b6a4-48f40ba94dad",
+              "distanceM": 89.45108062322532,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1523017616@1",
+                  "update_time": "2026-05-26T18:48:50.000Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-09-06T00:00:00.000Z"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "probable-duplicate",
+                "matches": [
+                  {
+                    "osmId": "way/1523017616",
+                    "iou": 1,
+                    "smallerAreaOverlap": 1.0000000000000002,
+                    "centroidDistanceM": 0,
+                    "status": "probable-duplicate"
+                  }
+                ],
+                "areaM2": 115.41210790578111,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            }
+          ]
+        },
+        {
+          "id": "overture-places",
+          "license": "CDLA-Permissive-2.0 (Meta/Overture per-feature terms)",
+          "nearest": [
+            {
+              "id": "a581c64d-e806-4175-acf8-2fc70475d595",
+              "distanceM": 280.71269211692334,
+              "name": "Jaggy",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "106657559194246",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.08575651794672012,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "8467f607-0f40-4a74-925c-73b387911534",
+              "distanceM": 326.1905997155388,
+              "name": "Chuks Gourmet",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "103335542470916",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.08270001411437988,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "ca47db43-6079-4f2e-a281-d31bae116317",
+              "distanceM": 476.6225059825068,
+              "name": "Federal University Wukari Taraba State",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "1921910961466944",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.8035709261894226,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "7b627a47-4ba1-4278-9394-d14e40a140ab",
+              "distanceM": 601.7598957785265,
+              "name": "The LIGHT Assembly -TLA",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "102895342603211",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.9073745608329773,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            }
+          ]
+        },
+        {
+          "id": "overture-transportation",
+          "license": "ODbL-1.0",
+          "nearest": [
+            {
+              "id": "2770c8b3-25d5-48d4-809a-52c3cee7bfb1",
+              "distanceM": 12.373555692012351,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w673416532@2",
+                  "update_time": "2025-06-19T12:58:02Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "08b6f4fb-25cc-4cba-a9e9-fddfade82941",
+                  "at": 0
+                },
+                {
+                  "connector_id": "efc50bce-2c78-484e-96a3-86ea47bd8850",
+                  "at": 0.257418595
+                },
+                {
+                  "connector_id": "58ba83bb-3483-4d08-8471-9007065217a8",
+                  "at": 1
+                }
+              ]
+            },
+            {
+              "id": "36305a99-8e3b-481a-a781-a24554380119",
+              "distanceM": 14.099260042445785,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w673416531@2",
+                  "update_time": "2025-06-19T12:58:02Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "66c8fffb-251f-448d-88a2-646496f82a3f",
+                  "at": 0
+                },
+                {
+                  "connector_id": "8b9067ec-3bf0-4bb8-9f43-7ac2d29fd8e8",
+                  "at": 0.735144824
+                },
+                {
+                  "connector_id": "773bfe10-4a67-481d-a697-e4fc14281795",
+                  "at": 1
+                }
+              ]
+            },
+            {
+              "id": "25d11092-1fa2-47ec-98d0-019cb40ef72b",
+              "distanceM": 38.69193977233731,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1396579091@1",
+                  "update_time": "2025-06-19T12:58:02Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "03d39b36-7287-4e50-9036-ef98a12ebcfd",
+                  "at": 0
+                },
+                {
+                  "connector_id": "efc50bce-2c78-484e-96a3-86ea47bd8850",
+                  "at": 0.591919941
+                },
+                {
+                  "connector_id": "8b9067ec-3bf0-4bb8-9f43-7ac2d29fd8e8",
+                  "at": 1
+                }
+              ]
+            },
+            {
+              "id": "b45efdc9-e9a1-4cff-9a74-b9d9cd43861a",
+              "distanceM": 68.01081274131883,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1396579092@2",
+                  "update_time": "2025-09-24T16:56:22Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "4b93ce50-8cc8-4489-8b05-c9dc7556e0a6",
+                  "at": 0
+                },
+                {
+                  "connector_id": "52c36a93-dd38-44f3-926c-ad8ac9a8f6be",
+                  "at": 0.230040539
+                },
+                {
+                  "connector_id": "41665baa-99e5-4e3c-96f6-e37e79a279b8",
+                  "at": 0.316959242
+                },
+                {
+                  "connector_id": "7e67544e-389f-4362-804f-6a09aea5e172",
+                  "at": 0.335117859
+                },
+                {
+                  "connector_id": "03d39b36-7287-4e50-9036-ef98a12ebcfd",
+                  "at": 0.386255944
+                },
+                {
+                  "connector_id": "10a95bb5-0a9e-4a67-b54e-4a0208e78c17",
+                  "at": 0.449743722
+                },
+                {
+                  "connector_id": "7aa38b60-4991-41bc-8e1e-0612e824ba9f",
+                  "at": 0.614654717
+                },
+                {
+                  "connector_id": "c005aec1-4703-4211-a613-c5551598c8b0",
+                  "at": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ict-building",
+      "name": "ict building",
+      "coordinates": [
+        9.771938702550473,
+        7.842796064049926
+      ],
+      "status": "Owner Google Earth reference; not independently surveyed",
+      "source": "Owner supplied KML Point (LookAt ignored)",
+      "geographicAccuracyM": null,
+      "gameplayUse": false,
+      "independentlyVerified": false,
+      "point": {
+        "x": -596.4981314316219,
+        "z": 62.37331797435672
+      },
+      "nearestRoads": [
+        {
+          "id": 673416538,
+          "url": "https://www.openstreetmap.org/way/673416538",
+          "tags": {
+            "highway": "unclassified",
+            "oneway": "yes"
+          },
+          "distanceM": 90.1362550400179,
+          "component": 1,
+          "nodes": [
+            6306383380,
+            6306383377,
+            6306383685,
+            6306383378,
+            6306383379,
+            6306383352
+          ],
+          "coordinates": [
+            [
+              9.7728373,
+              7.8442679
+            ],
+            [
+              9.7727511,
+              7.8441529
+            ],
+            [
+              9.772759,
+              7.8428666
+            ],
+            [
+              9.7727686,
+              7.8413133
+            ],
+            [
+              9.7727561,
+              7.8412141
+            ],
+            [
+              9.7727368,
+              7.841087
+            ]
+          ],
+          "connectedRoadIds": [
+            673416533,
+            673416537,
+            673416539,
+            673416540
+          ]
+        },
+        {
+          "id": 673416540,
+          "url": "https://www.openstreetmap.org/way/673416540",
+          "tags": {
+            "highway": "unclassified"
+          },
+          "distanceM": 90.43082947278509,
+          "component": 1,
+          "nodes": [
+            6306383685,
+            6306383686,
+            6306383687,
+            6306383688,
+            6306383689,
+            6306383690,
+            6306383691,
+            6306383692,
+            6306383693,
+            6306383705,
+            6306383704,
+            6306383694,
+            6306383695
+          ],
+          "coordinates": [
+            [
+              9.772759,
+              7.8428666
+            ],
+            [
+              9.7728511,
+              7.8428543
+            ],
+            [
+              9.7739723,
+              7.8427601
+            ],
+            [
+              9.7758267,
+              7.8426034
+            ],
+            [
+              9.7760789,
+              7.8426127
+            ],
+            [
+              9.7762423,
+              7.8426404
+            ],
+            [
+              9.7763777,
+              7.8427052
+            ],
+            [
+              9.7765132,
+              7.8428162
+            ],
+            [
+              9.7765785,
+              7.8428995
+            ],
+            [
+              9.7767146,
+              7.8433826
+            ],
+            [
+              9.7767733,
+              7.843591
+            ],
+            [
+              9.7768821,
+              7.8439774
+            ],
+            [
+              9.7769521,
+              7.8440329
+            ]
+          ],
+          "connectedRoadIds": [
+            673416537,
+            673416538,
+            673416542,
+            673416543,
+            673416544,
+            673416545,
+            1432594451
+          ]
+        },
+        {
+          "id": 673416537,
+          "url": "https://www.openstreetmap.org/way/673416537",
+          "tags": {
+            "highway": "unclassified",
+            "oneway": "yes"
+          },
+          "distanceM": 100.26273238887404,
+          "component": 1,
+          "nodes": [
+            6306383343,
+            6306383374,
+            6306383375,
+            6306383686,
+            6306383380
+          ],
+          "coordinates": [
+            [
+              9.7728982,
+              7.8410832
+            ],
+            [
+              9.772874,
+              7.8411776
+            ],
+            [
+              9.7728665,
+              7.8412743
+            ],
+            [
+              9.7728511,
+              7.8428543
+            ],
+            [
+              9.7728373,
+              7.8442679
+            ]
+          ],
+          "connectedRoadIds": [
+            673416533,
+            673416538,
+            673416539,
+            673416540
+          ]
+        },
+        {
+          "id": 673416539,
+          "url": "https://www.openstreetmap.org/way/673416539",
+          "tags": {
+            "highway": "unclassified"
+          },
+          "distanceM": 191.1138430969989,
+          "component": 1,
+          "nodes": [
+            6306383380,
+            6306383376,
+            6306383706,
+            6306383381,
+            6306383382,
+            6306383383,
+            6306383384
+          ],
+          "coordinates": [
+            [
+              9.7728373,
+              7.8442679
+            ],
+            [
+              9.7728345,
+              7.8445512
+            ],
+            [
+              9.7728335,
+              7.8446135
+            ],
+            [
+              9.7728181,
+              7.8455943
+            ],
+            [
+              9.7727766,
+              7.8478692
+            ],
+            [
+              9.7728115,
+              7.848698
+            ],
+            [
+              9.7728463,
+              7.8494663
+            ]
+          ],
+          "connectedRoadIds": [
+            673416537,
+            673416538,
+            673416546
+          ]
+        },
+        {
+          "id": 673416533,
+          "url": "https://www.openstreetmap.org/way/673416533",
+          "tags": {
+            "highway": "unclassified",
+            "junction": "roundabout"
+          },
+          "distanceM": 209.2794199784656,
+          "component": 1,
+          "nodes": [
+            6306383353,
+            6306383354,
+            6306383330,
+            6306383355,
+            6306383339,
+            6306383340,
+            6306383341,
+            6306383329,
+            6306383342,
+            6306383343,
+            6306383350,
+            6306383351,
+            6306383352,
+            6306383344,
+            6306383345,
+            6306383346,
+            6306383347,
+            6306383348,
+            6306383349,
+            6306383353
+          ],
+          "coordinates": [
+            [
+              9.7727546,
+              7.8407821
+            ],
+            [
+              9.7728088,
+              7.8407714
+            ],
+            [
+              9.7728635,
+              7.8407787
+            ],
+            [
+              9.772913,
+              7.8408031
+            ],
+            [
+              9.7729518,
+              7.8408421
+            ],
+            [
+              9.772976,
+              7.8408919
+            ],
+            [
+              9.7729825,
+              7.8409469
+            ],
+            [
+              9.7729705,
+              7.8410009
+            ],
+            [
+              9.7729413,
+              7.8410481
+            ],
+            [
+              9.7728982,
+              7.8410832
+            ],
+            [
+              9.7728459,
+              7.8411025
+            ],
+            [
+              9.77279,
+              7.8411038
+            ],
+            [
+              9.7727368,
+              7.841087
+            ],
+            [
+              9.7726921,
+              7.8410539
+            ],
+            [
+              9.772661,
+              7.8410087
+            ],
+            [
+              9.7726463,
+              7.840956
+            ],
+            [
+              9.7726496,
+              7.8409013
+            ],
+            [
+              9.7726705,
+              7.8408507
+            ],
+            [
+              9.7727068,
+              7.8408095
+            ],
+            [
+              9.7727546,
+              7.8407821
+            ]
+          ],
+          "connectedRoadIds": [
+            673416531,
+            673416532,
+            673416535,
+            673416536,
+            673416537,
+            673416538
+          ]
+        }
+      ],
+      "nearestMappedPaths": [
+        {
+          "id": 1396579085,
+          "url": "https://www.openstreetmap.org/way/1396579085",
+          "tags": {
+            "highway": "path"
+          },
+          "distanceM": 550.5803873528695,
+          "component": 1,
+          "nodes": [
+            12925765341,
+            12925765340,
+            4719479100
+          ],
+          "coordinates": [
+            [
+              9.7753763,
+              7.839192
+            ],
+            [
+              9.7757184,
+              7.8391999
+            ],
+            [
+              9.7759169,
+              7.8391812
+            ]
+          ],
+          "connectedRoadIds": [
+            478734030,
+            1396579090
+          ]
+        }
+      ],
+      "nearestBuildings": [
+        {
+          "id": 1523023150,
+          "url": "https://www.openstreetmap.org/way/1523023150",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 0,
+          "pointInside": true,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523014142,
+          "url": "https://www.openstreetmap.org/way/1523014142",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 17.187852950607095,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523015004,
+          "url": "https://www.openstreetmap.org/way/1523015004",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 26.384641152239077,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523022017,
+          "url": "https://www.openstreetmap.org/way/1523022017",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 26.665836263448895,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        },
+        {
+          "id": 1523021733,
+          "url": "https://www.openstreetmap.org/way/1523021733",
+          "tags": {
+            "building": "yes"
+          },
+          "distanceM": 40.950803264202854,
+          "pointInside": false,
+          "association": "Nearby geometry only; owner landmark identity not assigned"
+        }
+      ],
+      "junctions": [
+        {
+          "nodeId": 6306383685,
+          "coordinates": [
+            9.772759,
+            7.8428666
+          ],
+          "distanceM": 90.43082947278509,
+          "degree": 3,
+          "roadIds": [
+            673416538,
+            673416540
+          ]
+        },
+        {
+          "nodeId": 6306383686,
+          "coordinates": [
+            9.7728511,
+            7.8428543
+          ],
+          "distanceM": 100.41405599337914,
+          "degree": 4,
+          "roadIds": [
+            673416537,
+            673416540
+          ]
+        },
+        {
+          "nodeId": 6306383380,
+          "coordinates": [
+            9.7728373,
+            7.8442679
+          ],
+          "distanceM": 191.1138430969989,
+          "degree": 3,
+          "roadIds": [
+            673416537,
+            673416538,
+            673416539
+          ]
+        },
+        {
+          "nodeId": 6306383352,
+          "coordinates": [
+            9.7727368,
+            7.841087
+          ],
+          "distanceM": 209.2794199784656,
+          "degree": 3,
+          "roadIds": [
+            673416533,
+            673416538
+          ]
+        }
+      ],
+      "entrances": [
+        {
+          "id": "node/4719478985",
+          "tags": {
+            "barrier": "entrance"
+          },
+          "coordinates": [
+            9.7783715,
+            7.8407479
+          ],
+          "distanceM": 742.2902243558498,
+          "identity": "Unnamed source entrance; main/second gate association unverified"
+        },
+        {
+          "id": "node/4719478984",
+          "tags": {
+            "barrier": "entrance"
+          },
+          "coordinates": [
+            9.7789542,
+            7.840644
+          ],
+          "distanceM": 806.7902582348062,
+          "identity": "Unnamed source entrance; main/second gate association unverified"
+        }
+      ],
+      "overture": [
+        {
+          "id": "overture-buildings",
+          "license": "ODbL-1.0",
+          "nearest": [
+            {
+              "id": "a31c13e4-dffc-4be9-90ff-1ae4a6ad14ae",
+              "distanceM": 0,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1523023150@1",
+                  "update_time": "2026-05-26T18:49:30.000Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-09-06T00:00:00.000Z"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "probable-duplicate",
+                "matches": [
+                  {
+                    "osmId": "way/1523023150",
+                    "iou": 1,
+                    "smallerAreaOverlap": 1,
+                    "centroidDistanceM": 0,
+                    "status": "probable-duplicate"
+                  }
+                ],
+                "areaM2": 583.5830940173178,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "2939e490-688b-4164-ad16-ad601fb9da7c",
+              "distanceM": 17.187852950607095,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1523014142@1",
+                  "update_time": "2026-05-26T18:48:39.000Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-09-06T00:00:00.000Z"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "probable-duplicate",
+                "matches": [
+                  {
+                    "osmId": "way/1523014142",
+                    "iou": 1,
+                    "smallerAreaOverlap": 1,
+                    "centroidDistanceM": 0,
+                    "status": "probable-duplicate"
+                  }
+                ],
+                "areaM2": 364.1028998907077,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "9637023f-e923-4a4c-b957-9bfad4ae8268",
+              "distanceM": 26.384641152239077,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1523015004@1",
+                  "update_time": "2026-05-26T18:48:44.000Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-09-06T00:00:00.000Z"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "probable-duplicate",
+                "matches": [
+                  {
+                    "osmId": "way/1523015004",
+                    "iou": 1,
+                    "smallerAreaOverlap": 1,
+                    "centroidDistanceM": 1.1457157353758233e-13,
+                    "status": "probable-duplicate"
+                  }
+                ],
+                "areaM2": 1114.235561583837,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "f390e0b2-b485-4581-a7c0-403836e5671d",
+              "distanceM": 26.665836263448895,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w1523022017@1",
+                  "update_time": "2026-05-26T18:49:21.000Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-09-06T00:00:00.000Z"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "probable-duplicate",
+                "matches": [
+                  {
+                    "osmId": "way/1523022017",
+                    "iou": 1,
+                    "smallerAreaOverlap": 1,
+                    "centroidDistanceM": 1.1368683772161603e-13,
+                    "status": "probable-duplicate"
+                  }
+                ],
+                "areaM2": 17.328021669653197,
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            }
+          ]
+        },
+        {
+          "id": "overture-places",
+          "license": "CDLA-Permissive-2.0 (Meta/Overture per-feature terms)",
+          "nearest": [
+            {
+              "id": "a581c64d-e806-4175-acf8-2fc70475d595",
+              "distanceM": 99.07627946456388,
+              "name": "Jaggy",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "106657559194246",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.08575651794672012,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "8467f607-0f40-4a74-925c-73b387911534",
+              "distanceM": 243.42363418923114,
+              "name": "Chuks Gourmet",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "103335542470916",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.08270001411437988,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "ca47db43-6079-4f2e-a281-d31bae116317",
+              "distanceM": 435.01217822151614,
+              "name": "Federal University Wukari Taraba State",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "1921910961466944",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.8035709261894226,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            },
+            {
+              "id": "37833c6a-4a9b-4c84-8a4a-fbeb6fbea467",
+              "distanceM": 588.2712396857861,
+              "name": "CRC-N Kinkinso Wukari",
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "meta",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": "104975301442856",
+                  "update_time": "2026-10-12T00:00:00.000Z",
+                  "confidence": 0.7050908803939819,
+                  "between": null,
+                  "provider": "meta",
+                  "resource": "meta",
+                  "version": "2026-10-12"
+                },
+                {
+                  "property": "/properties/confidence",
+                  "dataset": "Overture",
+                  "license": "CDLA-Permissive-2.0",
+                  "record_id": null,
+                  "update_time": "2026-10-15T18:00:21Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "overture",
+                  "resource": "confidence_calculation",
+                  "version": "2026-10-15"
+                }
+              ],
+              "licenseReview": {
+                "theme": "other",
+                "upstream": [
+                  {
+                    "dataset": "meta",
+                    "license": "CDLA-Permissive-2.0"
+                  },
+                  {
+                    "dataset": "Overture",
+                    "license": "CDLA-Permissive-2.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": null
+            }
+          ]
+        },
+        {
+          "id": "overture-transportation",
+          "license": "ODbL-1.0",
+          "nearest": [
+            {
+              "id": "435aa624-86b2-4159-b170-19f948807d37",
+              "distanceM": 90.1362550400179,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w673416538@1",
+                  "update_time": "2019-02-27T17:26:13Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "7b263288-72c6-4937-80db-faf4f46b48d7",
+                  "at": 0
+                },
+                {
+                  "connector_id": "33f913a5-8691-4fe1-acd0-2f72165c16dd",
+                  "at": 1
+                }
+              ]
+            },
+            {
+              "id": "5a77e046-0f64-49c9-834f-768564d082c9",
+              "distanceM": 90.43082947278509,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w673416540@1",
+                  "update_time": "2019-02-27T17:26:13Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "7b263288-72c6-4937-80db-faf4f46b48d7",
+                  "at": 0
+                },
+                {
+                  "connector_id": "97ce1df3-4fab-408d-a268-82a95c213087",
+                  "at": 1
+                }
+              ]
+            },
+            {
+              "id": "a60778cc-76de-433a-83aa-741323c331eb",
+              "distanceM": 90.43082947278509,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w673416538@1",
+                  "update_time": "2019-02-27T17:26:13Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "f278850c-bbd9-4ec5-a261-e0ffa5b054ff",
+                  "at": 0
+                },
+                {
+                  "connector_id": "7b263288-72c6-4937-80db-faf4f46b48d7",
+                  "at": 1
+                }
+              ]
+            },
+            {
+              "id": "7e91e885-b003-490f-8ff9-0944fefe976b",
+              "distanceM": 100.26273238887404,
+              "name": null,
+              "sources": [
+                {
+                  "property": "",
+                  "dataset": "OpenStreetMap",
+                  "license": "ODbL-1.0",
+                  "record_id": "w673416537@1",
+                  "update_time": "2019-02-27T17:26:13Z",
+                  "confidence": null,
+                  "between": null,
+                  "provider": "osm",
+                  "resource": "planet",
+                  "version": "2026-10-10"
+                }
+              ],
+              "licenseReview": {
+                "theme": "ODbL-1.0",
+                "upstream": [
+                  {
+                    "dataset": "OpenStreetMap",
+                    "license": "ODbL-1.0"
+                  }
+                ],
+                "resolved": true
+              },
+              "review": {
+                "status": "source-record-review",
+                "institutionAssociation": null,
+                "gameplayUse": false
+              },
+              "connectors": [
+                {
+                  "connector_id": "6893910a-b790-45b1-89e6-cb9de9eed379",
+                  "at": 0
+                },
+                {
+                  "connector_id": "97ce1df3-4fab-408d-a268-82a95c213087",
+                  "at": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "comparison": {
+    "mainVsPreviousPinM": 6.1099682622333855,
+    "ictVsEarlierMarkerM": 3.474231488740889,
+    "mainVsVirtualGateM": 19.102275049490906,
+    "mainVsVirtualSpawnM": 18.510087287729327,
+    "mainInsideBuildingIds": [
+      1523025009
+    ],
+    "noGameplayPositionsChangedByReference": true
+  },
+  "sourceRoute": {
+    "fromNode": 6306383698,
+    "toNode": 6306383685,
+    "lengthM": 517.4562344155306,
+    "nodePath": [
+      6306383698,
+      6306383703,
+      6306383702,
+      6306383692,
+      6306383691,
+      6306383690,
+      6306383689,
+      6306383688,
+      6306383687,
+      6306383686,
+      6306383685
+    ],
+    "roadIds": [
+      673416541,
+      673416543,
+      673416540
+    ],
+    "policy": "Original shared-node road connectivity only. Not verified pedestrian access, entrance identity or campus ownership."
+  },
+  "missing": [
+    {
+      "name": "Central Mosque",
+      "coordinates": null,
+      "status": "Owner visual/context report only; independent position/footprint association missing"
+    },
+    {
+      "name": "Convocation Square",
+      "coordinates": null,
+      "status": "Owner visual/context report only; independent position/footprint association missing"
+    },
+    {
+      "name": "College of Health Sciences",
+      "coordinates": null,
+      "status": "Owner visual/context report only; independent position/footprint association missing"
+    },
+    {
+      "name": "Academic Consultancy",
+      "coordinates": null,
+      "status": "Owner visual/context report only; independent position/footprint association missing"
+    },
+    {
+      "name": "Basketball court",
+      "coordinates": null,
+      "status": "Owner visual/context report only; independent position/footprint association missing"
+    },
+    {
+      "name": "Staff school",
+      "coordinates": null,
+      "status": "Owner visual/context report only; independent position/footprint association missing"
+    },
+    {
+      "name": "Exact photograph-to-gate identity and dimensions",
+      "coordinates": null,
+      "status": "Owner visual/context report only; independent position/footprint association missing"
+    }
+  ],
+  "conclusion": "Owner reports and independently sourced geometry are distinct. No campus boundary, legal access, gate identity or anonymous building function is independently verified."
+}
